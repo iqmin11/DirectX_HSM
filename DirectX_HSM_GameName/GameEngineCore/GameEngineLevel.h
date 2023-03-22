@@ -1,8 +1,9 @@
 #pragma once
+#include "GameEngineObject.h"
 #include <GameEngineBase\GameEngineTimeEvent.h>
 
 // Ό³Έν :
-class GameEngineLevel
+class GameEngineLevel : public GameEngineObject
 {
 	friend class GameEngineCore;
 
@@ -21,6 +22,7 @@ public:
 
 protected:
 	virtual void Loading() = 0;
+	virtual void Update(float _DeltaTime) = 0;
 
 private:
 
