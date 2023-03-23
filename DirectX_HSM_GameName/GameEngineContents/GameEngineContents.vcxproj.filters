@@ -2,8 +2,25 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="ContentsCore.h" />
+    <ClInclude Include="TestLevel.h">
+      <Filter>TestLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>TestLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="TestLevel.cpp">
+      <Filter>TestLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>TestLevel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="TestLevel">
+      <UniqueIdentifier>{fac3a2ec-9bea-4288-8c7d-5fb46d6de793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
