@@ -33,6 +33,7 @@ public:
 	static const float4 Down;
 	static const float4 Forward;
 	static const float4 Back;
+	static const float4 One;
 	static const float4 Zero;
 	static const float4 Null;
 
@@ -47,7 +48,14 @@ public:
 		return float4(cosf(_Rad), sinf(_Rad), 0.0f, 1.0f);
 	}
 
-	static float4 CrossReturn(const float4& _Left, const float4& _Right)
+	// 외적의 결과는 두개의 백터가 겹칠때 주의해서 처리해줘야 한다.
+	static float4 Cross3DReturnNormal(const float4& _Left, const float4& _Right)
+	{
+		return Cross3DReturn(_Left.NormalizeReturn(), _Right.NormalizeReturn()).NormalizeReturn();
+	}
+
+
+	static float4 Cross3DReturn(const float4& _Left, const float4& _Right)
 	{
 		float4 ReturnValue;
 		ReturnValue.x = (_Left.y * _Right.z) - (_Left.z * _Right.y);
@@ -262,7 +270,7 @@ public:
 	float Size() const
 	{
 		// 완벽
-		return sqrtf(x * x + y * y);
+		return sqrtf(x * x + y * y + z * z);
 	}
 
 	// 2, 0
@@ -276,7 +284,7 @@ public:
 	}
 
 	// 자기가 길이 1로 줄어든 애를 리턴해주는것.
-	float4 NormalizeReturn()
+	float4 NormalizeReturn() const
 	{
 		float4 Result = *this;
 		Result.Normalize();
@@ -313,9 +321,13 @@ public:
 		return Return;
 	}
 
+	bool operator ==(const float4& _Value) const
+	{
+		return _Value.x == x && _Value.y == y && _Value.z == z;
+	}
 
 
-	float4 operator +(const float4 _Value) const
+	float4 operator +(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x + _Value.x;
@@ -324,7 +336,7 @@ public:
 		return Return;
 	}
 
-	float4 operator -(const float4 _Value) const
+	float4 operator -(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x - _Value.x;
@@ -333,7 +345,7 @@ public:
 		return Return;
 	}
 
-	float4 operator *(const float4 _Value) const
+	float4 operator *(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x * _Value.x;
@@ -342,7 +354,7 @@ public:
 		return Return;
 	}
 
-	float4 operator /(const float4 _Value) const
+	float4 operator /(const float4& _Value) const
 	{
 		float4 Return;
 		Return.x = x / _Value.x;
@@ -364,7 +376,7 @@ public:
 		return *this;
 	}
 
-	float4& operator *=(const float& _Value)
+	float4& operator *=(const float _Value)
 	{
 		x *= _Value;
 		y *= _Value;
@@ -454,6 +466,18 @@ public:
 class float4x4
 {
 public:
+	static const float4x4 Zero;
+
+	static const int YCount = 4;
+	static const int XCount = 4;
+
+private:
+	float4x4(bool)
+	{
+		memset(Arr1D, 0, sizeof(float4x4));
+	}
+
+public:
 	union
 	{
 		float Arr1D[16];
@@ -495,7 +519,120 @@ public:
 		Arr2D[3][3] = 1.0f;
 	}
 
+	void Scale(const float4& _Value)
+	{
+		//100, 0 , 0 , 0
+		// 0 ,100, 0 , 0
+		// 0 , 0 ,100, 0
+		// 0 , 0 , 0 , 1
 
-	// float4 operator*()
+		Identity();
+		Arr2D[0][0] = _Value.x;
+		Arr2D[1][1] = _Value.y;
+		Arr2D[2][2] = _Value.z;
+	}
+
+
+	void Pos(const float4& _Value)
+	{
+		//  0   1   2   3
+		//0 0,  0 , 0 , 0
+		//1 0 , 0,  0 , 0
+		//2 0 , 0 , 0 , 0
+		//3 200, 200 , 200 , 1
+
+		Identity();
+		Arr2D[3][0] = _Value.x;
+		Arr2D[3][1] = _Value.y;
+		Arr2D[3][2] = _Value.z;
+	}
+
+	void RotationDeg(const float4& _Deg)
+	{
+		// 짐벌락 현상이라는 것이 있습니다.
+		// 축이 겹치는 이상한 현상이 있는데 그 현상을 해결하려면
+		// 곱하는 순서를 바꿔야 해결이 된다.
+		// Rot = RotX * RotY * RotZ;
+
+		// 기본적으로 쿼터니온 회전이라는걸 사용하는데 
+		// 짐벌락 해결함.
+		float4x4 RotX = float4x4::Zero;
+		float4x4 RotY = float4x4::Zero;
+		float4x4 RotZ = float4x4::Zero;
+		RotX.RotationXDeg(_Deg.x);
+		RotY.RotationYDeg(_Deg.y);
+		RotZ.RotationZDeg(_Deg.z);
+
+		*this = RotX * RotY * RotZ;
+	}
+
+	void RotationXDeg(const float _Deg)
+	{
+		RotationXRad(_Deg * GameEngineMath::DegToRad);
+	}
+
+	void RotationXRad(const float _Rad)
+	{
+		Identity();
+		Arr2D[1][1] = cosf(_Rad);
+		Arr2D[1][2] = sinf(_Rad);
+		Arr2D[2][1] = -sinf(_Rad);
+		Arr2D[2][2] = cosf(_Rad);
+	}
+
+
+	void RotationYDeg(const float _Deg)
+	{
+		RotationYRad(_Deg * GameEngineMath::DegToRad);
+	}
+
+	void RotationYRad(const float _Rad)
+	{
+		Identity();
+		Arr2D[0][0] = cosf(_Rad);
+		Arr2D[0][2] = -sinf(_Rad);
+		Arr2D[2][0] = sinf(_Rad);
+		Arr2D[2][2] = cosf(_Rad);
+	}
+
+	void RotationZDeg(const float _Deg)
+	{
+		RotationZRad(_Deg * GameEngineMath::DegToRad);
+	}
+
+	void RotationZRad(const float _Rad)
+	{
+		Identity();
+		Arr2D[0][0] = cosf(_Rad);
+		Arr2D[0][1] = sinf(_Rad);
+		Arr2D[1][0] = -sinf(_Rad);
+		Arr2D[1][1] = cosf(_Rad);
+	}
+
+
+	float4x4 operator*(const float4x4& _Other)
+	{
+		//  0   0   0   0			   		  0   0   0   0	    0   0   0   0
+		//  0,  0 , 0 , 0			   		  0,  0 , 0 , 0	    0,  0 , 0 , 0
+		//  0 , 0,  0 , 0          *   		  0 , 0,  0 , 0  =  0 , 0,  0 , 0
+		//  0 , 0 , 0 , 0			   		  0 , 0 , 0 , 0	    0 , 0 , 0 , 0
+
+		this->Arr2D;
+		_Other.Arr2D;
+
+		float4x4 Return = Zero;
+		for (size_t y = 0; y < YCount; y++)
+		{
+			for (size_t x = 0; x < XCount; x++)
+			{
+				for (size_t j = 0; j < 4; j++)
+				{
+					Return.Arr2D[y][x] += Arr2D[y][j] * _Other.Arr2D[j][x];
+				}
+			}
+		}
+
+		return Return;
+	}
 
 };
