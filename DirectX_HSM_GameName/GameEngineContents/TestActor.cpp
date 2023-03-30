@@ -94,11 +94,11 @@ void TestActor::Render(float _Delta)
 		float4 Dir0 = Vector0 - Vector1;
 		float4 Dir1 = Vector1 - Vector2;
 
-		float4 Cross = float4::CrossReturn(Dir0, Dir1);
-		if (0 <= Cross.z)
-		{
-			continue;
-		}
+		//float4 Cross = float4::CrossReturn(Dir0, Dir1);
+		//if (0 <= Cross.z)
+		//{
+		//	continue;
+		//}
 
 		Polygon(Dc, &ArrPoint[i * 4], 4);
 	}
