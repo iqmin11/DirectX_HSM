@@ -75,5 +75,5 @@ void GameEngineCamera::Update(float _DeltaTime)
 	float4 EyeUp = GetTransform().GetLocalUpVector();
 	float4 EyePos = GetTransform().GetLocalPosition();
 
-	View.LookAtLH(EyePos, EyeDir, EyeUp);
+	View.LookToLH(EyePos, EyeDir, EyeUp);
 }

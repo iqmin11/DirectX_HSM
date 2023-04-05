@@ -11,7 +11,7 @@ TestLevel::~TestLevel()
 
 }
 
-void TestLevel::Loading()
+void TestLevel::Start()
 {
 	std::shared_ptr<TestActor> AcTest = CreateActor<TestActor>("TestActor");
 }

@@ -12,8 +12,6 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::GameStart()
 {
-	new int();
-
 	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::ChangeLevel("TestLevel");
 }

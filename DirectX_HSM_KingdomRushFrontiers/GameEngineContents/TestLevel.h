@@ -15,7 +15,7 @@ public:
 	TestLevel& operator=(TestLevel&& _Other) noexcept = delete;
 
 protected:
-	void Loading() override;
+	void Start() override;
 
 private:
 

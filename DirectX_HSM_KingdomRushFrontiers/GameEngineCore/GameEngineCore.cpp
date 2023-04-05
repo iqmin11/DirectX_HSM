@@ -43,7 +43,6 @@ void GameEngineCore::EngineUpdate()
 	float TimeDeltaTime = GameEngineTime::GlobalTime.TimeCheck();
 	GameEngineInput::Update(TimeDeltaTime);
 	GameEngineSound::SoundUpdate();
-	GameEngineInput::Update(TimeDeltaTime);
 
 	MainLevel->TimeEvent.Update(TimeDeltaTime);
 	MainLevel->Update(TimeDeltaTime);
@@ -91,5 +90,5 @@ void GameEngineCore::ChangeLevel(const std::string_view& _Name)
 
 void GameEngineCore::LevelInit(std::shared_ptr<GameEngineLevel> _Level)
 {
-	_Level->Loading();
+	_Level->Start();
 }
