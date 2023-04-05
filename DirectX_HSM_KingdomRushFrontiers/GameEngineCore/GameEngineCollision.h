@@ -1,8 +1,10 @@
 #pragma once
+
+// Ό³Έν :
 class GameEngineCollision
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineCollision();
 	~GameEngineCollision();
 
@@ -13,7 +15,6 @@ public:
 	GameEngineCollision& operator=(GameEngineCollision&& _Other) noexcept = delete;
 
 protected:
-
 
 private:
 

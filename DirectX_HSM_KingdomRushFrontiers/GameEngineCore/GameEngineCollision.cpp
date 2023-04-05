@@ -2,10 +2,9 @@
 
 GameEngineCollision::GameEngineCollision()
 {
-
 }
 
 GameEngineCollision::~GameEngineCollision()
 {
-
 }
+

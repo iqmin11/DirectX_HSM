@@ -1,8 +1,11 @@
 #pragma once
-class GameEngineRenderer
+#include "GameEngineComponent.h"
+
+// Ό³Έν :
+class GameEngineRenderer : public GameEngineComponent
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineRenderer();
 	~GameEngineRenderer();
 
@@ -13,7 +16,7 @@ public:
 	GameEngineRenderer& operator=(GameEngineRenderer&& _Other) noexcept = delete;
 
 protected:
-
+	void Render(float _Delta) override;
 
 private:
 

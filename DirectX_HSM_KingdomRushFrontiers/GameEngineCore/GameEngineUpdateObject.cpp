@@ -2,10 +2,9 @@
 
 GameEngineUpdateObject::GameEngineUpdateObject()
 {
-
 }
 
 GameEngineUpdateObject::~GameEngineUpdateObject()
 {
-
 }
+
