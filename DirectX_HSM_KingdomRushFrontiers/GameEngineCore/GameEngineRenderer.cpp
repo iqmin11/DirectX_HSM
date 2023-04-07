@@ -15,8 +15,8 @@ GameEngineRenderer::~GameEngineRenderer()
 void GameEngineRenderer::Render(float _Delta)
 {
 	// 여기서 랜더링 할수 있겠지만 랜더러 못받는다.
- //여기서 하고 싶다 모든 구조를 이해하고 다 직접
- //여기를 쓴다는 ???????
+	//여기서 하고 싶다 모든 구조를 이해하고 다 직접
+	//여기를 쓴다는 ???????
 
 	HDC Dc = GameEngineWindow::GetWindowBackBufferHdc();
 

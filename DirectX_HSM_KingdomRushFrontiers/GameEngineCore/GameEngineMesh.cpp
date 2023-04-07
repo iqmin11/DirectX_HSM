@@ -2,10 +2,8 @@
 
 GameEngineMesh::GameEngineMesh()
 {
-
 }
 
 GameEngineMesh::~GameEngineMesh()
 {
-
 }

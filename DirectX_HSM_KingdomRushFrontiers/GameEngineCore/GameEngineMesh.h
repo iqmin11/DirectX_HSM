@@ -3,10 +3,11 @@
 #include <vector>
 #include <GameEngineBase/GameEngineMath.h>
 
-class GameEngineMesh : public GameEngineResource
+// Ό³Έν :
+class GameEngineMesh : public GameEngineResource<GameEngineMesh>
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineMesh();
 	~GameEngineMesh();
 
@@ -16,8 +17,13 @@ public:
 	GameEngineMesh& operator=(const GameEngineMesh& _Other) = delete;
 	GameEngineMesh& operator=(GameEngineMesh&& _Other) noexcept = delete;
 
-protected:
+	static void Create(const std::string_view& _Name, const std::vector<float4>& _Vertexs)
+	{
+		std::shared_ptr<GameEngineMesh> NewMesh = GameEngineResource::Create(_Name);
+	}
 
+
+protected:
 
 private:
 	std::vector<float4> Vertexs;
