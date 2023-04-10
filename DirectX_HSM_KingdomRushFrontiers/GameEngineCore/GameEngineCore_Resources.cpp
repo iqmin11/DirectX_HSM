@@ -6,6 +6,7 @@
 
 #include "GameEngineMesh.h"
 #include "GameEngineTexture.h"
+#include "GameEngineRenderTarget.h"
 
 
 void GameEngineCore::CoreResourcesInit()
