@@ -1,3 +1,4 @@
+#include "PrecompileHeader.h"
 #include "TestActor.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 

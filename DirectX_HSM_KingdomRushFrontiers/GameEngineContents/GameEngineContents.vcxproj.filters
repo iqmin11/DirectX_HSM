@@ -8,6 +8,7 @@
     <ClInclude Include="TestActor.h">
       <Filter>TestLevel</Filter>
     </ClInclude>
+    <ClInclude Include="PrecompileHeader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -17,6 +18,7 @@
     <ClCompile Include="TestActor.cpp">
       <Filter>TestLevel</Filter>
     </ClCompile>
+    <ClCompile Include="PrecompileHeader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
