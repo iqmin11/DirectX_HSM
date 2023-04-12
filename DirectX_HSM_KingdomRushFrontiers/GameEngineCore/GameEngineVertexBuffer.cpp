@@ -11,6 +11,16 @@ GameEngineVertexBuffer::~GameEngineVertexBuffer()
 
 }
 
+void GameEngineVertexBuffer::Setting()
+{
+	if (nullptr == Buffer)
+	{
+		MsgAssert("ID3DBuffer가 만들어지지 않은 버텍스 버퍼 입니다.");
+		return;
+	}
+	GameEngineDevice::GetContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);
+}
+
 void GameEngineVertexBuffer::Create(const void* _Data, UINT _VertexSize, UINT _VertexCount)
 {
 	VertexSize = _VertexSize;

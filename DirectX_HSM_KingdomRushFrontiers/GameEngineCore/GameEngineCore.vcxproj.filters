@@ -26,9 +26,6 @@
     <ClInclude Include="GameEngineTransform.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngineRenderer.h">
-      <Filter>Object\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngineUpdateObject.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -60,6 +57,18 @@
     <ClInclude Include="GameEngineDirectBuffer.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderingPipeLine.h">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineShader.h">
+      <Filter>Object\Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineVertexShader.h">
+      <Filter>Object\Rendering\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -87,9 +96,6 @@
     <ClCompile Include="GameEngineTransform.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineRenderer.cpp">
-      <Filter>Object\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngineUpdateObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -99,7 +105,6 @@
     <ClCompile Include="GameEngineNameObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngineCore_Resources.cpp" />
     <ClCompile Include="GameEngineTexture.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -122,6 +127,21 @@
     <ClCompile Include="GameEngineDirectBuffer.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineCore_Resources.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderingPipeLine.cpp">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineShader.cpp">
+      <Filter>Object\Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineVertexShader.cpp">
+      <Filter>Object\Rendering\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Manager">
@@ -141,6 +161,12 @@
     </Filter>
     <Filter Include="Object\Collision">
       <UniqueIdentifier>{9ac55c3a-5896-42f5-91fe-19a1c7c1b0c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering\Component">
+      <UniqueIdentifier>{215b38ae-7820-4bc5-b542-5773fa4c2bb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering\Shader">
+      <UniqueIdentifier>{f2ac1cdf-4320-4dac-bbd3-a7809652168d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
