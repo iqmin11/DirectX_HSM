@@ -9,6 +9,12 @@
       <Filter>TestLevel</Filter>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
+    <ClInclude Include="TitleLevel.h">
+      <Filter>1.Title</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapLevel.h">
+      <Filter>2.WorldMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -19,10 +25,25 @@
       <Filter>TestLevel</Filter>
     </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>1.Title</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapLevel.cpp">
+      <Filter>2.WorldMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
       <UniqueIdentifier>{fac3a2ec-9bea-4288-8c7d-5fb46d6de793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.Title">
+      <UniqueIdentifier>{8ae3fc49-09b5-4795-a8fa-d18b9230e3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.WorldMap">
+      <UniqueIdentifier>{3e830c09-a921-4bc6-b9cb-6b0d498bb008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage">
+      <UniqueIdentifier>{cbd58579-044b-4496-a198-51e2ada21d43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

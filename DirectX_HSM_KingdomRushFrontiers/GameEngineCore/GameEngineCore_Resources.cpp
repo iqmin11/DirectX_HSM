@@ -11,7 +11,10 @@
 #include "GameEngineTexture.h"
 #include "GameEngineRenderTarget.h"
 #include "GameEngineVertexBuffer.h"
+#include "GameEngineIndexBuffer.h"
 #include "GameEngineRenderingPipeLine.h"
+
+#include "GameEngineVertexShader.h"
 
 void GameEngineCore::CoreResourcesInit()
 {
@@ -19,16 +22,16 @@ void GameEngineCore::CoreResourcesInit()
 		std::vector<GameEngineVertex> ArrVertex;
 		ArrVertex.resize(4);
 		// ¾Õ¸é
-		ArrVertex[0] = { { -0.5f, -0.5f, 0.0f }, float4::Red};
-		ArrVertex[1] = { { 0.5f, -0.5f,0.0f }, float4::Red };
-		ArrVertex[2] = { { 0.5f, 0.5f,0.0f }, float4::Red };
-		ArrVertex[3] = { { -0.5f, 0.5f,0.0f }, float4::Red };
+		ArrVertex[0] = { { -0.5f, 0.5f, 0.0f }, float4::Red };
+		ArrVertex[1] = { { 0.5f, 0.5f,0.0f }, float4::Red };
+		ArrVertex[2] = { { 0.5f, -0.5f,0.0f }, float4::Red };
+		ArrVertex[3] = { { -0.5f, -0.5f,0.0f }, float4::Red };
+
+		std::vector<UINT> ArrIndex = { 0, 1, 2, 0, 3, 2 };
 
 		GameEngineVertexBuffer::Create("Rect", ArrVertex);
+		GameEngineIndexBuffer::Create("Rect", ArrIndex);
 
-		// GameEngineMesh::Create("Rect", ArrVertex);
-		// GameEngineMesh::Create("Rect");
-		//GameEngineMesh::Create("Box");
 	}
 
 	{
@@ -69,6 +72,16 @@ void GameEngineCore::CoreResourcesInit()
 		ArrVertex[22] = ArrVertex[2].RotaitonXDegReturn(-90.0f);
 		ArrVertex[23] = ArrVertex[3].RotaitonXDegReturn(-90.0f);
 
+	}
+
+	{
+		GameEngineDirectory NewDir;
+		NewDir.MoveParentToDirectory("EngineResources");
+		NewDir.Move("EngineResources");
+		NewDir.Move("Shader");
+
+		std::vector<GameEngineFile> Files = NewDir.GetAllFile({ ".hlsl", ".fx" });
+		GameEngineVertexShader::Load(Files[0].GetFullPath(), "Texture_VS");
 	}
 
 	{
