@@ -3,7 +3,6 @@
 
 GameEngineDirectBuffer::GameEngineDirectBuffer()
 {
-
 }
 
 GameEngineDirectBuffer::~GameEngineDirectBuffer()
@@ -14,3 +13,4 @@ GameEngineDirectBuffer::~GameEngineDirectBuffer()
 		Buffer = nullptr;
 	}
 }
+

@@ -2,10 +2,11 @@
 #include "GameEngineResource.h"
 #include "GameEngineShader.h"
 
+// Ό³Έν :
 class GameEngineVertexShader : public GameEngineResource<GameEngineVertexShader>, public GameEngineShader
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineVertexShader();
 	~GameEngineVertexShader();
 
@@ -32,13 +33,11 @@ public:
 	void Setting() override;
 
 protected:
+
+private:
 	ID3D11VertexShader* ShaderPtr = nullptr;
 
 	void ShaderLoad(const std::string_view& _Path, const std::string_view& _EntryPoint, UINT _VersionHigh = 5, UINT _VersionLow = 0);
-
-
-private:
-
 
 };
 

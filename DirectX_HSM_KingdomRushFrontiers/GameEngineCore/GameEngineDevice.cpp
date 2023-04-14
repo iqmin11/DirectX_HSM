@@ -12,6 +12,7 @@ ID3D11Device* GameEngineDevice::Device = nullptr;
 ID3D11DeviceContext* GameEngineDevice::Context = nullptr;
 IDXGISwapChain* GameEngineDevice::SwapChain = nullptr;
 std::shared_ptr<GameEngineRenderTarget> GameEngineDevice::BackBufferTarget = nullptr;
+
 //ID3D11Texture2D* GameEngineDevice::BackBufferTexture = nullptr;
 //ID3D11RenderTargetView* GameEngineDevice::RenderTarget = nullptr;
 
@@ -169,7 +170,7 @@ void GameEngineDevice::CreateSwapChain()
 	}
 
 	std::shared_ptr<GameEngineTexture> BackBufferTexture = std::make_shared<GameEngineTexture>();
-	BackBufferTexture->Create(SwapBackBufferTexture);
+	BackBufferTexture->ResCreate(SwapBackBufferTexture);
 
 	BackBufferTarget = GameEngineRenderTarget::Create("MainBackBufferTarget", BackBufferTexture, { 0.0f, 0.0f, 1.0f, 1.0f });
 
@@ -178,6 +179,9 @@ void GameEngineDevice::CreateSwapChain()
 void GameEngineDevice::RenderStart()
 {
 	BackBufferTarget->Clear();
+
+	// 
+	BackBufferTarget->Setting();
 }
 
 void GameEngineDevice::RenderEnd()

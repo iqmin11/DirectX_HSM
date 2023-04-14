@@ -3,10 +3,9 @@
 
 GameEngineNameObject::GameEngineNameObject()
 {
-
 }
 
 GameEngineNameObject::~GameEngineNameObject()
 {
-
 }
+

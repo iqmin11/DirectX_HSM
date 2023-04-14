@@ -2,10 +2,11 @@
 #include "GameEngineResource.h"
 #include "GameEngineDirectBuffer.h"
 
+// Ό³Έν :
 class GameEngineIndexBuffer : public GameEngineResource<GameEngineIndexBuffer>, public GameEngineDirectBuffer
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineIndexBuffer();
 	~GameEngineIndexBuffer();
 
@@ -20,23 +21,26 @@ public:
 	{
 		std::shared_ptr<GameEngineIndexBuffer> Res = GameEngineResource::Create(_Name);
 
-		Res->Create(&_Vertexs[0], sizeof(IndexType), static_cast<UINT>(_Vertexs.size()));
+		Res->ResCreate(&_Vertexs[0], sizeof(IndexType), static_cast<UINT>(_Vertexs.size()));
 	}
 
 	void Setting() override;
 
+	inline UINT GetIndexCount()
+	{
+		return IndexCount;
+	}
+
 protected:
 
-
 private:
-	void Create(const void* _Data, UINT _IndexSize, UINT _IndexCount);
+	void ResCreate(const void* _Data, UINT _IndexSize, UINT _IndexCount);
 
-	DXGI_FORMAT Format = DXGI_FORMAT_UNKNOWN;
+	DXGI_FORMAT Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 
 	UINT Offset = 0;
 	UINT IndexSize = 0;
 	UINT IndexCount = 0;
 	UINT VertexCount = 0;
-
 };
 

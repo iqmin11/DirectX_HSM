@@ -1,10 +1,11 @@
 #pragma once
 #include "GameEngineResource.h"
 
+// Ό³Έν :
 class GameEngineDirectBuffer
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineDirectBuffer();
 	~GameEngineDirectBuffer();
 
@@ -19,6 +20,5 @@ protected:
 	ID3D11Buffer* Buffer = nullptr;
 
 private:
-
 };
 

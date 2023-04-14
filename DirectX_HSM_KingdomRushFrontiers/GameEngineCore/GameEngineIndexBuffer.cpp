@@ -3,27 +3,15 @@
 
 GameEngineIndexBuffer::GameEngineIndexBuffer()
 {
-
 }
 
 GameEngineIndexBuffer::~GameEngineIndexBuffer()
 {
-
 }
 
-void GameEngineIndexBuffer::Setting()
+void GameEngineIndexBuffer::ResCreate(const void* _Data, UINT _VertexSize, UINT _VertexCount)
 {
-	if (nullptr == Buffer)
-	{
-		MsgAssert("ID3DBuffer가 만들어지지 않은 버텍스 버퍼입니다.");
-		return;
-	}
-	GameEngineDevice::GetContext()->IASetIndexBuffer(Buffer, Format, Offset);
-}
-
-void GameEngineIndexBuffer::Create(const void* _Data, UINT _IndexSize, UINT _IndexCount)
-{
-	IndexSize = _IndexSize;
+	IndexSize = _VertexSize;
 
 	switch (IndexSize)
 	{
@@ -37,7 +25,7 @@ void GameEngineIndexBuffer::Create(const void* _Data, UINT _IndexSize, UINT _Ind
 		break;
 	}
 
-	IndexCount = _IndexCount;
+	IndexCount = _VertexCount;
 
 	D3D11_SUBRESOURCE_DATA Data;
 	Data.pSysMem = _Data;
@@ -58,4 +46,23 @@ void GameEngineIndexBuffer::Create(const void* _Data, UINT _IndexSize, UINT _Ind
 	{
 		MsgAssert("버텍스 버퍼 생성에 실패했습니다.");
 	}
+
+}
+
+void GameEngineIndexBuffer::Setting()
+{
+	if (nullptr == Buffer)
+	{
+		MsgAssert("ID3DBuffer가 만들어지지 않은 버텍스 버퍼 입니다.");
+		return;
+	}
+
+	// UINT StartSlot, 버텍스 버퍼를 여러개 세팅했을때 그 여러개중 몇번째 부터 시작해서 세팅할래
+	// UINT NumBuffers, 버텍스 버퍼를 볓개 세팅했어?
+	// ID3D11Buffer* const* ppVertexBuffers, 버퍼의 배열 배열에 1개
+	// const UINT* pStrides, 버텍스 1개의 크기가 얼마야
+	// const UINT* pOffsets 버텍스 몇번째 부터 할까?
+
+
+	GameEngineDevice::GetContext()->IASetIndexBuffer(Buffer, Format, Offset);
 }

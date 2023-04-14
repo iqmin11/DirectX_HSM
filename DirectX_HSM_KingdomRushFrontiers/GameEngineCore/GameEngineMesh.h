@@ -27,7 +27,7 @@ public:
 protected:
 
 private:
-	//std::vector<float4> Vertexs;
+	// std::vector<float4> Vertexs;
 
 };
 

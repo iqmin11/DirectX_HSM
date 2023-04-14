@@ -3,25 +3,14 @@
 
 GameEngineVertexBuffer::GameEngineVertexBuffer()
 {
-
 }
 
 GameEngineVertexBuffer::~GameEngineVertexBuffer()
 {
-
 }
 
-void GameEngineVertexBuffer::Setting()
-{
-	if (nullptr == Buffer)
-	{
-		MsgAssert("ID3DBuffer가 만들어지지 않은 버텍스 버퍼 입니다.");
-		return;
-	}
-	GameEngineDevice::GetContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);
-}
 
-void GameEngineVertexBuffer::Create(const void* _Data, UINT _VertexSize, UINT _VertexCount)
+void GameEngineVertexBuffer::ResCreate(const void* _Data, UINT _VertexSize, UINT _VertexCount)
 {
 	VertexSize = _VertexSize;
 	VertexCount = _VertexCount;
@@ -47,8 +36,8 @@ void GameEngineVertexBuffer::Create(const void* _Data, UINT _VertexSize, UINT _V
 	//	D3D11_USAGE_STAGING
 	//	값 : 3
 	//	GPU에서 CPU로의 데이터 전송(복사)을 지원하는 리소스입니다. 비트코인
-	
-	
+
+
 	//D3D11_CPU_ACCESS_WRITE
 	//	값 : 0x10000L
 	//	CPU가 내용을 변경할 수 있도록 리소스를 매핑할 수 있습니다.이 플래그로 생성된 리소스는 파이프라인의 출력으로 설정할 수 없으며 동적 또는 스테이징 사용으로 생성되어야 합니다(D3D11_USAGE 참조).
@@ -61,14 +50,30 @@ void GameEngineVertexBuffer::Create(const void* _Data, UINT _VertexSize, UINT _V
 	{
 		BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 	}
-	else
-	{
+	else {
 		BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
 	}
 
-
 	if (S_OK != GameEngineDevice::GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
-		MsgAssert("버텍스 버퍼 생성에 실패했습니다.")
+		MsgAssert("버텍스 버퍼 생성에 실패했습니다.");
 	}
+
+}
+
+void GameEngineVertexBuffer::Setting()
+{
+	if (nullptr == Buffer)
+	{
+		MsgAssert("ID3DBuffer가 만들어지지 않은 버텍스 버퍼 입니다.");
+		return;
+	}
+	// UINT StartSlot, 버텍스 버퍼를 여러개 세팅했을때 그 여러개중 몇번째 부터 시작해서 세팅할래
+	// UINT NumBuffers, 버텍스 버퍼를 볓개 세팅했어?
+	// ID3D11Buffer* const* ppVertexBuffers, 버퍼의 배열 배열에 1개
+	// const UINT* pStrides, 버텍스 1개의 크기가 얼마야
+	// const UINT* pOffsets 버텍스 몇번째 부터 할까?
+
+
+	GameEngineDevice::GetContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);
 }
