@@ -6,7 +6,7 @@
 struct Input 
 {
 	// 시맨틱      어떤역할을 가졌는지 
-	float4 Pos   : POSITION0;
+	float4 Pos   : POSITION;
 	float4 Color : COLOR;
 };
 
@@ -29,4 +29,17 @@ OutPut Texture_VS(Input _Value)
     // _Value.Pos *= 월드뷰프로젝션;
 
     return OutPutValue;
+}
+
+struct OutColor
+{
+    // 깔아놓은 도화지중 0번째 도화지에 출력해라.
+    float4 Color : SV_Target0;
+};
+
+OutColor Texture_PS(OutPut _Value)
+{
+    OutColor ReturnColor = (OutColor) 0;
+    ReturnColor.Color = _Value.Color;
+    return ReturnColor;
 }
