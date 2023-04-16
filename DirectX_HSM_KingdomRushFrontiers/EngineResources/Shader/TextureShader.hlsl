@@ -3,11 +3,13 @@
 // 어떤 정보가 들어올지 구조체로 만들어야 합니다.
 // 어디가 포지션이고 어디가 컬이고
 // 이름 마음대로
-struct Input 
+struct Input
 {
-	// 시맨틱      어떤역할을 가졌는지 
-	float4 Pos   : POSITION;
-	float4 Color : COLOR;
+    // 시맨틱      어떤역할을 가졌는지 
+    // 버텍스 쉐이더에다가 순서를 어떻게 해놓건 사실 그건 상관이 없어요.
+    // 중요한건 버텍스 버퍼고 
+    float4 Pos   : POSITION;
+    float4 Color : COLOR;
 };
 
 struct OutPut
@@ -18,15 +20,19 @@ struct OutPut
     float4 Color : COLOR;
 };
 
+
+// 월드뷰프로젝션
+
 OutPut Texture_VS(Input _Value)
 {
     OutPut OutPutValue = (OutPut)0;
-	
+
+    // OutPutValue.Pos = mul(_Value.Pos, WorldMatrix);
     OutPutValue.Pos = _Value.Pos;
     OutPutValue.Color = _Value.Color;
-	
-	// 다음단계에서 사용할 정보들.
-    // _Value.Pos *= 월드뷰프로젝션;
+
+    // 다음단계에서 사용할 정보들.
+    // OutPutValue.Pos *= 월드뷰프로젝션;
 
     return OutPutValue;
 }
@@ -39,7 +45,7 @@ struct OutColor
 
 OutColor Texture_PS(OutPut _Value)
 {
-    OutColor ReturnColor = (OutColor) 0;
+    OutColor ReturnColor = (OutColor)0;
     ReturnColor.Color = _Value.Color;
     return ReturnColor;
 }
