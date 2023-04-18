@@ -3,6 +3,11 @@
 // 어떤 정보가 들어올지 구조체로 만들어야 합니다.
 // 어디가 포지션이고 어디가 컬이고
 // 이름 마음대로
+cbuffer TransformData : register(b0)
+{
+    float4x4 WorldMatrix;
+}
+
 struct Input
 {
     // 시맨틱      어떤역할을 가졌는지 
@@ -27,8 +32,8 @@ OutPut Texture_VS(Input _Value)
 {
     OutPut OutPutValue = (OutPut)0;
 
-    // OutPutValue.Pos = mul(_Value.Pos, WorldMatrix);
-    OutPutValue.Pos = _Value.Pos;
+    OutPutValue.Pos = mul(_Value.Pos, WorldMatrix);
+    //OutPutValue.Pos = _Value.Pos;
     OutPutValue.Color = _Value.Color;
 
     // 다음단계에서 사용할 정보들.
@@ -37,15 +42,13 @@ OutPut Texture_VS(Input _Value)
     return OutPutValue;
 }
 
-struct OutColor
-{
-    // 깔아놓은 도화지중 0번째 도화지에 출력해라.
-    float4 Color : SV_Target0;
-};
+//struct OutColor
+//{
+//    // 깔아놓은 도화지중 0번째 도화지에 출력해라.
+//    float4 Color : SV_Target0;
+//};
 
-OutColor Texture_PS(OutPut _Value)
+float4 Texture_PS(OutPut _Value) : SV_Target0
 {
-    OutColor ReturnColor = (OutColor)0;
-    ReturnColor.Color = _Value.Color;
-    return ReturnColor;
+    return float4(1.0f, 0.0f, 0.0f, 1.0f);
 }
