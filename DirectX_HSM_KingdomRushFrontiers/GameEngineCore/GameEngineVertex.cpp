@@ -16,10 +16,14 @@ void GameEngineInputLayOutInfo::AddInputLayOut(
 
 	// POSITION
 	Data.SemanticName = _SemanticName;
+	// POSITION0 POSITION1 POSITION2
 	Data.SemanticIndex = _SemanticIndex;
 	Data.Format = _Format;
 	Data.AlignedByteOffset = Offset;
+	// D3D11_INPUT_PER_VERTEX_DATA
+	// D3D11_INPUT_PER_INSTANCE_DATA 인스턴싱 하게 되면 보자.
 	Data.InputSlotClass = _InputSlotClass;
+	// 버텍스버퍼를 여러개 세팅할때 그걸 인스턴싱 때문에 중첩으로 날린다.
 	Data.InputSlot = _InputSlot;
 	Data.InstanceDataStepRate = _InstanceDataStepRate;
 
@@ -27,8 +31,6 @@ void GameEngineInputLayOutInfo::AddInputLayOut(
 
 	Descs.push_back(Data);
 }
-
-GameEngineInputLayOutInfo GameEngineVertex::LayOut;
 
 UINT GameEngineInputLayOutInfo::FormatSize(DXGI_FORMAT _Format)
 {
@@ -175,3 +177,4 @@ UINT GameEngineInputLayOutInfo::FormatSize(DXGI_FORMAT _Format)
 	// ???????
 }
 
+GameEngineInputLayOutInfo GameEngineVertex::LayOut;

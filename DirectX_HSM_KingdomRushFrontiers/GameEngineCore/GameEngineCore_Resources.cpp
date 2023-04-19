@@ -48,12 +48,12 @@ void GameEngineCore::CoreResourcesInit()
 		std::vector<GameEngineVertex> ArrVertex;
 		ArrVertex.resize(4);
 		// ¾Õ¸é
-		ArrVertex[0] = { { -0.5f, 0.5f, 0.0f }, float4::White };
-		ArrVertex[1] = { { 0.5f, 0.5f, 0.0f }, float4::Black };
+		ArrVertex[0] = { { -0.5f, 0.5f, 0.0f }, float4::Red };
+		ArrVertex[1] = { { 0.5f, 0.5f, 0.0f }, float4::Green };
 		ArrVertex[2] = { { 0.5f, -0.5f, 0.0f }, float4::Black };
 		ArrVertex[3] = { { -0.5f, -0.5f, 0.0f }, float4::White };
 
-		std::vector<UINT> ArrIndex = { 0, 1, 2/*, 0, 2, 3 */};
+		std::vector<UINT> ArrIndex = { 0, 1, 2, 0, 2, 3 };
 
 		GameEngineVertexBuffer::Create("Rect", ArrVertex);
 		GameEngineIndexBuffer::Create("Rect", ArrIndex);
@@ -172,7 +172,7 @@ void GameEngineCore::CoreResourcesInit()
 			Pipe->SetVertexShader("TextureShader.hlsl");
 			Pipe->SetRasterizer("EngineBase");
 			Pipe->SetPixelShader("TextureShader.hlsl");
-			//Pipe->SetFILL_MODE(D3D11_FILL_WIREFRAME);
+			// Pipe->SetFILL_MODE(D3D11_FILL_WIREFRAME);
 		}
 	}
 }

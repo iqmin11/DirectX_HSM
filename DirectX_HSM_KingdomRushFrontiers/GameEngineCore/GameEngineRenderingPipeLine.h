@@ -71,4 +71,3 @@ private:
 	std::shared_ptr<class GameEnginePixelShader> PixelShaderPtr;
 
 };
-

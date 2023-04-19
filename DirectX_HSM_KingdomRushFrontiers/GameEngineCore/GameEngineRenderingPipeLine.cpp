@@ -55,7 +55,6 @@ void GameEngineRenderingPipeLine::VertexShader()
 	}
 
 	VertexShaderPtr->Setting();
-	// GameEngineDevice::GetContext()->VSSetShader
 }
 
 // 점의 정보를 토대로 어떤 순서로 그릴지 정하고

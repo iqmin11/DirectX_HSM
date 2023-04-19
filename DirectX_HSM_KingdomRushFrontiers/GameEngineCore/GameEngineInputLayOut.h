@@ -1,10 +1,12 @@
 #pragma once
 #include "GameEngineResource.h"
 
+
+// Ό³Έν :
 class GameEngineInputLayOut : public GameEngineResource<GameEngineInputLayOut>
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineInputLayOut();
 	~GameEngineInputLayOut();
 
@@ -14,14 +16,15 @@ public:
 	GameEngineInputLayOut& operator=(const GameEngineInputLayOut& _Other) = delete;
 	GameEngineInputLayOut& operator=(GameEngineInputLayOut&& _Other) noexcept = delete;
 
-	void Releas();
+	void Relase();
 	void ResCreate(std::shared_ptr<class GameEngineVertexBuffer> _Info, std::shared_ptr<class GameEngineVertexShader> _Shader);
 	void Setting() override;
 
-protected:
 
+protected:
 
 private:
 	ID3D11InputLayout* InputLayOut = nullptr;
+
 };
 

@@ -25,6 +25,7 @@ void GameEngineShader::CreateVersion(const std::string_view& _ShaderType, UINT _
 	Version += std::to_string(_VersionLow);
 }
 
+
 void GameEngineShader::ShaderResCheck()
 {
 	if (nullptr == BinaryCode)
@@ -33,6 +34,8 @@ void GameEngineShader::ShaderResCheck()
 		return;
 	}
 
+	// Reflection 
+	// RTTI의 비슷한 개념으로 
 	ID3D11ShaderReflection* CompileInfo = nullptr;
 
 	if (S_OK != D3DReflect(BinaryCode->GetBufferPointer(), BinaryCode->GetBufferSize(), IID_ID3D11ShaderReflection, reinterpret_cast<void**>(&CompileInfo)))
@@ -40,6 +43,7 @@ void GameEngineShader::ShaderResCheck()
 		MsgAssert("쉐이더 리플렉션에 실패했습니다.");
 		return;
 	}
+
 	D3D11_SHADER_DESC Info;
 
 	CompileInfo->GetDesc(&Info);
@@ -98,5 +102,8 @@ void GameEngineShader::ShaderResCheck()
 		default:
 			break;
 		}
+
 	}
+
+	// CompileInfo
 }

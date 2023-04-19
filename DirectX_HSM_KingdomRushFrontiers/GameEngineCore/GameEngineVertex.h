@@ -7,7 +7,7 @@
 
 class GameEngineInputLayOutInfo
 {
-public: 
+public:
 	static UINT FormatSize(DXGI_FORMAT _Format);
 
 	inline const std::vector<D3D11_INPUT_ELEMENT_DESC>& GetDescs()

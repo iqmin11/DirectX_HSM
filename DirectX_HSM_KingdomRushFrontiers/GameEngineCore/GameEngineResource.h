@@ -87,12 +87,12 @@ protected:
 		return NewRes;
 	}
 
+
 	static void ResourcesClear()
 	{
 		NamedResources.clear();
 		UnNamedRes.clear();
 	}
-
 
 private:
 	std::string Path;
@@ -100,7 +100,6 @@ private:
 
 	static std::map<std::string, std::shared_ptr<ResourcesType>> NamedResources;
 	static std::list<std::shared_ptr<ResourcesType>> UnNamedRes;
-
 
 
 };

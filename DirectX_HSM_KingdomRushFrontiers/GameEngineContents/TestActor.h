@@ -16,13 +16,15 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _Delta) override;
-	void Render(float _Delta) override;
+	void Update(float _DeltaTime) override;
+	void Render(float _DeltaTime) override;
+
+	float4 TestColor;
 
 private:
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineRenderer> Render0;
-	std::shared_ptr<class GameEngineRenderer> Render1;
-	std::shared_ptr<class GameEngineRenderer> Render2;
+	//std::shared_ptr<class GameEngineRenderer> Render1;
+	//std::shared_ptr<class GameEngineRenderer> Render2;
 };
 

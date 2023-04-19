@@ -6,15 +6,14 @@
 
 GameEngineInputLayOut::GameEngineInputLayOut()
 {
-
 }
 
 GameEngineInputLayOut::~GameEngineInputLayOut()
 {
-	Releas();
+	Relase();
 }
 
-void GameEngineInputLayOut::Releas()
+void GameEngineInputLayOut::Relase()
 {
 	if (nullptr != InputLayOut)
 	{
@@ -25,7 +24,7 @@ void GameEngineInputLayOut::Releas()
 
 void GameEngineInputLayOut::ResCreate(std::shared_ptr<class GameEngineVertexBuffer> _Info, std::shared_ptr<class GameEngineVertexShader> _Shader)
 {
-	Releas();
+	Relase();
 
 	if (nullptr == _Info->LayOutInfo)
 	{
@@ -36,7 +35,7 @@ void GameEngineInputLayOut::ResCreate(std::shared_ptr<class GameEngineVertexBuff
 
 	HRESULT Result = GameEngineDevice::GetDevice()->CreateInputLayout(
 		&LayOutInfos[0],
-		LayOutInfos.size(),
+		static_cast<UINT>(LayOutInfos.size()),
 		_Shader->BinaryCode->GetBufferPointer(),
 		_Shader->BinaryCode->GetBufferSize(),
 		&InputLayOut);
