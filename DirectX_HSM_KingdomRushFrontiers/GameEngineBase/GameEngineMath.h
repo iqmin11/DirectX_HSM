@@ -47,8 +47,8 @@ public:
 	static const float4 Null;
 
 	static const float4 Red;
-	static const float4 Green;
 	static const float4 Blue;
+	static const float4 Green;
 	static const float4 White;
 	static const float4 Black;
 
@@ -663,6 +663,13 @@ public:
 		//Arr2D[2][2] = _FarZ / (_FarZ - _NearZ);
 
 		//Arr2D[3][2] = -( _NearZ * _FarZ) / (_FarZ - _NearZ);
+	}
+
+	void OrthographicLH(float _ScreenWidth, float _ScreenHeight, float _NearZ = 0.1f, float _FarZ = 10000.0f)
+	{
+		Identity();
+
+		DirectMatrix = DirectX::XMMatrixOrthographicLH(_ScreenWidth, _ScreenHeight, _NearZ, _FarZ);
 	}
 
 	//            화면의 너비
