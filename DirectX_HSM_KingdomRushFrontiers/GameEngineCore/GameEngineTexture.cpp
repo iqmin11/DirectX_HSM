@@ -1,6 +1,8 @@
 #include "PrecompileHeader.h"
 #include "GameEngineTexture.h"
 
+// #pragma comment();
+
 GameEngineTexture::GameEngineTexture()
 {
 }
@@ -43,5 +45,12 @@ void GameEngineTexture::CreateRenderTargetView()
 		MsgAssert("랜더타겟 생성에 실패했습니다.");
 		return;
 	}
+
+}
+
+
+void GameEngineTexture::ResLoad(const std::string_view& _Path)
+{
+	// GameEnginePath NewPath = 
 
 }

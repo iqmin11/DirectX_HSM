@@ -4,6 +4,7 @@
 #include "GameEngineDebug.h"
 #include "GameEngineString.h"
 
+
 GameEngineDirectory::GameEngineDirectory()
 {
 }
@@ -36,11 +37,30 @@ GameEnginePath GameEngineDirectory::GetPlusFileName(const std::string_view& _Str
 	return GameEnginePath(PathString);
 }
 
+bool GameEngineDirectory::MoveParent()
+{
+	if (true == Path.IsRoot())
+	{
+		MsgAssert("루트 디렉토리는 부모디렉토리로 이동할수 없습니다.");
+		return false;
+	}
+
+	Path.MoveParent();
+
+	return true;
+}
+
+// .png
+// png
+
 std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::string_view> _Ext)
 {
 	std::filesystem::directory_iterator DirIter(Path.Path);
 
+	// std::string Ext = _Ext.data();
+
 	std::vector<std::string> UpperExts;
+	UpperExts.reserve(_Ext.size());
 	for (size_t i = 0; i < _Ext.size(); i++)
 	{
 		std::string OtherUpperExt = GameEngineString::ToUpper(_Ext[i]);
@@ -51,8 +71,17 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::str
 
 	for (const std::filesystem::directory_entry& Entry : DirIter)
 	{
-		if (Entry.is_directory())
+		if (true == Entry.is_directory())
 		{
+			GameEngineDirectory ChildDir(Entry.path());
+
+			std::vector<GameEngineFile> ChildFiles = ChildDir.GetAllFile(_Ext);
+
+
+			for (size_t i = 0; i < ChildFiles.size(); i++)
+			{
+				Files.push_back(ChildFiles[i]);
+			}
 			continue;
 		}
 
@@ -65,7 +94,7 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::str
 		for (size_t i = 0; i < UpperExts.size(); i++)
 		{
 			const std::string& ExtText = UpperExts[i];
-			
+
 			if (ExtText == UpperExt)
 			{
 				Check = true;
@@ -83,41 +112,3 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(std::vector<std::str
 
 	return Files;
 }
-
-bool GameEngineDirectory::MoveParent()
-{
-	if (true == Path.IsRoot())
-	{
-		MsgAssert("루트 디렉토리는 부모디렉토리로 이동할수 없습니다.");
-		return false;
-	}
-
-	Path.MoveParent();
-
-	return true;
-}
-
-// .png
-// png
-
-//std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string_view& _Ext)
-//{
-//	std::filesystem::directory_iterator DirIter(Path.Path);
-//
-//	std::string Ext = _Ext.data();
-//
-//	std::vector<GameEngineFile> Files;
-//
-//	for (const std::filesystem::directory_entry& Entry : DirIter)
-//	{
-//		if (true == Entry.is_directory())
-//		{
-//			// 재귀를 돌리면 다 돌것이다.
-//			continue;
-//		}
-//
-//		Files.push_back(GameEngineFile(Entry.path()));
-//	}
-//
-//	return Files;
-//}
