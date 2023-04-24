@@ -23,6 +23,7 @@ void GameEngineRenderTarget::Clear()
 	if (nullptr == RTV)
 	{
 		MsgAssert("랜더타겟 뷰가 존재하지 않아서 클리어가 불가능합니다.");
+		return;
 	}
 
 	GameEngineDevice::GetContext()->ClearRenderTargetView(RTV, Color.Arr1D);
@@ -35,6 +36,7 @@ void GameEngineRenderTarget::Setting()
 	if (nullptr == RTV)
 	{
 		MsgAssert("랜더타겟 뷰가 존재하지 않아서 클리어가 불가능합니다.");
+		return;
 	}
 
 	// 지금 당장은 z값을 쓰지 않겠습니다.
