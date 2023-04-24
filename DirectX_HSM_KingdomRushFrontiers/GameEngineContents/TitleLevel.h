@@ -20,5 +20,6 @@ protected:
 
 private:
 	std::shared_ptr<class TitleBackground> AcTitleBackground = nullptr;
+	float4 CameraPos = { 0,0,-550 };
 };
 

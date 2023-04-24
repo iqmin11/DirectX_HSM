@@ -20,6 +20,7 @@ protected:
 
 private:
 	float4 ActorPos = float4::Zero;
+	float4 RenderScale = { 1280,720 };
 	std::shared_ptr<class GameEngineRenderer> BackgroundRenderer = nullptr;
 };
 

@@ -17,10 +17,10 @@ void TitleBackground::Start()
 	BackgroundRenderer = CreateComponent<GameEngineRenderer>();
 	BackgroundRenderer->SetPipeLine("2DTexture");
 	BackgroundRenderer->GetShaderResHelper().SetTexture("DiffuseTex", "mainmenu_bg.png");
-	BackgroundRenderer->GetTransform()->SetWorldPosition(ActorPos);
-	//BackgroundRenderer->GetTransform()->Set
+	BackgroundRenderer->GetTransform()->SetWorldScale(RenderScale);
 }
 
 void TitleBackground::Update(float _DeltaTime)
 {
+	
 }

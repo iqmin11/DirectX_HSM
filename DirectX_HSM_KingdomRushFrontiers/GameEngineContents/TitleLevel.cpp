@@ -32,12 +32,12 @@ void TitleLevel::Start()
 
 	AcTitleBackground = CreateActor<TitleBackground>();
 
-	GetMainCamera()->SetProjectionType(CameraType::Perspective);
-	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -554.0f});
+	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
+	GetMainCamera()->GetTransform()->SetLocalPosition(CameraPos);
 
 }
 
 void TitleLevel::Update(float _DeltaTime)
 {
-	
+	GameEngineLevel::Update(_DeltaTime);
 }

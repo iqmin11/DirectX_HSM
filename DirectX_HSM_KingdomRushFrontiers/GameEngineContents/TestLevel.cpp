@@ -1,6 +1,8 @@
 #include "PrecompileHeader.h"
 #include "TestLevel.h"
 #include "TestActor.h"
+#include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 
@@ -21,6 +23,7 @@ void TestLevel::Start()
 		GameEngineDirectory NewDir;
 		NewDir.MoveParentToDirectory("ContentsResources");
 		NewDir.Move("ContentsResources");
+		NewDir.Move("Texture");
 
 		std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 
@@ -37,4 +40,17 @@ void TestLevel::Start()
 
 
 	std::shared_ptr<TestActor> AcTest = CreateActor<TestActor>("TestActor");
+
+	GameEngineInput::CreateKey("TitleLevel", '1');
+}
+
+void TestLevel::Update(float _DeltaTime)
+{
+	GameEngineLevel::Update(_DeltaTime);
+
+	if (GameEngineInput::IsDown("TitleLevel"))
+	{
+		GameEngineCore::ChangeLevel("TitleLevel");
+	}
+
 }
