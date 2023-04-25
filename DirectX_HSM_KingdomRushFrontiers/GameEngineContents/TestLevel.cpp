@@ -42,6 +42,7 @@ void TestLevel::Start()
 	std::shared_ptr<TestActor> AcTest = CreateActor<TestActor>("TestActor");
 
 	GameEngineInput::CreateKey("TitleLevel", '1');
+	GameEngineInput::CreateKey("WorldMapLevel", '2');
 }
 
 void TestLevel::Update(float _DeltaTime)
@@ -53,4 +54,8 @@ void TestLevel::Update(float _DeltaTime)
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 
+	if (GameEngineInput::IsDown("WorldMapLevel"))
+	{
+		GameEngineCore::ChangeLevel("WorldMapLevel");
+	}
 }

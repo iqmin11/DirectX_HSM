@@ -192,6 +192,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UpgradeMenu.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WorldMapLevel.h">
       <SubType>
       </SubType>
@@ -229,6 +241,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UpgradeMenu.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
       <SubType>
       </SubType>
     </ClCompile>

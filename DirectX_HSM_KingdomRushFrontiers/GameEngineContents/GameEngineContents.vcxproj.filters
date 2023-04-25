@@ -18,6 +18,15 @@
     <ClInclude Include="TitleBackground.h">
       <Filter>1.Title\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>1.Title\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeMenu.h">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -37,6 +46,15 @@
     <ClCompile Include="TitleBackground.cpp">
       <Filter>1.Title\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>1.Title\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeMenu.cpp">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -53,6 +71,9 @@
     </Filter>
     <Filter Include="1.Title\Actor">
       <UniqueIdentifier>{1b45e3e5-4ca2-4be3-a3bd-aaf631e8d998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.WorldMap\Actor">
+      <UniqueIdentifier>{bf9911d4-9f34-4455-9c17-4443ddcf12db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
