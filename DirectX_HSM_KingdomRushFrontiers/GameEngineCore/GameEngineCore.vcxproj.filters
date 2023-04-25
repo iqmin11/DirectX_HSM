@@ -94,6 +94,12 @@
     <ClInclude Include="GameEngineSampler.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineBlend.h">
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSpriteRenderer.h">
+      <Filter>Object\Rendering\Component\2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -188,11 +194,14 @@
     <ClCompile Include="GameEngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineBlend.cpp">
+      <Filter>Resources\RenderingSetting</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineSpriteRenderer.cpp">
+      <Filter>Object\Rendering\Component\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{0a132b58-93c0-4867-8510-93fff9dc59c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{a6142f94-4280-4152-a7c8-57e10fb3a845}</UniqueIdentifier>
     </Filter>
@@ -240,6 +249,12 @@
     </Filter>
     <Filter Include="ThirdParty\bin\Release">
       <UniqueIdentifier>{9dff22e9-087b-4a29-8a3c-4b872fcd513a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Manager">
+      <UniqueIdentifier>{0a132b58-93c0-4867-8510-93fff9dc59c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering\Component\2D">
+      <UniqueIdentifier>{ee25fb5d-54d2-47c5-9825-99bdd91aa17e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
