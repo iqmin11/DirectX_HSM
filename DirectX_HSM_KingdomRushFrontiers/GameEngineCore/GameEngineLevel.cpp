@@ -22,6 +22,26 @@ void GameEngineLevel::Start()
 
 void GameEngineLevel::Update(float _DeltaTime)
 {
+
+}
+
+void GameEngineLevel::Render(float _DeltaTime)
+{
+
+}
+
+void GameEngineLevel::ActorInit(std::shared_ptr<GameEngineActor> _Actor, int _Order, GameEngineLevel* _Level)
+{
+	_Actor->Level = this;
+	_Actor->SetOrder(_Order);
+	_Actor->Start();
+
+	// Level이 관리하고 있는 액터를 관리하는 리스트에 들어간다.
+	Actors[_Order].push_back(_Actor);
+}
+
+void GameEngineLevel::ActorUpdate(float _DeltaTime)
+{
 	if (true == MainCamera->IsFreeCamera())
 	{
 		MainCamera->Update(_DeltaTime);
@@ -42,7 +62,7 @@ void GameEngineLevel::Update(float _DeltaTime)
 	}
 }
 
-void GameEngineLevel::Render(float _DeltaTime)
+void GameEngineLevel::ActorRender(float _DeltaTime)
 {
 	GetMainCamera()->Setting();
 
@@ -59,14 +79,4 @@ void GameEngineLevel::Render(float _DeltaTime)
 			Actor->ComponentsRender(_DeltaTime);
 		}
 	}
-}
-
-void GameEngineLevel::ActorInit(std::shared_ptr<GameEngineActor> _Actor, int _Order, GameEngineLevel* _Parent)
-{
-	_Actor->Level = this;
-	_Actor->SetOrder(_Order);
-	_Actor->Start();
-
-	// Level이 관리하고 있는 액터를 관리하는 리스트에 들어간다.
-	Actors[_Order].push_back(_Actor);
 }

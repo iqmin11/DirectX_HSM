@@ -37,7 +37,6 @@ void WorldMapLevel::Start()
 
 void WorldMapLevel::Update(float _DeltaTime)
 {
-	GameEngineLevel::Update(_DeltaTime);
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
