@@ -5,7 +5,10 @@
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 
+#include "Background.h"
 #include "WorldMap.h"
+#include "UpgradeMenu.h"
+#include "StageSelectMenu.h"
 
 WorldMapLevel::WorldMapLevel()
 {
@@ -30,7 +33,10 @@ void WorldMapLevel::Start()
 		GameEngineTexture::Load(File[i].GetFullPath());
 	}
 
-	AcWorldMap = CreateActor<WorldMap>();
+	AcBg = CreateActor<Background>();
+	//AcWorldMap = CreateActor<WorldMap>();
+	AcUpgradeMenu = CreateActor<UpgradeMenu>();
+	//AcStageSelectMenu = CreateActor<StageSelectMenu>();
 
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 }

@@ -163,11 +163,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
+    <ClInclude Include="StageSelectMenu.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TestActor.h">
       <SubType>
       </SubType>
@@ -210,6 +218,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
       <SubType>
       </SubType>
@@ -219,6 +231,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StageSelectMenu.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="TestActor.cpp">
       <SubType>

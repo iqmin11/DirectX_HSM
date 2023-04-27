@@ -14,11 +14,6 @@ WorldMap::~WorldMap()
 
 void WorldMap::Start()
 {
-	Bg = CreateComponent<GameEngineSpriteRenderer>();
-	Bg->SetPipeLine("2DTexture");
-	Bg->SetTexture("Bg.png");
-	Bg->GetTransform()->SetWorldScale(BgScale);
-	
 	WorldMapBg = CreateComponent<GameEngineSpriteRenderer>();
 	WorldMapBg->SetPipeLine("2DTexture");
 	WorldMapBg->SetTexture("MapBackground.png");
@@ -107,9 +102,4 @@ void WorldMap::Start()
 	HomeButton->SetTexture("options_overlay_buttons_0005.png");
 	HomeButton->GetTransform()->SetWorldScale(HomeButtonScale);
 	HomeButton->GetTransform()->SetWorldPosition(HomeButtonPos);
-}
-
-void WorldMap::Update(float _DeltaTime)
-{
-	
 }

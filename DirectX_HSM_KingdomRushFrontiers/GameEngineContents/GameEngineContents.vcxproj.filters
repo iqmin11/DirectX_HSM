@@ -27,6 +27,12 @@
     <ClInclude Include="UpgradeMenu.h">
       <Filter>2.WorldMap\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectMenu.h">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -53,6 +59,12 @@
       <Filter>2.WorldMap\Actor</Filter>
     </ClCompile>
     <ClCompile Include="UpgradeMenu.cpp">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>2.WorldMap\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectMenu.cpp">
       <Filter>2.WorldMap\Actor</Filter>
     </ClCompile>
   </ItemGroup>

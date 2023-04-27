@@ -50,7 +50,7 @@ void TestActor::Start()
 	Render0->SetPipeLine("2DTexture");
 	Render0->GetShaderResHelper().SetTexture("DiffuseTex", "Test.png");
 	//Render0->GetShaderResHelper().SetConstantBufferLink("OutPixelColor", TestColor);
-	Render0->GetTransform()->SetLocalScale({ 100.0f, 100.0f , 100.0f });
+	Render0->GetTransform()->SetLocalScale({ 100.0f, 100.0f , 0.0f });
 	TestColor = { 0.0f, 0.0f, 0.0f, 1.0f };
 	//Render1 = CreateComponent<GameEngineRenderer>();
 	//Render1->SetPipeLine("2DTexture");
