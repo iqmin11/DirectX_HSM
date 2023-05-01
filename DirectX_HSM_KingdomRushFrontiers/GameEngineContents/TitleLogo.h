@@ -20,6 +20,8 @@ protected:
 
 private:
 	float4 ActorPos = {0, 140};
+	float ScaleRatio = 900.f / 720.f;
+
 	float4 LogoRenderScale = { 480.f, 378.f };
 	std::shared_ptr<class GameEngineSpriteRenderer> LogoRenderer = nullptr;
 	

@@ -35,8 +35,8 @@ void WorldMapLevel::Start()
 
 	AcBg = CreateActor<Background>();
 	//AcWorldMap = CreateActor<WorldMap>();
-	AcUpgradeMenu = CreateActor<UpgradeMenu>();
-	//AcStageSelectMenu = CreateActor<StageSelectMenu>();
+	//AcUpgradeMenu = CreateActor<UpgradeMenu>();
+	AcStageSelectMenu = CreateActor<StageSelectMenu>();
 
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 }

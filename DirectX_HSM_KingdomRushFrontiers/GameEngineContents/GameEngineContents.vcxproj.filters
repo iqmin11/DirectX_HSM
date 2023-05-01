@@ -33,6 +33,18 @@
     <ClInclude Include="StageSelectMenu.h">
       <Filter>2.WorldMap\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="PlayStageLevel.h">
+      <Filter>3.PlayStage</Filter>
+    </ClInclude>
+    <ClInclude Include="StageMap.h">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStageUI.h">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMonster.h">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -67,6 +79,18 @@
     <ClCompile Include="StageSelectMenu.cpp">
       <Filter>2.WorldMap\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="PlayStageLevel.cpp">
+      <Filter>3.PlayStage</Filter>
+    </ClCompile>
+    <ClCompile Include="StageMap.cpp">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStageUI.cpp">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMonster.cpp">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -86,6 +110,9 @@
     </Filter>
     <Filter Include="2.WorldMap\Actor">
       <UniqueIdentifier>{bf9911d4-9f34-4455-9c17-4443ddcf12db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor">
+      <UniqueIdentifier>{9e8359b1-d1ca-4f58-b819-a8c42f72787a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

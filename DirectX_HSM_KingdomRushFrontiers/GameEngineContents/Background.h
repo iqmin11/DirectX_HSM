@@ -22,5 +22,6 @@ private:
 	float4 ActorPos = float4::Zero;
 	std::shared_ptr<class GameEngineSpriteRenderer> Bg = nullptr;
 	float4 BgScale = { 1280, 1080 };
+	float ScaleRatio = 900.f / 720.f;
 };
 

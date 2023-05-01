@@ -167,11 +167,27 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BaseMonster.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayStageLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayStageUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
+    <ClInclude Include="StageMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageSelectMenu.h">
       <SubType>
       </SubType>
@@ -222,7 +238,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseMonster.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayStageLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayStageUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -231,6 +259,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StageMap.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="StageSelectMenu.cpp">
       <SubType>

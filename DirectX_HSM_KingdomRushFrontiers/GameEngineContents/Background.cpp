@@ -19,7 +19,7 @@ void Background::Start()
 	Bg = CreateComponent<GameEngineSpriteRenderer>();
 	Bg->SetPipeLine("2DTexture");
 	Bg->SetTexture("Bg.png");
-	Bg->GetTransform()->SetWorldScale(BgScale);
+	Bg->GetTransform()->SetWorldScale(BgScale * ScaleRatio);
 }
 
 void Background::Update(float _DeltaTime)

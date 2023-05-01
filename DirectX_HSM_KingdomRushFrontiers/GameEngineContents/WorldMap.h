@@ -21,7 +21,8 @@ private:
 	float4 ActorPos = float4::Zero;
 	
 	float4 WorldMapBgScale = {1280, 1080};
-	float ScaleRatio = 720.0f / 1020.0f;
+	float ScaleRatio = 900.f / 1020.0f;
+	//float ScaleRatio = 720.0f / 1020.0f;
 	std::shared_ptr<class GameEngineSpriteRenderer> WorldMapBg = nullptr;
 
 	std::string FlagImageName = "MapFlag0020.png";
@@ -33,12 +34,12 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> Stage5Flag = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> Stage6Flag = nullptr;
 
-	float4 Stage1FlagPos = {-187, 205};
-	float4 Stage2FlagPos = {-100, 180};
-	float4 Stage3FlagPos = {-83, 95};
-	float4 Stage4FlagPos = {-191, 67};
-	float4 Stage5FlagPos = {-310, 5};
-	float4 Stage6FlagPos = {-125, -148};
+	float4 Stage1FlagPos = {-230, 255};
+	float4 Stage2FlagPos = {-120, 227};
+	float4 Stage3FlagPos = {-100, 120};
+	float4 Stage4FlagPos = {-235, 87};
+	float4 Stage5FlagPos = {-388, 5};
+	float4 Stage6FlagPos = {-165, -178};
 
 	float4 FlagScale = {256,256};
 
@@ -48,11 +49,11 @@ private:
 	std::shared_ptr<GameEngineSpriteRenderer> Stage4to5Road = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> Stage5to6Road = nullptr;
 	
-	float4 Stage1to2RoadPos = {-142, 148};
-	float4 Stage2to3RoadPos = {-65,90};
-	float4 Stage3to4RoadPos = {-135,27};
-	float4 Stage4to5RoadPos = {-260, 0};
-	float4 Stage5to6RoadPos = {-247, -135};
+	float4 Stage1to2RoadPos = {-172, 185};
+	float4 Stage2to3RoadPos = {-80,115};
+	float4 Stage3to4RoadPos = {-160,40};
+	float4 Stage4to5RoadPos = {-320, 0};
+	float4 Stage5to6RoadPos = {-312, -165};
 	
 	float4 Stage1to2RoadScale = {72,28};	
 	float4 Stage2to3RoadScale = {48,104};
@@ -62,14 +63,14 @@ private:
 
 	std::shared_ptr<GameEngineSpriteRenderer> StarContainer = nullptr;
 	float4 StarContainerScale = {166, 50};
-	float4 StarContainerPos = {350,320};
+	float4 StarContainerPos = {460,400};
 
 	std::shared_ptr<GameEngineSpriteRenderer> UpgradeButton = nullptr;
 	float4 UpgradeButtonScale = {148, 116};
-	float4 UpgradeButtonPos = { 350,-300 };
+	float4 UpgradeButtonPos = { 470,-390 };
 
 	std::shared_ptr<GameEngineSpriteRenderer> HomeButton = nullptr;
 	float4 HomeButtonScale = {66,60};
-	float4 HomeButtonPos = { -390,-310 };
+	float4 HomeButtonPos = { -520,-410 };
 };
 
