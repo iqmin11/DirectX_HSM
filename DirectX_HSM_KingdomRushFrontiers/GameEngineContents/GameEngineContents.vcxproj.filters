@@ -114,5 +114,8 @@
     <Filter Include="3.PlayStage\Actor">
       <UniqueIdentifier>{9e8359b1-d1ca-4f58-b819-a8c42f72787a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3.PlayStage\Base">
+      <UniqueIdentifier>{1f41c552-e04e-431f-a7af-48de0af37c42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

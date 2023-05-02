@@ -22,6 +22,8 @@ private:
 	std::shared_ptr<class StageMap> AcStageMap = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::shared_ptr<class BaseMonster> AcBaseMonster = nullptr;
+
+	void KeySet();
 	
 };
 

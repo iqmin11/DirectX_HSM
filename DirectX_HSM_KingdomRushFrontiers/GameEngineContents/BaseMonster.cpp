@@ -2,6 +2,9 @@
 #include "BaseMonster.h"
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineLevel.h>
+
+#include "StageMap.h"
 
 
 BaseMonster::BaseMonster()
@@ -21,45 +24,56 @@ void BaseMonster::Start()
 	MonsterRenderer->SetTexture("DesertThug0000.png");
 	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 
-	GameEngineInput::CreateKey("A",'A');
-	GameEngineInput::CreateKey("S",'S');
-	GameEngineInput::CreateKey("D",'D');
-	GameEngineInput::CreateKey("W",'W');
+	AcStageMap = StageMap::MainStageMap;
+
 }
 
 void BaseMonster::Update(float _DeltaTime)
 {
-	WalkToNextPoint(_DeltaTime);
+	//WalkPath(_DeltaTime);
 	//float Speed = 100.0f;
-	//if (GameEngineInput::IsPress("A"))
-	//{
-	//	GetTransform()->AddWorldPosition(float4::Left * Speed * _DeltaTime);
-	//}
-	//
-	//if (GameEngineInput::IsPress("S"))
-	//{
-	//	GetTransform()->AddWorldPosition(float4::Down * Speed * _DeltaTime);
-	//}
-	//
-	//if (GameEngineInput::IsPress("D"))
-	//{
-	//	GetTransform()->AddWorldPosition(float4::Right * Speed * _DeltaTime);
-	//}
-	//
-	//if (GameEngineInput::IsPress("W"))
-	//{
-	//	GetTransform()->AddWorldPosition(float4::Up * Speed * _DeltaTime);
-	//}
+	if (GameEngineInput::IsPress("RightClick"))
+	{
+		if (PathInfo == nullptr)
+		{
+			PathInfo = &(AcStageMap->TestPath);
+			CurPoint = PathInfo->begin();
+			NextPoint = ++(PathInfo->begin());
+		}
+		WalkPath(_DeltaTime);
+	}
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)
 {
-	
 	//내가 점을 어떻게 찍던 상관 없이 속도는 일정해야한다...
-	//노말라이즈???
-	//일단 움직이게 먼저 해보자
-	static float Time = 0;
+	//기준 속력 V = 100 가정 (1초에 100을 간다는 뜻)
+	//길이가 L = 200 일때 Time*0.5 = Time * (V/L)
+	//길이가 100 일때 Time*1 = Time * (V/L)
+	//길이가 50 일때 Time*2 = Time * (V/L)
+	//길이가 25 일때 Time*4 = Time * (V/L)
+
 	Time += _DeltaTime;
-	float4 ActorPos = float4::LerpClamp(CurPoint, NextPoint, Time / 10);
+	Ratio = Time * (Speed / (*NextPoint - *CurPoint).Size());
+	float4 ActorPos = float4::LerpClamp(*CurPoint, *NextPoint, Ratio);
 	GetTransform()->SetWorldPosition(ActorPos);
+}
+
+void BaseMonster::WalkPath(float _DeltaTime)
+{
+	if (Ratio >= 1)
+	{
+		Time = 0;
+		Ratio = 0;
+		CurPoint++;
+		NextPoint++;
+	}
+
+	if (NextPoint == PathInfo->end())
+	{
+		Death();
+		return;
+	}
+
+	WalkToNextPoint(_DeltaTime);
 }

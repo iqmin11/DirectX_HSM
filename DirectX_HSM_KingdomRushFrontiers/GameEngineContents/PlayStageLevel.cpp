@@ -21,6 +21,8 @@ PlayStageLevel::~PlayStageLevel()
 
 void PlayStageLevel::Start()
 {
+	KeySet();
+
 	GameEngineDirectory Dir;
 	Dir.MoveParentToDirectory("ContentsResources");
 	Dir.Move("ContentsResources");
@@ -44,4 +46,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
 	}
+}
+
+void PlayStageLevel::KeySet()
+{
+	GameEngineInput::CreateKey("LeftClick",VK_LBUTTON);
+	GameEngineInput::CreateKey("RightClick",VK_RBUTTON);
+	GameEngineInput::CreateKey("F1",VK_F1);
 }

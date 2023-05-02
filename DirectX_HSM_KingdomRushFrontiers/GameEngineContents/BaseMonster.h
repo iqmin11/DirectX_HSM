@@ -19,10 +19,18 @@ protected:
 	void Update(float _DeltaTime) override;
 
 	void WalkToNextPoint(float _DeltaTime);
+	void WalkPath(float _DeltaTime);
 
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
-	float4 CurPoint = {};
-	float4 NextPoint = { 400,400 };
+	std::list<float4>* PathInfo = nullptr;
+	std::list<float4>::iterator CurPoint = std::list<float4>::iterator();
+	std::list<float4>::iterator NextPoint = std::list<float4>::iterator();
+	float Time = 0;
+	float Speed = 40;
+	float Ratio = 0;
+
+
+	class StageMap* AcStageMap = nullptr;
 };
 
