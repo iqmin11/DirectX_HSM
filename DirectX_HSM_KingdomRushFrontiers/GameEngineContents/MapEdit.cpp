@@ -28,13 +28,31 @@ void MapEdit::Start()
 		MapRenderer[i]->GetTransform()->SetWorldScale(MapRendererScale);
 	}
 	
-	//MapRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	//MapRenderer->SetPipeLine
-	StateToMapRenderer();
+	NumRenderer.resize(2);
+	for (size_t i = 0; i < NumRenderer.size(); i++)
+	{
+		NumRenderer[i].resize(10);
+	}
+
+	for (size_t i = 0; i < NumRenderer.size(); i++)
+	{
+		for (size_t j = 0; j < NumRenderer[i].size(); j++)
+		{
+			NumRenderer[i][j] = CreateComponent<GameEngineSpriteRenderer>();
+			NumRenderer[i][j]->SetPipeLine("2DTexture");
+			NumRenderer[i][j]->SetTexture("Num" + std::to_string(j) + ".png");
+			NumRenderer[i][j]->GetTransform()->SetWorldPosition({ 600 + static_cast<float>(i) * 38,300 });
+			NumRenderer[i][j]->GetTransform()->SetWorldScale({38,51});
+			NumRenderer[i][j]->Off();
+		}
+	}
+
+	ChangeState(StageStateValue);
 }
 
 void MapEdit::Update(float _DeltaTime)
 {
+	IndexToNumRenderer();
 }
 
 void MapEdit::Render(float _DeltaTime)
@@ -49,9 +67,19 @@ void MapEdit::Render(float _DeltaTime)
 		NextState();
 	}
 
+	if (GameEngineInput::IsDown("UpArrow"))
+	{
+		IncreasPathIndex();
+	}
+
+	if (GameEngineInput::IsDown("DownArrow"))
+	{
+		ReducePathIndex();
+	}
+
 	if (GameEngineInput::IsDown("Z"))
 	{
-		PushbackPath();
+		InsertOrFindPath();
 	}
 
 	if (GameEngineInput::IsUp("RightClick"))
@@ -63,13 +91,15 @@ void MapEdit::Render(float _DeltaTime)
 	{
 		SaveData();
 	}
+	
+
 }
 
 void MapEdit::StateToMapRenderer()
 {
 	for (size_t i = 0; i < MapRenderer.size(); i++)
 	{
-		if (static_cast<size_t>(State) != i)
+		if (static_cast<size_t>(StageStateValue) != i)
 		{
 			MapRenderer[i]->Off();
 		}
@@ -80,45 +110,136 @@ void MapEdit::StateToMapRenderer()
 	}
 }
 
+void MapEdit::StageStateToDesc()
+{
+	Desc.Stage = static_cast<int>(StageStateValue) + 1;
+	Desc.ImageFileName = "Stage_" + std::to_string(Desc.Stage) + ".png";
+}
+
 void MapEdit::NextState()
 {
-	int i = static_cast<int>(State);
+	int i = static_cast<int>(StageStateValue);
 	++i;
 	if (5 < i)
 	{
 		i = 0;
 	}
-	State = static_cast<StageState>(i);
-	StateToMapRenderer();
+	StageStateValue = static_cast<StageState>(i);
+	ChangeState(StageStateValue);
 }
 
 void MapEdit::PrevState()
 {
-	int i = static_cast<int>(State);
+	int i = static_cast<int>(StageStateValue);
 	--i;
 	if (0 > i)
 	{
 		i = 5;
 	}
-	State = static_cast<StageState>(i);
-	StateToMapRenderer();
+	StageStateValue = static_cast<StageState>(i);
+	ChangeState(StageStateValue);
 }
 
-void MapEdit::PushbackPath()
+void MapEdit::ChangeState(StageState _Value)
 {
+	StageStateValue = _Value;
+	StateToMapRenderer();
+	StageStateToDesc();
+}
+
+void MapEdit::IncreasPathIndex()
+{
+	if (PathIndex == 99)
+	{
+		return;
+	}
+	
 	PathIndex++;
-	MonsterPaths.insert(std::make_pair(PathIndex, std::list<PathPoint>()));
+}
+
+void MapEdit::ReducePathIndex()
+{
+	if (PathIndex == 0)
+	{
+		return;
+	}
+	PathIndex--;
+}
+
+void MapEdit::IndexToNumRenderer()
+{
+	std::vector Num = GameEngineMath::GetDigits(PathIndex);
+
+
+	if (Num.size() == 1)
+	{
+		for (size_t i = 0; i < NumRenderer[1].size(); i++)
+		{
+			if (i == Num[0])
+			{
+				NumRenderer[1][i]->On();
+			}
+			else
+			{
+				NumRenderer[1][i]->Off();
+			}
+		}
+
+		for (size_t i = 0; i < NumRenderer[0].size(); i++)
+		{
+			if (i == 0)
+			{
+				NumRenderer[0][i]->On();
+			}
+			else
+			{
+				NumRenderer[0][i]->Off();
+			}
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < NumRenderer[0].size(); i++)
+		{
+			if (i == Num[0])
+			{
+				NumRenderer[0][i]->On();
+			}
+			else
+			{
+				NumRenderer[0][i]->Off();
+			}
+		}
+
+		for (size_t i = 0; i < NumRenderer[1].size(); i++)
+		{
+			if (i == Num[1])
+			{
+				NumRenderer[1][i]->On();
+			}
+			else
+			{
+				NumRenderer[1][i]->Off();
+			}
+		}
+	}
+}
+
+void MapEdit::InsertOrFindPath()
+{
+	Desc.MonsterPaths[PathIndex];
 }
 
 void MapEdit::PushbackPathPoint()
 {
-	if (MonsterPaths.size() == 0)
+	if (Desc.MonsterPaths.find(PathIndex) == Desc.MonsterPaths.end())
 	{
+		MsgTextBox("경로를 넣을 메모리가 없습니다. Z를 눌러 메모리를 추가해주세요")
 		return;
 	}
 
 	float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
-	PathPoint& AddedPathPoint = MonsterPaths.find(PathIndex)->second.emplace_back();
+	PathPoint& AddedPathPoint = Desc.MonsterPaths.find(PathIndex)->second.emplace_back();
 	AddedPathPoint.Position = MousePosition;
 	AddedPathPoint.Renderer = CreateComponent<GameEngineSpriteRenderer>();
 	AddedPathPoint.Renderer->SetPipeLine("2DTexture");
@@ -129,18 +250,29 @@ void MapEdit::PushbackPathPoint()
 
 void MapEdit::SaveData()
 {
-	SaveMonsterPath.Write(static_cast<int>(MonsterPaths.find(PathIndex)->second.size()));
-
-	for (auto i : MonsterPaths.find(PathIndex)->second)
+	//스테이지, 이미지 이름, 몬스터 패스 포인트 사이즈, 몬스터 패스 포인트 포지션 리스트 순서
+	SaveMapData.Write(Desc.Stage);
+	SaveMapData.Write(Desc.ImageFileName);
+	for (auto& i : Desc.MonsterPaths)
 	{
-		SaveMonsterPath.Write(&i.Position, sizeof(float4));
+		SaveMapData.Write(i.second.size());
+		for (auto& j : i.second)
+		{
+			SaveMapData.Write(&j.Position, sizeof(float4));
+		}
 	}
+	
+	//SaveMonsterPath.Write(static_cast<int>(Desc.MonsterPaths.find(PathIndex)->second.size()));
+	//for (auto i : MonsterPaths.find(PathIndex)->second)
+	//{
+	//	SaveMapData.Write(&i.Position, sizeof(float4));
+	//}
 
 	GameEnginePath filepath;
-	filepath.SetPath("..//ContentsData//Stage" + std::to_string(static_cast<int>(State)+1) + "MonsterPath" + std::to_string(PathIndex) + ".txt");
+	filepath.SetPath("..//ContentsData//Stage" + std::to_string(Desc.Stage) + "MapData.txt");
 
 	GameEngineFile file = GameEngineFile(filepath.GetFullPath());
-	file.SaveBin(SaveMonsterPath);
+	file.SaveBin(SaveMapData);
 }
 
 

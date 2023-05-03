@@ -26,7 +26,7 @@ void BaseMonster::Start()
 	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 	
 
-	AcStageMap = StageMap::MainStageMap;
+	//AcStageMap = StageMap::MainStageMap;
 
 }
 
@@ -34,16 +34,16 @@ void BaseMonster::Update(float _DeltaTime)
 {
 	//WalkPath(_DeltaTime);
 	//float Speed = 100.0f;
-	if (GameEngineInput::IsPress("RightClick"))
-	{
-		if (PathInfo == nullptr)
-		{
-			PathInfo = &(AcStageMap->TestPath);
-			CurPoint = PathInfo->begin();
-			NextPoint = ++(PathInfo->begin());
-		}
-		WalkPath(_DeltaTime);
-	}
+	//if (GameEngineInput::IsPress("RightClick"))
+	//{
+	//	if (PathInfo == nullptr)
+	//	{
+	//		PathInfo = &(AcStageMap->TestPath);
+	//		CurPoint = PathInfo->begin();
+	//		NextPoint = ++(PathInfo->begin());
+	//	}
+	//	WalkPath(_DeltaTime);
+	//}
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)

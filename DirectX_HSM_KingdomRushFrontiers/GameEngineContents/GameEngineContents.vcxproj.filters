@@ -36,9 +36,6 @@
     <ClInclude Include="PlayStageLevel.h">
       <Filter>3.PlayStage</Filter>
     </ClInclude>
-    <ClInclude Include="StageMap.h">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PlayStageUI.h">
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
@@ -50,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="MapEdit.h">
       <Filter>4.StageEdit\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="StageMap.h">
+      <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,9 +88,6 @@
     <ClCompile Include="PlayStageLevel.cpp">
       <Filter>3.PlayStage</Filter>
     </ClCompile>
-    <ClCompile Include="StageMap.cpp">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PlayStageUI.cpp">
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="MapEdit.cpp">
       <Filter>4.StageEdit\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="StageMap.cpp">
+      <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
