@@ -31,7 +31,12 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> StageMapRenderer = nullptr;
 	float4 StageMapRendererScale = {1200,1000};
 	
-	std::map<int, std::list<float4>> MonsterPaths = std::map<int, std::list<float4>>();
+	std::list<float4> MonsterPath0 = std::list<float4>();
+	std::list<float4> MonsterPath1 = std::list<float4>();
+	std::list<float4> MonsterPath2 = std::list<float4>();
+	std::list<float4> MonsterPath3 = std::list<float4>();
+	std::list<float4> MonsterPath4 = std::list<float4>();
+	std::list<float4> MonsterPath5 = std::list<float4>();
 
 	void LoadMonsterPath();
 };

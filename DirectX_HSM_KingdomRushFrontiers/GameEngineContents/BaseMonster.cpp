@@ -26,7 +26,7 @@ void BaseMonster::Start()
 	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 	
 
-	//AcStageMap = StageMap::MainStageMap;
+	AcStageMap = StageMap::MainStageMap;
 
 }
 
@@ -36,7 +36,7 @@ void BaseMonster::Update(float _DeltaTime)
 	{
 		if (PathInfo == nullptr)
 		{
-			PathInfo = &(AcStageMap->GetMonsterPath(0));
+			PathInfo = &(AcStageMap->GetMonsterPath(5));
 			CurPoint = PathInfo->begin();
 			NextPoint = ++(PathInfo->begin());
 		}

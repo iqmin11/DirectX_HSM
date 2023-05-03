@@ -22,7 +22,6 @@ struct PathPoint
 struct StageMapData_Desc
 {
 	int Stage = -1;
-	std::string ImageFileName = "\0";
 	std::map<int, std::list<PathPoint>> MonsterPaths = std::map<int, std::list<PathPoint>>();
 	//std::vector<float4> TowerPos = std::vector<float4>();
 };
@@ -51,7 +50,6 @@ private:
 	float4 MapRendererScale = {1200,1000};
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> MapRenderer = std::vector<std::shared_ptr<GameEngineSpriteRenderer>>();
 
-	//std::map<int, std::list<PathPoint>> MonsterPaths = std::map<int, std::list<PathPoint>>();
 	StageMapData_Desc Desc = StageMapData_Desc();
 	std::vector<std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>> NumRenderer = std::vector<std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>>();
 	UINT PathIndex = 0;

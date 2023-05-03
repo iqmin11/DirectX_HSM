@@ -113,7 +113,7 @@ void MapEdit::StateToMapRenderer()
 void MapEdit::StageStateToDesc()
 {
 	Desc.Stage = static_cast<int>(StageStateValue) + 1;
-	Desc.ImageFileName = "Stage_" + std::to_string(Desc.Stage) + ".png";
+	//Desc.ImageFileName = "Stage_" + std::to_string(Desc.Stage) + ".png";
 }
 
 void MapEdit::NextState()
@@ -250,8 +250,6 @@ void MapEdit::PushbackPathPoint()
 
 void MapEdit::SaveData()
 {
-	SaveMapData.Write(Desc.MonsterPaths.size());
-	
 	for (auto& i : Desc.MonsterPaths)
 	{
 		SaveMapData.Write(i.second.size());
