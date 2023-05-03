@@ -20,23 +20,7 @@ StageMap::~StageMap()
 
 std::list<float4>& StageMap::GetMonsterPath(int _Index)
 {
-	switch (_Index)
-	{
-	case 0:
-		return MonsterPath0;
-	case 1:
-		return MonsterPath1;
-	case 2:
-		return MonsterPath2;
-	case 3:
-		return MonsterPath3;
-	case 4:
-		return MonsterPath4;
-	case 5:
-		return MonsterPath5;
-	default:
-		break;
-	}
+	return MonsterPath[_Index];
 }
 
 void StageMap::Start()
@@ -45,6 +29,9 @@ void StageMap::Start()
 	StageMapRenderer->SetPipeLine("2DTexture");
 	StageMapRenderer->SetTexture("Stage_1.png");
 	StageMapRenderer->GetTransform()->SetWorldScale(StageMapRendererScale);
+
+	MonsterPathCount = 6;
+	MonsterPath.resize(MonsterPathCount);
 
 	LoadMonsterPath();
 
@@ -86,75 +73,19 @@ void StageMap::LoadMonsterPath()
 	File.LoadBin(Serial);
 
 	int ListSize = 0;
-	Serial.Read(ListSize);
 
-	for (size_t i = 0; i < ListSize; i++)
+	for (size_t i = 0; i < MonsterPath.size(); i++)
 	{
-		MonsterPath0.emplace_back();
-	}
+		Serial.Read(ListSize);
 
-	for (float4& i : MonsterPath0)
-	{
-		Serial.Read(&i, sizeof(float4));
-	}
+		for (size_t j = 0; j < ListSize; j++)
+		{
+			MonsterPath[i].emplace_back();
+		}
 
-	Serial.Read(ListSize);
-
-	for (size_t i = 0; i < ListSize; i++)
-	{
-		MonsterPath1.emplace_back();
-	}
-
-	for (float4& i : MonsterPath1)
-	{
-		Serial.Read(&i, sizeof(float4));
-	}
-
-	Serial.Read(ListSize);
-
-	for (size_t i = 0; i < ListSize; i++)
-	{
-		MonsterPath2.emplace_back();
-	}
-
-	for (float4& i : MonsterPath2)
-	{
-		Serial.Read(&i, sizeof(float4));
-	}
-
-	Serial.Read(ListSize);
-
-	for (size_t i = 0; i < ListSize; i++)
-	{
-		MonsterPath3.emplace_back();
-	}
-
-	for (float4& i : MonsterPath3)
-	{
-		Serial.Read(&i, sizeof(float4));
-	}
-
-	Serial.Read(ListSize);
-
-	for (size_t i = 0; i < ListSize; i++)
-	{
-		MonsterPath4.emplace_back();
-	}
-
-	for (float4& i : MonsterPath4)
-	{
-		Serial.Read(&i, sizeof(float4));
-	}
-
-	Serial.Read(ListSize);
-
-	for (size_t i = 0; i < ListSize; i++)
-	{
-		MonsterPath5.emplace_back();
-	}
-
-	for (float4& i : MonsterPath5)
-	{
-		Serial.Read(&i, sizeof(float4));
+		for (float4& k : MonsterPath[i])
+		{
+			Serial.Read(&k, sizeof(float4));
+		}
 	}
 }
