@@ -29,13 +29,6 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> StageMapRenderer = nullptr;
 	float4 StageMapRendererScale = {1200,1001};
 
-
-	bool PathSetMode = false;
-	//std::vector<float4> NorthPath2 = std::vector<float4>();
-	//std::vector<float4> NorthPath3 = std::vector<float4>();
-	//
-	//std::vector<float4> SouthPath1 = std::vector<float4>();
-	//std::vector<float4> SouthPath2 = std::vector<float4>();
-	//std::vector<float4> SouthPath3 = std::vector<float4>();
+	void LoadMonsterPath();
 };
 

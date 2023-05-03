@@ -22,12 +22,14 @@ protected:
 	void WalkPath(float _DeltaTime);
 
 private:
+	float4 ActorPos = float4::Zero;
+
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::list<float4>* PathInfo = nullptr;
 	std::list<float4>::iterator CurPoint = std::list<float4>::iterator();
 	std::list<float4>::iterator NextPoint = std::list<float4>::iterator();
 	float Time = 0;
-	float Speed = 40;
+	float Speed = 70;
 	float Ratio = 0;
 
 

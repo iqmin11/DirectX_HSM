@@ -45,6 +45,12 @@
     <ClInclude Include="BaseMonster.h">
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="StageEditLevel.h">
+      <Filter>4.StageEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEdit.h">
+      <Filter>4.StageEdit\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -91,6 +97,12 @@
     <ClCompile Include="BaseMonster.cpp">
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="StageEditLevel.cpp">
+      <Filter>4.StageEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEdit.cpp">
+      <Filter>4.StageEdit\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -114,8 +126,11 @@
     <Filter Include="3.PlayStage\Actor">
       <UniqueIdentifier>{9e8359b1-d1ca-4f58-b819-a8c42f72787a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Base">
-      <UniqueIdentifier>{1f41c552-e04e-431f-a7af-48de0af37c42}</UniqueIdentifier>
+    <Filter Include="4.StageEdit">
+      <UniqueIdentifier>{f0c52fe6-9f21-4c42-90d1-3a3653e598ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.StageEdit\Actor">
+      <UniqueIdentifier>{c5179c2e-6590-4f90-9b07-3dbb8a6c4330}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -19,10 +19,12 @@ BaseMonster::~BaseMonster()
 
 void BaseMonster::Start()
 {
+	GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
 	MonsterRenderer->SetPipeLine("2DTexture");
 	MonsterRenderer->SetTexture("DesertThug0000.png");
 	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
+	
 
 	AcStageMap = StageMap::MainStageMap;
 
@@ -55,7 +57,7 @@ void BaseMonster::WalkToNextPoint(float _DeltaTime)
 
 	Time += _DeltaTime;
 	Ratio = Time * (Speed / (*NextPoint - *CurPoint).Size());
-	float4 ActorPos = float4::LerpClamp(*CurPoint, *NextPoint, Ratio);
+	ActorPos = float4::LerpClamp(*CurPoint, *NextPoint, Ratio);
 	GetTransform()->SetWorldPosition(ActorPos);
 }
 
