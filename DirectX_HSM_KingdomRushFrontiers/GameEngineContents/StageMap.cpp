@@ -6,16 +6,25 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
-StageMap* StageMap::MainStageMap = nullptr;
+//StageMap* StageMap::MainStageMap = nullptr;
 
 StageMap::StageMap()
 {
-	MainStageMap = this;
+	//MainStageMap = this;
 }
 
 StageMap::~StageMap()
 {
 
+}
+
+std::list<float4>& StageMap::GetMonsterPath(int _Index)
+{
+	if (MonsterPaths.find(_Index) == MonsterPaths.end())
+	{
+		MsgAssert("해당 몬스터 침투 경로를 찾을 수 없습니다");
+	}
+	return MonsterPaths.find(_Index)->second;
 }
 
 void StageMap::Start()
@@ -47,20 +56,18 @@ void StageMap::Start()
 
 void StageMap::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsDown("Enter"))
-	{
-		LoadMonsterPath();
-	}
+
 }
 
 void StageMap::Render(float _DeltaTime)
 {
+
 }
 
 void StageMap::LoadMonsterPath()
 {
-	GameEngineSerializer Serial;
-	GameEngineFile File("..//ContentsData//Stage1MonsterPath0.txt");
+	/*GameEngineSerializer Serial;
+	GameEngineFile File("..//ContentsData//Stage1MapData.txt");
 	File.LoadBin(Serial);
 
 	int ListSize = 0;
@@ -74,5 +81,5 @@ void StageMap::LoadMonsterPath()
 	for (float4& i : TestPath)
 	{
 		Serial.Read(&i, sizeof(float4));
-	}
+	}*/
 }

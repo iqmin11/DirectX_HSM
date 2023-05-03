@@ -250,9 +250,8 @@ void MapEdit::PushbackPathPoint()
 
 void MapEdit::SaveData()
 {
-	//스테이지, 이미지 이름, 몬스터 패스 포인트 사이즈, 몬스터 패스 포인트 포지션 리스트 순서
-	SaveMapData.Write(Desc.Stage);
-	SaveMapData.Write(Desc.ImageFileName);
+	SaveMapData.Write(Desc.MonsterPaths.size());
+	
 	for (auto& i : Desc.MonsterPaths)
 	{
 		SaveMapData.Write(i.second.size());
@@ -269,7 +268,7 @@ void MapEdit::SaveData()
 	//}
 
 	GameEnginePath filepath;
-	filepath.SetPath("..//ContentsData//Stage" + std::to_string(Desc.Stage) + "MapData.txt");
+	filepath.SetPath("..//ContentsData//Stage" + std::to_string(Desc.Stage) + "PathData.txt");
 
 	GameEngineFile file = GameEngineFile(filepath.GetFullPath());
 	file.SaveBin(SaveMapData);

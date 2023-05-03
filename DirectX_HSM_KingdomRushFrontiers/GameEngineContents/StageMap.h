@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
-class StageMap : public GameEngineActor
+class StageMap : public GameEngineActor // 맵과 경로, 포탑의 위치를 모두 관리하는 액터
 {
 public:
 	// construtor destructor
@@ -15,7 +15,8 @@ public:
 	StageMap& operator=(StageMap&& _Other) noexcept = delete;
 
 	static StageMap* MainStageMap;
-	std::list<float4> TestPath = std::list<float4>();
+	//std::list<float4> TestPath = std::list<float4>();
+	std::list<float4>& GetMonsterPath(int _Index);
 
 protected:
 	void Start() override;
@@ -23,11 +24,14 @@ protected:
 	void Render(float _DeltaTime) override;
 
 private:
-
 	float4 ActorPos = float4::Zero;
+	
+	int Stage = 1;
 
 	std::shared_ptr<class GameEngineSpriteRenderer> StageMapRenderer = nullptr;
-	float4 StageMapRendererScale = {1200,1001};
+	float4 StageMapRendererScale = {1200,1000};
+	
+	std::map<int, std::list<float4>> MonsterPaths = std::map<int, std::list<float4>>();
 
 	void LoadMonsterPath();
 };

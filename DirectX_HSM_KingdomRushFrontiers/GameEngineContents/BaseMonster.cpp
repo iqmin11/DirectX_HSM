@@ -32,18 +32,16 @@ void BaseMonster::Start()
 
 void BaseMonster::Update(float _DeltaTime)
 {
-	//WalkPath(_DeltaTime);
-	//float Speed = 100.0f;
-	//if (GameEngineInput::IsPress("RightClick"))
-	//{
-	//	if (PathInfo == nullptr)
-	//	{
-	//		PathInfo = &(AcStageMap->TestPath);
-	//		CurPoint = PathInfo->begin();
-	//		NextPoint = ++(PathInfo->begin());
-	//	}
-	//	WalkPath(_DeltaTime);
-	//}
+	if (GameEngineInput::IsPress("RightClick"))
+	{
+		if (PathInfo == nullptr)
+		{
+			PathInfo = &(AcStageMap->GetMonsterPath(0));
+			CurPoint = PathInfo->begin();
+			NextPoint = ++(PathInfo->begin());
+		}
+		WalkPath(_DeltaTime);
+	}
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)
