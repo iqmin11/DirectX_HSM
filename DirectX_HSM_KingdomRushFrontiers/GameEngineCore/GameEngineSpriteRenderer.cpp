@@ -3,12 +3,18 @@
 
 GameEngineSpriteRenderer::GameEngineSpriteRenderer()
 {
-
 }
 
 GameEngineSpriteRenderer::~GameEngineSpriteRenderer()
 {
+}
 
+
+void GameEngineSpriteRenderer::Start()
+{
+	GameEngineRenderer::Start();
+
+	SetPipeLine("2DTexture");
 }
 
 void GameEngineSpriteRenderer::SetTexture(const std::string_view& _Name)
@@ -30,9 +36,17 @@ void GameEngineSpriteRenderer::SetFlipY()
 	GetTransform()->SetLocalScale(LocalScale);
 }
 
-void GameEngineSpriteRenderer::Start()
+void GameEngineSpriteRenderer::SetScaleToTexture(const std::string_view& _Name)
 {
-	GameEngineRenderer::Start();
+	GetShaderResHelper().SetTexture("DiffuseTex", _Name);
+	std::shared_ptr<GameEngineTexture> FindTex = GameEngineTexture::Find(_Name);
 
-	SetPipeLine("2DTexture");
+	if (nullptr == FindTex)
+	{
+		MsgAssert("존재하지 않는 이미지 입니다.");
+		return;
+	}
+
+	float4 Scale = float4(FindTex->GetWidth(), FindTex->GetHeight(), 1);
+	GetTransform()->SetLocalScale(Scale);
 }

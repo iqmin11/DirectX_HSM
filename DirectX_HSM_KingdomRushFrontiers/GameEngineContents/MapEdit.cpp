@@ -252,7 +252,7 @@ void MapEdit::SaveData()
 {
 	for (auto& i : Desc.MonsterPaths)
 	{
-		SaveMapData.Write(i.second.size());
+		SaveMapData.Write(static_cast<const int>(i.second.size()));
 		for (auto& j : i.second)
 		{
 			SaveMapData.Write(&j.Position, sizeof(float4));

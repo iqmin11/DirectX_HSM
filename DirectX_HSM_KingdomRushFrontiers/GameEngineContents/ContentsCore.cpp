@@ -6,6 +6,7 @@
 #include "WorldMapLevel.h"
 #include "PlayStageLevel.h"
 #include "StageEditLevel.h"
+#include <GameEngineCore/GameEngineCoreWindow.h>
 
 ContentsCore::ContentsCore()
 {
@@ -17,6 +18,7 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::GameStart()
 {
+	//GameEngineGUI::GUIWindowCreate<GameEngineCoreWindow>("CoreWindow");
 	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();

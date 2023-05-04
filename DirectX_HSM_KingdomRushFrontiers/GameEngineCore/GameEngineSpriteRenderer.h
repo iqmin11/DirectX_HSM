@@ -1,10 +1,11 @@
 #pragma once
 #include "GameEngineRenderer.h"
 
+// Ό³Έν :
 class GameEngineSpriteRenderer : public GameEngineRenderer
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineSpriteRenderer();
 	~GameEngineSpriteRenderer();
 
@@ -14,13 +15,14 @@ public:
 	GameEngineSpriteRenderer& operator=(const GameEngineSpriteRenderer& _Other) = delete;
 	GameEngineSpriteRenderer& operator=(GameEngineSpriteRenderer&& _Other) noexcept = delete;
 
+	void SetScaleToTexture(const std::string_view& _Name);
+
 	void SetTexture(const std::string_view& _Name);
 
 	void SetFlipX();
 	void SetFlipY();
 
 protected:
-
 
 private:
 	void Start() override;

@@ -14,10 +14,6 @@ public:
 	StageMap& operator=(const StageMap& _Other) = delete;
 	StageMap& operator=(StageMap&& _Other) noexcept = delete;
 
-	static StageMap* MainStageMap;
-	//std::list<float4> TestPath = std::list<float4>();
-	std::list<float4>& GetMonsterPath(int _Index);
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -27,13 +23,7 @@ private:
 	float4 ActorPos = float4::Zero;
 	
 	int Stage = 1;
-
 	std::shared_ptr<class GameEngineSpriteRenderer> StageMapRenderer = nullptr;
 	float4 StageMapRendererScale = {1200,1000};
-	
-	int MonsterPathCount = 6;
-	std::vector<std::list<float4>> MonsterPath = std::vector<std::list<float4>>();
-
-	void LoadMonsterPath();
 };
 

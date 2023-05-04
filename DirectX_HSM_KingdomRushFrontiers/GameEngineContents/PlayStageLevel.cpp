@@ -8,6 +8,7 @@
 #include "StageMap.h"
 #include "PlayStageUI.h"
 #include "BaseMonster.h"
+#include "MonsterPath.h"
 
 PlayStageLevel::PlayStageLevel()
 {
@@ -37,7 +38,9 @@ void PlayStageLevel::Start()
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	AcStageMap = CreateActor<StageMap>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
+	AcMonsterPath = CreateActor<MonsterPath>();
 	AcBaseMonster = CreateActor<BaseMonster>();
+	AcBaseMonster->SetPathInfo(AcMonsterPath->GetMonsterPathRef(0));
 }
 
 void PlayStageLevel::Update(float _DeltaTime)

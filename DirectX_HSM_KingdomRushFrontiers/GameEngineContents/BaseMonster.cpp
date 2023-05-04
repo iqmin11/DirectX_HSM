@@ -4,8 +4,6 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 
-#include "StageMap.h"
-
 
 BaseMonster::BaseMonster()
 {
@@ -24,17 +22,12 @@ void BaseMonster::Start()
 	MonsterRenderer->SetPipeLine("2DTexture");
 	MonsterRenderer->SetTexture("DesertThug0000.png");
 	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
-	
-
-	AcStageMap = StageMap::MainStageMap;
-
 }
 
 void BaseMonster::Update(float _DeltaTime)
 {
 	if (GameEngineInput::IsPress("RightClick"))
 	{
-
 		WalkPath(_DeltaTime);
 	}
 }
@@ -58,9 +51,8 @@ void BaseMonster::WalkPath(float _DeltaTime)
 {
 	if (PathInfo == nullptr)
 	{
-		PathInfo = &(AcStageMap->GetMonsterPath(0));
-		CurPoint = PathInfo->begin();
-		NextPoint = ++(PathInfo->begin());
+		MsgAssert("몬스터의 경로가 지정되지 않아 이동할 수 없습니다.");
+		return;
 	}
 
 	if (Ratio >= 1)

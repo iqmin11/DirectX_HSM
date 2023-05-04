@@ -51,6 +51,9 @@
     <ClInclude Include="StageMap.h">
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterPath.h">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -101,6 +104,9 @@
       <Filter>4.StageEdit\Actor</Filter>
     </ClCompile>
     <ClCompile Include="StageMap.cpp">
+      <Filter>3.PlayStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterPath.cpp">
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
   </ItemGroup>

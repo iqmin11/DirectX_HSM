@@ -32,11 +32,10 @@ protected:
 private:
 	StageState Stage = StageState::NullState;
 	
-	
 	std::shared_ptr<class StageMap> AcStageMap = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::shared_ptr<class BaseMonster> AcBaseMonster = nullptr;
-
+	std::shared_ptr<class MonsterPath> AcMonsterPath = nullptr;
 
 
 	void KeySet();

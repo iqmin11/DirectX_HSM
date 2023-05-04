@@ -14,6 +14,13 @@ public:
 	BaseMonster& operator=(const BaseMonster& _Other) = delete;
 	BaseMonster& operator=(BaseMonster&& _Other) noexcept = delete;
 
+	void SetPathInfo(std::list<float4>& _PathInfo)
+	{
+		PathInfo = &_PathInfo;
+		CurPoint = PathInfo->begin();
+		NextPoint = ++(PathInfo->begin());
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -29,10 +36,7 @@ private:
 	std::list<float4>::iterator CurPoint = std::list<float4>::iterator();
 	std::list<float4>::iterator NextPoint = std::list<float4>::iterator();
 	float Time = 0;
-	float Speed = 70;
+	float Speed = 100;
 	float Ratio = 0;
-
-
-	class StageMap* AcStageMap = nullptr;
 };
 
