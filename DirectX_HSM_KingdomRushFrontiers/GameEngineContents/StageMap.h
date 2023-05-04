@@ -31,7 +31,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> StageMapRenderer = nullptr;
 	float4 StageMapRendererScale = {1200,1000};
 	
-	int MonsterPathCount = 0;
+	int MonsterPathCount = 6;
 	std::vector<std::list<float4>> MonsterPath = std::vector<std::list<float4>>();
 
 	void LoadMonsterPath();

@@ -30,29 +30,9 @@ void StageMap::Start()
 	StageMapRenderer->SetTexture("Stage_1.png");
 	StageMapRenderer->GetTransform()->SetWorldScale(StageMapRendererScale);
 
-	MonsterPathCount = 6;
 	MonsterPath.resize(MonsterPathCount);
 
 	LoadMonsterPath();
-
-	//GameEngineSerializer Serial;
-	//GameEngineFile File("..//ContentsSave//Stage1SaveMonsterPath0.txt");
-	//File.LoadBin(Serial);
-	
-	//int ListSize = Serial.Read();
-	////Read
-	//
-	//for (size_t i = 0; i < Serial.GetBufferSize(); i++)
-	//{
-	//	TestPath.emplace_back();
-	//	
-	//	Serial.Read(&TestPath,sizeof(float4));
-	//}
-
-
-	//RedDot = CreateComponent<GameEngineRenderer>();
-	//RedDot->SetPipeLine("2DTexture");
-	//RedDot->GetTransform()->SetWorldScale({10,10});
 }
 
 void StageMap::Update(float _DeltaTime)
@@ -69,6 +49,7 @@ void StageMap::LoadMonsterPath()
 {
 
 	GameEngineSerializer Serial;
+	Serial.BufferResize(3000);
 	GameEngineFile File("..//ContentsData//Stage1PathData.txt");
 	File.LoadBin(Serial);
 
