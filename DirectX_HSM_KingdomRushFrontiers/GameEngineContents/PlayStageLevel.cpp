@@ -71,8 +71,8 @@ void PlayStageLevel::Update(float _DeltaTime)
 
 void PlayStageLevel::MonsterSpawn()
 {
-	CreateActor<DesertThug>()->SetPathInfo(AcMonsterPath->GetMonsterPathRef(GameEngineRandom::MainRandom.RandomInt(3, 5)));
 	CreateActor<DuneRaider>()->SetPathInfo(AcMonsterPath->GetMonsterPathRef(GameEngineRandom::MainRandom.RandomInt(0, 2)));
+	CreateActor<DesertThug>()->SetPathInfo(AcMonsterPath->GetMonsterPathRef(GameEngineRandom::MainRandom.RandomInt(3, 5)));
 }
 
 void PlayStageLevel::KeySet()

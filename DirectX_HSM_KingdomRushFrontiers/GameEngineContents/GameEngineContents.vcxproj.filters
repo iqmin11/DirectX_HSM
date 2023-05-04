@@ -60,9 +60,6 @@
     <ClInclude Include="DuneRaider.h">
       <Filter>3.PlayStage\Actor\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterWave.h">
-      <Filter>3.PlayStage</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -123,9 +120,6 @@
     </ClCompile>
     <ClCompile Include="DuneRaider.cpp">
       <Filter>3.PlayStage\Actor\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterWave.cpp">
-      <Filter>3.PlayStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
