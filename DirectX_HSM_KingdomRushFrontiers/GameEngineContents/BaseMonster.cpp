@@ -17,19 +17,16 @@ BaseMonster::~BaseMonster()
 
 void BaseMonster::Start()
 {
-	GetTransform()->SetWorldPosition(ActorPos);
+	//GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
 	MonsterRenderer->SetPipeLine("2DTexture");
-	MonsterRenderer->SetTexture("DesertThug0000.png");
-	MonsterRenderer->GetTransform()->SetWorldScale({66,56});
+	//MonsterRenderer->SetTexture("DesertThug0000.png");
+	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }
 
 void BaseMonster::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsPress("RightClick"))
-	{
-		WalkPath(_DeltaTime);
-	}
+	WalkPath(_DeltaTime);
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)

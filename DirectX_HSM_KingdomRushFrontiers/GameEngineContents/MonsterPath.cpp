@@ -46,3 +46,15 @@ void MonsterPath::LoadMonsterPath()
 		}
 	}
 }
+
+void MonsterPath::ChunkingPath()
+{
+	NorthPath.resize(3);
+	SouthPath.resize(3);
+	NorthPath[0] = &MonsterPathVec[0];
+	NorthPath[1] = &MonsterPathVec[1];
+	NorthPath[2] = &MonsterPathVec[2];
+	SouthPath[0] = &MonsterPathVec[3];
+	SouthPath[1] = &MonsterPathVec[4];
+	SouthPath[2] = &MonsterPathVec[5];
+}

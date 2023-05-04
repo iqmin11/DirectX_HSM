@@ -29,6 +29,12 @@ private:
 	int MonsterPathCount = 6;
 	std::vector<std::list<float4>> MonsterPathVec = std::vector<std::list<float4>>();
 
+	//Stage1
+	std::vector<std::list<float4>*> NorthPath;
+	std::vector<std::list<float4>*> SouthPath;
+
 	void LoadMonsterPath();
+	void ChunkingPath();
+
 };
 

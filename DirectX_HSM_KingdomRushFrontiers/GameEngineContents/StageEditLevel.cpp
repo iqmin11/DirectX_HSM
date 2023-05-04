@@ -4,7 +4,7 @@
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCamera.h>
 
-#include "MapEdit.h"
+#include "PathEdit.h"
 
 StageEditLevel::StageEditLevel()
 {
@@ -21,7 +21,7 @@ void StageEditLevel::Start()
 	SetKey();
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	
-	AcMapEdit = CreateActor<MapEdit>();
+	AcPathEdit = CreateActor<PathEdit>();
 }
 
 void StageEditLevel::Update(float _DeltaTime)

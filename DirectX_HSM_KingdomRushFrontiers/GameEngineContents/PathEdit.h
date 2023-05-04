@@ -26,18 +26,18 @@ struct StageMapData_Desc
 	//std::vector<float4> TowerPos = std::vector<float4>();
 };
 
-class MapEdit : public GameEngineActor
+class PathEdit : public GameEngineActor
 {
 public:
 	// construtor destructor
-	MapEdit();
-	~MapEdit();
+	PathEdit();
+	~PathEdit();
 
 	// delete Function
-	MapEdit(const MapEdit& _Other) = delete;
-	MapEdit(MapEdit&& _Other) noexcept = delete;
-	MapEdit& operator=(const MapEdit& _Other) = delete;
-	MapEdit& operator=(MapEdit&& _Other) noexcept = delete;
+	PathEdit(const PathEdit& _Other) = delete;
+	PathEdit(PathEdit&& _Other) noexcept = delete;
+	PathEdit& operator=(const PathEdit& _Other) = delete;
+	PathEdit& operator=(PathEdit&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;

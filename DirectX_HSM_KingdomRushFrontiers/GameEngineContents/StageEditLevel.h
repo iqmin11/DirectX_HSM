@@ -19,7 +19,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class MapEdit> AcMapEdit = nullptr;
+	std::shared_ptr<class PathEdit> AcPathEdit = nullptr;
 
 	void SetKey();
 

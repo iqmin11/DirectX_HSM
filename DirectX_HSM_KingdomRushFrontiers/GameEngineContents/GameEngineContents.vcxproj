@@ -175,11 +175,23 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MapEdit.h">
+    <ClInclude Include="DesertThug.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DuneRaider.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PathEdit.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="MonsterPath.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MonsterWave.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -260,11 +272,23 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MapEdit.cpp">
+    <ClCompile Include="DesertThug.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DuneRaider.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PathEdit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="MonsterPath.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MonsterWave.cpp">
       <SubType>
       </SubType>
     </ClCompile>

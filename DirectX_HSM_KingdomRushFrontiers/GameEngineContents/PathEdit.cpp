@@ -1,22 +1,22 @@
 #include "PrecompileHeader.h"
-#include "MapEdit.h"
+#include "PathEdit.h"
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
-MapEdit::MapEdit()
+PathEdit::PathEdit()
 {
 
 }
 
-MapEdit::~MapEdit()
+PathEdit::~PathEdit()
 {
 
 }
 
-void MapEdit::Start()
+void PathEdit::Start()
 {
 	MapRenderer.reserve(6);
 	for (size_t i = 0; i < MapRenderer.capacity(); i++)
@@ -24,10 +24,10 @@ void MapEdit::Start()
 		MapRenderer.emplace_back();
 		MapRenderer[i] = CreateComponent<GameEngineSpriteRenderer>();
 		MapRenderer[i]->SetPipeLine("2DTexture");
-		MapRenderer[i]->SetTexture("Stage_" + std::to_string(i+1) + ".png");
+		MapRenderer[i]->SetTexture("Stage_" + std::to_string(i + 1) + ".png");
 		MapRenderer[i]->GetTransform()->SetWorldScale(MapRendererScale);
 	}
-	
+
 	NumRenderer.resize(2);
 	for (size_t i = 0; i < NumRenderer.size(); i++)
 	{
@@ -42,7 +42,7 @@ void MapEdit::Start()
 			NumRenderer[i][j]->SetPipeLine("2DTexture");
 			NumRenderer[i][j]->SetTexture("Num" + std::to_string(j) + ".png");
 			NumRenderer[i][j]->GetTransform()->SetWorldPosition({ 600 + static_cast<float>(i) * 38,300 });
-			NumRenderer[i][j]->GetTransform()->SetWorldScale({38,51});
+			NumRenderer[i][j]->GetTransform()->SetWorldScale({ 38,51 });
 			NumRenderer[i][j]->Off();
 		}
 	}
@@ -50,13 +50,14 @@ void MapEdit::Start()
 	ChangeState(StageStateValue);
 }
 
-void MapEdit::Update(float _DeltaTime)
+void PathEdit::Update(float _DeltaTime)
 {
-	IndexToNumRenderer();
 }
 
-void MapEdit::Render(float _DeltaTime)
+void PathEdit::Render(float _DeltaTime)
 {
+	IndexToNumRenderer();
+
 	if (GameEngineInput::IsDown("LeftArrow"))
 	{
 		PrevState();
@@ -91,11 +92,11 @@ void MapEdit::Render(float _DeltaTime)
 	{
 		SaveData();
 	}
-	
+
 
 }
 
-void MapEdit::StateToMapRenderer()
+void PathEdit::StateToMapRenderer()
 {
 	for (size_t i = 0; i < MapRenderer.size(); i++)
 	{
@@ -110,13 +111,13 @@ void MapEdit::StateToMapRenderer()
 	}
 }
 
-void MapEdit::StageStateToDesc()
+void PathEdit::StageStateToDesc()
 {
 	Desc.Stage = static_cast<int>(StageStateValue) + 1;
 	//Desc.ImageFileName = "Stage_" + std::to_string(Desc.Stage) + ".png";
 }
 
-void MapEdit::NextState()
+void PathEdit::NextState()
 {
 	int i = static_cast<int>(StageStateValue);
 	++i;
@@ -128,7 +129,7 @@ void MapEdit::NextState()
 	ChangeState(StageStateValue);
 }
 
-void MapEdit::PrevState()
+void PathEdit::PrevState()
 {
 	int i = static_cast<int>(StageStateValue);
 	--i;
@@ -140,24 +141,24 @@ void MapEdit::PrevState()
 	ChangeState(StageStateValue);
 }
 
-void MapEdit::ChangeState(StageState _Value)
+void PathEdit::ChangeState(StageState _Value)
 {
 	StageStateValue = _Value;
 	StateToMapRenderer();
 	StageStateToDesc();
 }
 
-void MapEdit::IncreasPathIndex()
+void PathEdit::IncreasPathIndex()
 {
 	if (PathIndex == 99)
 	{
 		return;
 	}
-	
+
 	PathIndex++;
 }
 
-void MapEdit::ReducePathIndex()
+void PathEdit::ReducePathIndex()
 {
 	if (PathIndex == 0)
 	{
@@ -166,7 +167,7 @@ void MapEdit::ReducePathIndex()
 	PathIndex--;
 }
 
-void MapEdit::IndexToNumRenderer()
+void PathEdit::IndexToNumRenderer()
 {
 	std::vector Num = GameEngineMath::GetDigits(PathIndex);
 
@@ -225,17 +226,17 @@ void MapEdit::IndexToNumRenderer()
 	}
 }
 
-void MapEdit::InsertOrFindPath()
+void PathEdit::InsertOrFindPath()
 {
 	Desc.MonsterPaths[PathIndex];
 }
 
-void MapEdit::PushbackPathPoint()
+void PathEdit::PushbackPathPoint()
 {
 	if (Desc.MonsterPaths.find(PathIndex) == Desc.MonsterPaths.end())
 	{
 		MsgTextBox("경로를 넣을 메모리가 없습니다. Z를 눌러 메모리를 추가해주세요")
-		return;
+			return;
 	}
 
 	float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
@@ -248,7 +249,7 @@ void MapEdit::PushbackPathPoint()
 	AddedPathPoint.Renderer->GetTransform()->SetWorldPosition(MousePosition);
 }
 
-void MapEdit::SaveData()
+void PathEdit::SaveData()
 {
 	for (auto& i : Desc.MonsterPaths)
 	{

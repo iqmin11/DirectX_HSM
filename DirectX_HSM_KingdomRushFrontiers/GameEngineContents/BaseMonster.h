@@ -28,10 +28,11 @@ protected:
 	void WalkToNextPoint(float _DeltaTime);
 	void WalkPath(float _DeltaTime);
 
+	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
+
 private:
 	float4 ActorPos = float4::Zero;
 
-	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::list<float4>* PathInfo = nullptr;
 	std::list<float4>::iterator CurPoint = std::list<float4>::iterator();
 	std::list<float4>::iterator NextPoint = std::list<float4>::iterator();

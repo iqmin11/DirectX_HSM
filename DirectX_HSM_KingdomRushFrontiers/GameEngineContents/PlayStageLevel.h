@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineTimeEvent.h>
 
 enum class StageState
 {
@@ -37,6 +38,9 @@ private:
 	std::shared_ptr<class BaseMonster> AcBaseMonster = nullptr;
 	std::shared_ptr<class MonsterPath> AcMonsterPath = nullptr;
 
+	GameEngineTimeEvent Spawner = GameEngineTimeEvent();
+
+	void MonsterSpawn();
 
 	void KeySet();
 	

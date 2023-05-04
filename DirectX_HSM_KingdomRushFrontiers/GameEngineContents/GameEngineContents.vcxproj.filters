@@ -39,13 +39,10 @@
     <ClInclude Include="PlayStageUI.h">
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="BaseMonster.h">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
-    <ClInclude Include="MapEdit.h">
+    <ClInclude Include="PathEdit.h">
       <Filter>4.StageEdit\Actor</Filter>
     </ClInclude>
     <ClInclude Include="StageMap.h">
@@ -53,6 +50,18 @@
     </ClInclude>
     <ClInclude Include="MonsterPath.h">
       <Filter>3.PlayStage\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMonster.h">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DesertThug.h">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DuneRaider.h">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterWave.h">
+      <Filter>3.PlayStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -94,13 +103,10 @@
     <ClCompile Include="PlayStageUI.cpp">
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="BaseMonster.cpp">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="StageEditLevel.cpp">
       <Filter>4.StageEdit</Filter>
     </ClCompile>
-    <ClCompile Include="MapEdit.cpp">
+    <ClCompile Include="PathEdit.cpp">
       <Filter>4.StageEdit\Actor</Filter>
     </ClCompile>
     <ClCompile Include="StageMap.cpp">
@@ -108,6 +114,18 @@
     </ClCompile>
     <ClCompile Include="MonsterPath.cpp">
       <Filter>3.PlayStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMonster.cpp">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DesertThug.cpp">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DuneRaider.cpp">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterWave.cpp">
+      <Filter>3.PlayStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +155,9 @@
     </Filter>
     <Filter Include="4.StageEdit\Actor">
       <UniqueIdentifier>{c5179c2e-6590-4f90-9b07-3dbb8a6c4330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster">
+      <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
