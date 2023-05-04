@@ -60,6 +60,9 @@
     <ClInclude Include="DuneRaider.h">
       <Filter>3.PlayStage\Actor\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="StageEditor.h">
+      <Filter>4.StageEdit\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -121,6 +124,9 @@
     <ClCompile Include="DuneRaider.cpp">
       <Filter>3.PlayStage\Actor\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="StageEditor.cpp">
+      <Filter>4.StageEdit\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -152,6 +158,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster">
       <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.StageEdit\Window">
+      <UniqueIdentifier>{5b94c2aa-67a6-4691-b3a6-828f75978ed0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

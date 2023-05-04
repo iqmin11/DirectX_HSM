@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include "StageEditor.h"
 
 #include "PathEdit.h"
 
@@ -40,4 +41,26 @@ void StageEditLevel::SetKey()
 	GameEngineInput::CreateKey("DownArrow",VK_DOWN);
 	GameEngineInput::CreateKey("Z",'Z');
 	GameEngineInput::CreateKey("Enter",VK_RETURN);
+}
+
+
+void StageEditLevel::LevelChangeStart() 
+{
+	
+
+	if (nullptr == GameEngineGUI::FindGUIWindow("StageEditor"))
+	{
+		std::shared_ptr<GameEngineGUIWindow> NewWindow = GameEngineGUI::GUIWindowCreate<StageEditor>("StageEditor");
+		Editor = std::dynamic_pointer_cast<StageEditor>(NewWindow);
+	}
+
+	Editor->On();
+
+	// Stage Editor가 실행됐으면 좋겠다.
+	int a = 0;
+}
+
+void StageEditLevel::LevelChangeEnd()
+{
+	Editor->Off();
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <memory>
 
+class StageEditor;
 class StageEditLevel : public GameEngineLevel
 {
 public:
@@ -18,8 +20,13 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
+
 private:
 	std::shared_ptr<class PathEdit> AcPathEdit = nullptr;
+
+	std::shared_ptr<class StageEditor> Editor;
 
 	void SetKey();
 
