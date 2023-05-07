@@ -1,7 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineGUI.h>
 #include "StagePath.h"
-
+#include <GameEngineBase/GameEngineSerializer.h>
+#include <GameEngineBase/GameEngineFile.h>
 
 class LinePath 
 {
@@ -90,17 +91,18 @@ protected:
 	void Start() override;
 
 private:
-	class StageEditLevel* ParentLevel = nullptr;
 	int StageCount = 6;
 	int SelectedStage = 0;
 	int SelectedLine = -1;
 	int LineSize = 0;
 	std::vector<StageData> Data = {};
-
 	std::shared_ptr<GameEngineActor> LineActor = nullptr;
 
-	void OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _DeltaTime) override;
-	void ChangeStage(int _Selected);
+	GameEngineSerializer PathsSavedBinData = GameEngineSerializer();
+	GameEngineSerializer PathsLoadedBinData = GameEngineSerializer();
+
+	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
+	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
 
 	void StageMapBgTap();
 	void PathEditTap();
@@ -109,6 +111,16 @@ private:
 	void Popback_Path();
 	void Pushback_Point();
 	void Popback_Point();
+
+	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level);
+	void SerializeOneLine(int _StageLevel, int _PathIndex);
+	void SerializeOneStageLines(int _StageLevel);
+	void SerializeAllPathData();
+	void SavePathBinData();
+
+	/*void LoadPathBinData();
+	void LoadOneStageLines(int _StageLevel);
+	void LoadOneLine(int _StageLevel, int _PathIndex);*/
 };
 	//std::function<void(int)> ChangeStageInLevel = nullptr;
 	//std::function<void()> AddStageLine= nullptr;

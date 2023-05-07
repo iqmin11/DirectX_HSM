@@ -18,7 +18,7 @@ StageEditor::~StageEditor()
 void StageEditor::Start()
 {
     Data.resize(StageCount);
-    ParentLevel = StageEditLevel::MainStageEditLevel;
+    //ParentLevel = StageEditLevel::MainStageEditLevel;
     //AddStageLine = std::bind(&StagePath::AddStageLine, ParentLevel->GetAcStagePath());
 }
 
@@ -35,36 +35,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
 	//char Arr[100] = {0};
 	//ImGui::InputText(Text, Arr, 100);
 
-    if (0 != Data.size() && SelectedStage <= Data.size())
-    {
-        std::vector<LinePath>& Lines = Data[SelectedStage].Lines;
-
-        if (0 != Lines.size() && SelectedLine <= Lines.size())
-        {
-            std::vector<float4>& Line = Lines[SelectedLine].Points;
-
-            if (0 != Line.size())
-            {
-                if (nullptr == LineActor)
-                {
-                    LineActor = _Level->CreateActor<GameEngineActor>();
-
-                    for (size_t i = 0; i < 100; i++)
-                    {
-                        Points.push_back(LineActor->CreateComponent<GameEngineSpriteRenderer>());
-                    }
-                }
-
-
-                for (size_t i = 0; i < Line.size(); i++)
-                {
-                    Points[i]->GetTransform()->SetLocalScale({20.0f, 20.0f, 20.0f});
-                    Points[i]->GetTransform()->SetLocalPosition(Line[i]);
-                }
-            }
-        }
-    }
-
+    DrawPointRenderer(_Level);
     
     {
         ImGui::BeginChild("left pane", ImVec2(150, 0), true);
@@ -85,7 +56,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         ImGui::BeginGroup();
         ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing())); // Leave room for 1 line below us
         
-        ChangeStage(SelectedStage);
+        ChangeStage(_Level, SelectedStage);
 
         ImGui::Separator();
         
@@ -107,24 +78,26 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         }
 
         ImGui::EndChild();
-        if (ImGui::Button("Revert"))
+        if (ImGui::Button("Load"))
         {
+            //LoadPathBinData();
         }
         ImGui::SameLine();
         if (ImGui::Button("Save"))
         {
+            SerializeAllPathData();
+            SavePathBinData();
         }
         ImGui::EndGroup();
     }
 }
 
-void StageEditor::ChangeStage(int _Selected)
+void StageEditor::ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected)
 {
     ImGui::Text("Stage %d", _Selected);
-    ParentLevel->SetStageLevel(_Selected);
+    std::dynamic_pointer_cast<StageEditLevel>(_Level)->SetStageLevel(_Selected);
     //ChangeStageInLevel(_Selected);
 }
-
 void StageEditor::StageMapBgTap()
 {
     if (ImGui::BeginTabItem("StageMapBg"))
@@ -191,7 +164,7 @@ void StageEditor::Pushback_Path()
 
 void StageEditor::Pushback_Point()
 {
-    if (Data[SelectedStage].Lines.size() == 0)
+    if (Data[SelectedStage].Lines.size() == 0 || SelectedLine == -1)
     {
         return;
     }
@@ -219,3 +192,125 @@ void StageEditor::Popback_Path()
     SelectedLine = -1;
     Data[SelectedStage].Lines.pop_back();
 }
+
+void StageEditor::DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level)
+{
+    if (0 != Data.size() && SelectedStage <= Data.size())
+    {
+        std::vector<LinePath>& Lines = Data[SelectedStage].Lines;
+
+        if (0 != Lines.size() && SelectedLine <= Lines.size())
+        {
+            std::vector<float4>& Line = Lines[SelectedLine].Points;
+
+            if (0 != Line.size())
+            {
+                if (nullptr == LineActor)
+                {
+                    LineActor = _Level->CreateActor<GameEngineActor>();
+
+                    for (size_t i = 0; i < 100; i++)
+                    {
+                        Points.push_back(LineActor->CreateComponent<GameEngineSpriteRenderer>());
+                    }
+                }
+
+
+                for (size_t i = 0; i < Line.size(); i++)
+                {
+                    Points[i]->SetTexture("Check.png");
+                    Points[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
+                    Points[i]->GetTransform()->SetLocalPosition(Line[i]);
+                }
+            }
+        }
+    }
+}
+
+void StageEditor::SerializeOneLine(int _StageLevel, int _PathIndex)
+{
+    std::vector<float4>& SavePoints = Data[_StageLevel].Lines[_PathIndex].Points;
+    PathsSavedBinData.Write(static_cast<int>(SavePoints.size()));
+    for (int i = 0; i < SavePoints.size(); i++)
+    {
+        PathsSavedBinData.Write(&SavePoints[i], sizeof(float4));
+    }
+}
+
+void StageEditor::SerializeOneStageLines(int _StageLevel)
+{
+    std::vector<LinePath>& SaveLines = Data[_StageLevel].Lines;
+    PathsSavedBinData.Write(static_cast<int>(SaveLines.size()));
+    for (int i = 0; i < SaveLines.size(); i++)
+    {
+        PathsSavedBinData.Write(SaveLines[i].Index);
+        PathsSavedBinData.Write(&SaveLines[i].Points, sizeof(std::vector<float4>));
+        SerializeOneLine(_StageLevel, i);
+    }
+}
+
+void StageEditor::SerializeAllPathData()
+{
+    PathsSavedBinData.Write(static_cast<int>(Data.size()));
+    for (int i = 0; i < Data.size(); i++)
+    {
+        PathsSavedBinData.Write(&Data[i].Lines, sizeof(std::vector<LinePath>));
+        SerializeOneStageLines(i);
+    }
+}
+
+void StageEditor::SavePathBinData()
+{
+    GameEnginePath filepath;
+    filepath.SetPath("..//ContentsData//PathData.txt");
+
+    GameEngineFile file = GameEngineFile(filepath.GetFullPath());
+    file.SaveBin(PathsSavedBinData);
+}
+
+//void StageEditor::LoadPathBinData()
+//{
+//    GameEngineFile File("..//ContentsData//PathData.txt");
+//    File.LoadBin(PathsLoadedBinData);
+//
+//    int StgSize = 0;
+//    PathsLoadedBinData.Read(StgSize);
+//
+//    StageCount = StgSize;
+//    Data.resize(StageCount);
+//    for (size_t i = 0; i < Data.size(); i++)
+//    {
+//        PathsLoadedBinData.Read(&Data[i].Lines, sizeof(std::vector<LinePath>));
+//        LoadOneStageLines(i);
+//    }
+//
+//  
+//}
+//
+//void StageEditor::LoadOneStageLines(int _StageLevel)
+//{
+//    int LineSize = 0;
+//    PathsLoadedBinData.Read(LineSize);
+//    Data[_StageLevel].Lines.resize(LineSize);
+//    for (size_t i = 0; i < Data[_StageLevel].Lines.size(); i++)
+//    {
+//        PathsLoadedBinData.Read(Data[_StageLevel].Lines[i].Index);
+//        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[i].Points, sizeof(std::vector<float4>));
+//        LoadOneLine(_StageLevel, i);
+//    }
+//}
+//
+//void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
+//{
+//    int PointSize = 0;
+//    PathsLoadedBinData.Read(PointSize);
+//    Data[_StageLevel].Lines[_PathIndex].Points.resize(PointSize);
+//    for (size_t i = 0; i < Data[_StageLevel].Lines[_PathIndex].Points.size(); i++)
+//    {
+//        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
+//    }
+//}
+
+
+
+
