@@ -13,11 +13,6 @@ enum class StageState
 	Stage6,
 };
 
-struct PathPoint
-{
-	float4 Position = float4::Zero;
-	std::shared_ptr<class GameEngineSpriteRenderer> Renderer = nullptr;
-};
 
 struct StageMapData_Desc
 {

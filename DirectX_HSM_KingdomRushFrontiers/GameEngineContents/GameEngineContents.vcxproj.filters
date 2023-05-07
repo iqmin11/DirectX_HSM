@@ -63,6 +63,13 @@
     <ClInclude Include="StageEditor.h">
       <Filter>4.StageEdit\Window</Filter>
     </ClInclude>
+    <ClInclude Include="StageBg.h">
+      <Filter>4.StageEdit\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="StagePath.h">
+      <Filter>4.StageEdit\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -124,8 +131,14 @@
     <ClCompile Include="DuneRaider.cpp">
       <Filter>3.PlayStage\Actor\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="StageBg.cpp">
+      <Filter>4.StageEdit\Actor</Filter>
+    </ClCompile>
     <ClCompile Include="StageEditor.cpp">
       <Filter>4.StageEdit\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="StagePath.cpp">
+      <Filter>4.StageEdit\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

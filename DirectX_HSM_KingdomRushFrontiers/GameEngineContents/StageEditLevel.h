@@ -2,10 +2,13 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <memory>
 
-class StageEditor;
+#include "ContentsEnum.h"
+
 class StageEditLevel : public GameEngineLevel
 {
 public:
+	static StageEditLevel* MainStageEditLevel;
+
 	// construtor destructor
 	StageEditLevel();
 	~StageEditLevel();
@@ -16,6 +19,38 @@ public:
 	StageEditLevel& operator=(const StageEditLevel& _Other) = delete;
 	StageEditLevel& operator=(StageEditLevel&& _Other) noexcept = delete;
 
+	//AcGet
+
+	//std::shared_ptr<class StageBg> GetAcStageBg() const
+	//{
+	//	return AcStageBg;
+	//}
+	//
+	//std::shared_ptr<class StagePath> GetAcStagePath() const
+	//{
+	//	return AcStagePath;
+	//}
+	//
+	const int* GetStageLevelPtr() const
+	{
+		return &StageLevel;
+	}
+	//
+	//const StageEditMode* GetEditModPtr() const
+	//{
+	//	return &EditMod;
+	//}
+	//
+	void SetStageLevel(int _Stage)
+	{
+		StageLevel = _Stage;
+	}
+	//
+	//void SetEditMod(StageEditMode _EditMod)
+	//{
+	//	EditMod = _EditMod;
+	//}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -24,11 +59,16 @@ protected:
 	void LevelChangeEnd() override;
 
 private:
-	std::shared_ptr<class PathEdit> AcPathEdit = nullptr;
+	int StageLevel = 1;
+	//StageEditMode EditMod = StageEditMode::Null;
 
+	std::shared_ptr<class StageBg> AcStageBg = nullptr;
+	//std::shared_ptr<class StagePath> AcStagePath = nullptr;
+	
 	std::shared_ptr<class StageEditor> Editor;
 
 	void SetKey();
+	void LoadTexture();
 
 };
 

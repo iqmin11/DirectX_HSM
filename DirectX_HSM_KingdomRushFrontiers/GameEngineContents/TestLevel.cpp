@@ -43,8 +43,8 @@ void TestLevel::Start()
 
 	GameEngineInput::CreateKey("TitleLevel", '1');
 	GameEngineInput::CreateKey("WorldMapLevel", '2');
-	GameEngineInput::CreateKey("PlayStageLevel", '3');
-	GameEngineInput::CreateKey("StageEditLevel", '4');
+	//GameEngineInput::CreateKey("PlayStageLevel", '3');
+	GameEngineInput::CreateKey("StageEditLevel", '3');
 }
 
 void TestLevel::Update(float _DeltaTime)
@@ -59,10 +59,10 @@ void TestLevel::Update(float _DeltaTime)
 		GameEngineCore::ChangeLevel("WorldMapLevel");
 	}
 
-	if (GameEngineInput::IsDown("PlayStageLevel"))
-	{
-		GameEngineCore::ChangeLevel("PlayStageLevel");
-	}
+	//if (GameEngineInput::IsDown("PlayStageLevel"))
+	//{
+	//	GameEngineCore::ChangeLevel("PlayStageLevel");
+	//}
 
 	if (GameEngineInput::IsDown("StageEditLevel"))
 	{

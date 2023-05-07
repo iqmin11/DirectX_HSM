@@ -3,13 +3,17 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include <GameEngineCore/GameEngineTexture.h>
 #include "StageEditor.h"
 
-#include "PathEdit.h"
+#include "StageBg.h"
+//#include "StagePath.h"
+
+StageEditLevel* StageEditLevel::MainStageEditLevel = nullptr;
 
 StageEditLevel::StageEditLevel()
 {
-
+	MainStageEditLevel = this;
 }
 
 StageEditLevel::~StageEditLevel()
@@ -20,9 +24,12 @@ StageEditLevel::~StageEditLevel()
 void StageEditLevel::Start()
 {
 	SetKey();
+	LoadTexture();
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
+	AcStageBg = CreateActor<StageBg>();
+	//AcStagePath = CreateActor<StagePath>();
 	
-	AcPathEdit = CreateActor<PathEdit>();
+	//AcPathEdit = CreateActor<PathEdit>();
 }
 
 void StageEditLevel::Update(float _DeltaTime)
@@ -41,13 +48,26 @@ void StageEditLevel::SetKey()
 	GameEngineInput::CreateKey("DownArrow",VK_DOWN);
 	GameEngineInput::CreateKey("Z",'Z');
 	GameEngineInput::CreateKey("Enter",VK_RETURN);
+	GameEngineInput::CreateKey("LeftClick", VK_LBUTTON);
+	GameEngineInput::CreateKey("RightClick", VK_RBUTTON);
+}
+
+void StageEditLevel::LoadTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
 }
 
 
 void StageEditLevel::LevelChangeStart() 
 {
-	
-
 	if (nullptr == GameEngineGUI::FindGUIWindow("StageEditor"))
 	{
 		std::shared_ptr<GameEngineGUIWindow> NewWindow = GameEngineGUI::GUIWindowCreate<StageEditor>("StageEditor");
@@ -55,9 +75,6 @@ void StageEditLevel::LevelChangeStart()
 	}
 
 	Editor->On();
-
-	// Stage Editor가 실행됐으면 좋겠다.
-	int a = 0;
 }
 
 void StageEditLevel::LevelChangeEnd()
