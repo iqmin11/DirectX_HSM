@@ -59,7 +59,7 @@ protected:
 	void LevelChangeEnd() override;
 
 private:
-	int StageLevel = 1;
+	int StageLevel = 0;
 	//StageEditMode EditMod = StageEditMode::Null;
 
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;

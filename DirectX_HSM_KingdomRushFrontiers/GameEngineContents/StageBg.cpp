@@ -39,7 +39,7 @@ void StageBg::RenderStage(int _Stage)
 {
 	for (size_t i = 0; i < StageBgRenderer.size(); i++)
 	{
-		if (_Stage-1 == i)
+		if (_Stage == i)
 		{
 			StageBgRenderer[i]->On();
 		}

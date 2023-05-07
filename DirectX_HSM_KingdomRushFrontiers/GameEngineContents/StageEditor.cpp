@@ -22,7 +22,9 @@ void StageEditor::Start()
     //AddStageLine = std::bind(&StagePath::AddStageLine, ParentLevel->GetAcStagePath());
 }
 
-void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _DeltaTime)
+static std::vector<std::shared_ptr<GameEngineSpriteRenderer>> Points;
+
+void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
 {
 	//const char8_t* Ptr = u8"¹è°æÀÌ ¹¹³Ä";
 	//const char* Text = reinterpret_cast<const char*>(Ptr);
@@ -32,9 +34,41 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _Del
 	//const char* Text = reinterpret_cast<const char*>(Ptr);
 	//char Arr[100] = {0};
 	//ImGui::InputText(Text, Arr, 100);
+
+    if (0 != Data.size() && SelectedStage <= Data.size())
+    {
+        std::vector<LinePath>& Lines = Data[SelectedStage].Lines;
+
+        if (0 != Lines.size() && SelectedLine <= Lines.size())
+        {
+            std::vector<float4>& Line = Lines[SelectedLine].Points;
+
+            if (0 != Line.size())
+            {
+                if (nullptr == LineActor)
+                {
+                    LineActor = _Level->CreateActor<GameEngineActor>();
+
+                    for (size_t i = 0; i < 100; i++)
+                    {
+                        Points.push_back(LineActor->CreateComponent<GameEngineSpriteRenderer>());
+                    }
+                }
+
+
+                for (size_t i = 0; i < Line.size(); i++)
+                {
+                    Points[i]->GetTransform()->SetLocalScale({20.0f, 20.0f, 20.0f});
+                    Points[i]->GetTransform()->SetLocalPosition(Line[i]);
+                }
+            }
+        }
+    }
+
+    
     {
         ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-        for (int i = 1; i <= 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
             char label[128];
@@ -64,8 +98,12 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _Del
 
         if ((GameEngineInput::IsDown("LeftClick") && GameEngineInput::IsPress("Z")))
         {
-            float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
-            Data[0].Lines[SelectedLine].Points.emplace_back(MousePosition);
+            Pushback_Point();
+        }
+
+        if ((GameEngineInput::IsDown("RightClick") && GameEngineInput::IsPress("Z")))
+        {
+            Popback_Point();
         }
 
         ImGui::EndChild();
@@ -78,14 +116,6 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _Del
         }
         ImGui::EndGroup();
     }
-
-
-
-
-
-    // 
-
-    // ImGui::()
 }
 
 void StageEditor::ChangeStage(int _Selected)
@@ -93,14 +123,6 @@ void StageEditor::ChangeStage(int _Selected)
     ImGui::Text("Stage %d", _Selected);
     ParentLevel->SetStageLevel(_Selected);
     //ChangeStageInLevel(_Selected);
-}
-
-void StageEditor::ButtonCheck_AddPath()
-{
-    if (ImGui::Button("AddPath"))
-    {
-        Data[0].Lines.push_back(LinePath());
-    }
 }
 
 void StageEditor::StageMapBgTap()
@@ -117,10 +139,20 @@ void StageEditor::PathEditTap()
 {
     if (ImGui::BeginTabItem("PathEdit"))
     {
-        ButtonCheck_AddPath();
+        if (ImGui::Button("AddPath"))
+        {
+            Pushback_Path();
+        }
+        
+        ImGui::SameLine();
+        if (ImGui::Button("DeletePath"))
+        {
+            Popback_Path();
+        }
+
         {
             ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-            for (int i = 0; i < Data[0].Lines.size(); i++)
+            for (int i = 0; i < Data[SelectedStage].Lines.size(); i++)
             {
                 // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
                 char label[128];
@@ -133,34 +165,57 @@ void StageEditor::PathEditTap()
         ImGui::SameLine();
         ImGui::EndTabItem();
 
-        if (Data[0].Lines.size() > 0)
+        if (SelectedLine != -1)
         {
-            ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-            for (int i = 0; i < Data[0].Lines[SelectedLine].Points.size(); i++)
+            std::vector<float4>& PointVec = Data[SelectedStage].Lines[SelectedLine].Points;
             {
-                // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
-                char label[128];
-                sprintf_s(label, "Point %d", i);
-                ImGui::Text(label);
-                //if (ImGui::Selectable(label, selectedPoint == i))
-                //    selectedPoint = i;
+                ImGui::BeginChild("left pane", ImVec2(150, 0), true);
+                for (int i = 0; i < PointVec.size(); i++)
+                {
+                    int PointX = static_cast<int>(PointVec[i].x);
+                    int PointY = static_cast<int>(PointVec[i].y);
+                    std::string PointLabel = "Point " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
+                    ImGui::Text(PointLabel.c_str());
+                }
+                ImGui::EndChild();
             }
-            ImGui::EndChild();
             ImGui::SameLine();
-            //if (true == PathEditMode)
-            //{
-            //    if (ImGui::Button("EditModeOn"))
-            //    {
-            //        PathEditMode = false;
-            //    }
-            //}
-            //else
-            //{
-            //    if (ImGui::Button("EditModeOff"))
-            //    {
-            //        PathEditMode = true;
-            //    }
-            //}
         }
     }
+}
+
+void StageEditor::Pushback_Path()
+{
+    Data[SelectedStage].Lines.push_back(LinePath(LineSize++));
+}
+
+void StageEditor::Pushback_Point()
+{
+    if (Data[SelectedStage].Lines.size() == 0)
+    {
+        return;
+    }
+    float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
+    Data[SelectedStage].Lines[SelectedLine].Points.emplace_back(MousePosition);
+
+}
+
+void StageEditor::Popback_Point()
+{
+    if (Data[SelectedStage].Lines.size() == 0 || Data[SelectedStage].Lines[SelectedLine].Points.size() == 0)
+    {
+        return;
+    }
+    Data[SelectedStage].Lines[SelectedLine].Points.pop_back();
+}
+
+void StageEditor::Popback_Path()
+{
+    if (0 == LineSize)
+    {
+        return;
+    }
+    LineSize--;
+    SelectedLine = -1;
+    Data[SelectedStage].Lines.pop_back();
 }

@@ -6,6 +6,12 @@
 class LinePath 
 {
 public:
+	LinePath()
+		:Index(0), Points(std::vector<float4>()) {}
+
+	LinePath(int _Index)
+		:Index(_Index), Points(std::vector<float4>()) {}
+	
 	int Index;
 	std::vector<float4> Points;
 };
@@ -86,17 +92,23 @@ protected:
 private:
 	class StageEditLevel* ParentLevel = nullptr;
 	int StageCount = 6;
-	int SelectedStage = 1;
-	int SelectedLine = 0;
-	int SelectedPoint = 0;
+	int SelectedStage = 0;
+	int SelectedLine = -1;
+	int LineSize = 0;
 	std::vector<StageData> Data = {};
+
+	std::shared_ptr<GameEngineActor> LineActor = nullptr;
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> Level, float _DeltaTime) override;
 	void ChangeStage(int _Selected);
 
-	void ButtonCheck_AddPath();
 	void StageMapBgTap();
 	void PathEditTap();
+
+	void Pushback_Path();
+	void Popback_Path();
+	void Pushback_Point();
+	void Popback_Point();
 };
 	//std::function<void(int)> ChangeStageInLevel = nullptr;
 	//std::function<void()> AddStageLine= nullptr;
