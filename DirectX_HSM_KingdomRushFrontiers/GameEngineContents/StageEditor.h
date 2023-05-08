@@ -1,8 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineGUI.h>
-#include "StagePath.h"
 #include <GameEngineBase/GameEngineSerializer.h>
 #include <GameEngineBase/GameEngineFile.h>
+#include "ContentsEnum.h"
 
 class LinePath 
 {
@@ -46,8 +46,9 @@ public:
 class MonsterData
 {
 public:
-	int Hp;
-	int Speed;
+	MonsterEnum Monster = MonsterEnum::Null;
+	int Hp = 0;
+	int Speed = 0;
 };
 
 //  Monster가 3종류가
@@ -58,13 +59,13 @@ public:
 class StageData
 {
 public:
-	int StageLevel;
-	std::string BackGroundName;
+	int StageLevel = 0;
+	std::string BackGroundName = "\0";
 	// 0번 라인
 	// 1번 라인
-	std::vector<LinePath> Lines;
+	std::vector<LinePath> Lines = std::vector<LinePath>();
 
-	std::vector<WaveData> Waves;
+	std::vector<WaveData> Waves = std::vector<WaveData>();
 
 	// Monster0
 	// Monster1
@@ -93,18 +94,23 @@ protected:
 private:
 	int StageCount = 6;
 	int SelectedStage = 0;
+	std::vector<StageData> Data = {};
+
 	int SelectedLine = -1;
 	int LineSize = 0;
-	std::vector<StageData> Data = {};
-	std::shared_ptr<GameEngineActor> LineActor = nullptr;
-
 	GameEngineSerializer PathsSavedBinData = GameEngineSerializer();
 	GameEngineSerializer PathsLoadedBinData = GameEngineSerializer();
+	std::shared_ptr<class GameEngineActor> LineActor = nullptr;
+
+	int SelectedWave = -1;
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
 
+	// 배경 관련 (미완)
 	void StageMapBgTap();
+
+	// 몬스터 경로 관련
 	void PathEditTap();
 
 	void Pushback_Path();
@@ -112,7 +118,7 @@ private:
 	void Pushback_Point();
 	void Popback_Point();
 
-	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level);
+	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level); //릴리즈 완성되면 수정 예정
 	void SerializeOneLine(int _StageLevel, int _PathIndex);
 	void SerializeOneStageLines(int _StageLevel);
 	void SerializeAllPathData();
@@ -121,6 +127,14 @@ private:
 	void LoadPathBinData();
 	void LoadOneStageLines(int _StageLevel);
 	void LoadOneLine(int _StageLevel, int _PathIndex);
+
+	//몬스터 웨이브 관련
+	void WaveEditTap();
+	void Pushback_Wave();
+	void Popback_Wave();
+
+	//Test
+	void PathTest(std::shared_ptr<class GameEngineLevel> _Level);
 };
 	//std::function<void(int)> ChangeStageInLevel = nullptr;
 	//std::function<void()> AddStageLine= nullptr;

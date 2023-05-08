@@ -50,6 +50,7 @@ void StageEditLevel::SetKey()
 	GameEngineInput::CreateKey("Enter",VK_RETURN);
 	GameEngineInput::CreateKey("LeftClick", VK_LBUTTON);
 	GameEngineInput::CreateKey("RightClick", VK_RBUTTON);
+	GameEngineInput::CreateKey("Space", VK_SPACE);
 }
 
 void StageEditLevel::LoadTexture()

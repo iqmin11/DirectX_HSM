@@ -42,9 +42,6 @@
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
-    <ClInclude Include="PathEdit.h">
-      <Filter>4.StageEdit\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="StageMap.h">
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
@@ -52,13 +49,13 @@
       <Filter>3.PlayStage\Actor</Filter>
     </ClInclude>
     <ClInclude Include="BaseMonster.h">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="DesertThug.h">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="DuneRaider.h">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="StageEditor.h">
       <Filter>4.StageEdit\Window</Filter>
@@ -67,9 +64,6 @@
       <Filter>4.StageEdit\Actor</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
-    <ClInclude Include="StagePath.h">
-      <Filter>4.StageEdit\Actor</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -113,9 +107,6 @@
     <ClCompile Include="StageEditLevel.cpp">
       <Filter>4.StageEdit</Filter>
     </ClCompile>
-    <ClCompile Include="PathEdit.cpp">
-      <Filter>4.StageEdit\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="StageMap.cpp">
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
@@ -123,22 +114,19 @@
       <Filter>3.PlayStage\Actor</Filter>
     </ClCompile>
     <ClCompile Include="BaseMonster.cpp">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClCompile>
     <ClCompile Include="DesertThug.cpp">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClCompile>
     <ClCompile Include="DuneRaider.cpp">
-      <Filter>3.PlayStage\Actor\Monster</Filter>
+      <Filter>4.StageEdit\Actor\Monster</Filter>
     </ClCompile>
     <ClCompile Include="StageBg.cpp">
       <Filter>4.StageEdit\Actor</Filter>
     </ClCompile>
     <ClCompile Include="StageEditor.cpp">
       <Filter>4.StageEdit\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="StagePath.cpp">
-      <Filter>4.StageEdit\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,11 +157,11 @@
     <Filter Include="4.StageEdit\Actor">
       <UniqueIdentifier>{c5179c2e-6590-4f90-9b07-3dbb8a6c4330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Monster">
-      <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.StageEdit\Window">
       <UniqueIdentifier>{5b94c2aa-67a6-4691-b3a6-828f75978ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.StageEdit\Actor\Monster">
+      <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

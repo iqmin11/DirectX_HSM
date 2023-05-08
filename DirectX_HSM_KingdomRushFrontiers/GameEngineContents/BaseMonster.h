@@ -14,7 +14,7 @@ public:
 	BaseMonster& operator=(const BaseMonster& _Other) = delete;
 	BaseMonster& operator=(BaseMonster&& _Other) noexcept = delete;
 
-	void SetPathInfo(std::list<float4>& _PathInfo)
+	void SetPathInfo(std::vector<float4>& _PathInfo)
 	{
 		PathInfo = &_PathInfo;
 		CurPoint = PathInfo->begin();
@@ -33,11 +33,11 @@ protected:
 private:
 	float4 ActorPos = float4::Zero;
 
-	std::list<float4>* PathInfo = nullptr;
-	std::list<float4>::iterator CurPoint = std::list<float4>::iterator();
-	std::list<float4>::iterator NextPoint = std::list<float4>::iterator();
-	float Time = 0;
+	std::vector<float4>* PathInfo = nullptr;
+	std::vector<float4>::iterator CurPoint = std::vector<float4>::iterator();
+	std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
 	float Speed = 100;
+	float Time = 0;
 	float Ratio = 0;
 };
 

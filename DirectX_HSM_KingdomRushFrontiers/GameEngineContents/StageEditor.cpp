@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
 #include "StageEditLevel.h"
+#include "DuneRaider.h"
 
 
 StageEditor::StageEditor() 
@@ -34,7 +35,6 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
 	//const char* Text = reinterpret_cast<const char*>(Ptr);
 	//char Arr[100] = {0};
 	//ImGui::InputText(Text, Arr, 100);
-
     DrawPointRenderer(_Level);
     
     {
@@ -64,6 +64,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         {
             StageMapBgTap();
             PathEditTap();
+            WaveEditTap();
             ImGui::EndTabBar();
         }
 
@@ -75,6 +76,11 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         if ((GameEngineInput::IsDown("RightClick") && GameEngineInput::IsPress("Z")))
         {
             Popback_Point();
+        }
+
+        if (GameEngineInput::IsDown("Space"))
+        {
+            PathTest(_Level);
         }
 
         ImGui::EndChild();
@@ -310,6 +316,75 @@ void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
     {
         PathsLoadedBinData.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
     }
+}
+
+void StageEditor::WaveEditTap()
+{
+    if (ImGui::BeginTabItem("WaveEdit"))
+    {
+        if (ImGui::Button("AddWave"))
+        {
+            Pushback_Wave();
+        }
+
+        ImGui::SameLine();
+        if (ImGui::Button("DeleteWave"))
+        {
+            Popback_Wave();
+        }
+
+        {
+            ImGui::BeginChild("left pane", ImVec2(150, 0), true);
+            for (int i = 0; i < Data[SelectedStage].Waves.size(); i++)
+            {
+                // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
+                char label[128];
+                sprintf_s(label, "Wave %d", i);
+                if (ImGui::Selectable(label, SelectedWave == i))
+                    SelectedWave = i;
+            }
+            ImGui::EndChild();
+        }
+        ImGui::SameLine();
+        ImGui::EndTabItem();
+
+        if (SelectedLine != -1)
+        {
+            {
+                ImGui::BeginChild("left pane", ImVec2(150, 0), true);
+                //for (int i = 0; i < WaveDataVec.size(); i++)
+                //{
+                //}
+                ImGui::EndChild();
+            }
+            ImGui::SameLine();
+        }
+
+    }
+}
+
+void StageEditor::Pushback_Wave()
+{
+    Data[SelectedStage].Waves.push_back(WaveData());
+}
+
+void StageEditor::Popback_Wave()
+{
+    std::vector<WaveData> LocalWave = Data[SelectedStage].Waves;
+    if (0 == LocalWave.size())
+    {
+        return;
+    }
+    LocalWave.pop_back();
+}
+
+void StageEditor::PathTest(std::shared_ptr<class GameEngineLevel> _Level)
+{
+    if (SelectedLine == -1)
+    {
+        return;
+    }
+    _Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
 }
 
 

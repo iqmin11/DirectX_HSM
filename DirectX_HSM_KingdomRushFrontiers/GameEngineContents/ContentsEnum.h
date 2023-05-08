@@ -1,14 +1,21 @@
 #pragma once
 
-enum class StageEnum
+enum class MonsterEnum
 {
 	Null = -1,
-	Stage1,
-	Stage2,
-	Stage3,
-	Stage4,
-	Stage5,
-	Stage6,
+	DesertThug,
+	DuneRaider,
+	DesertArcher,
+	SandHound,
+	WarHound,
+	Immortal,
+	Fallen,
+	Executioner,
+	GiantScorpion,
+	GiantWasp,
+	GiantWaspQueen,
+	DuneTerror,
+	SandWraith
 };
 
 enum class StageEditMode
