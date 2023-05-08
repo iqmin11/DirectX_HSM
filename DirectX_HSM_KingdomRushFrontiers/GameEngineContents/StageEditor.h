@@ -118,9 +118,9 @@ private:
 	void SerializeAllPathData();
 	void SavePathBinData();
 
-	/*void LoadPathBinData();
+	void LoadPathBinData();
 	void LoadOneStageLines(int _StageLevel);
-	void LoadOneLine(int _StageLevel, int _PathIndex);*/
+	void LoadOneLine(int _StageLevel, int _PathIndex);
 };
 	//std::function<void(int)> ChangeStageInLevel = nullptr;
 	//std::function<void()> AddStageLine= nullptr;

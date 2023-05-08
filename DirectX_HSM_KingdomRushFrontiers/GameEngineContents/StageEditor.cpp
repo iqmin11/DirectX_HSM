@@ -80,7 +80,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         ImGui::EndChild();
         if (ImGui::Button("Load"))
         {
-            //LoadPathBinData();
+            LoadPathBinData();
         }
         ImGui::SameLine();
         if (ImGui::Button("Save"))
@@ -96,8 +96,8 @@ void StageEditor::ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int
 {
     ImGui::Text("Stage %d", _Selected);
     std::dynamic_pointer_cast<StageEditLevel>(_Level)->SetStageLevel(_Selected);
-    //ChangeStageInLevel(_Selected);
 }
+
 void StageEditor::StageMapBgTap()
 {
     if (ImGui::BeginTabItem("StageMapBg"))
@@ -110,6 +110,11 @@ void StageEditor::StageMapBgTap()
 
 void StageEditor::PathEditTap()
 {
+    if (static_cast<int>(Data[SelectedStage].Lines.size()) <= SelectedLine)
+    {
+        SelectedLine = -1;
+    }
+
     if (ImGui::BeginTabItem("PathEdit"))
     {
         if (ImGui::Button("AddPath"))
@@ -175,7 +180,7 @@ void StageEditor::Pushback_Point()
 
 void StageEditor::Popback_Point()
 {
-    if (Data[SelectedStage].Lines.size() == 0 || Data[SelectedStage].Lines[SelectedLine].Points.size() == 0)
+    if (SelectedLine == -1 || Data[SelectedStage].Lines.size() == 0 || Data[SelectedStage].Lines[SelectedLine].Points.size() == 0)
     {
         return;
     }
@@ -244,7 +249,6 @@ void StageEditor::SerializeOneStageLines(int _StageLevel)
     for (int i = 0; i < SaveLines.size(); i++)
     {
         PathsSavedBinData.Write(SaveLines[i].Index);
-        PathsSavedBinData.Write(&SaveLines[i].Points, sizeof(std::vector<float4>));
         SerializeOneLine(_StageLevel, i);
     }
 }
@@ -254,7 +258,7 @@ void StageEditor::SerializeAllPathData()
     PathsSavedBinData.Write(static_cast<int>(Data.size()));
     for (int i = 0; i < Data.size(); i++)
     {
-        PathsSavedBinData.Write(&Data[i].Lines, sizeof(std::vector<LinePath>));
+        //PathsSavedBinData.Write(&Data[i].Lines, sizeof(std::vector<LinePath>));
         SerializeOneStageLines(i);
     }
 }
@@ -268,48 +272,45 @@ void StageEditor::SavePathBinData()
     file.SaveBin(PathsSavedBinData);
 }
 
-//void StageEditor::LoadPathBinData()
-//{
-//    GameEngineFile File("..//ContentsData//PathData.txt");
-//    File.LoadBin(PathsLoadedBinData);
-//
-//    int StgSize = 0;
-//    PathsLoadedBinData.Read(StgSize);
-//
-//    StageCount = StgSize;
-//    Data.resize(StageCount);
-//    for (size_t i = 0; i < Data.size(); i++)
-//    {
-//        PathsLoadedBinData.Read(&Data[i].Lines, sizeof(std::vector<LinePath>));
-//        LoadOneStageLines(i);
-//    }
-//
-//  
-//}
-//
-//void StageEditor::LoadOneStageLines(int _StageLevel)
-//{
-//    int LineSize = 0;
-//    PathsLoadedBinData.Read(LineSize);
-//    Data[_StageLevel].Lines.resize(LineSize);
-//    for (size_t i = 0; i < Data[_StageLevel].Lines.size(); i++)
-//    {
-//        PathsLoadedBinData.Read(Data[_StageLevel].Lines[i].Index);
-//        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[i].Points, sizeof(std::vector<float4>));
-//        LoadOneLine(_StageLevel, i);
-//    }
-//}
-//
-//void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
-//{
-//    int PointSize = 0;
-//    PathsLoadedBinData.Read(PointSize);
-//    Data[_StageLevel].Lines[_PathIndex].Points.resize(PointSize);
-//    for (size_t i = 0; i < Data[_StageLevel].Lines[_PathIndex].Points.size(); i++)
-//    {
-//        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
-//    }
-//}
+void StageEditor::LoadPathBinData()
+{
+    GameEngineFile File("..//ContentsData//PathData.txt");
+    PathsLoadedBinData.BufferResize(8000);
+    File.LoadBin(PathsLoadedBinData);
+
+    int StgSize = 0;
+    PathsLoadedBinData.Read(StgSize);
+
+    StageCount = StgSize;
+    Data.resize(StageCount);
+    for (int i = 0; i < Data.size(); i++)
+    {
+        LoadOneStageLines(i);
+    }
+}
+
+void StageEditor::LoadOneStageLines(int _StageLevel)
+{
+    int LineSize = 0;
+    PathsLoadedBinData.Read(LineSize);
+    Data[_StageLevel].Lines.resize(LineSize);
+    for (int i = 0; i < Data[_StageLevel].Lines.size(); i++)
+    {
+        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[i].Index,sizeof(int));
+        LoadOneLine(_StageLevel, i);
+    }
+}
+
+void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
+{
+    int PointSize = 0;
+    PathsLoadedBinData.Read(PointSize);
+    Data[_StageLevel].Lines[_PathIndex].Points.resize(PointSize);
+    for (size_t i = 0; i < Data[_StageLevel].Lines[_PathIndex].Points.size(); i++)
+    {
+        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
+    }
+}
 
 
 

@@ -114,7 +114,6 @@ void GameEngineGUI::Render(std::shared_ptr<class GameEngineLevel> Level, float _
     // Rendering
     ImGui::Render();
 
-
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     ImGuiIO& io = ImGui::GetIO();
 
