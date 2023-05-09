@@ -84,16 +84,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         }
 
         ImGui::EndChild();
-        if (ImGui::Button("Load"))
-        {
-            LoadPathBinData();
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Save"))
-        {
-            SerializeAllPathData();
-            SavePathBinData();
-        }
+        
         ImGui::EndGroup();
     }
 }
@@ -145,36 +136,50 @@ void StageEditor::PathEditTap(std::shared_ptr<class GameEngineLevel> _Level)
                     SelectedLine = i;
             }
             ImGui::EndChild();
-        }
-        ImGui::SameLine();
-        ImGui::EndTabItem();
-
-        if (SelectedLine != -1)
-        {
-            std::vector<float4>& PointVec = Data[SelectedStage].Lines[SelectedLine].Points;
+            ImGui::SameLine();
+            if (SelectedLine != -1)
             {
-                ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-                for (int i = 0; i < PointVec.size(); i++)
+                std::vector<float4>& PointVec = Data[SelectedStage].Lines[SelectedLine].Points;
                 {
-                    int PointX = static_cast<int>(PointVec[i].x);
-                    int PointY = static_cast<int>(PointVec[i].y);
-                    std::string PointLabel = "Point " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
-                    ImGui::Text(PointLabel.c_str());
-                }
-                ImGui::EndChild();
-                ImGui::SameLine();
-                if (ImGui::Button("PathTest"))
-                {
-                    PathTest(_Level);
+                    ImGui::BeginChild("PathPointWindow", ImVec2(150, 0), true);
+                    if (ImGui::Button("PathTest"))
+                    {
+                        PathTest(_Level);
+                    }
+                    for (int i = 0; i < PointVec.size(); i++)
+                    {
+                        int PointX = static_cast<int>(PointVec[i].x);
+                        int PointY = static_cast<int>(PointVec[i].y);
+                        std::string PointLabel = "Point " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
+                        ImGui::Text(PointLabel.c_str());
+                    }
+
+                    ImGui::EndChild();
+                    ImGui::SameLine();
+                    
                 }
             }
+            ImGui::SameLine();
+            if (ImGui::Button("LoadPath"))
+            {
+                LoadPathBinData();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("SavePath"))
+            {
+                SavePathBinData();
+            }
         }
+        ImGui::EndTabItem();
+
+        
     }
+    
 }
 
 void StageEditor::Pushback_Path()
 {
-    Data[SelectedStage].Lines.push_back(LinePath(LineSize++));
+    Data[SelectedStage].Lines.push_back(LinePath());
 }
 
 void StageEditor::Pushback_Point()
@@ -199,11 +204,10 @@ void StageEditor::Popback_Point()
 
 void StageEditor::Popback_Path()
 {
-    if (0 == LineSize)
+    if (0 == Data[SelectedStage].Lines.size())
     {
         return;
     }
-    LineSize--;
     SelectedLine = -1;
     Data[SelectedStage].Lines.pop_back();
 }
@@ -256,89 +260,91 @@ void StageEditor::DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Leve
     }
 }
 
-void StageEditor::SerializeOneLine(int _StageLevel, int _PathIndex)
+void StageEditor::SerializeOneLine(GameEngineSerializer& _Serializer, int _StageLevel, int _PathIndex)
 {
     std::vector<float4>& SavePoints = Data[_StageLevel].Lines[_PathIndex].Points;
-    PathsSavedBinData.Write(static_cast<int>(SavePoints.size()));
+    _Serializer.Write(static_cast<int>(SavePoints.size()));
     for (int i = 0; i < SavePoints.size(); i++)
     {
-        PathsSavedBinData.Write(&SavePoints[i], sizeof(float4));
+        _Serializer.Write(&SavePoints[i], sizeof(float4));
     }
 }
 
-void StageEditor::SerializeOneStageLines(int _StageLevel)
+void StageEditor::SerializeOneStageLines(GameEngineSerializer& _Serializer, int _StageLevel)
 {
     std::vector<LinePath>& SaveLines = Data[_StageLevel].Lines;
-    PathsSavedBinData.Write(static_cast<int>(SaveLines.size()));
+    _Serializer.Write(static_cast<int>(SaveLines.size()));
     for (int i = 0; i < SaveLines.size(); i++)
     {
-        PathsSavedBinData.Write(SaveLines[i].Index);
-        SerializeOneLine(_StageLevel, i);
+        //_Serializer.Write(SaveLines[i].Index);
+        SerializeOneLine(_Serializer, _StageLevel, i);
     }
 }
 
-void StageEditor::SerializeAllPathData()
+void StageEditor::SerializeAllPathData(GameEngineSerializer& _Serializer)
 {
-    PathsSavedBinData.Write(static_cast<int>(Data.size()));
+    _Serializer.Write(static_cast<int>(Data.size()));
     for (int i = 0; i < Data.size(); i++)
     {
         //PathsSavedBinData.Write(&Data[i].Lines, sizeof(std::vector<LinePath>));
-        SerializeOneStageLines(i);
+        SerializeOneStageLines(_Serializer, i);
     }
 }
 
 void StageEditor::SavePathBinData()
 {
+    GameEngineSerializer SaveSerializer = GameEngineSerializer();
+
+    SerializeAllPathData(SaveSerializer);
+
     GameEnginePath filepath;
     filepath.SetPath("..//ContentsData//PathData.txt");
 
     GameEngineFile file = GameEngineFile(filepath.GetFullPath());
-    file.SaveBin(PathsSavedBinData);
+    file.SaveBin(SaveSerializer);
 }
 
 void StageEditor::LoadPathBinData()
 {
-    if (true)
-    {
+    GameEngineSerializer LoadSerializer = GameEngineSerializer();
 
-    }
     GameEngineFile File("..//ContentsData//PathData.txt");
-    PathsLoadedBinData.BufferResize(8000);
-    File.LoadBin(PathsLoadedBinData);
+    LoadSerializer.BufferResize(8000);
+    File.LoadBin(LoadSerializer);
 
     int StgSize = 0;
-    PathsLoadedBinData.Read(StgSize);
+    LoadSerializer.Read(StgSize);
 
     StageCount = StgSize;
     Data.resize(StageCount);
     for (int i = 0; i < Data.size(); i++)
     {
-        LoadOneStageLines(i);
+        LoadOneStageLines(LoadSerializer, i);
     }
 }
 
-void StageEditor::LoadOneStageLines(int _StageLevel)
+void StageEditor::LoadOneStageLines(GameEngineSerializer& _Serializer, int _StageLevel)
 {
     int LineSize = 0;
-    PathsLoadedBinData.Read(LineSize);
+    _Serializer.Read(LineSize);
     Data[_StageLevel].Lines.resize(LineSize);
     for (int i = 0; i < Data[_StageLevel].Lines.size(); i++)
     {
-        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[i].Index,sizeof(int));
-        LoadOneLine(_StageLevel, i);
+        //_Serializer.Read(&Data[_StageLevel].Lines[i].Index, sizeof(int));
+        LoadOneLine(_Serializer, _StageLevel, i);
     }
 }
 
 
 
-void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
+void StageEditor::LoadOneLine(GameEngineSerializer& _Serializer, int _StageLevel, int _PathIndex)
 {
     int PointSize = 0;
-    PathsLoadedBinData.Read(PointSize);
+    _Serializer.Read(PointSize);
     Data[_StageLevel].Lines[_PathIndex].Points.resize(PointSize);
     for (size_t i = 0; i < Data[_StageLevel].Lines[_PathIndex].Points.size(); i++)
     {
-        PathsLoadedBinData.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
+        _Serializer.Read(&Data[_StageLevel].Lines[_PathIndex].Points[i], sizeof(float4));
     }
 }
 
@@ -357,6 +363,7 @@ void StageEditor::WaveEditTap()
             ImGui::SameLine();
             if (ImGui::Button("DeleteWave"))
             {
+
                 Popback_Wave();
             }
 
@@ -371,9 +378,11 @@ void StageEditor::WaveEditTap()
                         SelectedWave = i;
                 }
                 ImGui::EndChild();
+
             }
-            ImGui::SameLine();
+            
             ImGui::EndTabItem();
+            ImGui::SameLine();
 
             if (SelectedWave != -1)
             {
@@ -408,7 +417,6 @@ void StageEditor::WaveEditTap()
                 ImGui::EndChild();
                 ImGui::SameLine();
 
-
                 std::vector<MonsterSpawnData>& LocalMonsterSpawnData = Stage.Waves[SelectedWave].MonsterSpawn;
                 if (LocalMonsterSpawnData.size() > 0)
                 {
@@ -431,10 +439,22 @@ void StageEditor::WaveEditTap()
                     }
 
                     ImGui::EndChild();
+                    ImGui::SameLine();
+
                 }
+            }
+            if (ImGui::Button("LoadWave"))
+            {
+                LoadWaveBinData();;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("SaveWave"))
+            {
+                SaveWaveBinData();
             }
         }
     }
+
 }
 
 void StageEditor::Pushback_Wave()
@@ -449,6 +469,7 @@ void StageEditor::Popback_Wave()
     {
         return;
     }
+    SelectedWave = -1;
     LocalWave.pop_back();
 }
 
@@ -525,5 +546,92 @@ std::string StageEditor::MonsterEnumToString(MonsterEnum _Monster)
         break;
     }
     return "\0";
+}
+
+void StageEditor::SerializeOneWaveData(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex)
+{
+    std::vector<MonsterSpawnData>& LocalData = Data[_StageLevel].Waves[_WaveIndex].MonsterSpawn;
+    _Serializer.Write(static_cast<int>(LocalData.size()));
+    for (size_t i = 0; i < LocalData.size(); i++)
+    {
+        _Serializer.Write(&LocalData[i].Monster, sizeof(MonsterEnum));
+        _Serializer.Write(LocalData[i].LineIndex);
+        _Serializer.Write(&LocalData[i].StartTime, sizeof(float));
+    }
+}
+
+void StageEditor::SerializeOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    std::vector<WaveData>& LocalData = Data[_StageLevel].Waves;
+    _Serializer.Write(static_cast<int>(LocalData.size()));
+    for (int i = 0; i < LocalData.size(); i++)
+    {
+        SerializeOneWaveData(_Serializer, _StageLevel, i);
+    }
+}
+
+void StageEditor::SerializeAllWaveData(GameEngineSerializer& _Serializer)
+{
+    _Serializer.Write(static_cast<int>(Data.size()));
+    for (int i = 0; i < Data.size(); i++)
+    {
+        SerializeOneStageWave(_Serializer, i);
+    }
+}
+
+void StageEditor::SaveWaveBinData()
+{
+    GameEngineSerializer SaveSerializer = GameEngineSerializer();
+    SerializeAllWaveData(SaveSerializer);
+
+    GameEnginePath filepath;
+    filepath.SetPath("..//ContentsData//WaveData.txt");
+
+    GameEngineFile file = GameEngineFile(filepath.GetFullPath());
+    file.SaveBin(SaveSerializer);
+}
+
+void StageEditor::LoadWaveBinData()
+{
+    GameEngineSerializer LoadSerializer = GameEngineSerializer();
+
+    GameEngineFile File("..//ContentsData//WaveData.txt");
+    LoadSerializer.BufferResize(8000);
+    File.LoadBin(LoadSerializer);
+
+    int StgSize = 0;
+    LoadSerializer.Read(StgSize);
+
+    StageCount = StgSize;
+    Data.resize(StageCount);
+    for (int i = 0; i < Data.size(); i++)
+    {
+        LoadOneStageWave(LoadSerializer, i);
+    }
+}
+
+void StageEditor::LoadOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    int WaveSize = 0;
+    _Serializer.Read(WaveSize);
+    Data[_StageLevel].Waves.resize(WaveSize);
+    for (int i = 0; i < Data[_StageLevel].Waves.size(); i++)
+    {
+        LoadOneWave(_Serializer, _StageLevel, i);
+    }
+}
+
+void StageEditor::LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex)
+{
+    int MonsterSpawnDataSize = 0;
+    _Serializer.Read(MonsterSpawnDataSize);
+    std::vector<MonsterSpawnData>& LocalData = Data[_StageLevel].Waves[_WaveIndex].MonsterSpawn;
+    LocalData.resize(MonsterSpawnDataSize);
+    for (size_t i = 0; i < LocalData.size(); i++)
+    {
+        _Serializer.Read(&LocalData[i].Monster, sizeof(MonsterEnum));
+        _Serializer.Read(LocalData[i].LineIndex);
+        _Serializer.Read(&LocalData[i].StartTime, sizeof(float));
+    }
 }
 

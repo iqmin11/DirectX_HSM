@@ -7,19 +7,13 @@
 class LinePath 
 {
 public:
-	LinePath()
-		:Index(0), Points(std::vector<float4>()) {}
-
-	LinePath(int _Index)
-		:Index(_Index), Points(std::vector<float4>()) {}
-	
-	int Index;
-	std::vector<float4> Points;
+	std::vector<float4> Points = std::vector<float4>();
 };
 
 class MonsterSpawnData
 {
 public:
+	MonsterSpawnData() {}
 	MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime)
 		: Monster(_Monster), LineIndex(_LineIndex), StartTime(_StartTime) {}
 public:
@@ -89,15 +83,14 @@ private:
 	std::vector<StageData> Data = {};
 
 	int SelectedLine = -1;
-	int LineSize = 0;
-	GameEngineSerializer PathsSavedBinData = GameEngineSerializer();
-	GameEngineSerializer PathsLoadedBinData = GameEngineSerializer();
+	//int LineSize = 0;
 	std::shared_ptr<class GameEngineActor> LineActor = nullptr;
 
 	int SelectedWave = -1;
 	int SelectedWaveMonster = 0;
 	int SelectedWaveLineIndex = 0;
 	float StartTimeInWave = 0.0f;
+
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
@@ -115,14 +108,14 @@ private:
 
 	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level);
 
-	void SerializeOneLine(int _StageLevel, int _PathIndex);
-	void SerializeOneStageLines(int _StageLevel);
-	void SerializeAllPathData();
+	void SerializeOneLine(GameEngineSerializer& _Serializer, int _StageLevel, int _PathIndex);
+	void SerializeOneStageLines(GameEngineSerializer& _Serializer, int _StageLevel);
+	void SerializeAllPathData(GameEngineSerializer& _Serializer);
 	void SavePathBinData();
 
 	void LoadPathBinData();
-	void LoadOneStageLines(int _StageLevel);
-	void LoadOneLine(int _StageLevel, int _PathIndex);
+	void LoadOneStageLines(GameEngineSerializer& _Serializer, int _StageLevel);
+	void LoadOneLine(GameEngineSerializer& _Serializer, int _StageLevel, int _PathIndex);
 
 	void PathTest(std::shared_ptr<class GameEngineLevel> _Level);
 	
@@ -133,7 +126,14 @@ private:
 	void Pushback_MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime);
 	void Popback_MonsterSpawnData();
 
-	//void SerializeOneWaveData(int _StageLevel, int _Wave);
+	void SerializeOneWaveData(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex);
+	void SerializeOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel);
+	void SerializeAllWaveData(GameEngineSerializer& _Serializer);
+	void SaveWaveBinData();
+
+	void LoadWaveBinData();
+	void LoadOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel);
+	void LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex);
 
 	std::string MonsterEnumToString(MonsterEnum _Monster);
 };
