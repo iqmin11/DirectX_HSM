@@ -230,13 +230,27 @@ void StageEditor::DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Leve
                     }
                 }
 
-
-                for (size_t i = 0; i < Line.size(); i++)
+                for (size_t i = 0; i < PointRenderers.size(); i++)
                 {
-                    PointRenderers[i]->SetTexture("Check.png");
-                    PointRenderers[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
-                    PointRenderers[i]->GetTransform()->SetLocalPosition(Line[i]);
+                    if (i < Line.size())
+                    {
+                        PointRenderers[i]->SetTexture("Check.png");
+                        PointRenderers[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
+                        PointRenderers[i]->GetTransform()->SetLocalPosition(Line[i]);
+                        PointRenderers[i]->On();
+                    }
+                    else
+                    {
+                        PointRenderers[i]->Off();
+                    }
                 }
+            }
+        }
+        else
+        {
+            for (size_t i = 0; i < PointRenderers.size(); i++)
+            {
+                PointRenderers[i]->Off();
             }
         }
     }
