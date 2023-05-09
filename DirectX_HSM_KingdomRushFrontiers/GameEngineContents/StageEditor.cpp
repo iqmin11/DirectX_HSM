@@ -298,6 +298,10 @@ void StageEditor::SavePathBinData()
 
 void StageEditor::LoadPathBinData()
 {
+    if (true)
+    {
+
+    }
     GameEngineFile File("..//ContentsData//PathData.txt");
     PathsLoadedBinData.BufferResize(8000);
     File.LoadBin(PathsLoadedBinData);
@@ -325,6 +329,8 @@ void StageEditor::LoadOneStageLines(int _StageLevel)
     }
 }
 
+
+
 void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
 {
     int PointSize = 0;
@@ -338,65 +344,96 @@ void StageEditor::LoadOneLine(int _StageLevel, int _PathIndex)
 
 void StageEditor::WaveEditTap()
 {
-    if (ImGui::BeginTabItem("WaveEdit"))
+    StageData& Stage = Data[SelectedStage];
+    if (Stage.Lines.size() != 0)
     {
-        if (ImGui::Button("AddWave"))
+        if (ImGui::BeginTabItem("WaveEdit"))
         {
-            Pushback_Wave();
-        }
-
-        ImGui::SameLine();
-        if (ImGui::Button("DeleteWave"))
-        {
-            Popback_Wave();
-        }
-
-        {
-            ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-            for (int i = 0; i < Data[SelectedStage].Waves.size(); i++)
+            if (ImGui::Button("AddWave"))
             {
-                // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
-                char label[128];
-                sprintf_s(label, "Wave %d", i);
-                if (ImGui::Selectable(label, SelectedWave == i))
-                    SelectedWave = i;
+                Pushback_Wave();
             }
-            ImGui::EndChild();
-        }
-        ImGui::SameLine();
-        ImGui::EndTabItem();
 
-        if (SelectedWave != -1)
-        {
-            static int Test0 = 0;
-            static int Test1 = 0;
-            static float fTest = 0.0f;
-            ImGui::BeginChild("left pane", ImVec2(200, 0), true);
-            ImGui::Combo("Monster", &Test0, "Monster0\0Monster1\0Monster2\0Monster3\0Monster4\0");
-            //for (size_t i = 0; i < Data[SelectedStage].Lines.size(); i++)
-            //{
-            //
-            //}
-            ImGui::Combo("Line", &Test1, "Line0\0Line1\0Line2\0Line3\0Line4\0");
-            ImGui::InputFloat("Time", &fTest);
-            ImGui::EndChild();
-
-            //ImGui::Text("Buffer contents: %d lines, %d bytes", lines, log.size());
-            //
-            //ImGui::Combo("Line", &SelectedLineIndex,
-            //    "Line1\0"
-            //    "Line2\0");
+            ImGui::SameLine();
+            if (ImGui::Button("DeleteWave"))
+            {
+                Popback_Wave();
+            }
 
             {
-                ImGui::BeginChild("left pane", ImVec2(150, 0), true);
-                //for (int i = 0; i < WaveDataVec.size(); i++)
-                //{
-                //}
+                ImGui::BeginChild("Wave Select", ImVec2(150, 0), true);
+                for (int i = 0; i < Stage.Waves.size(); i++)
+                {
+                    // FIXME: Good candidate to use ImGuiSelectableFlags_SelectOnNav
+                    char label[128];
+                    sprintf_s(label, "Wave %d", i);
+                    if (ImGui::Selectable(label, SelectedWave == i))
+                        SelectedWave = i;
+                }
                 ImGui::EndChild();
             }
             ImGui::SameLine();
-        }
+            ImGui::EndTabItem();
 
+            if (SelectedWave != -1)
+            {
+                ImGui::BeginChild("SetMonsterSpawn", ImVec2(200, 0), true);
+
+                ImGui::Combo("Monster", &SelectedWaveMonster, "DesertThug\0DuneRaider\0DesertArcher\0SandHound\0WarHound\0Immortal\0Fallen\0Executioner\0GiantScorpion\0GiantWasp\0GiantWaspQueen\0DuneTerror\0SandWraith\0");
+
+                const char* LineList[] = { "Line0", "Line1", "Line2", "Line3", "Line4", "Line5", "Line6", "Line7", "Line8", "Line9", "Line10" };
+                const char* combo_preview_value = LineList[SelectedWaveLineIndex];
+                if (ImGui::BeginCombo("Line", combo_preview_value, ImGuiComboFlags_None))
+                {
+                    for (int n = 0; n < Stage.Lines.size(); n++)
+                    {
+                        const bool is_selected = (SelectedWaveLineIndex == n);
+                        if (ImGui::Selectable(LineList[n], is_selected))
+                            SelectedWaveLineIndex = n;
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
+                }
+                ImGui::InputFloat("Time", &StartTimeInWave);
+                if (ImGui::Button("AddSpawnData"))
+                {
+                    Pushback_MonsterSpawnData(static_cast<MonsterEnum>(SelectedWaveMonster), SelectedWaveLineIndex, StartTimeInWave);
+                }
+                if (ImGui::Button("DeleteSpawnData"))
+                {
+                    Popback_MonsterSpawnData();
+                }
+                ImGui::EndChild();
+                ImGui::SameLine();
+
+
+                std::vector<MonsterSpawnData>& LocalMonsterSpawnData = Stage.Waves[SelectedWave].MonsterSpawn;
+                if (LocalMonsterSpawnData.size() > 0)
+                {
+                    ImGui::BeginChild("MonsterSpawnView", ImVec2(150, 0), true);
+
+                    for (size_t i = 0; i < LocalMonsterSpawnData.size(); i++)
+                    {
+                        std::string Label = std::to_string(i) + ". " + MonsterEnumToString(LocalMonsterSpawnData[i].Monster);
+                        ImGui::Text(Label.c_str());
+                        if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayShort))
+                        {
+                            Label = "Line : " + std::to_string(LocalMonsterSpawnData[i].LineIndex) + "\n" + 
+                                "StartTime : " + std::to_string(LocalMonsterSpawnData[i].StartTime);
+                            ImGui::BeginTooltip();
+                            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+                            ImGui::TextUnformatted(Label.c_str());
+                            ImGui::PopTextWrapPos();
+                            ImGui::EndTooltip();
+                        }
+                    }
+
+                    ImGui::EndChild();
+                }
+            }
+        }
     }
 }
 
@@ -424,6 +461,69 @@ void StageEditor::PathTest(std::shared_ptr<class GameEngineLevel> _Level)
     _Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
 }
 
+void StageEditor::Pushback_MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime)
+{
+    Data[SelectedStage].Waves[SelectedWave].MonsterSpawn.emplace_back(_Monster, _LineIndex, _StartTime);
+}
 
+void StageEditor::Popback_MonsterSpawnData()
+{
+    std::vector<MonsterSpawnData>& LocalSpawnData = Data[SelectedStage].Waves[SelectedWave].MonsterSpawn;
+    if (0 == LocalSpawnData.size())
+    {
+        return;
+    }
+    Data[SelectedStage].Waves[SelectedWave].MonsterSpawn.pop_back();
+}
 
+std::string StageEditor::MonsterEnumToString(MonsterEnum _Monster)
+{
+    switch (_Monster)
+    {
+    case MonsterEnum::Null:
+        break;
+    case MonsterEnum::DesertThug:
+        return "DesertThug";
+        break;
+    case MonsterEnum::DuneRaider:
+        return "DuneRaider";
+        break;
+    case MonsterEnum::DesertArcher:
+        return "DesertArcher";
+        break;
+    case MonsterEnum::SandHound:
+        return "SandHound";
+        break;
+    case MonsterEnum::WarHound:
+        return "WarHound";
+        break;
+    case MonsterEnum::Immortal:
+        return "Immortal";
+        break;
+    case MonsterEnum::Fallen:
+        return "Fallen";
+        break;
+    case MonsterEnum::Executioner:
+        return "Executioner";
+        break;
+    case MonsterEnum::GiantScorpion:
+        return "GiantScorpion";
+        break;
+    case MonsterEnum::GiantWasp:
+        return "GiantWasp";
+        break;
+    case MonsterEnum::GiantWaspQueen:
+        return "GiantWaspQueen";
+        break;
+    case MonsterEnum::DuneTerror:
+        return "DuneTerror";
+        break;
+    case MonsterEnum::SandWraith:
+        return "SandWraith";
+        break;
+    default:
+        break;
+    }
+    return "\0";
+}
 

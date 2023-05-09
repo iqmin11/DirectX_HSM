@@ -20,26 +20,18 @@ public:
 class MonsterSpawnData
 {
 public:
-	MonsterEnum Data;
-	int LineIndexs;
-	float Time;
-};
-
-class MonsterWaveData
-{
+	MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime)
+		: Monster(_Monster), LineIndex(_LineIndex), StartTime(_StartTime) {}
 public:
-	std::vector<MonsterSpawnData> Monster;
-
-	//int LineIndexs; // 0번 라인을 타고
-	//int MonsterIndex; // 0번 몬스터
-	//int MonsterCount; // 10 마리 내놓는데
-	//float InterTime; // 2.초마다 Monster를 1마리씩 내보내고 
+	MonsterEnum Monster = MonsterEnum::Null;
+	int LineIndex = 0;
+	float StartTime = 0;
 };
 
 class WaveData
 {
 public:
-	std::vector<MonsterWaveData> MonsterWaves;
+	std::vector<MonsterSpawnData> MonsterSpawn;
 };
 
 
@@ -103,8 +95,9 @@ private:
 	std::shared_ptr<class GameEngineActor> LineActor = nullptr;
 
 	int SelectedWave = -1;
-	int SelectedMonster = 0;
-	int SelectedLineIndex = 0;
+	int SelectedWaveMonster = 0;
+	int SelectedWaveLineIndex = 0;
+	float StartTimeInWave = 0.0f;
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
@@ -120,7 +113,8 @@ private:
 	void Pushback_Point();
 	void Popback_Point();
 
-	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level); //릴리즈 완성되면 수정 예정
+	void DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Level);
+
 	void SerializeOneLine(int _StageLevel, int _PathIndex);
 	void SerializeOneStageLines(int _StageLevel);
 	void SerializeAllPathData();
@@ -130,13 +124,18 @@ private:
 	void LoadOneStageLines(int _StageLevel);
 	void LoadOneLine(int _StageLevel, int _PathIndex);
 
+	void PathTest(std::shared_ptr<class GameEngineLevel> _Level);
+	
 	//몬스터 웨이브 관련
 	void WaveEditTap();
 	void Pushback_Wave();
 	void Popback_Wave();
+	void Pushback_MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime);
+	void Popback_MonsterSpawnData();
 
-	//Test
-	void PathTest(std::shared_ptr<class GameEngineLevel> _Level);
+	//void SerializeOneWaveData(int _StageLevel, int _Wave);
+
+	std::string MonsterEnumToString(MonsterEnum _Monster);
 };
 	//std::function<void(int)> ChangeStageInLevel = nullptr;
 	//std::function<void()> AddStageLine= nullptr;
