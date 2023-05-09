@@ -124,6 +124,16 @@ void StageEditor::PathEditTap(std::shared_ptr<class GameEngineLevel> _Level)
         {
             Popback_Path();
         }
+        ImGui::SameLine();
+        if (ImGui::Button("LoadPath"))
+        {
+            LoadPathBinData();
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("SavePath"))
+        {
+            SavePathBinData();
+        }
 
         {
             ImGui::BeginChild("left pane", ImVec2(150, 0), true);
@@ -159,16 +169,7 @@ void StageEditor::PathEditTap(std::shared_ptr<class GameEngineLevel> _Level)
                     
                 }
             }
-            ImGui::SameLine();
-            if (ImGui::Button("LoadPath"))
-            {
-                LoadPathBinData();
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("SavePath"))
-            {
-                SavePathBinData();
-            }
+            
         }
         ImGui::EndTabItem();
 
@@ -366,6 +367,17 @@ void StageEditor::WaveEditTap()
 
                 Popback_Wave();
             }
+            ImGui::SameLine();
+
+            if (ImGui::Button("LoadWave"))
+            {
+                LoadWaveBinData();;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("SaveWave"))
+            {
+                SaveWaveBinData();
+            }
 
             {
                 ImGui::BeginChild("Wave Select", ImVec2(150, 0), true);
@@ -416,42 +428,35 @@ void StageEditor::WaveEditTap()
                 }
                 ImGui::EndChild();
                 ImGui::SameLine();
-
-                std::vector<MonsterSpawnData>& LocalMonsterSpawnData = Stage.Waves[SelectedWave].MonsterSpawn;
-                if (LocalMonsterSpawnData.size() > 0)
+                if (Stage.Waves.size() > 0)
                 {
-                    ImGui::BeginChild("MonsterSpawnView", ImVec2(150, 0), true);
-
-                    for (size_t i = 0; i < LocalMonsterSpawnData.size(); i++)
+                    std::vector<MonsterSpawnData>& LocalMonsterSpawnData = Stage.Waves[SelectedWave].MonsterSpawn;
+                    if (LocalMonsterSpawnData.size() > 0)
                     {
-                        std::string Label = std::to_string(i) + ". " + MonsterEnumToString(LocalMonsterSpawnData[i].Monster);
-                        ImGui::Text(Label.c_str());
-                        if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayShort))
+                        ImGui::BeginChild("MonsterSpawnView", ImVec2(150, 0), true);
+
+                        for (size_t i = 0; i < LocalMonsterSpawnData.size(); i++)
                         {
-                            Label = "Line : " + std::to_string(LocalMonsterSpawnData[i].LineIndex) + "\n" + 
-                                "StartTime : " + std::to_string(LocalMonsterSpawnData[i].StartTime);
-                            ImGui::BeginTooltip();
-                            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
-                            ImGui::TextUnformatted(Label.c_str());
-                            ImGui::PopTextWrapPos();
-                            ImGui::EndTooltip();
+                            std::string Label = std::to_string(i) + ". " + MonsterEnumToString(LocalMonsterSpawnData[i].Monster);
+                            ImGui::Text(Label.c_str());
+                            if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayShort))
+                            {
+                                Label = "Line : " + std::to_string(LocalMonsterSpawnData[i].LineIndex) + "\n" +
+                                    "StartTime : " + std::to_string(LocalMonsterSpawnData[i].StartTime);
+                                ImGui::BeginTooltip();
+                                ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+                                ImGui::TextUnformatted(Label.c_str());
+                                ImGui::PopTextWrapPos();
+                                ImGui::EndTooltip();
+                            }
                         }
+
+                        ImGui::EndChild();
+                        ImGui::SameLine();
                     }
-
-                    ImGui::EndChild();
-                    ImGui::SameLine();
-
                 }
             }
-            if (ImGui::Button("LoadWave"))
-            {
-                LoadWaveBinData();;
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("SaveWave"))
-            {
-                SaveWaveBinData();
-            }
+            
         }
     }
 
