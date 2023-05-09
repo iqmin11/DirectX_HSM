@@ -23,7 +23,7 @@ void StageEditor::Start()
     //AddStageLine = std::bind(&StagePath::AddStageLine, ParentLevel->GetAcStagePath());
 }
 
-static std::vector<std::shared_ptr<GameEngineSpriteRenderer>> Points;
+static std::vector<std::shared_ptr<GameEngineSpriteRenderer>> PointRenderers;
 
 void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
 {
@@ -63,7 +63,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None))
         {
             StageMapBgTap();
-            PathEditTap();
+            PathEditTap(_Level);
             WaveEditTap();
             ImGui::EndTabBar();
         }
@@ -114,7 +114,7 @@ void StageEditor::StageMapBgTap()
     }
 }
 
-void StageEditor::PathEditTap()
+void StageEditor::PathEditTap(std::shared_ptr<class GameEngineLevel> _Level)
 {
     if (static_cast<int>(Data[SelectedStage].Lines.size()) <= SelectedLine)
     {
@@ -162,8 +162,12 @@ void StageEditor::PathEditTap()
                     ImGui::Text(PointLabel.c_str());
                 }
                 ImGui::EndChild();
+                ImGui::SameLine();
+                if (ImGui::Button("PathTest"))
+                {
+                    PathTest(_Level);
+                }
             }
-            ImGui::SameLine();
         }
     }
 }
@@ -222,16 +226,16 @@ void StageEditor::DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Leve
 
                     for (size_t i = 0; i < 100; i++)
                     {
-                        Points.push_back(LineActor->CreateComponent<GameEngineSpriteRenderer>());
+                        PointRenderers.push_back(LineActor->CreateComponent<GameEngineSpriteRenderer>());
                     }
                 }
 
 
                 for (size_t i = 0; i < Line.size(); i++)
                 {
-                    Points[i]->SetTexture("Check.png");
-                    Points[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
-                    Points[i]->GetTransform()->SetLocalPosition(Line[i]);
+                    PointRenderers[i]->SetTexture("Check.png");
+                    PointRenderers[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
+                    PointRenderers[i]->GetTransform()->SetLocalPosition(Line[i]);
                 }
             }
         }
@@ -348,8 +352,27 @@ void StageEditor::WaveEditTap()
         ImGui::SameLine();
         ImGui::EndTabItem();
 
-        if (SelectedLine != -1)
+        if (SelectedWave != -1)
         {
+            static int Test0 = 0;
+            static int Test1 = 0;
+            static float fTest = 0.0f;
+            ImGui::BeginChild("left pane", ImVec2(200, 0), true);
+            ImGui::Combo("Monster", &Test0, "Monster0\0Monster1\0Monster2\0Monster3\0Monster4\0");
+            //for (size_t i = 0; i < Data[SelectedStage].Lines.size(); i++)
+            //{
+            //
+            //}
+            ImGui::Combo("Line", &Test1, "Line0\0Line1\0Line2\0Line3\0Line4\0");
+            ImGui::InputFloat("Time", &fTest);
+            ImGui::EndChild();
+
+            //ImGui::Text("Buffer contents: %d lines, %d bytes", lines, log.size());
+            //
+            //ImGui::Combo("Line", &SelectedLineIndex,
+            //    "Line1\0"
+            //    "Line2\0");
+
             {
                 ImGui::BeginChild("left pane", ImVec2(150, 0), true);
                 //for (int i = 0; i < WaveDataVec.size(); i++)
@@ -370,7 +393,7 @@ void StageEditor::Pushback_Wave()
 
 void StageEditor::Popback_Wave()
 {
-    std::vector<WaveData> LocalWave = Data[SelectedStage].Waves;
+    std::vector<WaveData>& LocalWave = Data[SelectedStage].Waves;
     if (0 == LocalWave.size())
     {
         return;

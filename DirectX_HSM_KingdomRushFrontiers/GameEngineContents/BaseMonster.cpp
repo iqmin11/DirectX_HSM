@@ -12,7 +12,7 @@ BaseMonster::BaseMonster()
 
 BaseMonster::~BaseMonster()
 {
-
+	int a = 0; // MonsterDeathCheck
 }
 
 void BaseMonster::Start()

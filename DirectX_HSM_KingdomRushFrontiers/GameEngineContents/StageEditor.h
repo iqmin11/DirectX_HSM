@@ -20,8 +20,8 @@ public:
 class MonsterSpawnData
 {
 public:
+	MonsterEnum Data;
 	int LineIndexs;
-	int MonsterIndex;
 	float Time;
 };
 
@@ -103,6 +103,8 @@ private:
 	std::shared_ptr<class GameEngineActor> LineActor = nullptr;
 
 	int SelectedWave = -1;
+	int SelectedMonster = 0;
+	int SelectedLineIndex = 0;
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
@@ -111,7 +113,7 @@ private:
 	void StageMapBgTap();
 
 	// 몬스터 경로 관련
-	void PathEditTap();
+	void PathEditTap(std::shared_ptr<class GameEngineLevel> _Level);
 
 	void Pushback_Path();
 	void Popback_Path();
