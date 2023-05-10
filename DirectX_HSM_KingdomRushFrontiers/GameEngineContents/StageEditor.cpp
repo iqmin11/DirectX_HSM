@@ -118,7 +118,6 @@ void StageEditor::PathEditTap(std::shared_ptr<class GameEngineLevel> _Level)
         {
             Pushback_Path();
         }
-        
         ImGui::SameLine();
         if (ImGui::Button("DeletePath"))
         {
@@ -396,7 +395,7 @@ void StageEditor::WaveEditTap()
             ImGui::EndTabItem();
             ImGui::SameLine();
 
-            if (SelectedWave != -1)
+            if (SelectedWave != -1 && SelectedWave < Stage.Waves.size())
             {
                 ImGui::BeginChild("SetMonsterSpawn", ImVec2(200, 0), true);
 

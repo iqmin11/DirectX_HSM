@@ -41,15 +41,15 @@ std::string GameEnginePath::GetFileName() const
 	return Path.filename().string();
 }
 
+std::string GameEnginePath::GetExtension() const
+{
+	return Path.extension().string();
+}
+
 
 std::string GameEnginePath::GetFullPath() const
 {
 	return Path.string();
-}
-
-std::string GameEnginePath::GetExtension() const
-{
-	return Path.extension().string();
 }
 
 void GameEnginePath::MoveParent()
@@ -90,9 +90,14 @@ bool GameEnginePath::IsRoot()
 	return Path.root_path() == Path;
 }
 
+bool GameEnginePath::IsDirectory() const
+{
+	return std::filesystem::is_directory(Path);
+}
+
 bool GameEnginePath::IsExists()
 {
-	return 0 == _access(Path.string().c_str(), 0);
+	return std::filesystem::exists(Path);
 }
 
 bool GameEnginePath::IsExistsToPlusString(const std::string_view& _String)

@@ -121,6 +121,7 @@ private:
 	
 	//몬스터 웨이브 관련
 	void WaveEditTap();
+
 	void Pushback_Wave();
 	void Popback_Wave();
 	void Pushback_MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime);
