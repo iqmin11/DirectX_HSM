@@ -36,23 +36,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
 	//char Arr[100] = {0};
 	//ImGui::InputText(Text, Arr, 100);
 
-    /*if (IsValidWaveTest)
-    {
-        WaveTestTime += _DeltaTime;
-        static std::list<MonsterSpawnData> SpawnList = Data[SelectedStage].Waves[SelectedWave].MonsterSpawn;
-        auto StartIter = SpawnData.begin();
-        auto EndIter = SpawnData.end();
-        for (; StartIter != EndIter; )
-        {
-            if (StartIter->StartTime <= WaveTestTime)
-            {
-                BaseMonster::CreateMonster(_Level, StartIter->Monster, Data[SelectedStage].Lines[StartIter->LineIndex].Points);
-                StartIter = SpawnData.erase(StartIter);
-                continue;
-            }
-            ++StartIter;
-        }
-    }*/
+    
 
     DrawPointRenderer(_Level);
     
@@ -100,6 +84,11 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         if (GameEngineInput::IsDown("Space"))
         {
             PathTest(_Level);
+        }
+        
+        if (IsValidWaveTest)
+        {
+            UpdateWaveTest(_Level, _DeltaTime);
         }
 
         ImGui::EndChild();
@@ -388,7 +377,7 @@ void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, flo
 
             if (ImGui::Button("LoadWave"))
             {
-                LoadWaveBinData();;
+                LoadWaveBinData();
             }
             ImGui::SameLine();
             if (ImGui::Button("SaveWave"))
@@ -418,7 +407,6 @@ void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, flo
                 ImGui::BeginChild("SetMonsterSpawn", ImVec2(200, 0), true);
 
                 ImGui::Combo("Monster", &SelectedWaveMonster, "DesertThug\0DuneRaider\0DesertArcher\0SandHound\0WarHound\0Immortal\0Fallen\0Executioner\0GiantScorpion\0GiantWasp\0GiantWaspQueen\0DuneTerror\0SandWraith\0");
-
                 const char* LineList[] = { "Line0", "Line1", "Line2", "Line3", "Line4", "Line5", "Line6", "Line7", "Line8", "Line9", "Line10" };
                 const char* combo_preview_value = LineList[SelectedWaveLineIndex];
                 if (ImGui::BeginCombo("Line", combo_preview_value, ImGuiComboFlags_None))
@@ -451,11 +439,19 @@ void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, flo
                     if (LocalMonsterSpawnData.size() > 0)
                     {
                         ImGui::BeginChild("MonsterSpawnView", ImVec2(150, 0), true);
-                        if (ImGui::Button("WaveTest"))
+                        if (!IsValidWaveTest)
                         {
-                            WaveTest(_Level, _DeltaTime);
+                            if (ImGui::Button("WaveTest"))
+                            {
+                                IsValidWaveTest = true;
+                            }
                         }
-
+                        else
+                        {
+                            ImGui::BeginDisabled();
+                            if (ImGui::Button("WaveTest")) {}
+                            ImGui::EndDisabled();
+                        }
                         for (size_t i = 0; i < LocalMonsterSpawnData.size(); i++)
                         {
                             std::string Label = std::to_string(i) + ". " + MonsterEnumToString(LocalMonsterSpawnData[i].Monster);
@@ -663,8 +659,36 @@ void StageEditor::LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel
     }
 }
 
-void StageEditor::WaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
+void StageEditor::UpdateWaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
 {
-    IsValidWaveTest = !IsValidWaveTest;
+    WaveTestTime += _DeltaTime;
+    static std::list<MonsterSpawnData> SpawnList = std::list<MonsterSpawnData>();
+    if (SpawnList.size() <= 0)
+    {
+        for (size_t i = 0; i < Data[SelectedStage].Waves[SelectedWave].MonsterSpawn.size(); i++)
+        {
+            SpawnList.emplace_back(Data[SelectedStage].Waves[SelectedWave].MonsterSpawn[i]);
+        }
+    }
+
+    auto StartIter = SpawnList.begin();
+    auto EndIter = SpawnList.end();
+    for (; StartIter != EndIter; )
+    {
+        if (StartIter->StartTime <= WaveTestTime)
+        {
+            BaseMonster::CreateMonster(_Level, StartIter->Monster, Data[SelectedStage].Lines[StartIter->LineIndex].Points);
+            StartIter = SpawnList.erase(StartIter);
+            if (SpawnList.size() == 0)
+            {
+                IsValidWaveTest = false;
+                WaveTestTime = 0;
+                return;
+            }
+            continue;
+        }
+        ++StartIter;
+    }
+
 }
 

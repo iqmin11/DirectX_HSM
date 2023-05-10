@@ -135,7 +135,7 @@ private:
 	void LoadOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel);
 	void LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex);
 
-	void WaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime);
+	void UpdateWaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime);
 	bool IsValidWaveTest = false;
 	float WaveTestTime = 0.f;
 
