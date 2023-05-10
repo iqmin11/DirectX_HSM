@@ -665,10 +665,8 @@ void StageEditor::UpdateWaveTest(std::shared_ptr<class GameEngineLevel> _Level, 
     static std::list<MonsterSpawnData> SpawnList = std::list<MonsterSpawnData>();
     if (SpawnList.size() <= 0)
     {
-        for (size_t i = 0; i < Data[SelectedStage].Waves[SelectedWave].MonsterSpawn.size(); i++)
-        {
-            SpawnList.emplace_back(Data[SelectedStage].Waves[SelectedWave].MonsterSpawn[i]);
-        }
+        std::vector<MonsterSpawnData>& SpawnVecRef = Data[SelectedStage].Waves[SelectedWave].MonsterSpawn;
+        std::copy(SpawnVecRef.begin(), SpawnVecRef.end(), std::back_inserter(SpawnList));
     }
 
     auto StartIter = SpawnList.begin();
