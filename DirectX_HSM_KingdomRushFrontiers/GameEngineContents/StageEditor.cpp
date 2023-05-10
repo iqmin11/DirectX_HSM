@@ -5,7 +5,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
 #include "StageEditLevel.h"
-#include "DuneRaider.h"
+#include "BaseMonster.h"
 
 
 StageEditor::StageEditor() 
@@ -35,6 +35,25 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
 	//const char* Text = reinterpret_cast<const char*>(Ptr);
 	//char Arr[100] = {0};
 	//ImGui::InputText(Text, Arr, 100);
+
+    /*if (IsValidWaveTest)
+    {
+        WaveTestTime += _DeltaTime;
+        static std::list<MonsterSpawnData> SpawnList = Data[SelectedStage].Waves[SelectedWave].MonsterSpawn;
+        auto StartIter = SpawnData.begin();
+        auto EndIter = SpawnData.end();
+        for (; StartIter != EndIter; )
+        {
+            if (StartIter->StartTime <= WaveTestTime)
+            {
+                BaseMonster::CreateMonster(_Level, StartIter->Monster, Data[SelectedStage].Lines[StartIter->LineIndex].Points);
+                StartIter = SpawnData.erase(StartIter);
+                continue;
+            }
+            ++StartIter;
+        }
+    }*/
+
     DrawPointRenderer(_Level);
     
     {
@@ -64,7 +83,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         {
             StageMapBgTap();
             PathEditTap(_Level);
-            WaveEditTap();
+            WaveEditTap(_Level, _DeltaTime);
             ImGui::EndTabBar();
         }
 
@@ -348,7 +367,7 @@ void StageEditor::LoadOneLine(GameEngineSerializer& _Serializer, int _StageLevel
     }
 }
 
-void StageEditor::WaveEditTap()
+void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
 {
     StageData& Stage = Data[SelectedStage];
     if (Stage.Lines.size() != 0)
@@ -363,7 +382,6 @@ void StageEditor::WaveEditTap()
             ImGui::SameLine();
             if (ImGui::Button("DeleteWave"))
             {
-
                 Popback_Wave();
             }
             ImGui::SameLine();
@@ -433,6 +451,10 @@ void StageEditor::WaveEditTap()
                     if (LocalMonsterSpawnData.size() > 0)
                     {
                         ImGui::BeginChild("MonsterSpawnView", ImVec2(150, 0), true);
+                        if (ImGui::Button("WaveTest"))
+                        {
+                            WaveTest(_Level, _DeltaTime);
+                        }
 
                         for (size_t i = 0; i < LocalMonsterSpawnData.size(); i++)
                         {
@@ -483,7 +505,9 @@ void StageEditor::PathTest(std::shared_ptr<class GameEngineLevel> _Level)
     {
         return;
     }
-    _Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
+    
+    BaseMonster::CreateMonster(_Level, MonsterEnum::DuneRaider, Data[SelectedStage].Lines[SelectedLine].Points);
+    //_Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
 }
 
 void StageEditor::Pushback_MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime)
@@ -637,5 +661,10 @@ void StageEditor::LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel
         _Serializer.Read(LocalData[i].LineIndex);
         _Serializer.Read(&LocalData[i].StartTime, sizeof(float));
     }
+}
+
+void StageEditor::WaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
+{
+    IsValidWaveTest = !IsValidWaveTest;
 }
 

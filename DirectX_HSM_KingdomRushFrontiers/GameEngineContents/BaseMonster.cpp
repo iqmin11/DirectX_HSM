@@ -4,6 +4,9 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 
+#include "DesertThug.h"
+#include "DuneRaider.h"
+
 
 BaseMonster::BaseMonster()
 {
@@ -13,6 +16,22 @@ BaseMonster::BaseMonster()
 BaseMonster::~BaseMonster()
 {
 	int a = 0; // MonsterDeathCheck
+}
+
+void BaseMonster::CreateMonster(std::shared_ptr<GameEngineLevel> _Level, MonsterEnum _Monster, std::vector<float4>& _PathInfo)
+{
+	switch (_Monster)
+	{
+	case MonsterEnum::DesertThug:
+		_Level->CreateActor<DesertThug>()->SetPathInfo(_PathInfo);
+		break;
+	case MonsterEnum::DuneRaider:
+		_Level->CreateActor<DuneRaider>()->SetPathInfo(_PathInfo);
+		break;
+	default:
+		MsgAssert("¹Ì±¸Çö");
+		break;
+	}
 }
 
 void BaseMonster::Start()

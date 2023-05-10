@@ -76,7 +76,6 @@ public:
 
 protected:
 	void Start() override;
-
 private:
 	int StageCount = 6;
 	int SelectedStage = 0;
@@ -120,7 +119,7 @@ private:
 	void PathTest(std::shared_ptr<class GameEngineLevel> _Level);
 	
 	//몬스터 웨이브 관련
-	void WaveEditTap();
+	void WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime);
 
 	void Pushback_Wave();
 	void Popback_Wave();
@@ -135,6 +134,10 @@ private:
 	void LoadWaveBinData();
 	void LoadOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel);
 	void LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex);
+
+	void WaveTest(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime);
+	bool IsValidWaveTest = false;
+	float WaveTestTime = 0.f;
 
 	std::string MonsterEnumToString(MonsterEnum _Monster);
 };

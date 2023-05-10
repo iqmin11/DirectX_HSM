@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "ContentsEnum.h"
 
 class BaseMonster : public GameEngineActor
 {
@@ -20,6 +21,8 @@ public:
 		CurPoint = PathInfo->begin();
 		NextPoint = ++(PathInfo->begin());
 	}
+
+	static void CreateMonster(std::shared_ptr<GameEngineLevel> _Level, MonsterEnum _Monster, std::vector<float4>& _PathInfo);
 
 protected:
 	void Start() override;
