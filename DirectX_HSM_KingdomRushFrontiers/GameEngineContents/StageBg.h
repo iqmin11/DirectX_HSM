@@ -15,7 +15,7 @@ public:
 	StageBg& operator=(const StageBg& _Other) = delete;
 	StageBg& operator=(StageBg&& _Other) noexcept = delete;
 
-	void RenderStage(int _Stage);
+	void RenderStage(int _Stage = -1);
 
 protected:
 	void Start() override;

@@ -19,7 +19,8 @@ public:
 	PlayStageLevel& operator=(PlayStageLevel&& _Other) noexcept = delete;
 
 	//월드맵에서 스테이지를 선택하면 이 PlayStageLevel에서 해당 단계 스테이지를 로드해야함
-	void SelectStage(int _Stage);
+	void SetStage(int _Stage);
+	void ResetStage();
 
 
 protected:
@@ -50,6 +51,8 @@ private:
 	
 	void SetStageBg(int _Stage);
 	void SetStagePaths(int _Stage);
+	void ResetStageBg();
+	void ResetStagePaths();
 
 	void StartNextWave();
 };

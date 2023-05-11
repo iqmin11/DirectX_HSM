@@ -32,8 +32,17 @@ void StageBg::Update(float _DeltaTime)
 {
 }
 
-void StageBg::RenderStage(int _Stage)
+void StageBg::RenderStage(int _Stage /*= -1*/)
 {
+	if (_Stage == -1)
+	{
+		for (size_t i = 0; i < StageBgRenderer.size(); i++)
+		{
+			StageBgRenderer[i]->Off();
+		}
+		return;
+	}
+
 	for (size_t i = 0; i < StageBgRenderer.size(); i++)
 	{
 		if (_Stage == i)

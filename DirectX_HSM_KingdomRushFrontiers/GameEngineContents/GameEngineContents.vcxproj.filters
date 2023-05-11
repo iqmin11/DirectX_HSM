@@ -36,9 +36,6 @@
     <ClInclude Include="PlayStageLevel.h">
       <Filter>3.PlayStage</Filter>
     </ClInclude>
-    <ClInclude Include="PlayStageUI.h">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
@@ -56,11 +53,14 @@
     </ClInclude>
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="ContentsData.h" />
-    <ClInclude Include="StageBg.h">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="MonsterWave.h">
-      <Filter>3.PlayStage\Actor</Filter>
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
+    </ClInclude>
+    <ClInclude Include="StageBg.h">
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStageUI.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +99,6 @@
     <ClCompile Include="PlayStageLevel.cpp">
       <Filter>3.PlayStage</Filter>
     </ClCompile>
-    <ClCompile Include="PlayStageUI.cpp">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="StageEditLevel.cpp">
       <Filter>4.StageEdit</Filter>
     </ClCompile>
@@ -117,11 +114,14 @@
     <ClCompile Include="StageEditor.cpp">
       <Filter>4.StageEdit\Window</Filter>
     </ClCompile>
-    <ClCompile Include="StageBg.cpp">
-      <Filter>3.PlayStage\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="MonsterWave.cpp">
-      <Filter>3.PlayStage\Actor</Filter>
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
+    </ClCompile>
+    <ClCompile Include="StageBg.cpp">
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStageUI.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +157,12 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster">
       <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageBase">
+      <UniqueIdentifier>{ac85e7e1-390e-47b5-b036-b8c6586dc979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI">
+      <UniqueIdentifier>{83f861ff-af06-4be0-af41-757df54ef89f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

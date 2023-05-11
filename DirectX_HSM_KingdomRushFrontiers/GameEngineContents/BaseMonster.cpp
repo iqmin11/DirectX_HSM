@@ -23,10 +23,10 @@ void BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, c
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
-		_Level->CreateActor<DesertThug>()->SetPathInfo(_PathInfo);
+		_Level->CreateActor<DesertThug>(static_cast<int>(ActorOrder::Monster))->SetPathInfo(_PathInfo);
 		break;
 	case MonsterEnum::DuneRaider:
-		_Level->CreateActor<DuneRaider>()->SetPathInfo(_PathInfo);
+		_Level->CreateActor<DuneRaider>(static_cast<int>(ActorOrder::Monster))->SetPathInfo(_PathInfo);
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");

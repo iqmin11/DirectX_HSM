@@ -28,12 +28,20 @@ PlayStageLevel::~PlayStageLevel()
 
 }
 
-void PlayStageLevel::SelectStage(int _Stage)
+void PlayStageLevel::SetStage(int _Stage)
 {
 	CurStage = _Stage;
 	NextWave = 0;
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
+}
+
+void PlayStageLevel::ResetStage()
+{
+	CurStage = -1;
+	NextWave = -1;
+	ResetStageBg();
+	ResetStagePaths();
 }
 
 void PlayStageLevel::Start()
@@ -62,7 +70,7 @@ void PlayStageLevel::Start()
 	//Spawner.AddEvent(1.f, bind(&PlayStageLevel::MonsterSpawn,this),true);
 
 	//임시 코드
-	SelectStage(0);
+	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }
 
@@ -194,7 +202,7 @@ void PlayStageLevel::SetStageBg(int _Stage)
 
 void PlayStageLevel::SetStagePaths(int _Stage)
 {
-	MonsterWave::SetCurStagePaths(AllStageData[_Stage].Lines);
+	MonsterWave::SetCurStagePaths(&AllStageData[_Stage].Lines);
 }
 
 void PlayStageLevel::StartNextWave()
@@ -211,4 +219,14 @@ void PlayStageLevel::StartNextWave()
 	++NextWave;
 }
 
+void PlayStageLevel::ResetStageBg()
+{
+	AcStageBg->RenderStage();
+}
+
+void PlayStageLevel::ResetStagePaths()
+{
+	MonsterWave::SetCurStagePaths(nullptr);
+
+}
 

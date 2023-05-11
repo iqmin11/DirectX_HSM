@@ -16,7 +16,7 @@ public:
 	MonsterWave& operator=(MonsterWave&& _Other) noexcept = delete;
 
 	static void StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector<MonsterSpawnData>& _OneWave);
-	static void SetCurStagePaths(std::vector<LinePath>& _Path);
+	static void SetCurStagePaths(std::vector<LinePath>* _Path);
 
 protected:
 	void Update(float _DeltaTime) override;

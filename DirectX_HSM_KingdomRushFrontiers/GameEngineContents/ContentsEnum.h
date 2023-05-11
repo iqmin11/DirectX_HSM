@@ -23,3 +23,9 @@ enum class StageEditMode
 	Null,
 	PathEdit,
 };
+
+enum class ActorOrder
+{
+	Base,
+	Monster,
+};
