@@ -53,10 +53,14 @@ public:
 		return UpdateValue;
 	}
 
-
 	void DebugOn()
 	{
 		DebugValue = true;
+	}
+
+	void DebugOff()
+	{
+		DebugValue = false;
 	}
 
 	bool IsDebug()
