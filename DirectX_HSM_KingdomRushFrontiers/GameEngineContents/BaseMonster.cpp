@@ -18,7 +18,7 @@ BaseMonster::~BaseMonster()
 	int a = 0; // MonsterDeathCheck
 }
 
-void BaseMonster::CreateMonster(std::shared_ptr<GameEngineLevel> _Level, MonsterEnum _Monster, std::vector<float4>& _PathInfo)
+void BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo)
 {
 	switch (_Monster)
 	{

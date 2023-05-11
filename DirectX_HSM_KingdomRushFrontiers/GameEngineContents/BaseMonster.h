@@ -22,7 +22,7 @@ public:
 		NextPoint = ++(PathInfo->begin());
 	}
 
-	static void CreateMonster(std::shared_ptr<GameEngineLevel> _Level, MonsterEnum _Monster, std::vector<float4>& _PathInfo);
+	static void CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo);
 
 protected:
 	void Start() override;

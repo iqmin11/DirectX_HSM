@@ -6,7 +6,7 @@
 
 #include "StageEditLevel.h"
 #include "BaseMonster.h"
-
+#include "StageBg.h"
 
 StageEditor::StageEditor() 
 {
@@ -39,7 +39,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
     
 
     DrawPointRenderer(_Level);
-    
+    std::dynamic_pointer_cast<StageEditLevel>(_Level)->GetAcStageBg()->RenderStage(SelectedStage);
     {
         ImGui::BeginChild("left pane", ImVec2(150, 0), true);
         for (int i = 0; i < 6; i++)

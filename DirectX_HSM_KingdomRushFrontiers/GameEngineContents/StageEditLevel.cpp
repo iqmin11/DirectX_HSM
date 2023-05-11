@@ -55,15 +55,15 @@ void StageEditLevel::SetKey()
 
 void StageEditLevel::LoadTexture()
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("3.PLAY STAGE LEVEL");
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
+	//GameEngineDirectory Dir;
+	//Dir.MoveParentToDirectory("ContentsResources");
+	//Dir.Move("ContentsResources");
+	//Dir.Move("3.PLAY STAGE LEVEL");
+	//std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	//for (size_t i = 0; i < File.size(); i++)
+	//{
+	//	GameEngineTexture::Load(File[i].GetFullPath());
+	//}
 }
 
 

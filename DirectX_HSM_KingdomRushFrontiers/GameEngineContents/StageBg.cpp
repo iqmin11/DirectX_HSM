@@ -26,13 +26,10 @@ void StageBg::Start()
 		StageBgRenderer[i]->GetTransform()->SetWorldScale(TextureScale);
 		StageBgRenderer[i]->Off();
 	}
-
-	StagePtr = StageEditLevel::MainStageEditLevel->GetStageLevelPtr();
 }
 
 void StageBg::Update(float _DeltaTime)
 {
-	RenderStage(*StagePtr);
 }
 
 void StageBg::RenderStage(int _Stage)

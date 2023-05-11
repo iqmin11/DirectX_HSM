@@ -21,35 +21,20 @@ public:
 
 	//AcGet
 
-	//std::shared_ptr<class StageBg> GetAcStageBg() const
-	//{
-	//	return AcStageBg;
-	//}
-	//
-	//std::shared_ptr<class StagePath> GetAcStagePath() const
-	//{
-	//	return AcStagePath;
-	//}
-	//
+	std::shared_ptr<class StageBg> GetAcStageBg() const
+	{
+		return AcStageBg;
+	}
+
 	const int* GetStageLevelPtr() const
 	{
 		return &StageLevel;
 	}
-	//
-	//const StageEditMode* GetEditModPtr() const
-	//{
-	//	return &EditMod;
-	//}
-	//
+
 	void SetStageLevel(int _Stage)
 	{
 		StageLevel = _Stage;
 	}
-	//
-	//void SetEditMod(StageEditMode _EditMod)
-	//{
-	//	EditMod = _EditMod;
-	//}
 
 protected:
 	void Start() override;

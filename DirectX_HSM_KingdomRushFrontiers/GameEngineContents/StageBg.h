@@ -15,18 +15,15 @@ public:
 	StageBg& operator=(const StageBg& _Other) = delete;
 	StageBg& operator=(StageBg&& _Other) noexcept = delete;
 
+	void RenderStage(int _Stage);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	const int* StagePtr = nullptr;
-	
 	float4 ActorPos = float4::Zero;
 	float4 TextureScale = {1200, 1000};
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageBgRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
-
-
-	void RenderStage(int _Stage);
 };
 

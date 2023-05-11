@@ -2,62 +2,8 @@
 #include <GameEngineCore/GameEngineGUI.h>
 #include <GameEngineBase/GameEngineSerializer.h>
 #include <GameEngineBase/GameEngineFile.h>
-#include "ContentsEnum.h"
+#include "ContentsData.h"
 
-class LinePath 
-{
-public:
-	std::vector<float4> Points = std::vector<float4>();
-};
-
-class MonsterSpawnData
-{
-public:
-	MonsterSpawnData() {}
-	MonsterSpawnData(MonsterEnum _Monster, int _LineIndex, float _StartTime)
-		: Monster(_Monster), LineIndex(_LineIndex), StartTime(_StartTime) {}
-public:
-	MonsterEnum Monster = MonsterEnum::Null;
-	int LineIndex = 0;
-	float StartTime = 0;
-};
-
-class WaveData
-{
-public:
-	std::vector<MonsterSpawnData> MonsterSpawn;
-};
-
-
-class MonsterData
-{
-public:
-	MonsterEnum Monster = MonsterEnum::Null;
-	int Hp = 0;
-	int Speed = 0;
-};
-
-//  Monster가 3종류가
-// 0번 몬스터
-// 1번 몬스터
-// 2번 몬스터
-
-class StageData
-{
-public:
-	int StageLevel = 0;
-	std::string BackGroundName = "\0";
-	// 0번 라인
-	// 1번 라인
-	std::vector<LinePath> Lines = std::vector<LinePath>();
-
-	std::vector<WaveData> Waves = std::vector<WaveData>();
-
-	// Monster0
-	// Monster1
-	// Monster2
-	std::vector<MonsterData> MonsterData;
-};
 
 
 // 설명 :
