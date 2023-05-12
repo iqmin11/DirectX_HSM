@@ -15,7 +15,6 @@ TitleBackground::~TitleBackground()
 void TitleBackground::Start()
 {
 	BackgroundRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	BackgroundRenderer->SetPipeLine("2DTexture");
 	BackgroundRenderer->SetTexture("mainmenu_bg.png");
 	BackgroundRenderer->GetTransform()->SetWorldScale(RenderScale);
 }

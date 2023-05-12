@@ -1,12 +1,13 @@
 #pragma once
 #include "GameEngineResource.h"
 
+// Ό³Έν :
 class GameEngineSampler : public GameEngineResource<GameEngineSampler>
 {
 	friend class GameEngineSamplerSetter;
 
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineSampler();
 	~GameEngineSampler();
 
@@ -16,16 +17,15 @@ public:
 	GameEngineSampler& operator=(const GameEngineSampler& _Other) = delete;
 	GameEngineSampler& operator=(GameEngineSampler&& _Other) noexcept = delete;
 
-	static std::shared_ptr<GameEngineSampler> Create(const std::string_view& _Name, const D3D11_SAMPLER_DESC& _Desc)
+	static std::shared_ptr<GameEngineSampler> Create(const std::string_view& _Name, const D3D11_SAMPLER_DESC& Desc)
 	{
 		std::shared_ptr<GameEngineSampler> NewTexture = GameEngineResource::Create(_Name);
-		NewTexture->ResCreate(_Desc);
+		NewTexture->ResCreate(Desc);
 		return NewTexture;
-
 	}
 
-protected:
 
+protected:
 
 private:
 	ID3D11SamplerState* State;
@@ -35,6 +35,5 @@ private:
 
 	void VSSetting(UINT _Slot);
 	void PSSetting(UINT _Slot);
-
 };
 

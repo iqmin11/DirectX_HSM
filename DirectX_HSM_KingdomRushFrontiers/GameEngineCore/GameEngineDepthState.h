@@ -1,10 +1,11 @@
 #pragma once
 #include "GameEngineResource.h"
 
+// Ό³Έν :
 class GameEngineDepthState : public GameEngineResource<GameEngineDepthState>
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineDepthState();
 	~GameEngineDepthState();
 
@@ -25,7 +26,6 @@ public:
 
 protected:
 	void ResCreate(const D3D11_DEPTH_STENCIL_DESC& _Value);
-
 
 private:
 	D3D11_DEPTH_STENCIL_DESC Desc = {};

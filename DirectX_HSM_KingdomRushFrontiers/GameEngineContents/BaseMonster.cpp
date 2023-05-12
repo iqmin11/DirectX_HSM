@@ -38,7 +38,6 @@ void BaseMonster::Start()
 {
 	//GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MonsterRenderer->SetPipeLine("2DTexture");
 	//MonsterRenderer->SetTexture("DesertThug0000.png");
 	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }

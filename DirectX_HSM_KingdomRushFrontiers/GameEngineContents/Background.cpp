@@ -17,7 +17,6 @@ void Background::Start()
 {
 	GetTransform()->SetWorldPosition(ActorPos);
 	Bg = CreateComponent<GameEngineSpriteRenderer>();
-	Bg->SetPipeLine("2DTexture");
 	Bg->SetTexture("Bg.png");
 	Bg->GetTransform()->SetWorldScale(BgScale * ScaleRatio);
 }

@@ -3,7 +3,6 @@
 
 GameEngineBlend::GameEngineBlend()
 {
-
 }
 
 GameEngineBlend::~GameEngineBlend()
@@ -30,6 +29,7 @@ void GameEngineBlend::Setting()
 
 	// 내가 만든 팩터를 넣어줄수가 있는데.
 	GameEngineDevice::GetContext()->OMSetBlendState(State, nullptr, Mask);
+
 }
 
 void GameEngineBlend::ResCreate(const D3D11_BLEND_DESC& _Value)

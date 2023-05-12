@@ -1,9 +1,11 @@
 #pragma once
 #include "GameEngineResource.h"
+
+// 설명 :
 class GameEngineBlend : public GameEngineResource<GameEngineBlend>
 {
 public:
-	// construtor destructor
+	// constrcuter destructer
 	GameEngineBlend();
 	~GameEngineBlend();
 
@@ -13,7 +15,7 @@ public:
 	GameEngineBlend& operator=(const GameEngineBlend& _Other) = delete;
 	GameEngineBlend& operator=(GameEngineBlend&& _Other) noexcept = delete;
 
-	static std::shared_ptr<GameEngineBlend> Create(const std::string_view _Name, const D3D11_BLEND_DESC& _Desc)
+	static std::shared_ptr<GameEngineBlend> Create(const std::string_view& _Name, const D3D11_BLEND_DESC& _Desc)
 	{
 		std::shared_ptr<GameEngineBlend> Res = GameEngineResource::Create(_Name);
 		Res->ResCreate(_Desc);
@@ -33,5 +35,6 @@ private:
 	// 최종블랜드 적용 옵션
 	//             R G B A
 	UINT Mask = 0xFFFFFFFF;
+
 };
 

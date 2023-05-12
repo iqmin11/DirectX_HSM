@@ -21,7 +21,6 @@ void StageBg::Start()
 	for (size_t i = 0; i < StageBgRenderer.size(); i++)
 	{
 		StageBgRenderer[i] = CreateComponent<GameEngineSpriteRenderer>();
-		StageBgRenderer[i]->SetPipeLine("2DTexture");
 		StageBgRenderer[i]->SetTexture("Stage_" + std::to_string(i+1) + ".png");
 		StageBgRenderer[i]->GetTransform()->SetWorldScale(TextureScale);
 		StageBgRenderer[i]->Off();
