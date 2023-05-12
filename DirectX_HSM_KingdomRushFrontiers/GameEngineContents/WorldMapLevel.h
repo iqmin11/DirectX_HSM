@@ -23,5 +23,7 @@ private:
 	std::shared_ptr<class WorldMap> AcWorldMap = nullptr;
 	std::shared_ptr<class UpgradeMenu> AcUpgradeMenu = nullptr;
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
+
+	void LoadTexture();
 };
 

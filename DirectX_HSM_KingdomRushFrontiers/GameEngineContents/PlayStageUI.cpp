@@ -14,6 +14,8 @@ PlayStageUI::~PlayStageUI()
 
 void PlayStageUI::Start()
 {
+	LoadTexture();
+
 	StatusBg = CreateComponent<GameEngineSpriteRenderer>();
 	StatusBg->SetPipeLine("2DTexture");
 	StatusBg->SetTexture("hud_background.png");
@@ -41,4 +43,19 @@ void PlayStageUI::Start()
 
 void PlayStageUI::Update(float _DeltaTime)
 {
+}
+
+void PlayStageUI::LoadTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	Dir.Move("GUI");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
 }

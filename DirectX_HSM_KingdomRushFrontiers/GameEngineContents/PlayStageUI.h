@@ -35,6 +35,6 @@ private:
 	float4 ReinforcementButtonScale = { 106,106 };
 	float4 ReinforcementButtonPos = { -370, -380 };
 
-
+	void LoadTexture();
 };
 

@@ -24,7 +24,6 @@ StageEditLevel::~StageEditLevel()
 void StageEditLevel::Start()
 {
 	SetKey();
-	LoadTexture();
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	AcStageBg = CreateActor<StageBg>();
 	//AcStagePath = CreateActor<StagePath>();
@@ -51,19 +50,6 @@ void StageEditLevel::SetKey()
 	GameEngineInput::CreateKey("LeftClick", VK_LBUTTON);
 	GameEngineInput::CreateKey("RightClick", VK_RBUTTON);
 	GameEngineInput::CreateKey("Space", VK_SPACE);
-}
-
-void StageEditLevel::LoadTexture()
-{
-	//GameEngineDirectory Dir;
-	//Dir.MoveParentToDirectory("ContentsResources");
-	//Dir.Move("ContentsResources");
-	//Dir.Move("3.PLAY STAGE LEVEL");
-	//std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	//for (size_t i = 0; i < File.size(); i++)
-	//{
-	//	GameEngineTexture::Load(File[i].GetFullPath());
-	//}
 }
 
 

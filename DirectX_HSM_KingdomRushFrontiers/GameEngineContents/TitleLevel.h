@@ -22,5 +22,6 @@ private:
 	std::shared_ptr<class TitleBackground> AcTitleBackground = nullptr;
 	std::shared_ptr<class TitleLogo> AcTitleLogo = nullptr;
 	//float4 CameraPos = { 0,0,-550 };
+	void LoadTexture();
 };
 

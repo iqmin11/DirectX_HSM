@@ -21,16 +21,7 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Start()
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("1.TITLE LEVEL");
-
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
+	LoadTexture();
 
 	AcTitleBackground = CreateActor<TitleBackground>();
 	AcTitleLogo = CreateActor<TitleLogo>();
@@ -45,5 +36,19 @@ void TitleLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
+	}
+}
+
+void TitleLevel::LoadTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("1.TITLE LEVEL");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
 	}
 }

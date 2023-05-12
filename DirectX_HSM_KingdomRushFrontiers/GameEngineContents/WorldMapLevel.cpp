@@ -22,17 +22,7 @@ WorldMapLevel::~WorldMapLevel()
 
 void WorldMapLevel::Start()
 {
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("2.WORLDMAP LEVEL");
-	
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
-
+	LoadTexture();
 	AcBg = CreateActor<Background>();
 	//AcWorldMap = CreateActor<WorldMap>();
 	//AcUpgradeMenu = CreateActor<UpgradeMenu>();
@@ -47,4 +37,18 @@ void WorldMapLevel::Update(float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
 	}
+}
+
+void WorldMapLevel::LoadTexture()
+{
+ 	GameEngineDirectory Dir;
+ 	Dir.MoveParentToDirectory("ContentsResources");
+ 	Dir.Move("ContentsResources");
+ 	Dir.Move("2.WORLDMAP LEVEL");
+ 
+ 	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+ 	for (size_t i = 0; i < File.size(); i++)
+ 	{
+ 		GameEngineTexture::Load(File[i].GetFullPath());
+ 	}
 }

@@ -14,13 +14,14 @@
 #include "BaseMonster.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
+#include "BaseTower.h"
+#include "BaseShooter.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
 
 PlayStageLevel::PlayStageLevel()
 {
-
 }
 
 PlayStageLevel::~PlayStageLevel()
@@ -47,28 +48,18 @@ void PlayStageLevel::ResetStage()
 void PlayStageLevel::Start()
 {
 	KeySet();
-
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("3.PLAY STAGE LEVEL");
-
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
+	LoadMonsterTexture();
+	LoadTowerTexture();
+	LoadStageBgTexture();
+	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	
 	AcStageBg = CreateActor<StageBg>();
-	//AcMonsterPath = CreateActor<MonsterPath>();
-	//AcMonsterWave = CreateActor<MonsterWave>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
+	AcTestShooter = CreateActor<BaseShooter>();
 
 	LoadAllStageData();
 	
-	//Spawner.AddEvent(1.f, bind(&PlayStageLevel::MonsterSpawn,this),true);
-
 	//임시 코드
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
@@ -85,16 +76,6 @@ void PlayStageLevel::Update(float _DeltaTime)
 	{
 		StartNextWave();
 	}
-	
-	//Spawner.Update(_DeltaTime);
-	//static float Time = 0;
-	//Time += _DeltaTime;
-	//if (Time >= 1)
-	//{
-	//	//어떤 몬스터가 어떤 경로에 몇마리 들어가야 한다를 넣어야 함.... 스폰할때
-	//	Time = 0;
-	//	MonsterSpawn();
-	//}
 }
 
 void PlayStageLevel::LoadAllStageData()
@@ -230,3 +211,47 @@ void PlayStageLevel::ResetStagePaths()
 
 }
 
+void PlayStageLevel::LoadMonsterTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	Dir.Move("Enemies");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
+}
+
+void PlayStageLevel::LoadStageBgTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	Dir.Move("StageBg");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
+}
+
+void PlayStageLevel::LoadTowerTexture()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	Dir.Move("Tower");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
+}

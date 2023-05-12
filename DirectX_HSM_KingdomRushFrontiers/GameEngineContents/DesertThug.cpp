@@ -23,3 +23,4 @@ void DesertThug::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
 }
+

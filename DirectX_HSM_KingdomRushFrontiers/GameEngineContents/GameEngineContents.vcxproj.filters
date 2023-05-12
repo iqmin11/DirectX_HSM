@@ -62,6 +62,15 @@
     <ClInclude Include="PlayStageUI.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
+    <ClInclude Include="BaseTower.h">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBullet.h">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseShooter.h">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -123,6 +132,15 @@
     <ClCompile Include="PlayStageUI.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
+    <ClCompile Include="BaseTower.cpp">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBullet.cpp">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseShooter.cpp">
+      <Filter>3.PlayStage\Actor\Tower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -163,6 +181,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI">
       <UniqueIdentifier>{83f861ff-af06-4be0-af41-757df54ef89f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower">
+      <UniqueIdentifier>{888a0a21-ca89-49fb-a4ca-8ba476c08e89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
