@@ -37,8 +37,6 @@ private:
 	int CurStage = -1;
 	int NextWave = -1;
 
-	std::shared_ptr<class BaseShooter> AcTestShooter = nullptr;
-
 	void LoadAllStageData(); //Start에서 레벨이 만들어질때 실행함. 경로와 웨이브 정보가 담겨있음.
 	
 	void LoadPathBinData();
@@ -57,8 +55,6 @@ private:
 	void ResetStagePaths();
 
 	void StartNextWave();
-	void LoadMonsterTexture();
-	void LoadTowerTexture();
-	void LoadStageBgTexture();
+	void LoadPlayLevelTexture(std::string_view _Folder);
 };
 

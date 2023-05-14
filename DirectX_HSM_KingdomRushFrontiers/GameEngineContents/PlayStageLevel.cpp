@@ -47,16 +47,15 @@ void PlayStageLevel::ResetStage()
 
 void PlayStageLevel::Start()
 {
-	KeySet();
-	LoadMonsterTexture();
-	LoadTowerTexture();
-	LoadStageBgTexture();
+	KeySet(); 
+	LoadPlayLevelTexture("Enemies");
+	LoadPlayLevelTexture("StageBg");
+	LoadPlayLevelTexture("Tower");
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
-	AcTestShooter = CreateActor<BaseShooter>();
 
 	LoadAllStageData();
 	
@@ -211,43 +210,13 @@ void PlayStageLevel::ResetStagePaths()
 
 }
 
-void PlayStageLevel::LoadMonsterTexture()
+void LoadPlayLevelTexture(std::string_view _Folder)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToDirectory("ContentsResources");
 	Dir.Move("ContentsResources");
 	Dir.Move("3.PLAY STAGE LEVEL");
-	Dir.Move("Enemies");
-
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
-}
-
-void PlayStageLevel::LoadStageBgTexture()
-{
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("3.PLAY STAGE LEVEL");
-	Dir.Move("StageBg");
-
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
-	for (size_t i = 0; i < File.size(); i++)
-	{
-		GameEngineTexture::Load(File[i].GetFullPath());
-	}
-}
-
-void PlayStageLevel::LoadTowerTexture()
-{
-	GameEngineDirectory Dir;
-	Dir.MoveParentToDirectory("ContentsResources");
-	Dir.Move("ContentsResources");
-	Dir.Move("3.PLAY STAGE LEVEL");
-	Dir.Move("Tower");
+	Dir.Move(_Folder);
 
 	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
 	for (size_t i = 0; i < File.size(); i++)
