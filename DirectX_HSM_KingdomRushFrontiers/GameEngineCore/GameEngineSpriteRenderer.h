@@ -90,6 +90,11 @@ public:
 		return CurAnimation->IsEnd();
 	}
 
+	size_t GetCurrentFrame()
+	{
+		return CurAnimation->CurFrame;
+	}
+
 protected:
 
 private:
