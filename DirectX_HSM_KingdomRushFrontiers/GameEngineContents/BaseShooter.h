@@ -14,9 +14,20 @@ public:
 	BaseShooter& operator=(const BaseShooter& _Other) = delete;
 	BaseShooter& operator=(BaseShooter&& _Other) noexcept = delete;
 
+	const float4& GetActorPos() const
+	{
+		return ActorPos;
+	}
+
+	const float4& GetTargetPos() const
+	{
+		return TargetPos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
+	void Render(float _DeltaTime) override;
 
 private:
 	float4 ActorPos = float4::Zero;
@@ -28,6 +39,7 @@ private:
 
 	void Attack();
 
-	float4 TestTargetPos = {200,200};
+	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
+	float4 TargetPos = {200,200};
 };
 
