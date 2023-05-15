@@ -38,6 +38,7 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 		MsgAssert("¹Ì±¸Çö");
 		break;
 	}
+	return nullptr;
 }
 
 void BaseMonster::Start()
