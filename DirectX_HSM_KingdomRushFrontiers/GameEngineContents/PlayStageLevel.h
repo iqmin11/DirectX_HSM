@@ -30,9 +30,8 @@ protected:
 private:
 
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
-	//std::shared_ptr<class MonsterPath> AcMonsterPath = nullptr;
-	//std::shared_ptr<class MonsterWave> AcMonsterWave = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
+	std::shared_ptr<class BaseTower> AcTestTower = nullptr;
 
 	int CurStage = -1;
 	int NextWave = -1;

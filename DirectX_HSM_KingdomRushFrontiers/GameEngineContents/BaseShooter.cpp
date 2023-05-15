@@ -24,15 +24,21 @@ void BaseShooter::Start()
 
 	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
 	TestTargetRender->GetTransform()->SetWorldScale({5,5});
+
+
 }
 
 void BaseShooter::Update(float _DeltaTime)
 {
-	Time += _DeltaTime;
-	if (Time >= AttackSpeed)
+	float Distance = (ParentPos - TargetPos).Size();
+	if (Range >= Distance)
 	{
-		Time = 0;
-		Attack();
+		Time += _DeltaTime;
+		if (Time >= AttackSpeed)
+		{
+			Time = 0;
+			Attack();
+		}
 	}
 
 	if (GameEngineInput::IsPress("LeftArrow"))
@@ -54,6 +60,8 @@ void BaseShooter::Update(float _DeltaTime)
 	{
 		TargetPos += float4::Up;
 	}
+
+	
 }
 
 void BaseShooter::Render(float _DeltaTime)

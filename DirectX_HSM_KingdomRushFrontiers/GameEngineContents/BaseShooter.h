@@ -24,6 +24,16 @@ public:
 		return TargetPos;
 	}
 
+	void SetRange(float _Range)
+	{
+		Range = _Range;
+	}
+
+	void SetParentPos(float4 _Pos)
+	{
+		ParentPos = _Pos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -36,6 +46,9 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> BaseShooterRenderer = nullptr;
 	float AttackSpeed = 1.0f;
 	float Time = 0.0f;
+
+	float Range = 0.f;
+	float4 ParentPos = float4::Zero;
 
 	void Attack();
 

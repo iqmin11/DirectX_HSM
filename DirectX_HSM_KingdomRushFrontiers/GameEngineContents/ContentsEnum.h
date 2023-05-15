@@ -29,3 +29,14 @@ enum class ActorOrder
 	Base,
 	Monster,
 };
+
+enum class RenderOrder
+{
+	Bg,
+	Tower,
+	Shooter,
+	Monster,
+	BgObj,
+	UI,
+	MousePointer,
+};

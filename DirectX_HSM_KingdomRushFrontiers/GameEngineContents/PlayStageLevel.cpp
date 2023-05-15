@@ -60,6 +60,7 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	//임시 코드
+	AcTestTower = BaseTower::CreateTower(this, {0, -200});
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }
@@ -210,7 +211,7 @@ void PlayStageLevel::ResetStagePaths()
 
 }
 
-void LoadPlayLevelTexture(std::string_view _Folder)
+void PlayStageLevel::LoadPlayLevelTexture(std::string_view _Folder)
 {
 	GameEngineDirectory Dir;
 	Dir.MoveParentToDirectory("ContentsResources");
