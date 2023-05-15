@@ -14,8 +14,8 @@
 #include "BaseMonster.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
-#include "BaseTower.h"
-#include "BaseShooter.h"
+
+#include "Ranged_Tower.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -60,7 +60,7 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	//임시 코드
-	AcTestTower = BaseTower::CreateTower(this, {0, -200});
+	AcTestTower = Ranged_Tower::CreateTower(this, {0, -200});
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }

@@ -63,13 +63,22 @@
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
     <ClInclude Include="BaseTower.h">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClInclude>
     <ClInclude Include="BaseBullet.h">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClInclude>
     <ClInclude Include="BaseShooter.h">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranged_Bullet.h">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranged_Shooter.h">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranged_Tower.h">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -132,14 +141,23 @@
     <ClCompile Include="PlayStageUI.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
-    <ClCompile Include="BaseTower.cpp">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
-    </ClCompile>
     <ClCompile Include="BaseBullet.cpp">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClCompile>
     <ClCompile Include="BaseShooter.cpp">
-      <Filter>3.PlayStage\Actor\Tower</Filter>
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseTower.cpp">
+      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranged_Bullet.cpp">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranged_Shooter.cpp">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranged_Tower.cpp">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +202,12 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower">
       <UniqueIdentifier>{888a0a21-ca89-49fb-a4ca-8ba476c08e89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\Base">
+      <UniqueIdentifier>{5e1b1e17-50b1-4706-b89b-d0ebdd5b4cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\RangedTower">
+      <UniqueIdentifier>{3c813b88-3303-4e33-9acf-6f5aaba4afd4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

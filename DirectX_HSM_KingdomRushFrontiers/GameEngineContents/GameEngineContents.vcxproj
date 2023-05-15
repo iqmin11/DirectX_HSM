@@ -209,6 +209,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Ranged_Bullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Ranged_Shooter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Ranged_Tower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MonsterWave.h">
       <SubType>
       </SubType>
@@ -335,6 +347,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Ranged_Bullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Ranged_Shooter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Ranged_Tower.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="MonsterWave.cpp">
       <SubType>

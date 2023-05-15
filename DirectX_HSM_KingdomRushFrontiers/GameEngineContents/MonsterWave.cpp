@@ -22,7 +22,7 @@ MonsterWave::~MonsterWave()
 void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector<MonsterSpawnData>& _OneWave)
 {
 	ParentLevel = _Level;
-	_Level->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
+	ParentLevel->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
 }
 
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)

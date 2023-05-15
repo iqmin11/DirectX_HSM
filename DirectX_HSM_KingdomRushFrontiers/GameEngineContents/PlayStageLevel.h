@@ -22,7 +22,6 @@ public:
 	void SetStage(int _Stage);
 	void ResetStage();
 
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

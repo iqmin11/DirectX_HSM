@@ -19,17 +19,16 @@ BaseShooter::~BaseShooter()
 void BaseShooter::Start()
 {
 	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	BaseShooterRenderer->SetTexture("RangedTower_Level1_NPC0000.png");
-	BaseShooterRenderer->GetTransform()->SetWorldScale(RenderScalse);
 
+	//Test 나중에 삭제할것
 	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
 	TestTargetRender->GetTransform()->SetWorldScale({5,5});
-
-
 }
 
 void BaseShooter::Update(float _DeltaTime)
 {
+	//타겟을 정하는 함수가 선행 되어야함
+
 	float Distance = (ParentPos - TargetPos).Size();
 	if (Range >= Distance)
 	{
@@ -41,6 +40,7 @@ void BaseShooter::Update(float _DeltaTime)
 		}
 	}
 
+	//Test 나중에 삭제하셈
 	if (GameEngineInput::IsPress("LeftArrow"))
 	{
 		TargetPos += float4::Left;
@@ -66,10 +66,11 @@ void BaseShooter::Update(float _DeltaTime)
 
 void BaseShooter::Render(float _DeltaTime)
 {
+	//Test 나중에 삭제
 	TestTargetRender->GetTransform()->SetWorldPosition(TargetPos);
 }
 
-void BaseShooter::Attack()
-{
-	BaseBullet::ShootingBullet(GetLevel(), this);
-}
+//void BaseShooter::Attack()
+//{
+//	BaseBullet::ShootingBullet(GetLevel(), this);
+//}
