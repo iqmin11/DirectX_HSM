@@ -21,5 +21,6 @@ protected:
 private:
 	std::string_view TextureName = "DuneRaider0000.png";
 	float4 RenderScale = { 60,50 };
+	float4 ColScale = { 30,30 };
 };
 

@@ -17,6 +17,14 @@ enum class RenderOrder
 	MousePointer,
 };
 
+enum class ColOrder
+{
+	TowerRange,
+	Monster,
+	UI,
+	MousePointer,
+};
+
 enum class MonsterEnum
 {
 	Null = -1,

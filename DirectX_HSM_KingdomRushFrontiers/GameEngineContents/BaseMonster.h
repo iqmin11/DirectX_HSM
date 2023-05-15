@@ -33,6 +33,7 @@ protected:
 	void WalkPath(float _DeltaTime);
 
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
+	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 
 private:
 	float4 ActorPos = float4::Zero;

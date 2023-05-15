@@ -4,6 +4,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Shooter.h"
 
 Ranged_Tower::Ranged_Tower()
@@ -42,6 +43,7 @@ void Ranged_Tower::ChangeTowerRender(TowerEnum _Tower)
 {
 	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(static_cast<int>(_Tower) + 1) + ".png");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
 void Ranged_Tower::ChangeShooter(TowerEnum _Tower)
@@ -63,6 +65,8 @@ void Ranged_Tower::RangerAttack()
 	AttackOrder = !AttackOrder;
 }
 
+
+
 void Ranged_Tower::Start()
 {
 	BaseTower::Start();
@@ -82,9 +86,12 @@ void Ranged_Tower::Start()
 	Shooter1->SetTowerData(&Data);
 
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 
 	//Test
 	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
+	TestTargetCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
+	TestTargetCol->GetTransform()->SetParent(TestTargetRender->GetTransform());
 	TestTargetRender->GetTransform()->SetWorldScale({ 5,5 });
 }
 
@@ -97,8 +104,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 		ChangeTower(TowerEnum::RangedTower_Level2);
 	}
 
-	float Distance = (ActorPos - TargetPos).Size();
-	if (Data.Range >= Distance)
+	if (IsThereTarget())
 	{
 		Time += _DeltaTime;
 		if (Time >= Data.FireRate)

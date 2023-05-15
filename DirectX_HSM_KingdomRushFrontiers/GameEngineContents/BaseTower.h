@@ -21,6 +21,10 @@ public:
 	}
 
 protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
+
+protected:
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
 	float4 ActorPos = float4::Zero;
@@ -28,9 +32,10 @@ protected:
 	std::list<std::shared_ptr<class BaseMonster>>* AccMonsterListPtr = nullptr;
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
+	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
 
-	void Start() override;
-	void Update(float _DeltaTime) override;
+	bool IsThereTarget();
+
 
 private:
 	float4 TestTargetPos = { 200, 200 };

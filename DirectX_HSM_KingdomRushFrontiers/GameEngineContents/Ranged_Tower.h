@@ -35,8 +35,10 @@ private:
 
 	void RangerAttack();
 
+
 	//Test
 	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
+	std::shared_ptr<class GameEngineCollision> TestTargetCol = nullptr;
 
 };
 

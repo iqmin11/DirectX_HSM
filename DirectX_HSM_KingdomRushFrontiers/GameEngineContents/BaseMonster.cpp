@@ -3,6 +3,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 #include "DesertThug.h"
 #include "DuneRaider.h"
@@ -45,6 +46,7 @@ void BaseMonster::Start()
 {
 	//GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	MonsterCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
 	//MonsterRenderer->SetTexture("DesertThug0000.png");
 	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }
