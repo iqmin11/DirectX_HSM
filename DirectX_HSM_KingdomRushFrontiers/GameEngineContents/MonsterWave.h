@@ -5,6 +5,7 @@
 class MonsterWave : public GameEngineActor
 {
 public:
+
 	// construtor destructor
 	MonsterWave();
 	~MonsterWave();

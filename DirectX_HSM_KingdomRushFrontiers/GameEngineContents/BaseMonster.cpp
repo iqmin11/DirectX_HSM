@@ -7,6 +7,7 @@
 #include "DesertThug.h"
 #include "DuneRaider.h"
 
+std::list<std::shared_ptr<BaseMonster>> BaseMonster::AccMonsterList = std::list<std::shared_ptr<BaseMonster>>();
 
 BaseMonster::BaseMonster()
 {
@@ -18,15 +19,20 @@ BaseMonster::~BaseMonster()
 
 }
 
-void BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo)
+std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo)
 {
+	std::shared_ptr<BaseMonster> Result = nullptr;
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
-		_Level->CreateActor<DesertThug>(static_cast<int>(ActorOrder::Monster))->SetPathInfo(_PathInfo);
+		Result = _Level->CreateActor<DesertThug>(static_cast<int>(ActorOrder::Monster));
+		Result->SetPathInfo(_PathInfo);
+		return Result;
 		break;
 	case MonsterEnum::DuneRaider:
-		_Level->CreateActor<DuneRaider>(static_cast<int>(ActorOrder::Monster))->SetPathInfo(_PathInfo);
+		Result = _Level->CreateActor<DuneRaider>(static_cast<int>(ActorOrder::Monster));
+		Result->SetPathInfo(_PathInfo);
+		return Result;
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");
@@ -81,10 +87,30 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	if (NextPoint == PathInfo->end())
 	{
 		Death();
+		AccMonsterListRelease();
 		return;
 	}
 
 	WalkToNextPoint(_DeltaTime);
+}
+
+void BaseMonster::AccMonsterListRelease()
+{
+	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseStartIter = AccMonsterList.begin();
+	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseEndIter = AccMonsterList.end();
+
+	for (; ReleaseStartIter != ReleaseEndIter; )
+	{
+		std::shared_ptr<BaseMonster>& Object = *ReleaseStartIter;
+
+		if (false == Object->IsDeath())
+		{
+			++ReleaseStartIter;
+			continue;
+		}
+
+		ReleaseStartIter = AccMonsterList.erase(ReleaseStartIter);
+	}
 }
 
 

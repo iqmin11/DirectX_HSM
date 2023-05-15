@@ -5,6 +5,7 @@
 class BaseMonster : public GameEngineActor
 {
 public:
+	static std::list<std::shared_ptr<BaseMonster>> AccMonsterList;
 	// construtor destructor
 	BaseMonster();
 	~BaseMonster();
@@ -22,7 +23,7 @@ public:
 		NextPoint = ++(PathInfo->begin());
 	}
 
-	static void CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo);
+	static std::shared_ptr<BaseMonster> CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo);
 
 protected:
 	void Start() override;
@@ -42,5 +43,7 @@ private:
 	float Speed = 100;
 	float Time = 0;
 	float Ratio = 0;
+
+	void AccMonsterListRelease();
 };
 

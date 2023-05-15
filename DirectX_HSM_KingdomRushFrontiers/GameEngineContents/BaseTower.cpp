@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 #include "BaseShooter.h"
+#include "BaseMonster.h"
 
 BaseTower::BaseTower()
 {
@@ -23,20 +24,16 @@ void BaseTower::Start()
 
 	TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
 	TowerRangeRender->SetTexture("range_circle.png");
+	//AccMonsterListPtr = &BaseMonster::AccMonsterList;
 }
 
-//void BaseTower::Update(float _DeltaTime)
+void BaseTower::Update(float _DeltaTime)
+{
+	//타겟 위치를 계산하는 함수 필요
+}
+
+//void BaseTower::FindTargetMonster()
 //{
-//	Time += _DeltaTime;
-//	if (Time >= 1.0f)
-//	{
-//		Time = 0.0f;
-//		if (Attack == nullptr)
-//		{
-//			MsgAssert("Attack함수가 nullptr압니다. 함수를 설정해주세요");
-//		}
-//		Attack();
-//	}
 //}
 
 

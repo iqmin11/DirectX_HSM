@@ -90,6 +90,8 @@ void Ranged_Tower::Start()
 
 void Ranged_Tower::Update(float _DeltaTime)
 {
+	BaseTower::Update(_DeltaTime);
+
 	if (GameEngineInput::IsUp("Space"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level2);
@@ -106,6 +108,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 		}
 	}
 
+	//Test
 	if (GameEngineInput::IsPress("LeftArrow"))
 	{
 		TargetPos += float4::Left;

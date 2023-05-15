@@ -8,7 +8,6 @@
 std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;
 std::shared_ptr<GameEngineLevel> MonsterWave::ParentLevel = nullptr;
 
-
 MonsterWave::MonsterWave()
 {
 
@@ -41,7 +40,7 @@ void MonsterWave::Update(float _DeltaTime)
 		{
 			if (StartIter->StartTime <= WaveTime)
 			{
-				BaseMonster::CreateMonster(ParentLevel, StartIter->Monster, (*CurStagePaths)[StartIter->LineIndex].Points);
+				BaseMonster::AccMonsterList.push_back(BaseMonster::CreateMonster(ParentLevel, StartIter->Monster, (*CurStagePaths)[StartIter->LineIndex].Points));
 				StartIter = SpawnDatas.erase(StartIter);
 				if (SpawnDatas.size() == 0)
 				{
