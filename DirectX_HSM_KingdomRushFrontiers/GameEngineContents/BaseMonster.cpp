@@ -7,7 +7,7 @@
 #include "DesertThug.h"
 #include "DuneRaider.h"
 
-std::list<std::shared_ptr<BaseMonster>> BaseMonster::AccMonsterList = std::list<std::shared_ptr<BaseMonster>>();
+std::list<std::shared_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::shared_ptr<BaseMonster>>();
 
 BaseMonster::BaseMonster()
 {
@@ -87,17 +87,17 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	if (NextPoint == PathInfo->end())
 	{
 		Death();
-		AccMonsterListRelease();
+		LiveMonsterListRelease();
 		return;
 	}
 
 	WalkToNextPoint(_DeltaTime);
 }
 
-void BaseMonster::AccMonsterListRelease()
+void BaseMonster::LiveMonsterListRelease()
 {
-	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseStartIter = AccMonsterList.begin();
-	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseEndIter = AccMonsterList.end();
+	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseStartIter = LiveMonsterList.begin();
+	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseEndIter = LiveMonsterList.end();
 
 	for (; ReleaseStartIter != ReleaseEndIter; )
 	{
@@ -109,7 +109,7 @@ void BaseMonster::AccMonsterListRelease()
 			continue;
 		}
 
-		ReleaseStartIter = AccMonsterList.erase(ReleaseStartIter);
+		ReleaseStartIter = LiveMonsterList.erase(ReleaseStartIter);
 	}
 }
 

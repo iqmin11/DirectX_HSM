@@ -38,6 +38,6 @@ private:
 	
 	std::function<void()> Attack = nullptr;
 
-	//void FindTargetMonster();
+	//std::shared_ptr<class BaseMonster> FindTargetMonster();
 };
 

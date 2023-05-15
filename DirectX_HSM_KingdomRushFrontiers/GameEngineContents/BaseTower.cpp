@@ -32,7 +32,7 @@ void BaseTower::Update(float _DeltaTime)
 	//타겟 위치를 계산하는 함수 필요
 }
 
-//void BaseTower::FindTargetMonster()
+//std::shared_ptr<class BaseMonster> BaseTower::FindTargetMonster()
 //{
 //}
 

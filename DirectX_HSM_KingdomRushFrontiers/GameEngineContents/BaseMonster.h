@@ -5,7 +5,7 @@
 class BaseMonster : public GameEngineActor
 {
 public:
-	static std::list<std::shared_ptr<BaseMonster>> AccMonsterList;
+	static std::list<std::shared_ptr<BaseMonster>> LiveMonsterList;
 	// construtor destructor
 	BaseMonster();
 	~BaseMonster();
@@ -44,6 +44,6 @@ private:
 	float Time = 0;
 	float Ratio = 0;
 
-	void AccMonsterListRelease();
+	void LiveMonsterListRelease();
 };
 

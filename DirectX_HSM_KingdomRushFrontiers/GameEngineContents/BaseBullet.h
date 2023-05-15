@@ -44,7 +44,7 @@ private:
 	float Ratio = 0;
 
 
-	void CalBezierBulletTransform(float4& _P0, float4& _P1, float4& _P2, float4& _P3, float _Ratio);
+	void CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio);
 
 };
 

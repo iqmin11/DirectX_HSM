@@ -54,7 +54,7 @@ void BaseBullet::CalBezierMid()
 	Mid1.y = max(TargetPos.y, ParentPos.y) + 150.f;
 }
 
-void BaseBullet::CalBezierBulletTransform(float4& _P0, float4& _P1, float4& _P2, float4& _P3, float _Ratio)
+void BaseBullet::CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio)
 {
 	float4 M0 = float4::LerpClamp(_P0, _P1, _Ratio);
 	float4 M1 = float4::LerpClamp(_P1, _P2, _Ratio);
@@ -62,6 +62,7 @@ void BaseBullet::CalBezierBulletTransform(float4& _P0, float4& _P1, float4& _P2,
 
 	float4 B0 = float4::LerpClamp(M0, M1, _Ratio);
 	float4 B1 = float4::LerpClamp(M1, M2, _Ratio);
+
 
 	float4 Pos = float4::LerpClamp(B0, B1, _Ratio);
 	float ZDeg = atan2(B1.y - B0.y, B1.x - B0.x) * GameEngineMath::RadToDeg;
