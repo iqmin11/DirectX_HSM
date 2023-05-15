@@ -22,8 +22,8 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 	LocalAc = _Level->CreateActor<Ranged_Tower>();
 	LocalAc->ActorPos = _BuildPos;
 	LocalAc->GetTransform()->SetWorldPosition(LocalAc->ActorPos);
-	LocalAc->Shooter0->SetParentPos(LocalAc->GetTransform()->GetWorldPosition());
-	LocalAc->Shooter1->SetParentPos(LocalAc->GetTransform()->GetWorldPosition());
+	LocalAc->Shooter0->SetTargetPos(LocalAc->TargetPos);
+	LocalAc->Shooter1->SetTargetPos(LocalAc->TargetPos);
 	return LocalAc;
 }
 
@@ -50,6 +50,19 @@ void Ranged_Tower::ChangeShooter(TowerEnum _Tower)
 	Shooter1->ChangeShooterRenderer(_Tower);
 }
 
+void Ranged_Tower::RangerAttack()
+{
+	if (AttackOrder)
+	{
+		Shooter0->Attack();
+	}
+	else
+	{
+		Shooter1->Attack();
+	}
+	AttackOrder = !AttackOrder;
+}
+
 void Ranged_Tower::Start()
 {
 	BaseTower::Start();
@@ -69,13 +82,51 @@ void Ranged_Tower::Start()
 	Shooter1->SetTowerData(&Data);
 
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+
+	//Test
+	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
+	TestTargetRender->GetTransform()->SetWorldScale({ 5,5 });
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
 {
-	BaseTower::Update(_DeltaTime);
 	if (GameEngineInput::IsUp("Space"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level2);
 	}
+
+	float Distance = (ActorPos - TargetPos).Size();
+	if (Data.Range >= Distance)
+	{
+		Time += _DeltaTime;
+		if (Time >= Data.FireRate)
+		{
+			Time = 0;
+			RangerAttack();
+		}
+	}
+
+	if (GameEngineInput::IsPress("LeftArrow"))
+	{
+		TargetPos += float4::Left;
+	}
+
+	if (GameEngineInput::IsPress("RightArrow"))
+	{
+		TargetPos += float4::Right;
+	}
+
+	if (GameEngineInput::IsPress("DownArrow"))
+	{
+		TargetPos += float4::Down;
+	}
+
+	if (GameEngineInput::IsPress("UpArrow"))
+	{
+		TargetPos += float4::Up;
+	}
+
+	TestTargetRender->GetTransform()->SetWorldPosition(TargetPos);
 }
+
+

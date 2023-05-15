@@ -15,12 +15,12 @@ public:
 	Ranged_Shooter& operator=(Ranged_Shooter&& _Other) noexcept = delete;
 	
 	void ChangeShooterRenderer(TowerEnum _Tower);
+	void Attack();
 
 protected:
 	void Start() override;
 
 private:
 	float4 RenderScalse = { 32, 32 };
-	void Attack();
 };
 

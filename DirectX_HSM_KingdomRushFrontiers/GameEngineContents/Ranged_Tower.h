@@ -19,14 +19,24 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
+
 private:
 	float4 RenderScale = { 128, 128 };
 
 	std::shared_ptr<class Ranged_Shooter> Shooter0 = nullptr;
 	std::shared_ptr<class Ranged_Shooter> Shooter1 = nullptr;
+	
+	bool AttackOrder = false;
 
+	float Time = 0.0f;
 	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(TowerEnum _Tower);
 	void ChangeShooter(TowerEnum _Tower);
+
+	void RangerAttack();
+
+	//Test
+	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
+
 };
 

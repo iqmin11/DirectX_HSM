@@ -22,17 +22,17 @@ public:
 
 	const float4& GetTargetPos() const
 	{
-		return TargetPos;
+		return *TargetPos;
+	}
+
+	void SetTargetPos(float4& _TargetPos)
+	{
+		TargetPos = &_TargetPos;
 	}
 
 	void SetTowerData(TowerData* _Data)
 	{
 		Data = _Data;
-	}
-
-	void SetParentPos(float4 _Pos)
-	{
-		ParentPos = _Pos;
 	}
 
 protected:
@@ -41,20 +41,13 @@ protected:
 	TowerData* Data = nullptr;
 
 	void Start() override;
-	void Update(float _DeltaTime) override;
-	void Render(float _DeltaTime) override;
 
 private:
 	float4 ActorPos = float4::Zero;
 
 	float Time = 0.0f;
 
-	float4 ParentPos = float4::Zero;
-
-	//void Attack();
-
-	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
-	float4 TargetPos = {200,200};
+	float4* TargetPos = nullptr;
 };
 
 // 현재 레벨에서 Update되고있는 몬스터의 정보를 받아야함.
