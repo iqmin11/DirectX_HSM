@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "ContentsEnum.h"
+#include "ContentsData.h"
 
 class BaseTower : public GameEngineActor
 {
@@ -16,6 +16,7 @@ public:
 	BaseTower& operator=(BaseTower&& _Other) noexcept = delete;
 
 protected:
+	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
 	float4 ActorPos = float4::Zero;
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;

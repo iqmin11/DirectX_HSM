@@ -13,6 +13,8 @@ public:
 	Ranged_Shooter(Ranged_Shooter&& _Other) noexcept = delete;
 	Ranged_Shooter& operator=(const Ranged_Shooter& _Other) = delete;
 	Ranged_Shooter& operator=(Ranged_Shooter&& _Other) noexcept = delete;
+	
+	void ChangeShooterRenderer(TowerEnum _Tower);
 
 protected:
 	void Start() override;

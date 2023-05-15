@@ -19,7 +19,6 @@ BaseShooter::~BaseShooter()
 void BaseShooter::Start()
 {
 	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>();
-
 	//Test 나중에 삭제할것
 	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
 	TestTargetRender->GetTransform()->SetWorldScale({5,5});
@@ -30,10 +29,10 @@ void BaseShooter::Update(float _DeltaTime)
 	//타겟을 정하는 함수가 선행 되어야함
 
 	float Distance = (ParentPos - TargetPos).Size();
-	if (Range >= Distance)
+	if (Data->Range >= Distance)
 	{
 		Time += _DeltaTime;
-		if (Time >= AttackSpeed)
+		if (Time >= Data->FireRate)
 		{
 			Time = 0;
 			Attack();

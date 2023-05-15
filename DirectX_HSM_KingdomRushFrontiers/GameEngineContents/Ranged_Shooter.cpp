@@ -24,6 +24,11 @@ void Ranged_Shooter::Start()
 	BaseShooterRenderer->GetTransform()->SetWorldScale(RenderScalse);
 }
 
+void Ranged_Shooter::ChangeShooterRenderer(TowerEnum _Tower)
+{
+	BaseShooterRenderer->SetTexture("RangedTower_Level" + std::to_string(static_cast<int>(_Tower) + 1) + "_NPC0000.png");
+}
+
 void Ranged_Shooter::Attack()
 {
 	Ranged_Bullet::ShootingBullet(GetLevel(), this);
