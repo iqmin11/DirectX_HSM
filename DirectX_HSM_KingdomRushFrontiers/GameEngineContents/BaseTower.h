@@ -15,10 +15,6 @@ public:
 	BaseTower& operator=(const BaseTower& _Other) = delete;
 	BaseTower& operator=(BaseTower&& _Other) noexcept = delete;
 
-	void SetAttackFunc(std::function<void()> _Attack)
-	{
-		Attack = _Attack;
-	}
 
 protected:
 	void Start() override;
@@ -41,8 +37,6 @@ private:
 	float4 TestTargetPos = { 200, 200 };
 	float Time = 0.f;
 	
-	std::function<void()> Attack = nullptr;
-
 	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	void CalTargetPos();
 };

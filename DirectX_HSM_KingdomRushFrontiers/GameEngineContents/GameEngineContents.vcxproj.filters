@@ -80,6 +80,9 @@
     <ClInclude Include="Ranged_Tower.h">
       <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
     </ClInclude>
+    <ClInclude Include="BuildArea.h">
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -158,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="Ranged_Tower.cpp">
       <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildArea.cpp">
+      <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

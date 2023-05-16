@@ -14,6 +14,7 @@
 #include "BaseMonster.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
+#include "BuildArea.h"
 
 #include "Ranged_Tower.h"
 
@@ -31,13 +32,14 @@ PlayStageLevel::~PlayStageLevel()
 
 void PlayStageLevel::SetStage(int _Stage)
 {
+	InitStage();
 	CurStage = _Stage;
 	NextWave = 0;
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
 }
 
-void PlayStageLevel::ResetStage()
+void PlayStageLevel::InitStage()
 {
 	CurStage = -1;
 	NextWave = -1;
@@ -60,8 +62,18 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	//임시 코드
-	AcTestTower0 = Ranged_Tower::CreateTower(this, {0, -200});
-	AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
+	//AcTestTower0 = Ranged_Tower::CreateTower(this, float4::Zero);
+	//AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -126,21 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
+	//AcBuildArea.push_back(BuildArea::CreateBuildArea(this, { -66,-60 }));
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }
@@ -83,7 +95,6 @@ void PlayStageLevel::LoadAllStageData()
 {
 	LoadPathBinData();
 	LoadWaveBinData();
-
 }
 
 void PlayStageLevel::LoadPathBinData()

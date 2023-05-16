@@ -19,8 +19,9 @@ public:
 	PlayStageLevel& operator=(PlayStageLevel&& _Other) noexcept = delete;
 
 	//월드맵에서 스테이지를 선택하면 이 PlayStageLevel에서 해당 단계 스테이지를 로드해야함
+
 	void SetStage(int _Stage);
-	void ResetStage();
+	void InitStage();
 
 protected:
 	void Start() override;
@@ -31,7 +32,9 @@ private:
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::shared_ptr<class BaseTower> AcTestTower0 = nullptr;
-	std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
+	//std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
+	std::list<std::shared_ptr<class BuildArea>> AcBuildArea = std::list<std::shared_ptr<class BuildArea>>();
+
 
 	int CurStage = -1;
 	int NextWave = -1;
