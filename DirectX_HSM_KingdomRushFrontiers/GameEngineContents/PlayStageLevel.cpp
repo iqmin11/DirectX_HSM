@@ -37,6 +37,7 @@ void PlayStageLevel::SetStage(int _Stage)
 	NextWave = 0;
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
+	SetStageBuildArea(CurStage);
 }
 
 void PlayStageLevel::InitStage()
@@ -45,6 +46,7 @@ void PlayStageLevel::InitStage()
 	NextWave = -1;
 	ResetStageBg();
 	ResetStagePaths();
+	ResetStageBuildArea();
 }
 
 void PlayStageLevel::Start()
@@ -62,8 +64,10 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	//임시 코드
-	AcTestTower0 = Ranged_Tower::CreateTower(this, float4::Zero);
-	AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
+	//AcTestTower0 = Ranged_Tower::CreateTower(this, float4::Zero);
+	//AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
+
+	
 
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
@@ -79,6 +83,17 @@ void PlayStageLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsUp("Space"))
 	{
 		StartNextWave();
+	}
+
+	if (GameEngineInput::IsUp("RightArrow"))
+	{
+		static int a = 0;
+		++a;
+		if (a > 5)
+		{
+			a = 0;
+		}
+		SetStage(a);
 	}
 }
 
@@ -204,6 +219,15 @@ void PlayStageLevel::StartNextWave()
 	++NextWave;
 }
 
+void PlayStageLevel::SetStageBuildArea(int _Stage)
+{
+	AcBuildAreas.resize(AllStageData[_Stage].BuildAreaPos.size());
+	for (size_t i = 0; i < AcBuildAreas.size(); i++)
+	{
+		AcBuildAreas[i] = BuildArea::CreateBuildArea(this, AllStageData[_Stage].BuildAreaPos[i]);
+	}
+}
+
 void PlayStageLevel::ResetStageBg()
 {
 	AcStageBg->RenderStage();
@@ -260,3 +284,11 @@ void PlayStageLevel::LoadOneStageAreas(GameEngineSerializer& _Serializer, int _S
 	}
 }
 
+void PlayStageLevel::ResetStageBuildArea()
+{
+	for (size_t i = 0; i < AcBuildAreas.size(); i++)
+	{
+		AcBuildAreas[i]->Death();
+	}
+	AcBuildAreas.clear();
+}

@@ -83,9 +83,6 @@
     <ClInclude Include="BuildArea.h">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClInclude>
-    <ClInclude Include="Stage0.h">
-      <Filter>3.PlayStage\Actor\Stage</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -168,9 +165,6 @@
     <ClCompile Include="BuildArea.cpp">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClCompile>
-    <ClCompile Include="Stage0.cpp">
-      <Filter>3.PlayStage\Actor\Stage</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -221,8 +215,8 @@
     <Filter Include="3.PlayStage\Actor\Tower\RangedTower">
       <UniqueIdentifier>{3c813b88-3303-4e33-9acf-6f5aaba4afd4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Stage">
-      <UniqueIdentifier>{c73b0bac-6d05-4b32-9c61-2db21cfda4bf}</UniqueIdentifier>
+    <Filter Include="3.PlayStage\Level">
+      <UniqueIdentifier>{7f7abad1-8497-4685-aa31-171076a77f41}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

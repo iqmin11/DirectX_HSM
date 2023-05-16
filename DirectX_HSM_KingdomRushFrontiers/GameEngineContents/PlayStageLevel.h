@@ -31,9 +31,9 @@ private:
 
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
-	std::shared_ptr<class BaseTower> AcTestTower0 = nullptr;
-	std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
-	std::list<std::shared_ptr<class BuildArea>> AcBuildArea = std::list<std::shared_ptr<class BuildArea>>();
+	//std::shared_ptr<class BaseTower> AcTestTower0 = nullptr;
+	//std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
+	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 
 
 	int CurStage = -1;
@@ -56,8 +56,10 @@ private:
 	
 	void SetStageBg(int _Stage);
 	void SetStagePaths(int _Stage);
+	void SetStageBuildArea(int _Stage);
 	void ResetStageBg();
 	void ResetStagePaths();
+	void ResetStageBuildArea();
 
 	void StartNextWave();
 	void LoadPlayLevelTexture(std::string_view _Folder);
