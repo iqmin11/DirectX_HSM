@@ -27,17 +27,25 @@ static std::vector<std::shared_ptr<GameEngineSpriteRenderer>> PointRenderers;
 
 void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime)
 {
-	//const char8_t* Ptr = u8"배경이 뭐냐";
-	//const char* Text = reinterpret_cast<const char*>(Ptr);
-	//ImGui::Text(Text);
-
-	//const char8_t* Ptr = u8"배경 이미지 이름";
-	//const char* Text = reinterpret_cast<const char*>(Ptr);
-	//char Arr[100] = {0};
-	//ImGui::InputText(Text, Arr, 100);
-
+    if (StageExActor == nullptr)
+    {
+        StageExActor = _Level->CreateActor<GameEngineActor>();
+        StageExRenderer.reserve(6);
+        for (size_t i = 0; i < StageExRenderer.capacity(); i++)
+        {
+            StageExRenderer.emplace_back(StageExActor->CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Bg)));
+            StageExRenderer[i]->SetTexture("Stage" + std::to_string(i) +"ex.png");
+            StageExRenderer[i]->GetTransform()->SetWorldScale({1600,900,1});
+            StageExRenderer[i]->GetTransform()->SetLocalPosition({-1,0,1000,1});
+            StageExRenderer[i]->Off();
+        }
+        BuildAreaCursor = StageExActor->CreateComponent<GameEngineSpriteRenderer>();
+        BuildAreaCursor->SetTexture("build_terrain_0004.png");
+        BuildAreaCursor->GetTransform()->SetWorldScale({ 128,128,1 });
+        BuildAreaCursor->GetTransform()->SetLocalPosition({ 0,0,0,1 });
+        BuildAreaCursor->Off();
+    }
     
-
     DrawPointRenderer(_Level);
     std::dynamic_pointer_cast<StageEditLevel>(_Level)->GetAcStageBg()->RenderStage(SelectedStage);
     {
@@ -65,7 +73,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         
         if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None))
         {
-            StageMapBgTap();
+            BuildAreaTap(_DeltaTime);
             PathEditTap(_Level);
             WaveEditTap(_Level, _DeltaTime);
             ImGui::EndTabBar();
@@ -103,13 +111,179 @@ void StageEditor::ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int
     std::dynamic_pointer_cast<StageEditLevel>(_Level)->SetStageLevel(_Selected);
 }
 
-void StageEditor::StageMapBgTap()
+void StageEditor::BuildAreaTap(float _DeltaTime)
 {
-    if (ImGui::BeginTabItem("StageMapBg"))
+    if (ImGui::BeginTabItem("BuildArea"))
     {
         //ParentLevel->SetEditMod(StageEditMode::Null);
-        ImGui::Text("TextureFile : Stage_%d.png", SelectedStage);
+        ControlBuildAreaRender(_DeltaTime);
+        if (ImGui::Button("AddArea"))
+        {
+            Pushback_Area();
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("DeleteArea"))
+        {
+            Popback_Area();
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("LoadArea"))
+        {
+            LoadAreaBinData();
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("SaveArea"))
+        {
+            SaveAreaBinData();
+        }
+
+        float4 Pos = BuildAreaCursor->GetTransform()->GetWorldPosition();
+        ImGui::Text((std::to_string(Pos.x) + "," + std::to_string(Pos.y) + "," + std::to_string(Pos.z)).c_str());
+        
+        ImGui::BeginChild("BuildAreaPosList", ImVec2(150, 0), true);
+        std::vector<float4>& AreaPositions = Data[SelectedStage].BuildAreaPos;
+        for (int i = 0; i < AreaPositions.size(); i++)
+        {
+            int PointX = static_cast<int>(AreaPositions[i].x);
+            int PointY = static_cast<int>(AreaPositions[i].y);
+            int PointZ = static_cast<int>(AreaPositions[i].z);
+            std::string PointLabel = "Point " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
+            ImGui::Text(PointLabel.c_str());
+        }
+
+        ImGui::EndChild();
+
         ImGui::EndTabItem();
+
+        for (size_t i = 0; i < StageExRenderer.size(); i++)
+        {
+            if (SelectedStage == i)
+            {
+                StageExRenderer[i]->On();
+            }
+            else
+            {
+                StageExRenderer[i]->Off();
+            }
+        }
+        BuildAreaCursor->On();
+    }
+    else
+    {
+        for (size_t i = 0; i < StageExRenderer.size(); i++)
+        {
+            StageExRenderer[i]->Off();
+        }
+    }
+}
+
+void StageEditor::ControlBuildAreaRender(float _DeltaTime)
+{
+    /*float Speed = 50.f;
+    if (GameEngineInput::IsPress("LeftArrow"))
+    {
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Left* Speed* _DeltaTime);
+    }
+
+    if (GameEngineInput::IsPress("RightArrow"))
+    {
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Right * Speed * _DeltaTime);
+    }
+
+    if (GameEngineInput::IsPress("UpArrow"))
+    {
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Up * Speed * _DeltaTime);
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Forward * Speed * _DeltaTime);
+    }
+
+    if (GameEngineInput::IsPress("DownArrow"))
+    {
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Down * Speed * _DeltaTime);
+        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Back * Speed * _DeltaTime);
+    }*/
+
+    float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
+    MousePosition.z = MousePosition.y;
+    BuildAreaCursor->GetTransform()->SetWorldPosition(MousePosition);
+    if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("LeftClick"))
+    {
+        Pushback_Area();
+    }
+}
+
+void StageEditor::Pushback_Area()
+{
+    Data[SelectedStage].BuildAreaPos.push_back(BuildAreaCursor->GetTransform()->GetWorldPosition());
+}
+
+void StageEditor::Popback_Area()
+{
+    if (Data[SelectedStage].BuildAreaPos.size() <= 0)
+    {
+        return;
+    }
+    Data[SelectedStage].BuildAreaPos.pop_back();
+}
+
+void StageEditor::SerializeOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    std::vector<float4>& SaveAreas = Data[_StageLevel].BuildAreaPos;
+    _Serializer.Write(static_cast<int>(SaveAreas.size()));
+    for (int i = 0; i < SaveAreas.size(); i++)
+    {
+        _Serializer.Write(&SaveAreas[i], sizeof(float4));
+    }
+}
+
+void StageEditor::SerializeAllAreas(GameEngineSerializer& _Serializer)
+{
+    _Serializer.Write(static_cast<int>(Data.size()));
+    for (int i = 0; i < Data.size(); i++)
+    {
+        SerializeOneStageAreas(_Serializer, i);
+    }
+}
+
+void StageEditor::SaveAreaBinData()
+{
+    GameEngineSerializer SaveSerializer = GameEngineSerializer();
+
+    SerializeAllAreas(SaveSerializer);
+
+    GameEnginePath filepath;
+    filepath.SetPath("..//ContentsData//BuildAreaData.txt");
+
+    GameEngineFile file = GameEngineFile(filepath.GetFullPath());
+    file.SaveBin(SaveSerializer);
+}
+
+void StageEditor::LoadAreaBinData()
+{
+    GameEngineSerializer LoadSerializer = GameEngineSerializer();
+
+    GameEngineFile File("..//ContentsData//BuildAreaData.txt");
+    LoadSerializer.BufferResize(8000);
+    File.LoadBin(LoadSerializer);
+
+    int StgSize = 0;
+    LoadSerializer.Read(StgSize);
+
+    StageCount = StgSize;
+    Data.resize(StageCount);
+    for (int i = 0; i < Data.size(); i++)
+    {
+        LoadOneStageAreas(LoadSerializer, i);
+    }
+}
+
+void StageEditor::LoadOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    int AreaSize = 0;
+    _Serializer.Read(AreaSize);
+    Data[_StageLevel].BuildAreaPos.resize(AreaSize);
+    for (int i = 0; i < Data[_StageLevel].BuildAreaPos.size(); i++)
+    {
+        _Serializer.Read(&Data[_StageLevel].BuildAreaPos[i], sizeof(float4));
     }
 }
 
@@ -197,6 +371,7 @@ void StageEditor::Pushback_Point()
         return;
     }
     float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
+    MousePosition.z = MousePosition.y;
     Data[SelectedStage].Lines[SelectedLine].Points.emplace_back(MousePosition);
 
 }

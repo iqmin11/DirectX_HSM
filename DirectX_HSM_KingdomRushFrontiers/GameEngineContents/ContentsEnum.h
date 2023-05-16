@@ -8,8 +8,8 @@ enum class ActorOrder
 
 enum class RenderOrder
 {
-	Bg,
-	Tower,
+	Bg = -1000,
+	Tower = 0,
 	Shooter,
 	Monster,
 	BgObj,

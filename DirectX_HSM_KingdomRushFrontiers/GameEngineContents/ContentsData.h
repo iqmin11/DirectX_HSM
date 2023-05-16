@@ -40,7 +40,7 @@ public:
 	//std::string BackGroundName = "\0";
 	std::vector<LinePath> Lines = std::vector<LinePath>();
 	std::vector<WaveData> Waves = std::vector<WaveData>();
-	std::vector<MonsterData> MonsterData;
+	std::vector<float4> BuildAreaPos = std::vector<float4>();
 };
 
 class TowerData

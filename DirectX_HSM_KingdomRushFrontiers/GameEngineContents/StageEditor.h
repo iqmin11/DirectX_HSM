@@ -30,6 +30,9 @@ private:
 	int SelectedLine = -1;
 	//int LineSize = 0;
 	std::shared_ptr<class GameEngineActor> LineActor = nullptr;
+	std::shared_ptr<class GameEngineActor> StageExActor = nullptr;
+	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageExRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
+	std::shared_ptr<GameEngineSpriteRenderer> BuildAreaCursor = nullptr;
 
 	int SelectedWave = -1;
 	int SelectedWaveMonster = 0;
@@ -40,8 +43,18 @@ private:
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
 
-	// 배경 관련 (미완)
-	void StageMapBgTap();
+	// 타워 건설 지역 관련
+	void BuildAreaTap(float _DeltaTime);
+	void ControlBuildAreaRender(float _DeltaTime);
+	void Pushback_Area();
+	void Popback_Area();
+
+	void SerializeOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
+	void SerializeAllAreas(GameEngineSerializer& _Serializer);
+	void SaveAreaBinData();
+
+	void LoadAreaBinData();
+	void LoadOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
 
 	// 몬스터 경로 관련
 	void PathEditTap(std::shared_ptr<class GameEngineLevel> _Level);
