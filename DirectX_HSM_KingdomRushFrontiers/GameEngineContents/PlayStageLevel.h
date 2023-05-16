@@ -32,7 +32,7 @@ private:
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::shared_ptr<class BaseTower> AcTestTower0 = nullptr;
-	//std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
+	std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
 	std::list<std::shared_ptr<class BuildArea>> AcBuildArea = std::list<std::shared_ptr<class BuildArea>>();
 
 
@@ -48,6 +48,9 @@ private:
 	void LoadWaveBinData();
 	void LoadOneStageWave(GameEngineSerializer& _Serializer, int _StageLevel);
 	void LoadOneWave(GameEngineSerializer& _Serializer, int _StageLevel, int _WaveIndex);
+
+	void LoadAreaBinData();
+	void LoadOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
 
 	void KeySet();
 	

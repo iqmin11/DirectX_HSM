@@ -24,7 +24,7 @@ protected:
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
 	float4 ActorPos = float4::Zero;
-	std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
+	//std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
 	std::list<std::shared_ptr<class BaseMonster>>* AccMonsterListPtr = nullptr;
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;

@@ -179,29 +179,6 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
 
 void StageEditor::ControlBuildAreaRender(float _DeltaTime)
 {
-    /*float Speed = 50.f;
-    if (GameEngineInput::IsPress("LeftArrow"))
-    {
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Left* Speed* _DeltaTime);
-    }
-
-    if (GameEngineInput::IsPress("RightArrow"))
-    {
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Right * Speed * _DeltaTime);
-    }
-
-    if (GameEngineInput::IsPress("UpArrow"))
-    {
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Up * Speed * _DeltaTime);
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Forward * Speed * _DeltaTime);
-    }
-
-    if (GameEngineInput::IsPress("DownArrow"))
-    {
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Down * Speed * _DeltaTime);
-        BuildAreaCursor->GetTransform()->AddWorldPosition(float4::Back * Speed * _DeltaTime);
-    }*/
-
     float4 MousePosition = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
     MousePosition.z = MousePosition.y;
     BuildAreaCursor->GetTransform()->SetWorldPosition(MousePosition);

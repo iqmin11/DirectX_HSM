@@ -23,8 +23,8 @@ void BaseTower::Start()
 	GetTransform()->SetWorldPosition(ActorPos);
 	TowerRenderer = CreateComponent<GameEngineSpriteRenderer>();
 
-	TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
-	TowerRangeRender->SetTexture("range_circle.png");
+	//TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
+	//TowerRangeRender->SetTexture("range_circle.png");
 	//AccMonsterListPtr = &BaseMonster::AccMonsterList;
 
 	RangeCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::TowerRange));

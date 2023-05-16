@@ -42,7 +42,7 @@ void Ranged_Tower::ChangeTower(TowerEnum _Tower)
 void Ranged_Tower::ChangeTowerRender(TowerEnum _Tower)
 {
 	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(static_cast<int>(_Tower) + 1) + ".png");
-	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
@@ -85,7 +85,7 @@ void Ranged_Tower::Start()
 	Shooter1->GetTransform()->SetLocalPosition({ -10,31 });
 	Shooter1->SetTowerData(&Data);
 
-	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 
 	//Test
