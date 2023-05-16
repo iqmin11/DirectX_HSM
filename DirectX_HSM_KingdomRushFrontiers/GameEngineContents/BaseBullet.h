@@ -39,7 +39,6 @@ private:
 	float4 Mid0 = float4::Zero;
 	float4 Mid1 = float4::Zero;
 	float4 TargetPos = float4::Zero;
-	float BulletSpeed = 100.f;
 	float Time = 0;
 	float Ratio = 0;
 

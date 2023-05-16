@@ -89,10 +89,10 @@ void Ranged_Tower::Start()
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 
 	//Test
-	TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
-	TestTargetCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
-	TestTargetCol->GetTransform()->SetParent(TestTargetRender->GetTransform());
-	TestTargetRender->GetTransform()->SetWorldScale({ 5,5 });
+	//TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
+	//TestTargetCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
+	//TestTargetCol->GetTransform()->SetParent(TestTargetRender->GetTransform());
+	//TestTargetRender->GetTransform()->SetWorldScale({ 5,5 });
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
@@ -114,28 +114,28 @@ void Ranged_Tower::Update(float _DeltaTime)
 		}
 	}
 
-	//Test
-	if (GameEngineInput::IsPress("LeftArrow"))
-	{
-		TargetPos += float4::Left;
-	}
+	////Test
+	//if (GameEngineInput::IsPress("LeftArrow"))
+	//{
+	//	TargetPos += float4::Left;
+	//}
 
-	if (GameEngineInput::IsPress("RightArrow"))
-	{
-		TargetPos += float4::Right;
-	}
+	//if (GameEngineInput::IsPress("RightArrow"))
+	//{
+	//	TargetPos += float4::Right;
+	//}
 
-	if (GameEngineInput::IsPress("DownArrow"))
-	{
-		TargetPos += float4::Down;
-	}
+	//if (GameEngineInput::IsPress("DownArrow"))
+	//{
+	//	TargetPos += float4::Down;
+	//}
 
-	if (GameEngineInput::IsPress("UpArrow"))
-	{
-		TargetPos += float4::Up;
-	}
+	//if (GameEngineInput::IsPress("UpArrow"))
+	//{
+	//	TargetPos += float4::Up;
+	//}
 
-	TestTargetRender->GetTransform()->SetWorldPosition(TargetPos);
+	//TestTargetRender->GetTransform()->SetWorldPosition(TargetPos);
 }
 
 

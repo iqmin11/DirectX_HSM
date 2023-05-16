@@ -60,7 +60,8 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	//임시 코드
-	AcTestTower = Ranged_Tower::CreateTower(this, {0, -200});
+	AcTestTower0 = Ranged_Tower::CreateTower(this, {0, -200});
+	AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }

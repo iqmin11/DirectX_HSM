@@ -54,6 +54,7 @@ void BaseMonster::Start()
 void BaseMonster::Update(float _DeltaTime)
 {
 	WalkPath(_DeltaTime);
+	CalMonsterDir();
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)
@@ -114,6 +115,19 @@ void BaseMonster::LiveMonsterListRelease()
 
 		ReleaseStartIter = LiveMonsterList.erase(ReleaseStartIter);
 	}
+}
+
+void BaseMonster::CalMonsterDir()
+{
+	ActorDir.w = 0.0f;
+	ActorDir = ActorPos - PrevActorPos;
+	ActorDir.Normalize();
+	PrevActorPos = ActorPos;
+}
+
+float BaseMonster::CalDistance()
+{
+	return (*LastPoint - ActorPos).Size();
 }
 
 
