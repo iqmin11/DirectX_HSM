@@ -65,5 +65,6 @@ private:
 
 	void StartNextWave();
 	void LoadPlayLevelTexture(std::string_view _Folder);
+	void LoadPlayLevelAnimation();
 };
 

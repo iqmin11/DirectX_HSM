@@ -1,6 +1,12 @@
 #pragma once
 #include "BaseShooter.h"
 
+enum class ShooterState
+{
+	Idle,
+	Attack
+};
+
 class Ranged_Shooter : public BaseShooter
 {
 public:
@@ -22,5 +28,18 @@ protected:
 
 private:
 	float4 RenderScalse = { 32, 32 };
+
+	ShooterState StateValue = ShooterState::Idle;
+
+	void ChangeState(ShooterState _StateValue);
+	void UpdateState(float _DeltaTime);
+
+	void IdleStart();
+	void IdleUpdate(float _DeltaTime);
+	void IdleEnd();
+
+	void AttackStart();
+	void AttackUpdate(float _DeltaTime);
+	void AttackEnd();
 };
 

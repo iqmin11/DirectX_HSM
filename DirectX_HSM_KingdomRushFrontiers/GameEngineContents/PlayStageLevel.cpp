@@ -5,7 +5,7 @@
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineCamera.h>
-#include <GameEngineBase/GameEngineTimeEvent.h>
+#include <GameEngineCore/GameEngineSprite.h>
 
 #include "MousePointer.h"
 #include "StageBg.h"
@@ -54,7 +54,8 @@ void PlayStageLevel::Start()
 	KeySet(); 
 	LoadPlayLevelTexture("Enemies");
 	LoadPlayLevelTexture("StageBg");
-	LoadPlayLevelTexture("Tower");
+	LoadPlayLevelTexture("RangedTower");
+	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	
@@ -253,6 +254,28 @@ void PlayStageLevel::LoadPlayLevelTexture(std::string_view _Folder)
 	{
 		GameEngineTexture::Load(File[i].GetFullPath());
 	}
+}
+
+void PlayStageLevel::LoadPlayLevelAnimation()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("3.PLAY STAGE LEVEL");
+	Dir.Move("RangedTowerShooterAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Idle_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Idle_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Idle_Up").GetFullPath());
 }
 
 

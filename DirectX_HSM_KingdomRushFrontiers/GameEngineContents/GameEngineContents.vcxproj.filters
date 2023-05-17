@@ -177,6 +177,9 @@
     <ClCompile Include="BaseShootingTower.cpp">
       <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClCompile>
+    <ClCompile Include="Ranged_Shooter_State.cpp">
+      <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

@@ -35,6 +35,8 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 	LocalAc->GetTransform()->SetWorldPosition(LocalAc->ActorPos);
 	LocalAc->Shooter0->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter1->SetTargetPos(LocalAc->TargetPos);
+	LocalAc->Shooter0->GetTransform()->SetParent(LocalAc->GetTransform());
+	LocalAc->Shooter1->GetTransform()->SetParent(LocalAc->GetTransform());
 	return LocalAc;
 }
 
