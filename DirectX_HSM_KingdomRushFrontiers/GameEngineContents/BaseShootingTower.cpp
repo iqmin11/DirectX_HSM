@@ -30,6 +30,12 @@ void BaseShootingTower::Update(float _DeltaTime)
 	{
 		TargetMonster = FindTargetMonster();
 		CalTargetPos();
+		Time += _DeltaTime;
+		if (Time >= Data.FireRate)
+		{
+			Time = 0;
+			Attack();
+		}
 	}
 	else
 	{
@@ -65,7 +71,7 @@ void BaseShootingTower::CalTargetPos()
 	float4 CurPos = TargetMonster->GetTransform()->GetWorldPosition();
 	float4 Dir = TargetMonster->GetMonsterDir();
 	float MonsterSpeed = TargetMonster->GetMonsterSpeed();
-	float BulletSpeed = 1.0f;
+	float BulletSpeed = 1.0f; // 나중에 여기만 수정해야할듯....
 
 	TargetPos = CurPos + Dir * MonsterSpeed * BulletSpeed;
 }

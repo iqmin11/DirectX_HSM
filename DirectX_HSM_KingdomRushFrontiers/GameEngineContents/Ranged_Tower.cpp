@@ -118,25 +118,15 @@ void Ranged_Tower::Start()
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	Attack = std::bind(&Ranged_Tower::RangerAttack, this);
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
 {
 	BaseShootingTower::Update(_DeltaTime);
-
 	if (GameEngineInput::IsUp("Space"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level3);
-	}
-
-	if (IsThereTarget())
-	{
-		Time += _DeltaTime;
-		if (Time >= Data.FireRate)
-		{
-			Time = 0;
-			RangerAttack();
-		}
 	}
 }
 

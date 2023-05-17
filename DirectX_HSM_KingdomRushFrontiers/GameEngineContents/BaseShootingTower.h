@@ -23,7 +23,9 @@ protected:
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
-	
+	std::function<void()> Attack = nullptr;
+
+
 	bool IsThereTarget();
 
 private:
