@@ -58,29 +58,23 @@ void Ranged_Tower::ChangeTowerRender(TowerEnum _Tower)
 
 void Ranged_Tower::ChangeShooter(TowerEnum _Tower)
 {
+	Shooter0->ChangeShooterRenderer(_Tower);
+	Shooter1->ChangeShooterRenderer(_Tower);
 	switch (_Tower)
 	{
 	case TowerEnum::RangedTower_Level1:
-		Shooter0->ChangeShooterRenderer(_Tower);
-		Shooter1->ChangeShooterRenderer(_Tower);
 		Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
 		break;
 	case TowerEnum::RangedTower_Level2:
-		Shooter0->ChangeShooterRenderer(_Tower);
-		Shooter1->ChangeShooterRenderer(_Tower);
 		Shooter0->GetTransform()->SetLocalPosition(Lv2Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv2Shooter1LocalPos);
 		break;
 	case TowerEnum::RangedTower_Level3:
-		Shooter0->ChangeShooterRenderer(_Tower);
-		Shooter1->ChangeShooterRenderer(_Tower);
 		Shooter0->GetTransform()->SetLocalPosition(Lv3Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv3Shooter1LocalPos);
 		break;
 	case TowerEnum::RangedTower_Level4:
-		Shooter0->ChangeShooterRenderer(_Tower);
-		Shooter1->ChangeShooterRenderer(_Tower);
 		Shooter0->GetTransform()->SetLocalPosition(Lv4Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv4Shooter1LocalPos);
 		break;
@@ -106,7 +100,7 @@ void Ranged_Tower::RangerAttack()
 
 void Ranged_Tower::Start()
 {
-	BaseTower::Start();
+	BaseShootingTower::Start();
 
 	Data.SetData(TowerEnum::RangedTower_Level1);
 
@@ -115,7 +109,7 @@ void Ranged_Tower::Start()
 
 	Shooter0 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter0->GetTransform()->SetParent(GetTransform());
-	Shooter0->GetTransform()->SetLocalPosition({ 14,47 }); // 2 7
+	Shooter0->GetTransform()->SetLocalPosition({ 14,47 });
 	Shooter0->SetTowerData(&Data);
 	Shooter1 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter1->GetTransform()->SetParent(GetTransform());
@@ -124,17 +118,11 @@ void Ranged_Tower::Start()
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-
-	//Test
-	//TestTargetRender = CreateComponent<GameEngineSpriteRenderer>();
-	//TestTargetCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
-	//TestTargetCol->GetTransform()->SetParent(TestTargetRender->GetTransform());
-	//TestTargetRender->GetTransform()->SetWorldScale({ 5,5 });
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
 {
-	BaseTower::Update(_DeltaTime);
+	BaseShootingTower::Update(_DeltaTime);
 
 	if (GameEngineInput::IsUp("Space"))
 	{
@@ -150,29 +138,6 @@ void Ranged_Tower::Update(float _DeltaTime)
 			RangerAttack();
 		}
 	}
-
-	////Test
-	//if (GameEngineInput::IsPress("LeftArrow"))
-	//{
-	//	TargetPos += float4::Left;
-	//}
-
-	//if (GameEngineInput::IsPress("RightArrow"))
-	//{
-	//	TargetPos += float4::Right;
-	//}
-
-	//if (GameEngineInput::IsPress("DownArrow"))
-	//{
-	//	TargetPos += float4::Down;
-	//}
-
-	//if (GameEngineInput::IsPress("UpArrow"))
-	//{
-	//	TargetPos += float4::Up;
-	//}
-
-	//TestTargetRender->GetTransform()->SetWorldPosition(TargetPos);
 }
 
 

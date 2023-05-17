@@ -1,7 +1,7 @@
 #pragma once
-#include "BaseTower.h"
+#include "BaseShootingTower.h"
 
-class Ranged_Tower : public BaseTower
+class Ranged_Tower : public BaseShootingTower
 {
 public:
 	// construtor destructor
