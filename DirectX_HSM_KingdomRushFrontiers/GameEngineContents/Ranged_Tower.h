@@ -50,4 +50,3 @@ public:
 	static const float4 Lv4Shooter0LocalPos;
 	static const float4 Lv4Shooter1LocalPos;
 };
-

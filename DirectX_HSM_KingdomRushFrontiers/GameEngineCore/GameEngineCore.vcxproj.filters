@@ -136,6 +136,13 @@
     <ClInclude Include="GameEngineSprite.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineTileMapRenderer.h">
+      <Filter>Object\Rendering\Component\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineContentRenderingStruct.h" />
+    <ClInclude Include="GameEngineFSM.h">
+      <Filter>ContentPattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -269,6 +276,12 @@
     <ClCompile Include="GameEngineSprite.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineTileMapRenderer.cpp">
+      <Filter>Object\Rendering\Component\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineFSM.cpp">
+      <Filter>ContentPattern</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -336,6 +349,9 @@
     </Filter>
     <Filter Include="UI\SubWindow">
       <UniqueIdentifier>{859ba241-b31b-46ce-977a-aa8850fb59ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentPattern">
+      <UniqueIdentifier>{6f0be47a-6daf-4931-8724-92c7ad146403}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -340,6 +340,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseShootingTower_State.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BaseTower.cpp">
       <SubType>
       </SubType>

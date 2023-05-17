@@ -39,7 +39,7 @@ void TestLevel::Start()
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	std::shared_ptr<TestActor> AcTest = CreateActor<TestActor>("TestActor");
+	std::shared_ptr<TestActor> AcTest = CreateActorToName<TestActor>("TestActor");
 
 	GameEngineInput::CreateKey("TitleLevel", '1');
 	GameEngineInput::CreateKey("WorldMapLevel", '2');

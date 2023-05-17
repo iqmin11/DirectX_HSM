@@ -16,7 +16,6 @@ const float4 Ranged_Tower::Lv3Shooter1LocalPos = { -10,54 };
 const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,54 };
 const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,54 };
 
-
 Ranged_Tower::Ranged_Tower()
 {
 
