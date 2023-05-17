@@ -23,6 +23,7 @@ enum class ColOrder
 	Monster,
 	UI,
 	MousePointer,
+	Tower,
 };
 
 enum class MonsterEnum

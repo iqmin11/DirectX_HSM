@@ -7,6 +7,16 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Shooter.h"
 
+const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47 };
+const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47 };
+const float4 Ranged_Tower::Lv2Shooter0LocalPos = { 14,49 };;
+const float4 Ranged_Tower::Lv2Shooter1LocalPos = { -10,49 };
+const float4 Ranged_Tower::Lv3Shooter0LocalPos = { 14,54 };
+const float4 Ranged_Tower::Lv3Shooter1LocalPos = { -10,54 };
+const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,54 };
+const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,54 };
+
+
 Ranged_Tower::Ranged_Tower()
 {
 
@@ -48,8 +58,35 @@ void Ranged_Tower::ChangeTowerRender(TowerEnum _Tower)
 
 void Ranged_Tower::ChangeShooter(TowerEnum _Tower)
 {
-	Shooter0->ChangeShooterRenderer(_Tower);
-	Shooter1->ChangeShooterRenderer(_Tower);
+	switch (_Tower)
+	{
+	case TowerEnum::RangedTower_Level1:
+		Shooter0->ChangeShooterRenderer(_Tower);
+		Shooter1->ChangeShooterRenderer(_Tower);
+		Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
+		Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
+		break;
+	case TowerEnum::RangedTower_Level2:
+		Shooter0->ChangeShooterRenderer(_Tower);
+		Shooter1->ChangeShooterRenderer(_Tower);
+		Shooter0->GetTransform()->SetLocalPosition(Lv2Shooter0LocalPos);
+		Shooter1->GetTransform()->SetLocalPosition(Lv2Shooter1LocalPos);
+		break;
+	case TowerEnum::RangedTower_Level3:
+		Shooter0->ChangeShooterRenderer(_Tower);
+		Shooter1->ChangeShooterRenderer(_Tower);
+		Shooter0->GetTransform()->SetLocalPosition(Lv3Shooter0LocalPos);
+		Shooter1->GetTransform()->SetLocalPosition(Lv3Shooter1LocalPos);
+		break;
+	case TowerEnum::RangedTower_Level4:
+		Shooter0->ChangeShooterRenderer(_Tower);
+		Shooter1->ChangeShooterRenderer(_Tower);
+		Shooter0->GetTransform()->SetLocalPosition(Lv4Shooter0LocalPos);
+		Shooter1->GetTransform()->SetLocalPosition(Lv4Shooter1LocalPos);
+		break;
+	default:
+		break;
+	}
 }
 
 void Ranged_Tower::RangerAttack()
@@ -78,11 +115,11 @@ void Ranged_Tower::Start()
 
 	Shooter0 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter0->GetTransform()->SetParent(GetTransform());
-	Shooter0->GetTransform()->SetLocalPosition({ 14,31 });
+	Shooter0->GetTransform()->SetLocalPosition({ 14,47 }); // 2 7
 	Shooter0->SetTowerData(&Data);
 	Shooter1 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter1->GetTransform()->SetParent(GetTransform());
-	Shooter1->GetTransform()->SetLocalPosition({ -10,31 });
+	Shooter1->GetTransform()->SetLocalPosition({ -10,47 });
 	Shooter1->SetTowerData(&Data);
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
@@ -101,7 +138,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsUp("Space"))
 	{
-		ChangeTower(TowerEnum::RangedTower_Level2);
+		ChangeTower(TowerEnum::RangedTower_Level3);
 	}
 
 	if (IsThereTarget())

@@ -83,6 +83,9 @@
     <ClInclude Include="BuildArea.h">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClInclude>
+    <ClInclude Include="MousePointer.h">
+      <Filter>0.Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -165,6 +168,9 @@
     <ClCompile Include="BuildArea.cpp">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClCompile>
+    <ClCompile Include="MousePointer.cpp">
+      <Filter>0.Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -217,6 +223,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Level">
       <UniqueIdentifier>{7f7abad1-8497-4685-aa31-171076a77f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Base">
+      <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

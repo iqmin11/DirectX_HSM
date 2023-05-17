@@ -7,7 +7,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineBase/GameEngineTimeEvent.h>
 
-
+#include "MousePointer.h"
 #include "StageBg.h"
 #include "MonsterWave.h"
 #include "PlayStageUI.h"
@@ -60,6 +60,7 @@ void PlayStageLevel::Start()
 	
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
+	AcMousePointer = CreateActor<MousePointer>();
 
 	LoadAllStageData();
 	
@@ -288,6 +289,7 @@ void PlayStageLevel::ResetStageBuildArea()
 {
 	for (size_t i = 0; i < AcBuildAreas.size(); i++)
 	{
+		AcBuildAreas[i]->ReleaseChildTower();
 		AcBuildAreas[i]->Death();
 	}
 	AcBuildAreas.clear();

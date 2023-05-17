@@ -40,5 +40,14 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
 	std::shared_ptr<class GameEngineCollision> TestTargetCol = nullptr;
 
+public:
+	static const float4 Lv1Shooter0LocalPos;
+	static const float4 Lv1Shooter1LocalPos;
+	static const float4 Lv2Shooter0LocalPos;
+	static const float4 Lv2Shooter1LocalPos;
+	static const float4 Lv3Shooter0LocalPos;
+	static const float4 Lv3Shooter1LocalPos;
+	static const float4 Lv4Shooter0LocalPos;
+	static const float4 Lv4Shooter1LocalPos;
 };
 
