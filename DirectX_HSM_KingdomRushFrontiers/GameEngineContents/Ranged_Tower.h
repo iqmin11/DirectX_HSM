@@ -35,11 +35,6 @@ private:
 
 	void RangerAttack();
 
-
-	//Test
-	std::shared_ptr<class GameEngineSpriteRenderer> TestTargetRender = nullptr;
-	std::shared_ptr<class GameEngineCollision> TestTargetCol = nullptr;
-
 public:
 	static const float4 Lv1Shooter0LocalPos;
 	static const float4 Lv1Shooter1LocalPos;

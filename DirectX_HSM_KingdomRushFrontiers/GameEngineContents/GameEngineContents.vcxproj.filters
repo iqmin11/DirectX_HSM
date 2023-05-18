@@ -180,9 +180,6 @@
     <ClCompile Include="Ranged_Shooter_State.cpp">
       <Filter>3.PlayStage\Actor\Tower\RangedTower</Filter>
     </ClCompile>
-    <ClCompile Include="BaseShootingTower_State.cpp">
-      <Filter>3.PlayStage\Actor\Tower\Base</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

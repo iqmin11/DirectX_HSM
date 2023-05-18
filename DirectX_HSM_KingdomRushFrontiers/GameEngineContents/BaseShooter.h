@@ -15,11 +15,6 @@ public:
 	BaseShooter& operator=(const BaseShooter& _Other) = delete;
 	BaseShooter& operator=(BaseShooter&& _Other) noexcept = delete;
 
-	const float4& GetActorPos() const
-	{
-		return ActorPos;
-	}
-
 	const float4& GetTargetPos() const
 	{
 		return *TargetPos;
@@ -34,20 +29,21 @@ public:
 	{
 		Data = _Data;
 	}
-
+	
 protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> BaseShooterRenderer = nullptr;
-	std::function<void()> Attack = nullptr;
+	std::function<void(float)> Attack = nullptr;
 	TowerData* Data = nullptr;
+	std::string Dir = std::string();
 
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
-	float4 ActorPos = float4::Zero;
-
 	float Time = 0.0f;
 
 	float4* TargetPos = nullptr;
+
 };
 
 // 현재 레벨에서 Update되고있는 몬스터의 정보를 받아야함.

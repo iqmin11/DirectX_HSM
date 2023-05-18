@@ -4,6 +4,67 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include "BaseShooter.h"
 #include "Ranged_Bullet.h"
-#include "BaseShootingTower.h"
 
+void Ranged_Shooter::IdleStateInit()
+{
+	ShooterFSM.CreateState({
+		.Name = "Idle",
+		.Start = [this]()
+		{
+			if (Data == nullptr)
+			{
+				BaseShooterRenderer->ChangeAnimation("1_Idle_Down");
+				IsShootBullet = false;
+				return;
+			}
+			std::string Label = std::string();
+			Label = std::to_string(Data->Level) + "_Idle_" + Dir;
+			BaseShooterRenderer->ChangeAnimation(Label);
+			IsShootBullet = false;
+		},
+		.Update = [this](float _DeltaTime)
+		{
+			if (StateValue == ShooterState::Attack)
+			{
+				ShooterFSM.ChangeState("Attack");
+				return;
+			}
+		},
+		.End = [this]()
+		{
 
+		}
+		});
+}
+
+void Ranged_Shooter::AttackStateInit()
+{
+	ShooterFSM.CreateState({
+		.Name = "Attack",
+		.Start = [this]()
+		{
+			if (Data == nullptr)
+			{
+				BaseShooterRenderer->ChangeAnimation("1_Attack_Down");
+				IsShootBullet = false;
+				return;
+			}
+			std::string Label = std::string();
+			Label = std::to_string(Data->Level) + "_Attack_" + Dir;
+			BaseShooterRenderer->ChangeAnimation(Label);
+		},
+		.Update = [this](float _DeltaTime)
+		{
+			if (StateValue == ShooterState::Idle)
+			{
+				ShooterFSM.ChangeState("Idle");
+				return;
+			}
+			Attack(_DeltaTime);
+		},
+		.End = [this]()
+		{
+
+		}
+		});
+}

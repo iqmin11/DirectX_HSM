@@ -18,12 +18,12 @@ public:
 
 protected:
 	void Start() override;
+	float4 ActorPos = float4::Zero;
 
 protected:
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerAreaRenderer = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
-	float4 ActorPos = float4::Zero;
 private:
 
 };

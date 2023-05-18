@@ -20,3 +20,15 @@ void BaseShooter::Start()
 {
 	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>();
 }
+
+void BaseShooter::Update(float _DeltaTime)
+{
+	if (GetTransform()->GetWorldPosition().y < TargetPos->y)
+	{
+		Dir = "Up";
+	}
+	else
+	{
+		Dir = "Down";
+	}
+}

@@ -24,21 +24,10 @@ protected:
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
-	std::function<void()> Attack = nullptr;
-	
-	std::function<void()> IdleStart = nullptr;
-	std::function<void(float)> IdleUpdate = nullptr;
-	std::function<void()> IdleEnd = nullptr;
-
 
 	bool IsThereTarget();
-
-	void IdleStateInit(std::function<void()> _Start, std::function<void(float)> _Update, std::function<void()> _End);
-	void AttackStateInit(std::function<void()> _Start, std::function<void(float)> _Update, std::function<void()> _End);
-
 private:
 	float Time = 0.f;
-	GameEngineFSM ShootingTowerFSM = GameEngineFSM();
 
 	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	void CalTargetPos();

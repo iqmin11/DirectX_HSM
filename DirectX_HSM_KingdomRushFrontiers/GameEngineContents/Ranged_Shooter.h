@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseShooter.h"
+#include <GameEngineCore/GameEngineFSM.h>
 
 enum class ShooterState
 {
@@ -21,25 +22,20 @@ public:
 	Ranged_Shooter& operator=(Ranged_Shooter&& _Other) noexcept = delete;
 	
 	void ChangeShooterRenderer(TowerEnum _Tower);
-	void Attack();
+	void Attack(float _DeltaTime);
+	ShooterState StateValue = ShooterState::Idle;
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 	float4 RenderScalse = { 32, 32 };
+	GameEngineFSM ShooterFSM = GameEngineFSM();
+	bool IsShootBullet = false;
+	float Time = 0.0f;
 
-	ShooterState StateValue = ShooterState::Idle;
-
-	void ChangeState(ShooterState _StateValue);
-	void UpdateState(float _DeltaTime);
-
-	void IdleStart();
-	void IdleUpdate(float _DeltaTime);
-	void IdleEnd();
-
-	void AttackStart();
-	void AttackUpdate(float _DeltaTime);
-	void AttackEnd();
+	void IdleStateInit();
+	void AttackStateInit();
 };
 

@@ -88,11 +88,13 @@ void Ranged_Tower::RangerAttack()
 {
 	if (AttackOrder)
 	{
-		Shooter0->Attack();
+		Shooter0->StateValue = ShooterState::Attack;
+		Shooter1->StateValue = ShooterState::Idle;
 	}
 	else
 	{
-		Shooter1->Attack();
+		Shooter0->StateValue = ShooterState::Idle;
+		Shooter1->StateValue = ShooterState::Attack;
 	}
 	AttackOrder = !AttackOrder;
 }
@@ -119,7 +121,7 @@ void Ranged_Tower::Start()
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	Attack = std::bind(&Ranged_Tower::RangerAttack, this);
+	//Attack = std::bind(&Ranged_Tower::RangerAttack, this);
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
@@ -128,6 +130,21 @@ void Ranged_Tower::Update(float _DeltaTime)
 	if (GameEngineInput::IsUp("Space"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level3);
+	}
+
+	if (IsThereTarget())
+	{
+		Time += _DeltaTime;
+		if (Time >= Data.FireRate)
+		{
+			Time = 0;
+			RangerAttack();
+		}
+	}
+	else
+	{
+		Shooter0->StateValue = ShooterState::Idle;
+		Shooter1->StateValue = ShooterState::Idle;
 	}
 }
 

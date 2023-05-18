@@ -30,17 +30,10 @@ void BaseShootingTower::Update(float _DeltaTime)
 	{
 		TargetMonster = FindTargetMonster();
 		CalTargetPos();
-		Time += _DeltaTime;
-		if (Time >= Data.FireRate)
-		{
-			Time = 0;
-			Attack();
-		}
 	}
 	else
 	{
 		TargetMonster = nullptr;
-		TargetPos = float4::Zero;
 	}
 }
 
