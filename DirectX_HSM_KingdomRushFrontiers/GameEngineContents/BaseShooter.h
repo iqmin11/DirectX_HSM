@@ -3,6 +3,12 @@
 #include <GameEngineCore/GameEngineFSM.h>
 #include "ContentsData.h"
 
+enum class ShooterState
+{
+	Idle,
+	Attack
+};
+
 class BaseShooter : public GameEngineActor
 {
 public:
@@ -30,22 +36,27 @@ public:
 	{
 		Data = _Data;
 	}
+
+	ShooterState StateValue = ShooterState::Idle;
 	
 protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> BaseShooterRenderer = nullptr;
-	std::function<void(float)> Attack = nullptr;
+	std::function<void()> Attack = nullptr;
 	TowerData* Data = nullptr;
 	std::string Dir_x = std::string();
 	std::string Dir_y = std::string();
 
 	GameEngineFSM ShooterFSM = GameEngineFSM();
-	std::function<void()> IdleStateInit = nullptr;
-	std::function<void()> AttackStateInit = nullptr;
+	bool IsShootBullet = false;
+
+	void IdleStateInit();
+	void AttackStateInit();
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
+
 	float Time = 0.0f;
 	float4* TargetPos = nullptr;
 

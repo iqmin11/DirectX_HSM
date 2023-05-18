@@ -30,8 +30,8 @@ private:
 
 	float Time = 0.0f;
 	void ChangeTower(TowerEnum _Tower);
-	void ChangeTowerRender(TowerEnum _Tower);
-	void ChangeShooter(TowerEnum _Tower);
+	void ChangeTowerRender(int _TowerLevel);
+	void ChangeShooter(int _TowerLevel);
 
 	void RangerAttack();
 

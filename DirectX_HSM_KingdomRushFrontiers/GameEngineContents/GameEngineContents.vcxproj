@@ -336,6 +336,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseShooter_State.cpp" />
     <ClCompile Include="BaseShootingTower.cpp">
       <SubType>
       </SubType>
@@ -380,7 +381,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Ranged_Shooter_State.cpp" />
     <ClCompile Include="Ranged_Tower.cpp">
       <SubType>
       </SubType>

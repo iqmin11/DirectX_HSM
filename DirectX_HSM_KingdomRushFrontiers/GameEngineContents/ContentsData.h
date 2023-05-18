@@ -59,7 +59,7 @@ public:
 		case TowerEnum::Null:
 			break;
 		case TowerEnum::RangedTower_Level1:
-			TowerType = TowerEnum::RangedTower_Level1;
+			TowerType = TowerEnum::RangedTower;
 			Level = 1;
 			FireRate = 0.8f;
 			Range = 190.f;
@@ -67,7 +67,7 @@ public:
 			Damage_MAX = 6.0f;
 			break;
 		case TowerEnum::RangedTower_Level2:
-			TowerType = TowerEnum::RangedTower_Level2;
+			TowerType = TowerEnum::RangedTower;
 			Level = 2;
 			FireRate = 0.6f;
 			Range = 220.f;
@@ -75,7 +75,7 @@ public:
 			Damage_MAX = 11.0f;
 			break;
 		case TowerEnum::RangedTower_Level3:
-			TowerType = TowerEnum::RangedTower_Level3;
+			TowerType = TowerEnum::RangedTower;
 			Level = 3;
 			FireRate = 0.5f;
 			Range = 245.f;
@@ -83,7 +83,7 @@ public:
 			Damage_MAX = 16.0f;
 			break;
 		case TowerEnum::RangedTower_Level4:
-			TowerType = TowerEnum::RangedTower_Level4;
+			TowerType = TowerEnum::RangedTower;
 			Level = 4;
 			FireRate = 0.5f;
 			Range = 270.f;
@@ -91,7 +91,7 @@ public:
 			Damage_MAX = 23.0f;
 			break;
 		case TowerEnum::MeleeTower_Level1:
-			TowerType = TowerEnum::MeleeTower_Level1;
+			TowerType = TowerEnum::MeleeTower;
 			Level = 1;
 			FireRate = 1.0f;
 			Range = 0.0f;
@@ -99,7 +99,7 @@ public:
 			Damage_MAX = 3.0f;
 			break;
 		case TowerEnum::MeleeTower_Level2:
-			TowerType = TowerEnum::MeleeTower_Level2;
+			TowerType = TowerEnum::MeleeTower;
 			Level = 2;
 			FireRate = 1.6f;
 			Range = 0.0f;
@@ -107,7 +107,7 @@ public:
 			Damage_MAX = 4.0f;
 			break;
 		case TowerEnum::MeleeTower_Level3:
-			TowerType = TowerEnum::MeleeTower_Level3;
+			TowerType = TowerEnum::MeleeTower;
 			Level = 3;
 			FireRate = 1.6f;
 			Range = 0.0f;
@@ -115,7 +115,7 @@ public:
 			Damage_MAX = 10.0f;
 			break;
 		case TowerEnum::MeleeTower_Level4:
-			TowerType = TowerEnum::MeleeTower_Level4;
+			TowerType = TowerEnum::MeleeTower;
 			Level = 4;
 			FireRate = 1.0f;
 			Range = 0.0f;
@@ -123,7 +123,7 @@ public:
 			Damage_MAX = 14.0f;
 			break;
 		case TowerEnum::MagicTower_Level1:
-			TowerType = TowerEnum::MagicTower_Level1;
+			TowerType = TowerEnum::MagicTower;
 			Level = 1;
 			FireRate = 1.5f;
 			Range = 180.f;
@@ -131,7 +131,7 @@ public:
 			Damage_MAX = 17.0f;
 			break;
 		case TowerEnum::MagicTower_Level2:
-			TowerType = TowerEnum::MagicTower_Level2;
+			TowerType = TowerEnum::MagicTower;
 			Level = 2;
 			FireRate = 1.5f;
 			Range = 190.f;
@@ -139,7 +139,7 @@ public:
 			Damage_MAX = 43.0f;
 			break;
 		case TowerEnum::MagicTower_Level3:
-			TowerType = TowerEnum::MagicTower_Level3;
+			TowerType = TowerEnum::MagicTower;
 			Level = 3;
 			FireRate = 1.5f;
 			Range = 220.f;
@@ -147,7 +147,7 @@ public:
 			Damage_MAX = 74.0f;
 			break;
 		case TowerEnum::MagicTower_Level4:
-			TowerType = TowerEnum::MagicTower_Level4;
+			TowerType = TowerEnum::MagicTower;
 			Level = 4;
 			FireRate = 1.5f;
 			Range = 245.f;
@@ -155,7 +155,7 @@ public:
 			Damage_MAX = 120.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level1:
-			TowerType = TowerEnum::ArtilleryTower_Level1;
+			TowerType = TowerEnum::ArtilleryTower;
 			Level = 1;
 			FireRate = 3.0f;
 			Range = 190.f;
@@ -163,7 +163,7 @@ public:
 			Damage_MAX = 15.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level2:
-			TowerType = TowerEnum::ArtilleryTower_Level2;
+			TowerType = TowerEnum::ArtilleryTower;
 			Level = 2;
 			FireRate = 3.0f;
 			Range = 190.f;
@@ -171,7 +171,7 @@ public:
 			Damage_MAX = 40.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level3:
-			TowerType = TowerEnum::ArtilleryTower_Level3;
+			TowerType = TowerEnum::ArtilleryTower;
 			Level = 3;
 			FireRate = 3.0f;
 			Range = 220.f;
@@ -179,7 +179,7 @@ public:
 			Damage_MAX = 60.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level4:
-			TowerType = TowerEnum::ArtilleryTower_Level4;
+			TowerType = TowerEnum::ArtilleryTower;
 			Level = 4;
 			FireRate = 3.0f;
 			Range = 220.f;
@@ -187,6 +187,7 @@ public:
 			Damage_MAX = 45.0f;
 			break;
 		default:
+			MsgAssert("잘못된 TowerTypeEnum값을 넣었습니다.")
 			break;
 		}
 	}

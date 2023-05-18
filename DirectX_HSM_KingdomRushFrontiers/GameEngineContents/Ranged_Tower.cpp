@@ -41,41 +41,41 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 
 void Ranged_Tower::ChangeTower(TowerEnum _Tower)
 {
-	if (0 > static_cast<int>(_Tower) || 3 <= static_cast<int>(_Tower))
+	Data.SetData(_Tower);
+	if (TowerEnum::RangedTower != Data.TowerType)
 	{
 		return;
 	}
-	Data.SetData(_Tower);
-	ChangeTowerRender(_Tower);
-	ChangeShooter(_Tower);
+	ChangeTowerRender(Data.Level);
+	ChangeShooter(Data.Level);
 }
 
-void Ranged_Tower::ChangeTowerRender(TowerEnum _Tower)
+void Ranged_Tower::ChangeTowerRender(int _TowerLevel)
 {
-	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(static_cast<int>(_Tower) + 1) + ".png");
+	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(_TowerLevel) + ".png");
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
-void Ranged_Tower::ChangeShooter(TowerEnum _Tower)
+void Ranged_Tower::ChangeShooter(int _TowerLevel)
 {
-	Shooter0->ChangeShooterRenderer(_Tower);
-	Shooter1->ChangeShooterRenderer(_Tower);
-	switch (_Tower)
+	Shooter0->ChangeShooterRenderer(_TowerLevel);
+	Shooter1->ChangeShooterRenderer(_TowerLevel);
+	switch (_TowerLevel)
 	{
-	case TowerEnum::RangedTower_Level1:
+	case 1:
 		Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
 		break;
-	case TowerEnum::RangedTower_Level2:
+	case 2:
 		Shooter0->GetTransform()->SetLocalPosition(Lv2Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv2Shooter1LocalPos);
 		break;
-	case TowerEnum::RangedTower_Level3:
+	case 3:
 		Shooter0->GetTransform()->SetLocalPosition(Lv3Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv3Shooter1LocalPos);
 		break;
-	case TowerEnum::RangedTower_Level4:
+	case 4:
 		Shooter0->GetTransform()->SetLocalPosition(Lv4Shooter0LocalPos);
 		Shooter1->GetTransform()->SetLocalPosition(Lv4Shooter1LocalPos);
 		break;
