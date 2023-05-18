@@ -17,9 +17,18 @@ void Ranged_Shooter::IdleStateInit()
 				IsShootBullet = false;
 				return;
 			}
+
 			std::string Label = std::string();
-			Label = std::to_string(Data->Level) + "_Idle_" + Dir;
+			Label = std::to_string(Data->Level) + "_Idle_" + Dir_y;
 			BaseShooterRenderer->ChangeAnimation(Label);
+			if (Dir_x == "Left")
+			{
+				BaseShooterRenderer->GetTransform()->SetLocalNegativeScaleX();
+			}
+			else
+			{
+				BaseShooterRenderer->GetTransform()->SetLocalPositiveScaleX();
+			}
 			IsShootBullet = false;
 		},
 		.Update = [this](float _DeltaTime)
@@ -49,9 +58,18 @@ void Ranged_Shooter::AttackStateInit()
 				IsShootBullet = false;
 				return;
 			}
+
 			std::string Label = std::string();
-			Label = std::to_string(Data->Level) + "_Attack_" + Dir;
+			Label = std::to_string(Data->Level) + "_Attack_" + Dir_y;
 			BaseShooterRenderer->ChangeAnimation(Label);
+			if (Dir_x == "Left")
+			{
+				BaseShooterRenderer->GetTransform()->SetLocalNegativeScaleX();
+			}
+			else
+			{
+				BaseShooterRenderer->GetTransform()->SetLocalPositiveScaleX();
+			}
 		},
 		.Update = [this](float _DeltaTime)
 		{

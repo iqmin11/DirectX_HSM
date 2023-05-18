@@ -25,10 +25,19 @@ void BaseShooter::Update(float _DeltaTime)
 {
 	if (GetTransform()->GetWorldPosition().y < TargetPos->y)
 	{
-		Dir = "Up";
+		Dir_y = "Up";
 	}
 	else
 	{
-		Dir = "Down";
+		Dir_y = "Down";
+	}
+
+	if (GetTransform()->GetWorldPosition().x < TargetPos->x)
+	{
+		Dir_x = "Right";
+	}
+	else
+	{
+		Dir_x = "Left";
 	}
 }

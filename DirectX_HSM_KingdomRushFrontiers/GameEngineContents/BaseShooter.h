@@ -34,7 +34,8 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> BaseShooterRenderer = nullptr;
 	std::function<void(float)> Attack = nullptr;
 	TowerData* Data = nullptr;
-	std::string Dir = std::string();
+	std::string Dir_x = std::string();
+	std::string Dir_y = std::string();
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
