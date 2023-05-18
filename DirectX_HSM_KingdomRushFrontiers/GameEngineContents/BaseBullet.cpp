@@ -16,14 +16,14 @@ BaseBullet::~BaseBullet()
 
 }
 
-void BaseBullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor)
-{
-	std::shared_ptr<BaseBullet> Bullet = nullptr;
-	Bullet = _Level->CreateActor<BaseBullet>();
-	Bullet->SetParentPos(_ParentActor->GetTransform()->GetWorldPosition());
-	Bullet->SetTargetPos(dynamic_cast<BaseShooter*>(_ParentActor)->GetTargetPos());
-	Bullet->CalBezierMid();
-}
+//void BaseBullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor)
+//{
+//	std::shared_ptr<BaseBullet> Bullet = nullptr;
+//	Bullet = _Level->CreateActor<BaseBullet>();
+//	Bullet->SetParentPos(_ParentActor->GetTransform()->GetWorldPosition());
+//	Bullet->SetTargetPos(dynamic_cast<BaseShooter*>(_ParentActor)->GetTargetPos());
+//	Bullet->CalBezierMid();
+//}
 
 void BaseBullet::Start()
 {
@@ -33,10 +33,18 @@ void BaseBullet::Start()
 void BaseBullet::Update(float _DeltaTime)
 {
 	Time += _DeltaTime;
-	Ratio = Time; //1초만에 날아감. 날아가는 시간이 고정됨 거리에 따라 투사체의 속도가 달라짐
+	Ratio = Time / BulletTime; //1초만에 날아감. 날아가는 시간이 고정됨 거리에 따라 투사체의 속도가 달라짐
 	
 	//GetTransform()->SetWorldPosition(float4::LerpClamp(ParentPos, TargetPos, Ratio)); // 직사
-	CalBezierBulletTransform(ParentPos, Mid0, Mid1, TargetPos, Ratio); // 곡사
+	if (IsBezier)
+	{
+		CalBezierBulletTransform(ParentPos, Mid0, Mid1, TargetPos, Ratio); // 곡사
+	}
+	else
+	{
+		CalLerpBulletTransform(ParentPos, TargetPos, Ratio);
+	}
+
 	if (Ratio >= 1)
 	{
 		Death();
@@ -66,6 +74,15 @@ void BaseBullet::CalBezierBulletTransform(const float4& _P0, const float4& _P1, 
 
 	float4 Pos = float4::LerpClamp(B0, B1, _Ratio);
 	float ZDeg = atan2(B1.y - B0.y, B1.x - B0.x) * GameEngineMath::RadToDeg;
+	float4 f4Deg = float4{ 0,0,ZDeg,1 };
+	GetTransform()->SetWorldPosition(Pos);
+	GetTransform()->SetWorldRotation(f4Deg);
+}
+
+void BaseBullet::CalLerpBulletTransform(const float4& _P0, const float4& _P3, float _Ratio)
+{
+	float4 Pos = float4::LerpClamp(_P0, _P3, _Ratio);
+	float ZDeg = atan2(_P3.y - _P0.y, _P3.x - _P0.x) * GameEngineMath::RadToDeg;
 	float4 f4Deg = float4{ 0,0,ZDeg,1 };
 	GetTransform()->SetWorldPosition(Pos);
 	GetTransform()->SetWorldRotation(f4Deg);

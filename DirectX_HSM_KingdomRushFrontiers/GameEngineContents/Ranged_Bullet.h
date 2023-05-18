@@ -14,7 +14,7 @@ public:
 	Ranged_Bullet& operator=(const Ranged_Bullet& _Other) = delete;
 	Ranged_Bullet& operator=(Ranged_Bullet&& _Other) noexcept = delete;
 
-	static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor);
+	static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor, TowerData* _Data);
 
 protected:
 	void Start() override;

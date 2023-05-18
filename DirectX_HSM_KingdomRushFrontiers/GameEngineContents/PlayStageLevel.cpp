@@ -286,6 +286,8 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level2_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicBolt_Shoot").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicBolt_Death").GetFullPath());
 
 	Dir.MoveParentToDirectory("MagicTower");
 	Dir.Move("MagicTowerShooterAnimation");

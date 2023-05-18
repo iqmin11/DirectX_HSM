@@ -62,7 +62,7 @@ private:
 	std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
 	std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
 
-	float Speed = 100;
+	float Speed = 50;
 	float Time = 0;
 	float Ratio = 0;
 

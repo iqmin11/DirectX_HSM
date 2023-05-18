@@ -65,6 +65,7 @@ public:
 			Range = 190.f;
 			Damage_min = 4.0f;
 			Damage_MAX = 6.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::RangedTower_Level2:
 			TowerType = TowerEnum::RangedTower;
@@ -73,6 +74,7 @@ public:
 			Range = 220.f;
 			Damage_min = 7.0f;
 			Damage_MAX = 11.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::RangedTower_Level3:
 			TowerType = TowerEnum::RangedTower;
@@ -81,6 +83,7 @@ public:
 			Range = 245.f;
 			Damage_min = 10.0f;
 			Damage_MAX = 16.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::RangedTower_Level4:
 			TowerType = TowerEnum::RangedTower;
@@ -89,6 +92,7 @@ public:
 			Range = 270.f;
 			Damage_min = 15.0f;
 			Damage_MAX = 23.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::MeleeTower_Level1:
 			TowerType = TowerEnum::MeleeTower;
@@ -129,6 +133,7 @@ public:
 			Range = 180.f;
 			Damage_min = 9.0f;
 			Damage_MAX = 17.0f;
+			BulletTime = 0.5f;
 			break;
 		case TowerEnum::MagicTower_Level2:
 			TowerType = TowerEnum::MagicTower;
@@ -137,6 +142,7 @@ public:
 			Range = 190.f;
 			Damage_min = 23.0f;
 			Damage_MAX = 43.0f;
+			BulletTime = 0.5f;
 			break;
 		case TowerEnum::MagicTower_Level3:
 			TowerType = TowerEnum::MagicTower;
@@ -145,6 +151,7 @@ public:
 			Range = 220.f;
 			Damage_min = 40.0f;
 			Damage_MAX = 74.0f;
+			BulletTime = 0.5f;
 			break;
 		case TowerEnum::MagicTower_Level4:
 			TowerType = TowerEnum::MagicTower;
@@ -153,6 +160,7 @@ public:
 			Range = 245.f;
 			Damage_min = 60.0f;
 			Damage_MAX = 120.0f;
+			BulletTime = 0.5f;
 			break;
 		case TowerEnum::ArtilleryTower_Level1:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -161,6 +169,7 @@ public:
 			Range = 190.f;
 			Damage_min = 8.0f;
 			Damage_MAX = 15.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level2:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -169,6 +178,7 @@ public:
 			Range = 190.f;
 			Damage_min = 20.0f;
 			Damage_MAX = 40.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level3:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -177,6 +187,7 @@ public:
 			Range = 220.f;
 			Damage_min = 30.0f;
 			Damage_MAX = 60.0f;
+			BulletTime = 1.0f;
 			break;
 		case TowerEnum::ArtilleryTower_Level4:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -185,6 +196,7 @@ public:
 			Range = 220.f;
 			Damage_min = 25.0f;
 			Damage_MAX = 45.0f;
+			BulletTime = 1.0f;
 			break;
 		default:
 			MsgAssert("잘못된 TowerTypeEnum값을 넣었습니다.")
@@ -199,6 +211,7 @@ public:
 	float Range = 0.0f;
 	float Damage_min = 0.0f;
 	float Damage_MAX = 0.0f;
+	float BulletTime = 1.0f;
 };
 
 //const float TowerData::180.f = 180.f;

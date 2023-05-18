@@ -22,11 +22,13 @@ void Ranged_Bullet::Start()
 	BulletRenderer->SetTexture("arrow.png");
 }
 
-void Ranged_Bullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor)
+void Ranged_Bullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor, TowerData* _Data)
 {
 	std::shared_ptr<Ranged_Bullet> Bullet = nullptr;
 	Bullet = _Level->CreateActor<Ranged_Bullet>();
 	Bullet->SetParentPos(_ParentActor->GetTransform()->GetWorldPosition());
 	Bullet->SetTargetPos(dynamic_cast<Ranged_Shooter*>(_ParentActor)->GetTargetPos());
 	Bullet->CalBezierMid();
+	Bullet->IsBezier = true;
+	Bullet->BulletTime = _Data->BulletTime;
 }

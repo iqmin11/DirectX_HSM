@@ -83,7 +83,7 @@ void BaseShooter::AttackStateInit()
 				ShooterFSM.ChangeState("Idle");
 				return;
 			}
-			Attack();
+			//Attack();
 		},
 		.End = [this]()
 		{
