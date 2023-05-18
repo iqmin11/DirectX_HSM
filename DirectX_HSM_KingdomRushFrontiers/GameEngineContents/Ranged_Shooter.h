@@ -1,7 +1,5 @@
 #pragma once
 #include "BaseShooter.h"
-#include <GameEngineCore/GameEngineFSM.h>
-
 
 class Ranged_Shooter : public BaseShooter
 {

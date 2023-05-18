@@ -112,11 +112,11 @@ void Ranged_Tower::Start()
 
 	Shooter0 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter0->GetTransform()->SetParent(GetTransform());
-	Shooter0->GetTransform()->SetLocalPosition({ 14,47 });
+	Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
 	Shooter0->SetTowerData(&Data);
 	Shooter1 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter1->GetTransform()->SetParent(GetTransform());
-	Shooter1->GetTransform()->SetLocalPosition({ -10,47 });
+	Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
 	Shooter1->SetTowerData(&Data);
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
@@ -127,6 +127,7 @@ void Ranged_Tower::Start()
 void Ranged_Tower::Update(float _DeltaTime)
 {
 	BaseShootingTower::Update(_DeltaTime);
+	//Test
 	if (GameEngineInput::IsUp("Space"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level3);
@@ -140,11 +141,6 @@ void Ranged_Tower::Update(float _DeltaTime)
 			Time = 0;
 			RangerAttack();
 		}
-	}
-	else
-	{
-		Shooter0->StateValue = ShooterState::Idle;
-		Shooter1->StateValue = ShooterState::Idle;
 	}
 }
 

@@ -89,6 +89,15 @@
     <ClInclude Include="BaseShootingTower.h">
       <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClInclude>
+    <ClInclude Include="Magic_Bullet.h">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic_Shooter.h">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic_Tower.h">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -180,6 +189,15 @@
     <ClCompile Include="BaseShooter_State.cpp">
       <Filter>3.PlayStage\Actor\Tower\Base</Filter>
     </ClCompile>
+    <ClCompile Include="Magic_Bullet.cpp">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic_Shooter.cpp">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Magic_Tower.cpp">
+      <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -235,6 +253,9 @@
     </Filter>
     <Filter Include="0.Base">
       <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\MagicTower">
+      <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

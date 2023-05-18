@@ -217,6 +217,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Magic_Bullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Magic_Shooter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Magic_Tower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MousePointer.h">
       <SubType>
       </SubType>
@@ -368,6 +380,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Magic_Bullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Magic_Shooter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Magic_Tower.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="MousePointer.cpp">
       <SubType>

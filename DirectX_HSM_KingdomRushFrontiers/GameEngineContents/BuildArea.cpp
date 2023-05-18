@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Tower.h"
+#include "Magic_Tower.h"
 
 BuildArea::BuildArea()
 {
@@ -56,15 +57,28 @@ void BuildArea::Update(float _DeltaTime)
 		On();
 	}
 
-	if (IsAreaClick())
+	if (IsAreaLeftClick())
 	{
 		ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
 	}
+	if (IsAreaRightClick())
+	{
+		ChildTower = Magic_Tower::CreateTower(GetLevel(), ActorPos);
+	}
 }
 
-bool BuildArea::IsAreaClick()
+bool BuildArea::IsAreaLeftClick()
 {
 	if (nullptr != BuildAreaCol->Collision(ColOrder::MousePointer, ColType::AABBBOX2D, ColType::AABBBOX2D) && GameEngineInput::IsUp("LeftClick"))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool BuildArea::IsAreaRightClick()
+{
+	if (nullptr != BuildAreaCol->Collision(ColOrder::MousePointer, ColType::AABBBOX2D, ColType::AABBBOX2D) && GameEngineInput::IsUp("RightClick"))
 	{
 		return true;
 	}

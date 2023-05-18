@@ -55,6 +55,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("Enemies");
 	LoadPlayLevelTexture("StageBg");
 	LoadPlayLevelTexture("RangedTower");
+	LoadPlayLevelTexture("TowerBase");
 	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
@@ -276,6 +277,23 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Idle_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Idle_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Idle_Up").GetFullPath());
+
+	Dir.MoveParentToDirectory("RangedTowerShooterAnimation");
+	Dir.Move("MagicTower");
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level1_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level1_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level2_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level2_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Idle").GetFullPath());
+
+	Dir.MoveParentToDirectory("MagicTower");
+	Dir.Move("MagicTowerShooterAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Up").GetFullPath());
 }
 
 

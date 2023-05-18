@@ -73,6 +73,11 @@ void BaseShooter::AttackStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			if (BaseShooterRenderer->IsAnimationEnd())
+			{
+				StateValue = ShooterState::Idle;
+			}
+
 			if (StateValue == ShooterState::Idle)
 			{
 				ShooterFSM.ChangeState("Idle");
@@ -82,7 +87,6 @@ void BaseShooter::AttackStateInit()
 		},
 		.End = [this]()
 		{
-
 		}
 		});
 }
