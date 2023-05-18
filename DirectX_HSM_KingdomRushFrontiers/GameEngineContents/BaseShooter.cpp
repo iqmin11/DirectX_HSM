@@ -23,7 +23,14 @@ void BaseShooter::Start()
 
 void BaseShooter::Update(float _DeltaTime)
 {
-	if (GetTransform()->GetWorldPosition().y < TargetPos->y)
+	CheckDir();
+	ShooterFSM.Update(_DeltaTime);
+}
+
+void BaseShooter::CheckDir()
+{
+	float4 WorldPos = GetTransform()->GetWorldPosition();
+	if (WorldPos.y < TargetPos->y)
 	{
 		Dir_y = "Up";
 	}
@@ -32,7 +39,7 @@ void BaseShooter::Update(float _DeltaTime)
 		Dir_y = "Down";
 	}
 
-	if (GetTransform()->GetWorldPosition().x < TargetPos->x)
+	if (WorldPos.x < TargetPos->x)
 	{
 		Dir_x = "Right";
 	}

@@ -27,11 +27,11 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
+	//void Update(float _DeltaTime) override;
 
 private:
 	float4 RenderScalse = { 32, 32 };
-	GameEngineFSM ShooterFSM = GameEngineFSM();
+	//GameEngineFSM ShooterFSM = GameEngineFSM();
 	bool IsShootBullet = false;
 	float Time = 0.0f;
 

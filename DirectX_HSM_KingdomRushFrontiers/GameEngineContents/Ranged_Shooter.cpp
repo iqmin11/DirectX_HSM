@@ -20,6 +20,11 @@ void Ranged_Shooter::Start()
 {
 	BaseShooter::Start();
 	BaseShooter::Attack = std::bind(&Ranged_Shooter::Attack, this, std::placeholders::_1);
+	//BaseShooter::IdleStateInit = std::bind(&Ranged_Shooter::IdleStateInit, this);
+	//BaseShooter::AttackStateInit = std::bind(&Ranged_Shooter::AttackStateInit, this);
+	//BaseShooter::IdleStateInit();
+	//BaseShooter::AttackStateInit();
+
 	BaseShooterRenderer->CreateAnimation({.AnimationName = "1_Attack_Down", .SpriteName = "RangedLv1_Shooter_Attack_Down",.Loop = false});
 	BaseShooterRenderer->CreateAnimation({.AnimationName = "1_Attack_Up", .SpriteName = "RangedLv1_Shooter_Attack_Up",.Loop = false });
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "1_Idle_Down", .SpriteName = "RangedLv1_Shooter_Idle_Down",.Loop = false });
@@ -38,16 +43,15 @@ void Ranged_Shooter::Start()
 	BaseShooterRenderer->GetTransform()->SetWorldScale(RenderScalse);
 
 	BaseShooterRenderer->ChangeAnimation("1_Idle_Down");
-	IdleStateInit();
-	AttackStateInit();
+
 	ShooterFSM.ChangeState("Idle");
 }
 
-void Ranged_Shooter::Update(float _DeltaTime)
-{
-	BaseShooter::Update(_DeltaTime);
-	ShooterFSM.Update(_DeltaTime);
-}
+//void Ranged_Shooter::Update(float _DeltaTime)
+//{
+//	BaseShooter::Update(_DeltaTime);
+//	ShooterFSM.Update(_DeltaTime);
+//}
 
 void Ranged_Shooter::ChangeShooterRenderer(TowerEnum _Tower)
 {
@@ -63,6 +67,3 @@ void Ranged_Shooter::Attack(float _DeltaTime)
 	}
 }
 
-//타겟 위치와 내위치의 차이로 구할 수 있는 Dir,
-//타겟 몬스터가 정해졌나 안정해졌나로 알 수 있는 State,
-//타워 데이터 받아오면 알 수 있는 AnimationChange가 필요.

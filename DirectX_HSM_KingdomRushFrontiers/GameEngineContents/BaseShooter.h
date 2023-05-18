@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/GameEngineFSM.h>
 #include "ContentsData.h"
 
 class BaseShooter : public GameEngineActor
@@ -37,14 +38,18 @@ protected:
 	std::string Dir_x = std::string();
 	std::string Dir_y = std::string();
 
+	GameEngineFSM ShooterFSM = GameEngineFSM();
+	std::function<void()> IdleStateInit = nullptr;
+	std::function<void()> AttackStateInit = nullptr;
+
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
 	float Time = 0.0f;
-
 	float4* TargetPos = nullptr;
 
+	void CheckDir();
 };
 
 // 현재 레벨에서 Update되고있는 몬스터의 정보를 받아야함.
