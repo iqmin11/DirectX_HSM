@@ -25,7 +25,7 @@ public:
 		return Load(_Path, Path.GetFileName(), _EntryPoint, _VersionHigh, _VersionLow);
 	}
 
-	static std::shared_ptr<GameEngineVertexShader> Load(const std::string_view& _Path, const std::string_view& _Name, const std::string_view& _EntryPoint, UINT _VersionHigh = 5, UINT _VersionLow = 0)
+	static std::shared_ptr<GameEngineVertexShader> Load(const std::string_view& _Path, const std::string_view& _Name, const std::string_view& _EntryPoint,  UINT _VersionHigh = 5, UINT _VersionLow = 0)
 	{
 		std::shared_ptr<GameEngineVertexShader> Res = GameEngineVertexShader::Create(_Name);
 		Res->ShaderLoad(_Path, _EntryPoint, _VersionHigh, _VersionLow);

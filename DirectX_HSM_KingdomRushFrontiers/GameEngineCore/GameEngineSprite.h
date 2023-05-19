@@ -53,12 +53,12 @@ public:
 	//	return;
 	//}
 
-	size_t GetSpriteCount()
+	size_t GetSpriteCount() 
 	{
 		return Sprites.size();
 	}
 
-	const SpriteInfo& GetSpriteInfo(size_t _Index)
+	const SpriteInfo& GetSpriteInfo(size_t _Index) 
 	{
 		if (_Index < 0)
 		{

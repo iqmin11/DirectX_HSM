@@ -34,7 +34,7 @@ public:
 			return ConstantBufferRes[_Byte][UpperName];
 		}
 
-
+		
 		std::shared_ptr<GameEngineConstantBuffer> Buffer = CreateUnNamed();
 		Buffer->SetName(UpperName);
 		ConstantBufferRes[_Byte][UpperName] = Buffer;

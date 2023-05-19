@@ -2,7 +2,7 @@
 #include <functional>
 #include <map>
 
-class StateParameter
+class StateParameter 
 {
 public:
 	std::string_view Name;
@@ -15,7 +15,7 @@ public:
 class GameEngineFSM
 {
 public:
-	class State
+	class State 
 	{
 	public:
 		std::string Name;

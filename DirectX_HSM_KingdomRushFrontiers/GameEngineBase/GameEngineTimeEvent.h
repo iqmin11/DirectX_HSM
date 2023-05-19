@@ -6,7 +6,7 @@
 class GameEngineTimeEvent
 {
 public:
-	class TimeEvent
+	class TimeEvent 
 	{
 		friend GameEngineTimeEvent;
 
@@ -30,11 +30,14 @@ public:
 	GameEngineTimeEvent& operator=(const GameEngineTimeEvent& _Other) = delete;
 	GameEngineTimeEvent& operator=(GameEngineTimeEvent&& _Other) noexcept = delete;
 
-	void AddEvent(float _Time, std::function<void(TimeEvent&, GameEngineTimeEvent*)> _Event, bool _Loop = false);
+	void AddEvent(float Time, std::function<void(TimeEvent&, GameEngineTimeEvent*)> _Event, bool _Loop = false);
 
 	void Update(float _DeltaTime);
 
 private:
+
+	// [event1][      ][event3]
+
 	std::list<TimeEvent> Events;
 };
 

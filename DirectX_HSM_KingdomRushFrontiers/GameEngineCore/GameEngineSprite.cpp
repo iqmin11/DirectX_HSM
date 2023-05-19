@@ -1,11 +1,11 @@
 #include "PrecompileHeader.h"
 #include "GameEngineSprite.h"
 
-GameEngineSprite::GameEngineSprite()
+GameEngineSprite::GameEngineSprite() 
 {
 }
 
-GameEngineSprite::~GameEngineSprite()
+GameEngineSprite::~GameEngineSprite() 
 {
 }
 
@@ -18,7 +18,7 @@ void GameEngineSprite::ResLoadFolder(const std::string_view& _Path)
 		MsgAssert("디렉토리가 아닌 경로입니다." + std::string(_Path));
 	}
 
-	std::vector<GameEngineFile> AllFile = Dir.GetAllFile({ ".png", ".jpg" });
+ 	std::vector<GameEngineFile> AllFile = Dir.GetAllFile({".png", ".jpg"});
 
 	if (0 >= AllFile.size())
 	{
@@ -32,7 +32,7 @@ void GameEngineSprite::ResLoadFolder(const std::string_view& _Path)
 	for (size_t i = 0; i < AllFile.size(); i++)
 	{
 		GameEngineFile& File = AllFile[i];
-		std::shared_ptr<GameEngineTexture> Texture = GameEngineTexture::Load(File.GetFullPath());
+		std::shared_ptr<GameEngineTexture> Texture =  GameEngineTexture::Load(File.GetFullPath());
 
 		Sprites[i].Texture = Texture;
 		Sprites[i].CutData.PosX = 0.0f;
@@ -58,7 +58,7 @@ void GameEngineSprite::ResLoadSheet(const std::string_view& _Path, size_t _X, si
 
 	Sprites.resize(_Y * _X);
 
-	float4 UVScale = { 1.0f / static_cast<float>(_X), 1.0f / static_cast<float>(_Y) };
+	float4 UVScale = { 1.0f/ static_cast<float>(_X), 1.0f / static_cast<float>(_Y) };
 
 	float4 Start = float4::Zero;
 

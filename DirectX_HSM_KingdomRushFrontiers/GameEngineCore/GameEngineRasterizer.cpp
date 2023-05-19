@@ -1,16 +1,16 @@
 #include "PrecompileHeader.h"
 #include "GameEngineRasterizer.h"
 
-GameEngineRasterizer::GameEngineRasterizer()
+GameEngineRasterizer::GameEngineRasterizer() 
 {
 }
 
-GameEngineRasterizer::~GameEngineRasterizer()
+GameEngineRasterizer::~GameEngineRasterizer() 
 {
 	Release();
 }
 
-void GameEngineRasterizer::Setting()
+void GameEngineRasterizer::Setting() 
 {
 	if (nullptr == CurState)
 	{
@@ -35,7 +35,7 @@ void GameEngineRasterizer::Release()
 	}
 }
 
-void GameEngineRasterizer::ResCreate(const D3D11_RASTERIZER_DESC& _Value)
+void GameEngineRasterizer::ResCreate(const D3D11_RASTERIZER_DESC& _Value) 
 {
 	Release();
 	Desc = _Value;

@@ -20,7 +20,7 @@ FMOD::System* SoundSystem = nullptr;
 class SoundSystemCreator
 {
 public:
-	SoundSystemCreator()
+	SoundSystemCreator() 
 	{
 		FMOD::System_Create(&SoundSystem);
 
@@ -33,10 +33,10 @@ public:
 		{
 			MsgAssert("사운드 시스템 이니셜라이즈에 실패했습니다.");
 		}
-
+		
 	}
 
-	~SoundSystemCreator()
+	~SoundSystemCreator() 
 	{
 		SoundSystem->release();
 	}
@@ -55,15 +55,15 @@ void GameEngineSound::SoundUpdate()
 	SoundSystem->update();
 }
 
-GameEngineSound::GameEngineSound()
+GameEngineSound::GameEngineSound() 
 {
 }
 
-GameEngineSound::~GameEngineSound()
+GameEngineSound::~GameEngineSound() 
 {
 }
 
-void GameEngineSound::SoundLoad(const std::string_view& _Path)
+void GameEngineSound::SoundLoad(const std::string_view& _Path) 
 {
 	std::string UTF8Path = GameEngineString::AnsiToUTF8(_Path);
 

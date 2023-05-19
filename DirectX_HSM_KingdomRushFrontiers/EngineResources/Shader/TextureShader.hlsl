@@ -61,24 +61,24 @@ cbuffer AtlasData : register(b1)
 
 OutPut Texture_VS(Input _Value)
 {
-    OutPut OutPutValue = (OutPut)0;
-
+    OutPut OutPutValue = (OutPut) 0;
+	
     _Value.Pos.w = 1.0f;
     OutPutValue.Pos = mul(_Value.Pos, WorldViewProjectionMatrix);
     // OutPutValue.UV = _Value.UV;
-
+    
     // [][]
     // [][]
-
+    
     // 0.5 0.0  0.5 0.5 
-
+    
     // 0,0    1,0
     //
     //
     // 0,1    1,1
     OutPutValue.UV.x = (_Value.UV.x * FrameScale.x) + FramePos.x;
     OutPutValue.UV.y = (_Value.UV.y * FrameScale.y) + FramePos.y;
-
+    
     return OutPutValue;
 }
 
@@ -91,12 +91,20 @@ cbuffer ColorOption : register(b0)
 Texture2D DiffuseTex : register(t0);
 SamplerState WRAPSAMPLER : register(s0);
 
+struct OutColor
+{
+    float4 Color0 : SV_Target0;
+    float4 Color1 : SV_Target1;
+    float4 Color2 : SV_Target2;
+    float4 Color3 : SV_Target3;
+};
+
 float4 Texture_PS(OutPut _Value) : SV_Target0
 {
     float4 Color = DiffuseTex.Sample(WRAPSAMPLER, _Value.UV.xy);
-
+    
     Color *= MulColor;
     Color += PlusColor;
-
+    
     return Color;
 }

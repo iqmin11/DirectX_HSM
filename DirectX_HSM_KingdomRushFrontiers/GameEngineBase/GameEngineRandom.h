@@ -32,7 +32,7 @@ public:
 		return Uniform(MtGen);
 	}
 
-	void SetSeed(__int64 _Seed)
+	void SetSeed(__int64 _Seed) 
 	{
 		MtGen = std::mt19937_64(_Seed);
 	}
@@ -44,7 +44,7 @@ private:
 	// 랜덤 제너레이터 클래스와 => 여러개가 될수 있다.
 	// 메르센 트위스터 알고리즘을 사용한 제네러이터
 	std::mt19937_64 MtGen = std::mt19937_64();
-
+	
 	// 랜덤 크리에이터 클래스 => 1개
 };
 

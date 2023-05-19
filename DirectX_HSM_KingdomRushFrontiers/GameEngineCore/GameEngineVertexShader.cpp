@@ -1,12 +1,12 @@
 #include "PrecompileHeader.h"
 #include "GameEngineVertexShader.h"
 
-GameEngineVertexShader::GameEngineVertexShader()
+GameEngineVertexShader::GameEngineVertexShader() 
 {
 	Type = ShaderType::Vertex;
 }
 
-GameEngineVertexShader::~GameEngineVertexShader()
+GameEngineVertexShader::~GameEngineVertexShader() 
 {
 	if (nullptr != ShaderPtr)
 	{
@@ -33,7 +33,7 @@ void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
 	// 상수버퍼에 float4x4 크기의 데이터를 넣으면 
 	// 전치된 느낌으로 들어간다.
 	// 행렬을 넣을때.
-
+	
 	// 내가 1 2 3 4
 
 	// 쉐이더 1 

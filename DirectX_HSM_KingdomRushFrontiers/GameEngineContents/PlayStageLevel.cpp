@@ -67,12 +67,6 @@ void PlayStageLevel::Start()
 
 	LoadAllStageData();
 	
-	//임시 코드
-	//AcTestTower0 = Ranged_Tower::CreateTower(this, float4::Zero);
-	//AcTestTower1 = Ranged_Tower::CreateTower(this, {0, 200});
-
-	
-
 	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }
@@ -133,7 +127,6 @@ void PlayStageLevel::LoadOneStageLines(GameEngineSerializer& _Serializer, int _S
 	AllStageData[_StageLevel].Lines.resize(LineSize);
 	for (int i = 0; i < AllStageData[_StageLevel].Lines.size(); i++)
 	{
-		//_Serializer.Read(&Data[_StageLevel].Lines[i].Index, sizeof(int));
 		LoadOneLine(_Serializer, _StageLevel, i);
 	}
 }
@@ -194,8 +187,6 @@ void PlayStageLevel::LoadOneWave(GameEngineSerializer& _Serializer, int _StageLe
 
 void PlayStageLevel::KeySet()
 {
-	//GameEngineInput::CreateKey("LeftClick",VK_LBUTTON);
-	//GameEngineInput::CreateKey("RightClick",VK_RBUTTON);
 	GameEngineInput::CreateKey("F1",VK_F1);
 }
 

@@ -2,11 +2,11 @@
 #include "GameEngineShader.h"
 #include "GameEngineConstantBuffer.h"
 
-GameEngineShader::GameEngineShader()
+GameEngineShader::GameEngineShader() 
 {
 }
 
-GameEngineShader::~GameEngineShader()
+GameEngineShader::~GameEngineShader() 
 {
 	if (nullptr != BinaryCode)
 	{
@@ -71,7 +71,7 @@ void GameEngineShader::ShaderResCheck()
 
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			CBufferPtr->GetDesc(&BufferDesc);
-
+			
 			std::shared_ptr<GameEngineConstantBuffer> Res = GameEngineConstantBuffer::CreateAndFind(BufferDesc.Size, UpperName, BufferDesc);
 
 			GameEngineConstantBufferSetter Setter;

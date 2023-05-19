@@ -16,9 +16,10 @@ DesertThug::~DesertThug()
 void DesertThug::Start()
 {
 	BaseMonster::Start();
-	BaseMonster::MonsterRenderer->SetTexture(TextureName);
-	BaseMonster::MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
-	BaseMonster::MonsterCol->GetTransform()->SetWorldScale(ColScale);
+	MonsterRenderer->SetTexture(TextureName);
+	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
+	MonsterCol->GetTransform()->SetWorldScale(ColScale);
+	Data.SetData(MonsterEnum::DesertThug);
 }
 
 void DesertThug::Update(float _DeltaTime)

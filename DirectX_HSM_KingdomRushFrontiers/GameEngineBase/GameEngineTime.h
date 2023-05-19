@@ -36,12 +36,12 @@ public:
 		return floatDeltaTime;
 	}
 
-	float GetTimeScleDeltaTime()
+	float GetTimeScaleDeltaTime() 
 	{
 		return floatDeltaTime * TimeScale;
 	}
 
-	void SetTimeScale(float _TimeScale)
+	void SetTimeScale(float _TimeScale) 
 	{
 		TimeScale = _TimeScale;
 	}

@@ -3,11 +3,11 @@
 // #include <iostream>
 #include <crtdbg.h>
 
-GameEngineDebug::GameEngineDebug()
+GameEngineDebug::GameEngineDebug() 
 {
 }
 
-GameEngineDebug::~GameEngineDebug()
+GameEngineDebug::~GameEngineDebug() 
 {
 }
 

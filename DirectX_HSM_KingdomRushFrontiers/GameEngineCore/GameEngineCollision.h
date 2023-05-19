@@ -16,7 +16,7 @@ public:
 	GameEngineCollision& operator=(GameEngineCollision&& _Other) noexcept = delete;
 
 	template<typename EnumType>
-	std::shared_ptr<GameEngineCollision> Collision(EnumType _TargetGroup, ColType _ThisColType, ColType _OtherColtype)
+	std::shared_ptr<GameEngineCollision> Collision(EnumType _TargetGroup, ColType _ThisColType, ColType _OtherColtype) 
 	{
 		return Collision(static_cast<int>(_TargetGroup), _ThisColType, _OtherColtype);
 	}

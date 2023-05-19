@@ -1,11 +1,11 @@
 #include "PrecompileHeader.h"
 #include "GameEngineIndexBuffer.h"
 
-GameEngineIndexBuffer::GameEngineIndexBuffer()
+GameEngineIndexBuffer::GameEngineIndexBuffer() 
 {
 }
 
-GameEngineIndexBuffer::~GameEngineIndexBuffer()
+GameEngineIndexBuffer::~GameEngineIndexBuffer() 
 {
 }
 
@@ -63,6 +63,6 @@ void GameEngineIndexBuffer::Setting()
 	// const UINT* pStrides, 버텍스 1개의 크기가 얼마야
 	// const UINT* pOffsets 버텍스 몇번째 부터 할까?
 
-
+	
 	GameEngineDevice::GetContext()->IASetIndexBuffer(Buffer, Format, Offset);
 }

@@ -21,7 +21,7 @@ public:
 		return NewRes;
 	}
 
-	inline  std::shared_ptr<class GameEngineVertexShader> GetVertexShader()
+	inline  std::shared_ptr<class GameEngineVertexShader> GetVertexShader() 
 	{
 		return VertexShaderPtr;
 	}
@@ -60,10 +60,10 @@ private:
 	void InputAssembler1();
 	void VertexShader();
 	void InputAssembler2();
-	void HullShader();
-	void Tessellator();
-	void DomainShader();
-	void GeometryShaeder();
+	void HullShader(); 
+	void Tessellator(); 
+	void DomainShader(); 
+	void GeometryShaeder(); 
 	void Rasterizer();
 	void PixelShader();
 	void OutputMerger();

@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsEnum.h"
+#include "ContentsData.h"
 
 class BaseMonster : public GameEngineActor
 {
@@ -39,7 +40,7 @@ public:
 
 	const float GetMonsterSpeed() const
 	{
-		return Speed;
+		return Data.Speed;
 	}
 
 protected:
@@ -51,6 +52,7 @@ protected:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
+	MonsterData Data = MonsterData();
 
 private:
 	float4 ActorPos = float4::Zero;
@@ -62,7 +64,6 @@ private:
 	std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
 	std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
 
-	float Speed = 50;
 	float Time = 0;
 	float Ratio = 0;
 

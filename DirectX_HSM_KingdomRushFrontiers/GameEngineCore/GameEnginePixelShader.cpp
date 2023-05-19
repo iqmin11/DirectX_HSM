@@ -1,12 +1,12 @@
 #include "PrecompileHeader.h"
 #include "GameEnginePixelShader.h"
 
-GameEnginePixelShader::GameEnginePixelShader()
+GameEnginePixelShader::GameEnginePixelShader() 
 {
 	Type = ShaderType::Pixel;
 }
 
-GameEnginePixelShader::~GameEnginePixelShader()
+GameEnginePixelShader::~GameEnginePixelShader() 
 {
 	if (nullptr != ShaderPtr)
 	{

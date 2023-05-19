@@ -10,11 +10,11 @@ void GameEngineConstantBuffer::ResourcesClear()
 	ConstantBufferRes.clear();
 }
 
-GameEngineConstantBuffer::GameEngineConstantBuffer()
+GameEngineConstantBuffer::GameEngineConstantBuffer() 
 {
 }
 
-GameEngineConstantBuffer::~GameEngineConstantBuffer()
+GameEngineConstantBuffer::~GameEngineConstantBuffer() 
 {
 }
 
@@ -35,7 +35,7 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 		return;
 	}
 
-	D3D11_MAPPED_SUBRESOURCE SettingResources = { 0, };
+	D3D11_MAPPED_SUBRESOURCE SettingResources = {0,};
 
 	// 그래픽카드야 너한테 보낼께있어 잠깐 멈춰봐 
 	// D3D11_MAP_WRITE_DISCARD 최대한 빠르게 처리하는 
@@ -48,11 +48,11 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 		return;
 	}
 	memcpy_s(SettingResources.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
-
+	
 	GameEngineDevice::GetContext()->Unmap(Buffer, 0);
 }
 
-void GameEngineConstantBuffer::ResCreate(const D3D11_SHADER_BUFFER_DESC& _BufferDesc)
+void GameEngineConstantBuffer::ResCreate(const D3D11_SHADER_BUFFER_DESC& _BufferDesc) 
 {
 	BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	BufferInfo.ByteWidth = _BufferDesc.Size;

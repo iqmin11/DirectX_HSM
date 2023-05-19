@@ -31,8 +31,6 @@ private:
 
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
-	//std::shared_ptr<class BaseTower> AcTestTower0 = nullptr;
-	//std::shared_ptr<class BaseTower> AcTestTower1 = nullptr;
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 	std::shared_ptr<class MousePointer> AcMousePointer = nullptr;
 

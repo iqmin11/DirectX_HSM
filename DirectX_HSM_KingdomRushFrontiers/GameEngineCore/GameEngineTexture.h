@@ -2,14 +2,14 @@
 #include "GameEngineResource.h"
 #include <GameEngineCore/ThirdParty/DirectXTex/inc/DirectXTex.h>
 
-class GameEnginePixelColor
+class GameEnginePixelColor 
 {
 public:
 	static GameEnginePixelColor Black;
 
-	union
+	union 
 	{
-		struct
+		struct 
 		{
 			unsigned char r;
 			unsigned char g;
@@ -21,17 +21,17 @@ public:
 		int Color;
 	};
 
-	bool operator==(GameEnginePixelColor _Color)
+	bool operator==(GameEnginePixelColor _Color) 
 	{
 		return Color == _Color.Color;
 	}
 
-	float4 Tofloat4()
+	float4 Tofloat4() 
 	{
 
 	}
 
-	GameEnginePixelColor()
+	GameEnginePixelColor() 
 	{
 
 	}
@@ -66,7 +66,7 @@ public:
 		return Load(_Path, NewPath.GetFileName());
 	}
 
-	static std::shared_ptr<GameEngineTexture> Load(const std::string_view& _Path, const std::string_view& _Name)
+	static std::shared_ptr<GameEngineTexture> Load(const std::string_view& _Path, const std::string_view& _Name) 
 	{
 		std::shared_ptr<GameEngineTexture> NewTexture = GameEngineResource::Create(_Name);
 		NewTexture->ResLoad(_Path);
@@ -98,7 +98,7 @@ public:
 		return SRV;
 	}
 
-	ID3D11RenderTargetView* GetRTV()
+	ID3D11RenderTargetView* GetRTV() 
 	{
 		return RTV;
 	}
@@ -108,7 +108,7 @@ public:
 		return DSV;
 	}
 
-	int GetWidth()
+	int GetWidth() 
 	{
 		return Desc.Width;
 	}
@@ -118,7 +118,7 @@ public:
 		return Desc.Height;
 	}
 
-	float4 GetScale()
+	float4 GetScale() 
 	{
 		return float4(static_cast<float>(Desc.Width), static_cast<float>(Desc.Height));
 	}
@@ -145,6 +145,7 @@ private:
 	void ResCreate(const D3D11_TEXTURE2D_DESC& _Value);
 
 	void CreateRenderTargetView();
+	void CreateShaderResourcesView();
 	void CreateDepthStencilView();
 
 	void VSSetting(UINT _Slot);

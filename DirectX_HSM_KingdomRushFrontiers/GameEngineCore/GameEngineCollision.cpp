@@ -2,16 +2,16 @@
 #include "GameEngineCollision.h"
 #include "GameEngineLevel.h"
 
-GameEngineCollision::GameEngineCollision()
+GameEngineCollision::GameEngineCollision() 
 {
 }
 
-GameEngineCollision::~GameEngineCollision()
+GameEngineCollision::~GameEngineCollision() 
 {
 }
 
 
-void GameEngineCollision::Start()
+void GameEngineCollision::Start() 
 {
 }
 
@@ -35,7 +35,7 @@ std::shared_ptr<GameEngineCollision> GameEngineCollision::Collision(int _TargetG
 	return nullptr;
 }
 
-void GameEngineCollision::SetOrder(int _Order)
+void GameEngineCollision::SetOrder(int _Order) 
 {
 	std::shared_ptr<GameEngineCollision> ConThis = DynamicThis<GameEngineCollision>();
 

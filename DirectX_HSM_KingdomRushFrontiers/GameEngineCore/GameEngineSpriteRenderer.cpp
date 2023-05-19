@@ -51,10 +51,7 @@ void AnimationInfo::Update(float _DeltaTime)
 		++CurFrame;
 
 
-		if (StartEventFunction.end() != StartEventFunction.find(CurFrameIndex))
-		{
-			StartEventFunction[CurFrameIndex]();
-		}
+		
 
 		if (FrameIndex.size() <= CurFrame)
 		{
@@ -70,6 +67,20 @@ void AnimationInfo::Update(float _DeltaTime)
 				--CurFrame;
 			}
 		}
+
+		//다음프레임이 존재하면서
+		else
+		{
+			CurFrameIndex = FrameIndex[CurFrame];
+
+			//Start콜백이 있다면 콜백을 호출
+			if (StartEventFunction.end() != StartEventFunction.find(CurFrameIndex))
+			{
+				StartEventFunction[CurFrameIndex]();
+			}
+		}
+
+
 		CurTime += FrameTime[CurFrame];
 
 		// 0 ~ 9
@@ -93,19 +104,7 @@ void GameEngineSpriteRenderer::Start()
 {
 	GameEngineRenderer::Start();
 
-	SetPipeLine("2DTexture");
-
-	AtlasData.x = 0.0f;
-	AtlasData.y = 0.0f;
-	AtlasData.z = 1.0f;
-	AtlasData.w = 1.0f;
-
-	ColorOptionValue.MulColor = float4::One;
-	ColorOptionValue.PlusColor = float4::Null;
-
-	GetShaderResHelper().SetConstantBufferLink("AtlasData", AtlasData);
-	GetShaderResHelper().SetConstantBufferLink("ColorOption", ColorOptionValue);
-
+	SpriteRenderInit();
 	// AtlasData
 }
 
@@ -336,9 +335,9 @@ void GameEngineSpriteRenderer::Render(float _Delta)
 	GameEngineRenderer::Render(_Delta);
 }
 
-void GameEngineSpriteRenderer::SetAnimationUpdateEvent(const std::string_view& _AnimationName, size_t _Frame, std::function<void()> _Event)
+void GameEngineSpriteRenderer::SetAnimationUpdateEvent(const std::string_view& _AnimationName, size_t _Frame, std::function<void()> _Event) 
 {
-	std::shared_ptr<AnimationInfo>  Info = FindAnimation(_AnimationName);
+	std::shared_ptr<AnimationInfo>  Info =  FindAnimation(_AnimationName);
 
 	if (nullptr == Info)
 	{
@@ -365,4 +364,22 @@ std::string GameEngineSpriteRenderer::GetTexName()
 	GameEngineTextureSetter* Tex = GetShaderResHelper().GetTextureSetter("DiffuseTex");
 	std::string Name = Tex->Res->GetNameToString();
 	return Name;
+}
+
+void GameEngineSpriteRenderer::SpriteRenderInit()
+{
+
+	SetPipeLine("2DTexture");
+
+	AtlasData.x = 0.0f;
+	AtlasData.y = 0.0f;
+	AtlasData.z = 1.0f;
+	AtlasData.w = 1.0f;
+
+	ColorOptionValue.MulColor = float4::One;
+	ColorOptionValue.PlusColor = float4::Null;
+
+	GetShaderResHelper().SetConstantBufferLink("AtlasData", AtlasData);
+	GetShaderResHelper().SetConstantBufferLink("ColorOption", ColorOptionValue);
+
 }

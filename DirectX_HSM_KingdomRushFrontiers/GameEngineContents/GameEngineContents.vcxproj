@@ -381,6 +381,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ContentsData.cpp" />
     <ClCompile Include="DesertThug.cpp">
       <SubType>
       </SubType>

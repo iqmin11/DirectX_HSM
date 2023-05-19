@@ -1,11 +1,11 @@
 #include "PrecompileHeader.h"
 #include "GameEngineDepthState.h"
 
-GameEngineDepthState::GameEngineDepthState()
+GameEngineDepthState::GameEngineDepthState() 
 {
 }
 
-GameEngineDepthState::~GameEngineDepthState()
+GameEngineDepthState::~GameEngineDepthState() 
 {
 	if (nullptr != State)
 	{
@@ -15,7 +15,7 @@ GameEngineDepthState::~GameEngineDepthState()
 }
 
 
-void GameEngineDepthState::Setting()
+void GameEngineDepthState::Setting() 
 {
 	if (nullptr == State)
 	{

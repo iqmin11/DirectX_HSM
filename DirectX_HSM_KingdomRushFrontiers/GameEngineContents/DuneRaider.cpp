@@ -16,9 +16,10 @@ DuneRaider::~DuneRaider()
 void DuneRaider::Start()
 {
 	BaseMonster::Start();
-	BaseMonster::MonsterRenderer->SetTexture(TextureName);
-	BaseMonster::MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
-	BaseMonster::MonsterCol->GetTransform()->SetWorldScale(ColScale);
+	MonsterRenderer->SetTexture(TextureName);
+	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
+	MonsterCol->GetTransform()->SetWorldScale(ColScale);
+	Data.SetData(MonsterEnum::DuneRaider);
 }
 
 void DuneRaider::Update(float _DeltaTime)

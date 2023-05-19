@@ -17,7 +17,7 @@ public:
 	GameEngineShader& operator=(GameEngineShader&& _Other) noexcept = delete;
 
 	void CreateVersion(const std::string_view& _ShaderType, UINT _VersionHigt = 5, UINT _VersionLow = 0);
-	inline void SetEntryPoint(const std::string_view& _EntryPoint)
+	inline void SetEntryPoint(const std::string_view& _EntryPoint) 
 	{
 		EntryPoint = _EntryPoint;
 	}
@@ -27,7 +27,7 @@ public:
 		return ResHelper;
 	}
 
-	inline ShaderType GetType()
+	inline ShaderType GetType() 
 	{
 		return Type;
 	}

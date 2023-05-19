@@ -36,7 +36,7 @@ private:
 
 	void ResCreate(const void* _Data, UINT _VertexSize, UINT _VertexCount);
 	UINT Offset = 0;
-	UINT VertexSize = 0;
+	UINT VertexSize = 0; 
 	UINT VertexCount = 0;
 };
 

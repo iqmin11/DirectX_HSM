@@ -44,7 +44,7 @@ public:
 
 	std::vector<GameEngineFile> GetAllFile(std::vector<std::string_view> _Ext);
 
-	const GameEnginePath& GetPath()
+	const GameEnginePath& GetPath() 
 	{
 		return Path;
 	}

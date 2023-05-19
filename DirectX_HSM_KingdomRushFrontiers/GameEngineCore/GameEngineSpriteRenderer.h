@@ -1,6 +1,7 @@
 #pragma once
 #include "GameEngineRenderer.h"
 #include "GameEngineSprite.h"
+#include "EngineContentRenderingStruct.h"
 #include <map>
 
 class AnimationInfo : public std::enable_shared_from_this<AnimationInfo>
@@ -25,7 +26,7 @@ private:
 		IsPauseValue = true;
 	}
 
-	inline void PauseOff()
+	inline void PauseOff() 
 	{
 		IsPauseValue = false;
 	}
@@ -63,11 +64,6 @@ public:
 	std::vector<float> FrameTime = std::vector<float>();
 };
 
-struct ColorOption
-{
-	float4 MulColor;
-	float4 PlusColor;
-};
 
 // Ό³Έν :
 class GameEngineSpriteRenderer : public GameEngineRenderer
@@ -113,7 +109,7 @@ public:
 
 	size_t GetCurrentFrame()
 	{
-		return CurAnimation->CurFrame;
+		return CurAnimation->FrameIndex[CurAnimation->CurFrame];
 	}
 
 	float4 GetAtlasData()
@@ -130,7 +126,7 @@ public:
 
 	void SetFrame(size_t _Frame);
 
-	void SetAnimPauseOn()
+	void SetAnimPauseOn() 
 	{
 		CurAnimation->PauseOn();
 	}
@@ -151,6 +147,7 @@ public:
 
 
 protected:
+	void SpriteRenderInit();
 
 private:
 	void Update(float _Delta) override;

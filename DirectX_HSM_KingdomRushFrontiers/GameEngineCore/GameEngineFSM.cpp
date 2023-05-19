@@ -3,11 +3,11 @@
 #include <GameEngineBase/GameEngineString.h>
 #include <GameEngineBase/GameEngineDebug.h>
 
-GameEngineFSM::GameEngineFSM()
+GameEngineFSM::GameEngineFSM() 
 {
 }
 
-GameEngineFSM::~GameEngineFSM()
+GameEngineFSM::~GameEngineFSM() 
 {
 }
 
@@ -39,7 +39,7 @@ void GameEngineFSM::Update(float _DeltaTime)
 	CurState->Update(_DeltaTime);
 }
 
-void GameEngineFSM::ChangeState(const std::string_view& _State)
+void GameEngineFSM::ChangeState(const std::string_view& _State) 
 {
 	if (nullptr != CurState)
 	{

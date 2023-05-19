@@ -26,7 +26,7 @@ public:
 
 	void Setting() override;
 
-	inline UINT GetIndexCount()
+	inline UINT GetIndexCount() 
 	{
 		return IndexCount;
 	}

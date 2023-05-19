@@ -32,7 +32,7 @@ protected:
 
 	bool IsThereTarget();
 private:
-	float Time = 0.f;
+	float Time = 10.f;
 
 	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	void CalTargetPos();

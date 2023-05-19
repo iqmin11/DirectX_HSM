@@ -36,12 +36,12 @@ void Ranged_Shooter::Start()
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "3_Idle_Down", .SpriteName = "RangedLv3_Shooter_Idle_Down",.Loop = false });
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "3_Idle_Up", .SpriteName = "RangedLv3_Shooter_Idle_Up",.Loop = false });
 
-	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Down", 0, std::bind(&Ranged_Shooter::Attack, this));
-	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Down", 0, std::bind(&Ranged_Shooter::Attack, this));
-	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Down", 0, std::bind(&Ranged_Shooter::Attack, this));
-	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Up", 0, std::bind(&Ranged_Shooter::Attack, this));
-	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Up", 0, std::bind(&Ranged_Shooter::Attack, this));
-	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Up", 0, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
 
 	BaseShooterRenderer->GetTransform()->SetWorldScale(RenderScalse);
 

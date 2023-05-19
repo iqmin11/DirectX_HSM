@@ -23,10 +23,10 @@ void GameEngineVideo::ResLoad(const std::string_view& _Path)
 	//(마지막 인자를 제외하고는 라이브러리에 있는 전역변수입니다)
 	//IID_IGraphBuilder 인터페이스를 생성하고 핸들러를 받아오는듯합니다. 
 	HRESULT Result = CoCreateInstance(
-		CLSID_FilterGraph,
-		nullptr,
-		CLSCTX_INPROC_SERVER,
-		IID_IGraphBuilder,
+		CLSID_FilterGraph, 
+		nullptr, 
+		CLSCTX_INPROC_SERVER, 
+		IID_IGraphBuilder, 
 		reinterpret_cast<void**>(&GraphBuilderPtr));
 	if (S_OK != Result)
 	{
@@ -51,7 +51,7 @@ void GameEngineVideo::ResLoad(const std::string_view& _Path)
 		return;
 	}
 
-
+	
 	//첫번째 인자들은 모두 라이브러리에 있는 전역변수입니다
 	GraphBuilderPtr->QueryInterface(IID_IMediaControl, reinterpret_cast<void**>(&Controller));
 	GraphBuilderPtr->QueryInterface(IID_IMediaEventEx, reinterpret_cast<void**>(&Eventer));
@@ -63,10 +63,10 @@ void GameEngineVideo::ResLoad(const std::string_view& _Path)
 
 	GraphBuilderPtr->QueryInterface(IID_IBasicAudio, reinterpret_cast<void**>(&BasicAudioPtr));
 
-
+	
 	//이벤트 알림을 처리할 창을 등록합니다.
 	Eventer->SetNotifyWindow(
-		reinterpret_cast<OAHWND>(MainHwnd),
+		reinterpret_cast<OAHWND>(MainHwnd), 
 		WM_USER + 13, 0);
 
 	//동영상이 출력될 HWND를 설정합니다
@@ -104,7 +104,7 @@ GameEngineVideo::VideoState GameEngineVideo::GetCurState()
 	{
 		return GameEngineVideo::VideoState::UNKNOWN;
 	}
-
+	
 	if (true == CurVideo->IsFinished())
 	{
 		CurVideo = nullptr;
@@ -195,7 +195,7 @@ bool GameEngineVideo::IsFinished()
 	{
 		MsgAssert("재생하지도 않은 비디오의 종료 여부를 확인하려고 했습니다");
 	}
-
+	
 	if (nullptr == Seeker)
 	{
 		MsgAssert("비디오를 탐색하는 Seeker가 존재하지 않습니다");

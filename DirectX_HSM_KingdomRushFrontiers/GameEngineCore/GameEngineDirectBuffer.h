@@ -16,13 +16,13 @@ public:
 	GameEngineDirectBuffer& operator=(GameEngineDirectBuffer&& _Other) noexcept = delete;
 
 public:
-	UINT GetBufferSize()
+	UINT GetBufferSize() 
 	{
 		return BufferInfo.ByteWidth;
 	}
 
 protected:
-	D3D11_BUFFER_DESC BufferInfo = { 0, };
+	D3D11_BUFFER_DESC BufferInfo = {0,};
 	ID3D11Buffer* Buffer = nullptr;
 
 private:

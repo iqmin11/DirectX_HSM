@@ -29,7 +29,7 @@ public:
 		DirectX::BoundingOrientedBox OBB;
 	};
 
-	void ScaleABS()
+	void ScaleABS() 
 	{
 		OBB.Extents.x = abs(OBB.Extents.x);
 		OBB.Extents.y = abs(OBB.Extents.y);

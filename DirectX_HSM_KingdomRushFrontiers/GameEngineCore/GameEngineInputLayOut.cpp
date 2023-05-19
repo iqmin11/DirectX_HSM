@@ -4,11 +4,11 @@
 #include "GameEngineVertexBuffer.h"
 #include "GameEngineVertexShader.h"
 
-GameEngineInputLayOut::GameEngineInputLayOut()
+GameEngineInputLayOut::GameEngineInputLayOut() 
 {
 }
 
-GameEngineInputLayOut::~GameEngineInputLayOut()
+GameEngineInputLayOut::~GameEngineInputLayOut() 
 {
 	Relase();
 }

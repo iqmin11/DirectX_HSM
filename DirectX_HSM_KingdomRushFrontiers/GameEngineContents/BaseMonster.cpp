@@ -26,21 +26,20 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
-		Result = _Level->CreateActor<DesertThug>(static_cast<int>(ActorOrder::Monster));
-		Result->SetPathInfo(_PathInfo);
-		return Result;
+		Result = _Level->CreateActor<DesertThug>(ActorOrder::Monster);
 		break;
 	case MonsterEnum::DuneRaider:
-		Result = _Level->CreateActor<DuneRaider>(static_cast<int>(ActorOrder::Monster));
-		Result->SetPathInfo(_PathInfo);
-		return Result;
+		Result = _Level->CreateActor<DuneRaider>(ActorOrder::Monster);
 		break;
 	default:
 		MsgAssert("미구현");
 		break;
 	}
-	return nullptr;
+
+	Result->SetPathInfo(_PathInfo);
+	return Result;
 }
+
 
 void BaseMonster::Start()
 {
@@ -67,7 +66,7 @@ void BaseMonster::WalkToNextPoint(float _DeltaTime)
 	//길이가 25 일때 Time*4 = Time * (V/L)
 
 	Time += _DeltaTime;
-	Ratio = Time * (Speed / (*NextPoint - *CurPoint).Size());
+	Ratio = Time * (Data.Speed / (*NextPoint - *CurPoint).Size());
 	ActorPos = float4::LerpClamp(*CurPoint, *NextPoint, Ratio);
 	GetTransform()->SetWorldPosition(ActorPos);
 }
