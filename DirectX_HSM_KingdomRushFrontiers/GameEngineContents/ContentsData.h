@@ -133,7 +133,7 @@ public:
 			Range = 180.f;
 			Damage_min = 9.0f;
 			Damage_MAX = 17.0f;
-			BulletTime = 0.5f;
+			BulletTime = 0.4f;
 			break;
 		case TowerEnum::MagicTower_Level2:
 			TowerType = TowerEnum::MagicTower;
@@ -142,7 +142,7 @@ public:
 			Range = 190.f;
 			Damage_min = 23.0f;
 			Damage_MAX = 43.0f;
-			BulletTime = 0.5f;
+			BulletTime = 0.4f;
 			break;
 		case TowerEnum::MagicTower_Level3:
 			TowerType = TowerEnum::MagicTower;
@@ -151,7 +151,7 @@ public:
 			Range = 220.f;
 			Damage_min = 40.0f;
 			Damage_MAX = 74.0f;
-			BulletTime = 0.5f;
+			BulletTime = 0.4f;
 			break;
 		case TowerEnum::MagicTower_Level4:
 			TowerType = TowerEnum::MagicTower;
@@ -160,7 +160,7 @@ public:
 			Range = 245.f;
 			Damage_min = 60.0f;
 			Damage_MAX = 120.0f;
-			BulletTime = 0.5f;
+			BulletTime = 0.4f;
 			break;
 		case TowerEnum::ArtilleryTower_Level1:
 			TowerType = TowerEnum::ArtilleryTower;
