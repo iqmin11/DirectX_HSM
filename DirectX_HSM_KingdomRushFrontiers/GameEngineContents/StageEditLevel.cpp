@@ -47,6 +47,7 @@ void StageEditLevel::SetKey()
 	GameEngineInput::CreateKey("DownArrow",VK_DOWN);
 	GameEngineInput::CreateKey("Z",'Z');
 	GameEngineInput::CreateKey("X",'X');
+	GameEngineInput::CreateKey("C",'C');
 	GameEngineInput::CreateKey("Enter",VK_RETURN);
 	GameEngineInput::CreateKey("LeftClick", VK_LBUTTON);
 	GameEngineInput::CreateKey("RightClick", VK_RBUTTON);
