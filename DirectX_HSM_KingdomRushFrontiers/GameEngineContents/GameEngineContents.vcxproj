@@ -163,6 +163,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Artillery_Bullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Artillery_Tower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Background.h">
       <SubType>
       </SubType>
@@ -328,6 +336,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Artillery_Bullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Artillery_Tower.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Background.cpp">
       <SubType>
       </SubType>

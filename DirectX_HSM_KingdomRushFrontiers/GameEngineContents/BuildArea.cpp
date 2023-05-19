@@ -7,6 +7,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Tower.h"
 #include "Magic_Tower.h"
+#include "Artillery_Tower.h"
 
 BuildArea::BuildArea()
 {
@@ -59,7 +60,7 @@ void BuildArea::Update(float _DeltaTime)
 
 	if (IsAreaLeftClick())
 	{
-		ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
+		ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
 	}
 	if (IsAreaRightClick())
 	{

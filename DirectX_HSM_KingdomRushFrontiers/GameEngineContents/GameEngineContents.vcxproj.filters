@@ -98,6 +98,12 @@
     <ClInclude Include="Magic_Tower.h">
       <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
     </ClInclude>
+    <ClInclude Include="Artillery_Tower.h">
+      <Filter>3.PlayStage\Actor\Tower\ArtilleryTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Artillery_Bullet.h">
+      <Filter>3.PlayStage\Actor\Tower\ArtilleryTower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -198,6 +204,12 @@
     <ClCompile Include="Magic_Tower.cpp">
       <Filter>3.PlayStage\Actor\Tower\MagicTower</Filter>
     </ClCompile>
+    <ClCompile Include="Artillery_Tower.cpp">
+      <Filter>3.PlayStage\Actor\Tower\ArtilleryTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Artillery_Bullet.cpp">
+      <Filter>3.PlayStage\Actor\Tower\ArtilleryTower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -256,6 +268,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\MagicTower">
       <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\ArtilleryTower">
+      <UniqueIdentifier>{ab6734ff-52f8-4387-9ee2-9daafe4b0b1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

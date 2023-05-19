@@ -15,6 +15,11 @@ public:
 	BaseShootingTower& operator=(const BaseShootingTower& _Other) = delete;
 	BaseShootingTower& operator=(BaseShootingTower&& _Other) noexcept = delete;
 
+	float4& GetTargetPos()
+	{
+		return TargetPos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

@@ -16,15 +16,6 @@ BaseBullet::~BaseBullet()
 
 }
 
-//void BaseBullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor)
-//{
-//	std::shared_ptr<BaseBullet> Bullet = nullptr;
-//	Bullet = _Level->CreateActor<BaseBullet>();
-//	Bullet->SetParentPos(_ParentActor->GetTransform()->GetWorldPosition());
-//	Bullet->SetTargetPos(dynamic_cast<BaseShooter*>(_ParentActor)->GetTargetPos());
-//	Bullet->CalBezierMid();
-//}
-
 void BaseBullet::Start()
 {
 	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>();
@@ -83,9 +74,14 @@ void BaseBullet::CalBezierBulletTransform(const float4& _P0, const float4& _P1, 
 
 
 	float4 Pos = float4::LerpClamp(B0, B1, _Ratio);
+	GetTransform()->SetWorldPosition(Pos);
+	if (IsRot)
+	{
+		CalRotBulletRot(_P0, _P3, _Ratio);
+		return;
+	}
 	float ZDeg = atan2(B1.y - B0.y, B1.x - B0.x) * GameEngineMath::RadToDeg;
 	float4 f4Deg = float4{ 0,0,ZDeg,1 };
-	GetTransform()->SetWorldPosition(Pos);
 	GetTransform()->SetWorldRotation(f4Deg);
 }
 
@@ -97,3 +93,17 @@ void BaseBullet::CalLerpBulletTransform(const float4& _P0, const float4& _P3, fl
 	GetTransform()->SetWorldPosition(Pos);
 	GetTransform()->SetWorldRotation(f4Deg);
 }
+
+void BaseBullet::CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ratio)
+{
+	float4 f4Deg = float4::LerpClamp({ 0.f,0.f,0.f,1 }, { 0.f,0.f,640.f,1 }, _Ratio);;
+	if (_P3.x - _P0.x  > 0)
+	{
+		GetTransform()->SetWorldRotation(-f4Deg);
+	}
+	else
+	{
+		GetTransform()->SetWorldRotation(f4Deg);
+	}
+}
+

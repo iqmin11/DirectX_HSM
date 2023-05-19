@@ -20,7 +20,7 @@ protected:
 	void Start() override;
 
 private:
-	float4 BulletScale = float4::Zero;
+	float4 BulletScale = { 64,64 };
 	void BoltDeath();
 };
 

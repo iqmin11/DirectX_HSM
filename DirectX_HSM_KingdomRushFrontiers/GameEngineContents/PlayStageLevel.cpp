@@ -56,6 +56,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("StageBg");
 	LoadPlayLevelTexture("RangedTower");
 	LoadPlayLevelTexture("TowerBase");
+	LoadPlayLevelTexture("ArtilleryBomb");
 	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
@@ -296,6 +297,16 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Attack_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Up").GetFullPath());
+
+	Dir.MoveParentToDirectory("MagicTowerShooterAnimation");
+	Dir.Move("ArtilleryTower");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level1_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level1_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level2_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level2_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level3_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level3_Idle").GetFullPath());
 }
 
 
