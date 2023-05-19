@@ -19,18 +19,20 @@ public:
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
-
-	void MagicAttack();
-
 private:
 	float4 RenderScale = { 128, 128 };
 	std::shared_ptr<class Magic_Shooter> Shooter = nullptr;
 	float Time = 0.0f;
-	//void ChangeTower(TowerEnum _Tower);
-	//void ChangeTowerRender(int _TowerLevel);
-	//void ChangeShooter(int _TowerLevel);
-	//
-	//void MagicAttack();
+	void ChangeTower(TowerEnum _Tower);
+	void ChangeTowerRender(int _TowerLevel);
+	void ChangeShooter(int _TowerLevel);
+	
+	void MagicAttack();
+public:
+	static const float4 Lv1ShooterLocalPos;
+	static const float4 Lv2ShooterLocalPos;
+	static const float4 Lv3ShooterLocalPos;
+	static const float4 Lv4ShooterLocalPos;
 
 };
 

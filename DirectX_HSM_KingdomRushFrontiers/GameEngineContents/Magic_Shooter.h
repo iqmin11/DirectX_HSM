@@ -14,7 +14,7 @@ public:
 	Magic_Shooter& operator=(const Magic_Shooter& _Other) = delete;
 	Magic_Shooter& operator=(Magic_Shooter&& _Other) noexcept = delete;
 
-	//void ChangeShooterRenderer(int _TowerLevel);
+	void ChangeShooterRenderer(int _TowerLevel);
 	void Attack();
 
 protected:

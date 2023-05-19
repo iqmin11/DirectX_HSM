@@ -38,12 +38,11 @@ protected:
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
-	
-
 
 	bool IsBezier = false;
 	float BulletTime = 1.f;
 	TowerData* Data = nullptr;
+	std::function<void()> BulletDeath = nullptr;
 
 private:
 	float4 ParentPos = float4::Zero;
@@ -52,6 +51,8 @@ private:
 	float4 TargetPos = float4::Zero;
 	float Time = 0.f;
 	float Ratio = 0.f;
+
+	bool IsBulletDeath = false;
 
 
 	void CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio);

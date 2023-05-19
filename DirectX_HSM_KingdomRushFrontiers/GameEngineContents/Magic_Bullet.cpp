@@ -31,5 +31,13 @@ void Magic_Bullet::Start()
 	BaseBullet::Start();
 	BulletRenderer->GetTransform()->SetWorldScale({ 64,64 });
 	BulletRenderer->CreateAnimation({.AnimationName = "Bolt", .SpriteName = "MagicBolt_Shoot", .FrameInter = 0.25f,.Loop = false });
+	BulletRenderer->CreateAnimation({.AnimationName = "BoltDeath", .SpriteName = "MagicBolt_Death", .FrameInter = 0.08f,.Loop = false });
+	BulletRenderer->SetAnimationStartEvent("BoltDeath", 3, std::bind(&Magic_Bullet::Death, this));
 	BulletRenderer->ChangeAnimation("Bolt");
+	BulletDeath = std::bind(&Magic_Bullet::BoltDeath, this);
+}
+
+void Magic_Bullet::BoltDeath()
+{
+	BulletRenderer->ChangeAnimation("BoltDeath");
 }

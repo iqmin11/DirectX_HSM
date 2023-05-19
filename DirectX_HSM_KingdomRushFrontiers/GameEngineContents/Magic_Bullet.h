@@ -21,5 +21,6 @@ protected:
 
 private:
 	float4 BulletScale = float4::Zero;
+	void BoltDeath();
 };
 

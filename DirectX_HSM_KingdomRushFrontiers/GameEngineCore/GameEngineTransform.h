@@ -29,6 +29,13 @@ public:
 		DirectX::BoundingOrientedBox OBB;
 	};
 
+	void ScaleABS()
+	{
+		OBB.Extents.x = abs(OBB.Extents.x);
+		OBB.Extents.y = abs(OBB.Extents.y);
+		OBB.Extents.z = abs(OBB.Extents.z);
+	}
+
 	CollisionData()
 	{
 
@@ -321,8 +328,6 @@ public:
 		TransData = _Data;
 	}
 
-
-
 protected:
 
 private:
@@ -345,14 +350,7 @@ private:
 	GameEngineTransform* Parent = nullptr;
 	std::list<GameEngineTransform*> Child;
 
-
-
 private:
-	GameEngineObject* GetMaster()
-	{
-		return Master;
-	}
-
 	void AllAccTime(float _DeltaTime);
 
 	void AllUpdate(float _DeltaTime);
@@ -365,7 +363,10 @@ private:
 
 	void SetMaster(GameEngineObject* _Master);
 
-
+	GameEngineObject* GetMaster()
+	{
+		return Master;
+	}
 
 	GameEngineObject* Master = nullptr;
 
