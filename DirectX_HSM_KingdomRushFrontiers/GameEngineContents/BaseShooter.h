@@ -9,6 +9,7 @@ enum class ShooterState
 	Attack
 };
 
+class BaseShootingTower;
 class BaseShooter : public GameEngineActor
 {
 public:
@@ -27,22 +28,33 @@ public:
 		return *TargetPos;
 	}
 
+	const BaseShootingTower* GetParentTower() const
+	{
+		return ParentTower;
+	}
+
 	void SetTargetPos(float4& _TargetPos)
 	{
 		TargetPos = &_TargetPos;
 	}
 
-	void SetTowerData(TowerData* _Data)
+	//void SetTowerData(TowerData* _Data)
+	//{
+	//	Data = _Data;
+	//}
+
+	void SetParentTower(class BaseShootingTower* _Tower)
 	{
-		Data = _Data;
+		ParentTower = _Tower;
 	}
 
 	ShooterState StateValue = ShooterState::Idle;
 	
 protected:
+	class BaseShootingTower* ParentTower = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> BaseShooterRenderer = nullptr;
 	std::function<void()> Attack = nullptr;
-	TowerData* Data = nullptr;
+	//TowerData* Data = nullptr;
 	std::string Dir_x = std::string();
 	std::string Dir_y = std::string();
 

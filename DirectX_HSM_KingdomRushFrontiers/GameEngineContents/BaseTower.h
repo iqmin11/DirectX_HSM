@@ -15,6 +15,10 @@ public:
 	BaseTower& operator=(const BaseTower& _Other) = delete;
 	BaseTower& operator=(BaseTower&& _Other) noexcept = delete;
 
+	const TowerData& GetData() const 
+	{
+		return Data;
+	}
 
 protected:
 	void Start() override;

@@ -51,7 +51,8 @@ void Magic_Tower::Start()
 	Shooter = GetLevel()->CreateActor<Magic_Shooter>();
 	Shooter->GetTransform()->SetParent(GetTransform());
 	Shooter->GetTransform()->SetLocalPosition(Lv1ShooterLocalPos);
-	Shooter->SetTowerData(&Data);
+	//Shooter->SetTowerData(&Data);
+	Shooter->SetParentTower(this);
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });

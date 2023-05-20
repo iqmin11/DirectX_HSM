@@ -44,6 +44,7 @@ protected:
 	TowerData* Data = nullptr;
 	std::function<void()> BulletDeath = nullptr;
 	float IsRot = false;
+	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 
 private:
 	float4 ParentPos = float4::Zero;

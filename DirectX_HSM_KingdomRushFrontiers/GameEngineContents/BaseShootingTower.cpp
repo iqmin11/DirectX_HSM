@@ -64,7 +64,7 @@ void BaseShootingTower::CalTargetPos()
 	float4 CurPos = TargetMonster->GetTransform()->GetWorldPosition();
 	float4 Dir = TargetMonster->GetMonsterDir();
 	float MonsterSpeed = TargetMonster->GetMonsterSpeed();
-	float BulletTime = Data.BulletTime; // 나중에 여기만 수정해야할듯....
+	float BulletTime = Data.BulletTime;
 
 	TargetPos = CurPos + Dir * MonsterSpeed * BulletTime;
 }

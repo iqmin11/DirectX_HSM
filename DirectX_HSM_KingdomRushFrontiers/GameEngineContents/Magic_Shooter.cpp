@@ -2,6 +2,7 @@
 #include "Magic_Shooter.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include "BaseShootingTower.h"
 #include "BaseShooter.h"
 #include "Magic_Bullet.h"
 
@@ -56,7 +57,7 @@ void Magic_Shooter::Attack()
 {
 	if (!IsShootBullet)
 	{
-		Magic_Bullet::ShootingBullet(GetLevel(), this, Data);
+		Magic_Bullet::ShootingBullet(GetLevel(), this);
 		IsShootBullet = true;
 	}
 }

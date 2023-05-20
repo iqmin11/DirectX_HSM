@@ -14,7 +14,7 @@ public:
 	Magic_Bullet& operator=(const Magic_Bullet& _Other) = delete;
 	Magic_Bullet& operator=(Magic_Bullet&& _Other) noexcept = delete;
 
-	static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor, TowerData* _Data);
+	static void ShootingBullet(GameEngineLevel* _Level, class BaseShooter* _ParentShooter);
 
 protected:
 	void Start() override;

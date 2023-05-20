@@ -2,6 +2,7 @@
 #include "Ranged_Shooter.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include "BaseShootingTower.h"
 #include "BaseShooter.h"
 #include "Ranged_Bullet.h"
 
@@ -11,7 +12,7 @@ void BaseShooter::IdleStateInit()
 		.Name = "Idle",
 		.Start = [this]()
 		{
-			if (Data == nullptr)
+			if (ParentTower == nullptr)
 			{
 				BaseShooterRenderer->ChangeAnimation("1_Idle_Down");
 				IsShootBullet = false;
@@ -19,7 +20,7 @@ void BaseShooter::IdleStateInit()
 			}
 
 			std::string Label = std::string();
-			Label = std::to_string(Data->Level) + "_Idle_" + Dir_y;
+			Label = std::to_string(ParentTower->GetData().Level) + "_Idle_" + Dir_y;
 			BaseShooterRenderer->ChangeAnimation(Label);
 			if (Dir_x == "Left")
 			{
@@ -52,7 +53,7 @@ void BaseShooter::AttackStateInit()
 		.Name = "Attack",
 		.Start = [this]()
 		{
-			if (Data == nullptr)
+			if (ParentTower == nullptr)
 			{
 				BaseShooterRenderer->ChangeAnimation("1_Attack_Down");
 				IsShootBullet = false;
@@ -60,7 +61,7 @@ void BaseShooter::AttackStateInit()
 			}
 
 			std::string Label = std::string();
-			Label = std::to_string(Data->Level) + "_Attack_" + Dir_y;
+			Label = std::to_string(ParentTower->GetData().Level) + "_Attack_" + Dir_y;
 			BaseShooterRenderer->ChangeAnimation(Label);
 			if (Dir_x == "Left")
 			{

@@ -2,6 +2,7 @@
 #include "Ranged_Shooter.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include "BaseShootingTower.h"
 #include "BaseShooter.h"
 #include "Ranged_Bullet.h"
 
@@ -59,7 +60,7 @@ void Ranged_Shooter::Attack()
 {
 	if (!IsShootBullet)
 	{
-		Ranged_Bullet::ShootingBullet(GetLevel(), this, Data);
+		Ranged_Bullet::ShootingBullet(GetLevel(), this);
 		IsShootBullet = true;
 	}
 }

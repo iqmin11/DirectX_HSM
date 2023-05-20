@@ -3,6 +3,7 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include "BaseShootingTower.h"
 #include "Magic_Shooter.h"
 
 Magic_Bullet::Magic_Bullet()
@@ -15,15 +16,16 @@ Magic_Bullet::~Magic_Bullet()
 
 }
 
-void Magic_Bullet::ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor, TowerData* _Data)
+void Magic_Bullet::ShootingBullet(GameEngineLevel* _Level, BaseShooter* _ParentShooter)
 {
 	std::shared_ptr<Magic_Bullet> Bullet = nullptr;
 	Bullet = _Level->CreateActor<Magic_Bullet>();
-	Bullet->SetParentPos(_ParentActor->GetTransform()->GetWorldPosition());
-	Bullet->SetTargetPos(dynamic_cast<Magic_Shooter*>(_ParentActor)->GetTargetPos());
+	Bullet->SetParentPos(_ParentShooter->GetTransform()->GetWorldPosition());
+	Bullet->SetTargetPos(_ParentShooter->GetTargetPos());
 	Bullet->CalBezierMid();
 	Bullet->IsBezier = false;
-	Bullet->BulletTime = _Data->BulletTime;
+	Bullet->BulletTime = _ParentShooter->GetParentTower()->GetData().BulletTime;
+	Bullet->TargetMonster = _ParentShooter->GetParentTower()->GetTargetMonster();
 }
 
 void Magic_Bullet::Start()

@@ -20,6 +20,11 @@ public:
 		return TargetPos;
 	}
 
+	const std::shared_ptr<class BaseMonster> GetTargetMonster() const
+	{
+		return TargetMonster;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

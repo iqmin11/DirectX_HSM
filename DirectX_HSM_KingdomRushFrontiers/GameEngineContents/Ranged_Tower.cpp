@@ -113,11 +113,13 @@ void Ranged_Tower::Start()
 	Shooter0 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter0->GetTransform()->SetParent(GetTransform());
 	Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
-	Shooter0->SetTowerData(&Data);
+	//Shooter0->SetTowerData(&Data);
+	Shooter0->SetParentTower(this);
 	Shooter1 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter1->GetTransform()->SetParent(GetTransform());
 	Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
-	Shooter1->SetTowerData(&Data);
+	//Shooter1->SetTowerData(&Data);
+	Shooter1->SetParentTower(this);
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
