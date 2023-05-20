@@ -43,6 +43,13 @@ public:
 		return Data.Speed;
 	}
 
+	std::shared_ptr<class GameEngineCollision> GetMonsterCol() const
+	{
+		return MonsterCol;
+	}
+	
+	int CurHP = 0;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -53,7 +60,6 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
-	int CurHP = 0;
 
 private:
 	float4 ActorPos = float4::Zero;

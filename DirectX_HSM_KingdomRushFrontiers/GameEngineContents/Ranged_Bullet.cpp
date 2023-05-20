@@ -33,4 +33,5 @@ void Ranged_Bullet::ShootingBullet(GameEngineLevel* _Level, BaseShooter* _Parent
 	Bullet->IsBezier = true;
 	Bullet->BulletTime = _ParentShooter->GetParentTower()->GetData().BulletTime;
 	Bullet->TargetMonster = _ParentShooter->GetParentTower()->GetTargetMonster();
+	Bullet->Data = &_ParentShooter->GetParentTower()->GetData();
 }

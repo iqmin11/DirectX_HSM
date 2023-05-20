@@ -1,9 +1,13 @@
 #include "PrecompileHeader.h"
 #include "BaseBullet.h"
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
 
+#include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
+
 #include "BaseShooter.h"
+#include "BaseMonster.h"
 
 
 BaseBullet::BaseBullet()
@@ -19,11 +23,12 @@ BaseBullet::~BaseBullet()
 void BaseBullet::Start()
 {
 	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	BulletCol = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
+	BulletCol->GetTransform()->SetWorldScale({ 3,3 });
 }
 
 void BaseBullet::Update(float _DeltaTime)
 {
-	
 	if (!IsBulletDeath)
 	{
 		Time += _DeltaTime;
@@ -37,17 +42,17 @@ void BaseBullet::Update(float _DeltaTime)
 		{
 			CalLerpBulletTransform(ParentPos, TargetPos, Ratio);
 		}
+
+		if (IsThereTargetMonster() && IsHitTargetMonster())
+		{
+			TargetMonster->CurHP -= CalDamage();
+			DeathFunc();
+		}
 	}
 
-	if (Ratio >= 1 && !IsBulletDeath)
+	if (Ratio >= 1 && !IsBulletDeath) // 빗나감(사거리까지 몬스터 콜리전에 충돌하지 않음)
 	{
-		IsBulletDeath = true;
-		if (BulletDeath != nullptr)
-		{
-			BulletDeath();
-			return;
-		}
-		Death();
+		DeathFunc();
 	}
 
 }
@@ -106,4 +111,32 @@ void BaseBullet::CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ra
 		GetTransform()->SetWorldRotation(f4Deg);
 	}
 }
+
+void BaseBullet::DeathFunc()
+{
+	IsBulletDeath = true;
+	if (BulletDeath != nullptr)
+	{
+		BulletDeath();
+		return;
+	}
+	Death();
+}
+
+int BaseBullet::CalDamage() //데미지 계산 공식 나중에 더 상세해질듯..
+{
+	return GameEngineRandom::MainRandom.RandomInt(Data->Damage_min, Data->Damage_MAX);
+}
+
+bool BaseBullet::IsThereTargetMonster()
+{
+	return TargetMonster != nullptr;
+}
+
+bool BaseBullet::IsHitTargetMonster()
+{
+	return BulletCol->GetTransform()->Collision({ ._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D });
+}
+
+
 

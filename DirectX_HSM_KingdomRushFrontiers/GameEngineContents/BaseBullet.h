@@ -41,10 +41,11 @@ protected:
 
 	bool IsBezier = false;
 	float BulletTime = 1.f;
-	TowerData* Data = nullptr;
+	const TowerData* Data = nullptr;
 	std::function<void()> BulletDeath = nullptr;
 	float IsRot = false;
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+	std::shared_ptr<class GameEngineCollision> BulletCol = nullptr;
 
 private:
 	float4 ParentPos = float4::Zero;
@@ -60,5 +61,9 @@ private:
 	void CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio);
 	void CalLerpBulletTransform(const float4& _P0, const float4& _P3, float _Ratio);
 	void CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ratio);
+	void DeathFunc();
+	int CalDamage();
+	bool IsThereTargetMonster();
+	bool IsHitTargetMonster();
 };
 

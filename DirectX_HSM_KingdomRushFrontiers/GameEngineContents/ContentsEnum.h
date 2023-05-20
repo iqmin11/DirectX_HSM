@@ -24,6 +24,7 @@ enum class ColOrder
 	UI,
 	MousePointer,
 	Tower,
+	Bullet,
 };
 
 enum class MonsterEnum
