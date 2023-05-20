@@ -20,6 +20,7 @@ void DesertThug::Start()
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	Data.SetData(MonsterEnum::DesertThug);
+	CurHP = Data.Hp;
 }
 
 void DesertThug::Update(float _DeltaTime)

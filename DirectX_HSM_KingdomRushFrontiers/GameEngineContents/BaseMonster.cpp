@@ -45,7 +45,7 @@ void BaseMonster::Start()
 {
 	//GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MonsterCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::Monster));
+	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster);
 	//MonsterRenderer->SetTexture("DesertThug0000.png");
 	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }
@@ -54,6 +54,10 @@ void BaseMonster::Update(float _DeltaTime)
 {
 	WalkPath(_DeltaTime);
 	CalMonsterDir();
+	if (CurHP <= 0)
+	{
+		Death();
+	}
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)

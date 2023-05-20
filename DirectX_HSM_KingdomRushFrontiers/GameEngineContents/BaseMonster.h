@@ -53,6 +53,7 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
+	int CurHP = 0;
 
 private:
 	float4 ActorPos = float4::Zero;

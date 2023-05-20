@@ -20,6 +20,7 @@ void DuneRaider::Start()
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	Data.SetData(MonsterEnum::DuneRaider);
+	CurHP = Data.Hp;
 }
 
 void DuneRaider::Update(float _DeltaTime)
