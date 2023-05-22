@@ -59,7 +59,7 @@ void Artillery_Bullet::Start()
 	ExplosionSmokeRender->ChangeAnimation("Boom");
 	ExplosionSmokeRender->Off();
 
-	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>();
+	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
 	BombDecalRender->SetTexture("decal_bomb_crater.png");
 	BombDecalRender->GetTransform()->SetWorldScale(BombDecalRenderScale);
 	BombDecalRender->Off();
