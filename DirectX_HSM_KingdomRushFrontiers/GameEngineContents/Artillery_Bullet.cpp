@@ -52,18 +52,40 @@ void Artillery_Bullet::Start()
 	BombCol1->GetTransform()->SetWorldScale(ColScale1);
 	BombCol2 = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
 	BombCol2->GetTransform()->SetWorldScale(ColScale2);
+
+	ExplosionSmokeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
+	ExplosionSmokeRender->GetTransform()->SetWorldScale(ExplosionSmokeRenderScale);
+	ExplosionSmokeRender->CreateAnimation({ .AnimationName = "Boom", .SpriteName = "ArtilleryTower_ExplosionSmoke", .FrameInter = 0.05f, .Loop = false });
+	ExplosionSmokeRender->ChangeAnimation("Boom");
+	ExplosionSmokeRender->Off();
+
+	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>();
+	BombDecalRender->SetTexture("decal_bomb_crater.png");
+	BombDecalRender->GetTransform()->SetWorldScale(BombDecalRenderScale);
+	BombDecalRender->Off();
+}
+
+void Artillery_Bullet::Update(float _DeltaTime)
+{
+	BaseBullet::Update(_DeltaTime);
+	if (IsBoom)
+	{
+		BombDecalRender->GetTransform()->SetWorldRotation({ 0,0,0,1 });
+		ExplosionSmokeRender->GetTransform()->SetWorldRotation({0,0,0,1});
+		BoomUpdate(_DeltaTime);
+	}
+	//ExplosionSmokeRender->On();
+	//ExplosionSmokeRender->ChangeAnimation("Boom");
 }
 
 void Artillery_Bullet::BombHit()
 {
 	Boom();
-	Death();
 }
 
 void Artillery_Bullet::BombMiss()
 {
 	Boom();
-	Death();
 }
 
 void Artillery_Bullet::Boom()
@@ -86,6 +108,24 @@ void Artillery_Bullet::Boom()
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
+	}
+	IsBoom = true;
+	ExplosionSmokeRender->On();
+	ExplosionSmokeRender->ChangeAnimation("Boom");
+	BombDecalRender->On();
+	BulletRenderer->Off();
+}
+
+void Artillery_Bullet::BoomUpdate(float _DeltaTime)
+{
+	BoomTime += _DeltaTime;
+	if (2.f >= BoomTime)
+	{
+		BombDecalRender->ColorOptionValue.MulColor.a -= _DeltaTime / 2;
+	}
+	else
+	{
+		Death();
 	}
 }
 

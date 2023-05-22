@@ -21,10 +21,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	float4 ArrowRenderScale = { 20,6 };
-	float4 ArrowColScale = { 6,6 };
+	float4 ArrowRenderScale = { 20,6,1 };
+	float4 ArrowColScale = { 6,6,1 };
 	std::shared_ptr<class GameEngineSpriteRenderer> MissArrowRenderer = nullptr;
-	float4 MissArrowRenderScale = { 16,8 };
+	float4 MissArrowRenderScale = { 16,8,1 };
 	float MissTime = 0.0f;
 
 	void ArrowHit();

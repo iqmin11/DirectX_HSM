@@ -21,7 +21,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	float4 RenderScale = { 128, 128 };
+	float4 RenderScale = { 128, 128, 1 };
 
 	std::shared_ptr<class Ranged_Shooter> Shooter0 = nullptr;
 	std::shared_ptr<class Ranged_Shooter> Shooter1 = nullptr;

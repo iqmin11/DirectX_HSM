@@ -23,7 +23,7 @@ protected:
 
 private:
 	float4 ActorPos = float4::Zero;
-	float4 TextureScale = {1200, 1000};
+	float4 TextureScale = {1200, 1000, 1};
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageBgRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
 };
 

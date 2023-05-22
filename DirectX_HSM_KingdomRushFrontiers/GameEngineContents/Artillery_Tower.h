@@ -22,11 +22,11 @@ protected:
 
 
 private:
-	float4 RenderScale = { 256, 256 };
+	float4 RenderScale = { 256, 256, 1 };
 	float Time = 0.0f;
 
 	std::shared_ptr<class GameEngineSpriteRenderer> FireSmokeRenderer = nullptr;
-	float4 SmokeRenderScale = { 66, 66 };
+	float4 SmokeRenderScale = { 66, 66, 1 };
 
 	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);

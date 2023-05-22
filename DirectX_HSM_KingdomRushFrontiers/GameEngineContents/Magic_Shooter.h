@@ -21,7 +21,7 @@ protected:
 	void Start() override;
 
 private:
-	float4 RenderScalse = { 64, 64 };
+	float4 RenderScalse = { 64, 64, 1 };
 	float Time = 0.0f;
 };
 

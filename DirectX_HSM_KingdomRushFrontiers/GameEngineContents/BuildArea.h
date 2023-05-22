@@ -25,10 +25,10 @@ protected:
 private:
 	float4 ActorPos = float4::Zero;
 	std::shared_ptr<class GameEngineSpriteRenderer> BuildAreaRenderer = nullptr;
-	float4 RenderScale = {128,128};
+	float4 RenderScale = {128,128,1};
 	
 	std::shared_ptr<class GameEngineCollision> BuildAreaCol = nullptr;
-	float4 ColScale = { 105,60 };
+	float4 ColScale = { 105,60,1 };
 
 	std::shared_ptr<class BaseTower> ChildTower = nullptr;
 

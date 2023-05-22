@@ -54,7 +54,7 @@ void Artillery_Tower::Start()
 	FireSmokeRenderer = CreateComponent<GameEngineSpriteRenderer>();
 	FireSmokeRenderer->GetTransform()->SetWorldScale(SmokeRenderScale);
 	FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv1SmokeLocalPos);
-	FireSmokeRenderer->CreateAnimation({.AnimationName = "Fire", .SpriteName = "ArtilleryTower_ShootSmoke", .FrameInter = 0.08f,.Loop = false});
+	FireSmokeRenderer->CreateAnimation({.AnimationName = "Fire", .SpriteName = "ArtilleryTower_FireSmoke", .FrameInter = 0.08f,.Loop = false});
 	FireSmokeRenderer->ChangeAnimation("Fire");
 	FireSmokeRenderer->Off();
 

@@ -82,6 +82,7 @@ void BaseShooter::AttackStateInit()
 			if (StateValue == ShooterState::Idle)
 			{
 				ShooterFSM.ChangeState("Idle");
+
 				return;
 			}
 			//Attack();
