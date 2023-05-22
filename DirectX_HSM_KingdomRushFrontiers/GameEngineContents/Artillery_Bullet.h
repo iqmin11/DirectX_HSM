@@ -22,9 +22,16 @@ protected:
 private:
 	float4 BulletRenderScale = {26,18};
 	float4 BulletColScale = {26,18};
+	std::shared_ptr<class GameEngineCollision> BombCol0 = nullptr;
+	std::shared_ptr<class GameEngineCollision> BombCol1 = nullptr;
+	std::shared_ptr<class GameEngineCollision> BombCol2 = nullptr;
+	float4 ColScale0 = { 20,20,1 };
+	float4 ColScale1 = { 40,40,1 };
+	float4 ColScale2 = { 60,60,1 };
 
 	void BombHit();
 	void BombMiss();
+	void Boom();
 	int CalDamage() override;
 	//void BombDeath();
 };

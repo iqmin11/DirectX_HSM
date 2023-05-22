@@ -3,6 +3,7 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "Artillery_Tower.h"
 #include "BaseMonster.h"
 
@@ -44,20 +45,51 @@ void Artillery_Bullet::Start()
 	BulletRenderer->GetTransform()->SetWorldScale(BulletRenderScale);
 	BulletHit = std::bind(&Artillery_Bullet::BombHit, this);
 	BulletMiss = std::bind(&Artillery_Bullet::BombMiss, this);
+
+	BombCol0 = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
+	BombCol0->GetTransform()->SetWorldScale(ColScale0);
+	BombCol1 = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
+	BombCol1->GetTransform()->SetWorldScale(ColScale1);
+	BombCol2 = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
+	BombCol2->GetTransform()->SetWorldScale(ColScale2);
 }
 
 void Artillery_Bullet::BombHit()
 {
+	Boom();
 	Death();
-	TargetMonster->CurHP -= CalDamage();
 }
 
 void Artillery_Bullet::BombMiss()
 {
+	Boom();
 	Death();
+}
+
+void Artillery_Bullet::Boom()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> HitMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
+	HitMonsters.reserve(30);
+	BombCol0->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	for (size_t i = 0; i < HitMonsters.size(); i++)
+	{
+		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
+	}
+
+	BombCol1->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	for (size_t i = 0; i < HitMonsters.size(); i++)
+	{
+		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
+	}
+
+	BombCol2->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	for (size_t i = 0; i < HitMonsters.size(); i++)
+	{
+		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
+	}
 }
 
 int Artillery_Bullet::CalDamage()
 {
-	return BaseBullet::CalDamage();
+	return (BaseBullet::CalDamage()) / 3;
 }
