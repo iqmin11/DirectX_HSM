@@ -8,6 +8,11 @@
 
 #include "Artillery_Bullet.h"
 
+const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60 }; // 0
+const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62 }; // 2
+const float4 Artillery_Tower::Lv3SmokeLocalPos = { 1,67 }; // 7
+const float4 Artillery_Tower::Lv4SmokeLocalPos = { 1,67 }; // 7
+
 Artillery_Tower::Artillery_Tower()
 {
 
@@ -46,6 +51,13 @@ void Artillery_Tower::Start()
 	TowerRenderer->ChangeAnimation("1_Idle");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
+	FireSmokeRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	FireSmokeRenderer->GetTransform()->SetWorldScale(SmokeRenderScale);
+	FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv1SmokeLocalPos);
+	FireSmokeRenderer->CreateAnimation({.AnimationName = "Fire", .SpriteName = "ArtilleryTower_ShootSmoke", .FrameInter = 0.08f,.Loop = false});
+	FireSmokeRenderer->ChangeAnimation("Fire");
+	FireSmokeRenderer->Off();
+
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
@@ -76,7 +88,7 @@ void Artillery_Tower::Update(float _DeltaTime)
 void Artillery_Tower::ChangeTower(TowerEnum _Tower)
 {
 	Data.SetData(_Tower);
-	if (TowerEnum::MagicTower != Data.TowerType)
+	if (TowerEnum::ArtilleryTower != Data.TowerType)
 	{
 		return;
 	}
@@ -88,9 +100,29 @@ void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 	TowerRenderer->ChangeAnimation(std::to_string(_TowerLevel) + "_Idle");
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+
+	switch (_TowerLevel)
+	{
+	case 1:
+		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv1SmokeLocalPos);
+		break;
+	case 2:
+		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv2SmokeLocalPos);
+		break;
+	case 3:
+		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv3SmokeLocalPos);
+		break;
+	case 4:
+		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv4SmokeLocalPos);
+		break;
+	default:
+		break;
+	}
 }
 
 void Artillery_Tower::ArtilleryAttack()
 {
+	FireSmokeRenderer->ChangeAnimation("Fire");
+	FireSmokeRenderer->On();
 	Artillery_Bullet::ShootingBullet(GetLevel(), this);
 }

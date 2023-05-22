@@ -25,8 +25,16 @@ private:
 	float4 RenderScale = { 256, 256 };
 	float Time = 0.0f;
 
+	std::shared_ptr<class GameEngineSpriteRenderer> FireSmokeRenderer = nullptr;
+	float4 SmokeRenderScale = { 66, 66 };
+
 	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);
 	void ArtilleryAttack();
+
+	static const float4 Lv1SmokeLocalPos;
+	static const float4 Lv2SmokeLocalPos;
+	static const float4 Lv3SmokeLocalPos;
+	static const float4 Lv4SmokeLocalPos;
 };
 

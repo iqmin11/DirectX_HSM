@@ -298,6 +298,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level2_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level3_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_ShootSmoke").GetFullPath());
 }
 
 
