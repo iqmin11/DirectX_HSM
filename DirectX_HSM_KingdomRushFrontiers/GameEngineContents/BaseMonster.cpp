@@ -45,7 +45,15 @@ void BaseMonster::Start()
 {
 	//GetTransform()->SetWorldPosition(ActorPos);
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster);
+	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster); 
+	LifeBarBg = CreateComponent<GameEngineSpriteRenderer>();
+	LifeBarBg->SetTexture("lifebar_bg_small.png");
+	LifeBarBg->GetTransform()->SetWorldScale(LifeBarScale);
+	LifeBarBg->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+	LifeBar = CreateComponent<GameEngineSpriteRenderer>();
+	LifeBar->SetTexture("lifebar_small.png");
+	LifeBar->GetTransform()->SetWorldScale(LifeBarScale);
+	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
 	//MonsterRenderer->SetTexture("DesertThug0000.png");
 	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }
@@ -57,7 +65,9 @@ void BaseMonster::Update(float _DeltaTime)
 	if (CurHP <= 0)
 	{
 		Death();
+		return;
 	}
+	UpdateLiveBar();
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)
@@ -126,6 +136,14 @@ void BaseMonster::CalMonsterDir()
 	ActorDir = ActorPos - PrevActorPos;
 	ActorDir.Normalize();
 	PrevActorPos = ActorPos;
+}
+
+void BaseMonster::UpdateLiveBar()
+{
+	float4 CurHpBarXSize = float4::LerpClamp(float4{ 0,LifeBarScale.y,0,1 }, float4{ LifeBarScale.x,LifeBarScale.y,0,1 }, CurHP / Data.Hp);
+	float4 CurHpBarXPos = float4::LerpClamp(float4{ -LifeBarScale.hx(),LifeBarLocalPos.y,0,1 }, float4{ 0,LifeBarLocalPos.y,0,1 }, CurHP / Data.Hp);
+	LifeBar->GetTransform()->SetWorldScale(CurHpBarXSize);
+	LifeBar->GetTransform()->SetLocalPosition(CurHpBarXPos);
 }
 
 float BaseMonster::CalDistance()

@@ -48,7 +48,7 @@ public:
 		return MonsterCol;
 	}
 	
-	int CurHP = 0;
+	float CurHP = 0;
 
 protected:
 	void Start() override;
@@ -71,10 +71,17 @@ private:
 	std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
 	std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
 
+	std::shared_ptr<class GameEngineSpriteRenderer> LifeBarBg = nullptr;
+	std::shared_ptr<class GameEngineSpriteRenderer> LifeBar = nullptr;
+	float4 LifeBarScale = { 20,2,1 };
+	float4 LifeBarLocalPos = { 0,20 };
+
 	float Time = 0;
 	float Ratio = 0;
 
 	void LiveMonsterListRelease();
 	void CalMonsterDir();
+
+	void UpdateLiveBar();
 };
 

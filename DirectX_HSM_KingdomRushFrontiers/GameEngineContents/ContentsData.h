@@ -438,7 +438,7 @@ public:
 
 public:
 	MonsterEnum MonsterType = MonsterEnum::Null;
-	int Hp = 0;
+	float Hp = 0;
 	float AttackRate = -1;
 	int Damage_min = -1;
 	int Damage_MAX = -1;

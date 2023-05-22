@@ -29,7 +29,7 @@ void Artillery_Bullet::ShootingBullet(GameEngineLevel* _Level, BaseShootingTower
 	Bullet->BulletTime = _ParentTower->GetData().BulletTime;
 	Bullet->TargetMonster = _ParentTower->GetTargetMonster();
 	Bullet->Data = &_ParentTower->GetData();
-	if (_ParentTower->GetData().Level == 1 || _ParentTower->GetData().Level == 2)
+	if (_ParentTower->GetData().Level != 3)
 	{
 		Bullet->IsRot = true;
 	}
