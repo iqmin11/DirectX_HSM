@@ -18,7 +18,18 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
+	float4 ArrowRenderScale = { 20,6 };
+	float4 ArrowColScale = { 6,6 };
+	std::shared_ptr<class GameEngineSpriteRenderer> MissArrowRenderer = nullptr;
+	float4 MissArrowRenderScale = { 16,8 };
+	float MissTime = 0.0f;
+
+	void ArrowHit();
+	void ArrowMiss();
+	int CalDamage() override;
+	void MissUpdate(float _DeltaTime);
 };
 

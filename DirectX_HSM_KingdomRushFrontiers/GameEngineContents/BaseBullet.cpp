@@ -22,9 +22,8 @@ BaseBullet::~BaseBullet()
 
 void BaseBullet::Start()
 {
-	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
 	BulletCol = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
-	BulletCol->GetTransform()->SetWorldScale({ 3,3 });
 }
 
 void BaseBullet::Update(float _DeltaTime)
@@ -40,19 +39,20 @@ void BaseBullet::Update(float _DeltaTime)
 		}
 		else
 		{
-			CalLerpBulletTransform(ParentPos, TargetPos, Ratio);
+			CalLerpBulletTransform(ParentPos, TargetPos, Ratio); // 직사
 		}
 
-		if (IsThereTargetMonster() && IsHitTargetMonster())
+		if (IsThereTargetMonster() && IsHitTargetMonster()) // 명중
 		{
-			TargetMonster->CurHP -= CalDamage();
-			DeathFunc();
+			//TargetMonster->CurHP -= CalDamage();
+			HitFunc();
 		}
 	}
 
-	if (Ratio >= 1 && !IsBulletDeath) // 빗나감(사거리까지 몬스터 콜리전에 충돌하지 않음)
+	if (IsMissTargetMonster()) // 빗나감
 	{
-		DeathFunc();
+		MissFunc();
+		AmIMiss = true;
 	}
 
 }
@@ -123,9 +123,26 @@ void BaseBullet::DeathFunc()
 	Death();
 }
 
-int BaseBullet::CalDamage() //데미지 계산 공식 나중에 더 상세해질듯..
+void BaseBullet::MissFunc()
 {
-	return GameEngineRandom::MainRandom.RandomInt(Data->Damage_min, Data->Damage_MAX);
+	IsBulletDeath = true;
+	if (BulletMiss != nullptr)
+	{
+		BulletMiss();
+		return;
+	}
+	Death();
+}
+
+void BaseBullet::HitFunc()
+{
+	IsBulletDeath = true;
+	if (BulletHit != nullptr)
+	{
+		BulletHit();
+		return;
+	}
+	Death();
 }
 
 bool BaseBullet::IsThereTargetMonster()
@@ -136,6 +153,11 @@ bool BaseBullet::IsThereTargetMonster()
 bool BaseBullet::IsHitTargetMonster()
 {
 	return BulletCol->GetTransform()->Collision({ ._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D });
+}
+
+bool BaseBullet::IsMissTargetMonster()
+{
+	return Ratio >= 1 && !IsBulletDeath;
 }
 
 

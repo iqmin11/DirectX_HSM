@@ -20,7 +20,11 @@ protected:
 	void Start() override;
 
 private:
-	float4 BulletScale = { 64,64 };
-	void BoltDeath();
+	float4 BoltRenderScale = { 64,64 };
+	float4 BoltColScale = { 6,6 };
+	void BoltHit();
+	void BoltMiss();
+
+	int CalDamage() override;
 };
 

@@ -92,5 +92,5 @@ void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 
 void Artillery_Tower::ArtilleryAttack()
 {
-Artillery_Bullet::ShootingBullet(GetLevel(), this, &Data);
+	Artillery_Bullet::ShootingBullet(GetLevel(), this);
 }

@@ -12,6 +12,7 @@ enum class RenderOrder
 	Tower = 0,
 	Shooter,
 	Monster,
+	Bullet,
 	BgObj,
 	UI,
 	MousePointer,

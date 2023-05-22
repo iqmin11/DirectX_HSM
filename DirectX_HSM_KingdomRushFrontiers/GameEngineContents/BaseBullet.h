@@ -1,4 +1,6 @@
 #pragma once
+#include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineBase/GameEngineTimeEvent.h>
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsData.h"
 
@@ -38,14 +40,21 @@ protected:
 
 	void Start() override;
 	void Update(float _DeltaTime) override;
+	virtual int CalDamage() = 0
+	{
+		return GameEngineRandom::MainRandom.RandomInt(Data->Damage_min, Data->Damage_MAX);
+	}
 
 	bool IsBezier = false;
 	float BulletTime = 1.f;
 	const TowerData* Data = nullptr;
+	std::function<void()> BulletHit = nullptr;
+	std::function<void()> BulletMiss = nullptr;
 	std::function<void()> BulletDeath = nullptr;
 	float IsRot = false;
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	std::shared_ptr<class GameEngineCollision> BulletCol = nullptr;
+	bool AmIMiss = false;
 
 private:
 	float4 ParentPos = float4::Zero;
@@ -57,13 +66,17 @@ private:
 
 	bool IsBulletDeath = false;
 
-
 	void CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio);
 	void CalLerpBulletTransform(const float4& _P0, const float4& _P3, float _Ratio);
 	void CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ratio);
 	void DeathFunc();
-	int CalDamage();
+	void MissFunc();
+	void HitFunc();
+	
 	bool IsThereTargetMonster();
 	bool IsHitTargetMonster();
+	bool IsMissTargetMonster();
+
+	
 };
 
