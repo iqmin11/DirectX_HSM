@@ -34,6 +34,7 @@ private:
 	float4 ExplosionSmokeRenderScale = { 256,256,1 };
 	std::shared_ptr<class GameEngineSpriteRenderer> BombDecalRender = nullptr;
 	float4 BombDecalRenderScale = { 52, 26, 1 };
+	float4 BombDecalLocalPos = { 0, 0, 100 };
 
 	bool IsBoom = false;
 	float BoomTime = 0.0f;
@@ -43,6 +44,5 @@ private:
 	void Boom();
 	void BoomUpdate(float _DeltaTime);
 	int CalDamage() override;
-	//void BombDeath();
 };
 

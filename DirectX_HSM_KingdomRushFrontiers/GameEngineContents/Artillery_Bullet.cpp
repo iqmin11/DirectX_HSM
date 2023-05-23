@@ -62,6 +62,7 @@ void Artillery_Bullet::Start()
 	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	BombDecalRender->SetTexture("decal_bomb_crater.png");
 	BombDecalRender->GetTransform()->SetWorldScale(BombDecalRenderScale);
+	BombDecalRender->GetTransform()->SetLocalPosition(BombDecalLocalPos);
 	BombDecalRender->Off();
 }
 
