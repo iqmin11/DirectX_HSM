@@ -41,7 +41,7 @@ std::shared_ptr<class BaseMonster> BaseShootingTower::FindTargetMonster()
 {
 	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec = std::vector<std::shared_ptr<GameEngineCollision>>();
 	LocalColVec.reserve(30);
-	RangeCol->CollisionAll(static_cast<int>(ColOrder::Monster), ColType::SPHERE2D, ColType::AABBBOX2D, LocalColVec);
+	RangeCol->CollisionAll(static_cast<int>(ColOrder::Monster), LocalColVec, ColType::SPHERE2D, ColType::AABBBOX2D);
 	std::shared_ptr<BaseMonster> TargetMonster = LocalColVec[0]->GetActor()->DynamicThis<BaseMonster>();
 	float Smallest = TargetMonster->CalDistance();
 	for (size_t i = 0; i < LocalColVec.size(); i++)

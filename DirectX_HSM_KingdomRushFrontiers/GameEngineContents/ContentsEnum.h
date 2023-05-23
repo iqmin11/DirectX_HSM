@@ -9,10 +9,10 @@ enum class ActorOrder
 enum class RenderOrder
 {
 	Bg = -1000,
-	Tower = 0,
-	Shooter,
-	Monster,
-	Bullet,
+	Mob = 0,
+	//Shooter,
+	//Monster,
+	//Bullet,
 	BgObj,
 	UI,
 	MousePointer,

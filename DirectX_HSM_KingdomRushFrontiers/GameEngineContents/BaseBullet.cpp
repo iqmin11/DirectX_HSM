@@ -22,7 +22,7 @@ BaseBullet::~BaseBullet()
 
 void BaseBullet::Start()
 {
-	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
+	BulletRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	BulletCol = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
 }
 

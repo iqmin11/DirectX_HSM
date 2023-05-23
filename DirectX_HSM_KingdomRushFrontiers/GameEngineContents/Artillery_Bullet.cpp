@@ -53,13 +53,13 @@ void Artillery_Bullet::Start()
 	BombCol2 = CreateComponent<GameEngineCollision>(ColOrder::Bullet);
 	BombCol2->GetTransform()->SetWorldScale(ColScale2);
 
-	ExplosionSmokeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
+	ExplosionSmokeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	ExplosionSmokeRender->GetTransform()->SetWorldScale(ExplosionSmokeRenderScale);
 	ExplosionSmokeRender->CreateAnimation({ .AnimationName = "Boom", .SpriteName = "ArtilleryTower_ExplosionSmoke", .FrameInter = 0.05f, .Loop = false });
 	ExplosionSmokeRender->ChangeAnimation("Boom");
 	ExplosionSmokeRender->Off();
 
-	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Bullet);
+	BombDecalRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	BombDecalRender->SetTexture("decal_bomb_crater.png");
 	BombDecalRender->GetTransform()->SetWorldScale(BombDecalRenderScale);
 	BombDecalRender->Off();
@@ -92,19 +92,19 @@ void Artillery_Bullet::Boom()
 {
 	std::vector<std::shared_ptr<GameEngineCollision>> HitMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 	HitMonsters.reserve(30);
-	BombCol0->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	BombCol0->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D );
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
 	}
 
-	BombCol1->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	BombCol1->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
 	}
 
-	BombCol2->CollisionAll(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D, HitMonsters);
+	BombCol2->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
