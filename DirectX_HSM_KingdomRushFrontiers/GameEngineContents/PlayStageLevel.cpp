@@ -15,6 +15,7 @@
 #include "DesertThug.h"
 #include "DuneRaider.h"
 #include "BuildArea.h"
+#include "FightObjBase.h"
 
 #include "Ranged_Tower.h"
 
@@ -66,6 +67,7 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
+	AcFight = CreateActor<FightObjBase>();
 
 	LoadAllStageData();
 	
@@ -302,6 +304,13 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level3_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_FireSmoke").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_ExplosionSmoke").GetFullPath());
+
+	Dir.MoveParentToDirectory("ArtilleryTower");
+	Dir.Move("FightObjTest");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Idle").GetFullPath());
 }
 
 

@@ -25,6 +25,6 @@ void MousePointer::Start()
 
 void MousePointer::Update(float _DeltaTime)
 {
-	MousePos = float4{ 1,-1,1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
+	MousePos = float4{ 1,-1, 1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
 	GetTransform()->SetWorldPosition(MousePos);
 }

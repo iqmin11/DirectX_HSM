@@ -19,6 +19,7 @@ void DesertThug::Start()
 	MonsterRenderer->SetTexture(TextureName);
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
+	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 	Data.SetData(MonsterEnum::DesertThug);
 	CurHP = Data.Hp;
 }

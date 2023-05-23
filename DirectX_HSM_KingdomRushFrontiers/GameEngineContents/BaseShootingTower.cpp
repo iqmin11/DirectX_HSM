@@ -61,7 +61,7 @@ std::shared_ptr<class BaseMonster> BaseShootingTower::FindTargetMonster()
 
 void BaseShootingTower::CalTargetPos()
 {
-	float4 CurPos = TargetMonster->GetTransform()->GetWorldPosition();
+	float4 CurPos = TargetMonster->GetMonsterCol()->GetTransform()->GetWorldPosition();
 	float4 Dir = TargetMonster->GetMonsterDir();
 	float MonsterSpeed = TargetMonster->GetMonsterSpeed();
 	float BulletTime = Data.BulletTime;

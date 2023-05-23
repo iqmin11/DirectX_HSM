@@ -104,6 +104,9 @@
     <ClInclude Include="DuneRaider.h">
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
     </ClInclude>
+    <ClInclude Include="FightObjBase.h">
+      <Filter>3.PlayStage\Actor\FIghtObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -211,6 +214,9 @@
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
     </ClCompile>
     <ClCompile Include="ContentsData.cpp" />
+    <ClCompile Include="FightObjBase.cpp">
+      <Filter>3.PlayStage\Actor\FIghtObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -278,6 +284,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
       <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\FIghtObj">
+      <UniqueIdentifier>{4ea989c4-8243-4dcb-a057-273f972edee3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
