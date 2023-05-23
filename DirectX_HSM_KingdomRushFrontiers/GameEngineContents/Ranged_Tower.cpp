@@ -7,14 +7,14 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Shooter.h"
 
-const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47 };
-const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47 };
-const float4 Ranged_Tower::Lv2Shooter0LocalPos = { 14,49 };;
-const float4 Ranged_Tower::Lv2Shooter1LocalPos = { -10,49 };
-const float4 Ranged_Tower::Lv3Shooter0LocalPos = { 14,54 };
-const float4 Ranged_Tower::Lv3Shooter1LocalPos = { -10,54 };
-const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,54 };
-const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,54 };
+const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47, -47 };
+const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47, -47 };
+const float4 Ranged_Tower::Lv2Shooter0LocalPos = { 14,49, -49 };;
+const float4 Ranged_Tower::Lv2Shooter1LocalPos = { -10,49, -49 };
+const float4 Ranged_Tower::Lv3Shooter0LocalPos = { 14,54, -54 };
+const float4 Ranged_Tower::Lv3Shooter1LocalPos = { -10,54, -54 };
+const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,54, -54 };
+const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,54, -54 };
 
 Ranged_Tower::Ranged_Tower()
 {
@@ -30,8 +30,7 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 {
 	std::shared_ptr<Ranged_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Ranged_Tower>();
-	LocalAc->ActorPos = _BuildPos;
-	LocalAc->GetTransform()->SetWorldPosition(LocalAc->ActorPos);
+	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
 	LocalAc->Shooter0->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter1->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter0->GetTransform()->SetParent(LocalAc->GetTransform());

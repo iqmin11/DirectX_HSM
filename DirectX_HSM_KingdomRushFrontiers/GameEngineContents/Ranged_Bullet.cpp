@@ -26,7 +26,7 @@ void Ranged_Bullet::Start()
 	BulletCol->GetTransform()->SetWorldScale(ArrowColScale);
 	BulletHit = std::bind(&Ranged_Bullet::ArrowHit, this);
 	BulletMiss = std::bind(&Ranged_Bullet::ArrowMiss, this);
-	MissArrowRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	MissArrowRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	MissArrowRenderer->SetTexture("decal_arrow.png");
 	MissArrowRenderer->GetTransform()->SetWorldScale(MissArrowRenderScale);
 	MissArrowRenderer->Off();

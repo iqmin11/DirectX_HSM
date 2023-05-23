@@ -18,7 +18,7 @@ BaseShooter::~BaseShooter()
 
 void BaseShooter::Start()
 {
-	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 }
 
 void BaseShooter::Update(float _DeltaTime)

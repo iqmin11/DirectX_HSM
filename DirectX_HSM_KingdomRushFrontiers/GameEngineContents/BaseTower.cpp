@@ -18,10 +18,10 @@ BaseTower::~BaseTower()
 
 void BaseTower::Start()
 {
-	GetTransform()->SetWorldPosition(ActorPos);
-	TowerAreaRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	TowerAreaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	TowerAreaRenderer->SetTexture("terrain_0004.png");
 	TowerAreaRenderer->GetTransform()->SetWorldScale({128,128,1});
+	TowerAreaRenderer->GetTransform()->SetLocalPosition({ 0,0,1 });
 	TowerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 }
 

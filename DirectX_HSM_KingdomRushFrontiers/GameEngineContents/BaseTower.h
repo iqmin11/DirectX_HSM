@@ -22,7 +22,6 @@ public:
 
 protected:
 	void Start() override;
-	float4 ActorPos = float4::Zero;
 
 protected:
 	TowerData Data = {};

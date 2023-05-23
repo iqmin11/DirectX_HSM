@@ -61,6 +61,7 @@ void PlayStageLevel::Start()
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
+	GetMainCamera()->GetTransform()->SetLocalPosition({ 0,0,-1000 });
 	
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();

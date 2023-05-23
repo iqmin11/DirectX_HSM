@@ -8,10 +8,10 @@
 
 #include "Artillery_Bullet.h"
 
-const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60 }; // 0
-const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62 }; // 2
-const float4 Artillery_Tower::Lv3SmokeLocalPos = { 1,67 }; // 7
-const float4 Artillery_Tower::Lv4SmokeLocalPos = { 1,67 }; // 7
+const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; // 0
+const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; // 2
+const float4 Artillery_Tower::Lv3SmokeLocalPos = { 1,67,-67 }; // 7
+const float4 Artillery_Tower::Lv4SmokeLocalPos = { 1,67,-67 }; // 7
 
 Artillery_Tower::Artillery_Tower()
 {
@@ -27,8 +27,7 @@ std::shared_ptr<Artillery_Tower> Artillery_Tower::CreateTower(GameEngineLevel* _
 {
 	std::shared_ptr<Artillery_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Artillery_Tower>();
-	LocalAc->ActorPos = _BuildPos;
-	LocalAc->GetTransform()->SetWorldPosition(LocalAc->ActorPos);
+	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
 	return LocalAc;
 }
 
@@ -51,7 +50,7 @@ void Artillery_Tower::Start()
 	TowerRenderer->ChangeAnimation("1_Idle");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
-	FireSmokeRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	FireSmokeRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	FireSmokeRenderer->GetTransform()->SetWorldScale(SmokeRenderScale);
 	FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv1SmokeLocalPos);
 	FireSmokeRenderer->CreateAnimation({.AnimationName = "Fire", .SpriteName = "ArtilleryTower_FireSmoke", .FrameInter = 0.08f,.Loop = false});

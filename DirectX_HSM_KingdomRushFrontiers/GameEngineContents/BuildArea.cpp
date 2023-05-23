@@ -40,7 +40,7 @@ void BuildArea::ReleaseChildTower()
 
 void BuildArea::Start()
 {
-	BuildAreaRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	BuildAreaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	BuildAreaRenderer->SetTexture("build_terrain_0004.png");
 	BuildAreaRenderer->GetTransform()->SetWorldScale(RenderScale);
 	BuildAreaCol = CreateComponent<GameEngineCollision>(ColOrder::Tower);

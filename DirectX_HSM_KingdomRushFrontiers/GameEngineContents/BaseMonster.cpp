@@ -43,19 +43,16 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 
 void BaseMonster::Start()
 {
-	//GetTransform()->SetWorldPosition(ActorPos);
-	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>();
+	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster); 
-	LifeBarBg = CreateComponent<GameEngineSpriteRenderer>();
+	LifeBarBg = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	LifeBarBg->SetTexture("lifebar_bg_small.png");
 	LifeBarBg->GetTransform()->SetWorldScale(LifeBarScale);
 	LifeBarBg->GetTransform()->SetLocalPosition(LifeBarLocalPos);
-	LifeBar = CreateComponent<GameEngineSpriteRenderer>();
+	LifeBar = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	LifeBar->SetTexture("lifebar_small.png");
 	LifeBar->GetTransform()->SetWorldScale(LifeBarScale);
 	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
-	//MonsterRenderer->SetTexture("DesertThug0000.png");
-	//MonsterRenderer->GetTransform()->SetWorldScale({66,56});
 }
 
 void BaseMonster::Update(float _DeltaTime)
