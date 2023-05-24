@@ -225,10 +225,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="FightObjBase.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Magic_Bullet.h">
       <SubType>
       </SubType>
@@ -401,10 +397,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="FightObjBase.cpp">
-      <SubType>
-      </SubType>
     </ClCompile>
     <ClCompile Include="Magic_Bullet.cpp">
       <SubType>

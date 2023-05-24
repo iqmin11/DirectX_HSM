@@ -4,7 +4,7 @@
 #include "GameEngineConstantBuffer.h"
 
 
-void GameEngineShaderResHelper::Copy(const GameEngineShaderResHelper& _ResHelper) 
+void GameEngineShaderResHelper::Copy(const GameEngineShaderResHelper& _ResHelper)
 {
 	for (const std::pair<std::string, GameEngineConstantBufferSetter>& Setter : _ResHelper.ConstantBufferSetters)
 	{
@@ -23,7 +23,7 @@ void GameEngineShaderResHelper::Copy(const GameEngineShaderResHelper& _ResHelper
 
 }
 
-void GameEngineConstantBufferSetter::Setting() 
+void GameEngineConstantBufferSetter::Setting()
 {
 	Res->ChangeData(CPUData, CPUDataSize);
 
@@ -81,6 +81,32 @@ void GameEngineTextureSetter::Setting()
 
 }
 
+void GameEngineTextureSetter::Reset()
+{
+	ShaderType Type = ParentShader->GetType();
+
+	switch (Type)
+	{
+	case ShaderType::None:
+	{
+		MsgAssert("어떤 쉐이더에 세팅될지 알수없는 상수버퍼 입니다.");
+		break;
+	}
+	case ShaderType::Vertex:
+	{
+		Res->VSReset(BindPoint);
+		break;
+	}
+	case ShaderType::Pixel:
+	{
+		Res->PSReset(BindPoint);
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 void GameEngineSamplerSetter::Setting()
 {
 	ShaderType Type = ParentShader->GetType();
@@ -108,7 +134,7 @@ void GameEngineSamplerSetter::Setting()
 }
 
 
-void GameEngineShaderResHelper::Setting() 
+void GameEngineShaderResHelper::Setting()
 {
 	{
 		std::multimap<std::string, GameEngineConstantBufferSetter>::iterator StartIter = ConstantBufferSetters.begin();
@@ -151,7 +177,7 @@ void GameEngineShaderResHelper::SetConstantBufferLink(const std::string_view& _N
 	std::string UpperName = GameEngineString::ToUpper(_Name);
 
 	std::multimap<std::string, GameEngineConstantBufferSetter>::iterator FindIter = ConstantBufferSetters.find(UpperName);
-	
+
 	if (ConstantBufferSetters.end() == FindIter)
 	{
 		MsgAssert("존재하지 않는 상수버퍼를 세팅하려고 했습니다." + UpperName);
@@ -170,7 +196,7 @@ void GameEngineShaderResHelper::SetConstantBufferLink(const std::string_view& _N
 			MsgAssert("상수버퍼와 세팅하려는 데이터의 크기가 다릅니다. 상수버퍼 : " + std::to_string(Setter.Res->GetBufferSize()) + "유저가 세팅한 데이터" + std::to_string(_Size) + UpperName);
 			return;
 		}
-		
+
 		Setter.CPUData = _Data;
 		Setter.CPUDataSize = _Size;
 	}
@@ -274,4 +300,18 @@ std::vector<GameEngineTextureSetter*> GameEngineShaderResHelper::GetTextureSette
 
 	return Result;
 
+}
+
+void GameEngineShaderResHelper::AllResourcesReset()
+{
+	{
+		std::multimap<std::string, GameEngineTextureSetter>::iterator StartIter = TextureSetters.begin();
+		std::multimap<std::string, GameEngineTextureSetter>::iterator EndIter = TextureSetters.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			GameEngineTextureSetter& Setter = StartIter->second;
+			Setter.Reset();
+		}
+	}
 }
