@@ -55,15 +55,26 @@ void BaseMonster::Start()
 	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
 }
 
+// Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
-	WalkPath(_DeltaTime);
-	CalMonsterDir();
+	if (!FightState)
+	{
+		WalkPath(_DeltaTime);
+		CalMonsterDir();
+	}
+
+	if (FightState)
+	{
+		int a = 0;
+	}
+
 	if (CurHP <= 0)
 	{
 		Death();
 		return;
 	}
+	
 	UpdateLiveBar();
 }
 

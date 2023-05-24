@@ -5,6 +5,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+float4 MousePointer::MousePos = float4::Zero;
+
 MousePointer::MousePointer()
 {
 
@@ -18,9 +20,9 @@ MousePointer::~MousePointer()
 void MousePointer::Start()
 {
 	MousePointerRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MousePointerRenderer->GetTransform()->SetWorldScale({ 10,10 });
+	MousePointerRenderer->GetTransform()->SetWorldScale({ 1,1 });
 	MousePointerCol = CreateComponent<GameEngineCollision>(ColOrder::MousePointer);
-	MousePointerCol->GetTransform()->SetWorldScale({ 10,10 });
+	MousePointerCol->GetTransform()->SetWorldScale({ 1,1 });
 }
 
 void MousePointer::Update(float _DeltaTime)

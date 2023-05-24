@@ -104,6 +104,12 @@
     <ClInclude Include="DuneRaider.h">
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
     </ClInclude>
+    <ClInclude Include="BaseFighter.h">
+      <Filter>3.PlayStage\Actor\Fighter</Filter>
+    </ClInclude>
+    <ClInclude Include="RallyPoint.h">
+      <Filter>3.PlayStage\Actor\Fighter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -211,6 +217,12 @@
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
     </ClCompile>
     <ClCompile Include="ContentsData.cpp" />
+    <ClCompile Include="BaseFighter.cpp">
+      <Filter>3.PlayStage\Actor\Fighter</Filter>
+    </ClCompile>
+    <ClCompile Include="RallyPoint.cpp">
+      <Filter>3.PlayStage\Actor\Fighter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -278,6 +290,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
       <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Fighter">
+      <UniqueIdentifier>{4bc72aea-fc72-471d-9aa0-8a677b7a8aaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

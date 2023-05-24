@@ -49,6 +49,7 @@ public:
 	}
 	
 	float CurHP = 0;
+	bool FightState = false; // 나중에 FSM으로 바뀔것 그냥 테스트용이라고 생각하자
 
 protected:
 	void Start() override;
@@ -74,11 +75,12 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> LifeBarBg = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> LifeBar = nullptr;
 	float4 LifeBarScale = { 20,2,1 };
-	float4 LifeBarBgLocalPos = { 0,20,1 };
-	float4 LifeBarLocalPos = { 0,20 };
+	float4 LifeBarBgLocalPos = { 0,35,1 };
+	float4 LifeBarLocalPos = { 0,35 };
 
 	float Time = 0;
 	float Ratio = 0;
+
 
 	void LiveMonsterListRelease();
 	void CalMonsterDir();

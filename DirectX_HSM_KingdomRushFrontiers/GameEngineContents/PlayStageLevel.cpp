@@ -15,9 +15,7 @@
 #include "DesertThug.h"
 #include "DuneRaider.h"
 #include "BuildArea.h"
-#include "FightObjBase.h"
-
-#include "Ranged_Tower.h"
+#include "RallyPoint.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -67,7 +65,7 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
-	AcFight = CreateActor<FightObjBase>();
+	AcRally = CreateActor<RallyPoint>();
 
 	LoadAllStageData();
 	
@@ -306,11 +304,11 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_ExplosionSmoke").GetFullPath());
 
 	Dir.MoveParentToDirectory("ArtilleryTower");
-	Dir.Move("FightObjTest");
+	Dir.Move("Reinforcement");
 
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Move").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FightObj_Test_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Idle").GetFullPath());
 }
 
 

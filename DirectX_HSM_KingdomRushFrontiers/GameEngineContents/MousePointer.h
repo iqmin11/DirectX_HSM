@@ -15,12 +15,17 @@ public:
 	MousePointer& operator=(const MousePointer& _Other) = delete;
 	MousePointer& operator=(MousePointer&& _Other) noexcept = delete;
 
+	static const float4& GetMousePosRef()
+	{
+		return MousePos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	float4 MousePos = float4::Zero;
+	static float4 MousePos;
 	std::shared_ptr<class GameEngineSpriteRenderer> MousePointerRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MousePointerCol = nullptr;
 };

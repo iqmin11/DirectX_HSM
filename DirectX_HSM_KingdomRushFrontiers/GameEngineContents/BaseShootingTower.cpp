@@ -71,9 +71,5 @@ void BaseShootingTower::CalTargetPos()
 
 bool BaseShootingTower::IsThereTarget()
 {
-	if (nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D))
-	{
-		return true;
-	}
-	return false;
+	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D);
 }
