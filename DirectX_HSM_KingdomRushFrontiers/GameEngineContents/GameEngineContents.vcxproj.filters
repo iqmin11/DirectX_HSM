@@ -264,14 +264,23 @@
     <Filter Include="3.PlayStage\Actor\StageUI">
       <UniqueIdentifier>{83f861ff-af06-4be0-af41-757df54ef89f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Tower">
-      <UniqueIdentifier>{888a0a21-ca89-49fb-a4ca-8ba476c08e89}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Level">
       <UniqueIdentifier>{7f7abad1-8497-4685-aa31-171076a77f41}</UniqueIdentifier>
     </Filter>
     <Filter Include="0.Base">
       <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
+      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
+      <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Fighter">
+      <UniqueIdentifier>{4bc72aea-fc72-471d-9aa0-8a677b7a8aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower">
+      <UniqueIdentifier>{888a0a21-ca89-49fb-a4ca-8ba476c08e89}</UniqueIdentifier>
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\0.Base">
       <UniqueIdentifier>{5e1b1e17-50b1-4706-b89b-d0ebdd5b4cc6}</UniqueIdentifier>
@@ -284,15 +293,6 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\1.RangedTower">
       <UniqueIdentifier>{3c813b88-3303-4e33-9acf-6f5aaba4afd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
-      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
-      <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Actor\Fighter">
-      <UniqueIdentifier>{4bc72aea-fc72-471d-9aa0-8a677b7a8aaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

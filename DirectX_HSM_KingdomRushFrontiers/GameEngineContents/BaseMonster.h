@@ -3,6 +3,14 @@
 #include "ContentsEnum.h"
 #include "ContentsData.h"
 
+enum class MonsterState
+{
+	Idle,
+	Move,
+	Attack,
+	Death
+};
+
 class BaseMonster : public GameEngineActor
 {
 public:
@@ -49,7 +57,7 @@ public:
 	}
 	
 	float CurHP = 0;
-	bool FightState = false; // 나중에 FSM으로 바뀔것 그냥 테스트용이라고 생각하자
+	MonsterState State = MonsterState::Move;
 
 protected:
 	void Start() override;

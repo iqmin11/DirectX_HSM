@@ -58,13 +58,13 @@ void BaseMonster::Start()
 // Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
-	if (!FightState)
+	if (State == MonsterState::Move)
 	{
 		WalkPath(_DeltaTime);
 		CalMonsterDir();
 	}
 
-	if (FightState)
+	if (State == MonsterState::Attack)
 	{
 		int a = 0;
 	}
