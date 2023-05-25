@@ -24,7 +24,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TestRallyRender = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> RangeRender = nullptr;
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
-	float Range = 40.f;
+	float Range = 60.f;
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 

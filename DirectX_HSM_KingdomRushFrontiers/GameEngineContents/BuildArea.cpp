@@ -60,7 +60,7 @@ void BuildArea::Update(float _DeltaTime)
 
 	if (IsAreaLeftClick() && GameEngineInput::IsPress("Z"))
 	{
-		ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
+		ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
 	}
 	if (IsAreaLeftClick() && GameEngineInput::IsPress("X"))
 	{
@@ -68,7 +68,7 @@ void BuildArea::Update(float _DeltaTime)
 	}
 	if (IsAreaLeftClick() && GameEngineInput::IsPress("C"))
 	{
-		ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
+		ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
 	}
 }
 

@@ -34,6 +34,7 @@ void BaseShooter::IdleStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			CheckDir();
 			if (StateValue == ShooterState::Attack)
 			{
 				ShooterFSM.ChangeState("Attack");
@@ -74,6 +75,7 @@ void BaseShooter::AttackStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			CheckDir();
 			if (BaseShooterRenderer->IsAnimationEnd())
 			{
 				StateValue = ShooterState::Idle;

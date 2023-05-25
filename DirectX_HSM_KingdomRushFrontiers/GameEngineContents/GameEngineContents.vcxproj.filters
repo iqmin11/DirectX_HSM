@@ -223,6 +223,12 @@
     <ClCompile Include="RallyPoint.cpp">
       <Filter>3.PlayStage\Actor\Fighter</Filter>
     </ClCompile>
+    <ClCompile Include="BaseFighter_State.cpp">
+      <Filter>3.PlayStage\Actor\Fighter</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMonster_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -293,6 +299,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\1.RangedTower">
       <UniqueIdentifier>{3c813b88-3303-4e33-9acf-6f5aaba4afd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\4.MeleeTower">
+      <UniqueIdentifier>{77b148df-1f9f-42b5-9a74-3cf0a376c77b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

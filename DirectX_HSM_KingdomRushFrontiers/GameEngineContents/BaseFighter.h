@@ -1,6 +1,16 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/GameEngineFSM.h>
 #include "ContentsEnum.h"
+
+enum class FighterState
+{
+	Idle,
+	Move,
+	TraceMonster,
+	Attack,
+	Death,
+};
 
 class RallyPoint;
 class BaseFighter : public GameEngineActor
@@ -33,6 +43,9 @@ public:
 
 	void ResetRatio();
 	
+	FighterState State = FighterState::Idle;
+	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -45,11 +58,28 @@ private:
 	float4 PrevPos = float4::Zero;
 	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;
 	float4 FighterRendererScale = {64,64,1};
+	
+	std::shared_ptr<class GameEngineCollision> FighterCol = nullptr;
+	float4 ColLocalPos = { 0,15,0 };
+	float4 ColScale = { 20,30,1 };
+
 
 	float Speed = 100.f;
 	float Time = 0.f;
 	float Ratio = 0.f;
+	float AttackRate = 1.f;
+
+	void AttackTarget();
+	void MoveToTarget(float _DeltaTime);
+
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;
+	GameEngineFSM FighterFSM = GameEngineFSM();
+
+	void IdleStateInit();
+	void MoveStateInit();
+	void TraceMonsterStateInit();
+	void AttackStateInit();
+	void DeathStateInit();
 };
 

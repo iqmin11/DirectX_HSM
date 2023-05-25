@@ -1,7 +1,10 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEngineCore/GameEngineFSM.h>
+
 #include "ContentsEnum.h"
 #include "ContentsData.h"
+
 
 enum class MonsterState
 {
@@ -69,11 +72,21 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
+	
+	GameEngineFSM MonsterFSM = GameEngineFSM();
+
+	void IdleStateInit();
+	void MoveStateInit();
+	void AttackStateInit();
+	void DeathStateInit();
+
+	float DeathTime = 0.f;
 
 private:
 	float4 ActorPos = float4::Zero;
 	float4 PrevActorPos = float4::Zero;
 	float4 ActorDir = float4::Zero;
+	std::string DirString = std::string();
 
 	std::vector<float4>* PathInfo = nullptr;
 	std::vector<float4>::iterator CurPoint = std::vector<float4>::iterator();
@@ -88,6 +101,7 @@ private:
 
 	float Time = 0;
 	float Ratio = 0;
+
 
 
 	void LiveMonsterListRelease();

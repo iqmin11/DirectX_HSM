@@ -208,11 +208,13 @@ void PlayStageLevel::StartNextWave()
 	//임시 예외처리
 	if (AllStageData[CurStage].Waves.size() <= NextWave)
 	{
-		MsgTextBox("마지막 웨이브까지 실행했습니다.");
+		NextWave = 0;
+		MonsterWave::StartWave(DynamicThis<GameEngineLevel>(), AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
+		//MsgTextBox("마지막 웨이브까지 실행했습니다.");
 		return;
 	}
 
-	MonsterWave::StartWave(std::dynamic_pointer_cast<GameEngineLevel>(std::enable_shared_from_this<GameEngineObject>::shared_from_this()), AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
+	MonsterWave::StartWave(DynamicThis<GameEngineLevel>() , AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
 	++NextWave;
 }
 
@@ -309,6 +311,18 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Move").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Death").GetFullPath());
+
+	Dir.MoveParentToDirectory("Reinforcement");
+	Dir.Move("DesertThug");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Profile").GetFullPath());
+
 }
 
 

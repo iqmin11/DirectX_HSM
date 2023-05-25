@@ -23,7 +23,6 @@ void BaseShooter::Start()
 
 void BaseShooter::Update(float _DeltaTime)
 {
-	CheckDir();
 	ShooterFSM.Update(_DeltaTime);
 }
 

@@ -364,6 +364,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BaseFighter_State.cpp" />
     <ClCompile Include="BaseMonster.cpp">
       <SubType>
       </SubType>
@@ -372,6 +373,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="BaseMonster_State.cpp" />
     <ClCompile Include="BaseShooter.cpp">
       <SubType>
       </SubType>

@@ -58,23 +58,7 @@ void BaseMonster::Start()
 // Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
-	if (State == MonsterState::Move)
-	{
-		WalkPath(_DeltaTime);
-		CalMonsterDir();
-	}
-
-	if (State == MonsterState::Attack)
-	{
-		int a = 0;
-	}
-
-	if (CurHP <= 0)
-	{
-		Death();
-		return;
-	}
-	
+	MonsterFSM.Update(_DeltaTime);
 	UpdateLiveBar();
 }
 
@@ -119,6 +103,7 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	WalkToNextPoint(_DeltaTime);
 }
 
+
 void BaseMonster::LiveMonsterListRelease()
 {
 	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseStartIter = LiveMonsterList.begin();
@@ -142,8 +127,28 @@ void BaseMonster::CalMonsterDir()
 {
 	ActorDir.w = 0.0f;
 	ActorDir = ActorPos - PrevActorPos;
-	ActorDir.Normalize();
+	ActorDir.Normalize(); // 지름이 1인 원
 	PrevActorPos = ActorPos;
+	float DegZ = ActorDir.GetAnagleDegZ();
+
+	if (DegZ > 45.f && DegZ <= 135.f)
+	{
+		DirString = "_Front";
+	}
+	else if (DegZ > 135.f && DegZ <= 225.f)
+	{
+		DirString = "_Profile";
+		MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
+	}
+	else if (DegZ > 225.f && DegZ <= 315.f)
+	{
+		DirString = "_Back";
+	}
+	else if ((DegZ > 315.f && DegZ <= 360.f) || (DegZ > 0.f && DegZ <= 45.f))
+	{
+		DirString = "_Profile";
+		MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();
+	}
 }
 
 void BaseMonster::UpdateLiveBar()
