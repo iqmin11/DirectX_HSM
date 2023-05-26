@@ -177,9 +177,62 @@ void BaseFighter::AttackStateInit()
 				if (TargetMonster->State == MonsterState::Death)
 				{
 					TargetMonster = nullptr;
-					State = FighterState::Idle;
+					State = FighterState::Return;
 				}
 			}
+
+			if (State == FighterState::Move)
+			{
+				FighterFSM.ChangeState("Move");
+			}
+
+			if (State == FighterState::Idle)
+			{
+				FighterFSM.ChangeState("Idle");
+			}
+
+			if (State == FighterState::TraceMonster)
+			{
+				FighterFSM.ChangeState("TraceMonster");
+			}
+
+			if (State == FighterState::Return)
+			{
+				FighterFSM.ChangeState("Return");
+			}
+
+			if (State == FighterState::Death)
+			{
+				FighterFSM.ChangeState("Death");
+			}
+		},
+		.End = [this]()
+		{
+
+		}
+		});
+}
+
+void BaseFighter::ReturnStateInit()
+{
+	FighterFSM.CreateState({
+		.Name = "Return",
+		.Start = [this]()
+		{
+			FighterRenderer->ChangeAnimation("Move");
+		},
+		.Update = [this](float _DeltaTime)
+		{
+			if (PrevPos != RallyPos)
+			{
+				State = FighterState::Move;
+			}
+			else if (State != FighterState::Attack && TargetMonster != nullptr)
+			{
+				State = FighterState::TraceMonster;
+			}
+			
+			ReturnToRally(_DeltaTime);
 
 			if (State == FighterState::Move)
 			{

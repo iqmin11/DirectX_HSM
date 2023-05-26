@@ -9,6 +9,7 @@ enum class FighterState
 	Move,
 	TraceMonster,
 	Attack,
+	Return,
 	Death,
 };
 
@@ -70,6 +71,7 @@ private:
 	float AttackRate = 1.f;
 
 	void AttackTarget();
+	void ReturnToRally(float _DeltaTime);
 	void MoveToTarget(float _DeltaTime);
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
@@ -80,6 +82,7 @@ private:
 	void MoveStateInit();
 	void TraceMonsterStateInit();
 	void AttackStateInit();
+	void ReturnStateInit();
 	void DeathStateInit();
 };
 

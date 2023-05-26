@@ -144,7 +144,7 @@ void BaseMonster::CalMonsterDir()
 	{
 		DirString = "_Back";
 	}
-	else if ((DegZ > 315.f && DegZ <= 360.f) || (DegZ > 0.f && DegZ <= 45.f))
+	else if ((DegZ > 315.f && DegZ <= 360.f) || (DegZ >= 0.f && DegZ <= 45.f))
 	{
 		DirString = "_Profile";
 		MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();

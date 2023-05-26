@@ -42,6 +42,7 @@ void BaseFighter::Start()
 	MoveStateInit();
 	TraceMonsterStateInit();
 	AttackStateInit();
+	ReturnStateInit();
 	DeathStateInit();
 
 	FighterFSM.ChangeState("Idle");
@@ -60,6 +61,30 @@ void BaseFighter::Update(float _DeltaTime)
 void BaseFighter::AttackTarget()
 {
 	TargetMonster->CurHP -= 10;
+}
+
+void BaseFighter::ReturnToRally(float _DeltaTime)
+{
+	//Time += _DeltaTime;
+	////float4 CurPos = GetTransform()->GetWorldPosition();
+	//Ratio = Time * (Speed / (RallyPos - CurPos).Size());
+	//ActorPos = float4::LerpClamp(CurPos, RallyPos, Ratio);
+	//GetTransform()->SetWorldPosition(ActorPos);
+	//if (Ratio >= 1.f)
+	//{
+	//	State = FighterState::Idle;
+	//	Ratio = 0.f;
+	//	Time = 0.f;
+	//}
+
+	//if (ActorPos.x - RallyPos.x > 0)
+	//{
+	//	FighterRenderer->GetTransform()->SetLocalNegativeScaleX();
+	//}
+	//else if (ActorPos.x - RallyPos.x < 0)
+	//{
+	//	FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
+	//}
 }
 
 void BaseFighter::MoveToTarget(float _DeltaTime)
