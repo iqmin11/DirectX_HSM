@@ -42,12 +42,12 @@ void RallyPoint::Start()
 	Fighter0->SetPrevPos(Fighter0RallyPos);
 	Fighter0->SetRallyPos(Fighter0RallyPos);
 
-	//Fighter1RallyPos = GetTransform()->GetWorldPosition() + float4{ 0,-20.f,-20.f,0 };
-	//Fighter1 = GetLevel()->CreateActor<BaseFighter>();
-	//Fighter1->GetTransform()->SetWorldPosition(Fighter1RallyPos);
-	//Fighter1->SetParentRally(this);
-	//Fighter1->SetPrevPos(Fighter1RallyPos);
-	//Fighter1->SetRallyPos(Fighter1RallyPos);
+	Fighter1RallyPos = GetTransform()->GetWorldPosition() + float4{ 0,-20.f,-20.f,0 };
+	Fighter1 = GetLevel()->CreateActor<BaseFighter>();
+	Fighter1->GetTransform()->SetWorldPosition(Fighter1RallyPos);
+	Fighter1->SetParentRally(this);
+	Fighter1->SetPrevPos(Fighter1RallyPos);
+	Fighter1->SetRallyPos(Fighter1RallyPos);
 }
 
 void RallyPoint::Update(float _DeltaTime)
@@ -64,15 +64,27 @@ void RallyPoint::Update(float _DeltaTime)
 		// 1. 몬스터들 중 랠리포인트로부터 가장 가까운 몬스터들을 거리순으로 계속 정렬. 이때 몬스터들은 FightState가 false인애들이 우선, FightState인 애들은 차선이 된다 .
 		// 2. Rally가 가지고있는 Fighter들 중, 상대 몬스터가 nullptr이면 우선순위별로 넣어준다.라는 과정을 거쳐야 할듯.
 		RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
+		if (ColMonsters.size() > 2)
+		{
+			ColMonsters.resize(2);
+		}
 
 		for (size_t i = 0; i < ColMonsters.size(); i++)
 		{
-			if (Fighter0->TargetMonster != nullptr)
+			if (Fighter0->TargetMonster == nullptr)
 			{
-				break;
+				Fighter0->TargetMonster = ColMonsters[i]->GetActor()->DynamicThis<BaseMonster>();
+				
+				if (Fighter1->TargetMonster == nullptr)
+				{
+					Fighter1->TargetMonster = ColMonsters[i]->GetActor()->DynamicThis<BaseMonster>();
+				}
 			}
-
-			Fighter0->TargetMonster = ColMonsters[i]->GetActor()->DynamicThis<BaseMonster>();
+			
+			if (Fighter1->TargetMonster == Fighter0->TargetMonster && Fighter1->TargetMonster != ColMonsters[i]->GetActor()->DynamicThis<BaseMonster>())
+			{
+				Fighter1->TargetMonster = ColMonsters[i]->GetActor()->DynamicThis<BaseMonster>();
+			}
 		}
 
 		//if (ColMonsters.size() == 1)
@@ -133,10 +145,10 @@ void RallyPoint::SetRallyPos(float4 _Pos)
 	Fighter0->SetPrevPos(Fighter0->GetTransform()->GetWorldPosition());
 	Fighter0->ResetRatio();
 
-	//Fighter1RallyPos = GetTransform()->GetWorldPosition() + float4{ 0,-20.f,-20.f,0 };
-	//Fighter1->SetRallyPos(Fighter1RallyPos);
-	//Fighter1->SetPrevPos(Fighter1->GetTransform()->GetWorldPosition());
-	//Fighter1->ResetRatio();
+	Fighter1RallyPos = GetTransform()->GetWorldPosition() + float4{ 0,-20.f,-20.f,0 };
+	Fighter1->SetRallyPos(Fighter1RallyPos);
+	Fighter1->SetPrevPos(Fighter1->GetTransform()->GetWorldPosition());
+	Fighter1->ResetRatio();
 }
 
 float RallyPoint::CalDistance(std::shared_ptr<class GameEngineCollision> _Monster)

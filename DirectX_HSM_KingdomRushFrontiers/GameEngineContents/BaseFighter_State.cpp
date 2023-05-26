@@ -12,10 +12,15 @@ void BaseFighter::IdleStateInit()
 		.Start = [this]()
 		{
 			FighterRenderer->ChangeAnimation("Idle");
+			SavePos = float4::Null;
 		},
 		.Update = [this](float _DeltaTime)
 		{
-			if (PrevPos != RallyPos)
+			if (false/*Hp°¡ 0ÀÌ¸é*/)
+			{
+				State = FighterState::Death;
+			}
+			else if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
 			}			
@@ -24,25 +29,22 @@ void BaseFighter::IdleStateInit()
 				State = FighterState::TraceMonster;
 			}
 			
-			if (State == FighterState::Move)
-			{
-				FighterFSM.ChangeState("Move");
-			}
-
-			if (State == FighterState::TraceMonster)
-			{
-				FighterFSM.ChangeState("TraceMonster");
-			}
-
-			if (State == FighterState::Attack)
-			{
-				FighterFSM.ChangeState("Attack");
-			}
-
 			if (State == FighterState::Death)
 			{
 				FighterFSM.ChangeState("Death");
+				return;
 			}
+			else if (State == FighterState::Move)
+			{
+				FighterFSM.ChangeState("Move");
+				return;
+			}
+			else if (State == FighterState::TraceMonster)
+			{
+				FighterFSM.ChangeState("TraceMonster");
+				return;
+			}
+
 		},
 		.End = [this]()
 		{
@@ -59,57 +61,22 @@ void BaseFighter::MoveStateInit()
 		{
 			FighterRenderer->ChangeAnimation("Move");
 			TargetMonster = nullptr;
+			SavePos = float4::Null;
 		},
 		.Update = [this](float _DeltaTime)
 		{
-			Time += _DeltaTime;
-			Ratio = Time * (Speed / (RallyPos - PrevPos).Size());
-			ActorPos = float4::LerpClamp(PrevPos, RallyPos, Ratio);
-			GetTransform()->SetWorldPosition(ActorPos);
-			if (Ratio >= 1)
-			{
-				PrevPos = RallyPos;
-				Ratio = 0.f;
-				Time = 0.f;
-			}
-
-			if (ActorPos.x - RallyPos.x > 0)
-			{
-				FighterRenderer->GetTransform()->SetLocalNegativeScaleX();
-			}
-			else if(ActorPos.x - RallyPos.x < 0)
-			{
-				FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
-			}
-
-			if (PrevPos == RallyPos)
-			{
-				State = FighterState::Idle;
-			}
-
 			if (State == FighterState::Idle)
 			{
 				FighterFSM.ChangeState("Idle");
 			}
 
-			if (State == FighterState::TraceMonster)
-			{
-				FighterFSM.ChangeState("TraceMonster");
-			}
-
-			if (State == FighterState::Attack)
-			{
-				FighterFSM.ChangeState("Attack");
-			}
-
-			if (State == FighterState::Death)
-			{
-				FighterFSM.ChangeState("Death");
-			}
+			MoveToRally(_DeltaTime);
 		},
 		.End = [this]()
 		{
-
+			PrevPos = RallyPos;
+			Ratio = 0.f;
+			Time = 0.f;
 		}
 		});
 }
@@ -125,31 +92,35 @@ void BaseFighter::TraceMonsterStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
-			MoveToTarget(_DeltaTime);
+			if (PrevPos != RallyPos)
+			{
+				State = FighterState::Move;
+			}
 
 			if (State == FighterState::Move)
 			{
 				FighterFSM.ChangeState("Move");
-			}
-
-			if (State == FighterState::Idle)
-			{
-				FighterFSM.ChangeState("Idle");
+				return;
 			}
 
 			if (State == FighterState::Attack)
 			{
 				FighterFSM.ChangeState("Attack");
+				return;
 			}
 
 			if (State == FighterState::Death)
 			{
 				FighterFSM.ChangeState("Death");
+				return;
 			}
+
+			MoveToTarget(_DeltaTime);
 		},
 		.End = [this]()
 		{
-
+			Ratio = 0.f;
+			Time = 0.f;
 		}
 		});
 }
@@ -168,47 +139,42 @@ void BaseFighter::AttackStateInit()
 			{
 				State = FighterState::Move;
 			}
+			else if (TargetMonster->State == MonsterState::Death)
+			{
+				TargetMonster = nullptr;
+				State = FighterState::Return;
+			}
+
+			if (State == FighterState::Move)
+			{
+				FighterFSM.ChangeState("Move");
+				return;
+			}
+
+			if (State == FighterState::Return)
+			{
+				FighterFSM.ChangeState("Return");
+				return;
+			}
+
+			if (State == FighterState::Death)
+			{
+				FighterFSM.ChangeState("Death");
+				return;
+			}
 
 			Time += _DeltaTime;
 			if (Time >= AttackRate)
 			{
 				Time = 0.f;
 				FighterRenderer->ChangeAnimation("Attack");
-				if (TargetMonster->State == MonsterState::Death)
-				{
-					TargetMonster = nullptr;
-					State = FighterState::Return;
-				}
-			}
 
-			if (State == FighterState::Move)
-			{
-				FighterFSM.ChangeState("Move");
-			}
-
-			if (State == FighterState::Idle)
-			{
-				FighterFSM.ChangeState("Idle");
-			}
-
-			if (State == FighterState::TraceMonster)
-			{
-				FighterFSM.ChangeState("TraceMonster");
-			}
-
-			if (State == FighterState::Return)
-			{
-				FighterFSM.ChangeState("Return");
-			}
-
-			if (State == FighterState::Death)
-			{
-				FighterFSM.ChangeState("Death");
 			}
 		},
 		.End = [this]()
 		{
-
+			Ratio = 0.f;
+			Time = 0.f;
 		}
 		});
 }
@@ -223,6 +189,8 @@ void BaseFighter::ReturnStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+
+
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -231,32 +199,41 @@ void BaseFighter::ReturnStateInit()
 			{
 				State = FighterState::TraceMonster;
 			}
-			
-			ReturnToRally(_DeltaTime);
+			else if (Ratio >= 1.f)
+			{
+				State = FighterState::Idle;
+			}
 
 			if (State == FighterState::Move)
 			{
 				FighterFSM.ChangeState("Move");
-			}
-
-			if (State == FighterState::Idle)
-			{
-				FighterFSM.ChangeState("Idle");
+				return;
 			}
 
 			if (State == FighterState::TraceMonster)
 			{
 				FighterFSM.ChangeState("TraceMonster");
+				return;
+			}
+
+			if (State == FighterState::Idle)
+			{
+				FighterFSM.ChangeState("Idle");
+				return;
 			}
 
 			if (State == FighterState::Death)
 			{
 				FighterFSM.ChangeState("Death");
+				return;
 			}
+
+			ReturnToRally(_DeltaTime);
 		},
 		.End = [this]()
 		{
-
+			Ratio = 0.f;
+			Time = 0.f;
 		}
 		});
 }
@@ -271,25 +248,8 @@ void BaseFighter::DeathStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
-			if (State == FighterState::Move)
-			{
-				FighterFSM.ChangeState("Move");
-			}
 
-			if (State == FighterState::TraceMonster)
-			{
-				FighterFSM.ChangeState("TraceMonster");
-			}
 
-			if (State == FighterState::Attack)
-			{
-				FighterFSM.ChangeState("Attack");
-			}
-
-			if (State == FighterState::Idle)
-			{
-				FighterFSM.ChangeState("Idle");
-			}
 		},
 		.End = [this]()
 		{

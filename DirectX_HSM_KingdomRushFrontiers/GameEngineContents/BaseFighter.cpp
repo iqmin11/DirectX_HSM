@@ -58,6 +58,28 @@ void BaseFighter::Update(float _DeltaTime)
 }
 
 
+void BaseFighter::MoveToRally(float _DeltaTime)
+{
+	Time += _DeltaTime;
+	Ratio = Time * (Speed / (RallyPos - PrevPos).Size());
+	ActorPos = float4::LerpClamp(PrevPos, RallyPos, Ratio);
+	GetTransform()->SetWorldPosition(ActorPos);
+
+	if (ActorPos.x - RallyPos.x > 0)
+	{
+		FighterRenderer->GetTransform()->SetLocalNegativeScaleX();
+	}
+	else if (ActorPos.x - RallyPos.x < 0)
+	{
+		FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
+	}
+
+	if (Ratio >= 1)
+	{
+		State = FighterState::Idle;
+	}
+}
+
 void BaseFighter::AttackTarget()
 {
 	TargetMonster->CurHP -= 10;
@@ -65,40 +87,44 @@ void BaseFighter::AttackTarget()
 
 void BaseFighter::ReturnToRally(float _DeltaTime)
 {
-	//Time += _DeltaTime;
-	////float4 CurPos = GetTransform()->GetWorldPosition();
-	//Ratio = Time * (Speed / (RallyPos - CurPos).Size());
-	//ActorPos = float4::LerpClamp(CurPos, RallyPos, Ratio);
-	//GetTransform()->SetWorldPosition(ActorPos);
+	Time += _DeltaTime;
+
+	Ratio = Time * (Speed / (RallyPos - SavePos).Size());
+	ActorPos = float4::LerpClamp(SavePos, RallyPos, Ratio);
+	GetTransform()->SetWorldPosition(ActorPos);
 	//if (Ratio >= 1.f)
 	//{
 	//	State = FighterState::Idle;
-	//	Ratio = 0.f;
-	//	Time = 0.f;
 	//}
 
-	//if (ActorPos.x - RallyPos.x > 0)
-	//{
-	//	FighterRenderer->GetTransform()->SetLocalNegativeScaleX();
-	//}
-	//else if (ActorPos.x - RallyPos.x < 0)
-	//{
-	//	FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
-	//}
+	if (ActorPos.x - RallyPos.x > 0)
+	{
+		FighterRenderer->GetTransform()->SetLocalNegativeScaleX();
+	}
+	else if (ActorPos.x - RallyPos.x < 0)
+	{
+		FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
+	}
 }
 
 void BaseFighter::MoveToTarget(float _DeltaTime)
 {
+	if (TargetMonster->State != MonsterState::Idle)
+	{
+		TargetMonster->State = MonsterState::Idle;
+	}
+
 	Time += _DeltaTime;
 	float4 TargetPos = TargetMonster->GetTransform()->GetWorldPosition();
-	Ratio = Time * (Speed / (TargetPos - PrevPos).Size());
-	ActorPos = float4::LerpClamp(PrevPos, TargetPos, Ratio);
-	GetTransform()->SetWorldPosition(ActorPos);
-	if (FighterCol->GetTransform()->Collision({._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D}))
+	if (SavePos != float4::Null)
 	{
-		State = FighterState::Attack;
-		Ratio = 0.f;
-		Time = 0.f;
+		Ratio = Time * (Speed / (TargetPos - SavePos).Size());
+		ActorPos = float4::LerpClamp(SavePos, TargetPos, Ratio);
+	}
+	else
+	{
+		Ratio = Time * (Speed / (TargetPos - PrevPos).Size());
+		ActorPos = float4::LerpClamp(PrevPos, TargetPos, Ratio);
 	}
 
 	if (ActorPos.x - TargetPos.x > 0)
@@ -108,6 +134,13 @@ void BaseFighter::MoveToTarget(float _DeltaTime)
 	else if (ActorPos.x - TargetPos.x < 0)
 	{
 		FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
+	}
+
+	GetTransform()->SetWorldPosition(ActorPos);
+	if (FighterCol->GetTransform()->Collision({._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D}))
+	{
+		State = FighterState::Attack;
+		SavePos = GetTransform()->GetWorldPosition();
 	}
 }
 

@@ -57,6 +57,7 @@ private:
 	float4 ActorPos = float4::Zero;
 	float4 RallyPos = float4::Zero;
 	float4 PrevPos = float4::Zero;
+	float4 SavePos = float4::Null;
 	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;
 	float4 FighterRendererScale = {64,64,1};
 	
@@ -70,6 +71,8 @@ private:
 	float Ratio = 0.f;
 	float AttackRate = 1.f;
 
+
+	void MoveToRally(float _DeltaTime);
 	void AttackTarget();
 	void ReturnToRally(float _DeltaTime);
 	void MoveToTarget(float _DeltaTime);
