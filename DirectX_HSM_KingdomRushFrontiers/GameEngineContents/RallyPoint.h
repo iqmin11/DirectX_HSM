@@ -27,17 +27,13 @@ private:
 	float Range = 60.f;
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
+	std::vector<std::shared_ptr<class BaseFighter>> Fighters = std::vector<std::shared_ptr<class BaseFighter>>();
 
-	std::shared_ptr<class BaseFighter> Fighter0 = nullptr;
-	std::shared_ptr<class BaseFighter> Fighter1 = nullptr;
-	float4 Fighter0RallyPos = float4::Zero;
-	float4 Fighter1RallyPos = float4::Zero;
 
-	//std::list<std::shared_ptr<class BaseMonster>> TargetMonsters = std::list<std::shared_ptr<class BaseMonster>>();
-	//std::shared_ptr<class BaseMonster> TargetMonster0 = nullptr;
-	//std::shared_ptr<class BaseMonster> TargetMonster1 = nullptr;
-	//std::shared_ptr<class BaseMonster> TargetMonster2 = nullptr;
-
+	//std::shared_ptr<class BaseFighter> Fighter0 = nullptr;
+	//std::shared_ptr<class BaseFighter> Fighter1 = nullptr;
+	//float4 Fighter0RallyPos = float4::Zero;
+	//float4 Fighter1RallyPos = float4::Zero;
 
 	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	float CalDistance(std::shared_ptr<class GameEngineCollision> _Monster);
