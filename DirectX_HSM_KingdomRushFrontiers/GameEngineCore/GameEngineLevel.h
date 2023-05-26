@@ -64,7 +64,7 @@ public:
 		return std::dynamic_pointer_cast<ActorType>(NewActor);
 	}
 
-	std::shared_ptr<class GameEngineCamera> GetMainCamera()
+	std::shared_ptr<class GameEngineCamera> GetMainCamera() 
 	{
 		return MainCamera;
 	}
@@ -76,6 +76,11 @@ public:
 
 	std::shared_ptr<GameEngineCamera> GetCamera(int _CameraOrder);
 
+	std::shared_ptr<GameEngineRenderTarget> GetLastTarget() 
+	{
+		return LastTarget;
+	}
+
 protected:
 	// 레벨이 바뀌어서 시작할때
 	virtual void LevelChangeStart();
@@ -86,8 +91,15 @@ protected:
 	void Render(float _DeltaTime);
 
 private:
+	// 모든 카메라의 내용이 다 종합된.
+	std::shared_ptr<GameEngineRenderTarget> LastTarget;
+
+
 	//      이름           경로
 	std::map<std::string, std::string> TexturePath;
+	std::map<std::string, std::string> LoadEndPath;
+
+	// 이미 뭔가가 다그려진 커다란 텍스처에 뭔가 변화를 주는것.
 
 	// 카메라
 	std::map<int, std::shared_ptr<GameEngineCamera>> Cameras;
@@ -109,5 +121,10 @@ private:
 	void ActorLevelChangeStart();
 	void ActorLevelChangeEnd();
 
+	void TextureUnLoad(GameEngineLevel* _NextLevel);
+
+	void TextureReLoad(GameEngineLevel* _PrevLevel);
+
 };
 
+ 

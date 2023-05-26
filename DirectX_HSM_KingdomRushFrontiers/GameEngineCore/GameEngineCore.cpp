@@ -16,11 +16,11 @@ std::shared_ptr<GameEngineLevel> GameEngineCore::NextLevel = nullptr;
 
 GameEngineLevel* GameEngineCore::CurLoadLevel = nullptr;
 
-GameEngineCore::GameEngineCore()
+GameEngineCore::GameEngineCore() 
 {
 }
 
-GameEngineCore::~GameEngineCore()
+GameEngineCore::~GameEngineCore() 
 {
 }
 
@@ -33,7 +33,7 @@ void GameEngineCore::EngineStart(std::function<void()> _ContentsStart)
 	{
 		GameEngineInput::CreateKey("GUISwitch", VK_F8);
 	}
-
+	
 
 	GameEngineDevice::Initialize();
 
@@ -48,7 +48,7 @@ void GameEngineCore::EngineStart(std::function<void()> _ContentsStart)
 	_ContentsStart();
 }
 
-void GameEngineCore::EngineUpdate()
+void GameEngineCore::EngineUpdate() 
 {
 	if (nullptr != NextLevel)
 	{
@@ -56,7 +56,9 @@ void GameEngineCore::EngineUpdate()
 
 		if (nullptr != MainLevel)
 		{
+			CurLoadLevel = MainLevel.get();
 			MainLevel->LevelChangeEnd();
+			CurLoadLevel = nullptr;
 			MainLevel->ActorLevelChangeEnd();
 		}
 
@@ -64,7 +66,9 @@ void GameEngineCore::EngineUpdate()
 
 		if (nullptr != MainLevel)
 		{
+			CurLoadLevel = MainLevel.get();
 			MainLevel->LevelChangeStart();
+			CurLoadLevel = nullptr;
 			MainLevel->ActorLevelChangeStart();
 		}
 
@@ -82,10 +86,6 @@ void GameEngineCore::EngineUpdate()
 		// 레퍼런스 카운트 관리해볼것이다.
 
 		// Prev레벨에서 사용한 텍스처들
-
-
-		PrevLevel;
-		MainLevel;
 		NextLevel = nullptr;
 		GameEngineTime::GlobalTime.Reset();
 	}
@@ -107,10 +107,14 @@ void GameEngineCore::EngineUpdate()
 	GameEngineInput::Update(TimeDeltaTime);
 	GameEngineSound::SoundUpdate();
 
+	// 업데이트가 일어나는 동안 로드가 된애들
+
+	CurLoadLevel = MainLevel.get();
 	MainLevel->TimeEvent.Update(TimeDeltaTime);
 	MainLevel->AccLiveTime(TimeDeltaTime);
 	MainLevel->Update(TimeDeltaTime);
 	MainLevel->ActorUpdate(TimeDeltaTime);
+	CurLoadLevel = nullptr;
 
 	GameEngineVideo::VideoState State = GameEngineVideo::GetCurState();
 	if (State != GameEngineVideo::VideoState::Running)
@@ -143,7 +147,7 @@ void GameEngineCore::EngineEnd(std::function<void()> _ContentsEnd)
 	GameEngineWindow::Release();
 }
 
-void GameEngineCore::Start(HINSTANCE _instance, std::function<void()> _Start, std::function<void()> _End, float4 _Pos, float4 _Size)
+void GameEngineCore::Start(HINSTANCE _instance,  std::function<void()> _Start, std::function<void()> _End, float4 _Pos, float4 _Size)
 {
 	GameEngineDebug::LeakCheck();
 
@@ -157,7 +161,7 @@ void GameEngineCore::Start(HINSTANCE _instance, std::function<void()> _Start, st
 	GameEngineWindow::WindowLoop(std::bind(GameEngineCore::EngineStart, _Start), GameEngineCore::EngineUpdate, std::bind(GameEngineCore::EngineEnd, _End));
 }
 
-void GameEngineCore::ChangeLevel(const std::string_view& _Name)
+void GameEngineCore::ChangeLevel(const std::string_view& _Name) 
 {
 	std::string UpperName = GameEngineString::ToUpper(_Name);
 
@@ -170,7 +174,7 @@ void GameEngineCore::ChangeLevel(const std::string_view& _Name)
 	NextLevel = LevelMap[UpperName];
 }
 
-void GameEngineCore::LevelInit(std::shared_ptr<GameEngineLevel> _Level)
+void GameEngineCore::LevelInit(std::shared_ptr<GameEngineLevel> _Level) 
 {
 	CurLoadLevel = _Level.get();
 	_Level->Start();

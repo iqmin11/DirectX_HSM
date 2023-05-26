@@ -10,37 +10,15 @@
 
 // #pragma comment(lib, "DirectXTex.lib")
 
-GameEnginePixelColor GameEnginePixelColor::Black = { 0, 0, 0, 0 };
+GameEnginePixelColor GameEnginePixelColor::Black = {0, 0, 0, 0};
 
-GameEngineTexture::GameEngineTexture()
+GameEngineTexture::GameEngineTexture() 
 {
 }
 
-GameEngineTexture::~GameEngineTexture()
+GameEngineTexture::~GameEngineTexture() 
 {
-	if (nullptr != DSV)
-	{
-		DSV->Release();
-		DSV = nullptr;
-	}
-
-	if (nullptr != SRV)
-	{
-		SRV->Release();
-		SRV = nullptr;
-	}
-
-	if (nullptr != RTV)
-	{
-		RTV->Release();
-		RTV = nullptr;
-	}
-
-	if (nullptr != Texture2D)
-	{
-		Texture2D->Release();
-		Texture2D = nullptr;
-	}
+	Release();
 }
 
 
@@ -108,7 +86,7 @@ void GameEngineTexture::CreateDepthStencilView()
 }
 
 
-void GameEngineTexture::ResLoad(const std::string_view& _Path)
+void GameEngineTexture::ResLoad(const std::string_view& _Path) 
 {
 	// GameEnginePath NewPath = 
 
@@ -149,7 +127,7 @@ void GameEngineTexture::ResLoad(const std::string_view& _Path)
 	// Texture2D->GetDesc(&Desc);
 }
 
-void GameEngineTexture::VSSetting(UINT _Slot)
+void GameEngineTexture::VSSetting(UINT _Slot) 
 {
 	if (nullptr == SRV)
 	{
@@ -157,10 +135,10 @@ void GameEngineTexture::VSSetting(UINT _Slot)
 		return;
 	}
 
-	GameEngineDevice::GetContext()->VSSetShaderResources(_Slot, 1, &SRV);
+	GameEngineDevice::GetContext()->VSSetShaderResources(_Slot, 1,&SRV);
 }
 
-void GameEngineTexture::PSSetting(UINT _Slot)
+void GameEngineTexture::PSSetting(UINT _Slot) 
 {
 	if (nullptr == SRV)
 	{
@@ -184,7 +162,7 @@ void GameEngineTexture::PSReset(UINT _Slot)
 	GameEngineDevice::GetContext()->PSSetShaderResources(_Slot, 1, &Nullptr);
 }
 
-void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value)
+void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value) 
 {
 	Desc = _Value;
 
@@ -522,4 +500,33 @@ void GameEngineTexture::PathCheck(const std::string_view& _Path, const std::stri
 		return;
 	}
 	GameEngineCore::CurLoadLevel->TexturePath[_Name.data()] = _Path.data();
+}
+
+void GameEngineTexture::Release()
+{
+	Image.Release();
+
+	if (nullptr != DSV)
+	{
+		DSV->Release();
+		DSV = nullptr;
+	}
+
+	if (nullptr != SRV)
+	{
+		SRV->Release();
+		SRV = nullptr;
+	}
+
+	if (nullptr != RTV)
+	{
+		RTV->Release();
+		RTV = nullptr;
+	}
+
+	if (nullptr != Texture2D)
+	{
+		Texture2D->Release();
+		Texture2D = nullptr;
+	}
 }
