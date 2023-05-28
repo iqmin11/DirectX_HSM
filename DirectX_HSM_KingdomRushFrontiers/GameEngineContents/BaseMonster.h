@@ -102,8 +102,6 @@ private:
 	float Time = 0;
 	float Ratio = 0;
 
-
-
 	void LiveMonsterListRelease();
 	void CalMonsterDir();
 

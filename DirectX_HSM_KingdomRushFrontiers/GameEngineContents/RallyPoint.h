@@ -29,15 +29,18 @@ private:
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 	std::vector<std::shared_ptr<class BaseFighter>> Fighters = std::vector<std::shared_ptr<class BaseFighter>>();
 
+	size_t PrevColCount = 0;
+	bool IsChangeColCount = false;
 
-	//std::shared_ptr<class BaseFighter> Fighter0 = nullptr;
-	//std::shared_ptr<class BaseFighter> Fighter1 = nullptr;
-	//float4 Fighter0RallyPos = float4::Zero;
-	//float4 Fighter1RallyPos = float4::Zero;
-
-	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	float CalDistance(std::shared_ptr<class GameEngineCollision> _Monster);
 	bool IsThereTarget();
 	void SetRallyPos(float4 _Pos);
+
+	void SetPrevTarget();
+	void FindTarget();
+	void SetBoolChangeTarget();
+
+	void SetBoolChangeColCount();
+	void ResetTargetMonster();
 };
 

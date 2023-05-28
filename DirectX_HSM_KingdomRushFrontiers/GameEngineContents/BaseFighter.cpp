@@ -58,6 +58,7 @@ void BaseFighter::Update(float _DeltaTime)
 }
 
 
+
 void BaseFighter::MoveToRally(float _DeltaTime)
 {
 	Time += _DeltaTime;
@@ -82,7 +83,7 @@ void BaseFighter::MoveToRally(float _DeltaTime)
 
 void BaseFighter::AttackTarget()
 {
-	TargetMonster->CurHP -= 10;
+	TargetMonster->CurHP -= 5;
 }
 
 void BaseFighter::ReturnToRally(float _DeltaTime)

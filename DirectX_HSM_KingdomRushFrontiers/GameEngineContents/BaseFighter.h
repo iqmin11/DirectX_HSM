@@ -16,6 +16,7 @@ enum class FighterState
 class RallyPoint;
 class BaseFighter : public GameEngineActor
 {
+	friend RallyPoint;
 public:
 	// construtor destructor
 	BaseFighter();
@@ -45,7 +46,16 @@ public:
 	void ResetRatio();
 	
 	FighterState State = FighterState::Idle;
-	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+
+	bool HaveITarget()
+	{
+		return TargetMonster != nullptr;
+	}
+
+	void SetTarget(std::shared_ptr<class BaseMonster> _Target)
+	{
+		TargetMonster = _Target;
+	}
 
 protected:
 	void Start() override;
@@ -65,12 +75,14 @@ private:
 	float4 ColLocalPos = { 0,15,0 };
 	float4 ColScale = { 20,30,1 };
 
+	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+	std::shared_ptr<class BaseMonster> PrevTarget = nullptr;
 
 	float Speed = 100.f;
 	float Time = 0.f;
 	float Ratio = 0.f;
 	float AttackRate = 1.f;
-
+	bool IsChangeTarget = false;
 
 	void MoveToRally(float _DeltaTime);
 	void AttackTarget();
