@@ -44,16 +44,16 @@ void RallyPoint::Start()
 	RangeCol->GetTransform()->SetWorldScale({ Range * 2.f,Range * 2.f,0.f });
 	//RangeCol->GetTransform()->SetLocalRotation({ 45.f,0,0 });
 
-	RallyPos.resize(3);
+	RallyPosCheckComponents.resize(3);
 
-	for (size_t i = 0; i < RallyPos.size(); i++)
+	for (size_t i = 0; i < RallyPosCheckComponents.size(); i++)
 	{
-		RallyPos[i] = CreateComponent<GameEngineComponent>();
+		RallyPosCheckComponents[i] = CreateComponent<GameEngineComponent>();
 	}
 
-	RallyPos[0]->GetTransform()->SetLocalPosition({-40, 0, 0});
-	RallyPos[1]->GetTransform()->SetLocalPosition({ 40, 0, 0 });
-	RallyPos[2]->GetTransform()->SetLocalPosition({ 0, -40, 0 });
+	RallyPosCheckComponents[0]->GetTransform()->SetLocalPosition({-40, 0, 0});
+	RallyPosCheckComponents[1]->GetTransform()->SetLocalPosition({ 40, 0, 0 });
+	RallyPosCheckComponents[2]->GetTransform()->SetLocalPosition({ 0, -40, 0 });
 
 }
 
@@ -193,8 +193,8 @@ void RallyPoint::SetFighter(int _Count)
 		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetParentRally(this);
 		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
-		Fighters[i]->SetRallyTransform(RallyPos[i]->GetTransform());
-		Fighters[i]->SetRallyPos(RallyPos[i]->GetTransform()->GetWorldPosition()); // 실패하면 되돌려야
+		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
+		//Fighters[i]->SetRallyPos(RallyPos[i]->GetTransform()->GetWorldPosition()); // 실패하면 되돌려야
 	}
 }
 

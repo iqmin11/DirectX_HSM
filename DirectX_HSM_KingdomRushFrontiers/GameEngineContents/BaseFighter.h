@@ -33,10 +33,10 @@ public:
 		ParentRally = _Rally;
 	}
 
-	void SetRallyPos(float4 _Pos)
-	{
-		RallyPos = _Pos;
-	}
+	//void SetRallyPos(float4 _Pos)
+	//{
+	//	RallyPos = _Pos;
+	//}
 
 	void SetRallyTransform(GameEngineTransform* _Transform)
 	{
@@ -71,7 +71,7 @@ private:
 
 	GameEngineTransform* RallyTransform = nullptr;
 	float4 ActorPos = float4::Zero;
-	float4 RallyPos = float4::Zero;
+	//float4 RallyPos = float4::Zero;
 	float4 PrevPos = float4::Zero;
 	float4 SavePos = float4::Null;
 	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;

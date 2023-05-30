@@ -30,7 +30,7 @@ private:
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 	std::vector<std::shared_ptr<class BaseFighter>> Fighters = std::vector<std::shared_ptr<class BaseFighter>>();
-	std::vector<std::shared_ptr<class GameEngineComponent>> RallyPos = std::vector<std::shared_ptr<class GameEngineComponent>>();
+	std::vector<std::shared_ptr<class GameEngineComponent>> RallyPosCheckComponents = std::vector<std::shared_ptr<class GameEngineComponent>>();
 
 	size_t PrevColCount = 0;
 	bool IsChangeColCount = false;

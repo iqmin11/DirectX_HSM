@@ -16,6 +16,7 @@ void BaseFighter::IdleStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			float4 RallyPos = RallyTransform->GetWorldPosition();
 			if (false/*Hp°¡ 0ÀÌ¸é*/)
 			{
 				State = FighterState::Death;
@@ -74,6 +75,7 @@ void BaseFighter::MoveStateInit()
 		},
 		.End = [this]()
 		{
+			float4 RallyPos = RallyTransform->GetWorldPosition();
 			PrevPos = RallyPos;
 			Ratio = 0.f;
 			Time = 0.f;
@@ -93,6 +95,7 @@ void BaseFighter::TraceMonsterStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			float4 RallyPos = RallyTransform->GetWorldPosition();
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -151,6 +154,7 @@ void BaseFighter::AttackStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			float4 RallyPos = RallyTransform->GetWorldPosition();
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -214,6 +218,7 @@ void BaseFighter::ReturnStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			float4 RallyPos = RallyTransform->GetWorldPosition();
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
