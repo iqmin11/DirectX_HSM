@@ -11,7 +11,12 @@ void BaseFighter::IdleStateInit()
 		.Name = "Idle",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Idle");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Idle");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 			SavePos = float4::Null;
 		},
 		.Update = [this](float _DeltaTime)
@@ -60,7 +65,12 @@ void BaseFighter::MoveStateInit()
 		.Name = "Move",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Move");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Move");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 			TargetMonster = nullptr;
 			SavePos = float4::Null;
 		},
@@ -89,7 +99,12 @@ void BaseFighter::TraceMonsterStateInit()
 		.Name = "TraceMonster",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Move");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Move");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 			TargetMonster->State = MonsterState::Idle;
 			SavePos = GetTransform()->GetWorldPosition();
 		},
@@ -150,7 +165,12 @@ void BaseFighter::AttackStateInit()
 		.Name = "Attack",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Attack");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Attack");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -197,7 +217,7 @@ void BaseFighter::AttackStateInit()
 			if (Time >= AttackRate)
 			{
 				Time = 0.f;
-				FighterRenderer->ChangeAnimation("Attack");
+				FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
 			}
 		},
 		.End = [this]()
@@ -214,7 +234,12 @@ void BaseFighter::ReturnStateInit()
 		.Name = "Return",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Move");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Move");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -272,7 +297,12 @@ void BaseFighter::DeathStateInit()
 		.Name = "Death",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Death");
+			if (ParentRally == nullptr)
+			{
+				FighterRenderer->ChangeAnimation("1_Death");
+				return;
+			}
+			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Death");
 		},
 		.Update = [this](float _DeltaTime)
 		{

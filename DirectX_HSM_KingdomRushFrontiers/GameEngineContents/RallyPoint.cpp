@@ -19,14 +19,14 @@ RallyPoint::~RallyPoint()
 
 }
 
-std::shared_ptr<RallyPoint> RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount)
-{
-	std::shared_ptr<RallyPoint> LocalAc = nullptr;
-	LocalAc = _Level->CreateActor<RallyPoint>();
-	LocalAc->GetTransform()->SetWorldPosition(_Pos);
-	LocalAc->SetFighter(_FighterCount);
-	return LocalAc;
-}
+//std::shared_ptr<RallyPoint> RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount)
+//{
+//	std::shared_ptr<RallyPoint> LocalAc = nullptr;
+//	LocalAc = _Level->CreateActor<RallyPoint>();
+//	LocalAc->GetTransform()->SetWorldPosition(_Pos);
+//	LocalAc->SetFighter(_FighterCount);
+//	return LocalAc;
+//}
 
 void RallyPoint::Start()
 {
@@ -53,7 +53,7 @@ void RallyPoint::Start()
 
 	RallyPosCheckComponents[0]->GetTransform()->SetLocalPosition({-40, 0, 0});
 	RallyPosCheckComponents[1]->GetTransform()->SetLocalPosition({ 40, 0, 0 });
-	RallyPosCheckComponents[2]->GetTransform()->SetLocalPosition({ 0, -40, 0 });
+	RallyPosCheckComponents[2]->GetTransform()->SetLocalPosition({ 0, -40, -40 });
 
 }
 
@@ -184,19 +184,19 @@ void RallyPoint::ResetTargetMonster()
 	}
 }
 
-void RallyPoint::SetFighter(int _Count)
-{
-	Fighters.resize(_Count);
-	for (size_t i = 0; i < Fighters.size(); i++)
-	{
-		Fighters[i] = GetLevel()->CreateActor<BaseFighter>();
-		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
-		Fighters[i]->SetParentRally(this);
-		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
-		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
-		//Fighters[i]->SetRallyPos(RallyPos[i]->GetTransform()->GetWorldPosition()); // 실패하면 되돌려야
-	}
-}
+//void RallyPoint::SetFighter(int _Count)
+//{
+//	Fighters.resize(_Count);
+//	FighterMaxCount = _Count;
+//	for (size_t i = 0; i < Fighters.size(); i++)
+//	{
+//		Fighters[i] = GetLevel()->CreateActor<BaseFighter>();
+//		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
+//		Fighters[i]->SetParentRally(this);
+//		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
+//		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
+//	}
+//}
 
 float RallyPoint::CalDistance(std::shared_ptr<class GameEngineCollision> _Monster)
 {

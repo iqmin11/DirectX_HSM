@@ -456,3 +456,159 @@ public:
 	bool IsRanged= false;
 };
 
+
+class FighterData
+{
+public:
+	void SetData(int _TowerLevel)
+	{
+		if (_TowerLevel <= 0 && _TowerLevel > 4)
+		{
+			MsgAssert("Å¸¿ö·¹º§ ÀÎµ¦½º¸¦ ¹þ¾î³µ½À´Ï´Ù.")
+		}
+		SetData(static_cast<FighterEnum>(_TowerLevel));
+	}
+	
+	void SetData(FighterEnum _FighterEnum)
+	{
+		switch (_FighterEnum)
+		{
+		case FighterEnum::MeleeLv1:
+			FighterType = _FighterEnum;
+			Level = 1;
+			Hp = 50.f;
+			AttackRate = 1.0f;
+			Damage_min = 1;
+			Damage_MAX = 3;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.0f;
+			break;
+		case FighterEnum::MeleeLv2:
+			FighterType = _FighterEnum;
+			Level = 2;
+			Hp = 100.f;
+			AttackRate = 1.36f;
+			Damage_min = 3;
+			Damage_MAX = 4;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.15f;
+			break;
+		case FighterEnum::MeleeLv3:
+			FighterType = _FighterEnum;
+			Level = 3;
+			Hp = 150.f;
+			AttackRate = 1.36f;
+			Damage_min = 6;
+			Damage_MAX = 10;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.3f;
+			break;
+		case FighterEnum::MeleeLv4:
+			FighterType = _FighterEnum;
+			Level = 4;
+			Hp = 200.f;
+			AttackRate = 1.0f;
+			Damage_min = 10;
+			Damage_MAX = 14;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.0f;
+			break;
+		case FighterEnum::ReinforceLv0:
+			FighterType = _FighterEnum;
+			Level = 0;
+			Hp = 30.f;
+			AttackRate = 1.0f;
+			Damage_min = 1;
+			Damage_MAX = 2;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.0f;
+			break;
+		case FighterEnum::ReinforceLv1:
+			FighterType = _FighterEnum;
+			Level = 1;
+			Hp = 50.f;
+			AttackRate = 1.0f;
+			Damage_min = 1;
+			Damage_MAX = 3;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.0f;
+			break;
+		case FighterEnum::ReinforceLv2:
+			FighterType = _FighterEnum;
+			Level = 2;
+			Hp = 70.f;
+			AttackRate = 1.0f;
+			Damage_min = 2;
+			Damage_MAX = 4;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.1f;
+			break;
+		case FighterEnum::ReinforceLv3:
+			FighterType = _FighterEnum;
+			Level = 3;
+			Hp = 90.f;
+			AttackRate = 1.0f;
+			Damage_min = 3;
+			Damage_MAX = 6;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.2f;
+			break;
+		case FighterEnum::ReinforceLv4:
+			FighterType = _FighterEnum;
+			Level = 4;
+			Hp = 110.f;
+			AttackRate = 1.0f;
+			Damage_min = 6;
+			Damage_MAX = 10;
+			RangedAttackRate = -1;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.3f;
+			break;
+		case FighterEnum::ReinforceLv5:
+			FighterType = _FighterEnum;
+			Level = 5;
+			Hp = 110.f;
+			AttackRate = 1.0f;
+			Damage_min = 6;
+			Damage_MAX = 10;
+			RangedAttackRate = 1.4f;
+			RangedDamage_min = 16;
+			RangedDamage_MAX = 30;
+			Armor = 0.3f;
+			break;
+		default:
+			MsgAssert("¾û¶×ÇÑ FighterEnum°ªÀ» ³Ö¾ú½À´Ï´Ù.")
+			break;
+		}
+	}
+
+public:
+	FighterEnum FighterType = FighterEnum::Null;
+	int Level = -1;
+	float Hp = 0.f;
+	float AttackRate = -1.0f;
+	int Damage_min = -1;
+	int Damage_MAX = -1;
+	float RangedAttackRate = -1.f;
+	int RangedDamage_min = -1;
+	int RangedDamage_MAX = -1;
+	float Armor = -1.0f;
+};
+

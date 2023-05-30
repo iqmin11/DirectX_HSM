@@ -1,5 +1,7 @@
 #pragma once
-class Melee_Fighter
+#include "BaseFighter.h"
+
+class Melee_Fighter : public BaseFighter
 {
 public:
 	// construtor destructor
@@ -12,10 +14,14 @@ public:
 	Melee_Fighter& operator=(const Melee_Fighter& _Other) = delete;
 	Melee_Fighter& operator=(Melee_Fighter&& _Other) noexcept = delete;
 
-protected:
+	void ChangeFighter(int _TowerLevel);
 
+protected:
+	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
-
+	void AttackTarget();
+	int CalDamage() override;
 };
 

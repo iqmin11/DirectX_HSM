@@ -22,7 +22,10 @@ protected:
 
 private:
 	float4 RenderScale = { 256,256,1 };
-	std::shared_ptr<class RallyPoint> AcRallyPoint = nullptr;
+	std::shared_ptr<class Melee_RallyPoint> AcRallyPoint = nullptr;
 
+	void ChangeTower(TowerEnum _Tower);
+	void ChangeTowerRender(int _TowerLevel);
+	void ChangeFighter(int _TowerLevel);
 };
 

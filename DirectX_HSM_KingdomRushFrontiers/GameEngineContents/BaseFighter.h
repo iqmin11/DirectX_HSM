@@ -1,7 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
-#include "ContentsEnum.h"
+#include <GameEngineBase/GameEngineRandom.h>
+#include "ContentsData.h"
 
 enum class FighterState
 {
@@ -13,10 +14,10 @@ enum class FighterState
 	Death,
 };
 
-class RallyPoint;
 class BaseFighter : public GameEngineActor
 {
-	friend RallyPoint;
+	friend class RallyPoint;
+	friend class Melee_RallyPoint;
 public:
 	// construtor destructor
 	BaseFighter();
@@ -32,11 +33,6 @@ public:
 	{
 		ParentRally = _Rally;
 	}
-
-	//void SetRallyPos(float4 _Pos)
-	//{
-	//	RallyPos = _Pos;
-	//}
 
 	void SetRallyTransform(GameEngineTransform* _Transform)
 	{
@@ -66,6 +62,26 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	FighterData Data = FighterData();
+	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;
+	float4 FighterRendererScale = {64,64,1};
+	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+
+	virtual int CalDamage() = 0
+	{
+		return GameEngineRandom::MainRandom.RandomInt(Data.Damage_min, Data.Damage_MAX);
+	}
+
+	std::function<void()> AttackTarget = nullptr;
+
+	void IdleStateInit();
+	void MoveStateInit();
+	void TraceMonsterStateInit();
+	void AttackStateInit();
+	void ReturnStateInit();
+	void DeathStateInit();
+	GameEngineFSM FighterFSM = GameEngineFSM();
+
 private:
 	RallyPoint* ParentRally = nullptr;
 
@@ -74,14 +90,11 @@ private:
 	//float4 RallyPos = float4::Zero;
 	float4 PrevPos = float4::Zero;
 	float4 SavePos = float4::Null;
-	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;
-	float4 FighterRendererScale = {64,64,1};
 	
 	std::shared_ptr<class GameEngineCollision> FighterCol = nullptr;
 	float4 ColLocalPos = { 0,15,0 };
 	float4 ColScale = { 20,30,1 };
 
-	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	std::shared_ptr<class BaseMonster> PrevTarget = nullptr;
 
 	float Speed = 100.f;
@@ -91,19 +104,12 @@ private:
 	bool IsChangeTarget = false;
 
 	void MoveToRally(float _DeltaTime);
-	void AttackTarget();
 	void ReturnToRally(float _DeltaTime);
 	void MoveToTarget(float _DeltaTime);
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;
-	GameEngineFSM FighterFSM = GameEngineFSM();
 
-	void IdleStateInit();
-	void MoveStateInit();
-	void TraceMonsterStateInit();
-	void AttackStateInit();
-	void ReturnStateInit();
-	void DeathStateInit();
+
 };
 

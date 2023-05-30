@@ -78,3 +78,20 @@ enum class TowerEnum
 	ArtilleryTower_Level3,
 	ArtilleryTower_Level4,
 };
+
+enum class FighterEnum
+{
+	Null = -1,
+	Melee,
+	MeleeLv1,
+	MeleeLv2,
+	MeleeLv3,
+	MeleeLv4,
+	Reinforce,
+	ReinforceLv0,
+	ReinforceLv1,
+	ReinforceLv2,
+	ReinforceLv3,
+	ReinforceLv4,
+	ReinforceLv5,
+};

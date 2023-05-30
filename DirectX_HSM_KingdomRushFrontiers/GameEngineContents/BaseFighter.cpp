@@ -27,25 +27,19 @@ void BaseFighter::ResetRatio()
 void BaseFighter::Start()
 {
 	FighterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	FighterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "ReinforceA_0_Idle", .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Move", .SpriteName = "ReinforceA_0_Move", .Loop = true });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "ReinforceA_0_Attack", .FrameInter = 0.15f, .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "ReinforceA_0_Death", .Loop = true });
-	FighterRenderer->SetAnimationStartEvent("Attack", 2, std::bind(&BaseFighter::AttackTarget, this));
-	FighterRenderer->GetTransform()->SetWorldScale(FighterRendererScale);
 
 	FighterCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
 	FighterCol->GetTransform()->SetWorldScale(ColScale);
 	FighterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 
-	IdleStateInit();
-	MoveStateInit();
-	TraceMonsterStateInit();
-	AttackStateInit();
-	ReturnStateInit();
-	DeathStateInit();
-
-	FighterFSM.ChangeState("Idle");
+	//IdleStateInit();
+	//MoveStateInit();
+	//TraceMonsterStateInit();
+	//AttackStateInit();
+	//ReturnStateInit();
+	//DeathStateInit();
+	//
+	//FighterFSM.ChangeState("Idle");
 }
 
 void BaseFighter::Update(float _DeltaTime)
@@ -86,11 +80,6 @@ void BaseFighter::MoveToRally(float _DeltaTime)
 	{
 		State = FighterState::Idle;
 	}
-}
-
-void BaseFighter::AttackTarget()
-{
-	TargetMonster->CurHP -= 5;
 }
 
 void BaseFighter::ReturnToRally(float _DeltaTime)
