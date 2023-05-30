@@ -38,6 +38,11 @@ public:
 		RallyPos = _Pos;
 	}
 
+	void SetRallyTransform(GameEngineTransform* _Transform)
+	{
+		RallyTransform = _Transform;
+	}
+
 	void SetPrevPos(float4 _Pos)
 	{
 		PrevPos = _Pos;
@@ -64,6 +69,7 @@ protected:
 private:
 	RallyPoint* ParentRally = nullptr;
 
+	GameEngineTransform* RallyTransform = nullptr;
 	float4 ActorPos = float4::Zero;
 	float4 RallyPos = float4::Zero;
 	float4 PrevPos = float4::Zero;

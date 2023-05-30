@@ -16,6 +16,8 @@ public:
 	RallyPoint& operator=(const RallyPoint& _Other) = delete;
 	RallyPoint& operator=(RallyPoint&& _Other) noexcept = delete;
 
+	static std::shared_ptr<RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -28,19 +30,21 @@ private:
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 	std::vector<std::shared_ptr<class BaseFighter>> Fighters = std::vector<std::shared_ptr<class BaseFighter>>();
+	std::vector<std::shared_ptr<class GameEngineComponent>> RallyPos = std::vector<std::shared_ptr<class GameEngineComponent>>();
 
 	size_t PrevColCount = 0;
 	bool IsChangeColCount = false;
 
 	float CalDistance(std::shared_ptr<class GameEngineCollision> _Monster);
 	bool IsThereTarget();
-	void SetRallyPos(float4 _Pos);
+	void SetRallyPos();
 
 	void SetPrevTarget();
 	void FindTarget();
 	void SetBoolChangeTarget();
 
-	void SetBoolChangeColCount();
 	void ResetTargetMonster();
+
+	void SetFighter(int _Count);
 };
 

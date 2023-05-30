@@ -241,6 +241,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Melee_Fighter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Melee_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Melee_Tower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MousePointer.h">
       <SubType>
       </SubType>
@@ -421,6 +433,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Magic_Tower.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Melee_Fighter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Melee_RallyPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Melee_Tower.cpp">
       <SubType>
       </SubType>
     </ClCompile>

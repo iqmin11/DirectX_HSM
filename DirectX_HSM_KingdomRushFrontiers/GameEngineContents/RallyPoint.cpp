@@ -19,6 +19,15 @@ RallyPoint::~RallyPoint()
 
 }
 
+std::shared_ptr<RallyPoint> RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount)
+{
+	std::shared_ptr<RallyPoint> LocalAc = nullptr;
+	LocalAc = _Level->CreateActor<RallyPoint>();
+	LocalAc->GetTransform()->SetWorldPosition(_Pos);
+	LocalAc->SetFighter(_FighterCount);
+	return LocalAc;
+}
+
 void RallyPoint::Start()
 {
 	TestRallyRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
@@ -34,26 +43,28 @@ void RallyPoint::Start()
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
 	RangeCol->GetTransform()->SetWorldScale({ Range * 2.f,Range * 2.f,0.f });
 	//RangeCol->GetTransform()->SetLocalRotation({ 45.f,0,0 });
-	
-	Fighters.resize(3);
-	for (size_t i = 0; i < Fighters.size(); i++)
+
+	RallyPos.resize(3);
+
+	for (size_t i = 0; i < RallyPos.size(); i++)
 	{
-		Fighters[i] = GetLevel()->CreateActor<BaseFighter>();
-		Fighters[i]->GetTransform()->SetWorldPosition({ 0,20 * static_cast<float>(i),20 * static_cast<float>(i) });
-		Fighters[i]->SetParentRally(this);
-		Fighters[i]->SetPrevPos({ 0,20 * static_cast<float>(i),20 * static_cast<float>(i) });
-		Fighters[i]->SetRallyPos({ 0,20 * static_cast<float>(i),20 * static_cast<float>(i) });
+		RallyPos[i] = CreateComponent<GameEngineComponent>();
 	}
+
+	RallyPos[0]->GetTransform()->SetLocalPosition({-40, 0, 0});
+	RallyPos[1]->GetTransform()->SetLocalPosition({ 40, 0, 0 });
+	RallyPos[2]->GetTransform()->SetLocalPosition({ 0, -40, 0 });
+
 }
 
 void RallyPoint::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsUp("LeftClick") && GameEngineInput::IsPress("V"))
-	{
-		float4 Pos = MousePointer::GetMousePosRef();
-		Pos = Pos + float4{ 0,0,Pos.y,0 };
-		SetRallyPos(Pos);
-	}
+	//if (GameEngineInput::IsUp("LeftClick") && GameEngineInput::IsPress("A"))
+	//{
+	//	float4 Pos = MousePointer::GetMousePosRef();
+	//	Pos = Pos + float4{ 0,0,Pos.y,0 };
+	//	SetRallyPos(Pos);
+	//}
 
 	if (IsThereTarget())
 	{
@@ -68,13 +79,10 @@ bool RallyPoint::IsThereTarget()
 	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D);
 }
 
-void RallyPoint::SetRallyPos(float4 _Pos)
+void RallyPoint::SetRallyPos()
 {
-	GetTransform()->SetWorldPosition(_Pos);
-	float4 LocalRallyPos = GetTransform()->GetWorldPosition();
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
-		Fighters[i]->SetRallyPos(LocalRallyPos + float4{ 0, 20 * static_cast<float>(i), 20 * static_cast<float>(i) });
 		Fighters[i]->SetPrevPos(Fighters[i]->GetTransform()->GetWorldPosition());
 		Fighters[i]->ResetRatio();
 	}
@@ -113,7 +121,7 @@ void RallyPoint::FindTarget()
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (!Fighters[0]->HaveITarget()) 
+		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
 		for (size_t i = 1; i < Fighters.size(); i++)
 		{
@@ -126,10 +134,10 @@ void RallyPoint::FindTarget()
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (!Fighters[0]->HaveITarget())
+		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
 
-		if (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster)
+		if (Fighters.size() > 1 && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster))
 			Fighters[1]->SetTarget(ColMonsters[1]->GetActor()->DynamicThis<BaseMonster>());
 
 		for (size_t i = 2; i < Fighters.size(); i++)
@@ -143,11 +151,11 @@ void RallyPoint::FindTarget()
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (!Fighters[0]->HaveITarget())
+		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
-		if (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster)
+		if (Fighters.size() > 1 && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster))
 			Fighters[1]->SetTarget(ColMonsters[1]->GetActor()->DynamicThis<BaseMonster>());
-		if (!Fighters[2]->HaveITarget() || Fighters[2]->TargetMonster == Fighters[0]->TargetMonster)
+		if (Fighters.size() > 2 && (!Fighters[2]->HaveITarget() || Fighters[2]->TargetMonster == Fighters[0]->TargetMonster))
 			Fighters[2]->SetTarget(ColMonsters[2]->GetActor()->DynamicThis<BaseMonster>());
 	}
 
@@ -173,6 +181,20 @@ void RallyPoint::ResetTargetMonster()
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
 		Fighters[i]->TargetMonster = nullptr;
+	}
+}
+
+void RallyPoint::SetFighter(int _Count)
+{
+	Fighters.resize(_Count);
+	for (size_t i = 0; i < Fighters.size(); i++)
+	{
+		Fighters[i] = GetLevel()->CreateActor<BaseFighter>();
+		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
+		Fighters[i]->SetParentRally(this);
+		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
+		Fighters[i]->SetRallyTransform(RallyPos[i]->GetTransform());
+		Fighters[i]->SetRallyPos(RallyPos[i]->GetTransform()->GetWorldPosition()); // 실패하면 되돌려야
 	}
 }
 

@@ -8,6 +8,7 @@
 #include "Ranged_Tower.h"
 #include "Magic_Tower.h"
 #include "Artillery_Tower.h"
+#include "Melee_Tower.h"
 
 BuildArea::BuildArea()
 {
@@ -69,6 +70,10 @@ void BuildArea::Update(float _DeltaTime)
 	if (IsAreaLeftClick() && GameEngineInput::IsPress("C"))
 	{
 		ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
+	}
+	if (IsAreaLeftClick() && GameEngineInput::IsPress("V"))
+	{
+		ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos);
 	}
 }
 

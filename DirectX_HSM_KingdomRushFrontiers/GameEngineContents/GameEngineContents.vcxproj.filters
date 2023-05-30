@@ -110,6 +110,15 @@
     <ClInclude Include="RallyPoint.h">
       <Filter>3.PlayStage\Actor\Fighter</Filter>
     </ClInclude>
+    <ClInclude Include="Melee_Tower.h">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Melee_Fighter.h">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
+    </ClInclude>
+    <ClInclude Include="Melee_RallyPoint.h">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -228,6 +237,15 @@
     </ClCompile>
     <ClCompile Include="BaseMonster_State.cpp">
       <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Melee_Tower.cpp">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Melee_Fighter.cpp">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Melee_RallyPoint.cpp">
+      <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,11 +11,7 @@
 #include "StageBg.h"
 #include "MonsterWave.h"
 #include "PlayStageUI.h"
-#include "BaseMonster.h"
-#include "DesertThug.h"
-#include "DuneRaider.h"
 #include "BuildArea.h"
-#include "RallyPoint.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -56,6 +52,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("RangedTower");
 	LoadPlayLevelTexture("TowerBase");
 	LoadPlayLevelTexture("ArtilleryBomb");
+	LoadPlayLevelTexture("MeleeTower");
 	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
@@ -65,7 +62,6 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
-	AcRally = CreateActor<RallyPoint>();
 
 	LoadAllStageData();
 	
@@ -322,6 +318,22 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Back").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Front").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("DesertThug");
+	Dir.Move("MeleeTowerFighterAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Move"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Move"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move"  ).GetFullPath());
 
 }
 

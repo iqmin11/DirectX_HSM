@@ -20,7 +20,7 @@ void BaseShootingTower::Start()
 	BaseTower::Start();
 	//TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
 	//TowerRangeRender->SetTexture("range_circle.png");
-	RangeCol = CreateComponent<GameEngineCollision>(static_cast<int>(ColOrder::TowerRange));
+	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::TowerRange);
 }
 
 void BaseShootingTower::Update(float _DeltaTime)
@@ -63,7 +63,11 @@ void BaseShootingTower::CalTargetPos()
 {
 	float4 CurPos = TargetMonster->GetMonsterCol()->GetTransform()->GetWorldPosition();
 	float4 Dir = TargetMonster->GetMonsterDir();
-	float MonsterSpeed = TargetMonster->GetMonsterSpeed();
+	float MonsterSpeed = 0;
+	if (TargetMonster->State == MonsterState::Move)
+	{
+		MonsterSpeed = TargetMonster->GetMonsterSpeed();
+	}
 	float BulletTime = Data.BulletTime;
 
 	TargetPos = CurPos + Dir * MonsterSpeed * BulletTime;

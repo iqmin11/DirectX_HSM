@@ -33,7 +33,6 @@ private:
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 	std::shared_ptr<class MousePointer> AcMousePointer = nullptr;
-	std::shared_ptr<class RallyPoint> AcRally = nullptr;
 
 	int CurStage = -1;
 	int NextWave = -1;

@@ -54,6 +54,12 @@ void BaseFighter::Update(float _DeltaTime)
 	{
 		MsgAssert("Fighter의 부모 랠리포인트가 설정되지 않았습니다.")
 	}
+
+	if (ParentRally->IsDeath())
+	{
+		Death();
+	}
+
 	FighterFSM.Update(_DeltaTime);
 }
 

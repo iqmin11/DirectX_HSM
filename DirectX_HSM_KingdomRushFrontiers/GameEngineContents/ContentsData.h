@@ -90,23 +90,23 @@ public:
 			TowerType = TowerEnum::MeleeTower;
 			Level = 1;
 			FireRate = 1.0f;
-			Range = 0.0f;
+			Range = Short;
 			Damage_min = 1;
 			Damage_MAX = 3;
 			break;
 		case TowerEnum::MeleeTower_Level2:
 			TowerType = TowerEnum::MeleeTower;
 			Level = 2;
-			FireRate = 1.6f;
-			Range = 0.0f;
+			FireRate = 1.36f;
+			Range = Short;
 			Damage_min = 3;
 			Damage_MAX = 4;
 			break;
 		case TowerEnum::MeleeTower_Level3:
 			TowerType = TowerEnum::MeleeTower;
 			Level = 3;
-			FireRate = 1.6f;
-			Range = 0.0f;
+			FireRate = 1.36f;
+			Range = Short;
 			Damage_min = 6;
 			Damage_MAX = 10;
 			break;
@@ -114,7 +114,7 @@ public:
 			TowerType = TowerEnum::MeleeTower;
 			Level = 4;
 			FireRate = 1.0f;
-			Range = 0.0f;
+			Range = Short;
 			Damage_min = 10;
 			Damage_MAX = 14;
 			break;
