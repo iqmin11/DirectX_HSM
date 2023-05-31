@@ -32,14 +32,14 @@ void BaseFighter::Start()
 	FighterCol->GetTransform()->SetWorldScale(ColScale);
 	FighterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 
-	//IdleStateInit();
-	//MoveStateInit();
-	//TraceMonsterStateInit();
-	//AttackStateInit();
-	//ReturnStateInit();
-	//DeathStateInit();
-	//
-	//FighterFSM.ChangeState("Idle");
+	LifeBarBg = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	LifeBarBg->SetTexture("lifebar_bg_small.png");
+	LifeBarBg->GetTransform()->SetWorldScale(LifeBarScale);
+	LifeBarBg->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+	LifeBar = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	LifeBar->SetTexture("lifebar_small.png");
+	LifeBar->GetTransform()->SetWorldScale(LifeBarScale);
+	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
 }
 
 void BaseFighter::Update(float _DeltaTime)
@@ -55,6 +55,7 @@ void BaseFighter::Update(float _DeltaTime)
 	}
 
 	FighterFSM.Update(_DeltaTime);
+	UpdateLifeBar();
 }
 
 
@@ -140,6 +141,14 @@ void BaseFighter::MoveToTarget(float _DeltaTime)
 		State = FighterState::Attack;
 		SavePos = GetTransform()->GetWorldPosition();
 	}
+}
+
+void BaseFighter::UpdateLifeBar()
+{
+	float4 CurHpBarXSize = float4::LerpClamp(float4{ 0,LifeBarScale.y,0,1 }, float4{ LifeBarScale.x,LifeBarScale.y,0,1 }, CurHP / Data.Hp);
+	float4 CurHpBarXPos = float4::LerpClamp(float4{ -LifeBarScale.hx(),LifeBarLocalPos.y,0,1 }, float4{ 0,LifeBarLocalPos.y,0,1 }, CurHP / Data.Hp);
+	LifeBar->GetTransform()->SetWorldScale(CurHpBarXSize);
+	LifeBar->GetTransform()->SetLocalPosition(CurHpBarXPos);
 }
 
 

@@ -18,6 +18,7 @@ Melee_Fighter::~Melee_Fighter()
 void Melee_Fighter::ChangeFighter(int _TowerLevel)
 {
 	Data.SetData(_TowerLevel);
+	CurHP = Data.Hp;
 	std::string CurState = std::string();
 
 	switch (State)

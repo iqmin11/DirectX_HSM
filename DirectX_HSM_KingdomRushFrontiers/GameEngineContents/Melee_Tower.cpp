@@ -39,10 +39,10 @@ void Melee_Tower::Start()
 
 void Melee_Tower::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsDown("Space"))
-	{
-		ChangeTower(TowerEnum::MeleeTower_Level3);
-	}
+	//if (GameEngineInput::IsDown("Space"))
+	//{
+	//	ChangeTower(TowerEnum::MeleeTower_Level3);
+	//}
 }
 
 void Melee_Tower::ChangeTower(TowerEnum _Tower)

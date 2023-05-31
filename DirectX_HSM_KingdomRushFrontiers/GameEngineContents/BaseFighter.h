@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include "BaseMonster.h"
 #include "ContentsData.h"
 
 enum class FighterState
@@ -56,13 +57,25 @@ public:
 	void SetTarget(std::shared_ptr<class BaseMonster> _Target)
 	{
 		TargetMonster = _Target;
+		if (TargetMonster->TargetFighter == nullptr)
+		{
+			TargetMonster->TargetFighter = this;
+		}
 	}
+
+	std::shared_ptr<class GameEngineCollision> GetFighterCol()
+	{
+		return FighterCol;
+	}
+
+	float CurHP = 0;
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 	FighterData Data = FighterData();
+
 	std::shared_ptr<class GameEngineSpriteRenderer> FighterRenderer = nullptr;
 	float4 FighterRendererScale = {64,64,1};
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
@@ -87,7 +100,6 @@ private:
 
 	GameEngineTransform* RallyTransform = nullptr;
 	float4 ActorPos = float4::Zero;
-	//float4 RallyPos = float4::Zero;
 	float4 PrevPos = float4::Zero;
 	float4 SavePos = float4::Null;
 	
@@ -97,15 +109,23 @@ private:
 
 	std::shared_ptr<class BaseMonster> PrevTarget = nullptr;
 
+	std::shared_ptr<class GameEngineSpriteRenderer> LifeBarBg = nullptr;
+	std::shared_ptr<class GameEngineSpriteRenderer> LifeBar = nullptr;
+	float4 LifeBarScale = { 20,2,1 };
+	float4 LifeBarBgLocalPos = { 0,35,1 };
+	float4 LifeBarLocalPos = { 0,35 };
+
 	float Speed = 100.f;
 	float Time = 0.f;
 	float Ratio = 0.f;
-	float AttackRate = 1.f;
 	bool IsChangeTarget = false;
 
 	void MoveToRally(float _DeltaTime);
 	void ReturnToRally(float _DeltaTime);
 	void MoveToTarget(float _DeltaTime);
+
+	void UpdateLifeBar();
+
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;

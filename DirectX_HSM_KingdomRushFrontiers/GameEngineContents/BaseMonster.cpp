@@ -59,7 +59,7 @@ void BaseMonster::Start()
 void BaseMonster::Update(float _DeltaTime)
 {
 	MonsterFSM.Update(_DeltaTime);
-	UpdateLiveBar();
+	UpdateLifeBar();
 }
 
 void BaseMonster::WalkToNextPoint(float _DeltaTime)
@@ -151,7 +151,7 @@ void BaseMonster::CalMonsterDir()
 	}
 }
 
-void BaseMonster::UpdateLiveBar()
+void BaseMonster::UpdateLifeBar()
 {
 	float4 CurHpBarXSize = float4::LerpClamp(float4{ 0,LifeBarScale.y,0,1 }, float4{ LifeBarScale.x,LifeBarScale.y,0,1 }, CurHP / Data.Hp);
 	float4 CurHpBarXPos = float4::LerpClamp(float4{ -LifeBarScale.hx(),LifeBarLocalPos.y,0,1 }, float4{ 0,LifeBarLocalPos.y,0,1 }, CurHP / Data.Hp);

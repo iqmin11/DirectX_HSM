@@ -172,7 +172,14 @@ void RallyPoint::ResetTargetMonster()
 {
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
-		Fighters[i]->TargetMonster = nullptr;
+		if (Fighters[i]->TargetMonster != nullptr)
+		{
+			if (Fighters[i]->TargetMonster->TargetFighter != nullptr)
+			{
+				Fighters[i]->TargetMonster->TargetFighter = nullptr;
+			}
+			Fighters[i]->TargetMonster = nullptr;
+		}
 	}
 }
 

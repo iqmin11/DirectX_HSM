@@ -54,5 +54,6 @@ void Melee_RallyPoint::SetFighter(int _Count)
 		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
 		Fighters[i]->Data.SetData(FighterEnum::MeleeLv1);
+		Fighters[i]->CurHP = Fighters[i]->Data.Hp;
 	}
 }

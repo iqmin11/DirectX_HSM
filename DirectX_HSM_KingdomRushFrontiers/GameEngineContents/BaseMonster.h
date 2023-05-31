@@ -61,6 +61,7 @@ public:
 	
 	float CurHP = 0;
 	MonsterState State = MonsterState::Move;
+	class BaseFighter* TargetFighter = nullptr;
 
 protected:
 	void Start() override;
@@ -72,6 +73,7 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
+
 
 	GameEngineFSM MonsterFSM = GameEngineFSM();
 
@@ -102,9 +104,11 @@ private:
 	float Time = 0;
 	float Ratio = 0;
 
+	float AttackTime = 0;
+
 	void LiveMonsterListRelease();
 	void CalMonsterDir();
 
-	void UpdateLiveBar();
+	void UpdateLifeBar();
 };
 
