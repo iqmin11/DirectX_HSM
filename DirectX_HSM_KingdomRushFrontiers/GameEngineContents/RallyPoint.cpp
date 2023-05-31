@@ -57,6 +57,19 @@ void RallyPoint::Update(float _DeltaTime)
 	//	SetRallyPos(Pos);
 	//}
 
+	for (size_t i = 0; i < Fighters.size(); i++)
+	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
+
+		if (Fighters[i]->State == FighterState::Death)
+		{
+			Fighters[i] = nullptr;
+		}
+	}
+
 	if (IsThereTarget())
 	{
 		FindTarget();
@@ -81,6 +94,10 @@ void RallyPoint::SetPrevTarget()
 {
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
 		Fighters[i]->PrevTarget = Fighters[i]->TargetMonster;
 	}
 }
@@ -112,41 +129,37 @@ void RallyPoint::FindTarget()
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
+		if (Fighters[0] != nullptr && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
-		for (size_t i = 1; i < Fighters.size(); i++)
-		{
-			if (!Fighters[i]->HaveITarget())
-				Fighters[i]->SetTarget(Fighters[0]->TargetMonster);
-		}
+		if (Fighters[1] != nullptr && !Fighters[1]->HaveITarget())
+			Fighters[1]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
+		if (Fighters[2] != nullptr && !Fighters[2]->HaveITarget())
+			Fighters[2]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
 	}
 	else if (ColCount == 2)
 	{
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
+		if (Fighters[0] != nullptr && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
 
-		if (Fighters.size() > 1 && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster))
+		if (Fighters[1] != nullptr && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>()))
 			Fighters[1]->SetTarget(ColMonsters[1]->GetActor()->DynamicThis<BaseMonster>());
 
-		for (size_t i = 2; i < Fighters.size(); i++)
-		{
-			if (!Fighters[i]->HaveITarget())
-				Fighters[i]->SetTarget(Fighters[0]->TargetMonster);
-		}
+		if (Fighters[2] != nullptr && !Fighters[2]->HaveITarget())
+			Fighters[2]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
 	}
 	else if (ColCount == 3)
 	{
 		if (IsChangeColCount)
 			ResetTargetMonster();
 
-		if (Fighters.size() > 0 && !Fighters[0]->HaveITarget())
+		if (Fighters[0] && !Fighters[0]->HaveITarget())
 			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
-		if (Fighters.size() > 1 && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == Fighters[0]->TargetMonster))
+		if (Fighters[1] != nullptr && (!Fighters[1]->HaveITarget() || Fighters[1]->TargetMonster == ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>()))
 			Fighters[1]->SetTarget(ColMonsters[1]->GetActor()->DynamicThis<BaseMonster>());
-		if (Fighters.size() > 2 && (!Fighters[2]->HaveITarget() || Fighters[2]->TargetMonster == Fighters[0]->TargetMonster))
+		if (Fighters[2] != nullptr && (!Fighters[2]->HaveITarget() || Fighters[2]->TargetMonster == ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>()))
 			Fighters[2]->SetTarget(ColMonsters[2]->GetActor()->DynamicThis<BaseMonster>());
 	}
 
@@ -157,6 +170,11 @@ void RallyPoint::SetBoolChangeTarget()
 {
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
+
 		if (Fighters[i]->PrevTarget != Fighters[i]->TargetMonster)
 		{
 			Fighters[i]->IsChangeTarget = true;
@@ -172,6 +190,11 @@ void RallyPoint::ResetTargetMonster()
 {
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
+
 		if (Fighters[i]->TargetMonster != nullptr)
 		{
 			if (Fighters[i]->TargetMonster->TargetFighter != nullptr)

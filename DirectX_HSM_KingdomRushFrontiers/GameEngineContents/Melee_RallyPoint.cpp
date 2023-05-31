@@ -40,6 +40,62 @@ void Melee_RallyPoint::Start()
 void Melee_RallyPoint::Update(float _DeltaTime)
 {
 	RallyPoint::Update(_DeltaTime);
+
+	{
+		if (Fighters[0] == nullptr && RespawnTimer0 == 0.f)
+		{
+			IsRespawnTimer0Update = true;
+		}
+
+		if (IsRespawnTimer0Update == true)
+		{
+			RespawnTimer0 += _DeltaTime;
+		}
+
+		if (RespawnTimer0 >= RespawnTime)
+		{
+			RespawnFighter(0);
+			RespawnTimer0 = 0.f;
+			IsRespawnTimer0Update = false;
+		}
+	}
+
+	{
+		if (Fighters[1] == nullptr && RespawnTimer1 == 0.f)
+		{
+			IsRespawnTimer1Update = true;
+		}
+
+		if (IsRespawnTimer1Update == true)
+		{
+			RespawnTimer1 += _DeltaTime;
+		}
+
+		if (RespawnTimer1 >= RespawnTime)
+		{
+			RespawnFighter(1);
+			RespawnTimer1 = 0.f;
+			IsRespawnTimer1Update = false;
+		}
+	}
+
+	{
+		if (Fighters[2] == nullptr && RespawnTimer2 == 0.f)
+		{
+			IsRespawnTimer2Update = true;
+		}
+		if (IsRespawnTimer2Update == true)
+		{
+			RespawnTimer2 += _DeltaTime;
+		}
+
+		if (RespawnTimer2 >= RespawnTime)
+		{
+			RespawnFighter(2);
+			RespawnTimer2 = 0.f;
+			IsRespawnTimer2Update = false;
+		}
+	}
 }
 
 void Melee_RallyPoint::SetFighter(int _Count)
@@ -56,4 +112,15 @@ void Melee_RallyPoint::SetFighter(int _Count)
 		Fighters[i]->Data.SetData(FighterEnum::MeleeLv1);
 		Fighters[i]->CurHP = Fighters[i]->Data.Hp;
 	}
+}
+
+void Melee_RallyPoint::RespawnFighter(int _index)
+{
+	Fighters[_index] = GetLevel()->CreateActor<Melee_Fighter>();
+	Fighters[_index]->GetTransform()->SetWorldPosition(GetTransform()->GetParent()->GetWorldPosition());
+	Fighters[_index]->SetParentRally(this);
+	Fighters[_index]->SetPrevPos(GetTransform()->GetParent()->GetWorldPosition());
+	Fighters[_index]->SetRallyTransform(RallyPosCheckComponents[_index]->GetTransform());
+	Fighters[_index]->Data.SetData(FighterEnum::MeleeLv1);
+	Fighters[_index]->CurHP = Fighters[_index]->Data.Hp;
 }

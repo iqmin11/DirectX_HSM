@@ -22,6 +22,18 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+
+	float RespawnTimer0 = 0.f;
+	float RespawnTimer1 = 0.f;
+	float RespawnTimer2 = 0.f;
+
+	float RespawnTime = 5.f;
+
+	bool IsRespawnTimer0Update = false;
+	bool IsRespawnTimer1Update = false;
+	bool IsRespawnTimer2Update = false;
+
 	void SetFighter(int _Count);
+	void RespawnFighter(int _index);
 };
 

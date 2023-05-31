@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+#include "BaseFighter.h"
+
 DesertThug::DesertThug()
 {
 
@@ -16,6 +18,7 @@ DesertThug::~DesertThug()
 void DesertThug::Start()
 {
 	BaseMonster::Start();
+	Data.SetData(MonsterEnum::DesertThug);
 	MonsterRenderer->CreateAnimation({.AnimationName = "Idle", .SpriteName = "DesertThug_Idle", .FrameInter = 0.1f, .Loop = false});
 	MonsterRenderer->CreateAnimation({.AnimationName = "Move_Back", .SpriteName = "DesertThug_Move_Back", .FrameInter = 0.1f, .Loop = true});
 	MonsterRenderer->CreateAnimation({.AnimationName = "Move_Front", .SpriteName = "DesertThug_Move_Front", .FrameInter = 0.1f, .Loop = true });
@@ -25,8 +28,9 @@ void DesertThug::Start()
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
-	Data.SetData(MonsterEnum::DesertThug);
 	CurHP = Data.Hp;
+
+	MonsterRenderer->SetAnimationStartEvent("Attack", 3, std::bind(&DesertThug::Attack, this));
 
 	IdleStateInit();
 	MoveStateInit();
@@ -39,5 +43,10 @@ void DesertThug::Start()
 void DesertThug::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
+}
+
+void DesertThug::Attack()
+{
+	TargetFighter->CurHP -= 10;
 }
 

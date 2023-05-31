@@ -55,22 +55,22 @@ void Melee_Fighter::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "1_Idle", .SpriteName = "MeleeLv1_Fighter_Idle", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "1_Move", .SpriteName = "MeleeLv1_Fighter_Move", .Loop = true });
 	FighterRenderer->CreateAnimation({ .AnimationName = "1_Attack", .SpriteName = "MeleeLv1_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "1_Death", .SpriteName = "MeleeLv1_Fighter_Death", .Loop = true });
+	FighterRenderer->CreateAnimation({ .AnimationName = "1_Death", .SpriteName = "MeleeLv1_Fighter_Death", .Loop = false  });
 
 	FighterRenderer->CreateAnimation({ .AnimationName = "2_Idle", .SpriteName = "MeleeLv2_Fighter_Idle", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "2_Move", .SpriteName = "MeleeLv2_Fighter_Move", .Loop = true });
 	FighterRenderer->CreateAnimation({ .AnimationName = "2_Attack", .SpriteName = "MeleeLv2_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "2_Death", .SpriteName = "MeleeLv2_Fighter_Death", .Loop = true });
+	FighterRenderer->CreateAnimation({ .AnimationName = "2_Death", .SpriteName = "MeleeLv2_Fighter_Death", .Loop = false });
 
 	FighterRenderer->CreateAnimation({ .AnimationName = "3_Idle", .SpriteName = "MeleeLv3_Fighter_Idle", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "3_Move", .SpriteName = "MeleeLv3_Fighter_Move", .Loop = true });
 	FighterRenderer->CreateAnimation({ .AnimationName = "3_Attack", .SpriteName = "MeleeLv3_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "3_Death", .SpriteName = "MeleeLv3_Fighter_Death", .Loop = true });
+	FighterRenderer->CreateAnimation({ .AnimationName = "3_Death", .SpriteName = "MeleeLv3_Fighter_Death", .Loop = false });
 
 	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Idle", .SpriteName = "MeleeLv4_Fighter_Idle", .Loop = false });
 	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Move", .SpriteName = "MeleeLv4_Fighter_Move", .Loop = true });
 	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Attack", .SpriteName = "MeleeLv4_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
-	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Death", .SpriteName = "MeleeLv4_Fighter_Death", .Loop = true });
+	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Death", .SpriteName = "MeleeLv4_Fighter_Death", .Loop = false });
 
 	FighterRenderer->SetAnimationStartEvent("1_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));
 	FighterRenderer->SetAnimationStartEvent("2_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));

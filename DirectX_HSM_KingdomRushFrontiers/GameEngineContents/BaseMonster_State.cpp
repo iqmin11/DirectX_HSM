@@ -104,6 +104,14 @@ void BaseMonster::AttackStateInit()
 					State = MonsterState::Death;
 				}
 
+				if (TargetFighter->State == FighterState::Death || TargetFighter == nullptr)
+				{
+					State = MonsterState::Move;
+					TargetFighter = nullptr;
+					MonsterFSM.ChangeState("Move");
+					return;
+				}
+
 				if (State == MonsterState::Idle)
 				{
 					MonsterFSM.ChangeState("Idle");
@@ -112,11 +120,6 @@ void BaseMonster::AttackStateInit()
 				if (State == MonsterState::Death)
 				{
 					MonsterFSM.ChangeState("Death");
-				}
-
-				if (State == MonsterState::Move)
-				{
-					MonsterFSM.ChangeState("Move");
 				}
 
 				AttackTime += _DeltaTime;

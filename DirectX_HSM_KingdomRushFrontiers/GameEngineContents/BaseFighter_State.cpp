@@ -2,6 +2,7 @@
 #include "BaseFighter.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "BaseMonster.h"
 
 
@@ -22,7 +23,7 @@ void BaseFighter::IdleStateInit()
 		.Update = [this](float _DeltaTime)
 		{
 			float4 RallyPos = RallyTransform->GetWorldPosition();
-			if (false/*Hp∞° 0¿Ã∏È*/)
+			if (CurHP <= 0)
 			{
 				State = FighterState::Death;
 				FighterFSM.ChangeState("Death");
@@ -101,6 +102,12 @@ void BaseFighter::TraceMonsterStateInit()
 		.Update = [this](float _DeltaTime)
 		{
 			float4 RallyPos = RallyTransform->GetWorldPosition();
+			if (CurHP <= 0)
+			{
+				State = FighterState::Death;
+				FighterFSM.ChangeState("Death");
+				return;
+			}
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -121,12 +128,6 @@ void BaseFighter::TraceMonsterStateInit()
 				return;
 			}
 
-			if (State == FighterState::Death)
-			{
-				FighterFSM.ChangeState("Death");
-				return;
-			}
-			
 			if (IsChangeTarget)
 			{
 				FighterFSM.ChangeState("TraceMonster");
@@ -157,6 +158,12 @@ void BaseFighter::AttackStateInit()
 		.Update = [this](float _DeltaTime)
 		{
 			float4 RallyPos = RallyTransform->GetWorldPosition();
+			if (CurHP <= 0)
+			{
+				State = FighterState::Death;
+				FighterFSM.ChangeState("Death");
+				return;
+			}
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -177,10 +184,9 @@ void BaseFighter::AttackStateInit()
 				return;
 			}
 
-			if (State == FighterState::Death)
+			if (TargetMonster != nullptr && TargetMonster->TargetFighter == nullptr)
 			{
-				FighterFSM.ChangeState("Death");
-				return;
+				TargetMonster->TargetFighter = this;
 			}
 
 			Time += _DeltaTime;
@@ -215,6 +221,12 @@ void BaseFighter::ReturnStateInit()
 		.Update = [this](float _DeltaTime)
 		{
 			float4 RallyPos = RallyTransform->GetWorldPosition();
+			if (CurHP <= 0)
+			{
+				State = FighterState::Death;
+				FighterFSM.ChangeState("Death");
+				return;
+			}
 			if (PrevPos != RallyPos)
 			{
 				State = FighterState::Move;
@@ -256,6 +268,9 @@ void BaseFighter::DeathStateInit()
 		.Name = "Death",
 		.Start = [this]()
 		{
+			LifeBar->Off();
+			LifeBarBg->Off();
+			FighterCol->Off();
 			if (ParentRally == nullptr)
 			{
 				FighterRenderer->ChangeAnimation("1_Death");
@@ -265,8 +280,15 @@ void BaseFighter::DeathStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
-
-
+			DeathTime += _DeltaTime;
+			if (DeathTime <= 2.f)
+			{
+				FighterRenderer->ColorOptionValue.MulColor.a -= _DeltaTime / 2;
+			}
+			else
+			{
+				Death();
+			}
 		},
 		.End = [this]()
 		{

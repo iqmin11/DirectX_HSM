@@ -120,6 +120,8 @@ private:
 	float Ratio = 0.f;
 	bool IsChangeTarget = false;
 
+	float DeathTime = 0.f;
+
 	void MoveToRally(float _DeltaTime);
 	void ReturnToRally(float _DeltaTime);
 	void MoveToTarget(float _DeltaTime);
