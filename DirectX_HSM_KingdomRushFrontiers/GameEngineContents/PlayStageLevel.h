@@ -49,6 +49,9 @@ private:
 
 	void LoadAreaBinData();
 	void LoadOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
+	
+	void LoadRallyBinData();
+	void LoadOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel);
 
 	void KeySet();
 	

@@ -98,6 +98,7 @@ void PlayStageLevel::LoadAllStageData()
 	LoadPathBinData();
 	LoadWaveBinData();
 	LoadAreaBinData();
+	LoadRallyBinData();
 }
 
 void PlayStageLevel::LoadPathBinData()
@@ -219,7 +220,7 @@ void PlayStageLevel::SetStageBuildArea(int _Stage)
 	AcBuildAreas.resize(AllStageData[_Stage].BuildAreaPos.size());
 	for (size_t i = 0; i < AcBuildAreas.size(); i++)
 	{
-		AcBuildAreas[i] = BuildArea::CreateBuildArea(this, AllStageData[_Stage].BuildAreaPos[i]);
+		AcBuildAreas[i] = BuildArea::CreateBuildArea(this, AllStageData[_Stage].BuildAreaPos[i], AllStageData[_Stage].AreaStartRallyPos[i]);
 	}
 }
 
@@ -231,7 +232,6 @@ void PlayStageLevel::ResetStageBg()
 void PlayStageLevel::ResetStagePaths()
 {
 	MonsterWave::SetCurStagePaths(nullptr);
-
 }
 
 void PlayStageLevel::LoadPlayLevelTexture(std::string_view _Folder)
@@ -364,6 +364,35 @@ void PlayStageLevel::LoadOneStageAreas(GameEngineSerializer& _Serializer, int _S
 	for (int i = 0; i < AllStageData[_StageLevel].BuildAreaPos.size(); i++)
 	{
 		_Serializer.Read(&AllStageData[_StageLevel].BuildAreaPos[i], sizeof(float4));
+	}
+}
+
+void PlayStageLevel::LoadRallyBinData()
+{
+	GameEngineSerializer LoadSerializer = GameEngineSerializer();
+
+	GameEngineFile File("..//ContentsData//RallyData.txt");
+	LoadSerializer.BufferResize(8000);
+	File.LoadBin(LoadSerializer);
+
+	int StgSize = 0;
+	LoadSerializer.Read(StgSize);
+
+	AllStageData.resize(StgSize);
+	for (int i = 0; i < AllStageData.size(); i++)
+	{
+		LoadOneStageRally(LoadSerializer, i);
+	}
+}
+
+void PlayStageLevel::LoadOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+	int RallySize = 0;
+	_Serializer.Read(RallySize);
+	AllStageData[_StageLevel].AreaStartRallyPos.resize(RallySize);
+	for (int i = 0; i < AllStageData[_StageLevel].AreaStartRallyPos.size(); i++)
+	{
+		_Serializer.Read(&AllStageData[_StageLevel].AreaStartRallyPos[i], sizeof(float4));
 	}
 }
 

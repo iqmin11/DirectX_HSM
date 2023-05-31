@@ -44,6 +44,11 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         BuildAreaCursor->GetTransform()->SetWorldScale({ 128,128,1 });
         BuildAreaCursor->GetTransform()->SetLocalPosition({ 0,0,0,1 });
         BuildAreaCursor->Off();
+
+        BuildAreaSelect = StageExActor->CreateComponent<GameEngineSpriteRenderer>();
+        BuildAreaSelect->SetTexture("build_terrain_Select.png");
+        BuildAreaSelect->GetTransform()->SetWorldScale({ 128,128,1 });
+        BuildAreaSelect->Off();
     }
     
     DrawPointRenderer(_Level);
@@ -148,10 +153,12 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
             int PointY = static_cast<int>(AreaPositions[i].y);
             int PointZ = static_cast<int>(AreaPositions[i].z);
             std::string PointLabel = "Point " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
-            ImGui::Text(PointLabel.c_str());
+            if (ImGui::Selectable(PointLabel.c_str(), SelectedArea == i))
+                SelectedArea = i;
         }
-
         ImGui::EndChild();
+        ImGui::SameLine();
+
 
         ImGui::EndTabItem();
 
@@ -167,12 +174,48 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
             }
         }
         BuildAreaCursor->On();
+        
+        if (SelectedArea != -1)
+        {
+            ImGui::BeginChild("RallyPosList", ImVec2(150, 0), true);
+            std::vector<float4>& RallyPositions = Data[SelectedStage].AreaStartRallyPos;
+            for (int i = 0; i < RallyPositions.size(); i++)
+            {
+                int PointX = static_cast<int>(RallyPositions[i].x);
+                int PointY = static_cast<int>(RallyPositions[i].y);
+                int PointZ = static_cast<int>(RallyPositions[i].z);
+                std::string PointLabel = "Rally " + std::to_string(i) + ": " + std::to_string(PointX) + ", " + std::to_string(PointY);
+                ImGui::Text(PointLabel.c_str());
+            }
+            ImGui::EndChild();
+
+            BuildAreaSelect->On();
+            BuildAreaSelect->GetTransform()->SetWorldPosition(Data[SelectedStage].BuildAreaPos[SelectedArea]);
+            BuildAreaCursor->SetTexture("TestRally.png");
+            
+            ImGui::SameLine();
+            if (ImGui::Button("LoadRally"))
+            {
+                LoadRallyBinData();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("SaveRally"))
+            {
+                SaveRallyBinData();
+            }
+        }
+        else
+        {
+            BuildAreaSelect->Off();
+            BuildAreaCursor->SetTexture("build_terrain_0004.png");
+        }
     }
     else
     {
         for (size_t i = 0; i < StageExRenderer.size(); i++)
         {
             StageExRenderer[i]->Off();
+            BuildAreaCursor->SetTexture("build_terrain_0004.png");
         }
     }
 }
@@ -185,6 +228,11 @@ void StageEditor::ControlBuildAreaRender(float _DeltaTime)
     if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("LeftClick"))
     {
         Pushback_Area();
+    }
+
+    if (GameEngineInput::IsPress("C") && GameEngineInput::IsUp("LeftClick"))
+    {
+        Pushback_Rally();
     }
 }
 
@@ -200,6 +248,29 @@ void StageEditor::Popback_Area()
         return;
     }
     Data[SelectedStage].BuildAreaPos.pop_back();
+}
+
+void StageEditor::Pushback_Rally()
+{
+    Data[SelectedStage].AreaStartRallyPos.push_back(BuildAreaCursor->GetTransform()->GetWorldPosition());
+}
+
+void StageEditor::Popback_Rally()
+{
+    if (Data[SelectedStage].AreaStartRallyPos.size() <= 0)
+    {
+        return;
+    }
+    Data[SelectedStage].AreaStartRallyPos.pop_back();
+}
+
+void StageEditor::SelectArea()
+{
+    if (SelectedArea == -1)
+    {
+        BuildAreaSelect->Off();
+    }
+
 }
 
 void StageEditor::SerializeOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel)
@@ -261,6 +332,68 @@ void StageEditor::LoadOneStageAreas(GameEngineSerializer& _Serializer, int _Stag
     for (int i = 0; i < Data[_StageLevel].BuildAreaPos.size(); i++)
     {
         _Serializer.Read(&Data[_StageLevel].BuildAreaPos[i], sizeof(float4));
+    }
+}
+
+void StageEditor::SerializeOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    std::vector<float4>& SaveRallys = Data[_StageLevel].AreaStartRallyPos;
+    _Serializer.Write(static_cast<int>(SaveRallys.size()));
+    for (int i = 0; i < SaveRallys.size(); i++)
+    {
+        _Serializer.Write(&SaveRallys[i], sizeof(float4));
+    }
+}
+
+void StageEditor::SerializeAllRally(GameEngineSerializer& _Serializer)
+{
+    _Serializer.Write(static_cast<int>(Data.size()));
+    for (int i = 0; i < Data.size(); i++)
+    {
+        SerializeOneStageRally(_Serializer, i);
+    }
+}
+
+void StageEditor::SaveRallyBinData()
+{
+    GameEngineSerializer SaveSerializer = GameEngineSerializer();
+
+    SerializeAllRally(SaveSerializer);
+
+    GameEnginePath filepath;
+    filepath.SetPath("..//ContentsData//RallyData.txt");
+
+    GameEngineFile file = GameEngineFile(filepath.GetFullPath());
+    file.SaveBin(SaveSerializer);
+}
+
+void StageEditor::LoadRallyBinData()
+{
+    GameEngineSerializer LoadSerializer = GameEngineSerializer();
+
+    GameEngineFile File("..//ContentsData//RallyData.txt");
+    LoadSerializer.BufferResize(8000);
+    File.LoadBin(LoadSerializer);
+
+    int StgSize = 0;
+    LoadSerializer.Read(StgSize);
+
+    StageCount = StgSize;
+    Data.resize(StageCount);
+    for (int i = 0; i < Data.size(); i++)
+    {
+        LoadOneStageRally(LoadSerializer, i);
+    }
+}
+
+void StageEditor::LoadOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel)
+{
+    int AreaSize = 0;
+    _Serializer.Read(AreaSize);
+    Data[_StageLevel].AreaStartRallyPos.resize(AreaSize);
+    for (int i = 0; i < Data[_StageLevel].AreaStartRallyPos.size(); i++)
+    {
+        _Serializer.Read(&Data[_StageLevel].AreaStartRallyPos[i], sizeof(float4));
     }
 }
 

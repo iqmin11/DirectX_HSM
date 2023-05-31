@@ -33,12 +33,14 @@ private:
 	std::shared_ptr<class GameEngineActor> StageExActor = nullptr;
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageExRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
 	std::shared_ptr<GameEngineSpriteRenderer> BuildAreaCursor = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> BuildAreaSelect = nullptr;
 
 	int SelectedWave = -1;
 	int SelectedWaveMonster = 0;
 	int SelectedWaveLineIndex = 0;
 	float StartTimeInWave = 0.0f;
 
+	int SelectedArea = -1;
 
 	void OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _DeltaTime) override;
 	void ChangeStage(std::shared_ptr<class GameEngineLevel> _Level, int _Selected);
@@ -48,6 +50,9 @@ private:
 	void ControlBuildAreaRender(float _DeltaTime);
 	void Pushback_Area();
 	void Popback_Area();
+	void Pushback_Rally();
+	void Popback_Rally();
+	void SelectArea();
 
 	void SerializeOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
 	void SerializeAllAreas(GameEngineSerializer& _Serializer);
@@ -55,6 +60,13 @@ private:
 
 	void LoadAreaBinData();
 	void LoadOneStageAreas(GameEngineSerializer& _Serializer, int _StageLevel);
+
+	void SerializeOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel);
+	void SerializeAllRally(GameEngineSerializer& _Serializer);
+	void SaveRallyBinData();
+
+	void LoadRallyBinData();
+	void LoadOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel);
 
 	// 몬스터 경로 관련
 	void PathEditTap(std::shared_ptr<class GameEngineLevel> _Level);

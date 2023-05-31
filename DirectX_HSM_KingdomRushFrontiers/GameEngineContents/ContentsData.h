@@ -33,6 +33,7 @@ public:
 	std::vector<LinePath> Lines = std::vector<LinePath>();
 	std::vector<WaveData> Waves = std::vector<WaveData>();
 	std::vector<float4> BuildAreaPos = std::vector<float4>();
+	std::vector<float4> AreaStartRallyPos = std::vector<float4>();
 };
 
 class TowerData

@@ -20,11 +20,12 @@ BuildArea::~BuildArea()
 
 }
 
-std::shared_ptr<BuildArea> BuildArea::CreateBuildArea(GameEngineLevel* _Level, const float4& _ActorPos)
+std::shared_ptr<BuildArea> BuildArea::CreateBuildArea(GameEngineLevel* _Level, const float4& _ActorPos, const float4& _RallyPos)
 {
 	std::shared_ptr<BuildArea> Result = nullptr;
 	Result = _Level->CreateActor<BuildArea>();
 	Result->ActorPos = _ActorPos;
+	Result->RallyPos = _RallyPos;
 	Result->GetTransform()->SetWorldPosition(Result->ActorPos);
 	return Result;
 }
@@ -73,7 +74,7 @@ void BuildArea::Update(float _DeltaTime)
 	}
 	if (IsAreaLeftClick() && GameEngineInput::IsPress("V"))
 	{
-		ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos);
+		ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos, RallyPos);
 	}
 }
 

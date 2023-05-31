@@ -16,14 +16,14 @@ Melee_Tower::~Melee_Tower()
 
 }
 
-std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos)
+std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos, const float4& _RallyPos)
 {
 	std::shared_ptr<Melee_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Melee_Tower>();
 	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
 	LocalAc->AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(_Level, _BuildPos, 3);
 	LocalAc->AcRallyPoint->GetTransform()->SetParent(LocalAc->GetTransform());
-	LocalAc->AcRallyPoint->GetTransform()->SetLocalPosition({0,-100, -100});
+	LocalAc->AcRallyPoint->GetTransform()->SetWorldPosition(_RallyPos);
 	return LocalAc;
 }
 
