@@ -29,6 +29,10 @@ void Melee_RallyPoint::ChangeFighters(int _TowerLevel)
 {
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
 		Fighters[i]->DynamicThis<Melee_Fighter>()->ChangeFighter(_TowerLevel);
 	}
 }

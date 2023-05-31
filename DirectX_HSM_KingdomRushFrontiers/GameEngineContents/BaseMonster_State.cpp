@@ -31,6 +31,14 @@ void BaseMonster::IdleStateInit()
 					return;
 				}
 
+				if (TargetFighter->State == FighterState::Death)
+				{
+					State = MonsterState::Move;
+					TargetFighter = nullptr;
+					MonsterFSM.ChangeState("Move");
+					return;
+				}
+
 				if (MonsterCol->GetTransform()->Collision({._OtherTrans = TargetFighter->GetFighterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D}))
 				{
 					State = MonsterState::Attack;
@@ -104,7 +112,14 @@ void BaseMonster::AttackStateInit()
 					State = MonsterState::Death;
 				}
 
-				if (TargetFighter->State == FighterState::Death || TargetFighter == nullptr)
+				if (TargetFighter == nullptr)
+				{
+					State = MonsterState::Move;
+					MonsterFSM.ChangeState("Move");
+					return;
+				}
+
+				if (TargetFighter->State == FighterState::Death)
 				{
 					State = MonsterState::Move;
 					TargetFighter = nullptr;
