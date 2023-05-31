@@ -18,6 +18,13 @@ void BaseMonster::IdleStateInit()
 				if (CurHP <= 0)
 				{
 					State = MonsterState::Death;
+					MonsterFSM.ChangeState("Death");
+					return;
+				}
+
+				if (true)
+				{
+
 				}
 
 				if (State == MonsterState::Attack)
@@ -27,7 +34,6 @@ void BaseMonster::IdleStateInit()
 
 				if (State == MonsterState::Death)
 				{
-					MonsterFSM.ChangeState("Death");
 				}
 
 				if (State == MonsterState::Move)

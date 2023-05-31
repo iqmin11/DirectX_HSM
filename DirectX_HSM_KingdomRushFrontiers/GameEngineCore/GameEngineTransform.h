@@ -250,6 +250,7 @@ public:
 	float4 GetWorldRotation();
 	float4 GetWorldQuaternion();
 
+
 	float4 GetLocalForwardVector()
 	{
 		return TransData.LocalWorldMatrix.ArrVector[2].NormalizeReturn();

@@ -19,25 +19,16 @@ RallyPoint::~RallyPoint()
 
 }
 
-//std::shared_ptr<RallyPoint> RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount)
-//{
-//	std::shared_ptr<RallyPoint> LocalAc = nullptr;
-//	LocalAc = _Level->CreateActor<RallyPoint>();
-//	LocalAc->GetTransform()->SetWorldPosition(_Pos);
-//	LocalAc->SetFighter(_FighterCount);
-//	return LocalAc;
-//}
-
 void RallyPoint::Start()
 {
-	TestRallyRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	TestRallyRender->SetTexture("TestRally.png");
-	TestRallyRender->GetTransform()->SetWorldScale({ 128,128,1 });
+	//TestRallyRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	//TestRallyRender->SetTexture("TestRally.png");
+	//TestRallyRender->GetTransform()->SetWorldScale({ 128,128,1 });
 
-	RangeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	RangeRender->SetTexture("range_circle.png");
-	RangeRender->GetTransform()->SetWorldScale({ Range*2.f,Range*2.f,0.f });
-	RangeRender->GetTransform()->SetLocalPosition({ 0.f,0.f,300.f });
+	//RangeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	//RangeRender->SetTexture("range_circle.png");
+	//RangeRender->GetTransform()->SetWorldScale({ Range*2.f,Range*2.f,0.f });
+	//RangeRender->GetTransform()->SetLocalPosition({ 0.f,0.f,300.f });
 	//RangeRender->GetTransform()->SetLocalRotation({ 45.f,0,0 });
 
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
@@ -51,9 +42,9 @@ void RallyPoint::Start()
 		RallyPosCheckComponents[i] = CreateComponent<GameEngineComponent>();
 	}
 
-	RallyPosCheckComponents[0]->GetTransform()->SetLocalPosition({-40, 0, 0});
-	RallyPosCheckComponents[1]->GetTransform()->SetLocalPosition({ 40, 0, 0 });
-	RallyPosCheckComponents[2]->GetTransform()->SetLocalPosition({ 0, -40, -40 });
+	RallyPosCheckComponents[0]->GetTransform()->SetLocalPosition({-25, 0, 0});
+	RallyPosCheckComponents[1]->GetTransform()->SetLocalPosition({ 0, -25, -25 });
+	RallyPosCheckComponents[2]->GetTransform()->SetLocalPosition({ 25, 0, 0 });
 
 }
 
@@ -68,9 +59,7 @@ void RallyPoint::Update(float _DeltaTime)
 
 	if (IsThereTarget())
 	{
-		SetPrevTarget();
 		FindTarget();
-		SetBoolChangeTarget();
 	}
 }
 
@@ -98,6 +87,8 @@ void RallyPoint::SetPrevTarget()
 
 void RallyPoint::FindTarget()
 {
+	SetPrevTarget();
+
 	size_t ColCount = ColMonsters.size();
 
 	RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
@@ -159,6 +150,7 @@ void RallyPoint::FindTarget()
 			Fighters[2]->SetTarget(ColMonsters[2]->GetActor()->DynamicThis<BaseMonster>());
 	}
 
+	SetBoolChangeTarget();
 }
 
 void RallyPoint::SetBoolChangeTarget()

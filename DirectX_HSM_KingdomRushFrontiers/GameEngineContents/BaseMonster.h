@@ -72,7 +72,7 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
-	
+
 	GameEngineFSM MonsterFSM = GameEngineFSM();
 
 	void IdleStateInit();
