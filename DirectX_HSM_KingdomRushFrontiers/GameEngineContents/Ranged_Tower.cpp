@@ -129,7 +129,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 {
 	BaseShootingTower::Update(_DeltaTime);
 	//Test
-	if (GameEngineInput::IsUp("Space"))
+	if (GameEngineInput::IsUp("M"))
 	{
 		ChangeTower(TowerEnum::RangedTower_Level3);
 	}

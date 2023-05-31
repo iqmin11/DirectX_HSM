@@ -24,6 +24,7 @@ std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, c
 	LocalAc->AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(_Level, _BuildPos, 3);
 	LocalAc->AcRallyPoint->GetTransform()->SetParent(LocalAc->GetTransform());
 	LocalAc->AcRallyPoint->GetTransform()->SetWorldPosition(_RallyPos);
+	LocalAc->AcRallyPoint->SetTowerData(&(LocalAc->Data));
 	return LocalAc;
 }
 
@@ -39,10 +40,10 @@ void Melee_Tower::Start()
 
 void Melee_Tower::Update(float _DeltaTime)
 {
-	//if (GameEngineInput::IsDown("Space"))
-	//{
-	//	ChangeTower(TowerEnum::MeleeTower_Level3);
-	//}
+	if (GameEngineInput::IsDown("M"))
+	{
+		ChangeTower(TowerEnum::MeleeTower_Level3);
+	}
 }
 
 void Melee_Tower::ChangeTower(TowerEnum _Tower)

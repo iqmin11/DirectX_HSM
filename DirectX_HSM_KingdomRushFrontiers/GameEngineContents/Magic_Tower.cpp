@@ -61,7 +61,7 @@ void Magic_Tower::Update(float _DeltaTime)
 {
 	BaseShootingTower::Update(_DeltaTime);
 
-	if (GameEngineInput::IsUp("Space"))
+	if (GameEngineInput::IsUp("M"))
 	{
 		ChangeTower(TowerEnum::MagicTower_Level3);
 	}

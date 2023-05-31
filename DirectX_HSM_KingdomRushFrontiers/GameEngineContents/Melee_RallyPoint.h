@@ -16,18 +16,23 @@ public:
 
 	static std::shared_ptr<Melee_RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount);
 	void ChangeFighters(int _TowerLevel);
+	void SetTowerData(class TowerData* _TowerData)
+	{
+		DataPtr = _TowerData;
+	}
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
+	class TowerData* DataPtr = nullptr;
 
 	float RespawnTimer0 = 0.f;
 	float RespawnTimer1 = 0.f;
 	float RespawnTimer2 = 0.f;
 
-	float RespawnTime = 5.f;
+	float RespawnTime = 10.f;
 
 	bool IsRespawnTimer0Update = false;
 	bool IsRespawnTimer1Update = false;

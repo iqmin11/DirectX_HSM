@@ -3,6 +3,7 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include "Melee_Fighter.h"
+#include "Melee_Tower.h"
 
 
 Melee_RallyPoint::Melee_RallyPoint()
@@ -121,6 +122,6 @@ void Melee_RallyPoint::RespawnFighter(int _index)
 	Fighters[_index]->SetParentRally(this);
 	Fighters[_index]->SetPrevPos(GetTransform()->GetParent()->GetWorldPosition());
 	Fighters[_index]->SetRallyTransform(RallyPosCheckComponents[_index]->GetTransform());
-	Fighters[_index]->Data.SetData(FighterEnum::MeleeLv1);
+	Fighters[_index]->Data.SetData(DataPtr->Level);
 	Fighters[_index]->CurHP = Fighters[_index]->Data.Hp;
 }

@@ -64,7 +64,7 @@ void Artillery_Tower::Start()
 void Artillery_Tower::Update(float _DeltaTime)
 {
 	BaseShootingTower::Update(_DeltaTime);
-	if (GameEngineInput::IsUp("Space"))
+	if (GameEngineInput::IsUp("M"))
 	{
 		ChangeTower(TowerEnum::ArtilleryTower_Level3);
 	}
