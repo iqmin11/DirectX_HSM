@@ -22,6 +22,5 @@ private:
 	float4 ColLocalPos = {0,0,0};
 	float4 ColScale = {18,18,1};
 
-	void Attack();
 };
 

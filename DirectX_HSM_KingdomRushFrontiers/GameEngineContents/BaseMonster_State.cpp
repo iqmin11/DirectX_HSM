@@ -187,3 +187,7 @@ void BaseMonster::DeathStateInit()
 			},
 		});
 }
+
+
+
+

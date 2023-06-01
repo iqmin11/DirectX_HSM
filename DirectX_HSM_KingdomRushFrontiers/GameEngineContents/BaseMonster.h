@@ -84,6 +84,9 @@ protected:
 
 	float DeathTime = 0.f;
 
+	void Attack();
+	float CalDamage();
+
 private:
 	float4 ActorPos = float4::Zero;
 	float4 PrevActorPos = float4::Zero;

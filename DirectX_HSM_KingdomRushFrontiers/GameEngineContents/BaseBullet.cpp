@@ -44,7 +44,6 @@ void BaseBullet::Update(float _DeltaTime)
 
 		if (IsThereTargetMonster() && IsHitTargetMonster()) // ИэСп
 		{
-			//TargetMonster->CurHP -= CalDamage();
 			HitFunc();
 		}
 	}
@@ -110,17 +109,6 @@ void BaseBullet::CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ra
 	{
 		GetTransform()->SetWorldRotation(f4Deg);
 	}
-}
-
-void BaseBullet::DeathFunc()
-{
-	IsBulletDeath = true;
-	if (BulletDeath != nullptr)
-	{
-		BulletDeath();
-		return;
-	}
-	Death();
 }
 
 void BaseBullet::MissFunc()

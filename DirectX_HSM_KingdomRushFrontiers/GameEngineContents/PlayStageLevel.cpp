@@ -335,6 +335,16 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle"  ).GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move"  ).GetFullPath());
 
+	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
+	Dir.Move("DuneRaider");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Profile").GetFullPath());
+
 }
 
 

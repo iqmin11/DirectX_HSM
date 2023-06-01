@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+#include "BaseFighter.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
 
@@ -162,6 +163,16 @@ void BaseMonster::UpdateLifeBar()
 float BaseMonster::CalDistance()
 {
 	return (*LastPoint - ActorPos).Size();
+}
+
+void BaseMonster::Attack()
+{
+	TargetFighter->CurHP -= CalDamage();
+}
+
+float BaseMonster::CalDamage()
+{
+	return static_cast<float>(GameEngineRandom::MainRandom.RandomInt(Data.Damage_min, Data.Damage_MAX));
 }
 
 

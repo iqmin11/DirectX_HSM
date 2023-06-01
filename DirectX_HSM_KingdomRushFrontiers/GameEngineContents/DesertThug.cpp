@@ -44,9 +44,3 @@ void DesertThug::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
 }
-
-void DesertThug::Attack()
-{
-	TargetFighter->CurHP -= 10;
-}
-

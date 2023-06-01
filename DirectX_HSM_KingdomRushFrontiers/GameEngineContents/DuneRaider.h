@@ -19,8 +19,8 @@ protected:
 	void Update(float _DeltaTime);
 
 private:
-	std::string_view TextureName = "DuneRaider0000.png";
-	float4 RenderScale = { 60,50,1 };
+	float4 RenderScale = { 128,128,1 };
+	float4 ColLocalPos = { 0,0,0 };
 	float4 ColScale = { 30,30,1 };
 };
 
