@@ -136,7 +136,7 @@ void BaseFighter::MoveToTarget(float _DeltaTime)
 	}
 
 	GetTransform()->SetWorldPosition(ActorPos);
-	if (FighterCol->GetTransform()->Collision({._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D}))
+	if (FighterCol->GetTransform()->Collision({._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::SPHERE2D, .OtherType = ColType::SPHERE2D}))
 	{
 		State = FighterState::Attack;
 		SavePos = GetTransform()->GetWorldPosition();

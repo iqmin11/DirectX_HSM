@@ -78,7 +78,7 @@ void RallyPoint::Update(float _DeltaTime)
 
 bool RallyPoint::IsThereTarget()
 {
-	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::AABBBOX2D);
+	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D);
 }
 
 void RallyPoint::SetRallyPos()
@@ -108,7 +108,7 @@ void RallyPoint::FindTarget()
 
 	size_t ColCount = ColMonsters.size();
 
-	RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
+	RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
 	if (ColMonsters.size() > Fighters.size())
 	{
 		ColMonsters.resize(Fighters.size());

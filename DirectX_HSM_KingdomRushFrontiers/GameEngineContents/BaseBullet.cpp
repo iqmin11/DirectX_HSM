@@ -152,7 +152,7 @@ bool BaseBullet::IsThereTargetMonster()
 
 bool BaseBullet::IsHitTargetMonster()
 {
-	return BulletCol->GetTransform()->Collision({ ._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D });
+	return Ratio >= 1 && BulletCol->GetTransform()->Collision({ ._OtherTrans = TargetMonster->GetMonsterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::SPHERE2D });
 }
 
 bool BaseBullet::IsMissTargetMonster()

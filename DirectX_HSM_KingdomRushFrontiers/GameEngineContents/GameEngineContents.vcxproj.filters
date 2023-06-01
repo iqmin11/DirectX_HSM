@@ -294,9 +294,6 @@
     <Filter Include="0.Base">
       <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
-      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
       <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
     </Filter>
@@ -320,6 +317,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\4.MeleeTower">
       <UniqueIdentifier>{77b148df-1f9f-42b5-9a74-3cf0a376c77b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
+      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

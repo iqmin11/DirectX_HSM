@@ -104,8 +104,8 @@ private:
 	float4 SavePos = float4::Null;
 	
 	std::shared_ptr<class GameEngineCollision> FighterCol = nullptr;
-	float4 ColLocalPos = { 0,15,0 };
-	float4 ColScale = { 20,30,1 };
+	float4 ColLocalPos = { 0,0,0 };
+	float4 ColScale = { 18,18,1 };
 
 	std::shared_ptr<class BaseMonster> PrevTarget = nullptr;
 

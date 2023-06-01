@@ -39,7 +39,7 @@ void BaseMonster::IdleStateInit()
 					return;
 				}
 
-				if (MonsterCol->GetTransform()->Collision({._OtherTrans = TargetFighter->GetFighterCol()->GetTransform(), .ThisType = ColType::AABBBOX2D, .OtherType = ColType::AABBBOX2D}))
+				if (MonsterCol->GetTransform()->Collision({._OtherTrans = TargetFighter->GetFighterCol()->GetTransform(), .ThisType = ColType::SPHERE2D, .OtherType = ColType::SPHERE2D}))
 				{
 					State = MonsterState::Attack;
 					MonsterFSM.ChangeState("Attack");

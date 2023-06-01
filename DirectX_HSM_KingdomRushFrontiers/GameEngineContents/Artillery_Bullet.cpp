@@ -93,19 +93,19 @@ void Artillery_Bullet::Boom()
 {
 	std::vector<std::shared_ptr<GameEngineCollision>> HitMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 	HitMonsters.reserve(30);
-	BombCol0->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D );
+	BombCol0->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
 	}
 
-	BombCol1->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
+	BombCol1->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
 	}
 
-	BombCol2->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::AABBBOX2D);
+	BombCol2->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
