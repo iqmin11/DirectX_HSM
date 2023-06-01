@@ -167,6 +167,10 @@ float BaseMonster::CalDistance()
 
 void BaseMonster::Attack()
 {
+	if (TargetFighter == nullptr)
+	{
+		return;
+	}
 	TargetFighter->CurHP -= CalDamage();
 }
 
