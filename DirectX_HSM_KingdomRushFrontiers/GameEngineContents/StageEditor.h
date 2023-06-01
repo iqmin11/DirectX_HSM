@@ -34,6 +34,7 @@ private:
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageExRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
 	std::shared_ptr<GameEngineSpriteRenderer> BuildAreaCursor = nullptr;
 	std::shared_ptr<GameEngineSpriteRenderer> BuildAreaSelect = nullptr;
+	std::shared_ptr<GameEngineSpriteRenderer> OutLine = nullptr;
 
 	int SelectedWave = -1;
 	int SelectedWaveMonster = 0;

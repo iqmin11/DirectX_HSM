@@ -49,6 +49,11 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         BuildAreaSelect->SetTexture("build_terrain_Select.png");
         BuildAreaSelect->GetTransform()->SetWorldScale({ 128,128,1 });
         BuildAreaSelect->Off();
+
+        OutLine = StageExActor->CreateComponent<GameEngineSpriteRenderer>();
+        OutLine->SetTexture("OutLine.png");
+        OutLine->GetTransform()->SetWorldScale({ 1300,950,1 });
+        OutLine->GetTransform()->SetWorldPosition({ 0,0,-1000 });
     }
     
     DrawPointRenderer(_Level);
@@ -533,7 +538,7 @@ void StageEditor::DrawPointRenderer(std::shared_ptr<class GameEngineLevel> _Leve
                     {
                         PointRenderers[i]->SetTexture("Check.png");
                         PointRenderers[i]->GetTransform()->SetLocalScale({ 10.0f, 10.0f, 10.0f });
-                        PointRenderers[i]->GetTransform()->SetLocalPosition(Line[i]);
+                        PointRenderers[i]->GetTransform()->SetLocalPosition(Line[i] + float4{0,0,-2000});
                         PointRenderers[i]->On();
                     }
                     else
@@ -646,6 +651,7 @@ void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, flo
     StageData& Stage = Data[SelectedStage];
     if (Stage.Lines.size() != 0)
     {
+        OutLine->Off();
         if (ImGui::BeginTabItem("WaveEdit"))
         {
             if (ImGui::Button("AddWave"))

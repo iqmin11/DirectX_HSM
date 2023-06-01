@@ -52,6 +52,7 @@ private:
 	
 	std::shared_ptr<class StageEditor> Editor;
 
+
 	void SetKey();
 
 };

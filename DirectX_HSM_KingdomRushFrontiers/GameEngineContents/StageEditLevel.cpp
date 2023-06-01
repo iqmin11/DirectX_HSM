@@ -26,6 +26,7 @@ void StageEditLevel::Start()
 	SetKey();
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	AcStageBg = CreateActor<StageBg>();
+	
 	//AcStagePath = CreateActor<StagePath>();
 	
 	//AcPathEdit = CreateActor<PathEdit>();
