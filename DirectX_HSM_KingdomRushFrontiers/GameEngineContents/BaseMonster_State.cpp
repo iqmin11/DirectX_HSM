@@ -103,6 +103,12 @@ void BaseMonster::AttackStateInit()
 			.Start = [this]()
 			{
 				MonsterRenderer->ChangeAnimation("Attack");
+				if (TargetFighter == nullptr)
+				{
+					State = MonsterState::Move;
+					MonsterFSM.ChangeState("Move");
+					return;
+				}
 			},
 			.Update = [this](float _DeltaTime)
 			{
