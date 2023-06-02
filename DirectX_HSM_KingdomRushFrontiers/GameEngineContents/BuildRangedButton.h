@@ -14,6 +14,8 @@ public:
 	BuildRangedButton& operator=(const BuildRangedButton& _Other) = delete;
 	BuildRangedButton& operator=(BuildRangedButton&& _Other) noexcept = delete;
 
+	static std::shared_ptr<BuildRangedButton> CreateButton(class BuildTowerUI* _UI);
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

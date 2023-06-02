@@ -13,6 +13,8 @@ public:
 	BuildArtilleryButton(BuildArtilleryButton&& _Other) noexcept = delete;
 	BuildArtilleryButton& operator=(const BuildArtilleryButton& _Other) = delete;
 	BuildArtilleryButton& operator=(BuildArtilleryButton&& _Other) noexcept = delete;
+	
+	static std::shared_ptr<BuildArtilleryButton> CreateButton(class BuildTowerUI* _UI);
 
 protected:
 	void Start() override;

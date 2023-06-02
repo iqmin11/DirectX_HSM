@@ -5,6 +5,10 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BuildArea.h"
+#include "BuildRangedButton.h"
+#include "BuildMeleeButton.h"
+#include "BuildMagicButton.h"
+#include "BuildArtilleryButton.h"
 
 int BuildTowerUI::UpdateCount = 0;
 BuildTowerUI* BuildTowerUI::UpdatedUI = nullptr;
@@ -31,9 +35,18 @@ std::shared_ptr<BuildTowerUI> BuildTowerUI::CreateBuildTowerUI(BuildArea* _Paren
 
 void BuildTowerUI::Start()
 {
-	RingRender = CreateComponent<GameEngineUIRenderer>(RenderOrder::Mob);
+	RingRender = CreateComponent<GameEngineUIRenderer>();
 	RingRender->SetTexture("gui_ring.png");
 	RingRender->GetTransform()->SetWorldScale(RingRenderScale);
+
+	AcBuildRangedButton = BuildRangedButton::CreateButton(this);
+	AcBuildRangedButton->GetTransform()->SetLocalPosition(Button0LocPos);
+	AcBuildMeleeButton = BuildMeleeButton::CreateButton(this);
+	AcBuildMeleeButton->GetTransform()->SetLocalPosition(Button1LocPos);
+	AcBuildMagicButton = BuildMagicButton::CreateButton(this);
+	AcBuildMagicButton->GetTransform()->SetLocalPosition(Button2LocPos);
+	AcBuildArtilleryButton = BuildArtilleryButton::CreateButton(this);
+	AcBuildArtilleryButton->GetTransform()->SetLocalPosition(Button3LocPos);
 }
 
 void BuildTowerUI::Update(float _DeltaTime)

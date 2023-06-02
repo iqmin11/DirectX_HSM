@@ -13,6 +13,8 @@ public:
 	BuildMeleeButton& operator=(const BuildMeleeButton& _Other) = delete;
 	BuildMeleeButton& operator=(BuildMeleeButton&& _Other) noexcept = delete;
 
+	static std::shared_ptr<BuildMeleeButton> CreateButton(class BuildTowerUI* _UI);
+	
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

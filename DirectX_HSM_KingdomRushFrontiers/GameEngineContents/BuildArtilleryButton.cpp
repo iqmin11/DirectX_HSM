@@ -1,5 +1,8 @@
 #include "PrecompileHeader.h"
 #include "BuildArtilleryButton.h"
+#include <GameEngineCore/GameEngineLevel.h>
+#include "BuildTowerUI.h"
+#include "BuildArea.h"
 
 BuildArtilleryButton::BuildArtilleryButton()
 {
@@ -9,6 +12,19 @@ BuildArtilleryButton::BuildArtilleryButton()
 BuildArtilleryButton::~BuildArtilleryButton()
 {
 
+}
+
+std::shared_ptr<BuildArtilleryButton> BuildArtilleryButton::CreateButton(BuildTowerUI* _UI)
+{
+	std::shared_ptr<BuildArtilleryButton> ResultButton = _UI->GetLevel()->CreateActor<BuildArtilleryButton>();
+	ResultButton->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	ResultButton->GetTransform()->SetParent(_UI->GetTransform());
+	ResultButton->SetEvent([_UI]()
+		{
+			_UI->OffBuildUI();
+			_UI->GetParentArea()->CreateArtilleryTower();
+		});
+	return ResultButton;
 }
 
 void BuildArtilleryButton::Start()

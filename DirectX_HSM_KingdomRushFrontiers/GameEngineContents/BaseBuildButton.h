@@ -14,13 +14,13 @@ public:
 	BaseBuildButton& operator=(const BaseBuildButton& _Other) = delete;
 	BaseBuildButton& operator=(BaseBuildButton&& _Other) noexcept = delete;
 
-	static BaseBuildButton CreateButton(class BuildTowerUI* _UI);
+	//static std::shared_ptr<BaseBuildButton> CreateButton(class BuildTowerUI* _UI);
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	float4 Scale = { 94,84,1 };
+	float4 Scale = { 68,60,1 };
 };
 

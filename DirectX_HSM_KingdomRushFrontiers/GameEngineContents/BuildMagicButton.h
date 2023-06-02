@@ -12,6 +12,8 @@ public:
 	BuildMagicButton(BuildMagicButton&& _Other) noexcept = delete;
 	BuildMagicButton& operator=(const BuildMagicButton& _Other) = delete;
 	BuildMagicButton& operator=(BuildMagicButton&& _Other) noexcept = delete;
+	
+	static std::shared_ptr<BuildMagicButton> CreateButton(class BuildTowerUI* _UI);
 
 protected:
 	void Start() override;

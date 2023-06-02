@@ -1,5 +1,8 @@
 #include "PrecompileHeader.h"
 #include "BuildRangedButton.h"
+#include <GameEngineCore/GameEngineLevel.h>
+#include "BuildTowerUI.h"
+#include "BuildArea.h"
 
 BuildRangedButton::BuildRangedButton()
 {
@@ -9,6 +12,19 @@ BuildRangedButton::BuildRangedButton()
 BuildRangedButton::~BuildRangedButton()
 {
 
+}
+
+std::shared_ptr<BuildRangedButton> BuildRangedButton::CreateButton(BuildTowerUI* _UI)
+{
+	std::shared_ptr<BuildRangedButton> ResultButton = _UI->GetLevel()->CreateActor<BuildRangedButton>();
+	ResultButton->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	ResultButton->GetTransform()->SetParent(_UI->GetTransform());
+	ResultButton->SetEvent([_UI]()
+		{
+			_UI->OffBuildUI();
+			_UI->GetParentArea()->CreateRangedTower();
+		});
+	return ResultButton;
 }
 
 void BuildRangedButton::Start()
