@@ -96,3 +96,10 @@ enum class FighterEnum
 	ReinforceLv4,
 	ReinforceLv5,
 };
+
+enum class ButtonState
+{
+	Release,
+	Press,
+	Hover,
+};

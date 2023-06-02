@@ -1,14 +1,8 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineCollision.h>
-
+#include "ContentsEnum.h"
 // Ό³Έν :
-enum class ButtonState
-{
-	Release,
-	Press,
-	Hover,
-};
 
 class GameEngineUIRenderer;
 class GameEngineCollision;
@@ -36,6 +30,11 @@ public:
 	void SetParentActor(GameEngineActor* _Actor);
 	void SetTextureName(const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
 
+	ButtonState GetState()
+	{
+		return State;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -43,14 +42,15 @@ protected:
 	std::string ReleaseTextureName = std::string();
 	std::string HoverTextureName = std::string();
 	std::string PressTextureName = std::string();
+	std::string CurTextureName = std::string();
+
+	ButtonState State = ButtonState::Release;
+	std::shared_ptr<GameEngineUIRenderer> Render;
 
 private:
 	GameEngineActor* ParentActor = nullptr;
-	std::shared_ptr<GameEngineUIRenderer> Render;
 	std::function<void()> Click;
 
-	ButtonState State = ButtonState::Release;
-	std::string CurTextureName = std::string();
 
 	// std::shared_ptr<GameEngineCollision> Collision;
 };

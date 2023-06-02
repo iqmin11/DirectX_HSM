@@ -52,12 +52,7 @@ void ContentsButton::Update(float _Delta)
 {
 	float4 Scale = Render->GetTransform()->GetWorldScale();
 	float4 Pos = Render->GetTransform()->GetWorldPosition();
-
-	// 랜더러 => 크 자 이 공 부  월드 => 뷰 => 투영 => 뷰포트
-	//                                               스크린
-	//                                               마우스
-
-	// 이카메라가 원근 투영이면
+	
 	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
 
 	// 랜더러 
