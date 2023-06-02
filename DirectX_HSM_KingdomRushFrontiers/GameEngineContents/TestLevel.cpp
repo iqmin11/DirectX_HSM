@@ -6,6 +6,8 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 
+#include "ContentsButton.h"
+
 TestLevel::TestLevel()
 {
 
@@ -33,11 +35,15 @@ void TestLevel::Start()
 			GameEngineTexture::Load(File[i].GetFullPath());
 		}
 
+		File = NewDir.GetAllFile({ ".bmp", });
+		for (size_t i = 0; i < File.size(); i++)
+		{
+			GameEngineTexture::Load(File[i].GetFullPath());
+		}
 	}
 
-	GetMainCamera()->SetProjectionType(CameraType::Perspective);
+	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
-
 
 	std::shared_ptr<TestActor> AcTest = CreateActorToName<TestActor>("TestActor");
 
@@ -45,6 +51,9 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("WorldMapLevel", '2');
 	GameEngineInput::CreateKey("PlayStageLevel", '3');
 	GameEngineInput::CreateKey("StageEditLevel", '4');
+
+	TestButton = ContentsButton::CreateButton(this, "Release.bmp", "Hover.bmp", "Press.bmp");
+	TestButton->GetTransform()->SetWorldScale({ 100, 100 });
 }
 
 void TestLevel::Update(float _DeltaTime)

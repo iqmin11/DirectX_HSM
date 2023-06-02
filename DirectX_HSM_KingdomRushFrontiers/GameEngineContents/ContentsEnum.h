@@ -28,6 +28,7 @@ enum class ColOrder
 	Tower,
 	Bullet,
 	Fighter,
+	Button,
 };
 
 enum class MonsterEnum

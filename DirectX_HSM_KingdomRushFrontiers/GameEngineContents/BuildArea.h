@@ -18,6 +18,13 @@ public:
 	static std::shared_ptr<BuildArea> CreateBuildArea(class GameEngineLevel* _Level, const float4& _ActorPos, const float4& _RallyPos);
 	void ReleaseChildTower();
 
+	void CreateRangedTower();
+	void CreateMeleeTower();
+	void CreateMagicTower();
+	void CreateArtilleryTower();
+	
+	std::shared_ptr<class BuildTowerUI> BuildUI = nullptr;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -32,6 +39,8 @@ private:
 	float4 ColScale = { 105,60,1 };
 
 	std::shared_ptr<class BaseTower> ChildTower = nullptr;
+
+	std::shared_ptr<class BuildAreaButton> AreaButton = nullptr;
 
 	bool IsAreaLeftClick();
 	bool IsAreaRightClick();

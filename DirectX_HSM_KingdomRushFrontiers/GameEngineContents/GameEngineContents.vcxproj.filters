@@ -119,6 +119,30 @@
     <ClInclude Include="Melee_RallyPoint.h">
       <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsButton.h">
+      <Filter>0.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildAreaButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildTowerUI.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildRangedButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBuildButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildMeleeButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildMagicButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildArtilleryButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -247,6 +271,30 @@
     <ClCompile Include="Melee_RallyPoint.cpp">
       <Filter>3.PlayStage\Actor\Tower\4.MeleeTower</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsButton.cpp">
+      <Filter>0.Base</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildAreaButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildRangedButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBuildButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildMeleeButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildMagicButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildArtilleryButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -320,6 +368,15 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
       <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI">
+      <UniqueIdentifier>{b27fac81-eafa-4253-9da5-69e816d9ec67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI\BuildButtons">
+      <UniqueIdentifier>{a3ad40d9-c364-48e0-be51-e0b55162c0bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons">
+      <UniqueIdentifier>{3c30e34e-0778-4c4e-835c-1e4d333e07b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

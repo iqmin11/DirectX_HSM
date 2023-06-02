@@ -140,10 +140,13 @@
       <Filter>Object\Rendering\Component\2D</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineFSM.h">
-      <Filter>ContentPattern</Filter>
+      <Filter>Content\ContentPattern</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineUIRenderer.h">
       <Filter>Object\Rendering\Component\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineButton.h">
+      <Filter>Content\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -282,10 +285,13 @@
       <Filter>Object\Rendering\Component\2D</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineFSM.cpp">
-      <Filter>ContentPattern</Filter>
+      <Filter>Content\ContentPattern</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineUIRenderer.cpp">
       <Filter>Object\Rendering\Component\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineButton.cpp">
+      <Filter>Content\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -358,8 +364,14 @@
     <Filter Include="UI\SubWindow">
       <UniqueIdentifier>{652ba404-c390-4c5a-b3af-a2c8b2f3336d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentPattern">
+    <Filter Include="Content">
+      <UniqueIdentifier>{9b7d041f-4247-4423-bc19-bdfe57bf797d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\ContentPattern">
       <UniqueIdentifier>{0ea0f19a-ed9f-42de-afea-08993b589204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\UI">
+      <UniqueIdentifier>{cae491ec-30e0-4ca0-9768-93f9aadbe3b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

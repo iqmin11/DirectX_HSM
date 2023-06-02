@@ -9,6 +9,8 @@
 #include "Magic_Tower.h"
 #include "Artillery_Tower.h"
 #include "Melee_Tower.h"
+#include "BuildAreaButton.h"
+#include "BuildTowerUI.h"
 
 BuildArea::BuildArea()
 {
@@ -40,6 +42,26 @@ void BuildArea::ReleaseChildTower()
 	return;
 }
 
+void BuildArea::CreateRangedTower()
+{
+	ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
+}
+
+void BuildArea::CreateMeleeTower()
+{
+	ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos, RallyPos);
+}
+
+void BuildArea::CreateMagicTower()
+{
+	ChildTower = Magic_Tower::CreateTower(GetLevel(), ActorPos);
+}
+
+void BuildArea::CreateArtilleryTower()
+{
+	ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
+}
+
 void BuildArea::Start()
 {
 	BuildAreaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
@@ -47,6 +69,8 @@ void BuildArea::Start()
 	BuildAreaRenderer->GetTransform()->SetWorldScale(RenderScale);
 	BuildAreaCol = CreateComponent<GameEngineCollision>(ColOrder::Tower);
 	BuildAreaCol->GetTransform()->SetWorldScale(ColScale);
+	AreaButton = BuildAreaButton::CreateButton(this);
+	BuildUI = BuildTowerUI::CreateBuildTowerUI(this);
 }
 
 void BuildArea::Update(float _DeltaTime)
@@ -58,23 +82,6 @@ void BuildArea::Update(float _DeltaTime)
 	else
 	{
 		On();
-	}
-
-	if (IsAreaLeftClick() && GameEngineInput::IsPress("Z"))
-	{
-		ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
-	}
-	if (IsAreaLeftClick() && GameEngineInput::IsPress("X"))
-	{
-		ChildTower = Magic_Tower::CreateTower(GetLevel(), ActorPos);
-	}
-	if (IsAreaLeftClick() && GameEngineInput::IsPress("C"))
-	{
-		ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
-	}
-	if (IsAreaLeftClick() && GameEngineInput::IsPress("V"))
-	{
-		ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos, RallyPos);
 	}
 }
 
