@@ -6,10 +6,10 @@
 
 std::function<bool(const CollisionData&, const CollisionData&)> GameEngineTransform::ArrColFunction[static_cast<int>(ColType::MAX)][static_cast<int>(ColType::MAX)];
 
-class InitColFunction
+class InitColFunction 
 {
 public:
-	InitColFunction()
+	InitColFunction() 
 	{
 		GameEngineTransform::ArrColFunction[static_cast<int>(ColType::SPHERE3D)][static_cast<int>(ColType::SPHERE3D)] = &GameEngineTransform::SphereToSpehre;
 		GameEngineTransform::ArrColFunction[static_cast<int>(ColType::SPHERE3D)][static_cast<int>(ColType::AABBBOX3D)] = &GameEngineTransform::SphereToAABB;
@@ -210,7 +210,7 @@ void GameEngineTransform::TransformUpdate()
 
 	WorldDecompose();
 	LocalDecompose();
-	// ParentWorldMatrix.Decompose(PScale, PRoatation, PPosition);
+		// ParentWorldMatrix.Decompose(PScale, PRoatation, PPosition);
 
 }
 
@@ -250,13 +250,13 @@ void GameEngineTransform::WorldCalculation()
 	TransData.WorldMatrix = TransData.LocalWorldMatrix * (MatScale * MatRot * MatPos);
 }
 
-void GameEngineTransform::LocalDecompose()
+void GameEngineTransform::LocalDecompose() 
 {
 	TransData.LocalWorldMatrix.Decompose(TransData.LocalScale, TransData.LocalQuaternion, TransData.LocalPosition);
 	TransData.LocalRotation = TransData.LocalQuaternion.QuaternionToEulerDeg();
 
 }
-void GameEngineTransform::WorldDecompose()
+void GameEngineTransform::WorldDecompose() 
 {
 	TransData.WorldMatrix.Decompose(TransData.WorldScale, TransData.WorldQuaternion, TransData.WorldPosition);
 	TransData.WorldRotation = TransData.WorldQuaternion.QuaternionToEulerDeg();
@@ -341,7 +341,7 @@ void GameEngineTransform::SetParent(GameEngineTransform* _Parent, bool _IsParent
 		Parent->Child.push_back(this);
 		Parent->Master->Childs.push_back(Master->shared_from_this());
 	}
-	else
+	else 
 	{
 		WorldDecompose();
 
@@ -456,7 +456,7 @@ void GameEngineTransform::AllAccTime(float _DeltaTime)
 	}
 }
 
-void GameEngineTransform::AllUpdate(float _DeltaTime)
+void GameEngineTransform::AllUpdate(float _DeltaTime) 
 {
 
 	if (nullptr == Master)
@@ -478,7 +478,7 @@ void GameEngineTransform::AllUpdate(float _DeltaTime)
 }
 
 
-void GameEngineTransform::AllRender(float _DeltaTime)
+void GameEngineTransform::AllRender(float _DeltaTime) 
 {
 	if (nullptr == Master)
 	{
