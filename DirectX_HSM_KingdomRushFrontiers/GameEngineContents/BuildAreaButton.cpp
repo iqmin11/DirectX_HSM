@@ -23,7 +23,7 @@ std::shared_ptr<BuildAreaButton> BuildAreaButton::CreateButton(BuildArea* _Paren
 	ResultAreaButton->SetEvent(
 		[_ParentArea]()
 		{
-			_ParentArea->BuildUI->OnBuildUI();
+			_ParentArea->BuildUI->OnUI();
 			//BuildTowerUI
 		});
 	return ResultAreaButton;

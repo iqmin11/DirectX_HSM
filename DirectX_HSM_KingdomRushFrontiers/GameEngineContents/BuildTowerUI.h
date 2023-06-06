@@ -1,14 +1,12 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "BaseTowerUI.h"
 #include "ContentsEnum.h"
 
 class GameEngineUIRenderer;
 class BuildArea;
-class BuildTowerUI : public GameEngineActor
+class BuildTowerUI : public BaseTowerUI
 {
 public:
-	static int UpdateCount;
-	static BuildTowerUI* UpdatedUI;
 	// construtor destructor
 	BuildTowerUI();
 	~BuildTowerUI();
@@ -26,9 +24,6 @@ public:
 		return ParentArea;
 	}
 
-	void OnBuildUI();
-	void OffBuildUI();
-
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -36,11 +31,9 @@ protected:
 private:
 	BuildArea* ParentArea = nullptr;
 
-	std::shared_ptr<class GameEngineUIRenderer> RingRender = nullptr;
-	float4 RingRenderScale = { 171,171,1 };
-
 	std::shared_ptr<class BuildRangedButton> AcBuildRangedButton = nullptr;
 	std::shared_ptr<class BuildMeleeButton> AcBuildMeleeButton = nullptr;
+
 	std::shared_ptr<class BuildMagicButton> AcBuildMagicButton = nullptr;
 	std::shared_ptr<class BuildArtilleryButton> AcBuildArtilleryButton = nullptr;
 
@@ -48,9 +41,6 @@ private:
 	float4 Button1LocPos = { 58,58,-10 };
 	float4 Button2LocPos = { -58,-58,-10 };
 	float4 Button3LocPos = { 58,-58,-10 };
-
-	void UpdateStart();
-	void UpdateEnd();
 
 };
 

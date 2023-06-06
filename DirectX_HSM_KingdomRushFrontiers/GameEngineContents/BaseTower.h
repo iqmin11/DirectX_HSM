@@ -20,6 +20,8 @@ public:
 		return Data;
 	}
 
+	std::shared_ptr<class UpgradeTowerUI> UpgradeUI = nullptr;
+
 protected:
 	void Start() override;
 
@@ -27,6 +29,9 @@ protected:
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerAreaRenderer = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
+
+	std::shared_ptr<class TowerButton> UpgradeButton = nullptr;
+
 private:
 
 };

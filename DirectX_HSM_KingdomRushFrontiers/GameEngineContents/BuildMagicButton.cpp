@@ -21,7 +21,7 @@ std::shared_ptr<BuildMagicButton> BuildMagicButton::CreateButton(BuildTowerUI* _
 	ResultButton->GetTransform()->SetParent(_UI->GetTransform());
 	ResultButton->SetEvent([_UI]()
 		{
-			_UI->OffBuildUI();
+			_UI->OffUI();
 			_UI->GetParentArea()->CreateMagicTower();
 		});
 	return ResultButton;

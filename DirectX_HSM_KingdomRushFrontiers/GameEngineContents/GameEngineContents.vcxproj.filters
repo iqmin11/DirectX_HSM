@@ -122,12 +122,6 @@
     <ClInclude Include="ContentsButton.h">
       <Filter>0.Base</Filter>
     </ClInclude>
-    <ClInclude Include="BuildAreaButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildTowerUI.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClInclude>
     <ClInclude Include="BuildRangedButton.h">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
     </ClInclude>
@@ -142,6 +136,21 @@
     </ClInclude>
     <ClInclude Include="BuildArtilleryButton.h">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeTowerUI.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildTowerUI.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildAreaButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseTowerUI.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -274,12 +283,6 @@
     <ClCompile Include="ContentsButton.cpp">
       <Filter>0.Base</Filter>
     </ClCompile>
-    <ClCompile Include="BuildAreaButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildTowerUI.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClCompile>
     <ClCompile Include="BuildRangedButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
     </ClCompile>
@@ -294,6 +297,21 @@
     </ClCompile>
     <ClCompile Include="BuildArtilleryButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildAreaButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,7 @@ std::shared_ptr<BuildRangedButton> BuildRangedButton::CreateButton(BuildTowerUI*
 	ResultButton->GetTransform()->SetParent(_UI->GetTransform());
 	ResultButton->SetEvent([_UI]()
 		{
-			_UI->OffBuildUI();
+			_UI->OffUI();
 			_UI->GetParentArea()->CreateRangedTower();
 		});
 	return ResultButton;

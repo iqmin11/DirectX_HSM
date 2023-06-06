@@ -10,9 +10,6 @@
 #include "BuildMagicButton.h"
 #include "BuildArtilleryButton.h"
 
-int BuildTowerUI::UpdateCount = 0;
-BuildTowerUI* BuildTowerUI::UpdatedUI = nullptr;
-
 BuildTowerUI::BuildTowerUI()
 {
 
@@ -35,10 +32,7 @@ std::shared_ptr<BuildTowerUI> BuildTowerUI::CreateBuildTowerUI(BuildArea* _Paren
 
 void BuildTowerUI::Start()
 {
-	RingRender = CreateComponent<GameEngineUIRenderer>();
-	RingRender->SetTexture("gui_ring.png");
-	RingRender->GetTransform()->SetWorldScale(RingRenderScale);
-
+	BaseTowerUI::Start();
 	AcBuildRangedButton = BuildRangedButton::CreateButton(this);
 	AcBuildRangedButton->GetTransform()->SetLocalPosition(Button0LocPos);
 	AcBuildMeleeButton = BuildMeleeButton::CreateButton(this);
@@ -53,38 +47,11 @@ void BuildTowerUI::Update(float _DeltaTime)
 {
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{
-		OffBuildUI();
+		OffUI();
 	}
 
 	if (UpdatedUI != this && UpdatedUI != nullptr)
 	{
-		OffBuildUI();
+		OffUI();
 	}
-}
-
-void BuildTowerUI::UpdateStart()
-{
-	UpdatedUI = this;
-	++UpdateCount;
-}
-
-void BuildTowerUI::UpdateEnd()
-{
-	--UpdateCount;
-	if (UpdateCount == 0)
-	{
-		UpdatedUI = nullptr;
-	}
-}
-
-void BuildTowerUI::OnBuildUI()
-{
-	On();
-	UpdateStart();
-}
-
-void BuildTowerUI::OffBuildUI()
-{
-	Off();
-	UpdateEnd();
 }
