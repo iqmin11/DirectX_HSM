@@ -123,37 +123,40 @@
       <Filter>0.Base</Filter>
     </ClInclude>
     <ClInclude Include="BuildRangedButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClInclude>
     <ClInclude Include="BaseBuildButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClInclude>
     <ClInclude Include="BuildMeleeButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClInclude>
     <ClInclude Include="BuildMagicButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClInclude>
     <ClInclude Include="BuildArtilleryButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="UpgradeTowerUI.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildTowerUI.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="BuildAreaButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClInclude>
     <ClInclude Include="BaseTowerUI.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildAreaButton.h">
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildTowerUI.h">
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerButton.h">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeTowerUI.h">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClInclude>
     <ClInclude Include="UpgradeTowerButton.h">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SellButton.h">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,37 +290,40 @@
       <Filter>0.Base</Filter>
     </ClCompile>
     <ClCompile Include="BuildRangedButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClCompile>
     <ClCompile Include="BaseBuildButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClCompile>
     <ClCompile Include="BuildMeleeButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClCompile>
     <ClCompile Include="BuildMagicButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClCompile>
     <ClCompile Include="BuildArtilleryButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\BuildButtons</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="UpgradeTowerUI.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildAreaButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="BuildTowerUI.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons</Filter>
     </ClCompile>
     <ClCompile Include="BaseTowerUI.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildAreaButton.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI\BuildUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerButton.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeTowerUI.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClCompile>
     <ClCompile Include="UpgradeTowerButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons</Filter>
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SellButton.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -393,14 +399,17 @@
     <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
       <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI">
+    <Filter Include="3.PlayStage\Actor\TowerUI">
       <UniqueIdentifier>{b27fac81-eafa-4253-9da5-69e816d9ec67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI\BuildButtons">
+    <Filter Include="3.PlayStage\Actor\TowerUI\BuildUI">
+      <UniqueIdentifier>{5aac6501-7f64-4530-881b-7a5ba8a8e287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\TowerUI\BuildUI\BuildButtons">
       <UniqueIdentifier>{a3ad40d9-c364-48e0-be51-e0b55162c0bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons">
-      <UniqueIdentifier>{3c30e34e-0778-4c4e-835c-1e4d333e07b0}</UniqueIdentifier>
+    <Filter Include="3.PlayStage\Actor\TowerUI\UpgradeUI">
+      <UniqueIdentifier>{e6ff1f88-d54f-4294-9506-6194bc999d2c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

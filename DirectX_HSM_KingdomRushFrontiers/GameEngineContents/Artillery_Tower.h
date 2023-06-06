@@ -14,7 +14,7 @@ public:
 	Artillery_Tower& operator=(const Artillery_Tower& _Other) = delete;
 	Artillery_Tower& operator=(Artillery_Tower&& _Other) noexcept = delete;
 	
-	static std::shared_ptr<Artillery_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos);
+	static std::shared_ptr<Artillery_Tower> CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea);
 	void ChangeTower(TowerEnum _Tower) override;
 
 protected:

@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BaseTower.h"
 #include "UpgradeTowerButton.h"
+#include "SellButton.h"
 
 UpgradeTowerUI::UpgradeTowerUI()
 {
@@ -32,6 +33,8 @@ void UpgradeTowerUI::Start()
 	BaseTowerUI::Start();
 	AcUpgradeButton = UpgradeTowerButton::CreateButton(this);
 	AcUpgradeButton->GetTransform()->SetLocalPosition(UpgradeButtonLocPos);
+	AcSellButton = SellButton::CreateButton(this);
+	AcSellButton->GetTransform()->SetLocalPosition(SellButtonLocPos);
 }
 
 void UpgradeTowerUI::Update(float _DeltaTime)

@@ -25,6 +25,11 @@ public:
 	
 	std::shared_ptr<class BuildTowerUI> BuildUI = nullptr;
 
+	const float4& GetRallyPos() const
+	{
+		return RallyPos;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -42,8 +47,7 @@ private:
 
 	std::shared_ptr<class BuildAreaButton> AreaButton = nullptr;
 
-	bool IsAreaLeftClick();
-	bool IsAreaRightClick();
+	float4 BuildUILocPos = { 0,0,-1000 };
 };
 // 이걸 기준으로 나중에 건물들의 이미지를 조정하자.
 // 타워의 바닥이 액터의 중심인게 옳다고 하기로 한거야

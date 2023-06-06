@@ -14,7 +14,7 @@ public:
 	Magic_Tower& operator=(const Magic_Tower& _Other) = delete;
 	Magic_Tower& operator=(Magic_Tower&& _Other) noexcept = delete;
 
-	static std::shared_ptr<Magic_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos);
+	static std::shared_ptr<Magic_Tower> CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea);
 	void ChangeTower(TowerEnum _Tower) override;
 
 protected:

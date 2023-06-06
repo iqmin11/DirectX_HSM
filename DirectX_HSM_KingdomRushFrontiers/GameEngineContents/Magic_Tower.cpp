@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Magic_Shooter.h"
+#include "BuildArea.h"
 
 const float4 Magic_Tower::Lv1ShooterLocalPos = { 1,47, -47 };
 const float4 Magic_Tower::Lv2ShooterLocalPos = { 1,49, -49 };
@@ -22,11 +23,12 @@ Magic_Tower::~Magic_Tower()
 
 }
 
-std::shared_ptr<Magic_Tower> Magic_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos)
+std::shared_ptr<Magic_Tower> Magic_Tower::CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea)
 {
 	std::shared_ptr<Magic_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Magic_Tower>();
-	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
+	LocalAc->ParentArea = _BuildArea;
+	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	LocalAc->Shooter->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter->GetTransform()->SetParent(LocalAc->GetTransform());
 	return LocalAc;

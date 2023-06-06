@@ -25,9 +25,9 @@ PlayStageLevel::~PlayStageLevel()
 
 }
 
-void PlayStageLevel::SetStage(int _Stage)
+void PlayStageLevel::InitStage(int _Stage)
 {
-	InitStage();
+	ClearStage();
 	CurStage = _Stage;
 	NextWave = 0;
 	SetStageBg(CurStage);
@@ -35,13 +35,13 @@ void PlayStageLevel::SetStage(int _Stage)
 	SetStageBuildArea(CurStage);
 }
 
-void PlayStageLevel::InitStage()
+void PlayStageLevel::ClearStage()
 {
 	CurStage = -1;
 	NextWave = -1;
-	ResetStageBg();
-	ResetStagePaths();
-	ResetStageBuildArea();
+	ClearStageBg();
+	ClearStagePaths();
+	ClearStageBuildArea();
 }
 
 void PlayStageLevel::Start()
@@ -65,7 +65,7 @@ void PlayStageLevel::Start()
 
 	LoadAllStageData();
 	
-	SetStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
+	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	
 }
 
@@ -89,7 +89,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 		{
 			a = 0;
 		}
-		SetStage(a);
+		InitStage(a);
 	}
 }
 
@@ -224,12 +224,12 @@ void PlayStageLevel::SetStageBuildArea(int _Stage)
 	}
 }
 
-void PlayStageLevel::ResetStageBg()
+void PlayStageLevel::ClearStageBg()
 {
 	AcStageBg->RenderStage();
 }
 
-void PlayStageLevel::ResetStagePaths()
+void PlayStageLevel::ClearStagePaths()
 {
 	MonsterWave::SetCurStagePaths(nullptr);
 }
@@ -406,7 +406,7 @@ void PlayStageLevel::LoadOneStageRally(GameEngineSerializer& _Serializer, int _S
 	}
 }
 
-void PlayStageLevel::ResetStageBuildArea()
+void PlayStageLevel::ClearStageBuildArea()
 {
 	for (size_t i = 0; i < AcBuildAreas.size(); i++)
 	{

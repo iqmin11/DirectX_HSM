@@ -30,10 +30,10 @@ private:
 	BaseTower* ParentTower = nullptr;
 
 	std::shared_ptr<class UpgradeTowerButton> AcUpgradeButton = nullptr;
-	//std::shared_ptr<class BuildMeleeButton> AcSellButton = nullptr;
+	std::shared_ptr<class SellButton> AcSellButton = nullptr;
 
-	float4 UpgradeButtonLocPos = { 0,81,-1000 };
-	float4 SellButtonLocPos = { 0,-81,-1000 };
+	float4 UpgradeButtonLocPos = { 0,81,-10 };
+	float4 SellButtonLocPos = { 0,-75,-10 };
 	//float4 Button2LocPos = { -58,-58,-10 };
 	//float4 Button3LocPos = { 58,-58,-10 };
 };

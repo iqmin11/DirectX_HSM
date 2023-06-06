@@ -20,8 +20,8 @@ public:
 
 	//월드맵에서 스테이지를 선택하면 이 PlayStageLevel에서 해당 단계 스테이지를 로드해야함
 
-	void SetStage(int _Stage);
-	void InitStage();
+	void InitStage(int _Stage);
+	void ClearStage();
 
 protected:
 	void Start() override;
@@ -37,7 +37,7 @@ private:
 	int CurStage = -1;
 	int NextWave = -1;
 
-	void LoadAllStageData(); //Start에서 레벨이 만들어질때 실행함. 경로와 웨이브 정보가 담겨있음.
+	void LoadAllStageData(); 
 	
 	void LoadPathBinData();
 	void LoadOneStageLines(GameEngineSerializer& _Serializer, int _StageLevel);
@@ -58,9 +58,9 @@ private:
 	void SetStageBg(int _Stage);
 	void SetStagePaths(int _Stage);
 	void SetStageBuildArea(int _Stage);
-	void ResetStageBg();
-	void ResetStagePaths();
-	void ResetStageBuildArea();
+	void ClearStageBg();
+	void ClearStagePaths();
+	void ClearStageBuildArea();
 
 	void StartNextWave();
 	void LoadPlayLevelTexture(std::string_view _Folder);

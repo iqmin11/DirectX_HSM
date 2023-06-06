@@ -330,6 +330,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
+    <ClInclude Include="SellButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StageBg.h">
       <SubType>
       </SubType>
@@ -577,6 +581,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SellButton.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="StageBg.cpp">
       <SubType>

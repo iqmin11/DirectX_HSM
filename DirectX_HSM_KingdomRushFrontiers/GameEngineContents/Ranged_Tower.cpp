@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Shooter.h"
+#include "BuildArea.h"
 
 const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47, -47 };
 const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47, -47 };
@@ -26,11 +27,12 @@ Ranged_Tower::~Ranged_Tower()
 
 }
 
-std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos)
+std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea)
 {
 	std::shared_ptr<Ranged_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Ranged_Tower>();
-	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
+	LocalAc->ParentArea = _BuildArea;
+	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	LocalAc->Shooter0->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter1->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter0->GetTransform()->SetParent(LocalAc->GetTransform());

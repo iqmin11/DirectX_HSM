@@ -23,11 +23,14 @@ public:
 	std::shared_ptr<class UpgradeTowerUI> UpgradeUI = nullptr;
 
 	virtual void ChangeTower(TowerEnum _Tower) = 0;
+	void SellTower();
 
 protected:
 	void Start() override;
 
 protected:
+	class BuildArea* ParentArea = nullptr;
+
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerAreaRenderer = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
@@ -35,6 +38,6 @@ protected:
 	std::shared_ptr<class TowerButton> UpgradeButton = nullptr;
 
 private:
-
+	float4 UpgradeUILocPos = { 0,15,-1000 };
 };
 

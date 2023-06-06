@@ -14,7 +14,7 @@ public:
 	Melee_Tower& operator=(const Melee_Tower& _Other) = delete;
 	Melee_Tower& operator=(Melee_Tower&& _Other) noexcept = delete;
 
-	static std::shared_ptr<Melee_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos, const float4& _RallyPos);
+	static std::shared_ptr<Melee_Tower> CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea);
 	void ChangeTower(TowerEnum _Tower) override;
 
 protected:

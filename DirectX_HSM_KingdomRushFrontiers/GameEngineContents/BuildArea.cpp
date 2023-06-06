@@ -44,22 +44,22 @@ void BuildArea::ReleaseChildTower()
 
 void BuildArea::CreateRangedTower()
 {
-	ChildTower = Ranged_Tower::CreateTower(GetLevel(), ActorPos);
+	ChildTower = Ranged_Tower::CreateTower(GetLevel(), this);
 }
 
 void BuildArea::CreateMeleeTower()
 {
-	ChildTower = Melee_Tower::CreateTower(GetLevel(), ActorPos, RallyPos);
+	ChildTower = Melee_Tower::CreateTower(GetLevel(), this);
 }
 
 void BuildArea::CreateMagicTower()
 {
-	ChildTower = Magic_Tower::CreateTower(GetLevel(), ActorPos);
+	ChildTower = Magic_Tower::CreateTower(GetLevel(), this);
 }
 
 void BuildArea::CreateArtilleryTower()
 {
-	ChildTower = Artillery_Tower::CreateTower(GetLevel(), ActorPos);
+	ChildTower = Artillery_Tower::CreateTower(GetLevel(), this);
 }
 
 void BuildArea::Start()
@@ -71,6 +71,7 @@ void BuildArea::Start()
 	BuildAreaCol->GetTransform()->SetWorldScale(ColScale);
 	AreaButton = BuildAreaButton::CreateButton(this);
 	BuildUI = BuildTowerUI::CreateBuildTowerUI(this);
+	BuildUI->GetTransform()->SetLocalPosition(BuildUILocPos);
 }
 
 void BuildArea::Update(float _DeltaTime)
@@ -79,26 +80,4 @@ void BuildArea::Update(float _DeltaTime)
 	{
 		Off();
 	}
-	else
-	{
-		On();
-	}
-}
-
-bool BuildArea::IsAreaLeftClick()
-{
-	if (nullptr != BuildAreaCol->Collision(ColOrder::MousePointer, ColType::AABBBOX2D, ColType::AABBBOX2D) && GameEngineInput::IsUp("LeftClick"))
-	{
-		return true;
-	}
-	return false;
-}
-
-bool BuildArea::IsAreaRightClick()
-{
-	if (nullptr != BuildAreaCol->Collision(ColOrder::MousePointer, ColType::AABBBOX2D, ColType::AABBBOX2D) && GameEngineInput::IsUp("RightClick"))
-	{
-		return true;
-	}
-	return false;
 }

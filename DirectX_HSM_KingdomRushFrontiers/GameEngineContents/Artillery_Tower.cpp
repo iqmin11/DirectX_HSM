@@ -7,6 +7,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 
 #include "Artillery_Bullet.h"
+#include "BuildArea.h"
 
 const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; // 0
 const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; // 2
@@ -23,11 +24,12 @@ Artillery_Tower::~Artillery_Tower()
 
 }
 
-std::shared_ptr<Artillery_Tower> Artillery_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos)
+std::shared_ptr<Artillery_Tower> Artillery_Tower::CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea)
 {
 	std::shared_ptr<Artillery_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Artillery_Tower>();
-	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
+	LocalAc->ParentArea = _BuildArea;
+	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	return LocalAc;
 }
 

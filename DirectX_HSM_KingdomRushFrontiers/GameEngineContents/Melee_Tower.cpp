@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include "Melee_RallyPoint.h"
+#include "BuildArea.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -16,14 +17,15 @@ Melee_Tower::~Melee_Tower()
 
 }
 
-std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, const float4& _BuildPos, const float4& _RallyPos)
+std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea)
 {
 	std::shared_ptr<Melee_Tower> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Melee_Tower>();
-	LocalAc->GetTransform()->SetWorldPosition(_BuildPos);
-	LocalAc->AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(_Level, _BuildPos, 3);
+	LocalAc->ParentArea = _BuildArea;
+	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
+	LocalAc->AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(_Level, _BuildArea->GetTransform()->GetWorldPosition(), 3);
 	LocalAc->AcRallyPoint->GetTransform()->SetParent(LocalAc->GetTransform());
-	LocalAc->AcRallyPoint->GetTransform()->SetWorldPosition(_RallyPos);
+	LocalAc->AcRallyPoint->GetTransform()->SetWorldPosition(_BuildArea->GetRallyPos());
 	LocalAc->AcRallyPoint->SetTowerData(&(LocalAc->Data));
 	return LocalAc;
 }

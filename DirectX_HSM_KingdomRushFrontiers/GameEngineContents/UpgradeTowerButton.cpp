@@ -53,7 +53,7 @@ TowerEnum UpgradeTowerButton::ReturnUpgradeTowerEnum()
 	TowerData Data = ParentUI->GetParentTower()->GetData();
 	if (Data.Level >= 3)
 	{
-		MsgTextBox("나중에 바뀌어야 할 곳");
+		MsgTextBox("아직 구현하지 않은 타워입니다");
 		return static_cast<TowerEnum>(static_cast<int>(Data.TowerType) + Data.Level);
 	}
 	return static_cast<TowerEnum>(static_cast<int>(Data.TowerType) + Data.Level + 1);
