@@ -37,10 +37,10 @@ private:
 	std::shared_ptr<class BuildMagicButton> AcBuildMagicButton = nullptr;
 	std::shared_ptr<class BuildArtilleryButton> AcBuildArtilleryButton = nullptr;
 
-	float4 Button0LocPos = { -58,58,-10 };
-	float4 Button1LocPos = { 58,58,-10 };
-	float4 Button2LocPos = { -58,-58,-10 };
-	float4 Button3LocPos = { 58,-58,-10 };
+	float4 Button0LocPos = { -58,58,-1000 };
+	float4 Button1LocPos = { 58,58,-1000 };
+	float4 Button2LocPos = { -58,-58,-1000 };
+	float4 Button3LocPos = { 58,-58,-1000 };
 
 };
 

@@ -32,9 +32,9 @@ void TowerButton::Start()
 {
 	ContentsButton::Start();
 	GetTransform()->SetWorldScale(Scale);
-	ReleaseTextureName = "Release.bmp";
-	HoverTextureName = "Hover.bmp";
-	PressTextureName = "Press.bmp";
+	ReleaseTextureName = "InvisibleTexture.png";
+	HoverTextureName = "InvisibleTexture.png";
+	PressTextureName = "InvisibleTexture.png";
 }
 
 void TowerButton::Update(float _DeltaTime)

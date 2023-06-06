@@ -22,6 +22,8 @@ public:
 
 	std::shared_ptr<class UpgradeTowerUI> UpgradeUI = nullptr;
 
+	virtual void ChangeTower(TowerEnum _Tower) = 0;
+
 protected:
 	void Start() override;
 

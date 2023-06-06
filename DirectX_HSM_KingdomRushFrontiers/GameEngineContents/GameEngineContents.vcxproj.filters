@@ -152,6 +152,9 @@
     <ClInclude Include="BaseTowerUI.h">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
     </ClInclude>
+    <ClInclude Include="UpgradeTowerButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -312,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="BaseTowerUI.cpp">
       <Filter>3.PlayStage\Actor\StageUI\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeTowerButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\TowerUI\UpgradeButtons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BaseTower.h"
+#include "UpgradeTowerButton.h"
 
 UpgradeTowerUI::UpgradeTowerUI()
 {
@@ -29,6 +30,8 @@ std::shared_ptr<UpgradeTowerUI> UpgradeTowerUI::CreateUpgradeTowerUI(BaseTower* 
 void UpgradeTowerUI::Start()
 {
 	BaseTowerUI::Start();
+	AcUpgradeButton = UpgradeTowerButton::CreateButton(this);
+	AcUpgradeButton->GetTransform()->SetLocalPosition(UpgradeButtonLocPos);
 }
 
 void UpgradeTowerUI::Update(float _DeltaTime)

@@ -15,6 +15,7 @@ public:
 	Magic_Tower& operator=(Magic_Tower&& _Other) noexcept = delete;
 
 	static std::shared_ptr<Magic_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos);
+	void ChangeTower(TowerEnum _Tower) override;
 
 protected:
 	void Start() override;
@@ -23,7 +24,6 @@ private:
 	float4 RenderScale = { 128, 128, 1 };
 	std::shared_ptr<class Magic_Shooter> Shooter = nullptr;
 	float Time = 0.0f;
-	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);
 	void ChangeShooter(int _TowerLevel);
 	

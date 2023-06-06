@@ -15,6 +15,7 @@ public:
 	Ranged_Tower& operator=(Ranged_Tower&& _Other) noexcept = delete;
 
 	static std::shared_ptr<Ranged_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos);
+	void ChangeTower(TowerEnum _Tower) override;
 
 protected:
 	void Start() override;
@@ -29,7 +30,6 @@ private:
 	bool AttackOrder = false;
 
 	float Time = 0.0f;
-	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);
 	void ChangeShooter(int _TowerLevel);
 

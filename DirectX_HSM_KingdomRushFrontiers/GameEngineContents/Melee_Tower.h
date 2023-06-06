@@ -15,6 +15,7 @@ public:
 	Melee_Tower& operator=(Melee_Tower&& _Other) noexcept = delete;
 
 	static std::shared_ptr<Melee_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos, const float4& _RallyPos);
+	void ChangeTower(TowerEnum _Tower) override;
 
 protected:
 	void Start() override;
@@ -24,7 +25,6 @@ private:
 	float4 RenderScale = { 256,256,1 };
 	std::shared_ptr<class Melee_RallyPoint> AcRallyPoint = nullptr;
 
-	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);
 	void ChangeFighter(int _TowerLevel);
 };

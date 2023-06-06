@@ -15,6 +15,7 @@ public:
 	Artillery_Tower& operator=(Artillery_Tower&& _Other) noexcept = delete;
 	
 	static std::shared_ptr<Artillery_Tower> CreateTower(GameEngineLevel* _Level, const float4& _BuildPos);
+	void ChangeTower(TowerEnum _Tower) override;
 
 protected:
 	void Start() override;
@@ -28,7 +29,6 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> FireSmokeRenderer = nullptr;
 	float4 SmokeRenderScale = { 66, 66, 1 };
 
-	void ChangeTower(TowerEnum _Tower);
 	void ChangeTowerRender(int _TowerLevel);
 	void ArtilleryAttack();
 

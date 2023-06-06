@@ -33,9 +33,9 @@ void BuildAreaButton::Start()
 {
 	ContentsButton::Start();
 	GetTransform()->SetWorldScale(Scale);
-	ReleaseTextureName = "Release.bmp";
-	HoverTextureName = "Hover.bmp";
-	PressTextureName = "Press.bmp";
+	ReleaseTextureName = "InvisibleTexture.png";
+	HoverTextureName = "InvisibleTexture.png";
+	PressTextureName = "InvisibleTexture.png";
 }
 
 void BuildAreaButton::Update(float _DeltaTime)
