@@ -24,7 +24,7 @@ public:
 		Click = _Click;
 	}
 
-	static std::shared_ptr<ContentsButton> CreateButton(GameEngineActor * _ParentActor, const std::string_view & _Release, const std::string_view & _Hover, const std::string_view & _Press);
+	static std::shared_ptr<ContentsButton> CreateButton(GameEngineActor * _ParentActor, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
 	static std::shared_ptr<ContentsButton> CreateButton(GameEngineLevel* _ParentLevel, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
 
 	void SetParentActor(GameEngineActor* _Actor);

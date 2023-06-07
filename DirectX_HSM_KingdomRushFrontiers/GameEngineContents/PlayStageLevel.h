@@ -3,6 +3,12 @@
 #include <GameEngineBase/GameEngineTimeEvent.h>
 #include "ContentsData.h"
 
+class OneWaveButtons
+{
+public : 
+	class std::vector<std::shared_ptr<class NextWaveStartButton>> Buttons = std::vector<std::shared_ptr<class NextWaveStartButton>>();
+};
+
 class PlayStageLevel : public GameEngineLevel
 {
 public:
@@ -22,6 +28,17 @@ public:
 
 	void InitStage(int _Stage);
 	void ClearStage();
+	void StartNextWave();
+
+	std::vector<std::shared_ptr<class NextWaveStartButton>> GetWaveButtons() const
+	{
+		return AcWaveButtons;
+	}
+
+	int GetNextWave() const
+	{
+		return NextWave;
+	}
 
 protected:
 	void Start() override;
@@ -33,6 +50,7 @@ private:
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 	std::shared_ptr<class MousePointer> AcMousePointer = nullptr;
+	std::vector<std::shared_ptr<class NextWaveStartButton>> AcWaveButtons = std::vector<std::shared_ptr<class NextWaveStartButton>>();
 
 	int CurStage = -1;
 	int NextWave = -1;
@@ -58,11 +76,12 @@ private:
 	void SetStageBg(int _Stage);
 	void SetStagePaths(int _Stage);
 	void SetStageBuildArea(int _Stage);
+	void SetStageWaveButtons(int _Stage);
 	void ClearStageBg();
 	void ClearStagePaths();
 	void ClearStageBuildArea();
+	void ClearStageWaveButtons();
 
-	void StartNextWave();
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();
 };

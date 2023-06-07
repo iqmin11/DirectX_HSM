@@ -34,6 +34,79 @@ public:
 	std::vector<WaveData> Waves = std::vector<WaveData>();
 	std::vector<float4> BuildAreaPos = std::vector<float4>();
 	std::vector<float4> AreaStartRallyPos = std::vector<float4>();
+	std::vector<float4> WaveStartButtonPos = std::vector<float4>();
+
+	static const float4 Stage0_North_Path;
+	static const float4 Stage0_South_Path;
+	static const float4 Stage1_West;
+	static const float4 Stage1_Eest;
+	static const float4 Stage2_North;
+	static const float4 Stage2_Eest;
+	static const float4 Stage3_West;
+	static const float4 Stage3_Eest;
+	static const float4 Stage4_West_Path;
+	static const float4 Stage4_Eest_Path;
+	static const float4 Stage4_Eest;
+	static const float4 Stage5_NorthWest;
+	static const float4 Stage5_West;
+	static const float4 Stage5_Eest;
+
+	void SetButtonPos(int _Stage)
+	{
+		if (_Stage == 0)
+		{
+			WaveStartButtonPos.resize(6);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+				//WaveStartButtonPos[i] = { 565, 40 };
+				WaveStartButtonPos[i] = { 565, -5};
+			}
+		}
+		else if (_Stage == 1)
+		{
+			WaveStartButtonPos.resize(8);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+
+			}
+		}
+		else if (_Stage == 2)
+		{
+			WaveStartButtonPos.resize(10);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+
+			}
+		}
+		else if (_Stage == 3)
+		{
+			WaveStartButtonPos.resize(14);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+
+			}
+		}
+		else if (_Stage == 4)
+		{
+			WaveStartButtonPos.resize(15);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+
+			}
+		}
+		else if (_Stage == 5)
+		{
+			WaveStartButtonPos.resize(14);
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+
+			}
+		}
+		else
+		{
+			return;
+		}
+	}
 };
 
 class TowerData

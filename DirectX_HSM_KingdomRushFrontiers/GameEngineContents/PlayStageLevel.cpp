@@ -12,6 +12,8 @@
 #include "MonsterWave.h"
 #include "PlayStageUI.h"
 #include "BuildArea.h"
+#include "NextWaveStartButton.h"
+
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -33,6 +35,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
 	SetStageBuildArea(CurStage);
+	SetStageWaveButtons(CurStage);
 }
 
 void PlayStageLevel::ClearStage()
@@ -42,6 +45,7 @@ void PlayStageLevel::ClearStage()
 	ClearStageBg();
 	ClearStagePaths();
 	ClearStageBuildArea();
+	ClearStageWaveButtons();
 }
 
 void PlayStageLevel::Start()
@@ -49,8 +53,8 @@ void PlayStageLevel::Start()
 	KeySet(); 
 	LoadPlayLevelTexture("Enemies");
 	LoadPlayLevelTexture("StageBg");
-	LoadPlayLevelTexture("RangedTower");
 	LoadPlayLevelTexture("TowerBase");
+	LoadPlayLevelTexture("RangedTower");
 	LoadPlayLevelTexture("ArtilleryBomb");
 	LoadPlayLevelTexture("MeleeTower");
 	LoadPlayLevelAnimation();
@@ -90,6 +94,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 		}
 		InitStage(a);
 	}
+
 }
 
 void PlayStageLevel::LoadAllStageData()
@@ -98,6 +103,10 @@ void PlayStageLevel::LoadAllStageData()
 	LoadWaveBinData();
 	LoadAreaBinData();
 	LoadRallyBinData();
+	for (int i = 0; i < AllStageData.size(); i++)
+	{
+		AllStageData[i].SetButtonPos(i);
+	}
 }
 
 void PlayStageLevel::LoadPathBinData()
@@ -211,6 +220,10 @@ void PlayStageLevel::StartNextWave()
 	}
 
 	MonsterWave::StartWave(DynamicThis<GameEngineLevel>() , AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
+	if (AcWaveButtons.size() <= NextWave)
+	{
+		AcWaveButtons[NextWave] = nullptr;
+	}
 	++NextWave;
 }
 
@@ -221,6 +234,18 @@ void PlayStageLevel::SetStageBuildArea(int _Stage)
 	{
 		AcBuildAreas[i] = BuildArea::CreateBuildArea(this, AllStageData[_Stage].BuildAreaPos[i], AllStageData[_Stage].AreaStartRallyPos[i]);
 	}
+}
+
+void PlayStageLevel::SetStageWaveButtons(int _Stage)
+{
+	AcWaveButtons.resize(AllStageData[_Stage].Waves.size());
+	for (size_t i = 0; i < AcWaveButtons.size(); i++)
+	{
+		AcWaveButtons[i] = NextWaveStartButton::CreateButton(this, static_cast<int>(i));
+		AcWaveButtons[i]->GetTransform()->SetWorldPosition(AllStageData[_Stage].WaveStartButtonPos[i]);
+		AcWaveButtons[i]->Off();
+	}
+	AcWaveButtons[0]->On();
 }
 
 void PlayStageLevel::ClearStageBg()
@@ -413,4 +438,13 @@ void PlayStageLevel::ClearStageBuildArea()
 		AcBuildAreas[i]->Death();
 	}
 	AcBuildAreas.clear();
+}
+
+void PlayStageLevel::ClearStageWaveButtons()
+{
+	for (size_t i = 0; i < AcWaveButtons.size(); i++)
+	{
+		AcWaveButtons[i]->Death();
+	}
+	AcWaveButtons.clear();
 }

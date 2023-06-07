@@ -5,7 +5,7 @@
 class MonsterWave : public GameEngineActor
 {
 public:
-
+	
 	// construtor destructor
 	MonsterWave();
 	~MonsterWave();
@@ -23,7 +23,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	static std::shared_ptr<GameEngineLevel> ParentLevel;
+	static std::shared_ptr<class PlayStageLevel> ParentLevel;
 
 	std::list<MonsterSpawnData> SpawnDatas = std::list<MonsterSpawnData>();
 	float WaveTime = 0.0f;
@@ -32,7 +32,7 @@ private:
 
 	static std::vector<LinePath>* CurStagePaths;
 
-	float WaveEndTime = 0.0f; //마지막 몬스터가 소환되고 몇초후에 Wave가 끝나는가를 정해주는 숫자
+	float WaveEndTime = 5.0f; //마지막 몬스터가 소환되고 몇초후에 Wave가 끝나는가를 정해주는 숫자
 
 	void SetOneWave(std::vector<MonsterSpawnData>& _OneWave);
 };

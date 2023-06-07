@@ -4,9 +4,10 @@
 
 #include "PlayStageLevel.h"
 #include "BaseMonster.h"
+#include "NextWaveStartButton.h"
 
 std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;
-std::shared_ptr<GameEngineLevel> MonsterWave::ParentLevel = nullptr;
+std::shared_ptr<PlayStageLevel> MonsterWave::ParentLevel = nullptr;
 
 MonsterWave::MonsterWave()
 {
@@ -20,7 +21,7 @@ MonsterWave::~MonsterWave()
 
 void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector<MonsterSpawnData>& _OneWave)
 {
-	ParentLevel = _Level;
+	ParentLevel = _Level->DynamicThis<PlayStageLevel>();
 	ParentLevel->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
 }
 
@@ -54,6 +55,10 @@ void MonsterWave::Update(float _DeltaTime)
 	}
 	else if (WaveTime >= WaveEndTime)
 	{
+		if (ParentLevel->GetWaveButtons().size() > ParentLevel->GetNextWave())
+		{
+			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->On();
+		}
  		Death();
 	}
 }
