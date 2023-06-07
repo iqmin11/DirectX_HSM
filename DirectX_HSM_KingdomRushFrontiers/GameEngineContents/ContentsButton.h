@@ -30,9 +30,14 @@ public:
 	void SetParentActor(GameEngineActor* _Actor);
 	void SetTextureName(const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
 
-	ButtonState GetState()
+	ButtonState GetState() const
 	{
 		return State;
+	}
+
+	GameEngineActor* GetParentActor() const 
+	{
+		return ParentActor;
 	}
 
 protected:
@@ -45,7 +50,7 @@ protected:
 	std::string CurTextureName = std::string();
 
 	ButtonState State = ButtonState::Release;
-	std::shared_ptr<GameEngineUIRenderer> Render;
+	std::shared_ptr<GameEngineUIRenderer> Render = nullptr;
 
 private:
 	GameEngineActor* ParentActor = nullptr;

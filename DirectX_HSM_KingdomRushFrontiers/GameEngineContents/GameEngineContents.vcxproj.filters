@@ -158,6 +158,9 @@
     <ClInclude Include="SellButton.h">
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClInclude>
+    <ClInclude Include="NextWaveStartButton.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -324,6 +327,9 @@
     </ClCompile>
     <ClCompile Include="SellButton.cpp">
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="NextWaveStartButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

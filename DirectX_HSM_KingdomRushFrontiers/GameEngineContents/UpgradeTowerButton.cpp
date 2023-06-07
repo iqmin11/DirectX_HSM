@@ -20,15 +20,16 @@ std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowe
 	std::weak_ptr<UpgradeTowerButton> ResultButton(_UI->GetLevel()->CreateActor<UpgradeTowerButton>());
 	ResultButton.lock()->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
 	ResultButton.lock()->GetTransform()->SetParent(_UI->GetTransform());
-	ResultButton.lock()->ParentUI = _UI;
+	ResultButton.lock()->SetParentActor(_UI);
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
-			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start)
+			UpgradeTowerUI* ParentUI = dynamic_cast<UpgradeTowerUI*>(ResultButton.lock()->GetParentActor());
+			if (ParentUI->GetState() == BaseTowerUIState::Start)
 			{
 				return;
 			}
-			ResultButton.lock()->ParentUI->OffUI();
-			ResultButton.lock()->ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnUpgradeTowerEnum());
+			ParentUI->OffUI();
+			ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnUpgradeTowerEnum());
 		});
 	return ResultButton.lock();
 }
@@ -49,12 +50,12 @@ void UpgradeTowerButton::Update(float _DeltaTime)
 
 TowerEnum UpgradeTowerButton::ReturnUpgradeTowerEnum()
 {
-	if (nullptr == ParentUI)
+	if (nullptr == GetParentActor())
 	{
 		MsgAssert("ParentUI가 nullptr입니다")
 	}
 
-	TowerData Data = ParentUI->GetParentTower()->GetData();
+	TowerData Data = dynamic_cast<UpgradeTowerUI*>(GetParentActor())->GetParentTower()->GetData();
 	if (Data.Level >= 3)
 	{
 		MsgTextBox("아직 구현하지 않은 타워입니다");

@@ -19,16 +19,16 @@ std::shared_ptr<SellButton> SellButton::CreateButton(UpgradeTowerUI* _UI)
 {
 	std::weak_ptr<SellButton> ResultButton(_UI->GetLevel()->CreateActor<SellButton>());
 	ResultButton.lock()->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
-	ResultButton.lock()->GetTransform()->SetParent(_UI->GetTransform());
-	ResultButton.lock()->ParentUI = _UI;
+	ResultButton.lock()->SetParentActor(_UI);
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
-			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start)
+			UpgradeTowerUI* ParentUI = dynamic_cast<UpgradeTowerUI*>(ResultButton.lock()->GetParentActor());
+			if (ParentUI->GetState() == BaseTowerUIState::Start)
 			{
 				return;
 			}
-			ResultButton.lock()->ParentUI->OffUI();
-			ResultButton.lock()->ParentUI->GetParentTower()->SellTower();
+			ParentUI->OffUI();
+			ParentUI->GetParentTower()->SellTower();
 		});
 	return ResultButton.lock();
 }

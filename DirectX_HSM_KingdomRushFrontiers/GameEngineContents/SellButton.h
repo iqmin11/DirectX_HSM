@@ -21,8 +21,6 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	class UpgradeTowerUI* ParentUI = nullptr;
-
 	float4 Scale = { 47, 42, 1 };
 };
 
