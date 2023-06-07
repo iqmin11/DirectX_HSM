@@ -45,6 +45,7 @@ void BuildTowerUI::Start()
 
 void BuildTowerUI::Update(float _DeltaTime)
 {
+	BaseTowerUI::Update(_DeltaTime);
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{
 		OffUI();

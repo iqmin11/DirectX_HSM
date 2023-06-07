@@ -21,6 +21,10 @@ std::shared_ptr<BuildArtilleryButton> BuildArtilleryButton::CreateButton(BuildTo
 	ResultButton->GetTransform()->SetParent(_UI->GetTransform());
 	ResultButton->SetEvent([_UI]()
 		{
+			if (_UI->GetState() == BaseTowerUIState::Start)
+			{
+				return;
+			}
 			_UI->OffUI();
 			_UI->GetParentArea()->CreateArtilleryTower();
 		});

@@ -39,6 +39,7 @@ void UpgradeTowerUI::Start()
 
 void UpgradeTowerUI::Update(float _DeltaTime)
 {
+	BaseTowerUI::Update(_DeltaTime);
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{
 		OffUI();

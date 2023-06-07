@@ -66,7 +66,6 @@ void PlayStageLevel::Start()
 	LoadAllStageData();
 	
 	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
-	
 }
 
 void PlayStageLevel::Update(float _DeltaTime)

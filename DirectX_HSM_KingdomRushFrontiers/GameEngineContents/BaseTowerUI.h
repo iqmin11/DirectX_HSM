@@ -1,6 +1,12 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class BaseTowerUIState
+{
+	Start,
+	Update,
+};
+
 class GameEngineUIRenderer;
 class BaseTowerUI : public GameEngineActor
 {
@@ -21,6 +27,11 @@ public:
 	virtual void OnUI();
 	virtual void OffUI();
 
+	BaseTowerUIState GetState() const 
+	{
+		return State;
+	}
+
 protected:
 
 	void Start() override;
@@ -29,8 +40,11 @@ protected:
 	virtual void UpdateEnd();
 
 private:
+	BaseTowerUIState State = BaseTowerUIState::Start;
+
 	std::shared_ptr<class GameEngineUIRenderer> RingRender = nullptr;
 	float4 RingRenderScale = { 171,171,1 };
-
+	float4 StartActorScale = { 0.5f, 0.5f, 0.5f };
+	float Time = 0.0f;
 };
 

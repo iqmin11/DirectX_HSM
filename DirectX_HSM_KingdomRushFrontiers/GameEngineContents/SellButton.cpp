@@ -23,9 +23,12 @@ std::shared_ptr<SellButton> SellButton::CreateButton(UpgradeTowerUI* _UI)
 	ResultButton.lock()->ParentUI = _UI;
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
+			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start)
+			{
+				return;
+			}
 			ResultButton.lock()->ParentUI->OffUI();
 			ResultButton.lock()->ParentUI->GetParentTower()->SellTower();
-			//ResultButton.lock()->ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnUpgradeTowerEnum());
 		});
 	return ResultButton.lock();
 }

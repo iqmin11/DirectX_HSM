@@ -33,12 +33,23 @@ void BaseTowerUI::Start()
 	RingRender = CreateComponent<GameEngineUIRenderer>();
 	RingRender->SetTexture("gui_ring.png");
 	RingRender->GetTransform()->SetWorldScale(RingRenderScale);
+	RingRender->GetTransform()->SetParent(GetTransform());
 	RingRender->GetTransform()->SetLocalPosition({0,0,-1000});
 }
 
 void BaseTowerUI::Update(float _DeltaTime)
 {
-
+	if (State == BaseTowerUIState::Start)
+	{
+		Time += _DeltaTime;
+		float Ratio = Time * 10;
+		GetTransform()->SetWorldScale(float4::LerpClamp(StartActorScale, float4::One, Ratio));
+		if (Ratio >= 1.f)
+		{
+			Time = 0.0f;
+			State = BaseTowerUIState::Update;
+		}
+	}
 }
 
 void BaseTowerUI::UpdateStart()
@@ -49,6 +60,8 @@ void BaseTowerUI::UpdateStart()
 
 void BaseTowerUI::UpdateEnd()
 {
+	State = BaseTowerUIState::Start;
+	Time = 0.0f;
 	--UpdateCount;
 	if (UpdateCount == 0)
 	{

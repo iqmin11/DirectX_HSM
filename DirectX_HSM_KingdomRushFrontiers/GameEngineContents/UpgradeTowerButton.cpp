@@ -23,6 +23,10 @@ std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowe
 	ResultButton.lock()->ParentUI = _UI;
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
+			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start)
+			{
+				return;
+			}
 			ResultButton.lock()->ParentUI->OffUI();
 			ResultButton.lock()->ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnUpgradeTowerEnum());
 		});
