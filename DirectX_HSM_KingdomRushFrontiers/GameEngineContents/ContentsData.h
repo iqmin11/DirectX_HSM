@@ -36,92 +36,23 @@ public:
 	std::vector<float4> AreaStartRallyPos = std::vector<float4>();
 	std::vector<std::vector<float4>> WaveStartButtonPos = std::vector<std::vector<float4>>();
 
+	static const float4 Invisible;
 	static const float4 Stage0_North_Path;
 	static const float4 Stage0_South_Path;
 	static const float4 Stage1_West;
-	static const float4 Stage1_Eest;
+	static const float4 Stage1_East;
 	static const float4 Stage2_North;
-	static const float4 Stage2_Eest;
+	static const float4 Stage2_East;
 	static const float4 Stage3_West;
-	static const float4 Stage3_Eest;
+	static const float4 Stage3_East;
 	static const float4 Stage4_West_Path;
-	static const float4 Stage4_Eest_Path;
-	static const float4 Stage4_Eest;
+	static const float4 Stage4_East_Path;
+	static const float4 Stage4_East;
 	static const float4 Stage5_NorthWest;
 	static const float4 Stage5_West;
-	static const float4 Stage5_Eest;
+	static const float4 Stage5_East;
 
-	void SetButtonPos(int _Stage)
-	{
-		if (_Stage == 0)
-		{
-			WaveStartButtonPos.resize(6);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-				WaveStartButtonPos[i].resize(2);
-			}
-
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-				for (size_t j = 0; j < WaveStartButtonPos[i].size(); j++)
-				{
-					if (j % 2 == 0)
-					{
-						WaveStartButtonPos[i][j] = Stage0_North_Path;
-					}
-					else if (j % 2 == 1)
-					{
-						WaveStartButtonPos[i][j] = Stage0_South_Path;
-					}
-
-				}
-			}
-		}
-		else if (_Stage == 1)
-		{
-			WaveStartButtonPos.resize(8);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-
-			}
-		}
-		else if (_Stage == 2)
-		{
-			WaveStartButtonPos.resize(10);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-
-			}
-		}
-		else if (_Stage == 3)
-		{
-			WaveStartButtonPos.resize(14);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-
-			}
-		}
-		else if (_Stage == 4)
-		{
-			WaveStartButtonPos.resize(15);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-
-			}
-		}
-		else if (_Stage == 5)
-		{
-			WaveStartButtonPos.resize(14);
-			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
-			{
-
-			}
-		}
-		else
-		{
-			return;
-		}
-	}
+	void SetButtonPos(int _Stage);
 };
 
 class TowerData

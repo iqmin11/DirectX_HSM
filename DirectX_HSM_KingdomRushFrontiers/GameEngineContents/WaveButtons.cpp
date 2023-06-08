@@ -24,7 +24,6 @@ std::shared_ptr<WaveButtons> WaveButtons::CreateWaveButtons(GameEngineLevel* _Le
 	for (size_t i = 0; i < ResultButtons.lock()->Buttons.size(); i++)
 	{
 		ResultButtons.lock()->Buttons[i] = NextWaveStartButton::CreateButton(ResultButtons.lock().get(), _Wave);
-		ResultButtons.lock()->Buttons[i]->GetTransform()->SetWorldScale({ 47, 46,1 });
 		ResultButtons.lock()->Buttons[i]->GetTransform()->SetWorldPosition(ResultButtons.lock()->Positions[i]);
 		ResultButtons.lock()->Buttons[i]->SetEvent([ResultButtons]()
 			{

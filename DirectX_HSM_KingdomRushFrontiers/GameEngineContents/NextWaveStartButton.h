@@ -26,6 +26,8 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	std::shared_ptr<class GameEngineUIRenderer> SelectedGlow = nullptr;
+
 	float4 Scale = { 47, 46,1 };
 	int Wave = -1;
 	float Time = 0.f;

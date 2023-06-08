@@ -159,10 +159,10 @@
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClInclude>
     <ClInclude Include="NextWaveStartButton.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
     <ClInclude Include="WaveButtons.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,10 +332,10 @@
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClCompile>
     <ClCompile Include="NextWaveStartButton.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
     <ClCompile Include="WaveButtons.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +422,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\TowerUI\UpgradeUI">
       <UniqueIdentifier>{e6ff1f88-d54f-4294-9506-6194bc999d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\WaveButton">
+      <UniqueIdentifier>{d7c95180-aaec-4d6a-833c-ea14a2806f4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
