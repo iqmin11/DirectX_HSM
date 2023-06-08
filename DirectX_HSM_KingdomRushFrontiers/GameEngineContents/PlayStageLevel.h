@@ -3,12 +3,6 @@
 #include <GameEngineBase/GameEngineTimeEvent.h>
 #include "ContentsData.h"
 
-class OneWaveButtons
-{
-public : 
-	class std::vector<std::shared_ptr<class NextWaveStartButton>> Buttons = std::vector<std::shared_ptr<class NextWaveStartButton>>();
-};
-
 class PlayStageLevel : public GameEngineLevel
 {
 public:
@@ -30,7 +24,7 @@ public:
 	void ClearStage();
 	void StartNextWave();
 
-	std::vector<std::shared_ptr<class NextWaveStartButton>> GetWaveButtons() const
+	const std::vector<std::shared_ptr<class WaveButtons>> GetWaveButtons() const
 	{
 		return AcWaveButtons;
 	}
@@ -50,7 +44,7 @@ private:
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 	std::shared_ptr<class MousePointer> AcMousePointer = nullptr;
-	std::vector<std::shared_ptr<class NextWaveStartButton>> AcWaveButtons = std::vector<std::shared_ptr<class NextWaveStartButton>>();
+	std::vector<std::shared_ptr<class WaveButtons>> AcWaveButtons = std::vector<std::shared_ptr<class WaveButtons>>();
 
 	int CurStage = -1;
 	int NextWave = -1;

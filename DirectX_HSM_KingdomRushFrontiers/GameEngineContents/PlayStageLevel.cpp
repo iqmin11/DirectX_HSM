@@ -13,6 +13,7 @@
 #include "PlayStageUI.h"
 #include "BuildArea.h"
 #include "NextWaveStartButton.h"
+#include "WaveButtons.h"
 
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
@@ -66,6 +67,11 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
+	//std::vector<float4> Test = std::vector<float4>();
+	//Test.push_back({600, -50});
+	//Test.push_back({600, 0});
+	//Test.push_back({600, 50});
+	//AcWaveButtons.push_back(WaveButtons::CreateWaveButtons(this, Test, 0));
 
 	LoadAllStageData();
 	
@@ -84,15 +90,28 @@ void PlayStageLevel::Update(float _DeltaTime)
 		StartNextWave();
 	}
 
-	if (GameEngineInput::IsUp("RightArrow"))
+
 	{
 		static int a = 0;
-		++a;
-		if (a > 5)
+		if (GameEngineInput::IsUp("RightArrow"))
 		{
-			a = 0;
+			++a;
+			if (a > 5)
+			{
+				a = 0;
+			}
+			InitStage(a);
 		}
-		InitStage(a);
+
+		if (GameEngineInput::IsUp("LeftArrow"))
+		{
+			--a;
+			if (a < 0)
+			{
+				a = 5;
+			}
+			InitStage(a);
+		}
 	}
 
 }
@@ -220,7 +239,7 @@ void PlayStageLevel::StartNextWave()
 	}
 
 	MonsterWave::StartWave(DynamicThis<GameEngineLevel>() , AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
-	if (AcWaveButtons.size() <= NextWave)
+	if (AcWaveButtons.size() > NextWave)
 	{
 		AcWaveButtons[NextWave] = nullptr;
 	}
@@ -241,8 +260,7 @@ void PlayStageLevel::SetStageWaveButtons(int _Stage)
 	AcWaveButtons.resize(AllStageData[_Stage].Waves.size());
 	for (size_t i = 0; i < AcWaveButtons.size(); i++)
 	{
-		AcWaveButtons[i] = NextWaveStartButton::CreateButton(this, static_cast<int>(i));
-		AcWaveButtons[i]->GetTransform()->SetWorldPosition(AllStageData[_Stage].WaveStartButtonPos[i]);
+		AcWaveButtons[i] = WaveButtons::CreateWaveButtons(this, AllStageData[_Stage].WaveStartButtonPos[i], static_cast<int>(i));
 		AcWaveButtons[i]->Off();
 	}
 	AcWaveButtons[0]->On();
@@ -444,7 +462,10 @@ void PlayStageLevel::ClearStageWaveButtons()
 {
 	for (size_t i = 0; i < AcWaveButtons.size(); i++)
 	{
-		AcWaveButtons[i]->Death();
+		if (AcWaveButtons [i] != nullptr)
+		{
+			AcWaveButtons[i]->Death();
+		}
 	}
 	AcWaveButtons.clear();
 }

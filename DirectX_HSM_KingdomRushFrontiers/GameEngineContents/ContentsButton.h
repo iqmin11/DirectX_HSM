@@ -24,8 +24,8 @@ public:
 		Click = _Click;
 	}
 
-	static std::shared_ptr<ContentsButton> CreateButton(GameEngineActor * _ParentActor, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
-	static std::shared_ptr<ContentsButton> CreateButton(GameEngineLevel* _ParentLevel, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
+	static std::shared_ptr<ContentsButton> CreateButton(GameEngineActor * _ParentActor, const std::string_view& _Release = "Release.bmp", const std::string_view& _Hover = "Hover.bmp", const std::string_view& _Press = "Press.bmp");
+	static std::shared_ptr<ContentsButton> CreateButton(GameEngineLevel* _ParentLevel, const std::string_view& _Release = "Release.bmp", const std::string_view& _Hover = "Hover.bmp", const std::string_view& _Press = "Press.bmp");
 
 	void SetParentActor(GameEngineActor* _Actor);
 	void SetTextureName(const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press);
@@ -44,9 +44,9 @@ protected:
 	void Start() override;
 	void Update(float _Delta) override;
 
-	std::string ReleaseTextureName = std::string();
-	std::string HoverTextureName = std::string();
-	std::string PressTextureName = std::string();
+	std::string ReleaseTextureName = "Release.bmp";
+	std::string HoverTextureName = "Hover.bmp";
+	std::string PressTextureName = "Press.bmp";
 	std::string CurTextureName = std::string();
 
 	ButtonState State = ButtonState::Release;

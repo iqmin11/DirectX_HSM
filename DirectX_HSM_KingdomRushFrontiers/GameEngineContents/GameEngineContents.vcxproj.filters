@@ -161,6 +161,9 @@
     <ClInclude Include="NextWaveStartButton.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
+    <ClInclude Include="WaveButtons.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -329,6 +332,9 @@
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI</Filter>
     </ClCompile>
     <ClCompile Include="NextWaveStartButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveButtons.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>

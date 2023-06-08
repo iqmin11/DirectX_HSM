@@ -19,7 +19,6 @@ std::shared_ptr<ContentsButton> ContentsButton::CreateButton(GameEngineActor* _P
 	{
 		MsgAssert("버튼을 만들 부모액터가 nullptr입니다.")
 	}
-
 	std::shared_ptr<ContentsButton> ResultButton = _ParentActor->GetLevel()->CreateActor<ContentsButton>();
 	ResultButton->SetParentActor(_ParentActor);
 	ResultButton->SetTextureName(_Release, _Hover, _Press);
@@ -63,7 +62,7 @@ void ContentsButton::Update(float _Delta)
 	float4 Scale = Render->GetTransform()->GetWorldScale();
 	float4 Pos = Render->GetTransform()->GetWorldPosition();
 	
-	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
+	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetCamera(100);
 
 	// 랜더러 
 	float4x4 ViewPort = Camera->GetViewPort();

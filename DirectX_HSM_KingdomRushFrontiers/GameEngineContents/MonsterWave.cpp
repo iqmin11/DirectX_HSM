@@ -4,6 +4,7 @@
 
 #include "PlayStageLevel.h"
 #include "BaseMonster.h"
+#include "WaveButtons.h"
 #include "NextWaveStartButton.h"
 
 std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;

@@ -296,6 +296,8 @@
     <ClInclude Include="NextWaveStartButton.h">
       <SubType>
       </SubType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="RallyPoint.h">
       <SubType>
@@ -399,6 +401,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UpgradeTowerUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WaveButtons.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -547,6 +553,8 @@
     <ClCompile Include="NextWaveStartButton.cpp">
       <SubType>
       </SubType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="RallyPoint.cpp">
       <SubType>
@@ -655,6 +663,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="UpgradeTowerUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WaveButtons.cpp">
       <SubType>
       </SubType>
     </ClCompile>

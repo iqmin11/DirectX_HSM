@@ -34,7 +34,7 @@ public:
 	std::vector<WaveData> Waves = std::vector<WaveData>();
 	std::vector<float4> BuildAreaPos = std::vector<float4>();
 	std::vector<float4> AreaStartRallyPos = std::vector<float4>();
-	std::vector<float4> WaveStartButtonPos = std::vector<float4>();
+	std::vector<std::vector<float4>> WaveStartButtonPos = std::vector<std::vector<float4>>();
 
 	static const float4 Stage0_North_Path;
 	static const float4 Stage0_South_Path;
@@ -58,8 +58,23 @@ public:
 			WaveStartButtonPos.resize(6);
 			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
 			{
-				//WaveStartButtonPos[i] = { 565, 40 };
-				WaveStartButtonPos[i] = { 565, -5};
+				WaveStartButtonPos[i].resize(2);
+			}
+
+			for (size_t i = 0; i < WaveStartButtonPos.size(); i++)
+			{
+				for (size_t j = 0; j < WaveStartButtonPos[i].size(); j++)
+				{
+					if (j % 2 == 0)
+					{
+						WaveStartButtonPos[i][j] = Stage0_North_Path;
+					}
+					else if (j % 2 == 1)
+					{
+						WaveStartButtonPos[i][j] = Stage0_South_Path;
+					}
+
+				}
 			}
 		}
 		else if (_Stage == 1)

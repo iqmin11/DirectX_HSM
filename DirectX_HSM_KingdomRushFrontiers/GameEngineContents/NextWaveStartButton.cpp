@@ -14,14 +14,14 @@ NextWaveStartButton::~NextWaveStartButton()
 
 }
 
-std::shared_ptr<NextWaveStartButton> NextWaveStartButton::CreateButton(GameEngineLevel* _Level, int _Wave)
+std::shared_ptr<NextWaveStartButton> NextWaveStartButton::CreateButton(GameEngineActor* _Parent, int _Wave)
 {
-	std::weak_ptr<NextWaveStartButton> ResultButton(_Level->CreateActor<NextWaveStartButton>());
+	std::weak_ptr<NextWaveStartButton> ResultButton(_Parent->GetLevel()->CreateActor<NextWaveStartButton>());
+	ResultButton.lock()->SetParentActor(_Parent);
 	ResultButton.lock()->Wave = _Wave;
-	ResultButton.lock()->SetEvent([ResultButton]()
+	ResultButton.lock()->SetEvent([]()
 		{
-			dynamic_cast<PlayStageLevel*>(ResultButton.lock()->GetLevel())->StartNextWave();
-			ResultButton.lock()->Death();
+
 		});
 	return ResultButton.lock();
 }

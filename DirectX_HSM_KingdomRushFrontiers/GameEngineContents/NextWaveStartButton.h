@@ -14,7 +14,7 @@ public:
 	NextWaveStartButton& operator=(const NextWaveStartButton& _Other) = delete;
 	NextWaveStartButton& operator=(NextWaveStartButton&& _Other) noexcept = delete;
 
-	static std::shared_ptr<NextWaveStartButton> CreateButton(class GameEngineLevel* _Level, int _Wave);
+	static std::shared_ptr<NextWaveStartButton> CreateButton(class GameEngineActor* _Parent, int _Wave);
 
 	int GetWave() const
 	{
