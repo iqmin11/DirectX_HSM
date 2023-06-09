@@ -35,6 +35,7 @@ public:
 	std::vector<float4> BuildAreaPos = std::vector<float4>();
 	std::vector<float4> AreaStartRallyPos = std::vector<float4>();
 	std::vector<std::vector<float4>> WaveStartButtonPos = std::vector<std::vector<float4>>();
+	int StartGold = -1;
 
 	static const float4 Invisible;
 	static const float4 Stage0_North_Path;

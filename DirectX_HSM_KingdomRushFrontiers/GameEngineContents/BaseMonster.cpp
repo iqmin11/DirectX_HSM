@@ -8,6 +8,7 @@
 #include "BaseFighter.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
+#include "PlayStageLevel.h"
 
 std::list<std::shared_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::shared_ptr<BaseMonster>>();
 
@@ -98,6 +99,7 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	{
 		Death();
 		LiveMonsterListRelease();
+		dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
 		return;
 	}
 

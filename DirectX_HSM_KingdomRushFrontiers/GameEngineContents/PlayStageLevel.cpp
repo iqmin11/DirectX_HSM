@@ -33,20 +33,24 @@ void PlayStageLevel::InitStage(int _Stage)
 	ClearStage();
 	CurStage = _Stage;
 	NextWave = 0;
+	Life = 20;
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
 	SetStageBuildArea(CurStage);
 	SetStageWaveButtons(CurStage);
+	SetStageGold(CurStage);
 }
 
 void PlayStageLevel::ClearStage()
 {
 	CurStage = -1;
 	NextWave = -1;
+	Life = -1;
 	ClearStageBg();
 	ClearStagePaths();
 	ClearStageBuildArea();
 	ClearStageWaveButtons();
+	ClearStageGold();
 }
 
 void PlayStageLevel::Start()
@@ -67,11 +71,6 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
-	//std::vector<float4> Test = std::vector<float4>();
-	//Test.push_back({600, -50});
-	//Test.push_back({600, 0});
-	//Test.push_back({600, 50});
-	//AcWaveButtons.push_back(WaveButtons::CreateWaveButtons(this, Test, 0));
 
 	LoadAllStageData();
 	
@@ -90,7 +89,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 		StartNextWave();
 	}
 
-
+	
 	{
 		static int a = 0;
 		if (GameEngineInput::IsUp("RightArrow"))
@@ -113,7 +112,6 @@ void PlayStageLevel::Update(float _DeltaTime)
 			InitStage(a);
 		}
 	}
-
 }
 
 void PlayStageLevel::LoadAllStageData()
@@ -122,10 +120,8 @@ void PlayStageLevel::LoadAllStageData()
 	LoadWaveBinData();
 	LoadAreaBinData();
 	LoadRallyBinData();
-	for (int i = 0; i < AllStageData.size(); i++)
-	{
-		AllStageData[i].SetButtonPos(i);
-	}
+	LoadWaveButtonPos();
+	LoadStageStartGold();
 }
 
 void PlayStageLevel::LoadPathBinData()
@@ -264,6 +260,11 @@ void PlayStageLevel::SetStageWaveButtons(int _Stage)
 		AcWaveButtons[i]->Off();
 	}
 	AcWaveButtons[0]->On();
+}
+
+void PlayStageLevel::SetStageGold(int _Stage)
+{
+	Gold = AllStageData[_Stage].StartGold;
 }
 
 void PlayStageLevel::ClearStageBg()
@@ -448,6 +449,24 @@ void PlayStageLevel::LoadOneStageRally(GameEngineSerializer& _Serializer, int _S
 	}
 }
 
+void PlayStageLevel::LoadWaveButtonPos()
+{
+	for (int i = 0; i < AllStageData.size(); i++)
+	{
+		AllStageData[i].SetButtonPos(i);
+	}
+}
+
+void PlayStageLevel::LoadStageStartGold()
+{
+	AllStageData[0].StartGold = 300;
+	AllStageData[1].StartGold = 520;
+	AllStageData[2].StartGold = 520;
+	AllStageData[3].StartGold = 600;
+	AllStageData[4].StartGold = 800;
+	AllStageData[5].StartGold = 1000;
+}
+
 void PlayStageLevel::ClearStageBuildArea()
 {
 	for (size_t i = 0; i < AcBuildAreas.size(); i++)
@@ -468,4 +487,9 @@ void PlayStageLevel::ClearStageWaveButtons()
 		}
 	}
 	AcWaveButtons.clear();
+}
+
+void PlayStageLevel::ClearStageGold()
+{
+	Gold = -1;
 }

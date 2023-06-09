@@ -23,6 +23,10 @@ public:
 	void InitStage(int _Stage);
 	void ClearStage();
 	void StartNextWave();
+	void SubLife(int _LivesTaken)
+	{
+		Life -= _LivesTaken;
+	}
 
 	const std::vector<std::shared_ptr<class WaveButtons>> GetWaveButtons() const
 	{
@@ -48,6 +52,8 @@ private:
 
 	int CurStage = -1;
 	int NextWave = -1;
+	int Life = -1;
+	int Gold = -1;
 
 	void LoadAllStageData(); 
 	
@@ -65,16 +71,21 @@ private:
 	void LoadRallyBinData();
 	void LoadOneStageRally(GameEngineSerializer& _Serializer, int _StageLevel);
 
+	void LoadWaveButtonPos();
+	void LoadStageStartGold();
+
 	void KeySet();
 	
 	void SetStageBg(int _Stage);
 	void SetStagePaths(int _Stage);
 	void SetStageBuildArea(int _Stage);
 	void SetStageWaveButtons(int _Stage);
+	void SetStageGold(int _Stage);
 	void ClearStageBg();
 	void ClearStagePaths();
 	void ClearStageBuildArea();
 	void ClearStageWaveButtons();
+	void ClearStageGold();
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();

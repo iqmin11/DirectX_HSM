@@ -20,7 +20,7 @@ public:
 	//static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor);
 	void SetTowerData(TowerData* _Data)
 	{
-		Data = _Data;
+		Data = *_Data;
 	}
 
 protected:
@@ -42,12 +42,12 @@ protected:
 	void Update(float _DeltaTime) override;
 	virtual int CalDamage() = 0
 	{
-		return GameEngineRandom::MainRandom.RandomInt(Data->Damage_min, Data->Damage_MAX);
+		return GameEngineRandom::MainRandom.RandomInt(Data.Damage_min, Data.Damage_MAX);
 	}
 
 	bool IsBezier = false;
 	float BulletTime = 1.f;
-	const TowerData* Data = nullptr;
+	TowerData Data = TowerData();
 	std::function<void()> BulletHit = nullptr;
 	std::function<void()> BulletMiss = nullptr;
 	std::function<void()> BulletDeath = nullptr;

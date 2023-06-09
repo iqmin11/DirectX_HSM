@@ -28,7 +28,7 @@ void Magic_Bullet::ShootingBullet(GameEngineLevel* _Level, BaseShooter* _ParentS
 	Bullet->IsBezier = false;
 	Bullet->BulletTime = _ParentShooter->GetParentTower()->GetData().BulletTime;
 	Bullet->TargetMonster = _ParentShooter->GetParentTower()->GetTargetMonster();
-	Bullet->Data = &_ParentShooter->GetParentTower()->GetData();
+	Bullet->Data = _ParentShooter->GetParentTower()->GetData();
 }
 
 void Magic_Bullet::Start()
