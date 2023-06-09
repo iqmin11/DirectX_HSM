@@ -18,6 +18,7 @@ class BaseMonster : public GameEngineActor
 {
 public:
 	static std::list<std::shared_ptr<BaseMonster>> LiveMonsterList;
+	static bool IsAllMonsterDead();
 	// construtor destructor
 	BaseMonster();
 	~BaseMonster();

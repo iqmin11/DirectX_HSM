@@ -10,6 +10,9 @@
 std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;
 std::shared_ptr<PlayStageLevel> MonsterWave::ParentLevel = nullptr;
 
+bool MonsterWave::IsLastMonsterSummon = false;
+
+
 MonsterWave::MonsterWave()
 {
 
@@ -24,6 +27,7 @@ void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector
 {
 	ParentLevel = _Level->DynamicThis<PlayStageLevel>();
 	ParentLevel->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
+	IsLastMonsterSummon = false;
 }
 
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)
@@ -56,6 +60,7 @@ void MonsterWave::Update(float _DeltaTime)
 	}
 	else if (WaveTime >= WaveEndTime)
 	{
+		IsLastMonsterSummon = true;
 		if (ParentLevel->GetWaveButtons().size() > ParentLevel->GetNextWave())
 		{
 			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->On();

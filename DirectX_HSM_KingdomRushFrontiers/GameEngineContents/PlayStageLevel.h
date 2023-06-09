@@ -43,7 +43,6 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
@@ -89,5 +88,12 @@ private:
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();
+
+	void Defeat();
+	void Victory();
+	
+	bool IsDefeat();
+	bool IsVictory();
+	bool IsLastWave();
 };
 

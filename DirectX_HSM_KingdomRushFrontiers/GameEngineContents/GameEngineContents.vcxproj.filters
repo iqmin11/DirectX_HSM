@@ -164,6 +164,9 @@
     <ClInclude Include="WaveButtons.h">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
+    <ClInclude Include="DefeatBadge.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -336,6 +339,9 @@
     </ClCompile>
     <ClCompile Include="WaveButtons.cpp">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatBadge.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

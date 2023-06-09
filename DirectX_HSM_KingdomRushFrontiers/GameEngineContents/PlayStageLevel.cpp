@@ -14,6 +14,7 @@
 #include "BuildArea.h"
 #include "NextWaveStartButton.h"
 #include "WaveButtons.h"
+#include "BaseMonster.h"
 
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
@@ -79,17 +80,20 @@ void PlayStageLevel::Start()
 
 void PlayStageLevel::Update(float _DeltaTime)
 {
+	//if (IsVictory())
+	//{
+	//	Victory();
+	//}
+	//else if (IsDefeat())
+	//{
+	//	Defeat();
+	//}
+
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
 	}
 
-	if (GameEngineInput::IsUp("Space"))
-	{
-		StartNextWave();
-	}
-
-	
 	{
 		static int a = 0;
 		if (GameEngineInput::IsUp("RightArrow"))
@@ -390,6 +394,31 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 
 }
 
+void PlayStageLevel::Defeat()
+{
+	MsgTextBox("패배했습니다.");
+}
+
+void PlayStageLevel::Victory()
+{
+	MsgTextBox("승리했습니다.");
+}
+
+bool PlayStageLevel::IsDefeat()
+{
+	return Life == 0;
+}
+
+bool PlayStageLevel::IsVictory()
+{
+	return IsLastWave() && MonsterWave::IsLastMonsterSummon && BaseMonster::IsAllMonsterDead();
+}
+
+bool PlayStageLevel::IsLastWave()
+{
+	size_t LastWave = AllStageData[CurStage].Waves.size() - 1;
+	return LastWave + 1 == NextWave;
+}
 
 void PlayStageLevel::LoadAreaBinData()
 {

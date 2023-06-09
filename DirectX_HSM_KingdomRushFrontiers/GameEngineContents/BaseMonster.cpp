@@ -12,6 +12,11 @@
 
 std::list<std::shared_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::shared_ptr<BaseMonster>>();
 
+bool BaseMonster::IsAllMonsterDead()
+{
+	return LiveMonsterList.size() == 0;
+}
+
 BaseMonster::BaseMonster()
 {
 

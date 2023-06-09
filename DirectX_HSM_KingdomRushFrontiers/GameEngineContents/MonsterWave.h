@@ -5,7 +5,8 @@
 class MonsterWave : public GameEngineActor
 {
 public:
-	
+	static bool IsLastMonsterSummon;
+
 	// construtor destructor
 	MonsterWave();
 	~MonsterWave();

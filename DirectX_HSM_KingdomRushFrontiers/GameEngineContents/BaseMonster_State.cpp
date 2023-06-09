@@ -173,6 +173,7 @@ void BaseMonster::DeathStateInit()
 				else
 				{
 					Death();
+					LiveMonsterListRelease();
 				}
 			},
 			.End = [this]()
