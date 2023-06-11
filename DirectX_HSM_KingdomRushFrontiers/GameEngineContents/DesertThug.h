@@ -21,6 +21,5 @@ private:
 	float4 RenderScale = { 128,128,1 };
 	float4 ColLocalPos = {0,0,0};
 	float4 ColScale = {18,18,1};
-
 };
 

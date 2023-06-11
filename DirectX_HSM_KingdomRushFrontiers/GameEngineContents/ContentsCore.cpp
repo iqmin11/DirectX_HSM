@@ -19,11 +19,11 @@ ContentsCore::~ContentsCore()
 void ContentsCore::GameStart()
 {
 	//GameEngineGUI::GUIWindowCreate<GameEngineCoreWindow>("CoreWindow");
-	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<StageEditLevel>();
+	GameEngineCore::CreateLevel<TestLevel>();
 
 	GameEngineCore::ChangeLevel("PlayStageLevel");
 }

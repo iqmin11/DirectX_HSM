@@ -7,6 +7,7 @@
 #include <GameEngineCore/GameEngineTexture.h>
 
 #include "ContentsButton.h"
+#include "PopText.h"
 
 TestLevel::TestLevel()
 {
@@ -52,8 +53,10 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("PlayStageLevel", '3');
 	GameEngineInput::CreateKey("StageEditLevel", '4');
 
-	TestButton = ContentsButton::CreateButton(this, "Release.bmp", "Hover.bmp", "Press.bmp");
-	TestButton->GetTransform()->SetWorldScale({ 100, 100 });
+	//TestButton = ContentsButton::CreateButton(this, "Release.bmp", "Hover.bmp", "Press.bmp");
+	//TestButton->GetTransform()->SetWorldScale({ 100, 100 });
+
+	TestPopText = CreateActor<PopText>();
 }
 
 void TestLevel::Update(float _DeltaTime)

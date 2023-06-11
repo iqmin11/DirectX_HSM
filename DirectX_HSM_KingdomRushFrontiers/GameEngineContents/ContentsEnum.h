@@ -103,3 +103,12 @@ enum class ButtonState
 	Press,
 	Hover,
 };
+
+enum class HitState
+{
+	Etc,
+	Arrow,
+	Melee,
+	Bolt,
+	Bomb,
+};

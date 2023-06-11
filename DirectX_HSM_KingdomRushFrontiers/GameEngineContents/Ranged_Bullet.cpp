@@ -45,6 +45,7 @@ void Ranged_Bullet::ArrowHit()
 {
 	//BulletRenderer->ChangeAnimation("BoltDeath");
 	Death();
+	TargetMonster->Hit = HitState::Arrow;
 	TargetMonster->CurHP -= CalDamage();
 }
 

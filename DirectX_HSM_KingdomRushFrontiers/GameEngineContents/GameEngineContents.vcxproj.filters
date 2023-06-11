@@ -33,9 +33,6 @@
     <ClInclude Include="StageSelectMenu.h">
       <Filter>2.WorldMap\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="PlayStageLevel.h">
-      <Filter>3.PlayStage</Filter>
-    </ClInclude>
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
@@ -167,6 +164,12 @@
     <ClInclude Include="DefeatBadge.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
+    <ClInclude Include="PlayStageLevel.h">
+      <Filter>3.PlayStage\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PopText.h">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -200,9 +203,6 @@
     </ClCompile>
     <ClCompile Include="StageSelectMenu.cpp">
       <Filter>2.WorldMap\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayStageLevel.cpp">
-      <Filter>3.PlayStage</Filter>
     </ClCompile>
     <ClCompile Include="StageEditLevel.cpp">
       <Filter>4.StageEdit</Filter>
@@ -343,6 +343,12 @@
     <ClCompile Include="DefeatBadge.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayStageLevel.cpp">
+      <Filter>3.PlayStage\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="PopText.cpp">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -405,9 +411,6 @@
     <Filter Include="3.PlayStage\Actor\Tower\3.ArtilleryTower">
       <UniqueIdentifier>{ab6734ff-52f8-4387-9ee2-9daafe4b0b1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Tower\2.MagicTower">
-      <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\1.RangedTower">
       <UniqueIdentifier>{3c813b88-3303-4e33-9acf-6f5aaba4afd4}</UniqueIdentifier>
     </Filter>
@@ -431,6 +434,12 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\WaveButton">
       <UniqueIdentifier>{d7c95180-aaec-4d6a-833c-ea14a2806f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Effect">
+      <UniqueIdentifier>{9488043a-205b-4f9e-a9aa-ebddb64a50f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\2.MagicTower">
+      <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

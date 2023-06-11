@@ -61,6 +61,7 @@ public:
 	}
 	
 	float CurHP = 0;
+	HitState Hit = HitState::Etc;
 	MonsterState State = MonsterState::Move;
 	class BaseFighter* TargetFighter = nullptr;
 

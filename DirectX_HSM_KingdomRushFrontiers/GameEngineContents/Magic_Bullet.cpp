@@ -47,6 +47,7 @@ void Magic_Bullet::Start()
 void Magic_Bullet::BoltHit()
 {
 	BulletRenderer->ChangeAnimation("BoltDeath");
+	TargetMonster->Hit = HitState::Bolt;
 	TargetMonster->CurHP -= CalDamage();
 }
 

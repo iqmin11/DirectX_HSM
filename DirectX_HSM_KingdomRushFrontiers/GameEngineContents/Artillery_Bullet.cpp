@@ -109,6 +109,7 @@ void Artillery_Bullet::Boom()
 	for (size_t i = 0; i < HitMonsters.size(); i++)
 	{
 		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= CalDamage();
+		dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->Hit = HitState::Bomb;
 	}
 	IsBoom = true;
 	ExplosionSmokeRender->On();

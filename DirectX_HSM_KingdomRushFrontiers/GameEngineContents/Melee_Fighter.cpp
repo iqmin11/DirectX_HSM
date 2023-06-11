@@ -97,6 +97,7 @@ void Melee_Fighter::Update(float _DeltaTime)
 void Melee_Fighter::AttackTarget()
 {
 	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->Hit = HitState::Melee;
 }
 
 int Melee_Fighter::CalDamage()

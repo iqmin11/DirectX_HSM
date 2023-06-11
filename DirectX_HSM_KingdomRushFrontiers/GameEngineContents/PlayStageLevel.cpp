@@ -63,6 +63,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("RangedTower");
 	LoadPlayLevelTexture("ArtilleryBomb");
 	LoadPlayLevelTexture("MeleeTower");
+	LoadPlayLevelTexture("PopText");
 	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
@@ -80,6 +81,7 @@ void PlayStageLevel::Start()
 
 void PlayStageLevel::Update(float _DeltaTime)
 {
+	//승리, 패배, WorldmapLevel 만들고 본격적으로 활성화 시키기
 	//if (IsVictory())
 	//{
 	//	Victory();
@@ -392,6 +394,12 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Front").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Profile").GetFullPath());
 
+	Dir.MoveParentToDirectory("DuneRaider");
+	Dir.Move("EffectAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()

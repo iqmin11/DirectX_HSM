@@ -19,11 +19,11 @@ std::shared_ptr<ContentsButton> ContentsButton::CreateButton(GameEngineActor* _P
 	{
 		MsgAssert("버튼을 만들 부모액터가 nullptr입니다.")
 	}
-	std::shared_ptr<ContentsButton> ResultButton = _ParentActor->GetLevel()->CreateActor<ContentsButton>();
-	ResultButton->SetParentActor(_ParentActor);
-	ResultButton->SetTextureName(_Release, _Hover, _Press);
+	std::weak_ptr<ContentsButton> ResultButton(_ParentActor->GetLevel()->CreateActor<ContentsButton>());
+	ResultButton.lock()->SetParentActor(_ParentActor);
+	ResultButton.lock()->SetTextureName(_Release, _Hover, _Press);
 
-	return ResultButton;
+	return ResultButton.lock();
 }
 
 std::shared_ptr<ContentsButton> ContentsButton::CreateButton(GameEngineLevel* _ParentLevel, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press)
@@ -33,10 +33,10 @@ std::shared_ptr<ContentsButton> ContentsButton::CreateButton(GameEngineLevel* _P
 		MsgAssert("버튼을 만들 부모레벨이 nullptr입니다.")
 	}
 
-	std::shared_ptr<ContentsButton> ResultButton = _ParentLevel->CreateActor<ContentsButton>();
-	ResultButton->SetTextureName(_Release, _Hover, _Press);
+	std::weak_ptr<ContentsButton> ResultButton(_ParentLevel->CreateActor<ContentsButton>());
+	ResultButton.lock()->SetTextureName(_Release, _Hover, _Press);
 
-	return ResultButton;
+	return ResultButton.lock();
 }
 
 void ContentsButton::SetParentActor(GameEngineActor* _Actor)

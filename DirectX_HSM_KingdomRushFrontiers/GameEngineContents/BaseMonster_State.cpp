@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 
 #include "BaseFighter.h"
+#include "PopText.h"
 
 void BaseMonster::IdleStateInit()
 {
@@ -158,7 +159,23 @@ void BaseMonster::DeathStateInit()
 			.Name = "Death",
 			.Start = [this]()
 			{
-				MonsterRenderer->ChangeAnimation("Death");
+				PopText::CreatePopText(Hit,DynamicThis<GameEngineActor>());
+				if (nullptr != MonsterRenderer->FindAnimation("Death_Explosion"))
+				{
+					if (Hit == HitState::Bomb)
+					{
+						MonsterRenderer->ChangeAnimation("Death_Explosion");
+					}
+					else
+					{
+						MonsterRenderer->ChangeAnimation("Death");
+					}
+				}
+				else
+				{
+					MonsterRenderer->ChangeAnimation("Death");
+				}
+
 				LifeBar->Off();
 				LifeBarBg->Off();
 				MonsterCol->Off();
