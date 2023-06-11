@@ -393,9 +393,6 @@
     <Filter Include="3.PlayStage\Level">
       <UniqueIdentifier>{7f7abad1-8497-4685-aa31-171076a77f41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.Base">
-      <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
       <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
     </Filter>
@@ -440,6 +437,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\2.MagicTower">
       <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.Base">
+      <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

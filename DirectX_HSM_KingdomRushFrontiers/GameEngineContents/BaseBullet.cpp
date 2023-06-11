@@ -62,9 +62,11 @@ void BaseBullet::CalBezierMid()
 
 	Mid0.x = ParentPos.x + ((TargetPos.x - ParentPos.x) / 4);
 	Mid0.y = max(TargetPos.y, ParentPos.y) + 150.f;
+	Mid0.z = ParentPos.z + ((TargetPos.z - ParentPos.z) / 4);
 
 	Mid1.x = TargetPos.x - ((TargetPos.x - ParentPos.x) / 4);
 	Mid1.y = max(TargetPos.y, ParentPos.y) + 150.f;
+	Mid1.z = ParentPos.z + ((TargetPos.z - ParentPos.z) / 4);
 }
 
 void BaseBullet::CalBezierBulletTransform(const float4& _P0, const float4& _P1, const float4& _P2, const float4& _P3, float _Ratio)
