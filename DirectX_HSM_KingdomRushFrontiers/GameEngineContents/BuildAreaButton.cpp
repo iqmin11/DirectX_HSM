@@ -2,6 +2,7 @@
 #include "BuildAreaButton.h"
 
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BuildArea.h"
 #include "BuildTowerUI.h"
 
@@ -32,6 +33,7 @@ std::shared_ptr<BuildAreaButton> BuildAreaButton::CreateButton(BuildArea* _Paren
 void BuildAreaButton::Start()
 {
 	ContentsButton::Start();
+	//Render->SetOrder(static_cast<int>(UIRenderOrder::TowerButton));
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "InvisibleTexture.png";
 	HoverTextureName = "InvisibleTexture.png";

@@ -19,6 +19,19 @@ enum class RenderOrder
 	MousePointer,
 };
 
+enum class UIRenderOrder
+{
+	Null = -1,
+	TowerButton,
+	BuildBarBg,
+	BuildBar,
+	TowerUI,
+	TowerUIButton,
+	TowerRange,
+	StageUI,
+	MousePoint
+};
+
 enum class ColOrder
 {
 	TowerRange,

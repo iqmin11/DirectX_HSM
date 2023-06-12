@@ -2,6 +2,7 @@
 #include "BaseShootingTower.h"
 
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BaseShooter.h"
 #include "BaseMonster.h"
 
@@ -19,6 +20,7 @@ void BaseShootingTower::Start()
 {
 	BaseTower::Start();
 	//TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
+	//TowerRangeRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerRange);
 	//TowerRangeRender->SetTexture("range_circle.png");
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::TowerRange);
 }

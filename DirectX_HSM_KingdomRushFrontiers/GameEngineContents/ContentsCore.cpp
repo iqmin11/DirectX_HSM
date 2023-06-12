@@ -18,7 +18,6 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::GameStart()
 {
-	//GameEngineGUI::GUIWindowCreate<GameEngineCoreWindow>("CoreWindow");
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();

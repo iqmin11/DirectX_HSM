@@ -46,12 +46,12 @@ void BaseTower::Start()
 	UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(this);
 	UpgradeUI->GetTransform()->SetLocalPosition(UpgradeUILocPos);
 
-	BuildBarBg = CreateComponent<GameEngineUIRenderer>();
+	BuildBarBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::BuildBarBg);
 	BuildBarBg->SetTexture("buildbar_bg.png");
 	BuildBarBg->GetTransform()->SetWorldScale(BuildBarBgScale);
 	BuildBarBg->GetTransform()->SetLocalPosition({ 0,50,-1 });
 
-	BuildBar = CreateComponent<GameEngineUIRenderer>();
+	BuildBar = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::BuildBar);
 	BuildBar->SetTexture("buildbar.png");
 	BuildBar->GetTransform()->SetWorldScale({ 0,8,1 });
 	BuildBar->GetTransform()->SetLocalPosition({ 0,50,-2 });

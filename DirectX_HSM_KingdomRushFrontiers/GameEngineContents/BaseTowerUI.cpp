@@ -30,7 +30,7 @@ void BaseTowerUI::OffUI()
 
 void BaseTowerUI::Start()
 {
-	RingRender = CreateComponent<GameEngineUIRenderer>();
+	RingRender = CreateComponent<GameEngineUIRenderer>(/*UIRenderOrder::TowerUI*/);
 	RingRender->SetTexture("gui_ring.png");
 	RingRender->GetTransform()->SetWorldScale(RingRenderScale);
 	RingRender->GetTransform()->SetParent(GetTransform());
