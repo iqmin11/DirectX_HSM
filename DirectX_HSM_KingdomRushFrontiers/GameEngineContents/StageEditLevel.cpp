@@ -70,10 +70,10 @@ void StageEditLevel::LevelChangeStart()
 		Editor = std::dynamic_pointer_cast<StageEditor>(NewWindow);
 	}
 
-	Editor->On();
+	//Editor->On();
 }
 
 void StageEditLevel::LevelChangeEnd()
 {
-	Editor->Off();
+	//Editor->Off();
 }

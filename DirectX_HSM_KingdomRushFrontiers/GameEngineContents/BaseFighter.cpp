@@ -15,7 +15,14 @@ BaseFighter::BaseFighter()
 
 BaseFighter::~BaseFighter()
 {
-
+	if (TargetMonster != nullptr)
+	{
+		if (TargetMonster->TargetFighter != nullptr)
+		{
+			TargetMonster->TargetFighter = nullptr;
+		}
+		TargetMonster = nullptr;
+	}
 }
 
 void BaseFighter::ResetRatio()

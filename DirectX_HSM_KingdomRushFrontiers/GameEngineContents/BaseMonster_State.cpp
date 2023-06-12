@@ -103,6 +103,14 @@ void BaseMonster::AttackStateInit()
 			.Name = "Attack",
 			.Start = [this]()
 			{
+				if (0.f <= GetTransform()->GetWorldPosition().x - TargetFighter->GetTransform()->GetWorldPosition().x)
+				{
+					MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
+				}
+				else
+				{
+					MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();
+				}
 				MonsterRenderer->ChangeAnimation("Attack");
 			},
 			.Update = [this](float _DeltaTime)
@@ -141,6 +149,14 @@ void BaseMonster::AttackStateInit()
 				AttackTime += _DeltaTime;
 				if (AttackTime >= Data.AttackRate)
 				{
+					if (0.f <= GetTransform()->GetWorldPosition().x - TargetFighter->GetTransform()->GetWorldPosition().x)
+					{
+						MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
+					}
+					else
+					{
+						MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();
+					}
 					AttackTime = 0.f;
 					MonsterRenderer->ChangeAnimation("Attack");
 				}

@@ -41,8 +41,6 @@ void BaseFighter::IdleStateInit()
 				FighterFSM.ChangeState("TraceMonster");
 				return;
 			}
-			
-
 		},
 		.End = [this]()
 		{
