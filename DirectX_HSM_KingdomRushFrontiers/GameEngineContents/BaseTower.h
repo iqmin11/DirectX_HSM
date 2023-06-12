@@ -2,6 +2,12 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsData.h"
 
+enum class ConstructState
+{
+	Constructing,
+	Complete
+};
+
 class BaseTower : public GameEngineActor
 {
 public:
@@ -34,9 +40,13 @@ protected:
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerAreaRenderer = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> BuildBarBg = nullptr;
+	float4 BuildBarBgScale = { 58,12,1 };
+	std::shared_ptr<class GameEngineUIRenderer> BuildBar = nullptr;
+	float4 BuildBarScale = { 54,8,1 };
 
 	std::shared_ptr<class TowerButton> UpgradeButton = nullptr;
-
+	ConstructState Construct = ConstructState::Constructing;
 private:
 	float4 UpgradeUILocPos = { 0,15,-1000 };
 };

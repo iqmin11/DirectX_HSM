@@ -4,9 +4,11 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Magic_Shooter.h"
 #include "BuildArea.h"
+#include "TowerButton.h"
 
 const float4 Magic_Tower::Lv1ShooterLocalPos = { 1,47, -47 };
 const float4 Magic_Tower::Lv2ShooterLocalPos = { 1,49, -49 };
@@ -39,6 +41,7 @@ void Magic_Tower::Start()
 	BaseShootingTower::Start();
 	Data.SetData(TowerEnum::MagicTower_Level1);
 	
+	TowerRenderer->CreateAnimation({ .AnimationName = "Construct", .SpriteName = "MagicTower_Construct",.FrameInter = 0.15f, .Loop = false});
 	TowerRenderer->CreateAnimation({ .AnimationName = "1_Attack", .SpriteName = "MagicTower_Level1_Attack",.FrameInter = 0.15f, .Loop = false});
 	TowerRenderer->CreateAnimation({ .AnimationName = "1_Idle", .SpriteName = "MagicTower_Level1_Idle", .Loop = false});
 	TowerRenderer->CreateAnimation({ .AnimationName = "2_Attack", .SpriteName = "MagicTower_Level2_Attack",.FrameInter = 0.15f, .Loop = false });
@@ -46,7 +49,7 @@ void Magic_Tower::Start()
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Attack", .SpriteName = "MagicTower_Level3_Attack",.FrameInter = 0.15f, .Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Idle", .SpriteName = "MagicTower_Level3_Idle", .Loop = false });
 
-	TowerRenderer->ChangeAnimation("1_Idle");
+	TowerRenderer->ChangeAnimation("Construct");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
 	Shooter = GetLevel()->CreateActor<Magic_Shooter>();
@@ -54,33 +57,50 @@ void Magic_Tower::Start()
 	Shooter->GetTransform()->SetLocalPosition(Lv1ShooterLocalPos);
 	//Shooter->SetTowerData(&Data);
 	Shooter->SetParentTower(this);
+	Shooter->Off();
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	RangeCol->Off();
 }
 
 void Magic_Tower::Update(float _DeltaTime)
 {
-	BaseShootingTower::Update(_DeltaTime);
-
-	if (GameEngineInput::IsUp("M"))
-	{
-		ChangeTower(TowerEnum::MagicTower_Level3);
-	}
-
-	if (IsThereTarget())
+	if (Construct == ConstructState::Constructing)
 	{
 		Time += _DeltaTime;
-		if (Time >= Data.FireRate)
+		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({ 0,8,1 }, BuildBarScale, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50,-2 }, { 0,50,-2 }, Time));
+
+		if (Time >= 1.f)
 		{
 			Time = 0;
-			MagicAttack();
+			Construct = ConstructState::Complete;
+			BuildBar->Off();
+			BuildBarBg->Off();
+
+			Shooter->On();
+			RangeCol->On();
+			UpgradeButton->On();
 		}
 	}
 	else
 	{
-		Shooter->StateValue = ShooterState::Idle;
-		TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
+		BaseShootingTower::Update(_DeltaTime);
+		if (IsThereTarget())
+		{
+			Time += _DeltaTime;
+			if (Time >= Data.FireRate)
+			{
+				Time = 0;
+				MagicAttack();
+			}
+		}
+		else
+		{
+			Shooter->StateValue = ShooterState::Idle;
+			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
+		}
 	}
 }
 

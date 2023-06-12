@@ -4,7 +4,9 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "TowerButton.h"
 
 #include "Artillery_Bullet.h"
 #include "BuildArea.h"
@@ -38,6 +40,7 @@ void Artillery_Tower::Start()
 	BaseShootingTower::Start();
 	Data.SetData(TowerEnum::ArtilleryTower_Level1);
 
+	TowerRenderer->CreateAnimation({ .AnimationName = "Construct", .SpriteName = "ArtilleryTower_Construct",.FrameInter = 0.08f,.Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "1_Attack", .SpriteName = "ArtilleryTower_Level1_Attack",.FrameInter = 0.08f,.Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "1_Idle", .SpriteName = "ArtilleryTower_Level1_Idle",.FrameInter = 0.08f,.Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "2_Attack", .SpriteName = "ArtilleryTower_Level2_Attack",.FrameInter = 0.08f,.Loop = false });
@@ -49,7 +52,7 @@ void Artillery_Tower::Start()
 	TowerRenderer->SetAnimationStartEvent("2_Attack",4,std::bind(&Artillery_Tower::ArtilleryAttack,this));
 	TowerRenderer->SetAnimationStartEvent("3_Attack",4,std::bind(&Artillery_Tower::ArtilleryAttack,this));
 
-	TowerRenderer->ChangeAnimation("1_Idle");
+	TowerRenderer->ChangeAnimation("Construct");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
 	FireSmokeRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
@@ -61,28 +64,49 @@ void Artillery_Tower::Start()
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	RangeCol->Off();
 }
 
 void Artillery_Tower::Update(float _DeltaTime)
 {
-	BaseShootingTower::Update(_DeltaTime);
-	if (GameEngineInput::IsUp("M"))
-	{
-		ChangeTower(TowerEnum::ArtilleryTower_Level3);
-	}
-
-	if (IsThereTarget())
+	if (Construct == ConstructState::Constructing)
 	{
 		Time += _DeltaTime;
-		if (Time >= Data.FireRate)
+		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({ 0,8,1 }, BuildBarScale, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50,-2 }, { 0,50,-2 }, Time));
+
+		if (Time >= 1.f)
 		{
 			Time = 0;
-			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+			Construct = ConstructState::Complete;
+			BuildBar->Off();
+			BuildBarBg->Off();
+
+			RangeCol->On();
+			UpgradeButton->On();
 		}
 	}
 	else
 	{
-		TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
+		BaseShootingTower::Update(_DeltaTime);
+		if (GameEngineInput::IsUp("M"))
+		{
+			ChangeTower(TowerEnum::ArtilleryTower_Level3);
+		}
+
+		if (IsThereTarget())
+		{
+			Time += _DeltaTime;
+			if (Time >= Data.FireRate)
+			{
+				Time = 0;
+				TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+			}
+		}
+		else
+		{
+			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
+		}
 	}
 }
 

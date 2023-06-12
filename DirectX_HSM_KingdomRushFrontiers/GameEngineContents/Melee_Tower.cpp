@@ -4,8 +4,10 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include "Melee_RallyPoint.h"
 #include "BuildArea.h"
+#include "TowerButton.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -23,10 +25,7 @@ std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc = _Level->CreateActor<Melee_Tower>();
 	LocalAc->ParentArea = _BuildArea;
 	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
-	LocalAc->AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(_Level, _BuildArea->GetTransform()->GetWorldPosition(), 3);
-	LocalAc->AcRallyPoint->GetTransform()->SetParent(LocalAc->GetTransform());
-	LocalAc->AcRallyPoint->GetTransform()->SetWorldPosition(_BuildArea->GetRallyPos());
-	LocalAc->AcRallyPoint->SetTowerData(&(LocalAc->Data));
+
 	return LocalAc;
 }
 
@@ -36,15 +35,33 @@ void Melee_Tower::Start()
 
 	Data.SetData(TowerEnum::MeleeTower_Level1);
 
-	TowerRenderer->SetTexture("tower_barracks_lvl1.png");
+	TowerRenderer->SetTexture("tower_constructing_0002.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 }
 
 void Melee_Tower::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsDown("M"))
+	if (Construct == ConstructState::Constructing)
 	{
-		ChangeTower(TowerEnum::MeleeTower_Level3);
+		Time += _DeltaTime;
+		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({ 0,8,1 }, BuildBarScale, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50,-2 }, { 0,50,-2 }, Time));
+
+		if (Time >= 1.f)
+		{
+			Time = 0;
+			Construct = ConstructState::Complete;
+			BuildBar->Off();
+			BuildBarBg->Off();
+
+			TowerRenderer->SetTexture("tower_barracks_lvl1.png");
+			UpgradeButton->On();
+
+			AcRallyPoint = Melee_RallyPoint::CreateRallyPoint(GetLevel(), ParentArea->GetTransform()->GetWorldPosition(), 3);
+			AcRallyPoint->GetTransform()->SetParent(GetTransform());
+			AcRallyPoint->GetTransform()->SetWorldPosition(ParentArea->GetRallyPos());
+			AcRallyPoint->SetTowerData(&Data);
+		}
 	}
 }
 

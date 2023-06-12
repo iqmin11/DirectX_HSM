@@ -25,6 +25,8 @@ private:
 	float4 RenderScale = { 256,256,1 };
 	std::shared_ptr<class Melee_RallyPoint> AcRallyPoint = nullptr;
 
+	float Time = 0.f;
+
 	void ChangeTowerRender(int _TowerLevel);
 	void ChangeFighter(int _TowerLevel);
 };

@@ -321,6 +321,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 
 	Dir.MoveParentToDirectory("RangedTowerShooterAnimation");
 	Dir.Move("MagicTower");
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Construct").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level1_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level1_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level2_Attack").GetFullPath());
@@ -341,6 +342,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	Dir.MoveParentToDirectory("MagicTowerShooterAnimation");
 	Dir.Move("ArtilleryTower");
 
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Construct").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level1_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level1_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_Level2_Attack").GetFullPath());

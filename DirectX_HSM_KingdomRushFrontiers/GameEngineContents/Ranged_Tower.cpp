@@ -4,9 +4,11 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Ranged_Shooter.h"
 #include "BuildArea.h"
+#include "TowerButton.h"
 
 const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47, -47 };
 const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47, -47 };
@@ -108,7 +110,7 @@ void Ranged_Tower::Start()
 
 	Data.SetData(TowerEnum::RangedTower_Level1);
 
-	TowerRenderer->SetTexture("archer_tower_0001.png");
+	TowerRenderer->SetTexture("tower_constructing_0004.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
 	Shooter0 = GetLevel()->CreateActor<Ranged_Shooter>();
@@ -116,33 +118,53 @@ void Ranged_Tower::Start()
 	Shooter0->GetTransform()->SetLocalPosition(Lv1Shooter0LocalPos);
 	//Shooter0->SetTowerData(&Data);
 	Shooter0->SetParentTower(this);
+	Shooter0->Off();
 	Shooter1 = GetLevel()->CreateActor<Ranged_Shooter>();
 	Shooter1->GetTransform()->SetParent(GetTransform());
 	Shooter1->GetTransform()->SetLocalPosition(Lv1Shooter1LocalPos);
 	//Shooter1->SetTowerData(&Data);
 	Shooter1->SetParentTower(this);
+	Shooter1->Off();
 
 	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	RangeCol->Off();
 	//Attack = std::bind(&Ranged_Tower::RangerAttack, this);
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
 {
-	BaseShootingTower::Update(_DeltaTime);
-	//Test
-	if (GameEngineInput::IsUp("M"))
-	{
-		ChangeTower(TowerEnum::RangedTower_Level3);
-	}
-
-	if (IsThereTarget())
+	if (Construct == ConstructState::Constructing)
 	{
 		Time += _DeltaTime;
-		if (Time >= Data.FireRate)
+		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({0,8,1}, BuildBarScale, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({-27,50,-2}, { 0,50,-2 }, Time));
+
+		if (Time >= 1.f)
 		{
 			Time = 0;
-			RangerAttack();
+			Construct = ConstructState::Complete;
+			BuildBar->Off();
+			BuildBarBg->Off();
+
+			TowerRenderer->SetTexture("archer_tower_0001.png");
+			Shooter0->On();
+			Shooter1->On();
+			RangeCol->On();
+			UpgradeButton->On();
+		}
+	}
+	else
+	{
+		BaseShootingTower::Update(_DeltaTime);
+		if (IsThereTarget())
+		{
+			Time += _DeltaTime;
+			if (Time >= Data.FireRate)
+			{
+				Time = 0;
+				RangerAttack();
+			}
 		}
 	}
 }
