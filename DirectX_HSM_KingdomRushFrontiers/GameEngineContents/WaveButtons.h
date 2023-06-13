@@ -29,5 +29,7 @@ private:
 	std::vector<float4> Positions = std::vector<float4>();
 	std::vector<std::shared_ptr<class NextWaveStartButton>> Buttons = std::vector<std::shared_ptr<class NextWaveStartButton>>();
 	std::function<void()> Click = nullptr;
+	float AutoStartTime = 40.f;
+	float Time = 0.f;
 };
 

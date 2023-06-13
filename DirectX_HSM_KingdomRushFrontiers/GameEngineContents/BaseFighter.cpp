@@ -158,4 +158,22 @@ void BaseFighter::UpdateLifeBar()
 	LifeBar->GetTransform()->SetLocalPosition(CurHpBarXPos);
 }
 
+void BaseFighter::IdleAutoHeal(float _DeltaTime)
+{
+	if (CurHP >= Data.Hp)
+	{
+		CurHP = Data.Hp;
+		Time = 0.f;
+	}
+	else
+	{
+		HealTime += _DeltaTime;
+		if (HealTime >= 0.5f)
+		{
+			CurHP += (Data.Hp / 10);
+			HealTime = 0.f;
+		}
+	}
+}
+
 

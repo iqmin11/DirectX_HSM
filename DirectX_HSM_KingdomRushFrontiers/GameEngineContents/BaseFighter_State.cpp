@@ -41,10 +41,17 @@ void BaseFighter::IdleStateInit()
 				FighterFSM.ChangeState("TraceMonster");
 				return;
 			}
+
+			Time += _DeltaTime;
+			if (Time >= 3)
+			{
+				IdleAutoHeal(_DeltaTime);
+			}
 		},
 		.End = [this]()
 		{
-
+			Time = 0.f;
+			HealTime = 0.f;
 		} 
 		});
 }

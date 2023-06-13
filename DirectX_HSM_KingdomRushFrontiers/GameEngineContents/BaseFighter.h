@@ -120,6 +120,7 @@ private:
 	float Ratio = 0.f;
 	bool IsChangeTarget = false;
 
+	float HealTime = 0.f;
 	float DeathTime = 0.f;
 
 	void MoveToRally(float _DeltaTime);
@@ -127,7 +128,7 @@ private:
 	void MoveToTarget(float _DeltaTime);
 
 	void UpdateLifeBar();
-
+	void IdleAutoHeal(float _DeltaTime);
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;

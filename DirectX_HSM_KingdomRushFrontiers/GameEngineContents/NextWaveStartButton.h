@@ -32,7 +32,6 @@ private:
 	int Wave = -1;
 	float Time = 0.f;
 	
-	float AutoStartTime = 40.f;
 
 	void ButtonEffect();
 };

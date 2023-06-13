@@ -65,20 +65,6 @@ void NextWaveStartButton::Update(float _DeltaTime)
 
 	Time += _DeltaTime;
 	ButtonEffect();
-	
-	if (Wave != 0)
-	{
-		if (AutoStartTime <= Time)
-		{
-			dynamic_cast<PlayStageLevel*>(GetLevel())->StartNextWave();
-			Death(); 
-		}
-	}
-	else
-	{
-		//첫번쨰 웨이브인 경우
-	}
-	
 }
 
 void NextWaveStartButton::ButtonEffect()

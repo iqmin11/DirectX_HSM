@@ -47,5 +47,18 @@ void WaveButtons::Start()
 
 void WaveButtons::Update(float _DeltaTime)
 {
-
+	Time += _DeltaTime;
+	if (Wave != 0)
+	{
+		if (AutoStartTime <= Time)
+		{
+			Time = 0.f;
+			dynamic_cast<PlayStageLevel*>(GetLevel())->StartNextWave();
+			Death();
+		}
+	}
+	else
+	{
+		//첫번쨰 웨이브인 경우
+	}
 }
