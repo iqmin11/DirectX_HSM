@@ -29,6 +29,8 @@ std::shared_ptr<BuildArea> BuildArea::CreateBuildArea(GameEngineLevel* _Level, c
 	Result->ActorPos = _ActorPos;
 	Result->RallyPos = _RallyPos;
 	Result->GetTransform()->SetWorldPosition(Result->ActorPos);
+	Result->AreaButton = BuildAreaButton::CreateButton(Result.get());
+	Result->BuildUI = BuildTowerUI::CreateBuildTowerUI(Result.get());
 	return Result;
 }
 
@@ -69,9 +71,8 @@ void BuildArea::Start()
 	BuildAreaRenderer->GetTransform()->SetWorldScale(RenderScale);
 	BuildAreaCol = CreateComponent<GameEngineCollision>(ColOrder::Tower);
 	BuildAreaCol->GetTransform()->SetWorldScale(ColScale);
-	AreaButton = BuildAreaButton::CreateButton(this);
-	BuildUI = BuildTowerUI::CreateBuildTowerUI(this);
-	BuildUI->GetTransform()->SetLocalPosition(BuildUILocPos);
+
+	//BuildUI->GetTransform()->SetLocalPosition(BuildUILocPos);
 }
 
 void BuildArea::Update(float _DeltaTime)

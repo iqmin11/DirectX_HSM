@@ -54,7 +54,6 @@ void ContentsButton::SetTextureName(const std::string_view& _Release, const std:
 
 void ContentsButton::Start()
 {
-	Render = CreateComponent<GameEngineUIRenderer>();
 }
 
 void ContentsButton::Update(float _Delta)

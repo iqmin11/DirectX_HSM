@@ -33,6 +33,8 @@ std::shared_ptr<Magic_Tower> Magic_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	LocalAc->Shooter->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter->GetTransform()->SetParent(LocalAc->GetTransform());
+	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
+	LocalAc->UpgradeButton->Off();
 	return LocalAc;
 }
 
@@ -70,7 +72,7 @@ void Magic_Tower::Update(float _DeltaTime)
 	{
 		Time += _DeltaTime;
 		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({ 0,8,1 }, BuildBarScale, Time));
-		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50,-2 }, { 0,50,-2 }, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50 }, { 0,50 }, Time));
 
 		if (Time >= 1.f)
 		{

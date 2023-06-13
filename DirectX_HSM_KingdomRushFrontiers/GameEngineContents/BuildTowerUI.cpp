@@ -23,7 +23,8 @@ BuildTowerUI::~BuildTowerUI()
 std::shared_ptr<BuildTowerUI> BuildTowerUI::CreateBuildTowerUI(BuildArea* _ParentArea)
 {
 	std::shared_ptr<BuildTowerUI> ResultUI = _ParentArea->GetLevel()->CreateActor<BuildTowerUI>();
-	ResultUI->GetTransform()->SetWorldPosition(_ParentArea->GetTransform()->GetWorldPosition());
+	float4 ParentPos = _ParentArea->GetTransform()->GetWorldPosition();
+	ResultUI->GetTransform()->SetWorldPosition({ ParentPos.x ,ParentPos.y, 0 });
 	ResultUI->ParentArea = _ParentArea;
 	ResultUI->GetTransform()->SetParent(_ParentArea->GetTransform());
 	ResultUI->Off();

@@ -17,7 +17,8 @@ BuildRangedButton::~BuildRangedButton()
 std::shared_ptr<BuildRangedButton> BuildRangedButton::CreateButton(BuildTowerUI* _UI)
 {
 	std::shared_ptr<BuildRangedButton> ResultButton = _UI->GetLevel()->CreateActor<BuildRangedButton>();
-	ResultButton->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	float4 UIPos = _UI->GetTransform()->GetWorldPosition();
+	ResultButton->GetTransform()->SetWorldPosition({ UIPos.x, UIPos.y });
 	ResultButton->SetParentActor(_UI);
 	ResultButton->SetEvent([_UI]()
 		{

@@ -21,10 +21,6 @@ RallyPoint::~RallyPoint()
 
 void RallyPoint::Start()
 {
-	//TestRallyRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	//TestRallyRender->SetTexture("TestRally.png");
-	//TestRallyRender->GetTransform()->SetWorldScale({ 128,128,1 });
-
 	//RangeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	//RangeRender->SetTexture("range_circle.png");
 	//RangeRender->GetTransform()->SetWorldScale({ Range*2.f,Range*2.f,0.f });

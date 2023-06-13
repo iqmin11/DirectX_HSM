@@ -17,7 +17,8 @@ BuildMagicButton::~BuildMagicButton()
 std::shared_ptr<BuildMagicButton> BuildMagicButton::CreateButton(BuildTowerUI* _UI)
 {
 	std::shared_ptr<BuildMagicButton> ResultButton = _UI->GetLevel()->CreateActor<BuildMagicButton>();
-	ResultButton->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	float4 UIPos = _UI->GetTransform()->GetWorldPosition();
+	ResultButton->GetTransform()->SetWorldPosition({ UIPos.x, UIPos.y });
 	ResultButton->SetParentActor(_UI);
 	ResultButton->SetEvent([_UI]()
 		{

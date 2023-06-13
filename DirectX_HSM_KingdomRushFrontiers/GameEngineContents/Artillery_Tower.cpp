@@ -32,6 +32,8 @@ std::shared_ptr<Artillery_Tower> Artillery_Tower::CreateTower(GameEngineLevel* _
 	LocalAc = _Level->CreateActor<Artillery_Tower>();
 	LocalAc->ParentArea = _BuildArea;
 	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
+	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
+	LocalAc->UpgradeButton->Off();
 	return LocalAc;
 }
 
@@ -73,7 +75,7 @@ void Artillery_Tower::Update(float _DeltaTime)
 	{
 		Time += _DeltaTime;
 		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({ 0,8,1 }, BuildBarScale, Time));
-		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50,-2 }, { 0,50,-2 }, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({ -27,50 }, { 0,50 }, Time));
 
 		if (Time >= 1.f)
 		{

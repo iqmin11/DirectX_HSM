@@ -9,6 +9,7 @@
 #include "Ranged_Shooter.h"
 #include "BuildArea.h"
 #include "TowerButton.h"
+#include "UpgradeTowerUI.h"
 
 const float4 Ranged_Tower::Lv1Shooter0LocalPos = { 14,47, -47 };
 const float4 Ranged_Tower::Lv1Shooter1LocalPos = { -10,47, -47 };
@@ -39,6 +40,9 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 	LocalAc->Shooter1->SetTargetPos(LocalAc->TargetPos);
 	LocalAc->Shooter0->GetTransform()->SetParent(LocalAc->GetTransform());
 	LocalAc->Shooter1->GetTransform()->SetParent(LocalAc->GetTransform());
+	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
+	LocalAc->UpgradeButton->Off();
+	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
 	return LocalAc;
 }
 
@@ -138,7 +142,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 	{
 		Time += _DeltaTime;
 		BuildBar->GetTransform()->SetWorldScale(float4::LerpClamp({0,8,1}, BuildBarScale, Time));
-		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({-27,50,-2}, { 0,50,-2 }, Time));
+		BuildBar->GetTransform()->SetLocalPosition(float4::LerpClamp({-27,50}, {0,50}, Time));
 
 		if (Time >= 1.f)
 		{

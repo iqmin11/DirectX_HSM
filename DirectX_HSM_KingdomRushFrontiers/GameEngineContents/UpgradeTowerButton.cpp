@@ -2,6 +2,7 @@
 #include "UpgradeTowerButton.h"
 
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include "UpgradeTowerUI.h"
 #include "BaseTower.h"
 
@@ -18,7 +19,8 @@ UpgradeTowerButton::~UpgradeTowerButton()
 std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowerUI* _UI)
 {
 	std::weak_ptr<UpgradeTowerButton> ResultButton(_UI->GetLevel()->CreateActor<UpgradeTowerButton>());
-	ResultButton.lock()->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	float4 UIPos = _UI->GetTransform()->GetWorldPosition();
+	ResultButton.lock()->GetTransform()->SetWorldPosition({ UIPos .x, UIPos .y, 0});
 	ResultButton.lock()->GetTransform()->SetParent(_UI->GetTransform());
 	ResultButton.lock()->SetParentActor(_UI);
 	ResultButton.lock()->SetEvent([ResultButton]()
@@ -37,6 +39,7 @@ std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowe
 void UpgradeTowerButton::Start()
 {
 	ContentsButton::Start();
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "main_icons_0005.png";
 	HoverTextureName = "main_icons_0005.png";

@@ -30,11 +30,11 @@ void BaseTowerUI::OffUI()
 
 void BaseTowerUI::Start()
 {
-	RingRender = CreateComponent<GameEngineUIRenderer>(/*UIRenderOrder::TowerUI*/);
+	RingRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUI);
 	RingRender->SetTexture("gui_ring.png");
 	RingRender->GetTransform()->SetWorldScale(RingRenderScale);
 	RingRender->GetTransform()->SetParent(GetTransform());
-	RingRender->GetTransform()->SetLocalPosition({0,0,-1000});
+	RingRender->GetTransform()->SetLocalPosition({0,0,0});
 }
 
 void BaseTowerUI::Update(float _DeltaTime)

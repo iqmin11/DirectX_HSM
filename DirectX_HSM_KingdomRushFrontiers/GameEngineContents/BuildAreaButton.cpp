@@ -19,7 +19,8 @@ BuildAreaButton::~BuildAreaButton()
 std::shared_ptr<BuildAreaButton> BuildAreaButton::CreateButton(BuildArea* _ParentArea)
 {
 	std::shared_ptr<BuildAreaButton> ResultAreaButton = _ParentArea->GetLevel()->CreateActor<BuildAreaButton>();
-	ResultAreaButton->GetTransform()->SetWorldPosition(_ParentArea ->GetTransform()->GetWorldPosition());
+	float4 ParentPos = _ParentArea->GetTransform()->GetWorldPosition();
+	ResultAreaButton->GetTransform()->SetWorldPosition({ ParentPos.x, ParentPos.y, 0 });
 	ResultAreaButton->SetParentActor(_ParentArea);
 	ResultAreaButton->SetEvent(
 		[_ParentArea]()
@@ -33,7 +34,7 @@ std::shared_ptr<BuildAreaButton> BuildAreaButton::CreateButton(BuildArea* _Paren
 void BuildAreaButton::Start()
 {
 	ContentsButton::Start();
-	//Render->SetOrder(static_cast<int>(UIRenderOrder::TowerButton));
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerButton);
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "InvisibleTexture.png";
 	HoverTextureName = "InvisibleTexture.png";

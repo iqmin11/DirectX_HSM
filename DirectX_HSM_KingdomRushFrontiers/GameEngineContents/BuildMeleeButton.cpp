@@ -17,7 +17,8 @@ BuildMeleeButton::~BuildMeleeButton()
 std::shared_ptr<BuildMeleeButton> BuildMeleeButton::CreateButton(BuildTowerUI* _UI)
 {
 	std::shared_ptr<BuildMeleeButton> ResultButton = _UI->GetLevel()->CreateActor<BuildMeleeButton>();
-	ResultButton->GetTransform()->SetWorldPosition(_UI->GetTransform()->GetWorldPosition());
+	float4 UIPos = _UI->GetTransform()->GetWorldPosition();
+	ResultButton->GetTransform()->SetWorldPosition({ UIPos.x, UIPos.y });
 	ResultButton->SetParentActor(_UI);
 	ResultButton->SetEvent([_UI]()
 		{

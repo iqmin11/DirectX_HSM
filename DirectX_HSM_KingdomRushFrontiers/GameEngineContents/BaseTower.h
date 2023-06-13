@@ -47,7 +47,7 @@ protected:
 
 	std::shared_ptr<class TowerButton> UpgradeButton = nullptr;
 	ConstructState Construct = ConstructState::Constructing;
+	float4 UpgradeUILocPos = { 0,15 };
 private:
-	float4 UpgradeUILocPos = { 0,15,-1000 };
 };
 

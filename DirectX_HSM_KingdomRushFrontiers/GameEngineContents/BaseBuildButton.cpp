@@ -16,8 +16,8 @@ BaseBuildButton::~BaseBuildButton()
 void BaseBuildButton::Start()
 {
 	ContentsButton::Start();
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	GetTransform()->SetWorldScale(Scale);
-	//Render->SetOrder(static_cast<int>(UIRenderOrder::TowerUIButton));
 }
 
 void BaseBuildButton::Update(float _DeltaTime)
