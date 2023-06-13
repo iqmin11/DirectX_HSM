@@ -9,6 +9,7 @@
 #include "Magic_Shooter.h"
 #include "BuildArea.h"
 #include "TowerButton.h"
+#include "UpgradeTowerUI.h"
 
 const float4 Magic_Tower::Lv1ShooterLocalPos = { 1,47, -47 };
 const float4 Magic_Tower::Lv2ShooterLocalPos = { 1,49, -49 };
@@ -35,6 +36,7 @@ std::shared_ptr<Magic_Tower> Magic_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->Shooter->GetTransform()->SetParent(LocalAc->GetTransform());
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
+	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
 	return LocalAc;
 }
 

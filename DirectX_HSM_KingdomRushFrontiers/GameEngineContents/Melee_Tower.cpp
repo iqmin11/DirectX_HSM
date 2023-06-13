@@ -8,6 +8,7 @@
 #include "Melee_RallyPoint.h"
 #include "BuildArea.h"
 #include "TowerButton.h"
+#include "UpgradeTowerUI.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -27,6 +28,7 @@ std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
+	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
 	return LocalAc;
 }
 
