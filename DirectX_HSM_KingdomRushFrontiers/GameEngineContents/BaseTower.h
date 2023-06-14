@@ -33,6 +33,7 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 protected:
 	class BuildArea* ParentArea = nullptr;
@@ -48,6 +49,11 @@ protected:
 	std::shared_ptr<class TowerButton> UpgradeButton = nullptr;
 	ConstructState Construct = ConstructState::Constructing;
 	float4 UpgradeUILocPos = { 0,15 };
+
+	std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
+	std::shared_ptr<class GameEngineSpriteRenderer> NextLvRangeRender = nullptr;
+	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
+
 private:
 };
 

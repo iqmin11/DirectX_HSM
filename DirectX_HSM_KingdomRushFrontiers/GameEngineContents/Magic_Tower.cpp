@@ -37,6 +37,9 @@ std::shared_ptr<Magic_Tower> Magic_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
 	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
+	float4 Position = LocalAc->GetTransform()->GetWorldPosition();
+	LocalAc->TowerRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
+	LocalAc->NextLvRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
 	return LocalAc;
 }
 
@@ -63,7 +66,10 @@ void Magic_Tower::Start()
 	Shooter->SetParentTower(this);
 	Shooter->Off();
 
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->Off();
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	NextLvRangeRender->Off();
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
 }
@@ -122,7 +128,8 @@ void Magic_Tower::ChangeTower(TowerEnum _Tower)
 void Magic_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->ChangeAnimation(std::to_string(_TowerLevel) + "_Idle");
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 

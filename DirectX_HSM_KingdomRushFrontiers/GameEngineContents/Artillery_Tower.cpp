@@ -36,6 +36,9 @@ std::shared_ptr<Artillery_Tower> Artillery_Tower::CreateTower(GameEngineLevel* _
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
 	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
+	float4 Position = LocalAc->GetTransform()->GetWorldPosition();
+	LocalAc->TowerRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
+	LocalAc->NextLvRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
 	return LocalAc;
 }
 
@@ -66,7 +69,10 @@ void Artillery_Tower::Start()
 	FireSmokeRenderer->ChangeAnimation("Fire");
 	FireSmokeRenderer->Off();
 
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->Off();
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	NextLvRangeRender->Off();
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
 }
@@ -127,7 +133,8 @@ void Artillery_Tower::ChangeTower(TowerEnum _Tower)
 void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->ChangeAnimation(std::to_string(_TowerLevel) + "_Idle");
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 
 	switch (_TowerLevel)

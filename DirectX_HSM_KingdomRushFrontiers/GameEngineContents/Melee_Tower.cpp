@@ -29,6 +29,9 @@ std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
 	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
+	float4 Position = LocalAc->GetTransform()->GetWorldPosition();
+	LocalAc->TowerRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
+	LocalAc->NextLvRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
 	return LocalAc;
 }
 
@@ -38,12 +41,19 @@ void Melee_Tower::Start()
 
 	Data.SetData(TowerEnum::MeleeTower_Level1);
 
+	TowerRangeRender->SetTexture("rally_circle.png");
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->Off();
+	NextLvRangeRender->SetTexture("rally_circle.png");
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	NextLvRangeRender->Off();
 	TowerRenderer->SetTexture("tower_constructing_0002.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 }
 
 void Melee_Tower::Update(float _DeltaTime)
 {
+	BaseTower::Update(_DeltaTime);
 	if (Construct == ConstructState::Constructing)
 	{
 		Time += _DeltaTime;
@@ -82,8 +92,9 @@ void Melee_Tower::ChangeTower(TowerEnum _Tower)
 void Melee_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->SetTexture("tower_barracks_lvl" + std::to_string(_TowerLevel) + ".png");
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	//RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
 void Melee_Tower::ChangeFighter(int _TowerLevel)

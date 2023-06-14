@@ -58,18 +58,18 @@ void TestLevel::Start()
 	//TestButton->GetTransform()->SetWorldScale({ 100, 100 });
 
 	//TestPopText = CreateActor<PopText>();
-	std::shared_ptr<GameEngineActor> Test = CreateActor<GameEngineActor>();
-	Test->GetTransform()->SetWorldPosition({300, 300});
-	std::shared_ptr<GameEngineUIRenderer> TestRender = Test->CreateComponent<GameEngineUIRenderer>();
-	TestRender->GetTransform()->SetWorldScale({200, 200, 1});
-	TestRender->SetTexture("range_circle.png");
+	//std::shared_ptr<GameEngineActor> Test = CreateActor<GameEngineActor>();
+	//Test->GetTransform()->SetWorldPosition({300, 300});
+	//std::shared_ptr<GameEngineUIRenderer> TestRender = Test->CreateComponent<GameEngineUIRenderer>();
+	//TestRender->GetTransform()->SetWorldScale({200, 200, 1});
+	//TestRender->SetTexture("range_circle.png");
 
 
 	std::shared_ptr<GameEngineActor> Test0 = CreateActor<GameEngineActor>();
-	Test0->GetTransform()->SetWorldPosition({ 250, 250 });
+	Test0->GetTransform()->SetWorldPosition({ 300, 300 });
 	std::shared_ptr<GameEngineSpriteRenderer> Test0Render = Test0->CreateComponent<GameEngineSpriteRenderer>();
 	Test0Render->GetTransform()->SetWorldScale({ 200, 200, 1 });
-	Test0Render->SetTexture("Hover.bmp");
+	Test0Render->SetTexture("range_circle.png");
 //
 //	//TestPopText = CreateActor<PopText>();
 //	std::shared_ptr<GameEngineActor> Test1 = CreateActor<GameEngineActor>();

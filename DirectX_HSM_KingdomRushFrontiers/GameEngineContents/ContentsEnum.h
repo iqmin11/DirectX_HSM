@@ -23,11 +23,11 @@ enum class UIRenderOrder
 {
 	Null = -1,
 	TowerButton,
+	TowerRange,
 	BuildBarBg,
 	BuildBar,
 	TowerUI,
 	TowerUIButton,
-	TowerRange,
 	StageUI,
 	MousePoint
 };

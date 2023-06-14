@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BaseShooter.h"
 #include "BaseMonster.h"
+#include "UpgradeTowerUI.h"
 
 BaseShootingTower::BaseShootingTower()
 {
@@ -19,14 +20,25 @@ BaseShootingTower::~BaseShootingTower()
 void BaseShootingTower::Start()
 {
 	BaseTower::Start();
-	//TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>();
-	//TowerRangeRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerRange);
-	//TowerRangeRender->SetTexture("range_circle.png");
-	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::TowerRange);
+	TowerRangeRender->SetTexture("range_circle.png");
+	NextLvRangeRender->SetTexture("range_circle.png");
 }
 
 void BaseShootingTower::Update(float _DeltaTime)
 {
+	BaseTower::Update(_DeltaTime);
+
+	if (Construct == ConstructState::Complete)
+	{
+		if (UpgradeUI->IsUpdate())
+		{
+			TowerRangeRender->On();
+		}
+		else
+		{
+			TowerRangeRender->Off();
+		}
+	}
 
 	if (IsThereTarget())
 	{

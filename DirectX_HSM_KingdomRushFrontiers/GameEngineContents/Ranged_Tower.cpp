@@ -43,6 +43,9 @@ std::shared_ptr<Ranged_Tower> Ranged_Tower::CreateTower(GameEngineLevel* _Level,
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
 	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
+	float4 Position = LocalAc->GetTransform()->GetWorldPosition();
+	LocalAc->TowerRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
+	LocalAc->NextLvRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
 	return LocalAc;
 }
 
@@ -60,7 +63,8 @@ void Ranged_Tower::ChangeTower(TowerEnum _Tower)
 void Ranged_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(_TowerLevel) + ".png");
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
@@ -130,7 +134,10 @@ void Ranged_Tower::Start()
 	Shooter1->SetParentTower(this);
 	Shooter1->Off();
 
-	//TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	TowerRangeRender->Off();
+	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	NextLvRangeRender->Off();
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
 	//Attack = std::bind(&Ranged_Tower::RangerAttack, this);

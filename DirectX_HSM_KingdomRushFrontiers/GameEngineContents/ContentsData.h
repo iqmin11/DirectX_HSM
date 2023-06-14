@@ -65,6 +65,19 @@ public:
 	static const float Great;
 	static const float Extreme;
 
+	float GetNextLvRange()
+	{
+		TowerEnum NextEnum = static_cast<TowerEnum>(static_cast<int>(TowerType) + Level + 1);
+		TowerData NextData = TowerData();
+		NextData.SetData(NextEnum);
+		if (NextData.TowerType != TowerType)
+		{
+			MsgAssert("인덱스를 넘어간 타워 레벨");
+		}
+
+		return NextData.Range;
+	}
+
 	void SetData(TowerEnum _Enum)
 	{
 		switch (_Enum)

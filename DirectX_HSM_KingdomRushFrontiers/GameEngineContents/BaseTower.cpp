@@ -8,6 +8,7 @@
 #include "TowerButton.h"
 #include "UpgradeTowerUI.h"
 #include "BuildArea.h"
+#include "UpgradeTowerButton.h"
 
 BaseTower::BaseTower()
 {
@@ -41,9 +42,6 @@ void BaseTower::Start()
 	TowerAreaRenderer->GetTransform()->SetLocalPosition({ 0,0,1 });
 	TowerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 
-
-
-
 	BuildBarBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::BuildBarBg);
 	BuildBarBg->SetTexture("buildbar_bg.png");
 	BuildBarBg->GetTransform()->SetWorldScale(BuildBarBgScale);
@@ -53,7 +51,31 @@ void BaseTower::Start()
 	BuildBar->SetTexture("buildbar.png");
 	BuildBar->GetTransform()->SetWorldScale({ 0,8,1 });
 	BuildBar->GetTransform()->SetLocalPosition({ 0,50 });
+
+	TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>(UIRenderOrder::TowerRange);
+	NextLvRangeRender = CreateComponent<GameEngineSpriteRenderer>(UIRenderOrder::TowerRange);
+	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::TowerRange);
  }
+
+void BaseTower::Update(float _DeltaTime)
+{
+	if (UpgradeUI->IsUpdate())
+	{
+		if (UpgradeUI->AcUpgradeButton->GetState() != ButtonState::Release)
+		{
+			NextLvRangeRender->On();
+		}
+		else
+		{
+			NextLvRangeRender->Off();
+		}
+	}
+	else
+	{
+		NextLvRangeRender->Off();
+	}
+
+}
 
 
 

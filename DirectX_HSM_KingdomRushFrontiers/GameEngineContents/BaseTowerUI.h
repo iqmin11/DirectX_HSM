@@ -40,8 +40,8 @@ protected:
 	virtual void UpdateStart();
 	virtual void UpdateEnd();
 
-private:
 	BaseTowerUIState State = BaseTowerUIState::Start;
+private:
 
 	std::shared_ptr<class GameEngineUIRenderer> RingRender = nullptr;
 	float4 RingRenderScale = { 171,171,1 };

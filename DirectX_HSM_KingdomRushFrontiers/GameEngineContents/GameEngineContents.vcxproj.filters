@@ -435,11 +435,11 @@
     <Filter Include="3.PlayStage\Actor\Effect">
       <UniqueIdentifier>{9488043a-205b-4f9e-a9aa-ebddb64a50f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\Tower\2.MagicTower">
-      <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0.Base">
       <UniqueIdentifier>{735bcd86-8b65-4eb1-a8f8-4234183f4dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Tower\2.MagicTower">
+      <UniqueIdentifier>{31ef5d8a-4829-40fd-a57f-68b730c176b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

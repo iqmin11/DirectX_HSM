@@ -31,10 +31,9 @@ protected:
 
 protected:
 	//std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
-	//std::shared_ptr<class GameEngineUIRenderer> TowerRangeRender = nullptr;
+
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
-	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
 
 	bool IsThereTarget();
 private:
