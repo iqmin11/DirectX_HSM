@@ -7,6 +7,7 @@ class PlayStageLevel : public GameEngineLevel
 {
 public:
 	static std::vector<StageData> AllStageData;
+	bool IsThereMouseOntheColMap();
 
 	// construtor destructor
 	PlayStageLevel();

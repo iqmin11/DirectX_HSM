@@ -11,6 +11,7 @@
 #include "UpgradeTowerUI_ex.h"
 #include "RallyButton.h"
 #include "MousePointer.h"
+#include "PlayStageLevel.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -93,13 +94,20 @@ void Melee_Tower::Update(float _DeltaTime)
 	}
 
 	if (SetRallyMod 
-		&& GameEngineInput::IsUp("EngineMouseLeft") 
-		&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
+		&& GameEngineInput::IsUp("EngineMouseLeft"))
 	{
-		float4 Pos = MousePointer::GetMousePosRef();
-		Pos = Pos + float4{ 0, 0, Pos.y, 0 };
-		AcRallyPoint->SetRallyPos(Pos);
-		SetRallyMod = false;
+		if (!dynamic_cast<PlayStageLevel*>(GetLevel())->IsThereMouseOntheColMap()
+			&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
+		{
+			float4 Pos = MousePointer::GetMousePosRef();
+			Pos = Pos + float4{ 0, 0, Pos.y, 0 };
+			AcRallyPoint->SetRallyPos(Pos);
+			SetRallyMod = false;
+		}
+		else
+		{
+			SetRallyMod = false;
+		}
 	}
 }
 

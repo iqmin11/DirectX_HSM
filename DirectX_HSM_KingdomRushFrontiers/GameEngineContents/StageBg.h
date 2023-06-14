@@ -16,6 +16,7 @@ public:
 	StageBg& operator=(StageBg&& _Other) noexcept = delete;
 
 	void RenderStage(int _Stage = -1);
+	std::shared_ptr<class GameEngineTexture> GetColmap(int _Stage = -1);
 
 protected:
 	void Start() override;
@@ -25,5 +26,7 @@ private:
 	float4 ActorPos = float4::Zero;
 	float4 TextureScale = {1200, 1000, 1};
 	std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageBgRenderer = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
+	//std::vector<std::shared_ptr<class GameEngineSpriteRenderer>> StageColmapRender = std::vector<std::shared_ptr<class GameEngineSpriteRenderer>>();
+	std::vector<std::shared_ptr<class GameEngineTexture>> StageColmap = std::vector<std::shared_ptr<class GameEngineTexture>>();
 };
 

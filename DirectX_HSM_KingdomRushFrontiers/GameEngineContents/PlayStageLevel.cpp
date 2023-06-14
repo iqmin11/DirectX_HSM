@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineSprite.h>
+#include <GameEngineCore/GameEngineSpriteRenderer.h>
 
 #include "MousePointer.h"
 #include "StageBg.h"
@@ -428,6 +429,13 @@ bool PlayStageLevel::IsLastWave()
 {
 	size_t LastWave = AllStageData[CurStage].Waves.size() - 1;
 	return LastWave + 1 == NextWave;
+}
+
+bool PlayStageLevel::IsThereMouseOntheColMap()
+{
+	float4 MousePos = MousePointer::GetMouseColmapPos();
+	GameEnginePixelColor Pixel = AcStageBg->GetColmap(CurStage)->GetPixel(MousePos.x, MousePos.y);
+	return GameEnginePixelColor(0, 0, 0, 255) == Pixel;
 }
 
 void PlayStageLevel::LoadAreaBinData()

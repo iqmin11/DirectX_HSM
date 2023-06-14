@@ -17,6 +17,16 @@ MousePointer::~MousePointer()
 
 }
 
+const float4& MousePointer::GetMouseWinPosRef()
+{
+	return GameEngineWindow::GetMousePosition();
+}
+
+const float4 MousePointer::GetMouseColmapPos()
+{
+	return GameEngineWindow::GetMousePosition() + float4{-200, 50};
+}
+
 void MousePointer::Start()
 {
 	MousePointerRenderer = CreateComponent<GameEngineSpriteRenderer>();
