@@ -17,7 +17,7 @@ MousePointer::~MousePointer()
 
 }
 
-const float4& MousePointer::GetMouseWinPosRef()
+const float4 MousePointer::GetMouseWinPosRef()
 {
 	return GameEngineWindow::GetMousePosition();
 }

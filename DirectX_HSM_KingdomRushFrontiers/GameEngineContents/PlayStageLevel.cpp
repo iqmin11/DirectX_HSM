@@ -403,6 +403,8 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RallyPointEffectAnimation").GetFullPath());
+
 }
 
 void PlayStageLevel::Defeat()
@@ -434,8 +436,8 @@ bool PlayStageLevel::IsLastWave()
 bool PlayStageLevel::IsThereMouseOntheColMap()
 {
 	float4 MousePos = MousePointer::GetMouseColmapPos();
-	GameEnginePixelColor Pixel = AcStageBg->GetColmap(CurStage)->GetPixel(MousePos.x, MousePos.y);
-	return GameEnginePixelColor(0, 0, 0, 255) == Pixel;
+	GameEnginePixelColor Pixel = AcStageBg->GetColmap(CurStage)->GetPixel(MousePos.ix(), MousePos.iy());
+	return GameEnginePixelColor(0, 0, 0, UCHAR_MAX) == Pixel;
 }
 
 void PlayStageLevel::LoadAreaBinData()
@@ -447,7 +449,7 @@ void PlayStageLevel::LoadAreaBinData()
 	File.LoadBin(LoadSerializer);
 
 	int StgSize = 0;
-	LoadSerializer.Read(StgSize);
+	LoadSerializer.Read(StgSize); 
 
 	AllStageData.resize(StgSize);
 	for (int i = 0; i < AllStageData.size(); i++)

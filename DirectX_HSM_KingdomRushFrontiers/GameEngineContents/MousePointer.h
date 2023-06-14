@@ -19,7 +19,7 @@ public:
 	{
 		return MousePos;
 	}
-	static const float4& GetMouseWinPosRef();
+	static const float4 GetMouseWinPosRef();
 	static const float4 GetMouseColmapPos();
 	
 

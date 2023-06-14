@@ -12,6 +12,7 @@
 #include "RallyButton.h"
 #include "MousePointer.h"
 #include "PlayStageLevel.h"
+#include "DeciedRallyPointEffect.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -103,6 +104,7 @@ void Melee_Tower::Update(float _DeltaTime)
 			Pos = Pos + float4{ 0, 0, Pos.y, 0 };
 			AcRallyPoint->SetRallyPos(Pos);
 			SetRallyMod = false;
+			DeciedRallyPointEffect::CreateRallyEffect(this, Pos);
 		}
 		else
 		{

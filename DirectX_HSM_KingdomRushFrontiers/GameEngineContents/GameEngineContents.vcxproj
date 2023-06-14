@@ -249,6 +249,10 @@
     </ClInclude>
     <ClInclude Include="ContentsData.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="DeciedRallyPointEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DefeatBadge.h">
       <SubType>
       </SubType>
@@ -522,6 +526,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsData.cpp" />
+    <ClCompile Include="DeciedRallyPointEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DefeatBadge.cpp">
       <SubType>
       </SubType>

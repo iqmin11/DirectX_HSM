@@ -176,6 +176,9 @@
     <ClInclude Include="UpgradeTowerUI_ex.h">
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI\MeleeTowerEX</Filter>
     </ClInclude>
+    <ClInclude Include="DeciedRallyPointEffect.h">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -360,6 +363,9 @@
     </ClCompile>
     <ClCompile Include="UpgradeTowerUI_ex.cpp">
       <Filter>3.PlayStage\Actor\TowerUI\UpgradeUI\MeleeTowerEX</Filter>
+    </ClCompile>
+    <ClCompile Include="DeciedRallyPointEffect.cpp">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
