@@ -17,6 +17,7 @@ public:
 	RallyPoint& operator=(RallyPoint&& _Other) noexcept = delete;
 
 	//static std::shared_ptr<RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount);
+	void SetRallyPos(float4 _Pos);
 
 protected:
 	void Start() override;
@@ -39,7 +40,6 @@ private:
 
 	float CalDistance(std::shared_ptr<class GameEngineCollision> _Monster);
 	bool IsThereTarget();
-	void SetRallyPos();
 
 	void SetPrevTarget();
 	void FindTarget();

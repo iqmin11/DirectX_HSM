@@ -8,7 +8,9 @@
 #include "Melee_RallyPoint.h"
 #include "BuildArea.h"
 #include "TowerButton.h"
-#include "UpgradeTowerUI.h"
+#include "UpgradeTowerUI_ex.h"
+#include "RallyButton.h"
+#include "MousePointer.h"
 
 Melee_Tower::Melee_Tower()
 {
@@ -28,7 +30,7 @@ std::shared_ptr<Melee_Tower> Melee_Tower::CreateTower(GameEngineLevel* _Level, B
 	LocalAc->GetTransform()->SetWorldPosition(_BuildArea->GetTransform()->GetWorldPosition());
 	LocalAc->UpgradeButton = TowerButton::CreateButton(LocalAc.get());
 	LocalAc->UpgradeButton->Off();
-	LocalAc->UpgradeUI = UpgradeTowerUI::CreateUpgradeTowerUI(LocalAc.get());
+	LocalAc->UpgradeUI = UpgradeTowerUI_ex::CreateUpgradeTowerUI(LocalAc.get());
 	float4 Position = LocalAc->GetTransform()->GetWorldPosition();
 	LocalAc->TowerRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
 	LocalAc->NextLvRangeRender->GetTransform()->SetWorldPosition({ Position.x, Position.y, -1000.f });
@@ -44,6 +46,7 @@ void Melee_Tower::Start()
 	TowerRangeRender->SetTexture("rally_circle.png");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	TowerRangeRender->Off();
+	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	NextLvRangeRender->SetTexture("rally_circle.png");
 	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
 	NextLvRangeRender->Off();
@@ -75,6 +78,28 @@ void Melee_Tower::Update(float _DeltaTime)
 			AcRallyPoint->GetTransform()->SetWorldPosition(ParentArea->GetRallyPos());
 			AcRallyPoint->SetTowerData(&Data);
 		}
+	}
+	else
+	{
+		ButtonState RallyButtonState = UpgradeUI->DynamicThis<UpgradeTowerUI_ex>()->AcRallyButton->GetState();
+		if (ButtonState::Release != RallyButtonState || SetRallyMod)
+		{
+			TowerRangeRender->On();
+		}
+		else
+		{
+			TowerRangeRender->Off();
+		}
+	}
+
+	if (SetRallyMod 
+		&& GameEngineInput::IsUp("EngineMouseLeft") 
+		&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
+	{
+		float4 Pos = MousePointer::GetMousePosRef();
+		Pos = Pos + float4{ 0, 0, Pos.y, 0 };
+		AcRallyPoint->SetRallyPos(Pos);
+		SetRallyMod = false;
 	}
 }
 

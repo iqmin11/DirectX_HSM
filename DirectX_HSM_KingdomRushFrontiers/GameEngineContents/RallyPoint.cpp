@@ -77,8 +77,9 @@ bool RallyPoint::IsThereTarget()
 	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D);
 }
 
-void RallyPoint::SetRallyPos()
+void RallyPoint::SetRallyPos(float4 _Pos)
 {
+	GetTransform()->SetWorldPosition(_Pos);
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
 		Fighters[i]->SetPrevPos(Fighters[i]->GetTransform()->GetWorldPosition());

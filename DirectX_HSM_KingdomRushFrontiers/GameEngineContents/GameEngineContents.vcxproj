@@ -307,6 +307,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RallyButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RallyPoint.h">
       <SubType>
       </SubType>
@@ -409,6 +413,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UpgradeTowerUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UpgradeTowerUI_ex.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -572,6 +580,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="RallyButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RallyPoint.cpp">
       <SubType>
       </SubType>
@@ -679,6 +691,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="UpgradeTowerUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UpgradeTowerUI_ex.cpp">
       <SubType>
       </SubType>
     </ClCompile>

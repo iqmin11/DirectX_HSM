@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseTower.h"
+#include "ContentsEnum.h"
 
 class Melee_Tower : public BaseTower
 {
@@ -16,6 +17,7 @@ public:
 
 	static std::shared_ptr<Melee_Tower> CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea);
 	void ChangeTower(TowerEnum _Tower) override;
+	bool SetRallyMod = false;
 
 protected:
 	void Start() override;
