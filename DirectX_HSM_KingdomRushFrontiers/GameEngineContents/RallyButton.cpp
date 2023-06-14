@@ -31,6 +31,7 @@ std::shared_ptr<RallyButton> RallyButton::CreateButton(UpgradeTowerUI_ex* _UI)
 				return;
 			}
 			dynamic_cast<Melee_Tower*>(ParentUI->GetParentTower())->SetRallyMod = true;
+			ResultButton.lock()->State = ButtonState::Release; //임시방편.. 사실 모든 버튼은 꺼질때 Release상태가 되어야함.
 			ParentUI->OffUI();
 		});
 	return ResultButton.lock();

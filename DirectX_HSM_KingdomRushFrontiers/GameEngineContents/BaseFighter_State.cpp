@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "BaseMonster.h"
+#include "RallyPoint.h"
 
 
 void BaseFighter::IdleStateInit()
@@ -62,13 +63,22 @@ void BaseFighter::MoveStateInit()
 		.Name = "Move",
 		.Start = [this]()
 		{
+			FighterCol->Off();
+			ParentRally->ColOff();
 			if (ParentRally == nullptr)
 			{
 				FighterRenderer->ChangeAnimation("1_Move");
 				return;
 			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
-			TargetMonster = nullptr;
+			if (TargetMonster != nullptr)
+			{
+				if (TargetMonster->TargetFighter != nullptr && TargetMonster->TargetFighter == this)
+				{
+					TargetMonster->TargetFighter = nullptr;
+				}
+				TargetMonster = nullptr;
+			}
 			SavePos = float4::Null;
 		},
 		.Update = [this](float _DeltaTime)
@@ -82,6 +92,8 @@ void BaseFighter::MoveStateInit()
 		},
 		.End = [this]()
 		{
+			FighterCol->On();
+			ParentRally->ColOn();
 			float4 RallyPos = RallyTransform->GetWorldPosition();
 			PrevPos = RallyPos;
 			Ratio = 0.f;

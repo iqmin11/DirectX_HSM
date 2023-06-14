@@ -82,9 +82,23 @@ void RallyPoint::SetRallyPos(float4 _Pos)
 	GetTransform()->SetWorldPosition(_Pos);
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
+		if (Fighters[i] == nullptr)
+		{
+			continue;
+		}
 		Fighters[i]->SetPrevPos(Fighters[i]->GetTransform()->GetWorldPosition());
 		Fighters[i]->ResetRatio();
 	}
+}
+
+void RallyPoint::ColOn()
+{
+	RangeCol->On();
+}
+
+void RallyPoint::ColOff()
+{
+	RangeCol->Off();
 }
 
 void RallyPoint::SetPrevTarget()

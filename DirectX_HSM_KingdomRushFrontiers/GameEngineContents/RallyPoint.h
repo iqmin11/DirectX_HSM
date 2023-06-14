@@ -19,6 +19,9 @@ public:
 	//static std::shared_ptr<RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount);
 	void SetRallyPos(float4 _Pos);
 
+	void ColOn();
+	void ColOff();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
