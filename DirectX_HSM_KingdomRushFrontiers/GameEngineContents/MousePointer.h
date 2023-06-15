@@ -15,6 +15,10 @@ public:
 	MousePointer& operator=(const MousePointer& _Other) = delete;
 	MousePointer& operator=(MousePointer&& _Other) noexcept = delete;
 
+	static const float4 GetIngameMousePosRef()
+	{
+		return float4{ MousePos.x, MousePos.y, MousePos.y};
+	}
 	static const float4& GetMousePosRef()
 	{
 		return MousePos;

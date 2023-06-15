@@ -16,6 +16,7 @@
 #include "NextWaveStartButton.h"
 #include "WaveButtons.h"
 #include "BaseMonster.h"
+#include "FireBall.h"
 
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
@@ -118,6 +119,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 			}
 			InitStage(a);
 		}
+	}
+
+	if (GameEngineInput::IsPress("Z") && GameEngineInput::IsUp("EngineMouseLeft"))
+	{
+		FireBall::SummonFireBall(this, MousePointer::GetIngameMousePosRef());
 	}
 }
 
@@ -404,6 +410,13 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RallyPointEffectAnimation").GetFullPath());
+
+	Dir.MoveParentToDirectory("EffectAnimation");
+	Dir.Move("PlayerSpell");
+	Dir.Move("RainOfFire_Animation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBall").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallSmoke").GetFullPath());
 
 }
 

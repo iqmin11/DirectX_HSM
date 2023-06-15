@@ -179,6 +179,12 @@
     <ClInclude Include="DeciedRallyPointEffect.h">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FireBall.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBallSmoke.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -367,6 +373,12 @@
     <ClCompile Include="DeciedRallyPointEffect.cpp">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="FireBall.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBallSmoke.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -461,6 +473,15 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\TowerUI\UpgradeUI\MeleeTowerEX">
       <UniqueIdentifier>{c250d576-7d9d-48de-a03e-0268030692fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayerSpell">
+      <UniqueIdentifier>{ae477326-8c74-48a5-a525-7959b6d640aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayerSpell\RainOfFire">
+      <UniqueIdentifier>{b855d6b8-d62a-4973-932a-c8b8769ec5c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect">
+      <UniqueIdentifier>{24d035bc-e940-413a-ae52-bbd17710f117}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

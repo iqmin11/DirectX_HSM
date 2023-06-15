@@ -275,6 +275,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="FireBallSmoke.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Magic_Bullet.h">
       <SubType>
       </SubType>
@@ -296,6 +300,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Melee_Tower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FireBall.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -552,6 +560,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="FireBallSmoke.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Magic_Bullet.cpp">
       <SubType>
       </SubType>
@@ -573,6 +585,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Melee_Tower.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FireBall.cpp">
       <SubType>
       </SubType>
     </ClCompile>
