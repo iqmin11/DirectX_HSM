@@ -154,6 +154,12 @@
     <ClInclude Include="ThirdParty\FW1Font\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\Fw1Font\Header</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineFont.h">
+      <Filter>Resources\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineFontRenderer.h">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -302,6 +308,12 @@
     <ClCompile Include="GameEngineDebug3D.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineFont.cpp">
+      <Filter>Resources\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineFontRenderer.cpp">
+      <Filter>Object\Rendering\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -394,6 +406,9 @@
     <Filter Include="ThirdParty\Fw1Font\bin\Debug">
       <UniqueIdentifier>{36fa6dfb-3509-4e7d-8f7d-8553cf263482}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Font">
+      <UniqueIdentifier>{a1cce2ad-1d76-4ebf-a170-51f35fee46c7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ThirdParty\Fw1Font\bin\Release">
       <UniqueIdentifier>{c9a2e2ec-0a21-4f6e-85a7-897e30369c14}</UniqueIdentifier>
     </Filter>
@@ -410,9 +425,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\FW1Font\lib\x64\Release\FW1FontWrapper.dll">
-      <Filter>ThirdParty\Fw1Font\bin\Release</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1Font\lib\x64\Debug\FW1FontWrapper.lib">
       <Filter>ThirdParty\Fw1Font\bin\Debug</Filter>
     </CopyFileToFolders>
@@ -421,6 +433,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1Font\lib\x64\Debug\FW1FontWrapper.dll">
       <Filter>ThirdParty\Fw1Font\bin\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1Font\lib\x64\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\Fw1Font\bin\Release</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
