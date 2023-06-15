@@ -6,6 +6,7 @@
 #include <GameEngineCore\GameEngineCollision.h>
 #include "BaseMonster.h"
 #include "FireBallSmoke.h"
+#include "FireBallExplosion.h"
 
 FireBall::FireBall()
 {
@@ -87,6 +88,6 @@ void FireBall::Attack()
 			}
 		}
 	}
-
+	FireBallExplosion::CreateExplosionEffect(GetLevel(), TargetPos);
 	Death();
 }

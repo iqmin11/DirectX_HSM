@@ -417,6 +417,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBall").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallSmoke").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallExplosion").GetFullPath());
 
 }
 

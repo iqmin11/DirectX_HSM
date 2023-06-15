@@ -23,9 +23,11 @@ protected:
 
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> SmokeRenderer = nullptr;
-	float4 SmokeScale = {18,14,1}; 
+	std::vector<float4> SmokeScales = std::vector<float4>();
+	//float4 SmokeScale = {18,14,1}; 
 
 	float Time = 0.f;
+
 
 };
 

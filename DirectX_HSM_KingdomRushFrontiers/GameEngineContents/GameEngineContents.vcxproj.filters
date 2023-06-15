@@ -185,6 +185,9 @@
     <ClInclude Include="FireBallSmoke.h">
       <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="FireBallExplosion.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -377,6 +380,9 @@
       <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire</Filter>
     </ClCompile>
     <ClCompile Include="FireBallSmoke.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBallExplosion.cpp">
       <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect</Filter>
     </ClCompile>
   </ItemGroup>

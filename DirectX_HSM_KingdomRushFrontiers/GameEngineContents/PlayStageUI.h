@@ -20,19 +20,19 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class GameEngineSpriteRenderer> StatusBg = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> StatusBg = nullptr;
 	float4 StatusBgScale = { 222,76 };
 	float4 StatusBgPos = {-430, 400};
 
-	std::shared_ptr<class GameEngineSpriteRenderer> PauseButton = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> PauseButton = nullptr;
 	float4 PauseButtonScale = { 56,52 };
 	float4 PauseButtonPos = { 540, 400 };
 
-	std::shared_ptr<class GameEngineSpriteRenderer> FireBallButton = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> FireBallButton = nullptr;
 	float4 FireBallButtonScale = { 106,106 };
-	float4 FireBallButtonPos = {-500, -380};
+	float4 FireBallButtonPos = { -500, -380 };
 
-	std::shared_ptr<class GameEngineSpriteRenderer> ReinforcementButton = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> ReinforcementButton = nullptr;
 	float4 ReinforcementButtonScale = { 106,106 };
 	float4 ReinforcementButtonPos = { -370, -380 };
 
