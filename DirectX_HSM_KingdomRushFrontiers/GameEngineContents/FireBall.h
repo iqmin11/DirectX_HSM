@@ -4,6 +4,9 @@
 
 class FireBall : public GameEngineActor
 {
+	static class GameEngineRandom RandomX;
+	static class GameEngineRandom RandomY;
+
 public:
 	// construtor destructor
 	FireBall();
@@ -34,6 +37,8 @@ private:
 	float SmokeTime = 0.f;
 	float Speed = 500.f;
 	std::vector<float> Damage = std::vector<float>();
+	float Range = 30.f;
 
 	void Attack();
+	float4 RandomTargetPos(const float4& _RealTargetPos);
 };

@@ -16,8 +16,7 @@
 #include "NextWaveStartButton.h"
 #include "WaveButtons.h"
 #include "BaseMonster.h"
-#include "FireBall.h"
-
+#include "RainOfFire.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -123,7 +122,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsPress("Z") && GameEngineInput::IsUp("EngineMouseLeft"))
 	{
-		FireBall::SummonFireBall(this, MousePointer::GetIngameMousePosRef());
+		RainOfFire::CastingSpell(this, MousePointer::GetIngameMousePosRef());
 	}
 }
 

@@ -21,5 +21,6 @@ private:
 	
 	std::shared_ptr<class ContentsButton> TestButton = nullptr;
 	std::shared_ptr<class PopText> TestPopText = nullptr;
+	float TestTime = 0.f;
 };
 

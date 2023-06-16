@@ -1,12 +1,16 @@
 #include "PrecompileHeader.h"
 #include "FireBall.h"
 
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEngineCore\GameEngineSpriteRenderer.h>
 #include <GameEngineCore\GameEngineCollision.h>
 #include "BaseMonster.h"
 #include "FireBallSmoke.h"
 #include "FireBallExplosion.h"
+
+GameEngineRandom FireBall::RandomX = GameEngineRandom();
+GameEngineRandom FireBall::RandomY = GameEngineRandom();
 
 FireBall::FireBall()
 {
@@ -15,14 +19,14 @@ FireBall::FireBall()
 
 FireBall::~FireBall()
 {
-
+	float4 LocTargetPos = TargetPos;
 }
 
 void FireBall::SummonFireBall(GameEngineLevel* _Level, float4 _TargetPos)
 {
 	std::weak_ptr<FireBall> LocFireBall(_Level->CreateActor<FireBall>());
-	LocFireBall.lock()->TargetPos = _TargetPos;
-	LocFireBall.lock()->StartPos = _TargetPos - float4{0, _TargetPos.y - 500.f, 0, 0};
+	LocFireBall.lock()->TargetPos = LocFireBall.lock()->RandomTargetPos(_TargetPos);
+	LocFireBall.lock()->StartPos = LocFireBall.lock()->TargetPos - float4{0, LocFireBall.lock()->TargetPos.y - 500.f, 0, 0};
 }
 
 void FireBall::Start()
@@ -90,4 +94,15 @@ void FireBall::Attack()
 	}
 	FireBallExplosion::CreateExplosionEffect(GetLevel(), TargetPos);
 	Death();
+}
+
+float4 FireBall::RandomTargetPos(const float4& _RealTargetPos)
+{
+	RandomY.SetSeed(static_cast<__int64>(time(0) * 17));
+	float4 ActorPos = _RealTargetPos;
+	float x = RandomX.RandomFloat(ActorPos.x - 10000.f, ActorPos.x + 10000.f);
+	float y = RandomY.RandomFloat(ActorPos.y - 10000.f, ActorPos.y + 10000.f);
+	float4 LocRandomPos = { x,y,y };
+	float4 ResultValue = ActorPos + (ActorPos - LocRandomPos).NormalizeReturn() * Range;
+	return ResultValue;
 }

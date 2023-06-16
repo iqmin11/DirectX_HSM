@@ -9,6 +9,8 @@
 
 #include "ContentsButton.h"
 #include "PopText.h"
+#include "RainOfFire.h"
+#include "FireBall.h"
 
 TestLevel::TestLevel()
 {
@@ -80,6 +82,8 @@ void TestLevel::Start()
 //
 //	Test0Render->SetOrder(4);
 //	Test1Render->SetOrder(3);
+
+	
 }
 
 void TestLevel::Update(float _DeltaTime)
@@ -102,5 +106,12 @@ void TestLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsDown("StageEditLevel"))
 	{
 		GameEngineCore::ChangeLevel("StageEditLevel");
+	}
+
+	TestTime += _DeltaTime;
+	if (TestTime >= 0.1f)
+	{
+		FireBall::SummonFireBall(this, { 0,0 });
+		TestTime = 0.f;
 	}
 }
