@@ -164,9 +164,6 @@
     <ClInclude Include="DefeatBadge.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
-    <ClInclude Include="PlayStageLevel.h">
-      <Filter>3.PlayStage\Level</Filter>
-    </ClInclude>
     <ClInclude Include="PopText.h">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClInclude>
@@ -199,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="Reinforcement_Fighter.h">
       <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStageLevel.h">
+      <Filter>3.PlayStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -373,9 +373,6 @@
     <ClCompile Include="DefeatBadge.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayStageLevel.cpp">
-      <Filter>3.PlayStage\Level</Filter>
-    </ClCompile>
     <ClCompile Include="PopText.cpp">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClCompile>
@@ -408,6 +405,9 @@
     </ClCompile>
     <ClCompile Include="Reinforcement_Fighter.cpp">
       <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStageLevel.cpp">
+      <Filter>3.PlayStage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -449,9 +449,6 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI">
       <UniqueIdentifier>{83f861ff-af06-4be0-af41-757df54ef89f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Level">
-      <UniqueIdentifier>{7f7abad1-8497-4685-aa31-171076a77f41}</UniqueIdentifier>
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\2. DuneRaider">
       <UniqueIdentifier>{2cb0a816-ff8a-49e1-b04a-5ebb27d9d617}</UniqueIdentifier>
