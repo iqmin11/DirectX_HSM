@@ -19,6 +19,7 @@ class BaseFighter : public GameEngineActor
 {
 	friend class RallyPoint;
 	friend class Melee_RallyPoint;
+	friend class Reinforcement_RallyPoint;
 public:
 	// construtor destructor
 	BaseFighter();

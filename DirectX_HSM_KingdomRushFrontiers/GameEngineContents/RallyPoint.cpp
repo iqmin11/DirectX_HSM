@@ -21,11 +21,6 @@ RallyPoint::~RallyPoint()
 
 void RallyPoint::Start()
 {
-	//RangeRender = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	//RangeRender->SetTexture("range_circle.png");
-	//RangeRender->GetTransform()->SetWorldScale({ Range*2.f,Range*2.f,0.f });
-	//RangeRender->GetTransform()->SetLocalPosition({ 0.f,0.f,300.f });
-	//RangeRender->GetTransform()->SetLocalRotation({ 45.f,0,0 });
 
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
 	RangeCol->GetTransform()->SetWorldScale({ Range * 2.f,Range * 2.f,0.f });

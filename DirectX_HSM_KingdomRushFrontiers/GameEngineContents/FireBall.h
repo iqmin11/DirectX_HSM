@@ -4,9 +4,6 @@
 
 class FireBall : public GameEngineActor
 {
-	static class GameEngineRandom RandomX;
-	static class GameEngineRandom RandomY;
-
 public:
 	// construtor destructor
 	FireBall();

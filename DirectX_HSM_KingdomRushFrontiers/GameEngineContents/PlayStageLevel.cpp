@@ -17,6 +17,7 @@
 #include "WaveButtons.h"
 #include "BaseMonster.h"
 #include "RainOfFire.h"
+#include "CallReinforcement.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -125,6 +126,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsPress("Z") && GameEngineInput::IsUp("EngineMouseLeft"))
 	{
 		RainOfFire::CastingSpell(this, MousePointer::GetIngameMousePosRef());
+	}
+
+	if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("EngineMouseLeft"))
+	{
+		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef());
 	}
 }
 

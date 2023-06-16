@@ -191,6 +191,15 @@
     <ClInclude Include="RainOfFire.h">
       <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire</Filter>
     </ClInclude>
+    <ClInclude Include="CallReinforcement.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClInclude>
+    <ClInclude Include="Reinforcement_RallyPoint.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClInclude>
+    <ClInclude Include="Reinforcement_Fighter.h">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -391,6 +400,15 @@
     <ClCompile Include="RainOfFire.cpp">
       <Filter>3.PlayStage\Actor\PlayerSpell\RainOfFire</Filter>
     </ClCompile>
+    <ClCompile Include="CallReinforcement.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClCompile>
+    <ClCompile Include="Reinforcement_RallyPoint.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClCompile>
+    <ClCompile Include="Reinforcement_Fighter.cpp">
+      <Filter>3.PlayStage\Actor\PlayerSpell\CallReinforcement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -494,6 +512,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect">
       <UniqueIdentifier>{24d035bc-e940-413a-ae52-bbd17710f117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayerSpell\CallReinforcement">
+      <UniqueIdentifier>{9d806626-9193-44ee-85a3-092d33c445bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
