@@ -141,7 +141,7 @@ void BaseMonster::CalMonsterDir()
 
 	if (DegZ > 45.f && DegZ <= 135.f)
 	{
-		DirString = "_Front";
+		DirString = "_Back";
 	}
 	else if (DegZ > 135.f && DegZ <= 225.f)
 	{
@@ -150,7 +150,7 @@ void BaseMonster::CalMonsterDir()
 	}
 	else if (DegZ > 225.f && DegZ <= 315.f)
 	{
-		DirString = "_Back";
+		DirString = "_Front";
 	}
 	else if ((DegZ > 315.f && DegZ <= 360.f) || (DegZ >= 0.f && DegZ <= 45.f))
 	{
