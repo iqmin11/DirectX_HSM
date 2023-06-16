@@ -86,9 +86,9 @@ void FireBall::Attack()
 	{
 		if (FireBallCols[i]->CollisionAll(ColOrder::Monster, HitMonsters, ColType::SPHERE2D, ColType::SPHERE2D))
 		{
-			for (size_t i = 0; i < HitMonsters.size(); i++)
+			for (size_t j = 0; j < HitMonsters.size(); j++)
 			{
-				dynamic_cast<BaseMonster*>(HitMonsters[i]->GetActor())->CurHP -= Damage[i];
+				dynamic_cast<BaseMonster*>(HitMonsters[j]->GetActor())->CurHP -= Damage[j];
 			}
 		}
 	}
