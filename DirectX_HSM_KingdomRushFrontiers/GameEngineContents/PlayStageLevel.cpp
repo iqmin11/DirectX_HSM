@@ -130,7 +130,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("EngineMouseLeft"))
 	{
-		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef());
+		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef(), FighterEnum::ReinforceLv0);
 	}
 }
 
@@ -373,6 +373,64 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Move").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_1_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_1_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_1_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_1_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_2_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_2_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_2_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_2_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_3_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_3_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_3_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_4_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_4_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_4_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_4_Death").GetFullPath());
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_0_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_0_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_0_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_0_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_1_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_1_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_1_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_1_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_2_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_2_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_2_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_2_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_3_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_3_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_3_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_4_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_4_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_4_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceB_4_Death").GetFullPath());
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_0_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_0_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_0_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_0_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_1_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_1_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_1_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_1_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_2_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_2_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_2_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_2_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_3_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_3_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_3_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Death").GetFullPath());
 
 	Dir.MoveParentToDirectory("Reinforcement");
 	Dir.Move("DesertThug");

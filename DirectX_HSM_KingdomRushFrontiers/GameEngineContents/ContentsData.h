@@ -508,7 +508,7 @@ public:
 		switch (_FighterEnum)
 		{
 		case FighterEnum::MeleeLv1:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Melee;
 			Level = 1;
 			Hp = 50.f;
 			AttackRate = 1.0f;
@@ -520,7 +520,7 @@ public:
 			Armor = 0.0f;
 			break;
 		case FighterEnum::MeleeLv2:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Melee;
 			Level = 2;
 			Hp = 100.f;
 			AttackRate = 1.36f;
@@ -532,7 +532,7 @@ public:
 			Armor = 0.15f;
 			break;
 		case FighterEnum::MeleeLv3:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Melee;
 			Level = 3;
 			Hp = 150.f;
 			AttackRate = 1.36f;
@@ -544,7 +544,7 @@ public:
 			Armor = 0.3f;
 			break;
 		case FighterEnum::MeleeLv4:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Melee;
 			Level = 4;
 			Hp = 200.f;
 			AttackRate = 1.0f;
@@ -556,7 +556,7 @@ public:
 			Armor = 0.0f;
 			break;
 		case FighterEnum::ReinforceLv0:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 0;
 			Hp = 30.f;
 			AttackRate = 1.0f;
@@ -568,7 +568,7 @@ public:
 			Armor = 0.0f;
 			break;
 		case FighterEnum::ReinforceLv1:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 1;
 			Hp = 50.f;
 			AttackRate = 1.0f;
@@ -580,7 +580,7 @@ public:
 			Armor = 0.0f;
 			break;
 		case FighterEnum::ReinforceLv2:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 2;
 			Hp = 70.f;
 			AttackRate = 1.0f;
@@ -592,7 +592,7 @@ public:
 			Armor = 0.1f;
 			break;
 		case FighterEnum::ReinforceLv3:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 3;
 			Hp = 90.f;
 			AttackRate = 1.0f;
@@ -604,7 +604,7 @@ public:
 			Armor = 0.2f;
 			break;
 		case FighterEnum::ReinforceLv4:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 4;
 			Hp = 110.f;
 			AttackRate = 1.0f;
@@ -616,7 +616,7 @@ public:
 			Armor = 0.3f;
 			break;
 		case FighterEnum::ReinforceLv5:
-			FighterType = _FighterEnum;
+			FighterType = FighterEnum::Reinforce;
 			Level = 5;
 			Hp = 110.f;
 			AttackRate = 1.0f;

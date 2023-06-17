@@ -14,12 +14,12 @@ Reinforcement_RallyPoint::~Reinforcement_RallyPoint()
 
 }
 
-std::shared_ptr<Reinforcement_RallyPoint> Reinforcement_RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount)
+std::shared_ptr<Reinforcement_RallyPoint> Reinforcement_RallyPoint::CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, FighterEnum _Fighter)
 {
 	std::shared_ptr<Reinforcement_RallyPoint> LocalAc = nullptr;
 	LocalAc = _Level->CreateActor<Reinforcement_RallyPoint>();
 	LocalAc->GetTransform()->SetWorldPosition(_Pos);
-	LocalAc->SetFighter(_FighterCount);
+	LocalAc->SetFighter(_Fighter);
 	return LocalAc;
 }
 
@@ -32,17 +32,19 @@ void Reinforcement_RallyPoint::Update(float _DeltaTime)
 {
 	RallyPoint::Update(_DeltaTime);
 
-	LiveTime += _DeltaTime;
-	if (LiveTime >= 20.f)
+	if (IsAllFightersDeath())
 	{
-		Death();
+		DeathTime += _DeltaTime;
+		if (DeathTime >= 3.f)
+		{
+			Death();
+		}
 	}
 }
 
-void Reinforcement_RallyPoint::SetFighter(int _Count)
+void Reinforcement_RallyPoint::SetFighter(FighterEnum _Enum)
 {
 	Fighters.resize(3);
-	FighterMaxCount = _Count;
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
 		if (i == 2)
@@ -55,7 +57,13 @@ void Reinforcement_RallyPoint::SetFighter(int _Count)
 		Fighters[i]->SetParentRally(this);
 		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
-		Fighters[i]->Data.SetData(FighterEnum::ReinforceLv0);
+		Fighters[i]->Data.SetData(_Enum);
+		Fighters[i]->FighterFSM.ChangeState("Idle");
 		Fighters[i]->CurHP = Fighters[i]->Data.Hp;
 	}
+}
+
+bool Reinforcement_RallyPoint::IsAllFightersDeath()
+{
+	return Fighters[0] == nullptr && Fighters[1] == nullptr && Fighters[2] == nullptr;
 }

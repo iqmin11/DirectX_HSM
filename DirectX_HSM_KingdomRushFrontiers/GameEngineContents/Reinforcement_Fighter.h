@@ -21,5 +21,12 @@ protected:
 private:
 	void AttackTarget();
 	int CalDamage() override;
+
+	float4 ReinforcementRenderScale = { 128,128,1};
+	void SetAnimation_A();
+	void SetAnimation_B();
+	void SetAnimation_C();
+
+	float LiveTime = 0.f;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
-
+#include "ContentsEnum.h"
 
 class CallReinforcement : public GameEngineActor
 {
@@ -15,7 +15,7 @@ public:
 	CallReinforcement& operator=(const CallReinforcement& _Other) = delete;
 	CallReinforcement& operator=(CallReinforcement&& _Other) noexcept = delete;
 
-	static void CastingSpell(GameEngineLevel* _Level, const float4& _Pos);
+	static void CastingSpell(GameEngineLevel* _Level, const float4& _Pos, FighterEnum _Fighter);
 
 protected:
 

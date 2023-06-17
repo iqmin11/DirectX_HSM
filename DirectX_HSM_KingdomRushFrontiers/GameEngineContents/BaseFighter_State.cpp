@@ -13,11 +13,6 @@ void BaseFighter::IdleStateInit()
 		.Name = "Idle",
 		.Start = [this]()
 		{
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Idle");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 			SavePos = float4::Null;
 		},
@@ -65,11 +60,6 @@ void BaseFighter::MoveStateInit()
 		{
 			FighterCol->Off();
 			ParentRally->ColOff();
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Move");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 			if (TargetMonster != nullptr)
 			{
@@ -108,11 +98,6 @@ void BaseFighter::TraceMonsterStateInit()
 		.Name = "TraceMonster",
 		.Start = [this]()
 		{
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Move");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 			SavePos = GetTransform()->GetWorldPosition();
 		},
@@ -165,11 +150,6 @@ void BaseFighter::AttackStateInit()
 		.Name = "Attack",
 		.Start = [this]()
 		{
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Attack");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
 		},
 		.Update = [this](float _DeltaTime)
@@ -227,11 +207,6 @@ void BaseFighter::ReturnStateInit()
 		.Name = "Return",
 		.Start = [this]()
 		{
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Move");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Move");
 			SavePos = GetTransform()->GetWorldPosition();
 		},
@@ -288,23 +263,34 @@ void BaseFighter::DeathStateInit()
 			LifeBar->Off();
 			LifeBarBg->Off();
 			FighterCol->Off();
-			if (ParentRally == nullptr)
-			{
-				FighterRenderer->ChangeAnimation("1_Death");
-				return;
-			}
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Death");
 		},
 		.Update = [this](float _DeltaTime)
 		{
 			DeathTime += _DeltaTime;
-			if (DeathTime <= 2.f)
+			if (Data.FighterType == FighterEnum::Melee)
 			{
-				FighterRenderer->ColorOptionValue.MulColor.a -= _DeltaTime / 2;
+				if (DeathTime <= 2.f)
+				{
+					FighterRenderer->ColorOptionValue.MulColor.a -= _DeltaTime / 2;
+				}
+				else
+				{
+					Death();
+				}
 			}
-			else
+			else if (Data.FighterType == FighterEnum::Reinforce)
 			{
-				Death();
+				if (DeathTime <= 1.f)
+				{
+					FighterRenderer->ColorOptionValue.MulColor.a -= _DeltaTime;
+					FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
+					FighterRenderer->GetTransform()->AddLocalPosition({DeathTime, 0} );
+				}
+				else
+				{
+					Death();
+				}
 			}
 		},
 		.End = [this]()

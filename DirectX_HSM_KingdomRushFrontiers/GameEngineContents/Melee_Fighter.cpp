@@ -85,8 +85,6 @@ void Melee_Fighter::Start()
 	AttackStateInit();
 	ReturnStateInit();
 	DeathStateInit();
-
-	FighterFSM.ChangeState("Idle");
 }
 
 void Melee_Fighter::Update(float _DeltaTime)

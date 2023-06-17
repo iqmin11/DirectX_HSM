@@ -45,10 +45,10 @@
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="ContentsData.h" />
     <ClInclude Include="MonsterWave.h">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClInclude>
     <ClInclude Include="StageBg.h">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClInclude>
     <ClInclude Include="PlayStageUI.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
@@ -72,7 +72,7 @@
       <Filter>3.PlayStage\Actor\Tower\1.RangedTower</Filter>
     </ClInclude>
     <ClInclude Include="BuildArea.h">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClInclude>
     <ClInclude Include="MousePointer.h">
       <Filter>0.Base</Filter>
@@ -244,10 +244,10 @@
       <Filter>4.StageEdit\Window</Filter>
     </ClCompile>
     <ClCompile Include="MonsterWave.cpp">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClCompile>
     <ClCompile Include="StageBg.cpp">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClCompile>
     <ClCompile Include="PlayStageUI.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
@@ -271,7 +271,7 @@
       <Filter>3.PlayStage\Actor\Tower\1.RangedTower</Filter>
     </ClCompile>
     <ClCompile Include="BuildArea.cpp">
-      <Filter>3.PlayStage\Actor\StageBase</Filter>
+      <Filter>3.PlayStage\Actor\PlayerSpell\StageBase</Filter>
     </ClCompile>
     <ClCompile Include="MousePointer.cpp">
       <Filter>0.Base</Filter>
@@ -444,9 +444,6 @@
     <Filter Include="3.PlayStage\Actor\Monster">
       <UniqueIdentifier>{995ed352-2808-497d-9c6c-7d9c24961028}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\StageBase">
-      <UniqueIdentifier>{ac85e7e1-390e-47b5-b036-b8c6586dc979}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI">
       <UniqueIdentifier>{83f861ff-af06-4be0-af41-757df54ef89f}</UniqueIdentifier>
     </Filter>
@@ -512,6 +509,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\PlayerSpell\CallReinforcement">
       <UniqueIdentifier>{9d806626-9193-44ee-85a3-092d33c445bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayerSpell\StageBase">
+      <UniqueIdentifier>{ac85e7e1-390e-47b5-b036-b8c6586dc979}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

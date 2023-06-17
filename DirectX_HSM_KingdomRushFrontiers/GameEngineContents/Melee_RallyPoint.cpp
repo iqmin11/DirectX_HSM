@@ -115,6 +115,7 @@ void Melee_RallyPoint::SetFighter(int _Count)
 		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
 		Fighters[i]->Data.SetData(FighterEnum::MeleeLv1);
+		Fighters[i]->FighterFSM.ChangeState("Idle");
 		Fighters[i]->CurHP = Fighters[i]->Data.Hp;
 	}
 }
@@ -127,5 +128,6 @@ void Melee_RallyPoint::RespawnFighter(int _index)
 	Fighters[_index]->SetPrevPos(GetTransform()->GetParent()->GetWorldPosition());
 	Fighters[_index]->SetRallyTransform(RallyPosCheckComponents[_index]->GetTransform());
 	Fighters[_index]->Data.SetData(DataPtr->Level);
+	Fighters[_index]->FighterFSM.ChangeState("Idle");
 	Fighters[_index]->CurHP = Fighters[_index]->Data.Hp;
 }

@@ -14,7 +14,7 @@ CallReinforcement::~CallReinforcement()
 
 }
 
-void CallReinforcement::CastingSpell(GameEngineLevel* _Level, const float4& _Pos)
+void CallReinforcement::CastingSpell(GameEngineLevel* _Level, const float4& _Pos, FighterEnum _Fighter)
 {
-	std::weak_ptr<Reinforcement_RallyPoint> LocSpell(Reinforcement_RallyPoint::CreateRallyPoint(_Level, _Pos, 2));
+	std::weak_ptr<Reinforcement_RallyPoint> LocSpell(Reinforcement_RallyPoint::CreateRallyPoint(_Level, _Pos, _Fighter));
 }

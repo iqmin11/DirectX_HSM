@@ -14,7 +14,7 @@ public:
 	Reinforcement_RallyPoint& operator=(const Reinforcement_RallyPoint& _Other) = delete;
 	Reinforcement_RallyPoint& operator=(Reinforcement_RallyPoint&& _Other) noexcept = delete;
 
-	static std::shared_ptr<Reinforcement_RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, int _FighterCount);
+	static std::shared_ptr<Reinforcement_RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos, FighterEnum _Fighter);
 
 protected:
 	void Start() override;
@@ -22,9 +22,9 @@ protected:
 
 private:
 	class FighterData* DataPtr = nullptr;
-	float LiveTime = 0.f;
+	float DeathTime = 0.f;
 
-	void SetFighter(int _Count);
-
+	void SetFighter(FighterEnum _Enum);
+	bool IsAllFightersDeath();
 };
 
