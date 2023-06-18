@@ -367,6 +367,58 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_ExplosionSmoke").GetFullPath());
 
 	Dir.MoveParentToDirectory("ArtilleryTower");
+	Dir.Move("DesertThug");
+	
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("DesertThug");
+	Dir.Move("MeleeTowerFighterAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Move"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Move"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death" ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle"  ).GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move"  ).GetFullPath());
+
+	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
+	Dir.Move("DuneRaider");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("DuneRaider");
+	Dir.Move("EffectAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RallyPointEffectAnimation").GetFullPath());
+
+	Dir.MoveParentToDirectory("EffectAnimation");
+	Dir.Move("PlayerSpell");
+	Dir.Move("RainOfFire_Animation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBall").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallSmoke").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallExplosion").GetFullPath());
+	
+	Dir.MoveParentToDirectory("RainOfFire_Animation");
 	Dir.Move("Reinforcement");
 
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceA_0_Attack").GetFullPath());
@@ -431,59 +483,6 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Move").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Death").GetFullPath());
-
-	Dir.MoveParentToDirectory("Reinforcement");
-	Dir.Move("DesertThug");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Death").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Idle").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Back").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Front").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Profile").GetFullPath());
-
-	Dir.MoveParentToDirectory("DesertThug");
-	Dir.Move("MeleeTowerFighterAnimation");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Move"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Move"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move"  ).GetFullPath());
-
-	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
-	Dir.Move("DuneRaider");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Death").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Idle").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Back").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Front").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Profile").GetFullPath());
-
-	Dir.MoveParentToDirectory("DuneRaider");
-	Dir.Move("EffectAnimation");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RallyPointEffectAnimation").GetFullPath());
-
-	Dir.MoveParentToDirectory("EffectAnimation");
-	Dir.Move("PlayerSpell");
-	Dir.Move("RainOfFire_Animation");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBall").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallSmoke").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallExplosion").GetFullPath());
-
 }
 
 void PlayStageLevel::Defeat()

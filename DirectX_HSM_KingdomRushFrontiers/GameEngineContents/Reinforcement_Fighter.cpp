@@ -39,6 +39,7 @@ void Reinforcement_Fighter::Start()
 	FighterRenderer->SetAnimationStartEvent("2_Attack", 2, std::bind(&Reinforcement_Fighter::AttackTarget, this));
 	FighterRenderer->SetAnimationStartEvent("3_Attack", 2, std::bind(&Reinforcement_Fighter::AttackTarget, this));
 	FighterRenderer->SetAnimationStartEvent("4_Attack", 2, std::bind(&Reinforcement_Fighter::AttackTarget, this));
+	FighterRenderer->SetAnimationStartEvent("5_Attack", 2, std::bind(&Reinforcement_Fighter::AttackTarget, this));
 
 	FighterRenderer->GetTransform()->SetWorldScale(ReinforcementRenderScale);
 

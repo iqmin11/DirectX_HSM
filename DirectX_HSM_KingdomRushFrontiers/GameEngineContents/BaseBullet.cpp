@@ -102,10 +102,10 @@ void BaseBullet::CalLerpBulletTransform(const float4& _P0, const float4& _P3, fl
 
 void BaseBullet::CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ratio)
 {
-	float4 f4Deg = float4::LerpClamp({ 0.f,0.f,0.f,1 }, { 0.f,0.f,640.f,1 }, _Ratio);;
+	float4 f4Deg = float4::LerpClamp({ 0.f,0.f,0.f,1 }, { 0.f,0.f,640.f,1 }, _Ratio);
 	if (_P3.x - _P0.x  > 0)
 	{
-		GetTransform()->SetWorldRotation(-f4Deg);
+	GetTransform()->SetWorldRotation(-f4Deg);
 	}
 	else
 	{

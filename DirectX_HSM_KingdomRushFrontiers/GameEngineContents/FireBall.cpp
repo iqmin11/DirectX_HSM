@@ -99,6 +99,7 @@ float4 FireBall::RandomTargetPos(const float4& _RealTargetPos)
 	float x = GameEngineRandom::MainRandom.RandomFloat(ActorPos.x - 10000.f, ActorPos.x + 10000.f);
 	float y = GameEngineRandom::MainRandom.RandomFloat(ActorPos.y - 10000.f, ActorPos.y + 10000.f);
 	float4 LocRandomPos = { x,y,y };
-	float4 ResultValue = ActorPos + (ActorPos - LocRandomPos).NormalizeReturn() * Range;
+	float RandomRange = GameEngineRandom::MainRandom.RandomFloat(0, Range);
+	float4 ResultValue = ActorPos + (ActorPos - LocRandomPos).NormalizeReturn() * RandomRange;
 	return ResultValue;
 }
