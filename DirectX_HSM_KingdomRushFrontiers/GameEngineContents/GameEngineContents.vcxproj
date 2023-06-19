@@ -390,6 +390,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sandman_Fighter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sandman_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="SellButton.h">
       <SubType>
       </SubType>
@@ -709,6 +717,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Reinforcement_RallyPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sandman_Fighter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sandman_RallyPoint.cpp">
       <SubType>
       </SubType>
     </ClCompile>

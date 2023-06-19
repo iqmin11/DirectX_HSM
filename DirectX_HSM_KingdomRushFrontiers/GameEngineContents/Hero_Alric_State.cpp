@@ -187,11 +187,20 @@ void Hero_Alric::AttackStateInit()
 			}
 
 			Time += _DeltaTime;
+			FlurryCooltime += _DeltaTime;
 			if (Time >= Data.AttackRate)
 			{
 				Time = 0.f;
-				int RandomInt = GameEngineRandom::MainRandom.RandomInt(0, 1);
-				FighterRenderer->ChangeAnimation("Attack" + std::to_string(RandomInt));
+				if (FlurryCooltime >= 6.f)
+				{
+					FlurryCooltime = 0.f;
+					FighterRenderer->ChangeAnimation("Flurry");
+				}
+				else
+				{
+					int RandomInt = GameEngineRandom::MainRandom.RandomInt(0, 1);
+					FighterRenderer->ChangeAnimation("Attack" + std::to_string(RandomInt));
+				}
 			}
 		},
 		.End = [this]()
@@ -320,32 +329,18 @@ void Hero_Alric::ReviveStateInit()
 		});
 }
 
-void Hero_Alric::CastingSkill0StateInit()
-{
-	FighterFSM.CreateState({
-	.Name = "Skill0",
-	.Start = [this]()
-		{
-
-		},
-		.Update = [this](float _DeltaTime)
-		{
-
-		},
-		.End = [this]()
-		{
-
-		}
-		});
-}
-
 void Hero_Alric::CastingSkill1StateInit()
 {
 	FighterFSM.CreateState({
-	.Name = "Skill1",
+	.Name = "Summon",
 	.Start = [this]()
 		{
-
+			FighterRenderer->SetAnimationStartEvent("Summon", 15, [this]()
+				{
+					State = FighterState::Idle;
+					FighterFSM.ChangeState("Idle");
+				});
+			FighterRenderer->ChangeAnimation("Summon");
 		},
 		.Update = [this](float _DeltaTime)
 		{

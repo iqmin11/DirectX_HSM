@@ -206,6 +206,12 @@
     <ClInclude Include="Hero_RallyPoint.h">
       <Filter>3.PlayStage\Actor\Hero</Filter>
     </ClInclude>
+    <ClInclude Include="Sandman_RallyPoint.h">
+      <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
+    </ClInclude>
+    <ClInclude Include="Sandman_Fighter.h">
+      <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -424,6 +430,12 @@
     <ClCompile Include="Hero_Alric_State.cpp">
       <Filter>3.PlayStage\Actor\Hero</Filter>
     </ClCompile>
+    <ClCompile Include="Sandman_RallyPoint.cpp">
+      <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
+    </ClCompile>
+    <ClCompile Include="Sandman_Fighter.cpp">
+      <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -530,6 +542,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Hero">
       <UniqueIdentifier>{c495faf0-bebc-4300-bfa8-3ae2e7999c5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Hero\Sandman">
+      <UniqueIdentifier>{6535d185-fe56-402d-be74-da81711f9da9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

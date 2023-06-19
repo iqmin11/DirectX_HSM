@@ -30,6 +30,9 @@ protected:
 
 private:
 	void AttackTarget();
+	void AttackFlurry();
 	int CalDamage();
+
+	float FlurryCooltime = 0.f;
 };
 

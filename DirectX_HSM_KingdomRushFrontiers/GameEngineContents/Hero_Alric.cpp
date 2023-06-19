@@ -35,13 +35,14 @@ void Hero_Alric::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "Attack1", .SpriteName = "Hero_Alric_Attack_1", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "Hero_Alric_Death", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "Hero_Alric_Idle", .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Move", .SpriteName = "Hero_Alric_Move", .Loop = true });
+	FighterRenderer->CreateAnimation({ .AnimationName = "Move", .SpriteName = "Hero_Alric_Move", .FrameInter = 0.04f, .Loop = true });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "Hero_Alric_Revive", .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Skill0", .SpriteName = "Hero_Alric_Skill_Flurry", .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Skill1", .SpriteName = "Hero_Alric_Skill_Summon", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "Flurry", .SpriteName = "Hero_Alric_Skill_Flurry", .FrameInter = 0.075f, .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "Hero_Alric_Skill_Summon", .Loop = false });
 
 	FighterRenderer->SetAnimationStartEvent("Attack0", 3, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
+	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
 
 	FighterRenderer->GetTransform()->SetWorldScale({217,217,1});
 
@@ -64,6 +65,17 @@ void Hero_Alric::Update(float _DeltaTime)
 
 void Hero_Alric::AttackTarget()
 {
+	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->Hit = HitState::Melee;
+}
+
+void Hero_Alric::AttackFlurry()
+{
+	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->CurHP -= CalDamage();
+	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
 }
