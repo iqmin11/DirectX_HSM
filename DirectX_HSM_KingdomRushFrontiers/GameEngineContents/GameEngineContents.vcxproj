@@ -287,6 +287,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Hero_Alric.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Hero_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Magic_Bullet.h">
       <SubType>
       </SubType>
@@ -589,6 +597,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FireBallSmoke.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hero_Alric.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hero_Alric_State.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Hero_RallyPoint.cpp">
       <SubType>
       </SubType>
     </ClCompile>

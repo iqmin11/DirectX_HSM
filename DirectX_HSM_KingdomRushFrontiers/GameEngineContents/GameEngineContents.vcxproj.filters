@@ -200,6 +200,12 @@
     <ClInclude Include="PlayStageLevel.h">
       <Filter>3.PlayStage</Filter>
     </ClInclude>
+    <ClInclude Include="Hero_Alric.h">
+      <Filter>3.PlayStage\Actor\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero_RallyPoint.h">
+      <Filter>3.PlayStage\Actor\Hero</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -409,6 +415,15 @@
     <ClCompile Include="PlayStageLevel.cpp">
       <Filter>3.PlayStage</Filter>
     </ClCompile>
+    <ClCompile Include="Hero_Alric.cpp">
+      <Filter>3.PlayStage\Actor\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero_RallyPoint.cpp">
+      <Filter>3.PlayStage\Actor\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero_Alric_State.cpp">
+      <Filter>3.PlayStage\Actor\Hero</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -512,6 +527,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\PlayerSpell\RainOfFire\Effect">
       <UniqueIdentifier>{24d035bc-e940-413a-ae52-bbd17710f117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Hero">
+      <UniqueIdentifier>{c495faf0-bebc-4300-bfa8-3ae2e7999c5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -108,6 +108,8 @@ enum class FighterEnum
 	ReinforceLv3,
 	ReinforceLv4,
 	ReinforceLv5,
+	Hero,
+	Hero_Alric
 };
 
 enum class ButtonState

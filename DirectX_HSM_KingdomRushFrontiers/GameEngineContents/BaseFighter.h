@@ -13,6 +13,9 @@ enum class FighterState
 	Attack,
 	Return,
 	Death,
+	Revive,
+	Skill0,
+	Skill1
 };
 
 class BaseFighter : public GameEngineActor
@@ -20,6 +23,7 @@ class BaseFighter : public GameEngineActor
 	friend class RallyPoint;
 	friend class Melee_RallyPoint;
 	friend class Reinforcement_RallyPoint;
+	friend class Hero_RallyPoint;
 public:
 	// construtor destructor
 	BaseFighter();
@@ -96,14 +100,13 @@ protected:
 	void DeathStateInit();
 	GameEngineFSM FighterFSM = GameEngineFSM();
 
-private:
 	RallyPoint* ParentRally = nullptr;
 
 	GameEngineTransform* RallyTransform = nullptr;
 	float4 ActorPos = float4::Zero;
 	float4 PrevPos = float4::Zero;
 	float4 SavePos = float4::Null;
-	
+
 	std::shared_ptr<class GameEngineCollision> FighterCol = nullptr;
 	float4 ColLocalPos = { 0,0,0 };
 	float4 ColScale = { 18,18,1 };
@@ -124,12 +127,14 @@ private:
 	float HealTime = 0.f;
 	float DeathTime = 0.f;
 
-	void MoveToRally(float _DeltaTime);
+	virtual void MoveToRally(float _DeltaTime);
 	void ReturnToRally(float _DeltaTime);
-	void MoveToTarget(float _DeltaTime);
+	virtual void MoveToTarget(float _DeltaTime);
 
 	void UpdateLifeBar();
 	void IdleAutoHeal(float _DeltaTime);
+
+private:
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;

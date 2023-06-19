@@ -90,6 +90,7 @@ void Melee_Fighter::Start()
 void Melee_Fighter::Update(float _DeltaTime)
 {
 	BaseFighter::Update(_DeltaTime);
+	FighterFSM.Update(_DeltaTime);
 }
 
 void Melee_Fighter::AttackTarget()

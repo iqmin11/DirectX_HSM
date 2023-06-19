@@ -627,6 +627,18 @@ public:
 			RangedDamage_MAX = 30;
 			Armor = 0.3f;
 			break;
+		case FighterEnum::Hero_Alric:
+			FighterType = FighterEnum::Hero;
+			Level = 10;
+			Hp = 560.f;
+			AttackRate = 1.0f;
+			Damage_min = 27;
+			Damage_MAX = 40;
+			RangedAttackRate = -1.f;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.65f;
+			break;
 		default:
 			MsgAssert("¾û¶×ÇÑ FighterEnum°ªÀ» ³Ö¾ú½À´Ï´Ù.")
 			break;

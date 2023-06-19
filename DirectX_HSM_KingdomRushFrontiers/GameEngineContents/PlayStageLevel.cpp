@@ -18,6 +18,7 @@
 #include "BaseMonster.h"
 #include "RainOfFire.h"
 #include "CallReinforcement.h"
+#include "Hero_RallyPoint.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -77,6 +78,7 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
+	TestHero = Hero_RallyPoint::CreateRallyPoint(this, float4::Zero);
 
 	LoadAllStageData();
 	
@@ -131,6 +133,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("EngineMouseLeft"))
 	{
 		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef(), FighterEnum::ReinforceLv0);
+	}
+
+	if (GameEngineInput::IsPress("Space") && GameEngineInput::IsUp("EngineMouseLeft"))
+	{
+		TestHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
 	}
 }
 
@@ -483,6 +490,17 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Move").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforceC_4_Death").GetFullPath());
+
+	Dir.MoveParentToDirectory("PlayerSpell");
+	Dir.Move("Hero");
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Attack_0").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Attack_1").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Revive").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Skill_Flurry").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Skill_Summon").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()

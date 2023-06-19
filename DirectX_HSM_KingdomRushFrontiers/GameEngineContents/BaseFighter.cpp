@@ -61,7 +61,6 @@ void BaseFighter::Update(float _DeltaTime)
 		Death();
 	}
 
-	FighterFSM.Update(_DeltaTime);
 	UpdateLifeBar();
 }
 

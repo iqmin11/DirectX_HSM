@@ -54,6 +54,8 @@ void Reinforcement_Fighter::Start()
 void Reinforcement_Fighter::Update(float _DeltaTime)
 {
 	BaseFighter::Update(_DeltaTime); 
+	FighterFSM.Update(_DeltaTime);
+
 	LiveTime += _DeltaTime;
 	if (20.f <= LiveTime && State != FighterState::Death)
 	{

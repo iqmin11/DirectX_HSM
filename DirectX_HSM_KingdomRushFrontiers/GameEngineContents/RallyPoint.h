@@ -29,23 +29,24 @@ protected:
 	std::vector<std::shared_ptr<class BaseFighter>> Fighters = std::vector<std::shared_ptr<class BaseFighter>>();
 	int FighterMaxCount = 0;
 	std::vector<std::shared_ptr<class GameEngineComponent>> RallyPosCheckComponents = std::vector<std::shared_ptr<class GameEngineComponent>>();
+	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
+	float Range = 60.f;
+	
+	bool IsThereTarget();
+	void FindTarget();
+
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TestRallyRender = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> RangeRender = nullptr;
-	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
-	float Range = 60.f;
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 
 	size_t PrevColCount = 0;
 	bool IsChangeColCount = false;
 
-
 	float CalDistance(std::shared_ptr<class GameEngineCollision> _Monster);
-	bool IsThereTarget();
 
 	void SetPrevTarget();
-	void FindTarget();
 	void SetBoolChangeTarget();
 
 	void ResetTargetMonster();
