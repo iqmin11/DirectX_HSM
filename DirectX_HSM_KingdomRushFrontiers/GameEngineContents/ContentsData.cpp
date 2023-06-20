@@ -252,3 +252,30 @@ void StageData::SetButtonPos(int _Stage)
 		return;
 	}
 }
+
+void StageData::SetHeroStartPos(int _Stage)
+{
+	switch (_Stage)
+	{
+	case 0:
+		HeroStartPos = {-458, 22, 22};
+		break;
+	case 1:
+		HeroStartPos = {97, 398, 398};
+		break;
+	case 2:
+		HeroStartPos = {-545, -52, -52};
+		break;
+	case 3:
+		HeroStartPos = {-30, 410, 410};
+		break;
+	case 4:
+		HeroStartPos = {-531, -241, -241};
+		break;
+	case 5:
+		HeroStartPos = {24, -380, -380};
+		break;
+	default:
+		break;
+	}
+}

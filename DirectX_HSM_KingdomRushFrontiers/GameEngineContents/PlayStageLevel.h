@@ -49,8 +49,7 @@ private:
 	std::vector<std::shared_ptr<class BuildArea>> AcBuildAreas = std::vector<std::shared_ptr<class BuildArea>>();
 	std::shared_ptr<class MousePointer> AcMousePointer = nullptr;
 	std::vector<std::shared_ptr<class WaveButtons>> AcWaveButtons = std::vector<std::shared_ptr<class WaveButtons>>();
-
-	std::shared_ptr<class Hero_RallyPoint> TestHero = nullptr;
+	std::shared_ptr<class Hero_RallyPoint> AcHero = nullptr;
 
 	int CurStage = -1;
 	int NextWave = -1;
@@ -75,6 +74,7 @@ private:
 
 	void LoadWaveButtonPos();
 	void LoadStageStartGold();
+	void LoadStageHeroStartPos();
 
 	void KeySet();
 	
@@ -83,11 +83,14 @@ private:
 	void SetStageBuildArea(int _Stage);
 	void SetStageWaveButtons(int _Stage);
 	void SetStageGold(int _Stage);
+	void SetHero(int _Stage);
+
 	void ClearStageBg();
 	void ClearStagePaths();
 	void ClearStageBuildArea();
 	void ClearStageWaveButtons();
 	void ClearStageGold();
+	void ClearHero();
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();

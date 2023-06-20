@@ -43,6 +43,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	SetStageBuildArea(CurStage);
 	SetStageWaveButtons(CurStage);
 	SetStageGold(CurStage);
+	SetHero(CurStage);
 }
 
 void PlayStageLevel::ClearStage()
@@ -55,6 +56,7 @@ void PlayStageLevel::ClearStage()
 	ClearStageBuildArea();
 	ClearStageWaveButtons();
 	ClearStageGold();
+	ClearHero();
 }
 
 void PlayStageLevel::Start()
@@ -78,7 +80,6 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
-	TestHero = Hero_RallyPoint::CreateRallyPoint(this, float4::Zero);
 
 	LoadAllStageData();
 	
@@ -135,10 +136,10 @@ void PlayStageLevel::Update(float _DeltaTime)
 		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef(), FighterEnum::ReinforceLv0);
 	}
 
-	if (GameEngineInput::IsPress("Space") && GameEngineInput::IsUp("EngineMouseLeft"))
-	{
-		TestHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
-	}
+	//if (GameEngineInput::IsPress("Space") && GameEngineInput::IsUp("EngineMouseLeft"))
+	//{
+	//	TestHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
+	//}
 
 	if (GameEngineInput::IsUp("V"))
 	{
@@ -154,6 +155,7 @@ void PlayStageLevel::LoadAllStageData()
 	LoadRallyBinData();
 	LoadWaveButtonPos();
 	LoadStageStartGold();
+	LoadStageHeroStartPos();
 }
 
 void PlayStageLevel::LoadPathBinData()
@@ -297,6 +299,11 @@ void PlayStageLevel::SetStageWaveButtons(int _Stage)
 void PlayStageLevel::SetStageGold(int _Stage)
 {
 	Gold = AllStageData[_Stage].StartGold;
+}
+
+void PlayStageLevel::SetHero(int _Stage)
+{
+	AcHero = Hero_RallyPoint::CreateRallyPoint(this, AllStageData[_Stage].HeroStartPos);
 }
 
 void PlayStageLevel::ClearStageBg()
@@ -626,6 +633,14 @@ void PlayStageLevel::LoadStageStartGold()
 	AllStageData[5].StartGold = 1000;
 }
 
+void PlayStageLevel::LoadStageHeroStartPos()
+{
+	for (int i = 0; i < AllStageData.size(); i++)
+	{
+		AllStageData[i].SetHeroStartPos(i);
+	}
+}
+
 void PlayStageLevel::ClearStageBuildArea()
 {
 	for (size_t i = 0; i < AcBuildAreas.size(); i++)
@@ -651,4 +666,13 @@ void PlayStageLevel::ClearStageWaveButtons()
 void PlayStageLevel::ClearStageGold()
 {
 	Gold = -1;
+}
+
+void PlayStageLevel::ClearHero()
+{
+	if (AcHero != nullptr)
+	{
+		AcHero->Death();
+		AcHero = nullptr;
+	}
 }
