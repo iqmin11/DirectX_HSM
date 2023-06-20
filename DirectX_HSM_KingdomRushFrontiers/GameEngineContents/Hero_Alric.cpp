@@ -36,15 +36,18 @@ void Hero_Alric::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "Hero_Alric_Death", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "Hero_Alric_Idle", .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Move", .SpriteName = "Hero_Alric_Move", .FrameInter = 0.04f, .Loop = true });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "Hero_Alric_Revive", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "Hero_Alric_Revive", .FrameInter = 0.07f, .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Flurry", .SpriteName = "Hero_Alric_Skill_Flurry", .FrameInter = 0.075f, .Loop = false });
-	FighterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "Hero_Alric_Skill_Summon", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "Hero_Alric_Skill_Summon", .FrameInter = 0.075f, .Loop = false });
 
 	FighterRenderer->SetAnimationStartEvent("Attack0", 3, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
 
 	FighterRenderer->GetTransform()->SetWorldScale({217,217,1});
+
+	SummonCol = CreateComponent<GameEngineCollision>();
+	SummonCol->GetTransform()->SetWorldScale({ SummonRange*2, SummonRange*2, 1});
 
 	IdleStateInit();
 	MoveStateInit();
@@ -53,13 +56,22 @@ void Hero_Alric::Start()
 	ReturnStateInit();
 	DeathStateInit();
 	ReviveStateInit();
-	CastingSkill0StateInit();
 	CastingSkill1StateInit();
 }
 
 void Hero_Alric::Update(float _DeltaTime)
 {
 	BaseFighter::Update(_DeltaTime);
+	if (IsThereSummonTarget())
+	{
+ 		SummonTargetMonster = FindTargetMonster();
+		CalTargetPos();
+	}
+	else
+	{
+		SummonTargetMonster = nullptr;
+	}
+	SummonCooltime += _DeltaTime;
 	FighterFSM.Update(_DeltaTime);
 }
 
@@ -83,4 +95,45 @@ void Hero_Alric::AttackFlurry()
 int Hero_Alric::CalDamage()
 {
 	return BaseFighter::CalDamage();
+}
+
+std::shared_ptr<class BaseMonster> Hero_Alric::FindTargetMonster()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec = std::vector<std::shared_ptr<GameEngineCollision>>();
+	LocalColVec.reserve(30);
+	SummonCol->CollisionAll(static_cast<int>(ColOrder::Monster), LocalColVec, ColType::SPHERE2D, ColType::SPHERE2D);
+	std::shared_ptr<BaseMonster> TargetMonster = LocalColVec[0]->GetActor()->DynamicThis<BaseMonster>();
+	float Smallest = TargetMonster->CalDistance();
+	for (size_t i = 0; i < LocalColVec.size(); i++)
+	{
+		std::shared_ptr<BaseMonster> CompairMonster = LocalColVec[i]->GetActor()->DynamicThis<BaseMonster>();
+		if (Smallest <= std::min<float>(Smallest, CompairMonster->CalDistance()))
+		{
+			continue;
+		}
+		else
+		{
+			TargetMonster = CompairMonster;
+		}
+	}
+	return TargetMonster;
+}
+
+void Hero_Alric::CalTargetPos()
+{
+	float4 CurPos = SummonTargetMonster->GetMonsterCol()->GetTransform()->GetWorldPosition();
+	float4 Dir = SummonTargetMonster->GetMonsterDir();
+	float MonsterSpeed = 0;
+	if (SummonTargetMonster->State == MonsterState::Move)
+	{
+		MonsterSpeed = SummonTargetMonster->GetMonsterSpeed();
+	}
+	float SandmanSpeed = 100.f;
+
+	SummonTargetPos = CurPos + Dir * MonsterSpeed * SandmanSpeed;
+}
+
+bool Hero_Alric::IsThereSummonTarget()
+{
+	return nullptr != SummonCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D);
 }

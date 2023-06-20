@@ -139,6 +139,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 	{
 		TestHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
 	}
+
+	if (GameEngineInput::IsUp("V"))
+	{
+		IsDebugSwitch();
+	}
 }
 
 void PlayStageLevel::LoadAllStageData()
@@ -501,6 +506,13 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Skill_Flurry").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Hero_Alric_Skill_Summon").GetFullPath());
+	
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Born").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveDeath").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()

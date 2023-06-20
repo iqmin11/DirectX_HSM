@@ -48,7 +48,7 @@ void Hero_RallyPoint::SetHero()
 	Fighters[0]->SetPrevPos(GetTransform()->GetWorldPosition());
 	Fighters[0]->SetRallyTransform(RallyPosCheckComponents[0]->GetTransform());
 	Fighters[0]->Data.SetData(FighterEnum::Hero_Alric);
-	Fighters[0]->FighterFSM.ChangeState("Idle");
+	Fighters[0]->FighterFSM.ChangeState("Revive");
 	Fighters[0]->CurHP = Fighters[0]->Data.Hp;
 	Fighters[1] = nullptr;
 	Fighters[2] = nullptr;

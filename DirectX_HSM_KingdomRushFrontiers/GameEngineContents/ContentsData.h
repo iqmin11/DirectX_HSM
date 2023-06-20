@@ -639,6 +639,18 @@ public:
 			RangedDamage_MAX = -1;
 			Armor = 0.65f;
 			break;
+		case FighterEnum::Creature_Sandman:
+			FighterType = FighterEnum::Creature;
+			Level = 3;
+			Hp = 140.f;
+			AttackRate = 1.0f;
+			Damage_min = 2;
+			Damage_MAX = 6;
+			RangedAttackRate = -1.f;
+			RangedDamage_min = -1;
+			RangedDamage_MAX = -1;
+			Armor = 0.0f;
+			break;
 		default:
 			MsgAssert("¾û¶×ÇÑ FighterEnum°ªÀ» ³Ö¾ú½À´Ï´Ù.")
 			break;

@@ -30,12 +30,19 @@ void Hero_Alric::IdleStateInit()
 				FighterFSM.ChangeState("Move");
 				return;
 			}
+			else if (SummonCooltime >= 10.f && SummonTargetMonster != nullptr)
+			{
+				State = FighterState::Skill1;
+				FighterFSM.ChangeState("Summon");
+			}
 			else if (State != FighterState::Attack && TargetMonster != nullptr)
 			{
 				State = FighterState::TraceMonster;
 				FighterFSM.ChangeState("TraceMonster");
 				return;
 			}
+
+			
 
 			Time += _DeltaTime;
 			if (Time >= 3)
@@ -335,10 +342,11 @@ void Hero_Alric::CastingSkill1StateInit()
 	.Name = "Summon",
 	.Start = [this]()
 		{
-			FighterRenderer->SetAnimationStartEvent("Summon", 15, [this]()
+			FighterRenderer->SetAnimationStartEvent("Summon", 16, [this]()
 				{
 					State = FighterState::Idle;
 					FighterFSM.ChangeState("Idle");
+					SummonCooltime = 0.f;
 				});
 			FighterRenderer->ChangeAnimation("Summon");
 		},

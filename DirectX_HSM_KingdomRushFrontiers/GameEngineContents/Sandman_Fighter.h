@@ -1,5 +1,7 @@
 #pragma once
-class Sandman_Fighter
+#include "BaseFighter.h"
+
+class Sandman_Fighter : public BaseFighter
 {
 public:
 	// construtor destructor
@@ -13,7 +15,8 @@ public:
 	Sandman_Fighter& operator=(Sandman_Fighter&& _Other) noexcept = delete;
 
 protected:
-
+	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 

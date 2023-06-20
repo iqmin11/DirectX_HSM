@@ -10,3 +10,11 @@ Sandman_RallyPoint::~Sandman_RallyPoint()
 {
 
 }
+
+void Sandman_RallyPoint::Start()
+{
+}
+
+void Sandman_RallyPoint::Update(float _DeltaTime)
+{
+}

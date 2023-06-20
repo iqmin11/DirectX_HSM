@@ -10,3 +10,11 @@ Sandman_Fighter::~Sandman_Fighter()
 {
 
 }
+
+void Sandman_Fighter::Start()
+{
+}
+
+void Sandman_Fighter::Update(float _DeltaTime)
+{
+}

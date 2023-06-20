@@ -1,5 +1,7 @@
 #pragma once
-class Sandman_RallyPoint
+#include "RallyPoint.h"
+
+class Sandman_RallyPoint : public RallyPoint
 {
 public:
 	// construtor destructor
@@ -13,7 +15,8 @@ public:
 	Sandman_RallyPoint& operator=(Sandman_RallyPoint&& _Other) noexcept = delete;
 
 protected:
-
+	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 

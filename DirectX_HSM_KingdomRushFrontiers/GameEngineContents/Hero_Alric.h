@@ -25,7 +25,6 @@ protected:
 	void ReturnStateInit();
 	void DeathStateInit();
 	void ReviveStateInit();
-	void CastingSkill0StateInit();
 	void CastingSkill1StateInit();
 
 private:
@@ -34,5 +33,14 @@ private:
 	int CalDamage();
 
 	float FlurryCooltime = 0.f;
+	std::shared_ptr<class GameEngineCollision> SummonCol = nullptr;
+	float SummonRange = 200.f;
+	float SummonCooltime = 0.f;
+
+	std::shared_ptr<class BaseMonster> SummonTargetMonster = nullptr;
+	float4 SummonTargetPos = float4::Null;
+	std::shared_ptr<class BaseMonster> FindTargetMonster();
+	void CalTargetPos();
+	bool IsThereSummonTarget();
 };
 
