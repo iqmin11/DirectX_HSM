@@ -16,20 +16,20 @@ const float MonsterData::Speed_Midium = 50.f;
 const float MonsterData::Speed_Fast = 100.f;
 
 const float4 StageData::Invisible = { 10000, 10000, -1000 };
-const float4 StageData::Stage0_North_Path = { 565, 40, -1000 };
-const float4 StageData::Stage0_South_Path = { 565, -5, -1000 };
-const float4 StageData::Stage1_West = {-530, -230, -1000};
+const float4 StageData::Stage0_North_Path = { 744, 45, -1000 };
+const float4 StageData::Stage0_South_Path = { 744, -10, -1000 };
+const float4 StageData::Stage1_West = {-730, -230, -1000};
 const float4 StageData::Stage1_East = { 387, -383, -1000 };
 const float4 StageData::Stage2_North = {75, 398, -1000 };
-const float4 StageData::Stage2_East = { 554, -129, -1000 };
-const float4 StageData::Stage3_West = { -530, -255, -1000};
-const float4 StageData::Stage3_East = { 557, -306, -1000 };
+const float4 StageData::Stage2_East = { 754, -129, -1000 };
+const float4 StageData::Stage3_West = { -740, -255, -1000};
+const float4 StageData::Stage3_East = { 743, -306, -1000 };
 const float4 StageData::Stage4_West_Path = { 87, 304, -1000 };
 const float4 StageData::Stage4_East_Path = { 139, 271, -1000 };
 const float4 StageData::Stage4_East = { 550, 63, -1000 };
-const float4 StageData::Stage5_NorthWest = { -536, 136, -1000 };
-const float4 StageData::Stage5_West = { -536, -43, -1000 };
-const float4 StageData::Stage5_East = { 547, -5, -1000 };
+const float4 StageData::Stage5_NorthWest = { -742, 136, -1000 };
+const float4 StageData::Stage5_West = { -742, -43, -1000 };
+const float4 StageData::Stage5_East = { 739, -5, -1000 };
 
 void StageData::SetButtonPos(int _Stage)
 {
