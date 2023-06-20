@@ -7,6 +7,7 @@
 
 enum class FighterState
 {
+	Born,
 	Idle,
 	Move,
 	TraceMonster,
@@ -24,6 +25,7 @@ class BaseFighter : public GameEngineActor
 	friend class Melee_RallyPoint;
 	friend class Reinforcement_RallyPoint;
 	friend class Hero_RallyPoint;
+	friend class Sandman_RallyPoint;
 public:
 	// construtor destructor
 	BaseFighter();

@@ -44,10 +44,19 @@ void Hero_Alric::Start()
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
 
-	FighterRenderer->GetTransform()->SetWorldScale({217,217,1});
+	FighterRenderer->GetTransform()->SetWorldScale(RanderScale);
 
 	SummonCol = CreateComponent<GameEngineCollision>();
 	SummonCol->GetTransform()->SetWorldScale({ SummonRange*2, SummonRange*2, 1});
+
+	SandmanPivot.resize(3);
+	for (size_t i = 0; i < SandmanPivot.size(); i++)
+	{
+		SandmanPivot[i] = CreateComponent<GameEngineComponent>();
+	}
+	SandmanPivot[0]->GetTransform()->SetLocalPosition({ -25, 0, 0 });
+	SandmanPivot[1]->GetTransform()->SetLocalPosition({ 0, -25, -25 });
+	SandmanPivot[2]->GetTransform()->SetLocalPosition({ 25, 0, 0 });
 
 	IdleStateInit();
 	MoveStateInit();
@@ -124,13 +133,7 @@ void Hero_Alric::CalTargetPos()
 	float4 CurPos = SummonTargetMonster->GetMonsterCol()->GetTransform()->GetWorldPosition();
 	float4 Dir = SummonTargetMonster->GetMonsterDir();
 	float MonsterSpeed = 0;
-	if (SummonTargetMonster->State == MonsterState::Move)
-	{
-		MonsterSpeed = SummonTargetMonster->GetMonsterSpeed();
-	}
-	float SandmanSpeed = 100.f;
-
-	SummonTargetPos = CurPos + Dir * MonsterSpeed * SandmanSpeed;
+	SummonTargetPos = CurPos + Dir * MonsterSpeed;
 }
 
 bool Hero_Alric::IsThereSummonTarget()

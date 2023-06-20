@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "BaseMonster.h"
 #include "RallyPoint.h"
+#include "Sandman_RallyPoint.h"
 
 void Hero_Alric::IdleStateInit()
 {
@@ -349,6 +350,7 @@ void Hero_Alric::CastingSkill1StateInit()
 					SummonCooltime = 0.f;
 				});
 			FighterRenderer->ChangeAnimation("Summon");
+			Sandman_RallyPoint::CreateRallyPoint(this, SummonTargetPos);
 		},
 		.Update = [this](float _DeltaTime)
 		{

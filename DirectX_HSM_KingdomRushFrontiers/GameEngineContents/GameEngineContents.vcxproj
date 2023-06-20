@@ -724,6 +724,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sandman_Fighter_State.cpp" />
     <ClCompile Include="Sandman_RallyPoint.cpp">
       <SubType>
       </SubType>

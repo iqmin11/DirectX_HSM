@@ -19,6 +19,22 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	void AttackTarget();
+	int CalDamage() override;
 
+	float4 RanderScale = { 108,108,1 };
+	float LiveTime = 0.f;
+
+	void BornStateInit();
+	void IdleStateInit();
+	void MoveStartStateInit();
+	void MoveStateInit();
+	void MoveEndStateInit();
+	void StartTraceMonsterStateInit();
+	void TraceMonsterStateInit();
+	void EndTraceMonsterStateInit();
+	void AttackStateInit();
+	void MoveDeathStateInit();
+	void DeathStateInit();
 };
 

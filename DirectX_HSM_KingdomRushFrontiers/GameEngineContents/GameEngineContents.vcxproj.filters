@@ -436,6 +436,9 @@
     <ClCompile Include="Sandman_Fighter.cpp">
       <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
     </ClCompile>
+    <ClCompile Include="Sandman_Fighter_State.cpp">
+      <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsEnum.h"
 

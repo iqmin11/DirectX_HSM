@@ -511,7 +511,9 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Born").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Death").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveStart").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveEnd").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveDeath").GetFullPath());
 }
 

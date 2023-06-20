@@ -21,7 +21,6 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	class FighterData* DataPtr = nullptr;
 	float DeathTime = 0.f;
 
 	void SetFighter(FighterEnum _Enum);
