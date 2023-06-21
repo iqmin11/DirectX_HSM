@@ -333,6 +333,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="PlayManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PopText.h">
       <SubType>
       </SubType>
@@ -657,6 +661,10 @@
       </SubType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="PlayManager.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="PopText.cpp">
       <SubType>

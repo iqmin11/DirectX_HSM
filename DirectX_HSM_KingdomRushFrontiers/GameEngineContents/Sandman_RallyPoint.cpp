@@ -37,7 +37,7 @@ void Sandman_RallyPoint::Update(float _DeltaTime)
 	if (IsAllFightersDeath())
 	{
 		DeathTime += _DeltaTime;
-		if (DeathTime >= 3.f)
+		if (DeathTime >= 1.f)
 		{
 			Death();
 		}

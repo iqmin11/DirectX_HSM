@@ -22,6 +22,5 @@ private:
 	float Time = 0.3f;
 	int Count = 0;
 	float4 TargetPos = float4::Zero;
-	
 };
 

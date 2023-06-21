@@ -21,20 +21,56 @@ protected:
 
 private:
 	std::shared_ptr<class GameEngineUIRenderer> StatusBg = nullptr;
-	float4 StatusBgScale = { 222,76 };
-	float4 StatusBgPos = {-430, 400};
+	float4 StatusBgScale = { 390,76,1 };
+	float4 StatusBgPos = { -604, 436 };
+
+	std::shared_ptr<class GameEngineUIRenderer> FrameDeco = nullptr;
+	float4 FrameDecoScale = { 69,33,1 };
+	float4 FrameDecoPos = { 171, -434 };
+
+	std::shared_ptr<class GameEngineUIRenderer> HeroPortrateFrame = nullptr;
+	float4 HeroPortrateFrameScale = { 114,118,1 };
+	float4 HeroPortrateFramePos = { -722, -393 };
 
 	std::shared_ptr<class GameEngineUIRenderer> PauseButton = nullptr;
-	float4 PauseButtonScale = { 56,52 };
-	float4 PauseButtonPos = { 540, 400 };
+	float4 PauseButtonScale = { 41,38,1 };
+	float4 PauseButtonPos = { 696, 428 };
 
-	std::shared_ptr<class GameEngineUIRenderer> FireBallButton = nullptr;
-	float4 FireBallButtonScale = { 106,106 };
-	float4 FireBallButtonPos = { -500, -380 };
+	std::shared_ptr<class GameEngineUIRenderer> PauseFrame = nullptr;
+	float4 PauseFrameScale = { 117,62,1 };
+	float4 PauseFramePos = { 697, 441 };
+
+	std::shared_ptr<class GameEngineUIRenderer> RainOfFireButton = nullptr;
+	float4 RainOfFireButtonScale = { 71,71,1 };
+	float4 RainOfFireButtonPos = { -570, -407 };
 
 	std::shared_ptr<class GameEngineUIRenderer> ReinforcementButton = nullptr;
-	float4 ReinforcementButtonScale = { 106,106 };
-	float4 ReinforcementButtonPos = { -370, -380 };
+	float4 ReinforcementButtonScale = { 68,68,1 };
+	float4 ReinforcementButtonPos = { -493, -407 };
+
+	std::shared_ptr<class GameEngineUIRenderer> SpellButtonFrame = nullptr;
+	float4 SpellButtonFrameScale = { 240,75,1 };
+	float4 SpellButtonFramePos = { -531, -414 };
+
+	std::shared_ptr<class GameEngineUIRenderer> UnderFrame = nullptr;
+	float4 UnderFrameScale = { 1632,17,1 };
+	float4 UnderFramePos = { -12, -444};
+
+	std::shared_ptr<class GameEngineUIRenderer> UnderSpellFrame = nullptr;
+	float4 UnderSpellFrameScale = { 296,43,1 };
+	float4 UnderSpellFramePos = { -530, -431 };
+
+	std::shared_ptr<class GameEngineUIRenderer> UnderWaveFrame = nullptr;
+	float4 UnderWaveFrameScale = { 145,43,1 };
+	float4 UnderWaveFramePos = { 738, -431 };
+
+	std::shared_ptr<class GameEngineUIRenderer> WaveButton = nullptr;
+	float4 WaveButtonScale = { 60,60,1 };
+	float4 WaveButtonPos = { 738, -414 };
+
+	std::shared_ptr<class GameEngineUIRenderer> WaveStartButtonFrame = nullptr;
+	float4 WaveStartButtonFrameScale = { 114,64,1 };
+	float4 WaveStartButtonFramePos = { 736, -420};
 
 	void LoadTexture();
 };

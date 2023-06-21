@@ -136,10 +136,10 @@ void PlayStageLevel::Update(float _DeltaTime)
 		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef(), FighterEnum::ReinforceLv0);
 	}
 
-	//if (GameEngineInput::IsPress("Space") && GameEngineInput::IsUp("EngineMouseLeft"))
-	//{
-	//	TestHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
-	//}
+	if (GameEngineInput::IsPress("Space") && GameEngineInput::IsUp("EngineMouseLeft"))
+	{
+		AcHero->SetRallyPos(MousePointer::GetIngameMousePosRef());
+	}
 
 	if (GameEngineInput::IsUp("V"))
 	{

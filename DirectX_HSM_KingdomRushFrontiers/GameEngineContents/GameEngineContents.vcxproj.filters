@@ -212,6 +212,9 @@
     <ClInclude Include="Sandman_Fighter.h">
       <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
     </ClInclude>
+    <ClInclude Include="PlayManager.h">
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -439,6 +442,9 @@
     <ClCompile Include="Sandman_Fighter_State.cpp">
       <Filter>3.PlayStage\Actor\Hero\Sandman</Filter>
     </ClCompile>
+    <ClCompile Include="PlayManager.cpp">
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -548,6 +554,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Hero\Sandman">
       <UniqueIdentifier>{6535d185-fe56-402d-be74-da81711f9da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\PlayManager">
+      <UniqueIdentifier>{ae8c19e0-8d64-45d5-9ecd-dbc2d1f537e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

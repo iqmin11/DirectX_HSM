@@ -28,7 +28,11 @@ enum class UIRenderOrder
 	BuildBar,
 	TowerUI,
 	TowerUIButton,
+	StageUI_Frame0,
+	StageUI_Frame1,
+	StageUI_Frame2,
 	StageUI,
+	StageUI_Display,
 	MousePoint
 };
 

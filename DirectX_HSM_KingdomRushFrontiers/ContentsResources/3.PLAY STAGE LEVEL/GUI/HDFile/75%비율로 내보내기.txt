@@ -1,0 +1,16 @@
+위 UI는 75%
+아래 UI는 85%
+
+-604 436 Status
+171 -434 Deco
+-722 -393 portrate
+696, 428 PauseButton
+697, 441 PauseButtonFrame
+-570, -407 Skill0
+-493, -407 Skill1
+-531, -414 SkillFrame
+-12, -444 UnderFrame
+-530, -432 UnderSkillFrame
+738, -430 UnderWaveStartFrame
+738, -414 WaveStartButton
+736, -420 WaveStartButtonFrame

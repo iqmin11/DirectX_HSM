@@ -212,7 +212,66 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
         else
         {
             BuildAreaSelect->Off();
-            BuildAreaCursor->SetTexture("build_terrain_0004.png");
+            static int CursorSelect = 0;
+            if (GameEngineInput::IsDown("LeftArrow"))
+            {
+                if (--CursorSelect < 0)
+                {
+                    CursorSelect = 12;
+                }
+            }
+            else if (GameEngineInput::IsDown("RightArrow"))
+            {
+                if (++CursorSelect > 12)
+                {
+                    CursorSelect = 0;
+                }
+            }
+
+            switch (CursorSelect)
+            {
+            case 0: 
+                BuildAreaCursor->SetScaleToTexture("build_terrain_0004.png");
+                break;
+            case 1:
+                BuildAreaCursor->SetScaleToTexture("DisplayPlayerState.png");
+                break;
+            case 2:
+                BuildAreaCursor->SetScaleToTexture("FrameDeco.png");
+                break;
+            case 3:
+                BuildAreaCursor->SetScaleToTexture("HeroPortrateFrame.png");
+                break;
+            case 4:
+                BuildAreaCursor->SetScaleToTexture("PauseButton.png");
+                break;
+            case 5:
+                BuildAreaCursor->SetScaleToTexture("PauseFrame.png");
+                break;
+            case 6:
+                BuildAreaCursor->SetScaleToTexture("RainOfFireButton.png");
+                break;
+            case 7:
+                BuildAreaCursor->SetScaleToTexture("SpellButtonFrame.png");
+                break;
+            case 8:
+                BuildAreaCursor->SetScaleToTexture("UnderFrame.png");
+                break;
+            case 9:
+                BuildAreaCursor->SetScaleToTexture("UnderSpellFrame.png");
+                break;
+            case 10:
+                BuildAreaCursor->SetScaleToTexture("UnderWaveFrame.png");
+                break;
+            case 11:
+                BuildAreaCursor->SetScaleToTexture("WaveButton.png");
+                break;
+            case 12:
+                BuildAreaCursor->SetScaleToTexture("WaveStartbuttonFrame.png");
+                break;
+            default:
+                break;
+            }
         }
     }
     else
