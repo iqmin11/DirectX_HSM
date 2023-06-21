@@ -2,6 +2,7 @@
 #include "MousePointer.h"
 
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform\GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "PlayStageLevel.h"
@@ -78,7 +79,11 @@ void MousePointer::ReleaseStateInit()
 		}
 		,.Update = [this](float _DeltaTime)
 		{
-			
+			if (GameEngineInput::IsDown("EngineMouseLeft"))
+			{
+				State = MouseState::Press;
+				MouseFSM.ChangeState("Press");
+			}
 		}
 		,.End = [this]()
 		{
@@ -93,11 +98,15 @@ void MousePointer::PressStateInit()
 	.Name = "Press"
 	,.Start = [this]()
 	{
-
+		MousePointerRenderer->ChangeAnimation("Press");
 	}
 	,.Update = [this](float _DeltaTime)
 	{
-
+		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			State = MouseState::Release;
+			MouseFSM.ChangeState("Release");
+		}
 	}
 	,.End = [this]()
 	{
