@@ -5,6 +5,7 @@
 class PlayStageUI : public GameEngineActor
 {
 public:
+	static PlayStageUI* MainStageUI;
 	// construtor destructor
 	PlayStageUI();
 	~PlayStageUI();
@@ -14,6 +15,8 @@ public:
 	PlayStageUI(PlayStageUI&& _Other) noexcept = delete;
 	PlayStageUI& operator=(const PlayStageUI& _Other) = delete;
 	PlayStageUI& operator=(PlayStageUI&& _Other) noexcept = delete;
+
+	void SetWaveButtonEvent(std::function<void()> _Click);
 
 protected:
 	void Start() override;
@@ -40,11 +43,10 @@ private:
 	float4 PauseFrameScale = { 117,62,1 };
 	float4 PauseFramePos = { 697, 441 };
 
-	std::shared_ptr<class GameEngineUIRenderer> RainOfFireButton = nullptr;
-	float4 RainOfFireButtonScale = { 71,71,1 };
+	std::shared_ptr<class Button_RainOfFire> RainOfFireButton = nullptr;
 	float4 RainOfFireButtonPos = { -570, -407 };
 
-	std::shared_ptr<class GameEngineUIRenderer> ReinforcementButton = nullptr;
+	std::shared_ptr<class Button_CallReinforcement> ReinforcementButton = nullptr;
 	float4 ReinforcementButtonScale = { 68,68,1 };
 	float4 ReinforcementButtonPos = { -493, -407 };
 
@@ -64,7 +66,7 @@ private:
 	float4 UnderWaveFrameScale = { 145,43,1 };
 	float4 UnderWaveFramePos = { 738, -431 };
 
-	std::shared_ptr<class GameEngineUIRenderer> WaveButton = nullptr;
+	std::shared_ptr<class BottomWaveButton> WaveButton = nullptr;
 	float4 WaveButtonScale = { 60,60,1 };
 	float4 WaveButtonPos = { 738, -414 };
 

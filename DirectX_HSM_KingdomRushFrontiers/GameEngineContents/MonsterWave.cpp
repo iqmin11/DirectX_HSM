@@ -6,6 +6,7 @@
 #include "BaseMonster.h"
 #include "WaveButtons.h"
 #include "NextWaveStartButton.h"
+#include "BottomWaveButton.h"
 
 std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;
 std::shared_ptr<PlayStageLevel> MonsterWave::ParentLevel = nullptr;
@@ -28,6 +29,7 @@ void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector
 	ParentLevel = _Level->DynamicThis<PlayStageLevel>();
 	ParentLevel->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
 	IsLastMonsterSummon = false;
+	BottomWaveButton::IsValid = false;
 }
 
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)
@@ -63,9 +65,10 @@ void MonsterWave::Update(float _DeltaTime)
 		IsLastMonsterSummon = true;
 		if (ParentLevel->GetWaveButtons().size() > ParentLevel->GetNextWave())
 		{
-			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->On();
+			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->OnButtons();
 		}
- 		Death();
+		BottomWaveButton::IsValid = true;
+		Death();
 	}
 }
 

@@ -215,6 +215,15 @@
     <ClInclude Include="PlayManager.h">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClInclude>
+    <ClInclude Include="Button_RainOfFire.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button_CallReinforcement.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BottomWaveButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -444,6 +453,15 @@
     </ClCompile>
     <ClCompile Include="PlayManager.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Button_RainOfFire.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button_CallReinforcement.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BottomWaveButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

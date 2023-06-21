@@ -40,6 +40,11 @@ public:
 		return ParentActor;
 	}
 
+	std::function<void()> GetEvent() const
+	{
+		return Click;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "PlayStageLevel.h"
 #include "NextWaveStartButton.h"
+#include "PlayStageUI.h"
 
 WaveButtons::WaveButtons()
 {
@@ -38,6 +39,12 @@ std::shared_ptr<WaveButtons> WaveButtons::CreateWaveButtons(GameEngineLevel* _Le
 	}
 
 	return ResultButtons.lock();
+}
+
+void WaveButtons::OnButtons()
+{
+	On();
+	PlayStageUI::MainStageUI->SetWaveButtonEvent(Buttons[0]->GetEvent());
 }
 
 void WaveButtons::Start()

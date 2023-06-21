@@ -19,6 +19,7 @@
 #include "RainOfFire.h"
 #include "CallReinforcement.h"
 #include "Hero_RallyPoint.h"
+#include "PlayManager.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -80,6 +81,7 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
+	MainPlayer = CreateActor<PlayManager>();
 
 	LoadAllStageData();
 	
@@ -293,7 +295,7 @@ void PlayStageLevel::SetStageWaveButtons(int _Stage)
 		AcWaveButtons[i] = WaveButtons::CreateWaveButtons(this, AllStageData[_Stage].WaveStartButtonPos[i], static_cast<int>(i));
 		AcWaveButtons[i]->Off();
 	}
-	AcWaveButtons[0]->On();
+	AcWaveButtons[0]->OnButtons();
 }
 
 void PlayStageLevel::SetStageGold(int _Stage)

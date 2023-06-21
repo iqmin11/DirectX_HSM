@@ -2,14 +2,25 @@
 #include "PlayStageUI.h"
 #include <GameEngineCore/GameEngineUIRenderer.h>
 
+#include "Button_RainOfFire.h"
+#include "Button_CallReinforcement.h"
+#include "BottomWaveButton.h"
+
+PlayStageUI* PlayStageUI::MainStageUI = nullptr;
+
 PlayStageUI::PlayStageUI()
 {
-
+	MainStageUI = this;
 }
 
 PlayStageUI::~PlayStageUI()
 {
 
+}
+
+void PlayStageUI::SetWaveButtonEvent(std::function<void()> _Click)
+{
+	WaveButton->SetEvent(_Click);
 }
 
 void PlayStageUI::Start()
@@ -41,14 +52,10 @@ void PlayStageUI::Start()
 	PauseFrame->GetTransform()->SetWorldScale(PauseFrameScale);
 	PauseFrame->GetTransform()->SetWorldPosition(PauseFramePos);
 
-	RainOfFireButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
-	RainOfFireButton->SetTexture("RainOfFireButton.png");
-	RainOfFireButton->GetTransform()->SetWorldScale(RainOfFireButtonScale);
+	RainOfFireButton = Button_RainOfFire::CreateButton(GetLevel());
 	RainOfFireButton->GetTransform()->SetWorldPosition(RainOfFireButtonPos);
 
-	ReinforcementButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
-	ReinforcementButton->SetTexture("ReinforcementButton.png");
-	ReinforcementButton->GetTransform()->SetWorldScale(ReinforcementButtonScale);
+	ReinforcementButton = Button_CallReinforcement::CreateButton(GetLevel());
 	ReinforcementButton->GetTransform()->SetWorldPosition(ReinforcementButtonPos);
 
 	SpellButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame2);
@@ -71,9 +78,7 @@ void PlayStageUI::Start()
 	UnderWaveFrame->GetTransform()->SetWorldScale(UnderWaveFrameScale);
 	UnderWaveFrame->GetTransform()->SetWorldPosition(UnderWaveFramePos);
 
-	WaveButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
-	WaveButton->SetTexture("WaveButton.png");
-	WaveButton->GetTransform()->SetWorldScale(WaveButtonScale);
+	WaveButton = BottomWaveButton::CreateButton(GetLevel());
 	WaveButton->GetTransform()->SetWorldPosition(WaveButtonPos);
 
 	WaveStartButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame2);

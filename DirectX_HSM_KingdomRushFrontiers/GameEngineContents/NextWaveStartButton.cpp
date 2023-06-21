@@ -3,6 +3,7 @@
 
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "PlayStageLevel.h"
+#include "PlayStageUI.h"
 
 NextWaveStartButton::NextWaveStartButton()
 {
