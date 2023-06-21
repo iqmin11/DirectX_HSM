@@ -1,6 +1,17 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsEnum.h"
+#include <GameEngineCore\GameEngineFSM.h>
+
+enum class MouseState
+{
+	Release,
+	Press,
+	RainOfFire,
+	CallReinforcement,
+	SelectUnit,
+	Invalid
+};
 
 class MousePointer : public GameEngineActor
 {
@@ -27,6 +38,7 @@ public:
 	}
 	static const float4 GetMouseWinPosRef();
 	static const float4 GetMouseColmapPos();
+
 	bool IsThereMouseOntheColMap();
 	
 
@@ -36,7 +48,17 @@ protected:
 
 private:
 	static float4 MousePos;
-	std::shared_ptr<class GameEngineSpriteRenderer> MousePointerRenderer = nullptr;
+	MouseState State = MouseState::Release;
+	std::shared_ptr<class GameEngineUIRenderer> MousePointerRenderer = nullptr;
+	float4 RendererScale = { 136,136,1 };
 	std::shared_ptr<class GameEngineCollision> MousePointerCol = nullptr;
+	GameEngineFSM MouseFSM = GameEngineFSM();
+
+	void ReleaseStateInit();
+	void PressStateInit();
+	void RainOfFireStateInit();
+	void CallReinforcementStateInit();
+	void SelectUnitStateInit();
+	void InvalidStateInit();
 };
 

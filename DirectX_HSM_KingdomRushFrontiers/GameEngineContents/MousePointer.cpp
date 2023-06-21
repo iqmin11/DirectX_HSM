@@ -2,7 +2,7 @@
 #include "MousePointer.h"
 
 #include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "PlayStageLevel.h"
 #include "StageBg.h"
@@ -40,14 +40,144 @@ bool MousePointer::IsThereMouseOntheColMap()
 
 void MousePointer::Start()
 {
-	MousePointerRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	MousePointerRenderer->GetTransform()->SetWorldScale({ 1,1 });
+	MousePointerRenderer = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::MousePoint);
+	MousePointerRenderer->GetTransform()->SetWorldScale(RendererScale);
+	MousePointerRenderer->CreateAnimation({.AnimationName = "Release", .SpriteName = "Mouse_Release"});
+	MousePointerRenderer->CreateAnimation({.AnimationName = "Press", .SpriteName = "Mouse_Press"});
+	MousePointerRenderer->CreateAnimation({.AnimationName = "RainOfFire", .SpriteName = "Mouse_RainOfFire", .Loop = true});
+	MousePointerRenderer->CreateAnimation({.AnimationName = "CallReinforcement", .SpriteName = "Mouse_CallReinforcement", .Loop = true });
+	MousePointerRenderer->CreateAnimation({.AnimationName = "UnitSelect", .SpriteName = "Mouse_UnitSelect", .Loop = true });
+
 	MousePointerCol = CreateComponent<GameEngineCollision>(ColOrder::MousePointer);
-	MousePointerCol->GetTransform()->SetWorldScale({ 1,1 });
+	MousePointerCol->GetTransform()->SetWorldScale({ 1,1,1 });
+	
+	ReleaseStateInit();
+	PressStateInit();
+	RainOfFireStateInit();
+	CallReinforcementStateInit();
+	SelectUnitStateInit();
+	InvalidStateInit();
+
+	MouseFSM.ChangeState("Release");
 }
 
 void MousePointer::Update(float _DeltaTime)
 {
 	MousePos = float4{ 1,-1, 1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
 	GetTransform()->SetWorldPosition(MousePos);
+	MouseFSM.Update(_DeltaTime);
+}
+
+void MousePointer::ReleaseStateInit()
+{
+	MouseFSM.CreateState({
+		.Name = "Release"
+		,.Start = [this]()
+		{
+			MousePointerRenderer->ChangeAnimation("Release");
+		}
+		,.Update = [this](float _DeltaTime)
+		{
+			
+		}
+		,.End = [this]()
+		{
+
+		}
+		});
+}
+
+void MousePointer::PressStateInit()
+{
+	MouseFSM.CreateState({
+	.Name = "Press"
+	,.Start = [this]()
+	{
+
+	}
+	,.Update = [this](float _DeltaTime)
+	{
+
+	}
+	,.End = [this]()
+	{
+
+	}
+		});
+}
+
+void MousePointer::RainOfFireStateInit()
+{
+	MouseFSM.CreateState({
+	.Name = "RainOfFire"
+	,.Start = [this]()
+	{
+
+	}
+	,.Update = [this](float _DeltaTime)
+	{
+
+	}
+	,.End = [this]()
+	{
+
+	}
+		});
+}
+
+void MousePointer::CallReinforcementStateInit()
+{
+	MouseFSM.CreateState({
+	.Name = "CallReinforcement"
+	,.Start = [this]()
+	{
+
+	}
+	,.Update = [this](float _DeltaTime)
+	{
+
+	}
+	,.End = [this]()
+	{
+
+	}
+		});
+}
+
+void MousePointer::SelectUnitStateInit()
+{
+	MouseFSM.CreateState({
+	.Name = "SelectUnit"
+	,.Start = [this]()
+	{
+
+	}
+	,.Update = [this](float _DeltaTime)
+	{
+
+	}
+	,.End = [this]()
+	{
+
+	}
+		});
+}
+
+void MousePointer::InvalidStateInit()
+{
+	MouseFSM.CreateState({
+	.Name = "Invalid"
+	,.Start = [this]()
+	{
+
+	}
+	,.Update = [this](float _DeltaTime)
+	{
+
+	}
+	,.End = [this]()
+	{
+
+	}
+		});
 }

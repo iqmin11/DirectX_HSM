@@ -526,6 +526,15 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_Move").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveEnd").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Sandman_MoveDeath").GetFullPath());
+
+	Dir.MoveParentToDirectory("Hero");
+	Dir.Move("GUIAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_CallReinforcement").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_Press").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_RainOfFire").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_Release").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_UnitSelect").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()
