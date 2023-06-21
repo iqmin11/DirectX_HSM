@@ -5,6 +5,8 @@
 class MousePointer : public GameEngineActor
 {
 public:
+	static MousePointer* MainMouse;
+
 	// construtor destructor
 	MousePointer();
 	~MousePointer();
@@ -25,6 +27,7 @@ public:
 	}
 	static const float4 GetMouseWinPosRef();
 	static const float4 GetMouseColmapPos();
+	bool IsThereMouseOntheColMap();
 	
 
 protected:

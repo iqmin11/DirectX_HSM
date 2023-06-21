@@ -246,6 +246,8 @@ void PlayStageLevel::LoadOneWave(GameEngineSerializer& _Serializer, int _StageLe
 void PlayStageLevel::KeySet()
 {
 	GameEngineInput::CreateKey("F1",VK_F1);
+	GameEngineInput::CreateKey("1",'1');
+	GameEngineInput::CreateKey("2",'2');
 }
 
 void PlayStageLevel::SetStageBg(int _Stage)
@@ -552,12 +554,7 @@ bool PlayStageLevel::IsLastWave()
 	return LastWave + 1 == NextWave;
 }
 
-bool PlayStageLevel::IsThereMouseOntheColMap()
-{
-	float4 MousePos = MousePointer::GetMouseColmapPos();
-	GameEnginePixelColor Pixel = AcStageBg->GetColmap(CurStage)->GetPixel(MousePos.ix(), MousePos.iy());
-	return GameEnginePixelColor(0, 0, 0, UCHAR_MAX) == Pixel;
-}
+
 
 void PlayStageLevel::LoadAreaBinData()
 {

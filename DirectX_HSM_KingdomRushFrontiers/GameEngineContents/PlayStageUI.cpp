@@ -10,6 +10,10 @@ PlayStageUI* PlayStageUI::MainStageUI = nullptr;
 
 PlayStageUI::PlayStageUI()
 {
+	if (MainStageUI != nullptr)
+	{
+		return;
+	}
 	MainStageUI = this;
 }
 

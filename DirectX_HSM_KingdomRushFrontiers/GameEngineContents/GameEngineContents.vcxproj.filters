@@ -463,6 +463,9 @@
     <ClCompile Include="BottomWaveButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
+    <ClCompile Include="PlayManager_State.cpp">
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

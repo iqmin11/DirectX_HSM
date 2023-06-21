@@ -97,7 +97,7 @@ void Melee_Tower::Update(float _DeltaTime)
 	if (SetRallyMod 
 		&& GameEngineInput::IsUp("EngineMouseLeft"))
 	{
-		if (!dynamic_cast<PlayStageLevel*>(GetLevel())->IsThereMouseOntheColMap()
+		if (!MousePointer::MainMouse->IsThereMouseOntheColMap()
 			&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
 		{
 			float4 Pos = MousePointer::GetMousePosRef();

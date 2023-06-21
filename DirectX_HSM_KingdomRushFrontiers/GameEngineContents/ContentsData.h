@@ -672,3 +672,8 @@ public:
 	float Armor = -1.0f;
 };
 
+class PlayerData
+{	
+public:
+	int ReinforceLevel = -1;
+};

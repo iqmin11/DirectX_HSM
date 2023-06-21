@@ -7,7 +7,6 @@ class PlayStageLevel : public GameEngineLevel
 {
 public:
 	static std::vector<StageData> AllStageData;
-	bool IsThereMouseOntheColMap();
 
 	// construtor destructor
 	PlayStageLevel();
@@ -37,6 +36,16 @@ public:
 	int GetNextWave() const
 	{
 		return NextWave;
+	}
+
+	std::shared_ptr<class StageBg> GetStageBg() const
+	{
+		return AcStageBg;
+	}
+
+	int GetCurStage() const 
+	{
+		return CurStage;
 	}
 
 protected:

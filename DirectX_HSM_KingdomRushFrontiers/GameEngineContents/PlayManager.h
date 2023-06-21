@@ -1,5 +1,7 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
+#include <GameEngineCore/GameEngineFSM.h>
+#include "ContentsData.h"
 
 enum class PlayerState
 {
@@ -41,6 +43,13 @@ protected:
 
 private:
 	PlayerState State = PlayerState::Idle;
+	GameEngineFSM PlayerFSM = GameEngineFSM();
+	PlayerData Data = PlayerData();
 
+	void IdleStateInit();
+	void RainOfFireStateInit();
+	void CallReinforcementStateInit();
+	void HeroStateInit();
+	void TowerStateInit();
 };
 

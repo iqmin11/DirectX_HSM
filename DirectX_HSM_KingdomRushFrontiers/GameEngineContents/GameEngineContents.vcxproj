@@ -690,6 +690,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayManager_State.cpp" />
     <ClCompile Include="PopText.cpp">
       <SubType>
       </SubType>

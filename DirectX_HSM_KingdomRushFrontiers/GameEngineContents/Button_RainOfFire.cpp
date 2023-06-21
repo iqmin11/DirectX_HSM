@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Button_RainOfFire.h"
 
+#include <GameEnginePlatform\GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "PlayManager.h"
@@ -42,5 +43,9 @@ void Button_RainOfFire::Update(float _DeltaTime)
 	else
 	{
 		ContentsButton::Update(_DeltaTime);
+		if (GameEngineInput::IsDown("1"))
+		{
+			GetEvent()();
+		}
 	}
 }

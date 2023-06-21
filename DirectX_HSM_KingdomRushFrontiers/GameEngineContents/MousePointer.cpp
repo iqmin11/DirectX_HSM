@@ -4,12 +4,15 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "PlayStageLevel.h"
+#include "StageBg.h"
 
 float4 MousePointer::MousePos = float4::Zero;
+MousePointer* MousePointer::MainMouse = nullptr;
 
 MousePointer::MousePointer()
 {
-
+	MainMouse = this;
 }
 
 MousePointer::~MousePointer()
@@ -25,6 +28,14 @@ const float4 MousePointer::GetMouseWinPosRef()
 const float4 MousePointer::GetMouseColmapPos()
 {
 	return GameEngineWindow::GetMousePosition() + float4{-200, 50};
+}
+
+bool MousePointer::IsThereMouseOntheColMap()
+{
+	float4 MousePos = MousePointer::GetMouseColmapPos();
+	std::weak_ptr LocalLevel(GetLevel()->DynamicThis<PlayStageLevel>());
+	GameEnginePixelColor Pixel = LocalLevel.lock()->GetStageBg()->GetColmap(LocalLevel.lock()->GetCurStage())->GetPixel(MousePos.ix(), MousePos.iy());
+	return GameEnginePixelColor(0, 0, 0, UCHAR_MAX) == Pixel;
 }
 
 void MousePointer::Start()
