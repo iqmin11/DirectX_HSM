@@ -37,7 +37,8 @@ bool MousePointer::IsThereMouseOntheColMap()
 {
 	float4 MousePos = MousePointer::GetMouseColmapPos();
 	std::weak_ptr LocalLevel(GetLevel()->DynamicThis<PlayStageLevel>());
-	GameEnginePixelColor Pixel = LocalLevel.lock()->GetStageBg()->GetColmap(LocalLevel.lock()->GetCurStage())->GetPixel(MousePos.ix(), MousePos.iy());
+	int CurStage = LocalLevel.lock()->GetCurStage();
+	GameEnginePixelColor Pixel = LocalLevel.lock()->GetStageBg()->GetColmap(CurStage)->GetPixel(MousePos.ix(), MousePos.iy());
 	return GameEnginePixelColor(0, 0, 0, UCHAR_MAX) == Pixel || GameEnginePixelColor::Black == Pixel;
 }
 

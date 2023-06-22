@@ -1,11 +1,13 @@
 #include "PrecompileHeader.h"
 #include "PlayStageUI.h"
+
+#include <GameEngineCore\GameEngineLevel.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 
 #include "Button_RainOfFire.h"
 #include "Button_CallReinforcement.h"
 #include "BottomWaveButton.h"
-#include "Button_Hero.h"
+#include "Hero_Portrate.h"
 
 PlayStageUI* PlayStageUI::MainStageUI = nullptr;
 
@@ -42,13 +44,9 @@ void PlayStageUI::Start()
 	FrameDeco->GetTransform()->SetWorldScale(FrameDecoScale);
 	FrameDeco->GetTransform()->SetWorldPosition(FrameDecoPos);
 
-	HeroPortrateFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_2);
-	HeroPortrateFrame->SetTexture("HeroPortrateFrame.png");
-	HeroPortrateFrame->GetTransform()->SetWorldScale(HeroPortrateFrameScale);
-	HeroPortrateFrame->GetTransform()->SetWorldPosition(HeroPortrateFramePos);
+	AcHeroPortrate = GetLevel()->CreateActor<Hero_Portrate>();
+	AcHeroPortrate->GetTransform()->SetWorldPosition(HeroPortrateFramePos);
 
-	HeroButton = Button_Hero::CreateButton(GetLevel());
-	HeroButton->GetTransform()->SetWorldPosition(HeroButtonPos);
 
 	PauseButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	PauseButton->SetTexture("PauseButton.png");

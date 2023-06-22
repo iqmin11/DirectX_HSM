@@ -13,6 +13,7 @@
 #include "UpgradeTowerUI.h"
 #include "Melee_Tower.h"
 #include "Hero_RallyPoint.h"
+#include "PlayStageUI.h"
 
 void MousePointer::ReleaseStateInit()
 {
@@ -274,7 +275,7 @@ void MousePointer::HeroStateInit()
 
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
-			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
+			if (/*!MousePointer::MainMouse->IsThereMouseOntheColMap()*/true)
 			{
 				PlayManager::MainPlayer->GetHero().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
 			}

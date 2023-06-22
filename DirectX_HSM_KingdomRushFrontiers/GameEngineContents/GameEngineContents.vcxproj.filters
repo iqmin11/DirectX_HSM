@@ -221,11 +221,14 @@
     <ClInclude Include="BottomWaveButton.h">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
-    <ClInclude Include="Button_Hero.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClInclude>
     <ClInclude Include="MousePointer.h">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero_Portrate.h">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+    </ClInclude>
+    <ClInclude Include="Button_Hero.h">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -466,14 +469,17 @@
     <ClCompile Include="PlayManager_State.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
-    <ClCompile Include="Button_Hero.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClCompile>
     <ClCompile Include="MousePointer.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
     <ClCompile Include="MousePointer_State.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero_Portrate.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+    </ClCompile>
+    <ClCompile Include="Button_Hero.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -587,6 +593,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\PlayManager">
       <UniqueIdentifier>{ae8c19e0-8d64-45d5-9ecd-dbc2d1f537e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrate">
+      <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

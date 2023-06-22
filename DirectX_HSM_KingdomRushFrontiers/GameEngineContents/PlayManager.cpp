@@ -21,6 +21,11 @@ PlayManager::~PlayManager()
 {
 }
 
+const std::weak_ptr<class Hero_RallyPoint> PlayManager::GetHero() const
+{
+	return std::weak_ptr(dynamic_cast<PlayStageLevel*>(GetLevel())->GetHero());
+}
+
 void PlayManager::Start()
 {
 	Data.ReinforceLevel = 3;
@@ -32,7 +37,6 @@ void PlayManager::Start()
 	TowerStateInit();
 	UnitPosStateInit();
 	PlayerFSM.ChangeState("Idle");
-	AcHero = dynamic_cast<PlayStageLevel*>(GetLevel())->GetHero();
 }
 
 void PlayManager::Update(float _DeltaTime)

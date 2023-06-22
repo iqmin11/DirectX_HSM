@@ -16,7 +16,7 @@ Hero_Alric::Hero_Alric()
 Hero_Alric::~Hero_Alric()
 {
 
-}
+} 
 
 void Hero_Alric::Start()
 {

@@ -42,6 +42,14 @@ void Button_Hero::Start()
 void Button_Hero::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
+	if (PlayManager::MainPlayer->GetState() != PlayerState::Hero)
+	{
+		if (SelectTexture->IsUpdate())
+		{
+			SelectTexture->Off();
+		}
+	}
+
 	if (GameEngineInput::IsDown("Space"))
 	{
 		GetEvent()();
