@@ -3,8 +3,6 @@
 
 #include <GameEnginePlatform\GameEngineInput.h>
 #include "MousePointer.h"
-#include "RainOfFire.h"
-#include "CallReinforcement.h"
 
 void PlayManager::IdleStateInit()
 {
@@ -24,6 +22,14 @@ void PlayManager::IdleStateInit()
 		{
 			PlayerFSM.ChangeState("CallReinforcement");
 		}
+		else if (State == PlayerState::Hero)
+		{
+			PlayerFSM.ChangeState("Hero");
+		}
+		else if (State == PlayerState::UnitPos)
+		{
+			PlayerFSM.ChangeState("UnitPos");
+		}
 	},
 	.End = [this]()
 	{
@@ -42,19 +48,21 @@ void PlayManager::RainOfFireStateInit()
 	},
 	.Update = [this](float _DeltaTime)
 	{
-		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		if (State == PlayerState::Idle)
 		{
-			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
-			{
-				RainOfFire::CastingSpell(GetLevel(), MousePointer::MainMouse->GetIngameMousePosRef());
-			}
-			State = PlayerState::Idle;
 			PlayerFSM.ChangeState("Idle");
 		}
-		else if(GameEngineInput::IsUp("EngineMouseRight"))
+		else if (State == PlayerState::CallReinforcement)
 		{
-			State = PlayerState::Idle;
-			PlayerFSM.ChangeState("Idle");
+			PlayerFSM.ChangeState("CallReinforcement");
+		}
+		else if (State == PlayerState::Hero)
+		{
+			PlayerFSM.ChangeState("Hero");
+		}
+		else if (State == PlayerState::UnitPos)
+		{
+			PlayerFSM.ChangeState("UnitPos");
 		}
 	},
 	.End = [this]()
@@ -74,26 +82,28 @@ void PlayManager::CallReinforcementStateInit()
 	},
 	.Update = [this](float _DeltaTime)
 	{
-		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		if (State == PlayerState::Idle)
 		{
-			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
-			{
-				CallReinforcement::CastingSpell(GetLevel(), MousePointer::MainMouse->GetIngameMousePosRef(), static_cast<FighterEnum>(static_cast<int>(FighterEnum::Reinforce) + Data.ReinforceLevel + 1));
-			}
-			State = PlayerState::Idle;
 			PlayerFSM.ChangeState("Idle");
 		}
-		else if (GameEngineInput::IsUp("EngineMouseRight"))
+		else if (State == PlayerState::RainOfFire)
 		{
-			State = PlayerState::Idle;
-			PlayerFSM.ChangeState("Idle");
+			PlayerFSM.ChangeState("RainOfFire");
+		}
+		else if (State == PlayerState::Hero)
+		{
+			PlayerFSM.ChangeState("Hero");
+		}
+		else if (State == PlayerState::UnitPos)
+		{
+			PlayerFSM.ChangeState("UnitPos");
 		}
 	},
 	.End = [this]()
 	{
 
 	}
-	});
+		});
 }
 
 void PlayManager::HeroStateInit()
@@ -106,13 +116,28 @@ void PlayManager::HeroStateInit()
 	},
 	.Update = [this](float _DeltaTime)
 	{
-
+		if (State == PlayerState::Idle)
+		{
+			PlayerFSM.ChangeState("Idle");
+		}
+		else if (State == PlayerState::RainOfFire)
+		{
+			PlayerFSM.ChangeState("RainOfFire");
+		}
+		else if (State == PlayerState::CallReinforcement)
+		{
+			PlayerFSM.ChangeState("CallReinforcement");
+		}
+		else if (State == PlayerState::UnitPos)
+		{
+			PlayerFSM.ChangeState("UnitPos");
+		}
 	},
 	.End = [this]()
 	{
 
 	}
-	});
+		});
 }
 
 void PlayManager::TowerStateInit()
@@ -131,5 +156,39 @@ void PlayManager::TowerStateInit()
 	{
 
 	}
-	});
+		});
+}
+
+void PlayManager::UnitPosStateInit()
+{
+	PlayerFSM.CreateState({
+	.Name = "UnitPos",
+	.Start = [this]()
+	{
+	
+	},
+	.Update = [this](float _DeltaTime)
+	{
+		if (State == PlayerState::Idle)
+		{
+			PlayerFSM.ChangeState("Idle");
+		}
+		else if (State == PlayerState::RainOfFire)
+		{
+			PlayerFSM.ChangeState("RainOfFire");
+		}
+		else if (State == PlayerState::CallReinforcement)
+		{
+			PlayerFSM.ChangeState("CallReinforcement");
+		}
+		else if (State == PlayerState::Hero)
+		{
+			PlayerFSM.ChangeState("Hero");
+		}
+	},
+	.End = [this]()
+	{
+	
+	}
+		});
 }

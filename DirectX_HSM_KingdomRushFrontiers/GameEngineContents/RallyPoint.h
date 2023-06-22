@@ -37,8 +37,6 @@ protected:
 	void FindTarget();
 
 private:
-	std::shared_ptr<class GameEngineSpriteRenderer> TestRallyRender = nullptr;
-	std::shared_ptr<class GameEngineSpriteRenderer> RangeRender = nullptr;
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 

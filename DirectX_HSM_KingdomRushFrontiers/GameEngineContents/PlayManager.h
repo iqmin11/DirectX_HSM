@@ -10,6 +10,7 @@ enum class PlayerState
 	CallReinforcement,
 	Hero,
 	Tower,
+	UnitPos,
 };
 
 class PlayManager : public GameEngineActor
@@ -37,6 +38,11 @@ public:
 		return State;
 	}
 
+	const PlayerData& GetData() const
+	{
+		return Data;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -51,5 +57,6 @@ private:
 	void CallReinforcementStateInit();
 	void HeroStateInit();
 	void TowerStateInit();
+	void UnitPosStateInit();
 };
 

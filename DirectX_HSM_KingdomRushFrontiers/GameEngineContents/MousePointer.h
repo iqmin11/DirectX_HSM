@@ -9,7 +9,8 @@ enum class MouseState
 	Press,
 	RainOfFire,
 	CallReinforcement,
-	SelectUnit,
+	Hero,
+	UnitPos,
 	Invalid
 };
 
@@ -58,7 +59,8 @@ private:
 	void PressStateInit();
 	void RainOfFireStateInit();
 	void CallReinforcementStateInit();
-	void SelectUnitStateInit();
+	void HeroStateInit();
+	void UnitPosStateInit();
 	void InvalidStateInit();
 };
 

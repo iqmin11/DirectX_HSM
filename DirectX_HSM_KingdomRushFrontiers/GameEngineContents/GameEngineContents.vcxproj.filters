@@ -466,6 +466,9 @@
     <ClCompile Include="PlayManager_State.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
+    <ClCompile Include="MousePointer_State.cpp">
+      <Filter>0.Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

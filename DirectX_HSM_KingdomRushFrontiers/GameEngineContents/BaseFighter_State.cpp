@@ -285,7 +285,7 @@ void BaseFighter::DeathStateInit()
 				{
 					FighterRenderer->ColorOptionValue.MulColor.a -= _DeltaTime;
 					FighterRenderer->GetTransform()->SetLocalPositiveScaleX();
-					FighterRenderer->GetTransform()->AddLocalPosition({DeathTime, 0} );
+					FighterRenderer->GetTransform()->AddLocalPosition({_DeltaTime * 25, 0} );
 				}
 				else
 				{

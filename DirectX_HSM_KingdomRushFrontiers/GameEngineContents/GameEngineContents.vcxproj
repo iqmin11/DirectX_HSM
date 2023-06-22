@@ -680,6 +680,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MousePointer_State.cpp" />
     <ClCompile Include="NextWaveStartButton.cpp">
       <SubType>
       </SubType>
