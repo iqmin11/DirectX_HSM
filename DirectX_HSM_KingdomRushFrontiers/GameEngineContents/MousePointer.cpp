@@ -8,6 +8,7 @@
 #include "PlayStageLevel.h"
 #include "PlayManager.h"
 #include "StageBg.h"
+#include "Melee_Tower.h"
 
 float4 MousePointer::MousePos = float4::Zero;
 MousePointer* MousePointer::MainMouse = nullptr;

@@ -6,6 +6,7 @@
 #include "UpgradeTowerUI_ex.h"
 #include "BaseTower.h"
 #include "Melee_Tower.h"
+#include "PlayManager.h"
 
 RallyButton::RallyButton()
 {
@@ -31,6 +32,8 @@ std::shared_ptr<RallyButton> RallyButton::CreateButton(UpgradeTowerUI_ex* _UI)
 				return;
 			}
 			dynamic_cast<Melee_Tower*>(ParentUI->GetParentTower())->SetRallyMod = true;
+			PlayManager::MainPlayer->SetState(PlayerState::UnitPos);
+			PlayManager::SelectedMeleeTower = dynamic_cast<Melee_Tower*>(ParentUI->GetParentTower());
 			ResultButton.lock()->State = ButtonState::Release; //임시방편.. 사실 모든 버튼은 꺼질때 Release상태가 되어야함.
 			ParentUI->OffUI();
 		});

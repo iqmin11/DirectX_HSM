@@ -94,23 +94,11 @@ void Melee_Tower::Update(float _DeltaTime)
 		}
 	}
 
-	if (SetRallyMod 
-		&& GameEngineInput::IsUp("EngineMouseLeft"))
-	{
-		if (!MousePointer::MainMouse->IsThereMouseOntheColMap()
-			&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
-		{
-			float4 Pos = MousePointer::GetMousePosRef();
-			Pos = Pos + float4{ 0, 0, Pos.y, 0 };
-			AcRallyPoint->SetRallyPos(Pos);
-			SetRallyMod = false;
-			DeciedRallyPointEffect::CreateRallyEffect(this, Pos);
-		}
-		else
-		{
-			SetRallyMod = false;
-		}
-	}
+	//if (SetRallyMod 
+	//	&& GameEngineInput::IsUp("EngineMouseLeft"))
+	//{
+	//	SetRally();
+	//}
 }
 
 void Melee_Tower::ChangeTower(TowerEnum _Tower)
@@ -139,4 +127,21 @@ void Melee_Tower::ChangeFighter(int _TowerLevel)
 		MsgAssert("랠리포인트가 nullptr입니다")
 	}
 	AcRallyPoint->ChangeFighters(_TowerLevel);
+}
+
+void Melee_Tower::SetRally()
+{
+	if (!MousePointer::MainMouse->IsThereMouseOntheColMap()
+		&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
+	{
+		float4 Pos = MousePointer::GetMousePosRef();
+		Pos = Pos + float4{ 0, 0, Pos.y, 0 };
+		AcRallyPoint->SetRallyPos(Pos);
+		SetRallyMod = false;
+		DeciedRallyPointEffect::CreateRallyEffect(this, Pos);
+	}
+	else
+	{
+		SetRallyMod = false;
+	}
 }

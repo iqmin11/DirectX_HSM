@@ -10,6 +10,8 @@
 #include "StageBg.h"
 #include "RainOfFire.h"
 #include "CallReinforcement.h"
+#include "UpgradeTowerUI.h"
+#include "Melee_Tower.h"
 
 void MousePointer::ReleaseStateInit()
 {
@@ -32,6 +34,13 @@ void MousePointer::ReleaseStateInit()
 			{
 				State = MouseState::CallReinforcement;
 				MouseFSM.ChangeState("CallReinforcement");
+				return;
+			}
+
+			if (PlayManager::MainPlayer->GetState() == PlayerState::UnitPos)
+			{
+				State = MouseState::UnitPos;
+				MouseFSM.ChangeState("UnitPos");
 				return;
 			}
 
@@ -73,6 +82,13 @@ void MousePointer::PressStateInit()
 			return;
 		}
 
+		if (PlayManager::MainPlayer->GetState() == PlayerState::UnitPos)
+		{
+			State = MouseState::UnitPos;
+			MouseFSM.ChangeState("UnitPos");
+			return;
+		}
+
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
 			State = MouseState::Release;
@@ -108,6 +124,13 @@ void MousePointer::RainOfFireStateInit()
 		{
 			State = MouseState::Release;
 			MouseFSM.ChangeState("Release");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::UnitPos)
+		{
+			State = MouseState::UnitPos;
+			MouseFSM.ChangeState("UnitPos");
 			return;
 		}
 
@@ -155,6 +178,13 @@ void MousePointer::CallReinforcementStateInit()
 			return;
 		}
 
+		if (PlayManager::MainPlayer->GetState() == PlayerState::UnitPos)
+		{
+			State = MouseState::UnitPos;
+			MouseFSM.ChangeState("UnitPos");
+			return;
+		}
+
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
@@ -178,10 +208,10 @@ void MousePointer::CallReinforcementStateInit()
 void MousePointer::HeroStateInit()
 {
 	MouseFSM.CreateState({
-	.Name = "SelectUnit"
+	.Name = "Hero"
 	,.Start = [this]()
 	{
-
+		MousePointerRenderer->ChangeAnimation("UnitSelect");
 	}
 	,.Update = [this](float _DeltaTime)
 	{
@@ -200,11 +230,38 @@ void MousePointer::UnitPosStateInit()
 	.Name = "UnitPos"
 	,.Start = [this]()
 	{
-	
+		MousePointerRenderer->ChangeAnimation("UnitSelect");
 	}
 	,.Update = [this](float _DeltaTime)
 	{
-	
+		if (PlayManager::MainPlayer->GetState() == PlayerState::RainOfFire)
+		{
+			State = MouseState::RainOfFire;
+			MouseFSM.ChangeState("RainOfFire");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::CallReinforcement)
+		{
+			State = MouseState::CallReinforcement;
+			MouseFSM.ChangeState("CallReinforcement");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Idle)
+		{
+			State = MouseState::Release;
+			MouseFSM.ChangeState("Release");
+			return;
+		}
+
+		Melee_Tower* Tower = PlayManager::MainPlayer->SelectedMeleeTower;
+		if (Tower->SetRallyMod && GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			Tower->SetRally();
+			PlayManager::SelectedMeleeTower = nullptr;
+			PlayManager::MainPlayer->SetState(PlayerState::Idle);
+		}
 	}
 	,.End = [this]()
 	{

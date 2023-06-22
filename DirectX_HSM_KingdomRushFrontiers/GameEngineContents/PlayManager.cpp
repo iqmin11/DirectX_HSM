@@ -1,7 +1,10 @@
 #include "PrecompileHeader.h"
 #include "PlayManager.h"
 
+#include "Melee_Tower.h"
+
 PlayManager* PlayManager::MainPlayer = nullptr;
+Melee_Tower* PlayManager::SelectedMeleeTower = nullptr;
 
 PlayManager::PlayManager()
 {
@@ -26,6 +29,7 @@ void PlayManager::Start()
 	CallReinforcementStateInit();
 	HeroStateInit();
 	TowerStateInit();
+	UnitPosStateInit();
 	PlayerFSM.ChangeState("Idle");
 }
 

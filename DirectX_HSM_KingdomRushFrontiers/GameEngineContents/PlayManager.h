@@ -17,7 +17,8 @@ class PlayManager : public GameEngineActor
 {
 public:
 	static PlayManager* MainPlayer;
-	
+	static class Melee_Tower* SelectedMeleeTower;
+
 	// construtor destructor
 	PlayManager();
 	~PlayManager();

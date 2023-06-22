@@ -16,8 +16,10 @@ public:
 	Melee_Tower& operator=(Melee_Tower&& _Other) noexcept = delete;
 
 	static std::shared_ptr<Melee_Tower> CreateTower(GameEngineLevel* _Level, BuildArea* _BuildArea);
-	void ChangeTower(TowerEnum _Tower) override;
 	bool SetRallyMod = false;
+
+	void ChangeTower(TowerEnum _Tower) override;
+	void SetRally();
 
 protected:
 	void Start() override;
@@ -31,5 +33,6 @@ private:
 
 	void ChangeTowerRender(int _TowerLevel);
 	void ChangeFighter(int _TowerLevel);
+
 };
 
