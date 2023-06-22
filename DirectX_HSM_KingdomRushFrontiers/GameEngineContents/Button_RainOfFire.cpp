@@ -29,7 +29,7 @@ std::shared_ptr<Button_RainOfFire> Button_RainOfFire::CreateButton(GameEngineLev
 void Button_RainOfFire::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SetTextureName("RainOfFireButton_Release.png", "RainOfFireButton_Hover.png", "RainOfFireButton_Hover.png");
 }

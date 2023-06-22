@@ -5,6 +5,7 @@
 #include "Button_RainOfFire.h"
 #include "Button_CallReinforcement.h"
 #include "BottomWaveButton.h"
+#include "Button_Hero.h"
 
 PlayStageUI* PlayStageUI::MainStageUI = nullptr;
 
@@ -31,27 +32,30 @@ void PlayStageUI::Start()
 {
 	LoadTexture();
 
-	StatusBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	StatusBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
 	StatusBg->SetTexture("DisplayPlayerState.png");
 	StatusBg->GetTransform()->SetWorldScale(StatusBgScale);
 	StatusBg->GetTransform()->SetWorldPosition(StatusBgPos);
 
-	FrameDeco = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	FrameDeco = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	FrameDeco->SetTexture("FrameDeco.png");
 	FrameDeco->GetTransform()->SetWorldScale(FrameDecoScale);
 	FrameDeco->GetTransform()->SetWorldPosition(FrameDecoPos);
 
-	HeroPortrateFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	HeroPortrateFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_2);
 	HeroPortrateFrame->SetTexture("HeroPortrateFrame.png");
 	HeroPortrateFrame->GetTransform()->SetWorldScale(HeroPortrateFrameScale);
 	HeroPortrateFrame->GetTransform()->SetWorldPosition(HeroPortrateFramePos);
 
-	PauseButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	HeroButton = Button_Hero::CreateButton(GetLevel());
+	HeroButton->GetTransform()->SetWorldPosition(HeroButtonPos);
+
+	PauseButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	PauseButton->SetTexture("PauseButton.png");
 	PauseButton->GetTransform()->SetWorldScale(PauseButtonScale);
 	PauseButton->GetTransform()->SetWorldPosition(PauseButtonPos);
 
-	PauseFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame0);
+	PauseFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
 	PauseFrame->SetTexture("PauseFrame.png");
 	PauseFrame->GetTransform()->SetWorldScale(PauseFrameScale);
 	PauseFrame->GetTransform()->SetWorldPosition(PauseFramePos);
@@ -62,22 +66,22 @@ void PlayStageUI::Start()
 	ReinforcementButton = Button_CallReinforcement::CreateButton(GetLevel());
 	ReinforcementButton->GetTransform()->SetWorldPosition(ReinforcementButtonPos);
 
-	SpellButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame2);
+	SpellButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_2);
 	SpellButtonFrame->SetTexture("SpellButtonFrame.png");
 	SpellButtonFrame->GetTransform()->SetWorldScale(SpellButtonFrameScale);
 	SpellButtonFrame->GetTransform()->SetWorldPosition(SpellButtonFramePos);
 
-	UnderFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame0);
+	UnderFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
 	UnderFrame->SetTexture("UnderFrame.png");
 	UnderFrame->GetTransform()->SetWorldScale(UnderFrameScale);
 	UnderFrame->GetTransform()->SetWorldPosition(UnderFramePos);
 
-	UnderSpellFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame1);
+	UnderSpellFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	UnderSpellFrame->SetTexture("UnderSpellFrame.png");
 	UnderSpellFrame->GetTransform()->SetWorldScale(UnderSpellFrameScale);
 	UnderSpellFrame->GetTransform()->SetWorldPosition(UnderSpellFramePos);
 
-	UnderWaveFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame1);
+	UnderWaveFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	UnderWaveFrame->SetTexture("UnderWaveFrame.png");
 	UnderWaveFrame->GetTransform()->SetWorldScale(UnderWaveFrameScale);
 	UnderWaveFrame->GetTransform()->SetWorldPosition(UnderWaveFramePos);
@@ -85,7 +89,7 @@ void PlayStageUI::Start()
 	WaveButton = BottomWaveButton::CreateButton(GetLevel());
 	WaveButton->GetTransform()->SetWorldPosition(WaveButtonPos);
 
-	WaveStartButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_Frame2);
+	WaveStartButtonFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_2);
 	WaveStartButtonFrame->SetTexture("WaveStartButtonFrame.png");
 	WaveStartButtonFrame->GetTransform()->SetWorldScale(WaveStartButtonFrameScale);
 	WaveStartButtonFrame->GetTransform()->SetWorldPosition(WaveStartButtonFramePos);

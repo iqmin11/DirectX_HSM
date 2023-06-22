@@ -74,9 +74,6 @@
     <ClInclude Include="BuildArea.h">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
     </ClInclude>
-    <ClInclude Include="MousePointer.h">
-      <Filter>0.Base</Filter>
-    </ClInclude>
     <ClInclude Include="BaseShootingTower.h">
       <Filter>3.PlayStage\Actor\Tower\0.Base</Filter>
     </ClInclude>
@@ -224,6 +221,12 @@
     <ClInclude Include="BottomWaveButton.h">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
+    <ClInclude Include="Button_Hero.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MousePointer.h">
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -296,9 +299,6 @@
     </ClCompile>
     <ClCompile Include="BuildArea.cpp">
       <Filter>3.PlayStage\Actor\StageBase</Filter>
-    </ClCompile>
-    <ClCompile Include="MousePointer.cpp">
-      <Filter>0.Base</Filter>
     </ClCompile>
     <ClCompile Include="BaseShootingTower.cpp">
       <Filter>3.PlayStage\Actor\Tower\0.Base</Filter>
@@ -466,8 +466,14 @@
     <ClCompile Include="PlayManager_State.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
+    <ClCompile Include="Button_Hero.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MousePointer.cpp">
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
+    </ClCompile>
     <ClCompile Include="MousePointer_State.cpp">
-      <Filter>0.Base</Filter>
+      <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

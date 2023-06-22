@@ -12,6 +12,7 @@
 #include "CallReinforcement.h"
 #include "UpgradeTowerUI.h"
 #include "Melee_Tower.h"
+#include "Hero_RallyPoint.h"
 
 void MousePointer::ReleaseStateInit()
 {
@@ -41,6 +42,13 @@ void MousePointer::ReleaseStateInit()
 			{
 				State = MouseState::UnitPos;
 				MouseFSM.ChangeState("UnitPos");
+				return;
+			}
+
+			if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+			{
+				State = MouseState::Hero;
+				MouseFSM.ChangeState("Hero");
 				return;
 			}
 
@@ -89,6 +97,13 @@ void MousePointer::PressStateInit()
 			return;
 		}
 
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+		{
+			State = MouseState::Hero;
+			MouseFSM.ChangeState("Hero");
+			return;
+		}
+
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
 			State = MouseState::Release;
@@ -131,6 +146,13 @@ void MousePointer::RainOfFireStateInit()
 		{
 			State = MouseState::UnitPos;
 			MouseFSM.ChangeState("UnitPos");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+		{
+			State = MouseState::Hero;
+			MouseFSM.ChangeState("Hero");
 			return;
 		}
 
@@ -185,6 +207,13 @@ void MousePointer::CallReinforcementStateInit()
 			return;
 		}
 
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+		{
+			State = MouseState::Hero;
+			MouseFSM.ChangeState("Hero");
+			return;
+		}
+
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
@@ -215,7 +244,46 @@ void MousePointer::HeroStateInit()
 	}
 	,.Update = [this](float _DeltaTime)
 	{
+		if (PlayManager::MainPlayer->GetState() == PlayerState::RainOfFire)
+		{
+			State = MouseState::RainOfFire;
+			MouseFSM.ChangeState("RainOfFire");
+			return;
+		}
 
+		if (PlayManager::MainPlayer->GetState() == PlayerState::CallReinforcement)
+		{
+			State = MouseState::CallReinforcement;
+			MouseFSM.ChangeState("CallReinforcement");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Idle)
+		{
+			State = MouseState::Release;
+			MouseFSM.ChangeState("Release");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::UnitPos)
+		{
+			State = MouseState::UnitPos;
+			MouseFSM.ChangeState("UnitPos");
+			return;
+		}
+
+		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
+			{
+				PlayManager::MainPlayer->GetHero().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
+			}
+			PlayManager::MainPlayer->SetState(PlayerState::Idle);
+		}
+		else if (GameEngineInput::IsUp("EngineMouseRight"))
+		{
+			PlayManager::MainPlayer->SetState(PlayerState::Idle);
+		}
 	}
 	,.End = [this]()
 	{
@@ -252,6 +320,13 @@ void MousePointer::UnitPosStateInit()
 		{
 			State = MouseState::Release;
 			MouseFSM.ChangeState("Release");
+			return;
+		}
+
+		if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+		{
+			State = MouseState::Hero;
+			MouseFSM.ChangeState("Hero");
 			return;
 		}
 

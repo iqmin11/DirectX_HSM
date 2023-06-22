@@ -20,6 +20,11 @@ public:
 
 	//월드맵에서 스테이지를 선택하면 이 PlayStageLevel에서 해당 단계 스테이지를 로드해야함
 
+	std::shared_ptr<class Hero_RallyPoint> GetHero() const 
+	{
+		return AcHero;
+	}
+
 	void InitStage(int _Stage);
 	void ClearStage();
 	void StartNextWave();

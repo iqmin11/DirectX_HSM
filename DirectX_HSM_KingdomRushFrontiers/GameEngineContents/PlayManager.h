@@ -44,6 +44,11 @@ public:
 		return Data;
 	}
 
+	const std::weak_ptr<class Hero_RallyPoint> GetHero() const
+	{
+		return std::weak_ptr(AcHero);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -52,6 +57,7 @@ private:
 	PlayerState State = PlayerState::Idle;
 	GameEngineFSM PlayerFSM = GameEngineFSM();
 	PlayerData Data = PlayerData();
+	std::shared_ptr<class Hero_RallyPoint> AcHero = nullptr;
 
 	void IdleStateInit();
 	void RainOfFireStateInit();

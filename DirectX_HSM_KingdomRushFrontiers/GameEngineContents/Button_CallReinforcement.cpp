@@ -29,7 +29,7 @@ std::shared_ptr<Button_CallReinforcement> Button_CallReinforcement::CreateButton
 void Button_CallReinforcement::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SetTextureName("ReinforcementButton_Release.png", "ReinforcementButton_Hover.png", "ReinforcementButton_Hover.png");
 }

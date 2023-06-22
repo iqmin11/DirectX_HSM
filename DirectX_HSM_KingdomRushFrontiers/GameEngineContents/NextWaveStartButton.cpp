@@ -26,7 +26,7 @@ std::shared_ptr<NextWaveStartButton> NextWaveStartButton::CreateButton(GameEngin
 void NextWaveStartButton::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	GetTransform()->SetWorldScale(Scale);
 	SelectedGlow = CreateComponent<GameEngineUIRenderer>();
 	SelectedGlow->SetTexture("waveFlag_selected.png");

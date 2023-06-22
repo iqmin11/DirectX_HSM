@@ -57,6 +57,7 @@ void MousePointer::Start()
 	PressStateInit();
 	RainOfFireStateInit();
 	CallReinforcementStateInit();
+	HeroStateInit();
 	UnitPosStateInit();
 	InvalidStateInit();
 

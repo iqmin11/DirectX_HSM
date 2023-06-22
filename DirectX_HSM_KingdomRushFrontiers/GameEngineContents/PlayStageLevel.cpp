@@ -81,11 +81,11 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
-	MainPlayer = CreateActor<PlayManager>();
 
 	LoadAllStageData();
 	
 	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
+	MainPlayer = CreateActor<PlayManager>();
 }
 
 void PlayStageLevel::Update(float _DeltaTime)

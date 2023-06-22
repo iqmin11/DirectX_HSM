@@ -2,6 +2,8 @@
 #include "PlayManager.h"
 
 #include "Melee_Tower.h"
+#include <GameEngineCore\GameEngineLevel.h>
+#include "PlayStageLevel.h"
 
 PlayManager* PlayManager::MainPlayer = nullptr;
 Melee_Tower* PlayManager::SelectedMeleeTower = nullptr;
@@ -17,7 +19,6 @@ PlayManager::PlayManager()
 
 PlayManager::~PlayManager()
 {
-
 }
 
 void PlayManager::Start()
@@ -31,6 +32,7 @@ void PlayManager::Start()
 	TowerStateInit();
 	UnitPosStateInit();
 	PlayerFSM.ChangeState("Idle");
+	AcHero = dynamic_cast<PlayStageLevel*>(GetLevel())->GetHero();
 }
 
 void PlayManager::Update(float _DeltaTime)

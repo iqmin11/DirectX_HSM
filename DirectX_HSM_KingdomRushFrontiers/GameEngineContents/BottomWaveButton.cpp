@@ -26,7 +26,7 @@ std::shared_ptr<BottomWaveButton> BottomWaveButton::CreateButton(GameEngineLevel
 void BottomWaveButton::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI);
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SetTextureName("WaveButton_Release.png", "WaveButton_Hover.png", "WaveButton_Hover.png");
 }
