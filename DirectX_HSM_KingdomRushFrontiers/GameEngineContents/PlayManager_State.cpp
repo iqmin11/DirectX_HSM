@@ -192,3 +192,4 @@ void PlayManager::UnitPosStateInit()
 	}
 		});
 }
+

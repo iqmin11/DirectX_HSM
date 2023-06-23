@@ -32,6 +32,11 @@ void Button_RainOfFire::Start()
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SetTextureName("RainOfFireButton_Release.png", "RainOfFireButton_Hover.png", "RainOfFireButton_Hover.png");
+	CooltimeRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
+	CooltimeRender->GetTransform()->SetWorldScale(ButtonRenderScale);
+	CooltimeRender->SetTexture(ReleaseTextureName);
+	CooltimeRender->ColorOptionValue.MulColor = {0,0,0,0.5f};
+	CooltimeRender->Off();
 }
 
 void Button_RainOfFire::Update(float _DeltaTime)
@@ -40,8 +45,29 @@ void Button_RainOfFire::Update(float _DeltaTime)
 	{
 		Render->SetTexture(SelectTextureName);
 	}
+	else if (!PlayManager::MainPlayer->IsAvailable_RainOfFire())
+	{
+		if (Render->GetTexName() != ReleaseTextureName)
+		{
+			Render->SetTexture(ReleaseTextureName);
+		}
+
+		if (!CooltimeRender->IsUpdate())
+		{
+			CooltimeRender->On();
+		}
+		else
+		{
+			CoolRenderRatio = PlayManager::MainPlayer->GetRainOfFireCoolRatio();
+			CooltimeRender->ImageClippingY(1.f - CoolRenderRatio,ClipYDir::Top);
+		}
+	}
 	else
 	{
+		if (CooltimeRender->IsUpdate())
+		{
+			CooltimeRender->Off();
+		}
 		ContentsButton::Update(_DeltaTime);
 		if (GameEngineInput::IsDown("1"))
 		{

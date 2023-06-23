@@ -42,6 +42,33 @@ void PlayManager::Start()
 void PlayManager::Update(float _DeltaTime)
 {
 	PlayerFSM.Update(_DeltaTime);
+	CalCoolTime_RainOfFire(_DeltaTime);
+	CalCoolTime_CallReinforcement(_DeltaTime);
 }
+
+void PlayManager::CalCoolTime_RainOfFire(float _DeltaTime)
+{
+	if (!Available_RainOfFire)
+	{
+		RainOfFire_Cooltime += _DeltaTime;
+		if (RainOfFire_Cooltime >= RainOfFire_MaxCool)
+		{
+			Available_RainOfFire = true;
+		}
+	}
+}
+
+void PlayManager::CalCoolTime_CallReinforcement(float _DeltaTime)
+{
+	if (!Available_CallReinforcement)
+	{
+		CallReinforcement_Cooltime += _DeltaTime;
+		if (CallReinforcement_Cooltime >= CallReinforcement_MaxCool)
+		{
+			Available_CallReinforcement = true;
+		}
+	}
+}
+
 
 

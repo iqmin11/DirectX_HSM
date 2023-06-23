@@ -45,7 +45,33 @@ public:
 	}
 
 	const std::weak_ptr<class Hero_RallyPoint> GetHero() const;
-	
+
+	bool IsAvailable_RainOfFire() const
+	{
+		return Available_RainOfFire;
+	}
+
+	bool IsAvailable_CallReinforcement() const
+	{
+		return Available_CallReinforcement;
+	}
+
+	void RainOfFire_StartCoolTime()
+	{
+		RainOfFire_Cooltime = 0.f;
+		Available_RainOfFire = false;
+	}
+
+	void CallReinforcement_StartCoolTime()
+	{
+		CallReinforcement_Cooltime = 0.f;
+		Available_CallReinforcement = false;
+	}
+
+	float GetRainOfFireCoolRatio()
+	{
+		return RainOfFire_Cooltime / RainOfFire_MaxCool;
+	}
 
 protected:
 	void Start() override;
@@ -56,11 +82,23 @@ private:
 	GameEngineFSM PlayerFSM = GameEngineFSM();
 	PlayerData Data = PlayerData();
 
+	float RainOfFire_Cooltime = 80.f;
+	float RainOfFire_MaxCool = 80.f;
+	bool Available_RainOfFire = false;
+
+	float CallReinforcement_Cooltime = 10.f;
+	float CallReinforcement_MaxCool = 10.f;
+	bool Available_CallReinforcement = false;
+
+	void CalCoolTime_RainOfFire(float _DeltaTime);
+	void CalCoolTime_CallReinforcement(float _DeltaTime);
+
 	void IdleStateInit();
 	void RainOfFireStateInit();
 	void CallReinforcementStateInit();
 	void HeroStateInit();
 	void TowerStateInit();
 	void UnitPosStateInit();
+
 };
 

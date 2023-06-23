@@ -48,9 +48,9 @@ void MousePointer::Start()
 	MousePointerRenderer->GetTransform()->SetWorldScale(RendererScale);
 	MousePointerRenderer->CreateAnimation({.AnimationName = "Release", .SpriteName = "Mouse_Release"});
 	MousePointerRenderer->CreateAnimation({.AnimationName = "Press", .SpriteName = "Mouse_Press"});
-	MousePointerRenderer->CreateAnimation({.AnimationName = "RainOfFire", .SpriteName = "Mouse_RainOfFire", .FrameInter = 0.075f, .Loop = true});
-	MousePointerRenderer->CreateAnimation({.AnimationName = "CallReinforcement", .SpriteName = "Mouse_CallReinforcement", .FrameInter = 0.075f, .Loop = true });
-	MousePointerRenderer->CreateAnimation({.AnimationName = "UnitSelect", .SpriteName = "Mouse_UnitSelect", .FrameInter = 0.075f, .Loop = true });
+	MousePointerRenderer->CreateAnimation({.AnimationName = "RainOfFire", .SpriteName = "Mouse_RainOfFire", .FrameInter = 0.025f, .Loop = true});
+	MousePointerRenderer->CreateAnimation({.AnimationName = "CallReinforcement", .SpriteName = "Mouse_CallReinforcement", .FrameInter = 0.025f, .Loop = true });
+	MousePointerRenderer->CreateAnimation({.AnimationName = "UnitSelect", .SpriteName = "Mouse_UnitSelect", .FrameInter = 0.025f, .Loop = true });
 	MousePointerCol = CreateComponent<GameEngineCollision>(ColOrder::MousePointer);
 	MousePointerCol->GetTransform()->SetWorldScale({ 1,1,1 });
 	

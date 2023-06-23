@@ -162,6 +162,7 @@ void MousePointer::RainOfFireStateInit()
 			if (!IsThereMouseOntheColMap())
 			{
 				RainOfFire::CastingSpell(GetLevel(), GetIngameMousePosRef());
+				PlayManager::MainPlayer->RainOfFire_StartCoolTime();
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}
@@ -275,7 +276,7 @@ void MousePointer::HeroStateInit()
 
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
-			if (/*!MousePointer::MainMouse->IsThereMouseOntheColMap()*/true)
+			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
 				PlayManager::MainPlayer->GetHero().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
 			}
