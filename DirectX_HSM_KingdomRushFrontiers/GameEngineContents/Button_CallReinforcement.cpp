@@ -31,17 +31,21 @@ void Button_CallReinforcement::Start()
 	ContentsButton::Start();
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
-	Render->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "ReinforcementButton_Revive", .Loop = false});
-	Render->SetAnimationStartEvent("Revive", 16, [this]()
-		{
-			Render->SetTexture(HoverTextureName);
-		});
+
 	SetTextureName("ReinforcementButton_Release.png", "ReinforcementButton_Hover.png", "ReinforcementButton_Hover.png");
 	CooltimeRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
-	CooltimeRender->GetTransform()->SetWorldScale(ButtonRenderScale);
-	CooltimeRender->SetTexture(ReleaseTextureName);
-	CooltimeRender->ColorOptionValue.MulColor = { 0,0,0,0.5f };
+	CooltimeRender->GetTransform()->SetWorldScale(CoolRenderScale);
+	CooltimeRender->SetTexture("CoolRender.png");
 	CooltimeRender->Off();
+
+	ReviveAni = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
+	ReviveAni->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "ReinforcementButton_Revive", .FrameInter = 0.05f, .Loop = false });
+	ReviveAni->GetTransform()->SetWorldScale(ButtonRenderScale);
+	ReviveAni->SetAnimationStartEvent("Revive", 16, [this]()
+		{
+			ReviveAni->Off();
+		});
+	ReviveAni->ChangeAnimation("Revive");
 }
 
 void Button_CallReinforcement::Update(float _DeltaTime)
@@ -74,7 +78,8 @@ void Button_CallReinforcement::Update(float _DeltaTime)
 		{
 			CooltimeRender->Off();
 			Render->ColorOptionValue.MulColor = { 1.f,1.f,1.f,1.f };
-			Render->ChangeAnimation("Revive");
+			ReviveAni->On();
+			ReviveAni->ChangeAnimation("Revive");
 		}
 		ContentsButton::Update(_DeltaTime);
 		if (GameEngineInput::IsDown("2"))

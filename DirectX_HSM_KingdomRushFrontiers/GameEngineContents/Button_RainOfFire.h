@@ -24,6 +24,9 @@ private:
 	std::string SelectTextureName = "RainOfFireButton_Select.png";
 	std::shared_ptr<class GameEngineUIRenderer> CooltimeRender = nullptr;
 	float4 ButtonRenderScale = { 73,73,1 };
+	float4 CoolRenderScale = { 53,53,1 };
 	float CoolRenderRatio = 0.f;
+
+	std::shared_ptr<class GameEngineUIRenderer> ReviveAni = nullptr;
 };
 
