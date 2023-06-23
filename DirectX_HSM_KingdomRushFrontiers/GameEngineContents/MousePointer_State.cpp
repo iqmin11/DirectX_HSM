@@ -221,6 +221,7 @@ void MousePointer::CallReinforcementStateInit()
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
 				CallReinforcement::CastingSpell(GetLevel(), MousePointer::MainMouse->GetIngameMousePosRef(), static_cast<FighterEnum>(static_cast<int>(FighterEnum::Reinforce) + PlayManager::MainPlayer->GetData().ReinforceLevel + 1));
+				PlayManager::MainPlayer->CallReinforcement_StartCoolTime();
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}

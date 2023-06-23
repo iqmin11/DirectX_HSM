@@ -50,6 +50,7 @@ void Button_RainOfFire::Update(float _DeltaTime)
 		if (Render->GetTexName() != ReleaseTextureName)
 		{
 			Render->SetTexture(ReleaseTextureName);
+			Render->ColorOptionValue.MulColor = { 0.5f,0.5f,0.5f,1.f };
 		}
 
 		if (!CooltimeRender->IsUpdate())
@@ -59,7 +60,7 @@ void Button_RainOfFire::Update(float _DeltaTime)
 		else
 		{
 			CoolRenderRatio = PlayManager::MainPlayer->GetRainOfFireCoolRatio();
-			CooltimeRender->ImageClippingY(1.f - CoolRenderRatio,ClipYDir::Top);
+			CooltimeRender->ImageClippingY(1.f - CoolRenderRatio,ClipYDir::Bot);
 		}
 	}
 	else
@@ -67,6 +68,7 @@ void Button_RainOfFire::Update(float _DeltaTime)
 		if (CooltimeRender->IsUpdate())
 		{
 			CooltimeRender->Off();
+			Render->ColorOptionValue.MulColor = { 1.f,1.f,1.f,1.f };
 		}
 		ContentsButton::Update(_DeltaTime);
 		if (GameEngineInput::IsDown("1"))

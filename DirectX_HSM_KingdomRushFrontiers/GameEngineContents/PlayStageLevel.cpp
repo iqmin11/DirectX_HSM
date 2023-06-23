@@ -530,6 +530,8 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_RainOfFire").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_Release").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_UnitSelect").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RainOfFireButton_Revive").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforcementButton_Revive").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()

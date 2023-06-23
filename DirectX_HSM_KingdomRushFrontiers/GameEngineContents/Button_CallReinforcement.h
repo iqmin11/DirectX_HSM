@@ -22,6 +22,8 @@ protected:
 
 private:
 	std::string SelectTextureName = "ReinforcementButton_Select.png";
+	std::shared_ptr<class GameEngineUIRenderer> CooltimeRender = nullptr;
 	float4 ButtonRenderScale = { 73,73,1 };
+	float CoolRenderRatio = 0.f;
 };
 

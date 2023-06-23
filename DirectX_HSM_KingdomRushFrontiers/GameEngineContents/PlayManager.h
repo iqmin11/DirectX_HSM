@@ -73,6 +73,11 @@ public:
 		return RainOfFire_Cooltime / RainOfFire_MaxCool;
 	}
 
+	float GetCallReinforcementCoolRatio()
+	{
+		return CallReinforcement_Cooltime / CallReinforcement_MaxCool;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
