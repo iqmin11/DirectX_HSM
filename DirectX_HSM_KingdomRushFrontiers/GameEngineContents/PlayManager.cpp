@@ -1,9 +1,11 @@
 #include "PrecompileHeader.h"
 #include "PlayManager.h"
 
-#include "Melee_Tower.h"
 #include <GameEngineCore\GameEngineLevel.h>
+#include "Melee_Tower.h"
 #include "PlayStageLevel.h"
+#include "Hero_RallyPoint.h"
+#include "Hero_Alric.h"
 
 PlayManager* PlayManager::MainPlayer = nullptr;
 Melee_Tower* PlayManager::SelectedMeleeTower = nullptr;
@@ -21,9 +23,14 @@ PlayManager::~PlayManager()
 {
 }
 
-const std::weak_ptr<class Hero_RallyPoint> PlayManager::GetHero() const
+const std::weak_ptr<class Hero_RallyPoint> PlayManager::GetHeroRally() const
 {
 	return std::weak_ptr(dynamic_cast<PlayStageLevel*>(GetLevel())->GetHero());
+}
+
+FighterState PlayManager::GetHeroState() const
+{
+	return GetHeroRally().lock()->GetHero().lock()->GetState();
 }
 
 void PlayManager::Start()

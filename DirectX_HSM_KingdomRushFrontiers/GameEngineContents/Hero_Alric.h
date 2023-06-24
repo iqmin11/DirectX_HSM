@@ -19,6 +19,10 @@ public:
 		return SandmanPivot;
 	}
 
+	float GetReviveTimeRatio()
+	{
+		return DeathTime / ReviveTime;
+	}
 
 protected:
 	void Start() override;
@@ -40,10 +44,10 @@ private:
 
 	float4 RanderScale = { 217,217,1 };
 
-	float FlurryCooltime = 0.f;
+	float FlurryCooltime = 6.f;
 	std::shared_ptr<class GameEngineCollision> SummonCol = nullptr;
 	float SummonRange = 200.f;
-	float SummonCooltime = 0.f;
+	float SummonCooltime = 10.f;
 	std::vector<std::shared_ptr<GameEngineComponent>> SandmanPivot = std::vector<std::shared_ptr<GameEngineComponent>>();
 
 	std::shared_ptr<class BaseMonster> SummonTargetMonster = nullptr;
@@ -51,5 +55,7 @@ private:
 	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	void CalTargetPos();
 	bool IsThereSummonTarget();
+
+	float ReviveTime = 5.f;
 };
 

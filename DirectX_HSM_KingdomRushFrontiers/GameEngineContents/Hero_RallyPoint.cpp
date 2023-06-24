@@ -24,6 +24,11 @@ std::shared_ptr<Hero_RallyPoint> Hero_RallyPoint::CreateRallyPoint(GameEngineLev
 	return LocalAc;
 }
 
+const std::weak_ptr<Hero_Alric> Hero_RallyPoint::GetHero() const
+{
+	return std::weak_ptr<Hero_Alric>(Fighters[0]->DynamicThis<Hero_Alric>());
+}
+
 void Hero_RallyPoint::Start()
 {
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);

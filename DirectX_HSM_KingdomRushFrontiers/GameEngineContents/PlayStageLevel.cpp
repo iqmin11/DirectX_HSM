@@ -128,16 +128,6 @@ void PlayStageLevel::Update(float _DeltaTime)
 		}
 	}
 
-	if (GameEngineInput::IsPress("Z") && GameEngineInput::IsUp("EngineMouseLeft"))
-	{
-		RainOfFire::CastingSpell(this, MousePointer::GetIngameMousePosRef());
-	}
-
-	if (GameEngineInput::IsPress("X") && GameEngineInput::IsUp("EngineMouseLeft"))
-	{
-		CallReinforcement::CastingSpell(this, MousePointer::GetIngameMousePosRef(), FighterEnum::ReinforceLv0);
-	}
-
 	if (GameEngineInput::IsUp("V"))
 	{
 		IsDebugSwitch();
@@ -532,6 +522,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_UnitSelect").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RainOfFireButton_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforcementButton_Revive").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortrateFrame_Revive").GetFullPath());
 }
 
 void PlayStageLevel::Defeat()

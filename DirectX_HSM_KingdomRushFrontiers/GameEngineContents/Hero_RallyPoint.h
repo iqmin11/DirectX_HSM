@@ -15,7 +15,8 @@ public:
 	Hero_RallyPoint& operator=(Hero_RallyPoint&& _Other) noexcept = delete;
 
 	static std::shared_ptr<Hero_RallyPoint> CreateRallyPoint(GameEngineLevel* _Level, const float4& _Pos);
-
+	const std::weak_ptr<class Hero_Alric> GetHero() const;
+	
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

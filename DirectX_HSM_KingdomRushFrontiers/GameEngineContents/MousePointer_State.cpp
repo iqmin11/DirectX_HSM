@@ -279,7 +279,7 @@ void MousePointer::HeroStateInit()
 		{
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
-				PlayManager::MainPlayer->GetHero().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
+				PlayManager::MainPlayer->GetHeroRally().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}

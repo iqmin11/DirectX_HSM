@@ -44,7 +44,7 @@ public:
 		return Data;
 	}
 
-	const std::weak_ptr<class Hero_RallyPoint> GetHero() const;
+	const std::weak_ptr<class Hero_RallyPoint> GetHeroRally() const;
 
 	bool IsAvailable_RainOfFire() const
 	{
@@ -77,6 +77,8 @@ public:
 	{
 		return CallReinforcement_Cooltime / CallReinforcement_MaxCool;
 	}
+	
+	enum class FighterState GetHeroState() const;
 
 protected:
 	void Start() override;

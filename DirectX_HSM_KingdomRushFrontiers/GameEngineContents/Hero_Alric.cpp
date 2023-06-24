@@ -40,10 +40,22 @@ void Hero_Alric::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "Flurry", .SpriteName = "Hero_Alric_Skill_Flurry", .FrameInter = 0.075f, .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "Hero_Alric_Skill_Summon", .FrameInter = 0.075f, .Loop = false });
 
+
+
 	FighterRenderer->SetAnimationStartEvent("Attack0", 3, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
-
+	FighterRenderer->SetAnimationStartEvent("Revive", 15, [this]()
+		{
+			State = FighterState::Idle;
+			FighterFSM.ChangeState("Idle");
+		});
+	FighterRenderer->SetAnimationStartEvent("Summon", 16, [this]()
+		{
+			State = FighterState::Idle;
+			FighterFSM.ChangeState("Idle");
+			SummonCooltime = 0.f;
+		});
 	FighterRenderer->GetTransform()->SetWorldScale(RanderScale);
 
 	SummonCol = CreateComponent<GameEngineCollision>();
@@ -82,6 +94,12 @@ void Hero_Alric::Update(float _DeltaTime)
 	}
 	SummonCooltime += _DeltaTime;
 	FighterFSM.Update(_DeltaTime);
+
+	//Test
+	if (GameEngineInput::IsDown("Z"))
+	{
+		CurHP = 0;
+	}
 }
 
 void Hero_Alric::AttackTarget()

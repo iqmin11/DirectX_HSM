@@ -75,6 +75,11 @@ public:
 		return FighterCol;
 	}
 
+	FighterState GetState() const
+	{
+		return State;
+	}
+
 	float CurHP = 0;
 
 protected:

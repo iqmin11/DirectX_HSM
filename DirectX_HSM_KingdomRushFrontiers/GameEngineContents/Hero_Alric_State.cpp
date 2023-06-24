@@ -1,6 +1,6 @@
 #include "PrecompileHeader.h"
 #include "Hero_Alric.h"
-
+#include <GameEnginePlatform\GameEngineInput.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "BaseMonster.h"
@@ -43,12 +43,16 @@ void Hero_Alric::IdleStateInit()
 				return;
 			}
 
-			
-
 			Time += _DeltaTime;
 			if (Time >= 3)
 			{
 				IdleAutoHeal(_DeltaTime);
+			}
+
+			//Test
+			if (GameEngineInput::IsDown("Z"))
+			{
+				CurHP = 0;
 			}
 		},
 		.End = [this]()
@@ -296,7 +300,7 @@ void Hero_Alric::DeathStateInit()
 
 			DeathTime += _DeltaTime;
 
-			if (DeathTime >= 5.f)
+			if (DeathTime >= ReviveTime)
 			{
 				State = FighterState::Revive;
 				FighterFSM.ChangeState("Revive");
@@ -319,11 +323,6 @@ void Hero_Alric::ReviveStateInit()
 			LifeBarBg->On();
 			FighterCol->On();
 			CurHP = Data.Hp;
-			FighterRenderer->SetAnimationStartEvent("Revive", 15, [this]()
-				{
-					State = FighterState::Idle;
-					FighterFSM.ChangeState("Idle");
-				});
 			FighterRenderer->ChangeAnimation("Revive"); 
 		},
 		.Update = [this](float _DeltaTime)
@@ -343,12 +342,6 @@ void Hero_Alric::CastingSkill1StateInit()
 	.Name = "Summon",
 	.Start = [this]()
 		{
-			FighterRenderer->SetAnimationStartEvent("Summon", 16, [this]()
-				{
-					State = FighterState::Idle;
-					FighterFSM.ChangeState("Idle");
-					SummonCooltime = 0.f;
-				});
 			FighterRenderer->ChangeAnimation("Summon");
 			Sandman_RallyPoint::CreateRallyPoint(this, SummonTargetPos);
 		},

@@ -5,6 +5,9 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "PlayManager.h"
+#include "Hero_Alric.h"
+#include "Hero_RallyPoint.h"
+#include "Hero_Portrate.h"
 
 Button_Hero::Button_Hero()
 {
@@ -16,15 +19,21 @@ Button_Hero::~Button_Hero()
 
 }
 
-std::shared_ptr<Button_Hero> Button_Hero::CreateButton(GameEngineLevel* _Level)
+std::shared_ptr<Button_Hero> Button_Hero::CreateButton(Hero_Portrate* _Parent)
 {
-	std::weak_ptr<Button_Hero> ResultButton(_Level->CreateActor<Button_Hero>());
+	std::weak_ptr<Button_Hero> ResultButton(_Parent->GetLevel()->CreateActor<Button_Hero>());
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
 			PlayManager::MainPlayer->SetState(PlayerState::Hero);
 			ResultButton.lock()->SelectTexture->On();
 		});
+	ResultButton.lock()->ParentActor = _Parent;
 	return ResultButton.lock();
+}
+
+std::weak_ptr<class GameEngineUIRenderer> Button_Hero::GetAlricPortrate()
+{
+	return ParentActor->GetAlricPortate();
 }
 
 void Button_Hero::Start()
@@ -37,21 +46,67 @@ void Button_Hero::Start()
 	SelectTexture->SetTexture("HeroPortrateFrame_Select.png");
 	SelectTexture->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SelectTexture->Off();
+
+	HeroReviveCoolRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
+	HeroReviveCoolRender->SetTexture("HeroReviveCoolRender.png");
+	HeroReviveCoolRender->GetTransform()->SetWorldScale(HeroReviveCoolRenderScale);
+	HeroReviveCoolRender->GetTransform()->SetLocalPosition(HeroReviveCoolRenderPos);
+
+	HeroReviveAni = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
+	HeroReviveAni->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "PortrateFrame_Revive", .FrameInter = 0.034f,.Loop = false });
+	HeroReviveAni->SetAnimationStartEvent("Revive", 24, [this]()
+		{
+			HeroReviveAni->Off();
+		});
+	HeroReviveAni->GetTransform()->SetWorldScale(HeroPortrateFrameScale);
+	HeroReviveAni->ChangeAnimation("Revive");
 }
 
 void Button_Hero::Update(float _DeltaTime)
 {
-	ContentsButton::Update(_DeltaTime);
-	if (PlayManager::MainPlayer->GetState() != PlayerState::Hero)
+	if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
+	{
+		if (!SelectTexture->IsUpdate())
+		{
+			SelectTexture->On();
+		}
+	}
+	else if (PlayManager::MainPlayer->GetHeroState() == FighterState::Death)
+	{
+		if (Render->GetTexName() != ReleaseTextureName)
+		{
+			Render->SetTexture(ReleaseTextureName);
+			GetAlricPortrate().lock()->ColorOptionValue.MulColor = {0.5f,0.5f,0.5f,1.f};
+		}
+
+		if (!HeroReviveCoolRender->IsUpdate())
+		{
+			HeroReviveCoolRender->On();
+		}
+		else
+		{
+			CoolRenderRatio = PlayManager::MainPlayer->GetHeroRally().lock()->GetHero().lock()->GetReviveTimeRatio();
+			HeroReviveCoolRender->ImageClippingY(1.f - CoolRenderRatio, ClipYDir::Bot);
+		}
+	}
+	else
 	{
 		if (SelectTexture->IsUpdate())
 		{
 			SelectTexture->Off();
 		}
+		if (HeroReviveCoolRender->IsUpdate())
+		{
+			HeroReviveCoolRender->Off();
+			GetAlricPortrate().lock()->ColorOptionValue.MulColor = { 1.f,1.f,1.f,1.f };
+			HeroReviveAni->On();
+			HeroReviveAni->ChangeAnimation("Revive");
+		}
+		ContentsButton::Update(_DeltaTime);
+		if (GameEngineInput::IsDown("Space"))
+		{
+			GetEvent()();
+		}
 	}
-
-	if (GameEngineInput::IsDown("Space"))
-	{
-		GetEvent()();
-	}
+	
 }
