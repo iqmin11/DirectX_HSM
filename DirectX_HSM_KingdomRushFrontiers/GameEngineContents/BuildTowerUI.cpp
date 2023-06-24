@@ -25,10 +25,15 @@ std::shared_ptr<BuildTowerUI> BuildTowerUI::CreateBuildTowerUI(BuildArea* _Paren
 	std::shared_ptr<BuildTowerUI> ResultUI = _ParentArea->GetLevel()->CreateActor<BuildTowerUI>();
 	float4 ParentPos = _ParentArea->GetTransform()->GetWorldPosition();
 	ResultUI->GetTransform()->SetWorldPosition({ ParentPos.x ,ParentPos.y, 0 });
-	ResultUI->ParentArea = _ParentArea;
+	ResultUI->ParentActor = _ParentArea;
 	ResultUI->GetTransform()->SetParent(_ParentArea->GetTransform());
 	ResultUI->Off();
 	return ResultUI;
+}
+
+BuildArea* BuildTowerUI::GetParentArea()
+{
+	return dynamic_cast<BuildArea*>(ParentActor);
 }
 
 void BuildTowerUI::Start()

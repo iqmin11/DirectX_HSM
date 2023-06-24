@@ -39,6 +39,7 @@ protected:
 	void Update(float _DeltaTime) override;
 	virtual void UpdateStart();
 	virtual void UpdateEnd();
+	class GameEngineActor* ParentActor = nullptr;
 
 	BaseTowerUIState State = BaseTowerUIState::Start;
 private:

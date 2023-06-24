@@ -23,5 +23,7 @@ protected:
 private:
 	float4 Scale = { 68, 60, 1 };
 	TowerEnum ReturnUpgradeTowerEnum();
+	std::shared_ptr<class GameEngineUIRenderer> ButtonGlow = nullptr;
+	float4 GlowScale = { 75,68,1 };
 };
 

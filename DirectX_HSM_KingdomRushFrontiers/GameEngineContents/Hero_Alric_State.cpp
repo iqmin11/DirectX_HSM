@@ -48,12 +48,6 @@ void Hero_Alric::IdleStateInit()
 			{
 				IdleAutoHeal(_DeltaTime);
 			}
-
-			//Test
-			if (GameEngineInput::IsDown("Z"))
-			{
-				CurHP = 0;
-			}
 		},
 		.End = [this]()
 		{

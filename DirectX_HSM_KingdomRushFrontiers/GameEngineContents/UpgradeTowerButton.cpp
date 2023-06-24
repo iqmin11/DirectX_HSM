@@ -39,16 +39,35 @@ std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowe
 void UpgradeTowerButton::Start()
 {
 	ContentsButton::Start();
+	ButtonGlow = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "main_icons_0005.png";
 	HoverTextureName = "main_icons_0005.png";
 	PressTextureName = "main_icons_0005.png";
+
+	ButtonGlow->SetTexture("ButtonsGlow.png");
+	ButtonGlow->GetTransform()->SetWorldScale(GlowScale);
+	ButtonGlow->Off();
 }
 
 void UpgradeTowerButton::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
+	if (State == ButtonState::Release)
+	{
+		if (ButtonGlow->IsUpdate())
+		{
+			ButtonGlow->Off();
+		}
+	}
+	else
+	{
+		if (!ButtonGlow->IsUpdate())
+		{
+			ButtonGlow->On();
+		}
+	}
 }
 
 TowerEnum UpgradeTowerButton::ReturnUpgradeTowerEnum()

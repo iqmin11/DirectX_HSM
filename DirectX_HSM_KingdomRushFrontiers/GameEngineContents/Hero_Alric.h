@@ -56,6 +56,6 @@ private:
 	void CalTargetPos();
 	bool IsThereSummonTarget();
 
-	float ReviveTime = 5.f;
+	float ReviveTime = 20.f;
 };
 

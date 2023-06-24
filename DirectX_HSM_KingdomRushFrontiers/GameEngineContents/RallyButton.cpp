@@ -43,14 +43,33 @@ std::shared_ptr<RallyButton> RallyButton::CreateButton(UpgradeTowerUI_ex* _UI)
 void RallyButton::Start()
 {
 	ContentsButton::Start();
+	ButtonGlow = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "sub_icons_0001.png";
 	HoverTextureName = "sub_icons_0001.png";
 	PressTextureName = "sub_icons_0001.png";
+
+	ButtonGlow->SetTexture("CircleButtonsGlow.png");
+	ButtonGlow->GetTransform()->SetWorldScale(GlowScale);
+	ButtonGlow->Off();
 }
 
 void RallyButton::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
+	if (State == ButtonState::Release)
+	{
+		if (ButtonGlow->IsUpdate())
+		{
+			ButtonGlow->Off();
+		}
+	}
+	else
+	{
+		if (!ButtonGlow->IsUpdate())
+		{
+			ButtonGlow->On();
+		}
+	}
 }

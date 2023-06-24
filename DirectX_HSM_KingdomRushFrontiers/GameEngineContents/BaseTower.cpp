@@ -37,7 +37,7 @@ void BaseTower::Start()
 {
 	Construct = ConstructState::Constructing;
 	TowerAreaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	TowerAreaRenderer->SetTexture("terrain_0004.png");
+	TowerAreaRenderer->SetTexture(TowerAreaRenderer_ReleaseName);
 	TowerAreaRenderer->GetTransform()->SetWorldScale({128,128,1});
 	TowerAreaRenderer->GetTransform()->SetLocalPosition({ 0,0,1 });
 	TowerRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
@@ -73,6 +73,28 @@ void BaseTower::Update(float _DeltaTime)
 	else
 	{
 		NextLvRangeRender->Off();
+	}
+
+	if (UpgradeUI->IsUpdate())
+	{
+		if (TowerAreaRenderer->GetTexName() != TowerAreaRenderer_HoverName)
+		{
+			TowerAreaRenderer->SetTexture(TowerAreaRenderer_HoverName);
+		}
+	}
+	else if (UpgradeButton->GetState() == ButtonState::Release)
+	{
+		if (TowerAreaRenderer->GetTexName() != TowerAreaRenderer_ReleaseName)
+		{
+			TowerAreaRenderer->SetTexture(TowerAreaRenderer_ReleaseName);
+		}
+	}
+	else
+	{
+		if (TowerAreaRenderer->GetTexName() != TowerAreaRenderer_HoverName)
+		{
+			TowerAreaRenderer->SetTexture(TowerAreaRenderer_HoverName);
+		}
 	}
 
 }

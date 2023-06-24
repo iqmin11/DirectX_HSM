@@ -21,6 +21,9 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	std::shared_ptr<class GameEngineUIRenderer> ButtonGlow = nullptr;
+
 	float4 Scale = { 68,60,1 };
+	float4 GlowScale = { 75,68,1 };
 };
 

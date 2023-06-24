@@ -52,7 +52,7 @@ void Button_Hero::Start()
 	HeroReviveCoolRender->GetTransform()->SetWorldScale(HeroReviveCoolRenderScale);
 	HeroReviveCoolRender->GetTransform()->SetLocalPosition(HeroReviveCoolRenderPos);
 
-	HeroReviveAni = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
+	HeroReviveAni = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_5);
 	HeroReviveAni->CreateAnimation({ .AnimationName = "Revive", .SpriteName = "PortrateFrame_Revive", .FrameInter = 0.034f,.Loop = false });
 	HeroReviveAni->SetAnimationStartEvent("Revive", 24, [this]()
 		{
@@ -66,6 +66,7 @@ void Button_Hero::Update(float _DeltaTime)
 {
 	if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
 	{
+		ContentsButton::Update(_DeltaTime);
 		if (!SelectTexture->IsUpdate())
 		{
 			SelectTexture->On();

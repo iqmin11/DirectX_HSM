@@ -40,6 +40,9 @@ protected:
 
 	TowerData Data = {};
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerAreaRenderer = nullptr;
+	std::string TowerAreaRenderer_ReleaseName = "terrain_0004.png";
+	std::string TowerAreaRenderer_HoverName = "terrain_0004_Hover.png";
+
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRenderer = nullptr;
 	std::shared_ptr<class GameEngineUIRenderer> BuildBarBg = nullptr;
 	float4 BuildBarBgScale = { 58,12,1 };

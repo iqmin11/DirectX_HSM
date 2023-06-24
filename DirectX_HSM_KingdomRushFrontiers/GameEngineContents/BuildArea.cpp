@@ -67,7 +67,7 @@ void BuildArea::CreateArtilleryTower()
 void BuildArea::Start()
 {
 	BuildAreaRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	BuildAreaRenderer->SetTexture("build_terrain_0004.png");
+	BuildAreaRenderer->SetTexture(ReleaseTextureName);
 	BuildAreaRenderer->GetTransform()->SetWorldScale(RenderScale);
 	BuildAreaCol = CreateComponent<GameEngineCollision>(ColOrder::Tower);
 	BuildAreaCol->GetTransform()->SetWorldScale(ColScale);
@@ -80,5 +80,27 @@ void BuildArea::Update(float _DeltaTime)
 	if (ChildTower != nullptr && ChildTower->IsUpdate())
 	{
 		Off();
+	}
+
+	if (BuildUI->IsUpdate())
+	{
+		if (BuildAreaRenderer->GetTexName() != HoverTextureName)
+		{
+			BuildAreaRenderer->SetTexture(HoverTextureName);
+		}
+	}
+	else if (AreaButton->GetState() == ButtonState::Release)
+	{
+		if (BuildAreaRenderer->GetTexName() != ReleaseTextureName)
+		{
+			BuildAreaRenderer->SetTexture(ReleaseTextureName);
+		}
+	}
+	else
+	{
+		if (BuildAreaRenderer->GetTexName() != HoverTextureName)
+		{
+			BuildAreaRenderer->SetTexture(HoverTextureName);
+		}
 	}
 }

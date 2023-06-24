@@ -23,10 +23,15 @@ std::shared_ptr<UpgradeTowerUI> UpgradeTowerUI::CreateUpgradeTowerUI(BaseTower* 
 	std::shared_ptr<UpgradeTowerUI> ResultUI = _ParentTower->GetLevel()->CreateActor<UpgradeTowerUI>();
 	float4 ParentPos = _ParentTower->GetTransform()->GetWorldPosition();
 	ResultUI->GetTransform()->SetWorldPosition({ParentPos.x, ParentPos.y + 15, 0});
-	ResultUI->ParentTower = _ParentTower;
+	ResultUI->ParentActor = _ParentTower;
 	ResultUI->GetTransform()->SetParent(_ParentTower->GetTransform());
 	ResultUI->Off();
 	return ResultUI;
+}
+
+BaseTower* UpgradeTowerUI::GetParentTower()
+{
+	return dynamic_cast<class BaseTower*>(ParentActor);
 }
 
 void UpgradeTowerUI::Start()

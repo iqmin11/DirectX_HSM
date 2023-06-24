@@ -19,17 +19,13 @@ public:
 
 	static std::shared_ptr<BuildTowerUI> CreateBuildTowerUI(BuildArea* _ParentArea);
 
-	BuildArea* GetParentArea()
-	{
-		return ParentArea;
-	}
+	BuildArea* GetParentArea();
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
-	BuildArea* ParentArea = nullptr;
 
 	std::shared_ptr<class BuildRangedButton> AcBuildRangedButton = nullptr;
 	std::shared_ptr<class BuildMeleeButton> AcBuildMeleeButton = nullptr;

@@ -17,10 +17,8 @@ public:
 
 	static std::shared_ptr<UpgradeTowerUI> CreateUpgradeTowerUI(class BaseTower* _ParentTower);
 
-	BaseTower* GetParentTower()
-	{
-		return ParentTower;
-	}
+	BaseTower* GetParentTower();
+	
 
 	std::shared_ptr<class UpgradeTowerButton> AcUpgradeButton = nullptr;
 	std::shared_ptr<class SellButton> AcSellButton = nullptr;
@@ -29,7 +27,6 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
-	BaseTower* ParentTower = nullptr;
 private:
 
 	float4 UpgradeButtonLocPos = { 0,81 };
