@@ -25,15 +25,15 @@ std::shared_ptr<DeciedRallyPointEffect> DeciedRallyPointEffect::CreateRallyEffec
 
 void DeciedRallyPointEffect::Start()
 {
-	PopTextRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	PopTextRenderer->GetTransform()->SetWorldScale(RenderScale);
-	PopTextRenderer->CreateAnimation({ .AnimationName = "Effect",.SpriteName = "RallyPointEffectAnimation", .FrameInter = 0.04f, .Loop = false });
-	PopTextRenderer->SetAnimationStartEvent("Effect", 19, [this]()
+	Renderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	Renderer->GetTransform()->SetWorldScale(RenderScale);
+	Renderer->CreateAnimation({ .AnimationName = "Effect",.SpriteName = "RallyPointEffectAnimation", .FrameInter = 0.04f, .Loop = false });
+	Renderer->SetAnimationStartEvent("Effect", 19, [this]()
 		{
 			Death();
 		});
 
-	PopTextRenderer->ChangeAnimation("Effect");
+	Renderer->ChangeAnimation("Effect");
 }
 
 void DeciedRallyPointEffect::Update(float _DeltaTime)

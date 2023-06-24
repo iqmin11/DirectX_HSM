@@ -22,7 +22,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class GameEngineSpriteRenderer> PopTextRenderer = nullptr;
+	std::shared_ptr<class GameEngineSpriteRenderer> Renderer = nullptr;
 	float4 RenderScale = { 128,128,1 };
 	float EffectTime = 0.f;
 

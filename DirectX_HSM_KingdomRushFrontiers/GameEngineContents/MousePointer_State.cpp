@@ -14,6 +14,7 @@
 #include "Melee_Tower.h"
 #include "Hero_RallyPoint.h"
 #include "PlayStageUI.h"
+#include "DeciedHeroPositionEffect.h"
 
 void MousePointer::ReleaseStateInit()
 {
@@ -280,6 +281,7 @@ void MousePointer::HeroStateInit()
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
 				PlayManager::MainPlayer->GetHeroRally().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
+				DeciedHeroPositionEffect::CreateEffect(GetLevel(), MousePointer::GetIngameMousePosRef());
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -271,6 +271,10 @@
     </ClInclude>
     <ClInclude Include="ContentsData.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="DeciedHeroPositionEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DeciedRallyPointEffect.h">
       <SubType>
       </SubType>
@@ -616,6 +620,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsData.cpp" />
+    <ClCompile Include="DeciedHeroPositionEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DeciedRallyPointEffect.cpp">
       <SubType>
       </SubType>

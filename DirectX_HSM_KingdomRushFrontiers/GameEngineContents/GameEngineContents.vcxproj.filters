@@ -230,6 +230,9 @@
     <ClInclude Include="Button_Hero.h">
       <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
     </ClInclude>
+    <ClInclude Include="DeciedHeroPositionEffect.h">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -480,6 +483,9 @@
     </ClCompile>
     <ClCompile Include="Button_Hero.cpp">
       <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+    </ClCompile>
+    <ClCompile Include="DeciedHeroPositionEffect.cpp">
+      <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
