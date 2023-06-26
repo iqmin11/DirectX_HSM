@@ -342,6 +342,12 @@ void MousePointer::UnitPosStateInit()
 			PlayManager::SelectedMeleeTower = nullptr;
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}
+		else if (GameEngineInput::IsUp("EngineMouseRight"))
+		{
+			Tower->SetRallyMod = false;
+			PlayManager::SelectedMeleeTower = nullptr;
+			PlayManager::MainPlayer->SetState(PlayerState::Idle);
+		}
 	}
 	,.End = [this]()
 	{
