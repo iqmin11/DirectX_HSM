@@ -39,7 +39,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	ClearStage();
 	CurStage = _Stage;
 	NextWave = 0;
-	MaxWave = AllStageData[CurStage].Waves.size();
+	MaxWave = static_cast<int>(AllStageData[CurStage].Waves.size());
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
 	SetStageBuildArea(CurStage);
