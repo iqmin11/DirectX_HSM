@@ -28,10 +28,7 @@ public:
 	void InitStage(int _Stage);
 	void ClearStage();
 	void StartNextWave();
-	void SubLife(int _LivesTaken)
-	{
-		Life -= _LivesTaken;
-	}
+	void SubLife(int _LivesTaken);
 
 	const std::vector<std::shared_ptr<class WaveButtons>> GetWaveButtons() const
 	{
@@ -53,6 +50,21 @@ public:
 		return CurStage;
 	}
 
+	int GetMaxWave()
+	{
+		return static_cast<int>(AllStageData[CurStage].Waves.size());
+	}
+
+	const int* GetNextWavePtr() const
+	{
+		return &NextWave;
+	}
+
+	const int* GetMaxWavePtr() const
+	{
+		return &MaxWave;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -67,9 +79,8 @@ private:
 	std::shared_ptr<class PlayManager> MainPlayer = nullptr;
 
 	int CurStage = -1;
-	int NextWave = -1;
-	int Life = -1;
-	int Gold = -1;
+	int NextWave = -1; // ¿Œµ¶Ω∫ ±‚¡ÿ
+	int MaxWave = -1;
 
 	void LoadAllStageData(); 
 	
@@ -111,6 +122,7 @@ private:
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();
+	void LoadFont();
 
 	void Defeat();
 	void Victory();

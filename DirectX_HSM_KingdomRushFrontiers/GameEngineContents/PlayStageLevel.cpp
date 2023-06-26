@@ -1,12 +1,13 @@
 #include "PrecompileHeader.h"
 #include "PlayStageLevel.h"
-#include <GameEngineBase/GameEngineRandom.h>
-#include <GameEnginePlatform/GameEngineInput.h>
-#include <GameEngineCore/GameEngineCore.h>
-#include <GameEngineCore/GameEngineTexture.h>
-#include <GameEngineCore/GameEngineCamera.h>
-#include <GameEngineCore/GameEngineSprite.h>
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineBase\GameEngineRandom.h>
+#include <GameEnginePlatform\GameEngineInput.h>
+#include <GameEngineCore\GameEngineCore.h>
+#include <GameEngineCore\GameEngineTexture.h>
+#include <GameEngineCore\GameEngineCamera.h>
+#include <GameEngineCore\GameEngineSprite.h>
+#include <GameEngineCore\GameEngineSpriteRenderer.h>
+#include <GameEngineCore\GameEngineFont.h>
 
 #include "MousePointer.h"
 #include "StageBg.h"
@@ -38,7 +39,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	ClearStage();
 	CurStage = _Stage;
 	NextWave = 0;
-	Life = 20;
+	MaxWave = AllStageData[CurStage].Waves.size();
 	SetStageBg(CurStage);
 	SetStagePaths(CurStage);
 	SetStageBuildArea(CurStage);
@@ -52,7 +53,8 @@ void PlayStageLevel::ClearStage()
 {
 	CurStage = -1;
 	NextWave = -1;
-	Life = -1;
+	MaxWave = -1;
+	MainPlayer->Life = -1;
 	ClearStageBg();
 	ClearStagePaths();
 	ClearStageBuildArea();
@@ -74,6 +76,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("MeleeTower");
 	LoadPlayLevelTexture("PopText");
 	LoadPlayLevelAnimation();
+	LoadFont();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
@@ -81,13 +84,13 @@ void PlayStageLevel::Start()
 
 	GetCamera(100)->GetCamTarget()->DepthSettingOff();
 	
+	MainPlayer = CreateActor<PlayManager>();
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
 
 	LoadAllStageData();
 	
-	MainPlayer = CreateActor<PlayManager>();
 	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 }
 
@@ -268,6 +271,11 @@ void PlayStageLevel::StartNextWave()
 	++NextWave;
 }
 
+void PlayStageLevel::SubLife(int _LivesTaken)
+{
+	MainPlayer->Life -= _LivesTaken;
+}
+
 void PlayStageLevel::SetStageBuildArea(int _Stage)
 {
 	AcBuildAreas.resize(AllStageData[_Stage].BuildAreaPos.size());
@@ -290,7 +298,7 @@ void PlayStageLevel::SetStageWaveButtons(int _Stage)
 
 void PlayStageLevel::SetStageGold(int _Stage)
 {
-	Gold = AllStageData[_Stage].StartGold;
+	PlayManager::MainPlayer->Gold = AllStageData[_Stage].StartGold;
 }
 
 void PlayStageLevel::SetHero(int _Stage)
@@ -530,6 +538,12 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortrateFrame_Revive").GetFullPath());
 }
 
+void PlayStageLevel::LoadFont()
+{
+	GameEngineFont::Load("TOONISH");
+	GameEngineFont::Load("나눔손글씨 펜 OTF");
+}
+
 void PlayStageLevel::Defeat()
 {
 	MsgTextBox("패배했습니다.");
@@ -542,7 +556,7 @@ void PlayStageLevel::Victory()
 
 bool PlayStageLevel::IsDefeat()
 {
-	return Life == 0;
+	return MainPlayer->Life == 0;
 }
 
 bool PlayStageLevel::IsVictory()
@@ -666,7 +680,7 @@ void PlayStageLevel::ClearStageWaveButtons()
 
 void PlayStageLevel::ClearStageGold()
 {
-	Gold = -1;
+	MainPlayer->Gold = -1;
 }
 
 void PlayStageLevel::ClearHero()

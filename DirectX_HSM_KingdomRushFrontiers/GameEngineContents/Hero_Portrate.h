@@ -23,6 +23,9 @@ protected:
 private:
 	std::shared_ptr<class GameEngineUIRenderer> HeroPortrateFrame = nullptr;
 	std::shared_ptr<class GameEngineUIRenderer> AlricPortrate = nullptr;
+	std::shared_ptr<class UIFontRenderer> HeroLevelRender = nullptr;
+	float LevelFontScale = 18.f;
+	float4 LevelFontLocPos = { 19,-15 };
 
 	std::shared_ptr<class Button_Hero> HeroButton = nullptr;
 	float4 HeroPortrateFrameScale = { 119,119,1 };

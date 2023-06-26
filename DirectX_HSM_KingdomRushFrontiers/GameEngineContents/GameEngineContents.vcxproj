@@ -357,6 +357,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayManager.h">
       <SubType>
       </SubType>
@@ -479,6 +483,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TowerButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UIFontRenderer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -711,6 +719,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="PlayerStatus.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayManager.cpp">
       <SubType>
       </SubType>
@@ -840,6 +852,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TowerButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UIFontRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>

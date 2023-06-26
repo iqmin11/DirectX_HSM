@@ -25,6 +25,8 @@ PlayManager::~PlayManager()
 
 void PlayManager::InitPlayManager()
 {
+	Life = 20;
+
 	RainOfFire_Cooltime = 80.f;
 	RainOfFire_MaxCool = 80.f;
 	Available_RainOfFire = false;

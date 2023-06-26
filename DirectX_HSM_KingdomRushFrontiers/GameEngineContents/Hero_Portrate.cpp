@@ -2,8 +2,10 @@
 #include "Hero_Portrate.h"
 
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include "UIFontRenderer.h"
 #include "Hero_Alric.h"
 #include "Button_Hero.h"
+
 
 Hero_Portrate::Hero_Portrate()
 {
@@ -33,4 +35,10 @@ void Hero_Portrate::Start()
 	HeroButton = Button_Hero::CreateButton(this);
 	HeroButton->GetTransform()->SetParent(GetTransform());
 
+	HeroLevelRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_5);
+	HeroLevelRender->GetTransform()->SetLocalPosition(LevelFontLocPos);
+	HeroLevelRender->SetFont("TOONISH");
+	HeroLevelRender->SetScale(18.f);
+	HeroLevelRender->SetColor(float4::White);
+	HeroLevelRender->SetText("10");
 }

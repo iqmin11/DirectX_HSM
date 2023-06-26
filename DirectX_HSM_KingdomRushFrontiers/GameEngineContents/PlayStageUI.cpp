@@ -8,6 +8,7 @@
 #include "Button_CallReinforcement.h"
 #include "BottomWaveButton.h"
 #include "Hero_Portrate.h"
+#include "PlayerStatus.h"
 
 PlayStageUI* PlayStageUI::MainStageUI = nullptr;
 
@@ -34,10 +35,8 @@ void PlayStageUI::Start()
 {
 	LoadTexture();
 
-	StatusBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
-	StatusBg->SetTexture("DisplayPlayerState.png");
-	StatusBg->GetTransform()->SetWorldScale(StatusBgScale);
-	StatusBg->GetTransform()->SetWorldPosition(StatusBgPos);
+	AcPlayerStatus = GetLevel()->CreateActor<PlayerStatus>();
+	AcPlayerStatus->GetTransform()->SetWorldPosition(StatusPos);
 
 	FrameDeco = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	FrameDeco->SetTexture("FrameDeco.png");

@@ -23,9 +23,8 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class GameEngineUIRenderer> StatusBg = nullptr;
-	float4 StatusBgScale = { 390,76,1 };
-	float4 StatusBgPos = { -604, 436 };
+	std::shared_ptr<class PlayerStatus> AcPlayerStatus = nullptr;
+	float4 StatusPos = { -604, 436 };
 
 	std::shared_ptr<class GameEngineUIRenderer> FrameDeco = nullptr;
 	float4 FrameDecoScale = { 69,33,1 };
