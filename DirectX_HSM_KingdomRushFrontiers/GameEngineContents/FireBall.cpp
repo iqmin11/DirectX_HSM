@@ -22,8 +22,15 @@ FireBall::~FireBall()
 void FireBall::SummonFireBall(GameEngineLevel* _Level, float4 _TargetPos)
 {
 	std::weak_ptr<FireBall> LocFireBall(_Level->CreateActor<FireBall>());
-	LocFireBall.lock()->TargetPos = LocFireBall.lock()->RandomTargetPos(_TargetPos);
-	LocFireBall.lock()->StartPos = LocFireBall.lock()->TargetPos - float4{0, LocFireBall.lock()->TargetPos.y - 500.f, 0, 0};
+	float4 Target = LocFireBall.lock()->TargetPos = LocFireBall.lock()->RandomTargetPos(_TargetPos);
+	float4 Start = LocFireBall.lock()->StartPos = LocFireBall.lock()->TargetPos - float4{0, LocFireBall.lock()->TargetPos.y - 500.f, 0, 0};
+	LocFireBall.lock()->ShadowRenderer = LocFireBall.lock()->CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	
+	float InterTime = ((Start - Target).Size() / LocFireBall.lock()->Speed)/20.f;
+	LocFireBall.lock()->ShadowRenderer->CreateAnimation({.AnimationName = "Shadow", .SpriteName = "FireBallShadow", .FrameInter = InterTime, .Loop = false});
+	LocFireBall.lock()->ShadowRenderer->GetTransform()->SetWorldPosition({ Target.x, Target.y, static_cast<float>(RenderOrder::Ground) });
+	LocFireBall.lock()->ShadowRenderer->GetTransform()->SetWorldScale(LocFireBall.lock()->ShadowRendererScale);
+	LocFireBall.lock()->ShadowRenderer->ChangeAnimation("Shadow");
 }
 
 void FireBall::Start()

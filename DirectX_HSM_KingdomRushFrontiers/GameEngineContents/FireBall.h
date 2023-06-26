@@ -36,6 +36,9 @@ private:
 	std::vector<float> Damage = std::vector<float>();
 	float Range = 30.f;
 
+	std::shared_ptr<class GameEngineSpriteRenderer> ShadowRenderer = nullptr;
+	float4 ShadowRendererScale = { 48,20,1 };
+
 	void Attack();
 	float4 RandomTargetPos(const float4& _RealTargetPos);
 };

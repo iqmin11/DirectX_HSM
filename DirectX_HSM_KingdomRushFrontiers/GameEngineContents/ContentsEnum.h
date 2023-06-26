@@ -8,15 +8,12 @@ enum class ActorOrder
 
 enum class RenderOrder
 {
-	Bg = -10000,
-	Ground = -1000,
 	Mob = 1,
 	Shooter,
 	//Monster,
 	//Bullet,
-	BgObj,
-	UI,
-	MousePointer,
+	Ground = 999,
+	Bg = 1000,
 };
 
 enum class UIRenderOrder

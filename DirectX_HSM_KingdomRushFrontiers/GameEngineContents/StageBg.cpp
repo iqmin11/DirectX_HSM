@@ -21,10 +21,10 @@ void StageBg::Start()
 	StageBgRenderer.resize(6);
 	for (size_t i = 0; i < StageBgRenderer.size(); i++)
 	{
-		StageBgRenderer[i] = CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Bg));
+		StageBgRenderer[i] = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 		StageBgRenderer[i]->SetTexture("Stage_" + std::to_string(i+1) + ".png");
 		StageBgRenderer[i]->GetTransform()->SetWorldScale(TextureScale);
-		StageBgRenderer[i]->GetTransform()->SetWorldPosition({0,0,1000,1});
+		StageBgRenderer[i]->GetTransform()->SetWorldPosition({0,0,static_cast<float>(RenderOrder::Bg),1});
 		StageBgRenderer[i]->Off();
 	}
 

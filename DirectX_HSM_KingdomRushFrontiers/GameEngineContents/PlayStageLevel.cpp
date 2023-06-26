@@ -426,6 +426,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBall").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallSmoke").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallExplosion").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FireBallShadow").GetFullPath());
 	
 	Dir.MoveParentToDirectory("RainOfFire_Animation");
 	Dir.Move("Reinforcement");

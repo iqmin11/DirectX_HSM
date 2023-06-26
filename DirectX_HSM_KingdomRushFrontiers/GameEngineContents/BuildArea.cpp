@@ -31,6 +31,8 @@ std::shared_ptr<BuildArea> BuildArea::CreateBuildArea(GameEngineLevel* _Level, c
 	Result->GetTransform()->SetWorldPosition(Result->ActorPos);
 	Result->AreaButton = BuildAreaButton::CreateButton(Result.get());
 	Result->BuildUI = BuildTowerUI::CreateBuildTowerUI(Result.get());
+	float4 LocPos = Result->GetTransform()->GetWorldPosition();
+	Result->BuildAreaRenderer->GetTransform()->SetWorldPosition({ LocPos.x, LocPos.y, static_cast<float>(RenderOrder::Ground) });
 	return Result;
 }
 
