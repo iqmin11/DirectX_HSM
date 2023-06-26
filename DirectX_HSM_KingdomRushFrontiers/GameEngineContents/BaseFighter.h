@@ -82,6 +82,11 @@ public:
 
 	float CurHP = 0;
 
+	FighterData GetData()
+	{
+		return Data;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

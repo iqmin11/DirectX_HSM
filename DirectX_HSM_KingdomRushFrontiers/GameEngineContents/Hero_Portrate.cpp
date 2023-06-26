@@ -2,7 +2,9 @@
 #include "Hero_Portrate.h"
 
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include "PlayStageLevel.h"
 #include "UIFontRenderer.h"
+#include "Hero_RallyPoint.h"
 #include "Hero_Alric.h"
 #include "Button_Hero.h"
 
@@ -41,4 +43,20 @@ void Hero_Portrate::Start()
 	HeroLevelRender->SetScale(18.f);
 	HeroLevelRender->SetColor(float4::White);
 	HeroLevelRender->SetText("10");
+
+	HeroHpBar = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_5);
+	HeroHpBar->SetTexture("HeroUIHPBar.png");
+	HeroHpBar->GetTransform()->SetWorldScale(HeroHpBarScale);
+	HeroHpBar->GetTransform()->SetLocalPosition(HeroHpBarLocPos);
+}
+
+void Hero_Portrate::Update(float _DeltaTime)
+{
+	UpdateLifeBar();
+}
+
+void Hero_Portrate::UpdateLifeBar()
+{
+	std::weak_ptr<Hero_Alric>LocHero(GetLevel()->DynamicThis<PlayStageLevel>()->GetHero()->GetHero());
+	HeroHpBar->ImageClippingX(LocHero.lock()->CurHP / LocHero.lock()->GetData().Hp, ClipXDir::Left);
 }

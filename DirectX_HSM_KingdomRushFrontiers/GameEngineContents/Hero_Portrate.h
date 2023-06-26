@@ -19,6 +19,7 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 	std::shared_ptr<class GameEngineUIRenderer> HeroPortrateFrame = nullptr;
@@ -29,5 +30,11 @@ private:
 
 	std::shared_ptr<class Button_Hero> HeroButton = nullptr;
 	float4 HeroPortrateFrameScale = { 119,119,1 };
+	
+	std::shared_ptr<class GameEngineUIRenderer> HeroHpBar = nullptr;
+	float4 HeroHpBarScale = { 68, 4, 1 };
+	float4 HeroHpBarLocPos= { 0, -40 };
+
+	void UpdateLifeBar();
 };
 
