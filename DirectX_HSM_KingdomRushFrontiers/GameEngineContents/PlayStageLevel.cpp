@@ -45,6 +45,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	SetStageWaveButtons(CurStage);
 	SetStageGold(CurStage);
 	SetHero(CurStage);
+	MainPlayer->InitPlayManager();
 }
 
 void PlayStageLevel::ClearStage()
@@ -58,6 +59,8 @@ void PlayStageLevel::ClearStage()
 	ClearStageWaveButtons();
 	ClearStageGold();
 	ClearHero();
+	ClearLiveWave();
+	ClearLiveMonster();
 }
 
 void PlayStageLevel::Start()
@@ -84,8 +87,8 @@ void PlayStageLevel::Start()
 
 	LoadAllStageData();
 	
-	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 	MainPlayer = CreateActor<PlayManager>();
+	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 }
 
 void PlayStageLevel::Update(float _DeltaTime)
@@ -673,4 +676,14 @@ void PlayStageLevel::ClearHero()
 		AcHero->Death();
 		AcHero = nullptr;
 	}
+}
+
+void PlayStageLevel::ClearLiveWave()
+{
+	MonsterWave::ReleaseWave();
+}
+
+void PlayStageLevel::ClearLiveMonster()
+{
+	BaseMonster::LiveMonsterListForceRelease();
 }

@@ -106,6 +106,8 @@ private:
 	void ClearStageWaveButtons();
 	void ClearStageGold();
 	void ClearHero();
+	void ClearLiveWave();
+	void ClearLiveMonster();
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();

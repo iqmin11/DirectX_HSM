@@ -10,11 +10,23 @@
 #include "DuneRaider.h"
 #include "PlayStageLevel.h"
 
-std::list<std::shared_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::shared_ptr<BaseMonster>>();
+std::list<std::weak_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::weak_ptr<BaseMonster>>();
 
 bool BaseMonster::IsAllMonsterDead()
 {
 	return LiveMonsterList.size() == 0;
+}
+
+void BaseMonster::LiveMonsterListForceRelease()
+{
+	auto StartIter = LiveMonsterList.begin();
+	auto EndIter = LiveMonsterList.end();
+
+	for (; StartIter != EndIter;)
+	{
+		StartIter->lock()->Death();
+		StartIter = LiveMonsterList.erase(StartIter);
+	}
 }
 
 BaseMonster::BaseMonster()
@@ -114,14 +126,12 @@ void BaseMonster::WalkPath(float _DeltaTime)
 
 void BaseMonster::LiveMonsterListRelease()
 {
-	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseStartIter = LiveMonsterList.begin();
-	std::list<std::shared_ptr<BaseMonster>>::iterator ReleaseEndIter = LiveMonsterList.end();
+	std::list<std::weak_ptr<BaseMonster>>::iterator ReleaseStartIter = LiveMonsterList.begin();
+	std::list<std::weak_ptr<BaseMonster>>::iterator ReleaseEndIter = LiveMonsterList.end();
 
 	for (; ReleaseStartIter != ReleaseEndIter; )
 	{
-		std::shared_ptr<BaseMonster>& Object = *ReleaseStartIter;
-
-		if (false == Object->IsDeath())
+		if (false == ReleaseStartIter->lock()->IsDeath())
 		{
 			++ReleaseStartIter;
 			continue;

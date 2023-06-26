@@ -17,8 +17,10 @@ enum class MonsterState
 class BaseMonster : public GameEngineActor
 {
 public:
-	static std::list<std::shared_ptr<BaseMonster>> LiveMonsterList;
+	static std::list<std::weak_ptr<BaseMonster>> LiveMonsterList;
 	static bool IsAllMonsterDead();
+	static void LiveMonsterListForceRelease();
+
 	// construtor destructor
 	BaseMonster();
 	~BaseMonster();

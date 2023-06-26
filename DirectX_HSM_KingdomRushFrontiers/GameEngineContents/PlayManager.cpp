@@ -23,6 +23,20 @@ PlayManager::~PlayManager()
 {
 }
 
+void PlayManager::InitPlayManager()
+{
+	RainOfFire_Cooltime = 80.f;
+	RainOfFire_MaxCool = 80.f;
+	Available_RainOfFire = false;
+
+	CallReinforcement_Cooltime = 10.f;
+	CallReinforcement_MaxCool = 10.f;
+	Available_CallReinforcement = false;
+
+	State = PlayerState::Idle;
+	PlayerFSM.ChangeState("Idle");
+}
+
 const std::weak_ptr<class Hero_RallyPoint> PlayManager::GetHeroRally() const
 {
 	return std::weak_ptr(dynamic_cast<PlayStageLevel*>(GetLevel())->GetHero());

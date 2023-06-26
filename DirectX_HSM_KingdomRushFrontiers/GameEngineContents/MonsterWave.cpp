@@ -12,6 +12,7 @@ std::vector<LinePath>* MonsterWave::CurStagePaths = nullptr;
 std::shared_ptr<PlayStageLevel> MonsterWave::ParentLevel = nullptr;
 
 bool MonsterWave::IsLastMonsterSummon = false;
+std::list<std::weak_ptr<MonsterWave>> MonsterWave::LiveWaveManager = std::list<std::weak_ptr<MonsterWave>>();
 
 
 MonsterWave::MonsterWave()
@@ -27,7 +28,9 @@ MonsterWave::~MonsterWave()
 void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector<MonsterSpawnData>& _OneWave)
 {
 	ParentLevel = _Level->DynamicThis<PlayStageLevel>();
-	ParentLevel->CreateActor<MonsterWave>()->SetOneWave(_OneWave);
+	std::weak_ptr<MonsterWave> Local(ParentLevel->CreateActor<MonsterWave>());
+	Local.lock()->SetOneWave(_OneWave);
+	LiveWaveManager.push_back(Local);
 	IsLastMonsterSummon = false;
 	BottomWaveButton::IsValid = false;
 }
@@ -35,6 +38,33 @@ void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)
 {
 	CurStagePaths = _Path;
+}
+
+void MonsterWave::DeathWave()
+{
+	auto StartIter = LiveWaveManager.begin();
+	auto EndIter = LiveWaveManager.end();
+
+	for (; StartIter != EndIter; StartIter)
+	{
+		if (StartIter->lock().get() == this)
+		{
+			LiveWaveManager.erase(StartIter);
+			Death();
+			break;
+		}
+	}
+}
+
+void MonsterWave::ReleaseWave()
+{
+	auto StartIter = LiveWaveManager.begin();
+	auto EndIter = LiveWaveManager.end();
+	for (; StartIter != EndIter; )
+	{
+		StartIter->lock()->Death();
+		StartIter = LiveWaveManager.erase(StartIter);
+	}
 }
 
 void MonsterWave::Update(float _DeltaTime)
@@ -68,7 +98,7 @@ void MonsterWave::Update(float _DeltaTime)
 			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->OnButtons();
 		}
 		BottomWaveButton::IsValid = true;
-		Death();
+		DeathWave();
 	}
 }
 

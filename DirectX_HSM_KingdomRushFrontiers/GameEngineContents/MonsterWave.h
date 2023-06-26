@@ -6,6 +6,7 @@ class MonsterWave : public GameEngineActor
 {
 public:
 	static bool IsLastMonsterSummon;
+	static std::list<std::weak_ptr<MonsterWave>> LiveWaveManager;
 
 	// construtor destructor
 	MonsterWave();
@@ -19,6 +20,7 @@ public:
 
 	static void StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector<MonsterSpawnData>& _OneWave);
 	static void SetCurStagePaths(std::vector<LinePath>* _Path);
+	static void ReleaseWave();
 
 protected:
 	void Update(float _DeltaTime) override;
@@ -36,5 +38,6 @@ private:
 	float WaveEndTime = 5.0f; //마지막 몬스터가 소환되고 몇초후에 Wave가 끝나는가를 정해주는 숫자
 
 	void SetOneWave(std::vector<MonsterSpawnData>& _OneWave);
+	void DeathWave();
 };
 

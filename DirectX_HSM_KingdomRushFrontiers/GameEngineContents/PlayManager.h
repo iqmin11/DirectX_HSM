@@ -29,6 +29,8 @@ public:
 	PlayManager& operator=(const PlayManager& _Other) = delete;
 	PlayManager& operator=(PlayManager&& _Other) noexcept = delete;
 
+	void InitPlayManager();
+
 	void SetState(PlayerState _State)
 	{
 		State = _State;
