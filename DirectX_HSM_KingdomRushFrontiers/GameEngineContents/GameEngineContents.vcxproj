@@ -271,6 +271,7 @@
     </ClInclude>
     <ClInclude Include="ContentsData.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="ContentsUIRenderer.h" />
     <ClInclude Include="DeciedHeroPositionEffect.h">
       <SubType>
       </SubType>
@@ -628,6 +629,8 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsData.cpp" />
+    <ClCompile Include="ContentsUIRenderer.cpp" />
+    <ClCompile Include="Contents_Resources.cpp" />
     <ClCompile Include="DeciedHeroPositionEffect.cpp">
       <SubType>
       </SubType>

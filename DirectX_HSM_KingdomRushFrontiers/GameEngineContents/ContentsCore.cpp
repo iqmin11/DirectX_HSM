@@ -18,6 +18,8 @@ ContentsCore::~ContentsCore()
 
 void ContentsCore::GameStart()
 {
+	ContentsResourcesCreate();
+
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();

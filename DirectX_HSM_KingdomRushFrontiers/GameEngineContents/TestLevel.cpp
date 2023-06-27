@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include "ContentsUIRenderer.h"
 
 #include "ContentsButton.h"
 #include "PopText.h"
@@ -69,7 +70,7 @@ void TestLevel::Start()
 
 	std::shared_ptr<GameEngineActor> Test0 = CreateActor<GameEngineActor>();
 	Test0->GetTransform()->SetWorldPosition({ 300, 300 });
-	std::shared_ptr<GameEngineSpriteRenderer> Test0Render = Test0->CreateComponent<GameEngineSpriteRenderer>();
+	std::shared_ptr<GameEngineSpriteRenderer> Test0Render = Test0->CreateComponent<ContentsUIRenderer>();
 	Test0Render->GetTransform()->SetWorldScale({ 200, 200, 1 });
 	Test0Render->SetTexture("range_circle.png");
 //
@@ -108,10 +109,4 @@ void TestLevel::Update(float _DeltaTime)
 		GameEngineCore::ChangeLevel("StageEditLevel");
 	}
 
-	TestTime += _DeltaTime;
-	if (TestTime >= 0.1f)
-	{
-		FireBall::SummonFireBall(this, { 0,0 });
-		TestTime = 0.f;
-	}
 }

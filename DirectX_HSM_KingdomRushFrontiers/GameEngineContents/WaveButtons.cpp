@@ -6,6 +6,14 @@
 #include "NextWaveStartButton.h"
 #include "PlayStageUI.h"
 
+float WaveButtons::AutoStartTime = 10.f;
+float WaveButtons::Time = 0.f;
+
+float WaveButtons::GetTimeRatio()
+{
+	return Time/ AutoStartTime;
+}
+
 WaveButtons::WaveButtons()
 {
 
@@ -28,6 +36,7 @@ std::shared_ptr<WaveButtons> WaveButtons::CreateWaveButtons(GameEngineLevel* _Le
 		ResultButtons.lock()->Buttons[i]->GetTransform()->SetWorldPosition(ResultButtons.lock()->Positions[i]);
 		ResultButtons.lock()->Buttons[i]->SetEvent([ResultButtons]()
 			{
+				Time = 0;
 				dynamic_cast<PlayStageLevel*>(ResultButtons.lock()->GetLevel())->StartNextWave();
 				for (size_t n = 0; n < ResultButtons.lock()->Buttons.size(); n++)
 				{
@@ -66,6 +75,7 @@ void WaveButtons::Update(float _DeltaTime)
 	}
 	else
 	{
+		Time = AutoStartTime;
 		//첫번쨰 웨이브인 경우
 	}
 }

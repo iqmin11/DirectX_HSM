@@ -239,6 +239,9 @@
     <ClInclude Include="PlayerStatus.h">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsUIRenderer.h">
+      <Filter>0.Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -498,6 +501,10 @@
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp">
       <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents_Resources.cpp" />
+    <ClCompile Include="ContentsUIRenderer.cpp">
+      <Filter>0.Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

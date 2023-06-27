@@ -2,8 +2,10 @@
 #include "NextWaveStartButton.h"
 
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include "ContentsUIRenderer.h"
 #include "PlayStageLevel.h"
 #include "PlayStageUI.h"
+#include "WaveButtons.h"
 
 NextWaveStartButton::NextWaveStartButton()
 {
@@ -30,8 +32,13 @@ void NextWaveStartButton::Start()
 	GetTransform()->SetWorldScale(Scale);
 	SelectedGlow = CreateComponent<GameEngineUIRenderer>();
 	SelectedGlow->SetTexture("waveFlag_selected.png");
-	SelectedGlow->GetTransform()->SetWorldScale(GlowScale);
+	SelectedGlow->GetTransform()->SetWorldScale(Scale);
 	SelectedGlow->GetTransform()->SetParent(GetTransform());
+	
+	NextWaveGaugeRender = CreateComponent<ContentsUIRenderer>();
+	NextWaveGaugeRender->SetTexture("waveFlag_0003.png");
+	NextWaveGaugeRender->GetTransform()->SetWorldScale(Scale);
+	NextWaveGaugeRender->GetTransform()->SetParent(GetTransform());
 
 	ReleaseTextureName = "waveFlag_0001.png";
 	HoverTextureName = "waveFlag_0001.png";
@@ -51,6 +58,7 @@ void NextWaveStartButton::Start()
 		break;
 	}
 	Render->SetTexture(CurTextureName);
+
 }
 
 void NextWaveStartButton::Update(float _DeltaTime)
@@ -59,6 +67,7 @@ void NextWaveStartButton::Update(float _DeltaTime)
 
 	ButtonEffect();
 	Time += _DeltaTime;
+	NextWaveGaugeRender->SetProgress(WaveButtons::GetTimeRatio());
 }
 
 void NextWaveStartButton::ButtonEffect()
