@@ -28,5 +28,10 @@ private:
 	float CoolRenderRatio = 0.f;
 
 	std::shared_ptr<class GameEngineUIRenderer> ReviveAni = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> NumFrame = nullptr;
+	float4 NumFrameScale = {22,17,1};
+	float4 NumFrameLocPos = { 0,-31 };
+	std::shared_ptr<class UIFontRenderer> NumFont = nullptr;
+	float FontScale = 10.f;
 };
 

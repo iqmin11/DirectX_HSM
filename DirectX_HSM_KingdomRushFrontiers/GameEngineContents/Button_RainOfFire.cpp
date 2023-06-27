@@ -4,6 +4,7 @@
 #include <GameEnginePlatform\GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
+#include "UIFontRenderer.h"
 #include "PlayManager.h"
 
 Button_RainOfFire::Button_RainOfFire()
@@ -46,6 +47,19 @@ void Button_RainOfFire::Start()
 			ReviveAni->Off();
 		});
 	ReviveAni->ChangeAnimation("Revive");
+	
+	NumFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_5);
+	NumFrame->GetTransform()->SetWorldScale(NumFrameScale);
+	NumFrame->GetTransform()->SetLocalPosition(NumFrameLocPos);
+	NumFrame->SetTexture("NumFrame.png");
+
+	NumFont = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_6);
+	NumFont->GetTransform()->SetLocalPosition({ 0,-25 });
+	NumFont->SetFont("TOONISH");
+	NumFont->SetScale(13.f);
+	NumFont->SetColor(float4::White);
+	NumFont->SetFontFlag(FW1_CENTER);
+	NumFont->SetText("1");
 }
 
 void Button_RainOfFire::Update(float _DeltaTime)
