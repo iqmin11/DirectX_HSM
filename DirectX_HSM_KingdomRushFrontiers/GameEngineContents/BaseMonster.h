@@ -78,7 +78,6 @@ protected:
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
 	MonsterData Data = MonsterData();
 
-
 	GameEngineFSM MonsterFSM = GameEngineFSM();
 
 	void IdleStateInit();
@@ -117,5 +116,6 @@ private:
 	void CalMonsterDir();
 
 	void UpdateLifeBar();
+	void GiveBounty();
 };
 

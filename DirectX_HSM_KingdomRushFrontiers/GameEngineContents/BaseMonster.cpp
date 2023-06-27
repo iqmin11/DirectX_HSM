@@ -9,6 +9,7 @@
 #include "DesertThug.h"
 #include "DuneRaider.h"
 #include "PlayStageLevel.h"
+#include "PlayManager.h"
 
 std::list<std::weak_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::weak_ptr<BaseMonster>>();
 
@@ -175,6 +176,12 @@ void BaseMonster::UpdateLifeBar()
 	float4 CurHpBarXPos = float4::LerpClamp(float4{ -LifeBarScale.hx(),LifeBarLocalPos.y,0,1 }, float4{ 0,LifeBarLocalPos.y,0,1 }, CurHP / Data.Hp);
 	LifeBar->GetTransform()->SetWorldScale(CurHpBarXSize);
 	LifeBar->GetTransform()->SetLocalPosition(CurHpBarXPos);
+}
+
+void BaseMonster::GiveBounty()
+{
+	PlayManager::MainPlayer->Gold += Data.Bounty;
+	//이펙트 추가 필요
 }
 
 float BaseMonster::CalDistance()

@@ -30,7 +30,7 @@ void NextWaveStartButton::Start()
 	GetTransform()->SetWorldScale(Scale);
 	SelectedGlow = CreateComponent<GameEngineUIRenderer>();
 	SelectedGlow->SetTexture("waveFlag_selected.png");
-	SelectedGlow->GetTransform()->SetWorldScale({74,74,1});
+	SelectedGlow->GetTransform()->SetWorldScale(GlowScale);
 	SelectedGlow->GetTransform()->SetParent(GetTransform());
 
 	ReleaseTextureName = "waveFlag_0001.png";
@@ -56,22 +56,23 @@ void NextWaveStartButton::Start()
 void NextWaveStartButton::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
+
+	ButtonEffect();
+	Time += _DeltaTime;
+}
+
+void NextWaveStartButton::ButtonEffect()
+{
 	if (State == ButtonState::Release)
 	{
-		SelectedGlow -> Off();
+		SelectedGlow->Off();
 	}
 	else
 	{
 		SelectedGlow->On();
 	}
 
-	Time += _DeltaTime;
-	ButtonEffect();
-}
-
-void NextWaveStartButton::ButtonEffect()
-{
-	if (Time >= 10000.f)
+	if (Time >= GameEngineMath::PIE2)
 	{
 		Time = 0.f;
 	}

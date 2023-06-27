@@ -29,6 +29,7 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> SelectedGlow = nullptr;
 
 	float4 Scale = { 47, 47,1 };
+	float4 GlowScale = { 47,47,1 };
 	int Wave = -1;
 	float Time = 0.f;
 	

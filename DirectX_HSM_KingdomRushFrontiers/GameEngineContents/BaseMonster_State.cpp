@@ -194,7 +194,8 @@ void BaseMonster::DeathStateInit()
 
 				LifeBar->Off();
 				LifeBarBg->Off();
-				MonsterCol->Off();
+				MonsterCol->Off(); 
+				GiveBounty();
 			},
 			.Update = [this](float _DeltaTime)
 			{
