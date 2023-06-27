@@ -5,6 +5,7 @@
 #include "PlayStageLevel.h"
 #include "NextWaveStartButton.h"
 #include "PlayStageUI.h"
+#include "BottomWaveButton.h"
 
 float WaveButtons::AutoStartTime = 10.f;
 float WaveButtons::Time = 0.f;
@@ -54,6 +55,7 @@ void WaveButtons::OnButtons()
 {
 	On();
 	PlayStageUI::MainStageUI->SetWaveButtonEvent(Buttons[0]->GetEvent());
+	BottomWaveButton::IsValid = true;
 }
 
 void WaveButtons::Start()

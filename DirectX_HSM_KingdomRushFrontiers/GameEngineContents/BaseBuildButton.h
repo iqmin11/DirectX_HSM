@@ -1,5 +1,7 @@
 #pragma once
 #include "ContentsButton.h"
+#include "ContentsData.h"
+#include "PlayManager.h"
 
 class BaseBuildButton : public ContentsButton
 {
@@ -16,14 +18,28 @@ public:
 
 	//static std::shared_ptr<BaseBuildButton> CreateButton(class BuildTowerUI* _UI);
 
+	int GetPrice()
+	{
+		return Price;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	void SetPrice(int _Price);
+
+	class BuildTowerUI* ParentUI = nullptr;
+	int Price = 0;
+	std::string InvalidTextureName = std::string();
+	bool IsHaveEnoughGold();
 private:
 	std::shared_ptr<class GameEngineUIRenderer> ButtonGlow = nullptr;
 
 	float4 Scale = { 68,60,1 };
 	float4 GlowScale = { 75,68,1 };
+
+	std::shared_ptr<class PriceTag> AcPriceTag = nullptr;
+	void SetInvalid();
 };
 

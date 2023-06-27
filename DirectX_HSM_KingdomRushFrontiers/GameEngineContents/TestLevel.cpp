@@ -12,6 +12,7 @@
 #include "PopText.h"
 #include "RainOfFire.h"
 #include "FireBall.h"
+#include "PriceTag.h"
 
 TestLevel::TestLevel()
 {
@@ -68,11 +69,7 @@ void TestLevel::Start()
 	//TestRender->SetTexture("range_circle.png");
 
 
-	std::shared_ptr<GameEngineActor> Test0 = CreateActor<GameEngineActor>();
-	Test0->GetTransform()->SetWorldPosition({ 300, 300 });
-	std::shared_ptr<GameEngineSpriteRenderer> Test0Render = Test0->CreateComponent<ContentsUIRenderer>();
-	Test0Render->GetTransform()->SetWorldScale({ 200, 200, 1 });
-	Test0Render->SetTexture("range_circle.png");
+	std::shared_ptr TestPriceTag = CreateActor<PriceTag>();
 //
 //	//TestPopText = CreateActor<PopText>();
 //	std::shared_ptr<GameEngineActor> Test1 = CreateActor<GameEngineActor>();

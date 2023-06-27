@@ -16,20 +16,22 @@ BuildMagicButton::~BuildMagicButton()
 
 std::shared_ptr<BuildMagicButton> BuildMagicButton::CreateButton(BuildTowerUI* _UI)
 {
-	std::shared_ptr<BuildMagicButton> ResultButton = _UI->GetLevel()->CreateActor<BuildMagicButton>();
-	float4 UIPos = _UI->GetTransform()->GetWorldPosition();
-	ResultButton->GetTransform()->SetWorldPosition({ UIPos.x, UIPos.y });
-	ResultButton->SetParentActor(_UI);
-	ResultButton->SetEvent([_UI]()
+	std::weak_ptr<BuildMagicButton> ResultButton(_UI->GetLevel()->CreateActor<BuildMagicButton>());
+	BuildTowerUI* Parent = ResultButton.lock()->ParentUI = _UI;
+	float4 UIPos = Parent->GetTransform()->GetWorldPosition();
+	ResultButton.lock()->GetTransform()->SetWorldPosition({ UIPos.x, UIPos.y });
+	ResultButton.lock()->SetParentActor(Parent);
+	ResultButton.lock()->SetEvent([ResultButton]()
 		{
-			if (_UI->GetState() == BaseTowerUIState::Start)
+			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start || !ResultButton.lock()->IsHaveEnoughGold())
 			{
 				return;
 			}
-			_UI->OffUI();
-			_UI->GetParentArea()->CreateMagicTower();
+			ResultButton.lock()->ParentUI->OffUI();
+			ResultButton.lock()->ParentUI->GetParentArea()->CreateMagicTower();
+			PlayManager::MainPlayer->Gold -= ResultButton.lock()->GetPrice();
 		});
-	return ResultButton;
+	return ResultButton.lock();
 }
 
 void BuildMagicButton::Start()
@@ -38,6 +40,11 @@ void BuildMagicButton::Start()
 	ReleaseTextureName = "main_icons_0003.png";
 	HoverTextureName = "main_icons_0003.png";
 	PressTextureName = "main_icons_0003.png";
+	InvalidTextureName = "main_icons_disabled_0003.png";
+
+	TowerData LocalData;
+	LocalData.SetData(TowerEnum::MagicTower_Level1);
+	SetPrice(LocalData.BuildCost);
 }
 
 void BuildMagicButton::Update(float _DeltaTime)

@@ -242,6 +242,9 @@
     <ClInclude Include="ContentsUIRenderer.h">
       <Filter>0.Base</Filter>
     </ClInclude>
+    <ClInclude Include="PriceTag.h">
+      <Filter>3.PlayStage\Actor\TowerUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -506,6 +509,9 @@
     <ClCompile Include="ContentsUIRenderer.cpp">
       <Filter>0.Base</Filter>
     </ClCompile>
+    <ClCompile Include="PriceTag.cpp">
+      <Filter>3.PlayStage\Actor\TowerUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -621,9 +627,6 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrate">
       <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Actor\StageUI\PlayerStatus">
-      <UniqueIdentifier>{bdbdeb52-33c1-4ae1-9133-c3b21442de9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

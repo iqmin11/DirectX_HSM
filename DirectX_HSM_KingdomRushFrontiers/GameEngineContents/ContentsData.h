@@ -94,6 +94,8 @@ public:
 			Damage_min = 4;
 			Damage_MAX = 6;
 			BulletTime = 1.0f;
+			BuildCost = 70;
+			SellCost = 70;
 			break;
 		case TowerEnum::RangedTower_Level2:
 			TowerType = TowerEnum::RangedTower;
@@ -103,6 +105,8 @@ public:
 			Damage_min = 7;
 			Damage_MAX = 11;
 			BulletTime = 1.0f;
+			BuildCost = 110;
+			SellCost = 180;
 			break;
 		case TowerEnum::RangedTower_Level3:
 			TowerType = TowerEnum::RangedTower;
@@ -112,6 +116,8 @@ public:
 			Damage_min = 10;
 			Damage_MAX = 16;
 			BulletTime = 1.0f;
+			BuildCost = 160;
+			SellCost = 340;
 			break;
 		case TowerEnum::RangedTower_Level4:
 			TowerType = TowerEnum::RangedTower;
@@ -121,6 +127,8 @@ public:
 			Damage_min = 15;
 			Damage_MAX = 23;
 			BulletTime = 1.0f;
+			BuildCost = 230;
+			SellCost = 570;
 			break;
 		case TowerEnum::MeleeTower_Level1:
 			TowerType = TowerEnum::MeleeTower;
@@ -129,6 +137,8 @@ public:
 			Range = Short;
 			Damage_min = 1;
 			Damage_MAX = 3;
+			BuildCost = 70;
+			SellCost = 70;
 			break;
 		case TowerEnum::MeleeTower_Level2:
 			TowerType = TowerEnum::MeleeTower;
@@ -137,6 +147,8 @@ public:
 			Range = Short;
 			Damage_min = 3;
 			Damage_MAX = 4;
+			BuildCost = 110;
+			SellCost = 180;
 			break;
 		case TowerEnum::MeleeTower_Level3:
 			TowerType = TowerEnum::MeleeTower;
@@ -145,6 +157,8 @@ public:
 			Range = Short;
 			Damage_min = 6;
 			Damage_MAX = 10;
+			BuildCost = 160;
+			SellCost = 340;
 			break;
 		case TowerEnum::MeleeTower_Level4:
 			TowerType = TowerEnum::MeleeTower;
@@ -153,6 +167,8 @@ public:
 			Range = Short;
 			Damage_min = 10;
 			Damage_MAX = 14;
+			BuildCost = 230;
+			SellCost = 570;
 			break;
 		case TowerEnum::MagicTower_Level1:
 			TowerType = TowerEnum::MagicTower;
@@ -162,6 +178,8 @@ public:
 			Damage_min = 9;
 			Damage_MAX = 17;
 			BulletTime = 0.4f;
+			BuildCost = 100;
+			SellCost = 100;
 			break;
 		case TowerEnum::MagicTower_Level2:
 			TowerType = TowerEnum::MagicTower;
@@ -171,6 +189,8 @@ public:
 			Damage_min = 23;
 			Damage_MAX = 43;
 			BulletTime = 0.4f;
+			BuildCost = 160;
+			SellCost = 260;
 			break;
 		case TowerEnum::MagicTower_Level3:
 			TowerType = TowerEnum::MagicTower;
@@ -180,6 +200,8 @@ public:
 			Damage_min = 40;
 			Damage_MAX = 74;
 			BulletTime = 0.4f;
+			BuildCost = 240;
+			SellCost = 500;
 			break;
 		case TowerEnum::MagicTower_Level4:
 			TowerType = TowerEnum::MagicTower;
@@ -189,6 +211,8 @@ public:
 			Damage_min = 60;
 			Damage_MAX = 120;
 			BulletTime = 0.4f;
+			BuildCost = 300;
+			SellCost = 800;
 			break;
 		case TowerEnum::ArtilleryTower_Level1:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -198,6 +222,8 @@ public:
 			Damage_min = 8;
 			Damage_MAX = 15;
 			BulletTime = 1.0f;
+			BuildCost = 125;
+			SellCost = 125;
 			break;
 		case TowerEnum::ArtilleryTower_Level2:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -207,6 +233,8 @@ public:
 			Damage_min = 20;
 			Damage_MAX = 40;
 			BulletTime = 1.0f;
+			BuildCost = 220;
+			SellCost = 345;
 			break;
 		case TowerEnum::ArtilleryTower_Level3:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -216,6 +244,8 @@ public:
 			Damage_min = 30;
 			Damage_MAX = 60;
 			BulletTime = 1.0f;
+			BuildCost = 320;
+			SellCost = 665;
 			break;
 		case TowerEnum::ArtilleryTower_Level4:
 			TowerType = TowerEnum::ArtilleryTower;
@@ -225,6 +255,8 @@ public:
 			Damage_min = 25;
 			Damage_MAX = 45;
 			BulletTime = 1.0f;
+			BuildCost = 400;
+			SellCost = 1065;
 			break;
 		default:
 			MsgAssert("잘못된 TowerTypeEnum값을 넣었습니다.")
@@ -240,6 +272,8 @@ public:
 	int Damage_min = 0;
 	int Damage_MAX = 0;
 	float BulletTime = 1.0f;
+	int BuildCost = 0;
+	int SellCost = 0;
 };
 
 class MonsterData

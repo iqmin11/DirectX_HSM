@@ -21,6 +21,26 @@ public:
 
 	BuildArea* GetParentArea();
 
+	std::weak_ptr<class BuildRangedButton> GetBuildRangedButton()
+	{
+		return std::weak_ptr<class BuildRangedButton>(AcBuildRangedButton);
+	}
+
+	std::weak_ptr<class BuildMeleeButton> GetBuildMeleeButton()
+	{
+		return std::weak_ptr<class BuildMeleeButton>(AcBuildMeleeButton);
+	}
+
+	std::weak_ptr<class BuildMagicButton> GetBuildMagicButton()
+	{
+		return std::weak_ptr<class BuildMagicButton>(AcBuildMagicButton);
+	}
+
+	std::weak_ptr<class BuildArtilleryButton> GetBuildArtilleryButton()
+	{
+		return std::weak_ptr<class BuildArtilleryButton>(AcBuildArtilleryButton);
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
