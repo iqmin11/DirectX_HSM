@@ -246,7 +246,10 @@
       <Filter>3.PlayStage\Actor\TowerUI</Filter>
     </ClInclude>
     <ClInclude Include="VictoryBadge.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
+    </ClInclude>
+    <ClInclude Include="ContinueButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -516,7 +519,10 @@
       <Filter>3.PlayStage\Actor\TowerUI</Filter>
     </ClCompile>
     <ClCompile Include="VictoryBadge.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
+    </ClCompile>
+    <ClCompile Include="ContinueButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -633,6 +639,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrate">
       <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\VictoryBadge">
+      <UniqueIdentifier>{cae86546-b21f-4203-803f-ac29e3b9b186}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

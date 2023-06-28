@@ -272,6 +272,10 @@
     <ClInclude Include="ContentsData.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="ContentsUIRenderer.h" />
+    <ClInclude Include="ContinueButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DeciedHeroPositionEffect.h">
       <SubType>
       </SubType>
@@ -639,6 +643,10 @@
     <ClCompile Include="ContentsData.cpp" />
     <ClCompile Include="ContentsUIRenderer.cpp" />
     <ClCompile Include="Contents_Resources.cpp" />
+    <ClCompile Include="ContinueButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DeciedHeroPositionEffect.cpp">
       <SubType>
       </SubType>

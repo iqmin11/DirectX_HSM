@@ -536,6 +536,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RainOfFireButton_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforcementButton_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortrateFrame_Revive").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StarAnimation").GetFullPath());
 }
 
 void PlayStageLevel::LoadFont()

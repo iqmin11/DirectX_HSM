@@ -13,6 +13,7 @@
 #include "RainOfFire.h"
 #include "FireBall.h"
 #include "PriceTag.h"
+#include "VictoryBadge.h"
 
 TestLevel::TestLevel()
 {
@@ -58,30 +59,7 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("PlayStageLevel", '3');
 	GameEngineInput::CreateKey("StageEditLevel", '4');
 
-	//TestButton = ContentsButton::CreateButton(this, "Release.bmp", "Hover.bmp", "Press.bmp");
-	//TestButton->GetTransform()->SetWorldScale({ 100, 100 });
-
-	//TestPopText = CreateActor<PopText>();
-	//std::shared_ptr<GameEngineActor> Test = CreateActor<GameEngineActor>();
-	//Test->GetTransform()->SetWorldPosition({300, 300});
-	//std::shared_ptr<GameEngineUIRenderer> TestRender = Test->CreateComponent<GameEngineUIRenderer>();
-	//TestRender->GetTransform()->SetWorldScale({200, 200, 1});
-	//TestRender->SetTexture("range_circle.png");
-
-
-	std::shared_ptr TestPriceTag = CreateActor<PriceTag>();
-//
-//	//TestPopText = CreateActor<PopText>();
-//	std::shared_ptr<GameEngineActor> Test1 = CreateActor<GameEngineActor>();
-//	Test1->GetTransform()->SetWorldPosition({ 300, 300 });
-//	std::shared_ptr<GameEngineUIRenderer> Test1Render = Test1->CreateComponent<GameEngineUIRenderer>();
-//	Test1Render->GetTransform()->SetWorldScale({ 200, 200, 1 });
-//	Test1Render->SetTexture("Release.bmp");
-//
-//	Test0Render->SetOrder(4);
-//	Test1Render->SetOrder(3);
-
-	
+	std::shared_ptr<VictoryBadge> TestVictoryBadge = CreateActor<VictoryBadge>();
 }
 
 void TestLevel::Update(float _DeltaTime)
