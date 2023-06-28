@@ -9,6 +9,7 @@
 #include "UpgradeTowerUI.h"
 #include "BuildArea.h"
 #include "UpgradeTowerButton.h"
+#include "PlayManager.h"
 
 BaseTower::BaseTower()
 {
@@ -27,7 +28,7 @@ void BaseTower::SellTower()
 		MsgAssert("타워를 팔려고 했는데 ParentArea가 nullptr였습니다")
 	}
 	
-	//돈주는 함수 자리
+	PlayManager::MainPlayer->Gold += Data.SellCost;
 
 	ParentArea->On();
 	ParentArea->ReleaseChildTower();

@@ -542,6 +542,7 @@ void PlayStageLevel::LoadFont()
 {
 	GameEngineFont::Load("TOONISH");
 	GameEngineFont::Load("³ª´®¼Õ±Û¾¾ Ææ OTF");
+	GameEngineFont::Load("Á¦ÁÖÇÑ¶ó»ê");
 }
 
 void PlayStageLevel::Defeat()

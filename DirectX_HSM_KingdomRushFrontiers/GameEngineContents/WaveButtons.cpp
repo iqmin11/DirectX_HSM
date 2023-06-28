@@ -7,7 +7,7 @@
 #include "PlayStageUI.h"
 #include "BottomWaveButton.h"
 
-float WaveButtons::AutoStartTime = 10.f;
+float WaveButtons::AutoStartTime = 40.f;
 float WaveButtons::Time = 0.f;
 
 float WaveButtons::GetTimeRatio()

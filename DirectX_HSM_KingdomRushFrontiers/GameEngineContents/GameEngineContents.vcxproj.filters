@@ -245,6 +245,9 @@
     <ClInclude Include="PriceTag.h">
       <Filter>3.PlayStage\Actor\TowerUI</Filter>
     </ClInclude>
+    <ClInclude Include="VictoryBadge.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -511,6 +514,9 @@
     </ClCompile>
     <ClCompile Include="PriceTag.cpp">
       <Filter>3.PlayStage\Actor\TowerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VictoryBadge.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

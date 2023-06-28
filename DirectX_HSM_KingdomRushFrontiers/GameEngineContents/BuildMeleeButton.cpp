@@ -23,7 +23,7 @@ std::shared_ptr<BuildMeleeButton> BuildMeleeButton::CreateButton(BuildTowerUI* _
 	ResultButton.lock()->SetParentActor(Parent);
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
-			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start || !ResultButton.lock()->IsHaveEnoughGold())
+			if (ResultButton.lock()->ParentUI->GetState() == BaseTowerUIState::Start || !PlayManager::MainPlayer->DoIHaveEnoughGold(ResultButton.lock()->Price))
 			{
 				return;
 			}

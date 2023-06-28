@@ -511,6 +511,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="VictoryBadge.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WaveButtons.h">
       <SubType>
       </SubType>
@@ -883,6 +887,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="UpgradeTowerUI_ex.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="VictoryBadge.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -21,11 +21,6 @@ void BaseBuildButton::SetPrice(int _Price)
 	AcPriceTag->SetPrice(Price);
 }
 
-bool BaseBuildButton::IsHaveEnoughGold()
-{
-	return PlayManager::MainPlayer->Gold >= Price;
-}
-
 void BaseBuildButton::SetInvalid()
 {
 	Render->SetTexture(InvalidTextureName);
@@ -50,7 +45,7 @@ void BaseBuildButton::Start()
 void BaseBuildButton::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
-	if (!IsHaveEnoughGold() && InvalidTextureName != "")
+	if (!PlayManager::MainPlayer->DoIHaveEnoughGold(Price) && InvalidTextureName != "")
 	{
 		SetInvalid();
 	}

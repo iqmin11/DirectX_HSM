@@ -85,6 +85,11 @@ public:
 	
 	enum class FighterState GetHeroState() const;
 
+	bool DoIHaveEnoughGold(int _Price)
+	{
+		return _Price <= Gold;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

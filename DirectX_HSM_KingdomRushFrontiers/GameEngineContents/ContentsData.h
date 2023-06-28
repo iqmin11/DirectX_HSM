@@ -67,6 +67,8 @@ public:
 	static const float Great;
 	static const float Extreme;
 
+	TowerData GetNextTowerData();
+
 	float GetNextLvRange()
 	{
 		TowerEnum NextEnum = static_cast<TowerEnum>(static_cast<int>(TowerType) + Level + 1);

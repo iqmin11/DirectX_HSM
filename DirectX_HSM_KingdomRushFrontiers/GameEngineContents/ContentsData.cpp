@@ -279,3 +279,14 @@ void StageData::SetHeroStartPos(int _Stage)
 		break;
 	}
 }
+
+TowerData TowerData::GetNextTowerData()
+{
+	if (Level == 4)
+	{
+		return *this;
+	}
+	TowerData ResultDataTowerType;
+	ResultDataTowerType.SetData(static_cast<TowerEnum>(static_cast<int>(TowerType) + Level + 1));
+	return ResultDataTowerType;
+}

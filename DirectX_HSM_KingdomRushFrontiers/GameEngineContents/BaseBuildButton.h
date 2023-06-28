@@ -32,7 +32,6 @@ protected:
 	class BuildTowerUI* ParentUI = nullptr;
 	int Price = 0;
 	std::string InvalidTextureName = std::string();
-	bool IsHaveEnoughGold();
 private:
 	std::shared_ptr<class GameEngineUIRenderer> ButtonGlow = nullptr;
 

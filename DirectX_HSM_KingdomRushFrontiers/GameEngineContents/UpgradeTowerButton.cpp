@@ -5,6 +5,8 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "UpgradeTowerUI.h"
 #include "BaseTower.h"
+#include "PriceTag.h"
+#include "PlayManager.h"
 
 UpgradeTowerButton::UpgradeTowerButton()
 {
@@ -26,14 +28,23 @@ std::shared_ptr<UpgradeTowerButton> UpgradeTowerButton::CreateButton(UpgradeTowe
 	ResultButton.lock()->SetEvent([ResultButton]()
 		{
 			UpgradeTowerUI* ParentUI = dynamic_cast<UpgradeTowerUI*>(ResultButton.lock()->GetParentActor());
-			if (ParentUI->GetState() == BaseTowerUIState::Start)
+			if (ParentUI->GetState() == BaseTowerUIState::Start || !PlayManager::MainPlayer->DoIHaveEnoughGold(ResultButton.lock()->Price))
 			{
 				return;
 			}
 			ParentUI->OffUI();
-			ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnUpgradeTowerEnum());
+			ParentUI->GetParentTower()->ChangeTower(ResultButton.lock()->ReturnNextTowerEnum());
+			PlayManager::MainPlayer->Gold -= ResultButton.lock()->Price;
 		});
 	return ResultButton.lock();
+}
+
+void UpgradeTowerButton::SetPrice(TowerEnum _UpgTower)
+{
+	TowerData LocData;
+	LocData.SetData(_UpgTower);
+	Price = LocData.BuildCost;
+	AcPriceTag->SetPrice(Price);
 }
 
 void UpgradeTowerButton::Start()
@@ -45,15 +56,30 @@ void UpgradeTowerButton::Start()
 	ReleaseTextureName = "main_icons_0005.png";
 	HoverTextureName = "main_icons_0005.png";
 	PressTextureName = "main_icons_0005.png";
+	InvalidTextureName = "main_icons_disabled_0005.png";
 
 	ButtonGlow->SetTexture("ButtonsGlow.png");
 	ButtonGlow->GetTransform()->SetWorldScale(GlowScale);
 	ButtonGlow->Off();
+
+	AcPriceTag = GetLevel()->CreateActor<PriceTag>();
+	AcPriceTag->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition() + float4{0, -30});
+	AcPriceTag->GetTransform()->SetParent(GetTransform());
 }
 
 void UpgradeTowerButton::Update(float _DeltaTime)
 {
 	ContentsButton::Update(_DeltaTime);
+	SetPrice(ReturnNextTowerEnum());
+	if (!PlayManager::MainPlayer->DoIHaveEnoughGold(Price) && InvalidTextureName != "")
+	{
+		SetInvalid();
+	}
+	else
+	{
+		AcPriceTag->SetColor(PriceTag::ValidFontColor);
+	}
+
 	if (State == ButtonState::Release)
 	{
 		if (ButtonGlow->IsUpdate())
@@ -70,7 +96,7 @@ void UpgradeTowerButton::Update(float _DeltaTime)
 	}
 }
 
-TowerEnum UpgradeTowerButton::ReturnUpgradeTowerEnum()
+TowerData UpgradeTowerButton::ReturnNextTowerData()
 {
 	if (nullptr == GetParentActor())
 	{
@@ -78,10 +104,17 @@ TowerEnum UpgradeTowerButton::ReturnUpgradeTowerEnum()
 	}
 
 	TowerData Data = dynamic_cast<UpgradeTowerUI*>(GetParentActor())->GetParentTower()->GetData();
-	if (Data.Level >= 3)
-	{
-		MsgTextBox("아직 구현하지 않은 타워입니다");
-		return static_cast<TowerEnum>(static_cast<int>(Data.TowerType) + Data.Level);
-	}
-	return static_cast<TowerEnum>(static_cast<int>(Data.TowerType) + Data.Level + 1);
+	return Data.GetNextTowerData();
+}
+
+TowerEnum UpgradeTowerButton::ReturnNextTowerEnum()
+{
+	TowerData LocalData = ReturnNextTowerData();
+	return static_cast<TowerEnum>(static_cast<int>(LocalData.TowerType) + LocalData.Level);
+}
+
+void UpgradeTowerButton::SetInvalid()
+{
+	Render->SetTexture(InvalidTextureName);
+	AcPriceTag->SetColor(PriceTag::InvalidFontColor);
 }

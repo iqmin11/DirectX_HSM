@@ -92,7 +92,7 @@ void FireBall::Attack()
 		{
 			for (size_t j = 0; j < HitMonsters.size(); j++)
 			{
-				dynamic_cast<BaseMonster*>(HitMonsters[j]->GetActor())->CurHP -= Damage[j];
+				dynamic_cast<BaseMonster*>(HitMonsters[j]->GetActor())->CurHP -= Damage[i];
 			}
 		}
 	}
