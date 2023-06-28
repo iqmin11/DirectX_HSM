@@ -21,6 +21,8 @@ protected:
 private:
 	float4 Scale = { 209, 80 };
 	std::shared_ptr<class GameEngineUIRenderer> ChainRender = nullptr;
+	float4 ChainRenderScale = { 172,99,1 };
+	float4 ChainRenderLocPos = { 0, 60 };
 
 	std::shared_ptr<class UIFontRenderer> FontRender = nullptr;
 	std::string Continue = "계속하기";

@@ -26,8 +26,8 @@ void ContinueButton::Start()
 		});
 
 	ChainRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
-	ChainRender->GetTransform()->SetWorldScale({172,99,1});
-	ChainRender->GetTransform()->SetLocalPosition({0, 50});
+	ChainRender->GetTransform()->SetWorldScale(ChainRenderScale);
+	ChainRender->GetTransform()->SetLocalPosition(ChainRenderLocPos);
 	ChainRender->SetTexture("UIChain.png");
 
 	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_2);

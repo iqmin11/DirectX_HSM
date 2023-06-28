@@ -43,7 +43,7 @@ private:
 	float4 StarAnimationLocPos = {0, -100};
 
 	std::shared_ptr<class ContinueButton> AcContinueButton = nullptr;
-
+	float4 ContinueButtonEndLocPos = { 0,-235 };
 
 	BadgeState State = BadgeState::GrowBig;
 	float Time = 0.f;
@@ -52,5 +52,6 @@ private:
 	void SetVictoryFont();
 	void SetStarAnimation();
 	void GrowBig(float _DeltaTime);
+	void FallButton(float _DeltaTime);
 };
 

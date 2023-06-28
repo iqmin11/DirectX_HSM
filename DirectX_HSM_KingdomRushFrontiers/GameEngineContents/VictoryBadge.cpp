@@ -24,7 +24,7 @@ void VictoryBadge::Start()
 	SetStarAnimation();
 	AcContinueButton = GetLevel()->CreateActor<ContinueButton>();
 	AcContinueButton->GetTransform()->SetParent(GetTransform());
-	AcContinueButton->GetTransform()->SetLocalPosition({0,-235});
+	AcContinueButton->Off();
 }
 
 void VictoryBadge::Update(float _DeltaTime)
@@ -49,7 +49,11 @@ void VictoryBadge::Update(float _DeltaTime)
 	}
 	else if(State == BadgeState::FallButton)
 	{
-
+		if (!AcContinueButton->IsUpdate())
+		{
+			AcContinueButton->On();
+		}
+		FallButton(_DeltaTime);
 	}
 
 	if (GameEngineInput::IsDown("Z"))
@@ -61,7 +65,7 @@ void VictoryBadge::Update(float _DeltaTime)
 
 void VictoryBadge::SetBg()
 {
-	VictoryBadgeBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_2);
+	VictoryBadgeBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	VictoryBadgeBg->GetTransform()->SetWorldScale(VictoryBadgeBgScale);
 	VictoryBadgeBg->GetTransform()->SetParent(GetTransform());
 	VictoryBadgeBg->SetTexture("victoryBadges_0002.png");
@@ -69,7 +73,7 @@ void VictoryBadge::SetBg()
 
 void VictoryBadge::SetVictoryFont()
 {
-	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_3);
+	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_4);
 	FontRender->SetFont(Font);
 	FontRender->SetFontFlag(FW1_CENTER);
 	FontRender->SetScale(FontScale);
@@ -80,7 +84,7 @@ void VictoryBadge::SetVictoryFont()
 
 void VictoryBadge::SetStarAnimation()
 {
-	StarAnimation = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
+	StarAnimation = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
 	StarAnimation->GetTransform()->SetWorldScale(StarAnimationScale);
 	StarAnimation->GetTransform()->SetLocalPosition(StarAnimationLocPos);
 	std::vector<size_t> OneStarAnimationIndex = std::vector<size_t>();
@@ -125,7 +129,26 @@ void VictoryBadge::GrowBig(float _DeltaTime)
 		float4 TempActorScale = float4::Lerp(float4::Zero, float4::One, Ratio);
 		FontRender->SetScale(FontScale * TempActorScale.x);
 		GetTransform()->SetWorldScale(TempActorScale);
+		Time = 0.f;
 		State = BadgeState::Star;
+	}
+}
+
+void VictoryBadge::FallButton(float _DeltaTime)
+{
+	Time += _DeltaTime;
+	float x = 2 * Time;
+	Ratio = sin(x) + 0.1f;
+	float4 TempActorLocPos = float4::Lerp(float4::Zero, ContinueButtonEndLocPos, Ratio);
+	AcContinueButton->GetTransform()->SetLocalPosition(TempActorLocPos);
+
+	if (x >= GameEngineMath::PIE / 2 && Ratio <= 1.f)
+	{
+		Ratio = 1.f;
+		float4 TempActorLocPos = float4::Lerp(float4::Zero, ContinueButtonEndLocPos, Ratio);
+		AcContinueButton->GetTransform()->SetLocalPosition(TempActorLocPos);
+		Time = 0.f;
+		State = BadgeState::Update;
 	}
 }
 
