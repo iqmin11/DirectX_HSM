@@ -44,7 +44,12 @@ void Effect_OneStar::Update(float _DeltaTime)
 	StarRender->ColorOptionValue.MulColor.x += _DeltaTime*2;
 	StarRender->ColorOptionValue.MulColor.y += _DeltaTime*2;
 	StarRender->ColorOptionValue.MulColor.z += _DeltaTime*2;
-	StarRender->ColorOptionValue.MulColor.a -= _DeltaTime/2;
+	
+	StarRender->ColorOptionValue.MulColor.a -= _DeltaTime * 3 / 4;
+	if (StarRender->ColorOptionValue.MulColor.a <= 0.f)
+	{
+		StarRender->ColorOptionValue.MulColor.a = 0.0f;
+	}
 	
 	if (Time >= 2.f)
 	{
