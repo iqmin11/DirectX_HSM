@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "UpgradeTowerUI.h"
 #include "BaseTower.h"
+#include "PlayStageLevel.h"
 
 SellButton::SellButton()
 {
@@ -52,6 +53,11 @@ void SellButton::Start()
 
 void SellButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 	if (State == ButtonState::Release)
 	{

@@ -7,6 +7,7 @@
 #include "BaseTower.h"
 #include "UpgradeTowerButton.h"
 #include "SellButton.h"
+#include "PlayStageLevel.h"
 
 UpgradeTowerUI::UpgradeTowerUI()
 {
@@ -45,6 +46,11 @@ void UpgradeTowerUI::Start()
 
 void UpgradeTowerUI::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseTowerUI::Update(_DeltaTime);
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{

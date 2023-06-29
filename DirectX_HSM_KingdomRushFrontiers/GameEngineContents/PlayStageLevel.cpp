@@ -24,7 +24,7 @@
 #include "VictoryBadge.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
-
+bool PlayStageLevel::IsPause = false;
 
 PlayStageLevel::PlayStageLevel()
 {
@@ -558,6 +558,7 @@ void PlayStageLevel::Victory()
 	{
 		AcVictoryBadge = CreateActor<VictoryBadge>(ActorOrder::VictoryBadge);
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+		IsPause = true;
 	}
 }
 

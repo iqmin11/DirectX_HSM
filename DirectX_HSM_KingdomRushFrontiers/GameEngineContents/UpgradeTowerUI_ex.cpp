@@ -3,6 +3,7 @@
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include "RallyButton.h"
+#include "PlayStageLevel.h"
 #include "BaseTower.h"
 
 UpgradeTowerUI_ex::UpgradeTowerUI_ex()
@@ -35,5 +36,10 @@ void UpgradeTowerUI_ex::Start()
 
 void UpgradeTowerUI_ex::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	UpgradeTowerUI::Update(_DeltaTime);
 }

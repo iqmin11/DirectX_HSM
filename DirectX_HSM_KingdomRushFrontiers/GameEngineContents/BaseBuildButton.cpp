@@ -4,6 +4,7 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "PriceTag.h"
+#include "PlayStageLevel.h"
 
 BaseBuildButton::BaseBuildButton()
 {
@@ -44,6 +45,11 @@ void BaseBuildButton::Start()
 
 void BaseBuildButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 	if (!PlayManager::MainPlayer->DoIHaveEnoughGold(Price) && InvalidTextureName != "")
 	{

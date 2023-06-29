@@ -4,6 +4,7 @@
 #include "BuildTowerUI.h"
 #include "BuildArea.h"
 #include <GameEngineCore\GameEngineUIRenderer.h>
+#include "PlayStageLevel.h"
 
 BuildArtilleryButton::BuildArtilleryButton()
 {
@@ -50,6 +51,11 @@ void BuildArtilleryButton::Start()
 
 void BuildArtilleryButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseBuildButton::Update(_DeltaTime);
 }
 

@@ -4,6 +4,7 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "PlayManager.h"
+#include "PlayStageLevel.h"
 
 bool BottomWaveButton::IsValid = true;
 
@@ -33,6 +34,11 @@ void BottomWaveButton::Start()
 
 void BottomWaveButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	if (IsValid)
 	{
 		ContentsButton::Update(_DeltaTime);

@@ -7,6 +7,7 @@
 #include "BaseTower.h"
 #include "PriceTag.h"
 #include "PlayManager.h"
+#include "PlayStageLevel.h"
 
 UpgradeTowerButton::UpgradeTowerButton()
 {
@@ -69,6 +70,11 @@ void UpgradeTowerButton::Start()
 
 void UpgradeTowerButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 	SetPrice(ReturnNextTowerEnum());
 	if (!PlayManager::MainPlayer->DoIHaveEnoughGold(Price) && InvalidTextureName != "")

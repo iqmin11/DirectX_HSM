@@ -9,6 +9,7 @@
 #include "BuildMeleeButton.h"
 #include "BuildMagicButton.h"
 #include "BuildArtilleryButton.h"
+#include "PlayStageLevel.h"
 
 BuildTowerUI::BuildTowerUI()
 {
@@ -51,6 +52,11 @@ void BuildTowerUI::Start()
 
 void BuildTowerUI::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseTowerUI::Update(_DeltaTime);
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{

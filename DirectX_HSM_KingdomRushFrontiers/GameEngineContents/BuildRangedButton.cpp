@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "BuildTowerUI.h"
 #include "BuildArea.h"
+#include "PlayStageLevel.h"
 
 BuildRangedButton::BuildRangedButton()
 {
@@ -49,5 +50,10 @@ void BuildRangedButton::Start()
 
 void BuildRangedButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseBuildButton::Update(_DeltaTime);
 }

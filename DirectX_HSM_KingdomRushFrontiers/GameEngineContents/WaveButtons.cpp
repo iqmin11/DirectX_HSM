@@ -6,6 +6,7 @@
 #include "NextWaveStartButton.h"
 #include "PlayStageUI.h"
 #include "BottomWaveButton.h"
+#include "PlayStageLevel.h"
 
 float WaveButtons::AutoStartTime = 40.f;
 float WaveButtons::Time = 0.f;
@@ -65,6 +66,11 @@ void WaveButtons::Start()
 
 void WaveButtons::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	Time += _DeltaTime;
 	if (Wave != 0)
 	{

@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "BuildTowerUI.h"
 #include "BuildArea.h"
+#include "PlayStageLevel.h"
 
 BuildMagicButton::BuildMagicButton()
 {
@@ -49,5 +50,10 @@ void BuildMagicButton::Start()
 
 void BuildMagicButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseBuildButton::Update(_DeltaTime);
 }

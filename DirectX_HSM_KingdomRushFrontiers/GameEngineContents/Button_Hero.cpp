@@ -8,6 +8,7 @@
 #include "Hero_Alric.h"
 #include "Hero_RallyPoint.h"
 #include "Hero_Portrate.h"
+#include "PlayStageLevel.h"
 
 Button_Hero::Button_Hero()
 {
@@ -64,6 +65,11 @@ void Button_Hero::Start()
 
 void Button_Hero::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	if (PlayManager::MainPlayer->GetState() == PlayerState::Hero)
 	{
 		ContentsButton::Update(_DeltaTime);

@@ -78,6 +78,11 @@ void BaseMonster::Start()
 // Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	MonsterFSM.Update(_DeltaTime);
 	UpdateLifeBar();
 }

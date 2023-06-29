@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BuildArea.h"
 #include "BuildTowerUI.h"
+#include "PlayStageLevel.h"
 
 BuildAreaButton::BuildAreaButton()
 {
@@ -43,5 +44,10 @@ void BuildAreaButton::Start()
 
 void BuildAreaButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 }

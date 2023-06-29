@@ -6,6 +6,7 @@
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "UIFontRenderer.h"
 #include "PlayManager.h"
+#include "PlayStageLevel.h"
 
 Button_CallReinforcement::Button_CallReinforcement()
 {
@@ -64,6 +65,11 @@ void Button_CallReinforcement::Start()
 
 void Button_CallReinforcement::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	if (PlayManager::MainPlayer->GetState() == PlayerState::CallReinforcement)
 	{
 		Render->SetTexture(SelectTextureName);

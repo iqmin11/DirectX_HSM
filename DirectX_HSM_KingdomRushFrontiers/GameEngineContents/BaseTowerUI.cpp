@@ -2,6 +2,7 @@
 #include "BaseTowerUI.h"
 
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include "PlayStageLevel.h"
 
 int BaseTowerUI::UpdateCount = 0;
 BaseTowerUI* BaseTowerUI::UpdatedUI = nullptr;
@@ -39,6 +40,11 @@ void BaseTowerUI::Start()
 
 void BaseTowerUI::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	if (State == BaseTowerUIState::Start)
 	{
 		Time += _DeltaTime;

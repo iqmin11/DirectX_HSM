@@ -7,6 +7,7 @@
 #include "BaseTower.h"
 #include "Melee_Tower.h"
 #include "PlayManager.h"
+#include "PlayStageLevel.h"
 
 RallyButton::RallyButton()
 {
@@ -57,6 +58,11 @@ void RallyButton::Start()
 
 void RallyButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 	if (State == ButtonState::Release)
 	{

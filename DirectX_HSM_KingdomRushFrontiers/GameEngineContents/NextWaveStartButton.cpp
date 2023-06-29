@@ -6,6 +6,7 @@
 #include "PlayStageLevel.h"
 #include "PlayStageUI.h"
 #include "WaveButtons.h"
+#include "PlayStageLevel.h"
 
 NextWaveStartButton::NextWaveStartButton()
 {
@@ -63,6 +64,11 @@ void NextWaveStartButton::Start()
 
 void NextWaveStartButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 
 	ButtonEffect();

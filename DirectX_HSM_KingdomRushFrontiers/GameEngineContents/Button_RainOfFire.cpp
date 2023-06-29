@@ -6,6 +6,7 @@
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "UIFontRenderer.h"
 #include "PlayManager.h"
+#include "PlayStageLevel.h"
 
 Button_RainOfFire::Button_RainOfFire()
 {
@@ -64,6 +65,11 @@ void Button_RainOfFire::Start()
 
 void Button_RainOfFire::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	if (PlayManager::MainPlayer->GetState() == PlayerState::RainOfFire)
 	{
 		Render->SetTexture(SelectTextureName);

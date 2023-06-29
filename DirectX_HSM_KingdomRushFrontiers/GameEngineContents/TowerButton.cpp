@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "BaseTower.h"
 #include "UpgradeTowerUI.h"
+#include "PlayStageLevel.h"
 
 TowerButton::TowerButton()
 {
@@ -42,5 +43,10 @@ void TowerButton::Start()
 
 void TowerButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	ContentsButton::Update(_DeltaTime);
 }

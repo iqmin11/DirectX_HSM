@@ -3,6 +3,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include "BuildTowerUI.h"
 #include "BuildArea.h"
+#include "PlayStageLevel.h"
 
 BuildMeleeButton::BuildMeleeButton()
 {
@@ -49,5 +50,10 @@ void BuildMeleeButton::Start()
 
 void BuildMeleeButton::Update(float _DeltaTime)
 {
+	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	{
+		return;
+	}
+
 	BaseBuildButton::Update(_DeltaTime);
 }

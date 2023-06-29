@@ -7,6 +7,7 @@ class PlayStageLevel : public GameEngineLevel
 {
 public:
 	static std::vector<StageData> AllStageData;
+	static bool IsPause;
 
 	// construtor destructor
 	PlayStageLevel();
