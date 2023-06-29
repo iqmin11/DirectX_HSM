@@ -304,6 +304,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Effect_OneStar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Effect_SpreadStar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FireBallExplosion.h">
       <SubType>
       </SubType>
@@ -428,6 +436,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Reinforcement_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RetryButton.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -675,6 +687,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Effect_OneStar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Effect_SpreadStar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FireBallExplosion.cpp">
       <SubType>
       </SubType>
@@ -810,6 +830,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Reinforcement_RallyPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RetryButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

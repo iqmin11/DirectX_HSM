@@ -14,6 +14,8 @@
 #include "FireBall.h"
 #include "PriceTag.h"
 #include "VictoryBadge.h"
+#include "Effect_OneStar.h"
+#include "Effect_SpreadStar.h"
 
 TestLevel::TestLevel()
 {
@@ -60,6 +62,7 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("StageEditLevel", '4');
 
 	std::shared_ptr<VictoryBadge> TestVictoryBadge = CreateActor<VictoryBadge>();
+	//std::shared_ptr<Effect_SpreadStar> TestVictoryBadge = CreateActor<Effect_SpreadStar>();
 }
 
 void TestLevel::Update(float _DeltaTime)

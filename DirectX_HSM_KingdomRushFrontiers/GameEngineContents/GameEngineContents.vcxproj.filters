@@ -251,6 +251,15 @@
     <ClInclude Include="ContinueButton.h">
       <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
     </ClInclude>
+    <ClInclude Include="RetryButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_SpreadStar.h">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect_OneStar.h">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -524,6 +533,15 @@
     <ClCompile Include="ContinueButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
     </ClCompile>
+    <ClCompile Include="RetryButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_SpreadStar.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_OneStar.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -642,6 +660,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\VictoryBadge">
       <UniqueIdentifier>{cae86546-b21f-4203-803f-ac29e3b9b186}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar">
+      <UniqueIdentifier>{a7dc205c-69c1-4b9c-81ec-f65a66c45ac0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

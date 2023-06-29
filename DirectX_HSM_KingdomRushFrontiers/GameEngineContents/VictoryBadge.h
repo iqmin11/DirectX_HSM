@@ -6,7 +6,8 @@ enum class BadgeState
 {
 	GrowBig,
 	Star,
-	FallButton,
+	FallButton1,
+	FallButton2,
 	Update
 };
 
@@ -45,13 +46,19 @@ private:
 	std::shared_ptr<class ContinueButton> AcContinueButton = nullptr;
 	float4 ContinueButtonEndLocPos = { 0,-235 };
 
+	std::shared_ptr<class RetryButton> AcRetryButton = nullptr;
+	float4 RetryButtonEndLocPos = { 0,-320 };
+
 	BadgeState State = BadgeState::GrowBig;
+
+	bool DidISpreadStar = false;
 	float Time = 0.f;
 	float Ratio = 0.f;
 	void SetBg();
 	void SetVictoryFont();
 	void SetStarAnimation();
 	void GrowBig(float _DeltaTime);
-	void FallButton(float _DeltaTime);
+	void FallButton1(float _DeltaTime);
+	void FallButton2(float _DeltaTime);
 };
 
