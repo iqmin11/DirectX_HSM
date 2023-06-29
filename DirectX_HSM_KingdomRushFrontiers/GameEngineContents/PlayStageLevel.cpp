@@ -21,6 +21,7 @@
 #include "CallReinforcement.h"
 #include "Hero_RallyPoint.h"
 #include "PlayManager.h"
+#include "VictoryBadge.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 
@@ -97,14 +98,14 @@ void PlayStageLevel::Start()
 void PlayStageLevel::Update(float _DeltaTime)
 {
 	//승리, 패배, WorldmapLevel 만들고 본격적으로 활성화 시키기
-	//if (IsVictory())
-	//{
-	//	Victory();
-	//}
-	//else if (IsDefeat())
-	//{
-	//	Defeat();
-	//}
+	if (IsVictory() || GameEngineInput::IsDown("C"))
+	{
+		Victory();
+	}
+	else if (IsDefeat())
+	{
+		Defeat();
+	}
 
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
@@ -553,7 +554,11 @@ void PlayStageLevel::Defeat()
 
 void PlayStageLevel::Victory()
 {
-	MsgTextBox("승리했습니다.");
+	if (AcVictoryBadge == nullptr)
+	{
+		AcVictoryBadge = CreateActor<VictoryBadge>(ActorOrder::VictoryBadge);
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+	}
 }
 
 bool PlayStageLevel::IsDefeat()

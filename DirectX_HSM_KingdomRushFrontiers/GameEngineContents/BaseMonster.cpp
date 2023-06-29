@@ -46,10 +46,10 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
-		Result = _Level->CreateActor<DesertThug>(ActorOrder::Monster);
+		Result = _Level->CreateActor<DesertThug>();
 		break;
 	case MonsterEnum::DuneRaider:
-		Result = _Level->CreateActor<DuneRaider>(ActorOrder::Monster);
+		Result = _Level->CreateActor<DuneRaider>();
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");

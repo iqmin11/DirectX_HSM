@@ -19,7 +19,7 @@ Effect_SpreadStar::~Effect_SpreadStar()
 
 std::weak_ptr<Effect_SpreadStar> Effect_SpreadStar::CreateEffect(VictoryBadge* _Parent, float4 _EffectStartPos)
 {
-	std::weak_ptr<Effect_SpreadStar> ResultEffect(_Parent->GetLevel()->CreateActor<Effect_SpreadStar>());
+	std::weak_ptr<Effect_SpreadStar> ResultEffect(_Parent->GetLevel()->CreateActor<Effect_SpreadStar>(ActorOrder::VictoryBadge));
 	ResultEffect.lock()->GetTransform()->SetWorldPosition(_Parent->GetTransform()->GetWorldPosition() + _EffectStartPos);
 	ResultEffect.lock()->GetTransform()->SetParent(_Parent->GetTransform(), false);
 	float4 Position = ResultEffect.lock()->GetTransform()->GetWorldPosition();

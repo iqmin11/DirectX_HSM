@@ -260,6 +260,9 @@
     <ClInclude Include="Effect_OneStar.h">
       <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
     </ClInclude>
+    <ClInclude Include="StageActor.h">
+      <Filter>0.Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -541,6 +544,9 @@
     </ClCompile>
     <ClCompile Include="Effect_OneStar.cpp">
       <Filter>3.PlayStage\Actor\StageUI\VictoryBadge\Effect_SpreadStar</Filter>
+    </ClCompile>
+    <ClCompile Include="StageActor.cpp">
+      <Filter>0.Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

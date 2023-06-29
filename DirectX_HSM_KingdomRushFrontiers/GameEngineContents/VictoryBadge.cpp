@@ -21,14 +21,15 @@ VictoryBadge::~VictoryBadge()
 
 void VictoryBadge::Start()
 {
+	GetTransform()->SetLocalPosition({0,150});
 	SetBg();
 	SetVictoryFont();
 	SetStarAnimation();
-	AcContinueButton = GetLevel()->CreateActor<ContinueButton>();
+	AcContinueButton = GetLevel()->CreateActor<ContinueButton>(ActorOrder::VictoryBadge);
 	AcContinueButton->GetTransform()->SetParent(GetTransform());
 	AcContinueButton->Off();
 
-	AcRetryButton = GetLevel()->CreateActor<RetryButton>();
+	AcRetryButton = GetLevel()->CreateActor<RetryButton>(ActorOrder::VictoryBadge);
 	AcRetryButton->GetTransform()->SetParent(GetTransform());
 	AcRetryButton->GetTransform()->SetLocalPosition(RetryButtonEndLocPos);
 	AcRetryButton->Off();
@@ -36,6 +37,8 @@ void VictoryBadge::Start()
 
 void VictoryBadge::Update(float _DeltaTime)
 {
+	//GameEngineTime::GlobalTime.Set;
+	
 	if (State == BadgeState::GrowBig)
 	{
 		GrowBig(_DeltaTime);
@@ -69,12 +72,6 @@ void VictoryBadge::Update(float _DeltaTime)
 			AcRetryButton->On();
 		}
 		FallButton2(_DeltaTime);
-	}
-
-	if (GameEngineInput::IsDown("Z"))
-	{
-		State = BadgeState::GrowBig;
-		Time = 0.f;
 	}
 }
 
