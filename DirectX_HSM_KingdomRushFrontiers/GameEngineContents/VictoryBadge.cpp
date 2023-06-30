@@ -26,16 +26,17 @@ void VictoryBadge::Start()
 	SetBg();
 	SetVictoryFont();
 	SetStarAnimation();
-	AcContinueButton = GetLevel()->CreateActor<ContinueButton>(ActorOrder::VictoryBadge);
+	AcContinueButton = GetLevel()->CreateActor<ContinueButton>(ActorOrder::MainUI);
 	AcContinueButton->GetTransform()->SetParent(GetTransform());
 	AcContinueButton->SetEvent([this]()
 		{
 			Death();
 			PlayStageLevel::IsPause = false;
+			GameEngineCore::ChangeLevel("WorldMapLevel");
 		});
 	AcContinueButton->Off();
 
-	AcRetryButton = GetLevel()->CreateActor<RetryButton>(ActorOrder::VictoryBadge);
+	AcRetryButton = GetLevel()->CreateActor<RetryButton>(ActorOrder::MainUI);
 	AcRetryButton->GetTransform()->SetParent(GetTransform());
 	AcRetryButton->GetTransform()->SetLocalPosition(RetryButtonEndLocPos);
 	AcRetryButton->SetEvent([this]()
@@ -49,14 +50,12 @@ void VictoryBadge::Start()
 
 void VictoryBadge::Update(float _DeltaTime)
 {
-	//GameEngineTime::GlobalTime.Set;
-	
-	if (State == BadgeState::GrowBig)
+	if (State == VicBadgeState::GrowBig)
 	{
 		GrowBig(_DeltaTime);
 
 	}
-	else if (State == BadgeState::Star)
+	else if (State == VicBadgeState::Star)
 	{
 		if (!StarAnimation->IsUpdate())
 		{
@@ -66,10 +65,10 @@ void VictoryBadge::Update(float _DeltaTime)
 
 		if (StarAnimation->IsAnimationEnd())
 		{
-			State = BadgeState::FallButton1;
+			State = VicBadgeState::FallButton1;
 		}
 	}
-	else if(State == BadgeState::FallButton1)
+	else if (State == VicBadgeState::FallButton1)
 	{
 		if (!AcContinueButton->IsUpdate())
 		{
@@ -77,7 +76,7 @@ void VictoryBadge::Update(float _DeltaTime)
 		}
 		FallButton1(_DeltaTime);
 	}
-	else if (State == BadgeState::FallButton2)
+	else if (State == VicBadgeState::FallButton2)
 	{
 		if (!AcRetryButton->IsUpdate())
 		{
@@ -132,7 +131,7 @@ void VictoryBadge::SetStarAnimation()
 		ThreeStarAnimationIndex[i] = i;
 	}
 
-	StarAnimation->CreateAnimation({ .AnimationName = "1Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = OneStarAnimationIndex});
+	StarAnimation->CreateAnimation({ .AnimationName = "1Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = OneStarAnimationIndex });
 	StarAnimation->CreateAnimation({ .AnimationName = "2Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = TwoStarAnimationIndex });
 	StarAnimation->CreateAnimation({ .AnimationName = "3Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = ThreeStarAnimationIndex });
 	StarAnimation->Off();
@@ -151,10 +150,10 @@ void VictoryBadge::GrowBig(float _DeltaTime)
 	{
 		if (DidISpreadStar == false)
 		{
-			std::weak_ptr<Effect_SpreadStar> StarEffect(Effect_SpreadStar::CreateEffect(this, float4{0,100}));
+			std::weak_ptr<Effect_SpreadStar> StarEffect(Effect_SpreadStar::CreateEffect(this, float4{ 0,100 }));
 			DidISpreadStar = true;
 		}
-		
+
 		if (Ratio <= 1.f)
 		{
 			Ratio = 1.f;
@@ -162,7 +161,7 @@ void VictoryBadge::GrowBig(float _DeltaTime)
 			FontRender->SetScale(FontScale * TempActorScale.x);
 			GetTransform()->SetWorldScale(TempActorScale);
 			Time = 0.f;
-			State = BadgeState::Star;
+			State = VicBadgeState::Star;
 		}
 	}
 
@@ -183,7 +182,7 @@ void VictoryBadge::FallButton1(float _DeltaTime)
 		float4 TempActorLocPos = float4::Lerp(float4::Zero, ContinueButtonEndLocPos, Ratio);
 		AcContinueButton->GetTransform()->SetLocalPosition(TempActorLocPos);
 		Time = 0.f;
-		State = BadgeState::FallButton2;
+		State = VicBadgeState::FallButton2;
 	}
 }
 
@@ -201,7 +200,7 @@ void VictoryBadge::FallButton2(float _DeltaTime)
 		float4 TempActorLocPos = float4::Lerp(ContinueButtonEndLocPos, RetryButtonEndLocPos, Ratio);
 		AcRetryButton->GetTransform()->SetLocalPosition(TempActorLocPos);
 		Time = 0.f;
-		State = BadgeState::Update;
+		State = VicBadgeState::Update;
 	}
 }
 

@@ -3,7 +3,7 @@
 enum class ActorOrder
 {
 	Base,
-	VictoryBadge,
+	MainUI,
 };
 
 enum class RenderOrder

@@ -3,12 +3,12 @@
 
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform\GameEngineInput.h>
-#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "PlayStageLevel.h"
 #include "PlayManager.h"
 #include "StageBg.h"
 #include "Melee_Tower.h"
+#include "_101UIRenderer.h"
 
 float4 MousePointer::MousePos = float4::Zero;
 MousePointer* MousePointer::MainMouse = nullptr;
@@ -44,7 +44,7 @@ bool MousePointer::IsThereMouseOntheColMap()
 
 void MousePointer::Start()
 {
-	MousePointerRenderer = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::MousePoint);
+	MousePointerRenderer = CreateComponent<_101UIRenderer>(UIRenderOrder::MousePoint);
 	MousePointerRenderer->GetTransform()->SetWorldScale(RendererScale);
 	MousePointerRenderer->CreateAnimation({.AnimationName = "Release", .SpriteName = "Mouse_Release"});
 	MousePointerRenderer->CreateAnimation({.AnimationName = "Press", .SpriteName = "Mouse_Press"});

@@ -79,6 +79,8 @@ private:
 	std::shared_ptr<class Hero_RallyPoint> AcHero = nullptr;
 	std::shared_ptr<class PlayManager> MainPlayer = nullptr;
 	std::weak_ptr<class VictoryBadge> AcVictoryBadge = std::weak_ptr<class VictoryBadge>();
+	std::weak_ptr<class DefeatBadge> AcDefeatBadge = std::weak_ptr<class DefeatBadge>();
+	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
 
 
 	int CurStage = -1;

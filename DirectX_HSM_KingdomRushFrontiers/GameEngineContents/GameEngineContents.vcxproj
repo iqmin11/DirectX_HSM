@@ -288,6 +288,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Defeat_ExitButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Defeat_RetryButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DesertThug.h">
       <SubType>
       </SubType>
@@ -680,6 +688,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DefeatBadge.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Defeat_ExitButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Defeat_RetryButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

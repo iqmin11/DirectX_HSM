@@ -2,7 +2,7 @@
 #include <GameEngineCore\GameEngineActor.h>
 #include "ContentsEnum.h"
 
-enum class BadgeState
+enum class VicBadgeState
 {
 	GrowBig,
 	Star,
@@ -49,7 +49,7 @@ private:
 	std::shared_ptr<class RetryButton> AcRetryButton = nullptr;
 	float4 RetryButtonEndLocPos = { 0,-320 };
 
-	BadgeState State = BadgeState::GrowBig;
+	VicBadgeState State = VicBadgeState::GrowBig;
 
 	bool DidISpreadStar = false;
 	float Time = 0.f;

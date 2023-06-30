@@ -22,6 +22,8 @@
 #include "Hero_RallyPoint.h"
 #include "PlayManager.h"
 #include "VictoryBadge.h"
+#include "DefeatBadge.h"
+#include "_101UIRenderer.h"
 
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 bool PlayStageLevel::IsPause = false;
@@ -92,6 +94,10 @@ void PlayStageLevel::Start()
 	AcStageBg = CreateActor<StageBg>();
 	AcPlayStageUI = CreateActor<PlayStageUI>();
 	AcMousePointer = CreateActor<MousePointer>();
+	PauseFade = CreateActor<GameEngineActor>()->CreateComponent<_101UIRenderer>();
+	PauseFade->SetTexture("PauseBg.png");
+	PauseFade->GetTransform()->SetWorldScale({1650,1000,1});
+	PauseFade->Off();
 
 	LoadAllStageData();
 	
@@ -104,17 +110,25 @@ void PlayStageLevel::Update(float _DeltaTime)
 	if (IsPause)
 	{
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+		if (!PauseFade->IsUpdate())
+		{
+			PauseFade->On();
+		}
 	}
 	else
 	{
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
+		if (PauseFade->IsUpdate())
+		{
+			PauseFade->Off();
+		}
 	}
 
-	if (IsVictory() || GameEngineInput::IsDown("C"))
+	if (IsVictory())
 	{
 		Victory();
 	}
-	else if (IsDefeat())
+	else if (IsDefeat() || GameEngineInput::IsDown("C"))
 	{
 		Defeat();
 	}
@@ -561,14 +575,18 @@ void PlayStageLevel::LoadFont()
 
 void PlayStageLevel::Defeat()
 {
-	MsgTextBox("패배했습니다.");
+	if (AcDefeatBadge.expired())
+	{
+		AcDefeatBadge = std::weak_ptr(CreateActor<DefeatBadge>(ActorOrder::MainUI));
+		IsPause = true;
+	}
 }
 
 void PlayStageLevel::Victory()
 {
 	if (AcVictoryBadge.expired())
 	{
-		AcVictoryBadge = std::weak_ptr(CreateActor<VictoryBadge>(ActorOrder::VictoryBadge));
+		AcVictoryBadge = std::weak_ptr(CreateActor<VictoryBadge>(ActorOrder::MainUI));
 		IsPause = true;
 	}
 }

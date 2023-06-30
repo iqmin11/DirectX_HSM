@@ -16,7 +16,7 @@ Effect_OneStar::~Effect_OneStar()
 
 void Effect_OneStar::CreatStar(class GameEngineLevel* _Level, const float4& _StartPos, const float4 _Dir, float _Gravity, float _Speed)
 {
-	std::weak_ptr<Effect_OneStar> LocalStar(_Level->CreateActor<Effect_OneStar>(ActorOrder::VictoryBadge));
+	std::weak_ptr<Effect_OneStar> LocalStar(_Level->CreateActor<Effect_OneStar>(ActorOrder::MainUI));
 	LocalStar.lock()->StartPos = _StartPos;
 	LocalStar.lock()->GetTransform()->SetWorldPosition(_StartPos);
 	LocalStar.lock()->Dir = _Dir;

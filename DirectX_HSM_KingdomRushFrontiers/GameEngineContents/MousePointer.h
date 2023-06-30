@@ -50,7 +50,7 @@ protected:
 private:
 	static float4 MousePos;
 	MouseState State = MouseState::Release;
-	std::shared_ptr<class GameEngineUIRenderer> MousePointerRenderer = nullptr;
+	std::shared_ptr<class _101UIRenderer> MousePointerRenderer = nullptr;
 	float4 RendererScale = { 136,136,1 };
 	std::shared_ptr<class GameEngineCollision> MousePointerCol = nullptr;
 	GameEngineFSM MouseFSM = GameEngineFSM();

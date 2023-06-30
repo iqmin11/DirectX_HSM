@@ -158,9 +158,6 @@
     <ClInclude Include="WaveButtons.h">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
-    <ClInclude Include="DefeatBadge.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClInclude>
     <ClInclude Include="PopText.h">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClInclude>
@@ -268,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="_101UIRenderer.h">
       <Filter>0.Base\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="DefeatBadge.h">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClInclude>
+    <ClInclude Include="Defeat_RetryButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClInclude>
+    <ClInclude Include="Defeat_ExitButton.h">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -436,9 +442,6 @@
     <ClCompile Include="WaveButtons.cpp">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
-    <ClCompile Include="DefeatBadge.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClCompile>
     <ClCompile Include="PopText.cpp">
       <Filter>3.PlayStage\Actor\Effect</Filter>
     </ClCompile>
@@ -559,6 +562,15 @@
     </ClCompile>
     <ClCompile Include="_101UIRenderer.cpp">
       <Filter>0.Base\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatBadge.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClCompile>
+    <ClCompile Include="Defeat_RetryButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClCompile>
+    <ClCompile Include="Defeat_ExitButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -684,6 +696,9 @@
     </Filter>
     <Filter Include="0.Base\Renderer">
       <UniqueIdentifier>{584ba96a-2196-4d81-a953-7ed4908353c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\DefeatBadge">
+      <UniqueIdentifier>{cffb6c69-8449-410c-86f0-7974b8c6b62c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

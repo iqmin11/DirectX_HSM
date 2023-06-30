@@ -16,6 +16,7 @@
 #include "VictoryBadge.h"
 #include "Effect_OneStar.h"
 #include "Effect_SpreadStar.h"
+#include "DefeatBadge.h"
 
 TestLevel::TestLevel()
 {
@@ -29,7 +30,6 @@ TestLevel::~TestLevel()
 
 void TestLevel::Start()
 {
-
 	{
 		GameEngineDirectory NewDir;
 		NewDir.MoveParentToDirectory("ContentsResources");
@@ -60,9 +60,6 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("WorldMapLevel", '2');
 	GameEngineInput::CreateKey("PlayStageLevel", '3');
 	GameEngineInput::CreateKey("StageEditLevel", '4');
-
-	//std::shared_ptr<VictoryBadge> TestVictoryBadge = CreateActor<VictoryBadge>();
-	//std::shared_ptr<Effect_SpreadStar> TestVictoryBadge = CreateActor<Effect_SpreadStar>();
 }
 
 void TestLevel::Update(float _DeltaTime)
