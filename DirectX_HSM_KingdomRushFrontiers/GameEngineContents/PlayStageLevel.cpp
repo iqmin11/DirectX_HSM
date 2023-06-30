@@ -68,6 +68,9 @@ void PlayStageLevel::ClearStage()
 
 void PlayStageLevel::Start()
 {
+	std::shared_ptr _101Camera = CreateNewCamera(101);
+	_101Camera->SetProjectionType(CameraType::Orthogonal);
+
 	KeySet(); 
 	LoadPlayLevelTexture("Enemies");
 	LoadPlayLevelTexture("StageBg");

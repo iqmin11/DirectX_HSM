@@ -2,7 +2,7 @@
 #include "Effect_OneStar.h"
 
 #include <GameEngineCore\GameEngineLevel.h>
-#include <GameEngineCore\GameEngineUIRenderer.h>
+#include "_101UIRenderer.h"
 
 Effect_OneStar::Effect_OneStar()
 {
@@ -26,7 +26,7 @@ void Effect_OneStar::CreatStar(class GameEngineLevel* _Level, const float4& _Sta
 
 void Effect_OneStar::Start()
 {
-	StarRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_9);
+	StarRender = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_9);
 	StarRender->GetTransform()->SetWorldScale(RenderScale);
 	StarRender->SetTexture("SpreadStar.png");
 }

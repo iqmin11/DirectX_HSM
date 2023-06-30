@@ -29,17 +29,17 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class GameEngineUIRenderer> VictoryBadgeBg = nullptr;
+	std::shared_ptr<class _101UIRenderer> VictoryBadgeBg = nullptr;
 	float4 VictoryBadgeBgScale = { 536,406,1 };
 
-	std::shared_ptr<class UIFontRenderer> FontRender = nullptr;
+	std::shared_ptr<class _101UIFontRenderer> FontRender = nullptr;
 	std::string Victory = "승리";
 	std::string Font = "제주한라산";
 	float FontScale = 115;
 	float4 FontColor = { 0.2980392156862745f, 0.2196078431372549f, 0.0901960784313725f }; ;
 	float4 FontLocPos = {0,65};
 
-	std::shared_ptr<class GameEngineUIRenderer> StarAnimation = nullptr;
+	std::shared_ptr<class _101UIRenderer> StarAnimation = nullptr;
 	float4 StarAnimationScale = { 215,215,1 };
 	float4 StarAnimationLocPos = {0, -100};
 

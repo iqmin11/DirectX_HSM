@@ -3,12 +3,12 @@
 
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEnginePlatform\GameEngineInput.h>
-#include <GameEngineCore\GameEngineUIRenderer.h>
 #include "PlayStageLevel.h"
 #include "ContinueButton.h"
 #include "RetryButton.h"
-#include "UIFontRenderer.h"
 #include "Effect_SpreadStar.h"
+#include "_101UIRenderer.h"
+#include "_101UIFontRenderer.h"
 
 VictoryBadge::VictoryBadge()
 {
@@ -89,7 +89,7 @@ void VictoryBadge::Update(float _DeltaTime)
 
 void VictoryBadge::SetBg()
 {
-	VictoryBadgeBg = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_6);
+	VictoryBadgeBg = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_6);
 	VictoryBadgeBg->GetTransform()->SetWorldScale(VictoryBadgeBgScale);
 	VictoryBadgeBg->GetTransform()->SetParent(GetTransform());
 	VictoryBadgeBg->SetTexture("victoryBadges_0002.png");
@@ -97,7 +97,7 @@ void VictoryBadge::SetBg()
 
 void VictoryBadge::SetVictoryFont()
 {
-	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_7);
+	FontRender = CreateComponent<_101UIFontRenderer>(UIRenderOrder::StageUI_7);
 	FontRender->SetFont(Font);
 	FontRender->SetFontFlag(FW1_CENTER);
 	FontRender->SetScale(FontScale);
@@ -108,7 +108,7 @@ void VictoryBadge::SetVictoryFont()
 
 void VictoryBadge::SetStarAnimation()
 {
-	StarAnimation = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_7);
+	StarAnimation = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_7);
 	StarAnimation->GetTransform()->SetWorldScale(StarAnimationScale);
 	StarAnimation->GetTransform()->SetLocalPosition(StarAnimationLocPos);
 	std::vector<size_t> OneStarAnimationIndex = std::vector<size_t>();

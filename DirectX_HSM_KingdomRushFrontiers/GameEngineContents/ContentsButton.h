@@ -56,7 +56,7 @@ protected:
 	std::string CurTextureName = std::string();
 
 	ButtonState State = ButtonState::Release;
-	std::shared_ptr<GameEngineUIRenderer> Render = nullptr;
+	std::shared_ptr<class  GameEngineSpriteRenderer> Render = nullptr;
 
 private:
 	GameEngineActor* ParentActor = nullptr;

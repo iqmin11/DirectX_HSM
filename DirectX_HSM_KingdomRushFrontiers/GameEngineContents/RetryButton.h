@@ -20,11 +20,11 @@ protected:
 
 private:
 	float4 Scale = {171,71,1};
-	std::shared_ptr<GameEngineUIRenderer> ChainRender = nullptr;
+	std::shared_ptr<class _101UIRenderer> ChainRender = nullptr;
 	float4 ChainRenderScale = {141,81,1};
 	float4 ChainRenderLocPos = {0,20};
 
-	std::shared_ptr<class UIFontRenderer> FontRender = nullptr;
+	std::shared_ptr<class _101UIFontRenderer> FontRender = nullptr;
 	std::string Continue = "재도전";
 	std::string Font = "제주한라산";
 	float FontScale = 25;

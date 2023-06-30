@@ -1,9 +1,8 @@
 #include "PrecompileHeader.h"
 #include "RetryButton.h"
 
-#include <GameEngineCore\GameEngineUIRenderer.h>
-#include "UIFontRenderer.h"
-
+#include "_101UIFontRenderer.h"
+#include "_101UIRenderer.h"
 
 RetryButton::RetryButton()
 {
@@ -18,17 +17,17 @@ RetryButton::~RetryButton()
 void RetryButton::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
+	Render = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_1);
 	Render->GetTransform()->SetWorldScale(Scale);
 	SetTextureName("RetryButton_Release.png", "RetryButton_Hover.png", "RetryButton_Hover.png");
 
-	ChainRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
+	ChainRender = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_0);
 	ChainRender->GetTransform()->SetWorldScale(ChainRenderScale);
 	ChainRender->GetTransform()->SetLocalPosition(ChainRenderLocPos);
 	ChainRender->SetTexture("UIChain.png");
 	ChainRender->Off();
 
-	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_2);
+	FontRender = CreateComponent<_101UIFontRenderer>(UIRenderOrder::StageUI_2);
 	FontRender->SetFont(Font);
 	FontRender->SetScale(FontScale);
 	FontRender->SetFontFlag(FW1_CENTER);

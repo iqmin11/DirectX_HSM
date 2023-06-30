@@ -22,7 +22,7 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class GameEngineUIRenderer> StarRender = nullptr;
+	std::shared_ptr<class _101UIRenderer> StarRender = nullptr;
 	float4 RenderScale = { 25,22,1 };
 	float4 StartPos = float4::Zero;
 	float4 Dir = {1.f,0.f,0.f,0.f};

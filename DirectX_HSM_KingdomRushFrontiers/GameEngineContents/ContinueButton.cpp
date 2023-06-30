@@ -2,8 +2,8 @@
 #include "ContinueButton.h"
 
 #include <GameEngineCore\GameEngineCore.h>
-#include <GameEngineCore\GameEngineUIRenderer.h>
-#include "UIFontRenderer.h"
+#include "_101UIFontRenderer.h"
+#include "_101UIRenderer.h"
 
 ContinueButton::ContinueButton()
 {
@@ -18,16 +18,16 @@ ContinueButton::~ContinueButton()
 void ContinueButton::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
+	Render = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_4);
 	Render->GetTransform()->SetWorldScale(Scale);
 	SetTextureName("ContinueButton_Release.png", "ContinueButton_Hover.png", "ContinueButton_Hover.png");
 
-	ChainRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
+	ChainRender = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_3);
 	ChainRender->GetTransform()->SetWorldScale(ChainRenderScale);
 	ChainRender->GetTransform()->SetLocalPosition(ChainRenderLocPos);
 	ChainRender->SetTexture("UIChain.png");
 
-	FontRender = CreateComponent<UIFontRenderer>(UIRenderOrder::StageUI_5);
+	FontRender = CreateComponent<_101UIFontRenderer>(UIRenderOrder::StageUI_5);
 	FontRender->SetFont(Font);
 	FontRender->SetScale(FontScale);
 	FontRender->SetFontFlag(FW1_CENTER);

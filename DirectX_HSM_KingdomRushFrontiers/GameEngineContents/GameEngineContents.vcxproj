@@ -547,6 +547,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="_101UIFontRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="_101UIRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Artillery_Bullet.cpp">
@@ -943,6 +951,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="WorldMapLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="_101UIFontRenderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="_101UIRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
