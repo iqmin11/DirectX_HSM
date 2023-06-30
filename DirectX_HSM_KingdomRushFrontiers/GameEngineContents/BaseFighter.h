@@ -37,10 +37,8 @@ public:
 	BaseFighter& operator=(const BaseFighter& _Other) = delete;
 	BaseFighter& operator=(BaseFighter&& _Other) noexcept = delete;
 
-	void SetParentRally(class RallyPoint* _Rally)
-	{
-		ParentRally = _Rally;
-	}
+	void SetParentRally(class RallyPoint* _Rally);
+	
 
 	void SetRallyTransform(GameEngineTransform* _Transform)
 	{

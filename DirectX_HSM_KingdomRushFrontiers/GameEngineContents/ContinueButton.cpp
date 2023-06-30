@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContinueButton.h"
 
+#include <GameEngineCore\GameEngineCore.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
 #include "UIFontRenderer.h"
 
@@ -20,10 +21,6 @@ void ContinueButton::Start()
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_4);
 	Render->GetTransform()->SetWorldScale(Scale);
 	SetTextureName("ContinueButton_Release.png", "ContinueButton_Hover.png", "ContinueButton_Hover.png");
-	SetEvent([]()
-		{
-
-		});
 
 	ChainRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	ChainRender->GetTransform()->SetWorldScale(ChainRenderScale);

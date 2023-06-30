@@ -4,6 +4,7 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEnginePlatform\GameEngineInput.h>
 #include <GameEngineCore\GameEngineUIRenderer.h>
+#include "PlayStageLevel.h"
 #include "ContinueButton.h"
 #include "RetryButton.h"
 #include "UIFontRenderer.h"
@@ -27,11 +28,22 @@ void VictoryBadge::Start()
 	SetStarAnimation();
 	AcContinueButton = GetLevel()->CreateActor<ContinueButton>(ActorOrder::VictoryBadge);
 	AcContinueButton->GetTransform()->SetParent(GetTransform());
+	AcContinueButton->SetEvent([this]()
+		{
+			Death();
+			PlayStageLevel::IsPause = false;
+		});
 	AcContinueButton->Off();
 
 	AcRetryButton = GetLevel()->CreateActor<RetryButton>(ActorOrder::VictoryBadge);
 	AcRetryButton->GetTransform()->SetParent(GetTransform());
 	AcRetryButton->GetTransform()->SetLocalPosition(RetryButtonEndLocPos);
+	AcRetryButton->SetEvent([this]()
+		{
+			Death();
+			PlayStageLevel::IsPause = false;
+			GetLevel()->DynamicThis<PlayStageLevel>()->InitStage(GetLevel()->DynamicThis<PlayStageLevel>()->GetCurStage());
+		});
 	AcRetryButton->Off();
 }
 

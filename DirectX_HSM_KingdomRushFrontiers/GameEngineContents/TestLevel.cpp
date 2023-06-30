@@ -61,7 +61,7 @@ void TestLevel::Start()
 	GameEngineInput::CreateKey("PlayStageLevel", '3');
 	GameEngineInput::CreateKey("StageEditLevel", '4');
 
-	std::shared_ptr<VictoryBadge> TestVictoryBadge = CreateActor<VictoryBadge>();
+	//std::shared_ptr<VictoryBadge> TestVictoryBadge = CreateActor<VictoryBadge>();
 	//std::shared_ptr<Effect_SpreadStar> TestVictoryBadge = CreateActor<Effect_SpreadStar>();
 }
 

@@ -98,6 +98,15 @@ void PlayStageLevel::Start()
 void PlayStageLevel::Update(float _DeltaTime)
 {
 	//승리, 패배, WorldmapLevel 만들고 본격적으로 활성화 시키기
+	if (IsPause)
+	{
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+	}
+	else
+	{
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
+	}
+
 	if (IsVictory() || GameEngineInput::IsDown("C"))
 	{
 		Victory();
@@ -554,10 +563,9 @@ void PlayStageLevel::Defeat()
 
 void PlayStageLevel::Victory()
 {
-	if (AcVictoryBadge == nullptr)
+	if (AcVictoryBadge.expired())
 	{
-		AcVictoryBadge = CreateActor<VictoryBadge>(ActorOrder::VictoryBadge);
-		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+		AcVictoryBadge = std::weak_ptr(CreateActor<VictoryBadge>(ActorOrder::VictoryBadge));
 		IsPause = true;
 	}
 }

@@ -78,7 +78,7 @@ private:
 	std::vector<std::shared_ptr<class WaveButtons>> AcWaveButtons = std::vector<std::shared_ptr<class WaveButtons>>();
 	std::shared_ptr<class Hero_RallyPoint> AcHero = nullptr;
 	std::shared_ptr<class PlayManager> MainPlayer = nullptr;
-	std::shared_ptr<class VictoryBadge> AcVictoryBadge = nullptr;
+	std::weak_ptr<class VictoryBadge> AcVictoryBadge = std::weak_ptr<class VictoryBadge>();
 
 
 	int CurStage = -1;

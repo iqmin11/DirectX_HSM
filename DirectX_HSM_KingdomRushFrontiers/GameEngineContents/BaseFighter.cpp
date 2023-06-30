@@ -25,6 +25,13 @@ BaseFighter::~BaseFighter()
 	}
 }
 
+void BaseFighter::SetParentRally(RallyPoint* _Rally)
+{
+	ParentRally = _Rally;
+	GetTransform()->SetParent(_Rally->GetTransform(), false);
+	GetTransform()->SetWorldPosition(_Rally->GetTransform()->GetWorldPosition());
+}
+
 void BaseFighter::ResetRatio()
 {
 	Time = 0.f;
@@ -56,10 +63,10 @@ void BaseFighter::Update(float _DeltaTime)
 		MsgAssert("Fighter의 부모 랠리포인트가 설정되지 않았습니다.")
 	}
 
-	if (ParentRally->IsDeath())
-	{
-		Death();
-	}
+	//if (ParentRally->IsDeath())
+	//{
+	//	Death();
+	//}
 
 	UpdateLifeBar();
 }
@@ -68,6 +75,7 @@ void BaseFighter::Update(float _DeltaTime)
 
 void BaseFighter::MoveToRally(float _DeltaTime)
 {
+	float4 test = GetTransform()->GetWorldPosition();
 	float4 RallyPos = RallyTransform->GetWorldPosition();
 	Time += _DeltaTime;
 	Ratio = Time * (Speed / (RallyPos - PrevPos).Size());

@@ -21,10 +21,6 @@ void RetryButton::Start()
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	Render->GetTransform()->SetWorldScale(Scale);
 	SetTextureName("RetryButton_Release.png", "RetryButton_Hover.png", "RetryButton_Hover.png");
-	SetEvent([]()
-		{
-
-		});
 
 	ChainRender = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
 	ChainRender->GetTransform()->SetWorldScale(ChainRenderScale);
