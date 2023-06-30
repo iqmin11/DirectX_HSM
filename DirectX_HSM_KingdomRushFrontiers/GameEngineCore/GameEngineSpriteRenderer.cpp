@@ -42,7 +42,7 @@ void AnimationInfo::Update(float _DeltaTime)
 	if (StartEventFunction.end() != StartEventFunction.find(CurFrameIndex))
 	{
 		if (false == StartEventFunction[CurFrameIndex].IsEvent
-			&& nullptr == StartEventFunction[CurFrameIndex].Function)
+			&& nullptr != StartEventFunction[CurFrameIndex].Function)
 		{
 			StartEventFunction[CurFrameIndex].Function();
 			StartEventFunction[CurFrameIndex].IsEvent = true;
