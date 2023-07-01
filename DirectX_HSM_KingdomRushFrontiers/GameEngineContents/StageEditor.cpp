@@ -240,7 +240,7 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
                 BuildAreaCursor->SetScaleToTexture("FrameDeco.png");
                 break;
             case 3:
-                BuildAreaCursor->SetScaleToTexture("HeroPortrateFrame.png");
+                BuildAreaCursor->SetScaleToTexture("HeroPortraitFrame.png");
                 break;
             case 4:
                 BuildAreaCursor->SetScaleToTexture("PauseButton.png");

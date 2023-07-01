@@ -30,8 +30,8 @@ private:
 	float4 FrameDecoScale = { 69,33,1 };
 	float4 FrameDecoPos = { 171, -434 };
 
-	std::shared_ptr<class Hero_Portrate> AcHeroPortrate = nullptr;
-	float4 HeroPortrateFramePos = { -722, -393 };
+	std::shared_ptr<class Hero_Portrait> AcHeroPortrait = nullptr;
+	float4 HeroPortraitFramePos = { -722, -393 };
 
 	std::shared_ptr<class GameEngineUIRenderer> PauseButton = nullptr;
 	float4 PauseButtonScale = { 41,38,1 };

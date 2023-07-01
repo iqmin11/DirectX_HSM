@@ -7,7 +7,7 @@
 #include "Button_RainOfFire.h"
 #include "Button_CallReinforcement.h"
 #include "BottomWaveButton.h"
-#include "Hero_Portrate.h"
+#include "Hero_Portrait.h"
 #include "PlayerStatus.h"
 
 PlayStageUI* PlayStageUI::MainStageUI = nullptr;
@@ -43,8 +43,8 @@ void PlayStageUI::Start()
 	FrameDeco->GetTransform()->SetWorldScale(FrameDecoScale);
 	FrameDeco->GetTransform()->SetWorldPosition(FrameDecoPos);
 
-	AcHeroPortrate = GetLevel()->CreateActor<Hero_Portrate>();
-	AcHeroPortrate->GetTransform()->SetWorldPosition(HeroPortrateFramePos);
+	AcHeroPortrait = GetLevel()->CreateActor<Hero_Portrait>();
+	AcHeroPortrait->GetTransform()->SetWorldPosition(HeroPortraitFramePos);
 
 
 	PauseButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);

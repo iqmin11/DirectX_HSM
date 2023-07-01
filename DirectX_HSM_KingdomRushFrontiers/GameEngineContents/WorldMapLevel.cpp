@@ -24,9 +24,9 @@ void WorldMapLevel::Start()
 {
 	LoadTexture();
 	AcBg = CreateActor<Background>();
-	//AcWorldMap = CreateActor<WorldMap>();
+	AcWorldMap = CreateActor<WorldMap>();
 	//AcUpgradeMenu = CreateActor<UpgradeMenu>();
-	AcStageSelectMenu = CreateActor<StageSelectMenu>();
+	//AcStageSelectMenu = CreateActor<StageSelectMenu>();
 
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 }

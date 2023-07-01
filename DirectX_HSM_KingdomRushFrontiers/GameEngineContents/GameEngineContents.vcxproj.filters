@@ -215,11 +215,11 @@
     <ClInclude Include="MousePointer.h">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClInclude>
-    <ClInclude Include="Hero_Portrate.h">
-      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+    <ClInclude Include="Hero_Portrait.h">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrait</Filter>
     </ClInclude>
     <ClInclude Include="Button_Hero.h">
-      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrait</Filter>
     </ClInclude>
     <ClInclude Include="DeciedHeroPositionEffect.h">
       <Filter>3.PlayStage\Actor\Effect</Filter>
@@ -511,11 +511,11 @@
     <ClCompile Include="MousePointer_State.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
-    <ClCompile Include="Hero_Portrate.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+    <ClCompile Include="Hero_Portrait.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrait</Filter>
     </ClCompile>
     <ClCompile Include="Button_Hero.cpp">
-      <Filter>3.PlayStage\Actor\StageUI\HeroPortrate</Filter>
+      <Filter>3.PlayStage\Actor\StageUI\HeroPortrait</Filter>
     </ClCompile>
     <ClCompile Include="DeciedHeroPositionEffect.cpp">
       <Filter>3.PlayStage\Actor\Effect</Filter>
@@ -685,9 +685,6 @@
     <Filter Include="3.PlayStage\Actor\PlayManager">
       <UniqueIdentifier>{ae8c19e0-8d64-45d5-9ecd-dbc2d1f537e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrate">
-      <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\VictoryBadge">
       <UniqueIdentifier>{cae86546-b21f-4203-803f-ac29e3b9b186}</UniqueIdentifier>
     </Filter>
@@ -702,6 +699,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\SkillButton">
       <UniqueIdentifier>{14af4f21-9358-40df-b448-5226609e5363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrait">
+      <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

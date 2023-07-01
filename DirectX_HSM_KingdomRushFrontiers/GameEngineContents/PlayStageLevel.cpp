@@ -545,7 +545,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Mouse_UnitSelect").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RainOfFireButton_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforcementButton_Revive").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortrateFrame_Revive").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortraitFrame_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StarAnimation").GetFullPath());
 }
 
