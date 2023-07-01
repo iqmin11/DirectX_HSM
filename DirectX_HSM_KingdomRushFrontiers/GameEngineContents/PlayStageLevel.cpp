@@ -106,32 +106,18 @@ void PlayStageLevel::Start()
 
 void PlayStageLevel::Update(float _DeltaTime)
 {
-	//승리, 패배, WorldmapLevel 만들고 본격적으로 활성화 시키기
-	if (IsPause)
-	{
-		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
-		if (!PauseFade->IsUpdate())
-		{
-			PauseFade->On();
-		}
-	}
-	else
-	{
-		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
-		if (PauseFade->IsUpdate())
-		{
-			PauseFade->Off();
-		}
-	}
+	PauseProcess();
 
 	if (IsVictory())
 	{
 		Victory();
 	}
-	else if (IsDefeat() || GameEngineInput::IsDown("C"))
+	else if (IsDefeat())
 	{
 		Defeat();
 	}
+	
+	//Debuging Option
 
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
@@ -280,13 +266,10 @@ void PlayStageLevel::SetStagePaths(int _Stage)
 
 void PlayStageLevel::StartNextWave()
 {
-	// 예외처리 필요(마지막 웨이브까지 실행했을경우 뭐 어케어케 승리시키던가 해야댐)
-	//임시 예외처리
 	if (AllStageData[CurStage].Waves.size() <= NextWave)
 	{
 		NextWave = 0;
 		MonsterWave::StartWave(DynamicThis<GameEngineLevel>(), AllStageData[CurStage].Waves[NextWave].MonsterSpawn);
-		//MsgTextBox("마지막 웨이브까지 실행했습니다.");
 		return;
 	}
 
@@ -605,6 +588,36 @@ bool PlayStageLevel::IsLastWave()
 {
 	size_t LastWave = AllStageData[CurStage].Waves.size() - 1;
 	return LastWave + 1 == NextWave;
+}
+
+void PlayStageLevel::PauseOn()
+{
+	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 0.0f);
+	if (!PauseFade->IsUpdate())
+	{
+		PauseFade->On();
+	}
+}
+
+void PlayStageLevel::PauseOff()
+{
+	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
+	if (PauseFade->IsUpdate())
+	{
+		PauseFade->Off();
+	}
+}
+
+void PlayStageLevel::PauseProcess()
+{
+	if (IsPause)
+	{
+		PauseOn();
+	}
+	else
+	{
+		PauseOff();
+	}
 }
 
 

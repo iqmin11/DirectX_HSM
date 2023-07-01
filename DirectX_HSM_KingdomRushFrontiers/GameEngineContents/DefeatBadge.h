@@ -48,6 +48,5 @@ private:
 	DefeatBadgeState State = DefeatBadgeState::Fall;
 	void FallBadge(float _DeltaTime);
 	void SetTips();
-	void RenderTips(int _Index);
 };
 

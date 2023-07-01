@@ -135,5 +135,9 @@ private:
 	bool IsDefeat();
 	bool IsVictory();
 	bool IsLastWave();
+
+	void PauseOn();
+	void PauseOff();
+	void PauseProcess();
 };
 

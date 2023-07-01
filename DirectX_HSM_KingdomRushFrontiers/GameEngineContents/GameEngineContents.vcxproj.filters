@@ -209,12 +209,6 @@
     <ClInclude Include="PlayManager.h">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClInclude>
-    <ClInclude Include="Button_RainOfFire.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Button_CallReinforcement.h">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClInclude>
     <ClInclude Include="BottomWaveButton.h">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClInclude>
@@ -274,6 +268,12 @@
     </ClInclude>
     <ClInclude Include="Defeat_ExitButton.h">
       <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClInclude>
+    <ClInclude Include="Button_RainOfFire.h">
+      <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Button_CallReinforcement.h">
+      <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -499,12 +499,6 @@
     <ClCompile Include="PlayManager.cpp">
       <Filter>3.PlayStage\Actor\PlayManager</Filter>
     </ClCompile>
-    <ClCompile Include="Button_RainOfFire.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Button_CallReinforcement.cpp">
-      <Filter>3.PlayStage\Actor\StageUI</Filter>
-    </ClCompile>
     <ClCompile Include="BottomWaveButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\WaveButton</Filter>
     </ClCompile>
@@ -571,6 +565,12 @@
     </ClCompile>
     <ClCompile Include="Defeat_ExitButton.cpp">
       <Filter>3.PlayStage\Actor\StageUI\DefeatBadge</Filter>
+    </ClCompile>
+    <ClCompile Include="Button_RainOfFire.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Button_CallReinforcement.cpp">
+      <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -699,6 +699,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\DefeatBadge">
       <UniqueIdentifier>{cffb6c69-8449-410c-86f0-7974b8c6b62c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageUI\SkillButton">
+      <UniqueIdentifier>{14af4f21-9358-40df-b448-5226609e5363}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

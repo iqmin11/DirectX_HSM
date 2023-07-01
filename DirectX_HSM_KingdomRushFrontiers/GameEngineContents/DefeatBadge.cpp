@@ -101,6 +101,3 @@ void DefeatBadge::SetTips()
 	Tips.push_back("행복은 습관이다,그것을 몸에\n 지니라 -허버드");
 }
 
-void DefeatBadge::RenderTips(int _Index)
-{
-}
