@@ -15,12 +15,6 @@ WorldMapFlag::~WorldMapFlag()
 
 }
 
-void WorldMapFlag::FlagOn()
-{
-	On();
-	FlagAnimation->ChangeAnimation("Appear");
-}
-
 std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click)
 {
 	std::shared_ptr<WorldMapFlag> LocFlag(_Parent->GetLevel()->CreateActor<WorldMapFlag>());
@@ -43,7 +37,7 @@ void WorldMapFlag::Start()
 		});
 	FlagAnimation->ChangeAnimation("Appear");
 
-	//Off();
+	Off();
 }
 
 void WorldMapFlag::Update(float _DeltaTime)

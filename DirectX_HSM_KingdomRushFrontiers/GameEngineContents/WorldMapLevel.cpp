@@ -65,4 +65,9 @@ void WorldMapLevel::LoadWorldMapAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Appear").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Hover").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Release").GetFullPath());
+
+	Dir.MoveParentToDirectory("PathDot");
+	Dir.Move("PathDot");
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Blue").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Red").GetFullPath());
 }

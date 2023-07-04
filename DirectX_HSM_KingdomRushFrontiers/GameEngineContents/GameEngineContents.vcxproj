@@ -380,6 +380,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="PathDot.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerStatus.h">
       <SubType>
       </SubType>
@@ -784,6 +788,10 @@
       </SubType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="PathDot.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp">
       <SubType>

@@ -275,6 +275,9 @@
     <ClInclude Include="WorldMapFlagManager.h">
       <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
     </ClInclude>
+    <ClInclude Include="PathDot.h">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -570,6 +573,9 @@
       <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
     </ClCompile>
     <ClCompile Include="WorldMapFlagManager.cpp">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="PathDot.cpp">
       <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
     </ClCompile>
   </ItemGroup>

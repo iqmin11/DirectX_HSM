@@ -20,7 +20,6 @@ public:
 	WorldMapFlag& operator=(const WorldMapFlag& _Other) = delete;
 	WorldMapFlag& operator=(WorldMapFlag&& _Other) noexcept = delete;
 
-	void FlagOn();
 	FlagState GetState() const
 	{
 		return State;
