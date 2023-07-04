@@ -19,6 +19,7 @@ enum class RenderOrder
 enum class UIRenderOrder
 {
 	Null = -1,
+	Bg,
 	TowerButton,
 	TowerRange,
 	BuildBarBg,
@@ -36,6 +37,14 @@ enum class UIRenderOrder
 	StageUI_8,
 	StageUI_9,
 	MousePoint
+};
+
+enum class WorldMapUIOrder
+{
+	Null = -1,
+	WorldMapBg,
+	WorldMapPath,
+	WorldMapFlag,
 };
 
 enum class ColOrder

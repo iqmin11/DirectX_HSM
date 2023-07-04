@@ -20,11 +20,11 @@ void ContentsCore::GameStart()
 {
 	ContentsResourcesCreate();
 
+	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<StageEditLevel>();
-	GameEngineCore::CreateLevel<TestLevel>();
 
 	GameEngineCore::ChangeLevel("WorldMapLevel");
 }

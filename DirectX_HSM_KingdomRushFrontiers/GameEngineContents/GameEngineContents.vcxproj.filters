@@ -21,18 +21,6 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>1.Title\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="WorldMap.h">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="UpgradeMenu.h">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="StageSelectMenu.h">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
@@ -275,6 +263,18 @@
     <ClInclude Include="Button_CallReinforcement.h">
       <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
     </ClInclude>
+    <ClInclude Include="WorldMapBg.h">
+      <Filter>2.WorldMap\Actor\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagButton.h">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapFlag.h">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapFlagManager.h">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -296,18 +296,6 @@
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>1.Title\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldMap.cpp">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="UpgradeMenu.cpp">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>2.WorldMap\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="StageSelectMenu.cpp">
-      <Filter>2.WorldMap\Actor</Filter>
     </ClCompile>
     <ClCompile Include="StageEditLevel.cpp">
       <Filter>4.StageEdit</Filter>
@@ -572,6 +560,18 @@
     <ClCompile Include="Button_CallReinforcement.cpp">
       <Filter>3.PlayStage\Actor\StageUI\SkillButton</Filter>
     </ClCompile>
+    <ClCompile Include="WorldMapBg.cpp">
+      <Filter>2.WorldMap\Actor\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="FlagButton.cpp">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapFlag.cpp">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapFlagManager.cpp">
+      <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -702,6 +702,12 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\StageUI\HeroPortrait">
       <UniqueIdentifier>{f4a2c15c-86ab-48be-b584-4e7c14677212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.WorldMap\Actor\WorldMap">
+      <UniqueIdentifier>{4364bac1-0427-4450-8912-30ef79058908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.WorldMap\Actor\WorldMap\Flag">
+      <UniqueIdentifier>{b2d03931-215c-4e51-ab13-fa093206ec84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

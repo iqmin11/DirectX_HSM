@@ -19,11 +19,11 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class Background> AcBg = nullptr;
-	std::shared_ptr<class WorldMap> AcWorldMap = nullptr;
+	std::shared_ptr<class WorldMapBg> AcWorldMapBg = nullptr;
 	std::shared_ptr<class UpgradeMenu> AcUpgradeMenu = nullptr;
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
 
-	void LoadTexture();
+	void LoadWorldMapTexture(std::string_view _Folder);
+	void LoadWorldMapAnimation();
 };
 

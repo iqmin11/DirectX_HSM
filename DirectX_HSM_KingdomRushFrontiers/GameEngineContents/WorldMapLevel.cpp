@@ -4,11 +4,9 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore\GameEngineSprite.h>
 
-#include "Background.h"
-#include "WorldMap.h"
-#include "UpgradeMenu.h"
-#include "StageSelectMenu.h"
+#include "WorldMapBg.h"
 
 WorldMapLevel::WorldMapLevel()
 {
@@ -22,13 +20,13 @@ WorldMapLevel::~WorldMapLevel()
 
 void WorldMapLevel::Start()
 {
-	LoadTexture();
-	AcBg = CreateActor<Background>();
-	AcWorldMap = CreateActor<WorldMap>();
-	//AcUpgradeMenu = CreateActor<UpgradeMenu>();
-	//AcStageSelectMenu = CreateActor<StageSelectMenu>();
-
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
+	GetCamera(100)->SetProjectionType(CameraType::Orthogonal);
+
+    LoadWorldMapTexture("WorldMapBg");
+	LoadWorldMapAnimation();
+
+    AcWorldMapBg = CreateActor<WorldMapBg>();
 }
 
 void WorldMapLevel::Update(float _DeltaTime)
@@ -39,16 +37,30 @@ void WorldMapLevel::Update(float _DeltaTime)
 	}
 }
 
-void WorldMapLevel::LoadTexture()
+void WorldMapLevel::LoadWorldMapTexture(std::string_view _Folder)
 {
  	GameEngineDirectory Dir;
  	Dir.MoveParentToDirectory("ContentsResources");
  	Dir.Move("ContentsResources");
- 	Dir.Move("2.WORLDMAP LEVEL");
+    Dir.Move("2.WORLDMAP LEVEL");
+    Dir.Move(_Folder);
  
  	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".png" });
  	for (size_t i = 0; i < File.size(); i++)
  	{
  		GameEngineTexture::Load(File[i].GetFullPath());
  	}
+}
+
+void WorldMapLevel::LoadWorldMapAnimation()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("2.WORLDMAP LEVEL");
+	Dir.Move("MapFlag");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Appear").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Hover").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Release").GetFullPath());
 }

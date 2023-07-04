@@ -173,10 +173,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="BaseBuildButton.h">
       <SubType>
       </SubType>
@@ -325,6 +321,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FireBallSmoke.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FlagButton.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -479,10 +479,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="StageSelectMenu.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="StageEditor.h">
       <SubType>
       </SubType>
@@ -523,10 +519,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="UpgradeMenu.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="UpgradeTowerButton.h">
       <SubType>
       </SubType>
@@ -547,10 +539,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="WorldMap.h">
+    <ClInclude Include="WorldMapBg.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldMapFlag.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WorldMapFlagManager.h" />
     <ClInclude Include="WorldMapLevel.h">
       <SubType>
       </SubType>
@@ -570,10 +567,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Artillery_Tower.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -728,6 +721,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FireBallSmoke.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FlagButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -894,10 +891,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="StageSelectMenu.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="StageEditor.cpp">
       <SubType>
       </SubType>
@@ -938,10 +931,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="UpgradeMenu.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="UpgradeTowerButton.cpp">
       <SubType>
       </SubType>
@@ -962,10 +951,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="WorldMap.cpp">
+    <ClCompile Include="WorldMapBg.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WorldMapFlag.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WorldMapFlagManager.cpp" />
     <ClCompile Include="WorldMapLevel.cpp">
       <SubType>
       </SubType>
