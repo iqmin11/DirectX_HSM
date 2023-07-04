@@ -20,6 +20,7 @@ protected:
 
 private:
 	std::shared_ptr<class WorldMapBg> AcWorldMapBg = nullptr;
+	std::shared_ptr<class WorldMapFlagManager> AcFlags = nullptr;
 	std::shared_ptr<class UpgradeMenu> AcUpgradeMenu = nullptr;
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
 

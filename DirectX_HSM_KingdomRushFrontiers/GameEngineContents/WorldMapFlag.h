@@ -26,7 +26,7 @@ public:
 		return State;
 	}
 
-	static std::shared_ptr <WorldMapFlag> CreateFlag(GameEngineLevel* _Level, std::function<void()> _Click);
+	static std::shared_ptr <WorldMapFlag> CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click);
 
 protected:
 	void Start() override;

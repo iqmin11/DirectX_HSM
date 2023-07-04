@@ -21,9 +21,10 @@ void WorldMapFlag::FlagOn()
 	FlagAnimation->ChangeAnimation("Appear");
 }
 
-std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineLevel* _Level, std::function<void()> _Click)
+std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click)
 {
-	std::shared_ptr<WorldMapFlag> LocFlag(_Level->CreateActor<WorldMapFlag>());
+	std::shared_ptr<WorldMapFlag> LocFlag(_Parent->GetLevel()->CreateActor<WorldMapFlag>());
+	LocFlag->GetTransform()->SetParent(_Parent->GetTransform());
 	LocFlag->AcButton = FlagButton::CreateButton(LocFlag.get(), _Click);
 	return LocFlag;
 }
@@ -31,17 +32,18 @@ std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineLevel* _Level, 
 void WorldMapFlag::Start()
 {
 	FlagAnimation = CreateComponent<GameEngineUIRenderer>(WorldMapUIOrder::WorldMapFlag);
-	FlagAnimation->CreateAnimation({.AnimationName = "Appear", .SpriteName = "Flag_BeforClear_Appear", .FrameInter = 0.1f, .Loop = false});
-	FlagAnimation->CreateAnimation({.AnimationName = "Hover", .SpriteName = "Flag_BeforClear_Hover", .FrameInter = 0.1f, .Loop = false});
-	FlagAnimation->CreateAnimation({.AnimationName = "Release", .SpriteName = "Flag_BeforClear_Release", .FrameInter = 0.1f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "Appear", .SpriteName = "Flag_BeforClear_Appear", .FrameInter = 0.075f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "Hover", .SpriteName = "Flag_BeforClear_Hover", .FrameInter = 0.075f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "Release", .SpriteName = "Flag_BeforClear_Release", .FrameInter = 0.075f, .Loop = false});
 	FlagAnimation->GetTransform()->SetWorldScale(RenderScale);
-	FlagAnimation->SetAnimationStartEvent("Appear", 33, [this]() 
+	FlagAnimation->SetAnimationStartEvent("Appear", 32, [this]() 
 		{
 			FlagAnimation->ChangeAnimation("Release");
 			State = FlagState::Update;
 		});
+	FlagAnimation->ChangeAnimation("Appear");
 
-	Off();
+	//Off();
 }
 
 void WorldMapFlag::Update(float _DeltaTime)

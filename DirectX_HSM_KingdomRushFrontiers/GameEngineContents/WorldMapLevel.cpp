@@ -7,6 +7,7 @@
 #include <GameEngineCore\GameEngineSprite.h>
 
 #include "WorldMapBg.h"
+#include "WorldMapFlagManager.h"
 
 WorldMapLevel::WorldMapLevel()
 {
@@ -27,6 +28,7 @@ void WorldMapLevel::Start()
 	LoadWorldMapAnimation();
 
     AcWorldMapBg = CreateActor<WorldMapBg>();
+	AcFlags = CreateActor<WorldMapFlagManager>();
 }
 
 void WorldMapLevel::Update(float _DeltaTime)

@@ -20,5 +20,7 @@ protected:
 private:
 	std::vector<float4> FlagPosData = std::vector<float4>();
 	std::vector<std::shared_ptr<class WorldMapFlag>> Flags = std::vector<std::shared_ptr<class WorldMapFlag>>();
+
+	float4 WinToDec(const float4& _Win);
 };
 
