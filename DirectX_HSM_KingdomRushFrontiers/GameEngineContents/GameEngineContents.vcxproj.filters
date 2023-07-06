@@ -278,6 +278,12 @@
     <ClInclude Include="PathDot.h">
       <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
     </ClInclude>
+    <ClInclude Include="SelectStageWindow.h">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="StageStartButton.h">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -578,6 +584,12 @@
     <ClCompile Include="PathDot.cpp">
       <Filter>2.WorldMap\Actor\WorldMap\Flag</Filter>
     </ClCompile>
+    <ClCompile Include="SelectStageWindow.cpp">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="StageStartButton.cpp">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -714,6 +726,9 @@
     </Filter>
     <Filter Include="2.WorldMap\Actor\WorldMap\Flag">
       <UniqueIdentifier>{b2d03931-215c-4e51-ab13-fa093206ec84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.WorldMap\Actor\SelectStageWindow">
+      <UniqueIdentifier>{8fc0d839-f6d8-4eb2-a685-36648cac5ef6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

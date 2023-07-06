@@ -8,6 +8,7 @@
 
 #include "WorldMapBg.h"
 #include "WorldMapFlagManager.h"
+#include "SelectStageWindow.h"
 
 WorldMapLevel::WorldMapLevel()
 {
@@ -21,14 +22,19 @@ WorldMapLevel::~WorldMapLevel()
 
 void WorldMapLevel::Start()
 {
+	std::shared_ptr _101Camera = CreateNewCamera(101);
+	_101Camera->SetProjectionType(CameraType::Orthogonal);
+
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetCamera(100)->SetProjectionType(CameraType::Orthogonal);
 
     LoadWorldMapTexture("WorldMapBg");
+    LoadWorldMapTexture("SelectStage");
 	LoadWorldMapAnimation();
 
     AcWorldMapBg = CreateActor<WorldMapBg>();
 	AcFlags = CreateActor<WorldMapFlagManager>();
+	AcSelectStageWindow = CreateActor<SelectStageWindow>();
 }
 
 void WorldMapLevel::Update(float _DeltaTime)

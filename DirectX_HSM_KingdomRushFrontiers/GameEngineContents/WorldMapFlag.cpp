@@ -26,35 +26,31 @@ std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineActor* _Parent,
 void WorldMapFlag::Start()
 {
 	FlagAnimation = CreateComponent<GameEngineUIRenderer>(WorldMapUIOrder::WorldMapFlag);
-	FlagAnimation->CreateAnimation({.AnimationName = "Appear", .SpriteName = "Flag_BeforClear_Appear", .FrameInter = 0.075f, .Loop = false});
-	FlagAnimation->CreateAnimation({.AnimationName = "Hover", .SpriteName = "Flag_BeforClear_Hover", .FrameInter = 0.075f, .Loop = false});
-	FlagAnimation->CreateAnimation({.AnimationName = "Release", .SpriteName = "Flag_BeforClear_Release", .FrameInter = 0.075f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Appear", .SpriteName = "Flag_BeforClear_Appear", .FrameInter = 0.075f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Hover", .SpriteName = "Flag_BeforClear_Hover", .FrameInter = 0.075f, .Loop = false});
+	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Release", .SpriteName = "Flag_BeforClear_Release", .FrameInter = 0.075f, .Loop = false});
 	FlagAnimation->GetTransform()->SetWorldScale(RenderScale);
-	FlagAnimation->SetAnimationStartEvent("Appear", 32, [this]() 
+	FlagAnimation->SetAnimationStartEvent("NonClear_Appear", 32, [this]() 
 		{
-			FlagAnimation->ChangeAnimation("Release");
+			FlagAnimation->ChangeAnimation("NonClear_Release");
 			State = FlagState::Update;
 		});
-	FlagAnimation->ChangeAnimation("Appear");
-
+	FlagAnimation->ChangeAnimation("NonClear_Appear");
+	
 	Off();
 }
 
 void WorldMapFlag::Update(float _DeltaTime)
 {
-	if (State == FlagState::Start)
-	{
-		
-	}
-	else if (State == FlagState::Update)
+	if (State == FlagState::Update)
 	{
 		if (AcButton->GetState() != ButtonState::Release)
 		{
-			FlagAnimation->ChangeAnimation("Hover");
+			FlagAnimation->ChangeAnimation("NonClear_Hover");
 		}
 		else
 		{
-			FlagAnimation->ChangeAnimation("Release");
+			FlagAnimation->ChangeAnimation("NonClear_Release");
 		}
 	}
 }

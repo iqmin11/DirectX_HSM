@@ -2,6 +2,7 @@
 #include "WorldMapFlagManager.h"
 
 #include <GameEnginePlatform\GameEngineWindow.h>
+#include <GameEnginePlatform\GameEngineInput.h>
 #include "WorldMapFlag.h"
 #include "PathDot.h"
 
@@ -15,14 +16,38 @@ WorldMapFlagManager::~WorldMapFlagManager()
 
 }
 
+void WorldMapFlagManager::OnStage(int _Index)
+{
+	if (_Index < 0 || _Index > 5)
+	{
+		MsgAssert("½ºÅ×ÀÌÁö ÀÎµ¦½º¸¦ ¹þ¾î³µ½À´Ï´Ù.")
+	}
+	//Flags[_Index]->On();
+	if (_Index == 0)
+	{
+		Flags[0]->On();
+	}
+	else
+	{
+		WorldMapPath[_Index - 1][0]->On();
+	}
+}
+
 void WorldMapFlagManager::Start()
 {
 	SetFlagPosData();
 	SetFlag();
 	SetPathPosData();
 	SetPathDot();
+}
 
-	WorldMapPath[0][0]->On();
+void WorldMapFlagManager::Update(float _DeltaTime)
+{
+	if (GameEngineInput::IsDown("Z"))
+	{
+		static int a = 0;
+		OnStage(a++);
+	}
 }
 
 float4 WorldMapFlagManager::WinToDec(const float4& _Win)

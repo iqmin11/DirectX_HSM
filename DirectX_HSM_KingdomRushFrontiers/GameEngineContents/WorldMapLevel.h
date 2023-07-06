@@ -23,6 +23,7 @@ private:
 	std::shared_ptr<class WorldMapFlagManager> AcFlags = nullptr;
 	std::shared_ptr<class UpgradeMenu> AcUpgradeMenu = nullptr;
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
+	std::shared_ptr<class SelectStageWindow> AcSelectStageWindow = nullptr;
 
 	void LoadWorldMapTexture(std::string_view _Folder);
 	void LoadWorldMapAnimation();

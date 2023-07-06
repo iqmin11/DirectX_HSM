@@ -14,8 +14,11 @@ public:
 	WorldMapFlagManager& operator=(const WorldMapFlagManager& _Other) = delete;
 	WorldMapFlagManager& operator=(WorldMapFlagManager&& _Other) noexcept = delete;
 
+	void OnStage(int _Index);
+
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 	std::vector<float4> FlagPosData = std::vector<float4>();
