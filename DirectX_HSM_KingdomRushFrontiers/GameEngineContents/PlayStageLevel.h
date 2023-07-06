@@ -6,6 +6,7 @@
 class PlayStageLevel : public GameEngineLevel
 {
 public:
+	static PlayStageLevel* MainPalyStage;
 	static std::vector<StageData> AllStageData;
 	static bool IsPause;
 
@@ -81,7 +82,6 @@ private:
 	std::weak_ptr<class VictoryBadge> AcVictoryBadge = std::weak_ptr<class VictoryBadge>();
 	std::weak_ptr<class DefeatBadge> AcDefeatBadge = std::weak_ptr<class DefeatBadge>();
 	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
-
 
 	int CurStage = -1;
 	int NextWave = -1; // ¿Œµ¶Ω∫ ±‚¡ÿ

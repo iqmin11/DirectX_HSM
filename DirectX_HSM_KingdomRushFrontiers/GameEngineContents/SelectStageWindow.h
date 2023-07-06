@@ -5,6 +5,8 @@
 class SelectStageWindow : public GameEngineActor
 {
 public:
+	static SelectStageWindow* MainSelectWindow;
+
 	// construtor destructor
 	SelectStageWindow();
 	~SelectStageWindow();
@@ -15,11 +17,23 @@ public:
 	SelectStageWindow& operator=(const SelectStageWindow& _Other) = delete;
 	SelectStageWindow& operator=(SelectStageWindow&& _Other) noexcept = delete;
 
+	void SelectStage(int _Select)
+	{
+		SelectedStage = _Select;
+	}
+
+	int GetSelectedStage() const
+	{
+		return SelectedStage;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
 private:
+	int SelectedStage = -1;
+
 	std::shared_ptr<class _101UIRenderer> WindowBg = nullptr;
 	float4 BgScale = { 987,586,1 };
 	std::shared_ptr<class _101UIRenderer> StagePreview = nullptr;
@@ -34,9 +48,10 @@ private:
 	std::shared_ptr<class _101UIFontRenderer> RightTitle = nullptr;
 	std::shared_ptr<class _101UIFontRenderer> StageExplain = nullptr;
 
-	std::shared_ptr<class ContentsButton> StageStartButton = nullptr;
+	std::shared_ptr<class ContentsButton> AcStageStartButton = nullptr;
 	float4 StartButtonLocPos = {223, -134};
+	
 	std::shared_ptr<class ContentsButton> ExitWindowButton = nullptr;
-
+	float4 ExitButtonLocPos = { 472, 272 };
 };
 

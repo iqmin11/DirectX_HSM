@@ -318,6 +318,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ExitButton.h" />
     <ClInclude Include="FireBallExplosion.h">
       <SubType>
       </SubType>
@@ -730,6 +731,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ExitButton.cpp" />
     <ClCompile Include="FireBallExplosion.cpp">
       <SubType>
       </SubType>

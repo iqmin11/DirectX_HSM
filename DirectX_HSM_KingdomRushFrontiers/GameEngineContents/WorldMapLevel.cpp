@@ -9,6 +9,9 @@
 #include "WorldMapBg.h"
 #include "WorldMapFlagManager.h"
 #include "SelectStageWindow.h"
+#include "_101UIRenderer.h"
+
+bool WorldMapLevel::IsPause = false;
 
 WorldMapLevel::WorldMapLevel()
 {
@@ -35,10 +38,15 @@ void WorldMapLevel::Start()
     AcWorldMapBg = CreateActor<WorldMapBg>();
 	AcFlags = CreateActor<WorldMapFlagManager>();
 	AcSelectStageWindow = CreateActor<SelectStageWindow>();
+	PauseFade = CreateActor<GameEngineActor>()->CreateComponent<_101UIRenderer>(UIRenderOrder::Bg);
+	PauseFade->SetTexture("PauseBg.png");
+	PauseFade->GetTransform()->SetWorldScale({ 1650,928,1 });
+	PauseFade->Off();
 }
 
 void WorldMapLevel::Update(float _DeltaTime)
 {
+	PauseProcess();
 	if (GameEngineInput::IsDown("TestLevel"))
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
@@ -76,4 +84,16 @@ void WorldMapLevel::LoadWorldMapAnimation()
 	Dir.Move("PathDot");
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Blue").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Red").GetFullPath());
+}
+
+void WorldMapLevel::PauseProcess()
+{
+	if (IsPause)
+	{
+		PauseFade->On();
+	}
+	else
+	{
+		PauseFade->Off();
+	}
 }

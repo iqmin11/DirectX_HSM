@@ -4,6 +4,7 @@
 class WorldMapLevel : public GameEngineLevel
 {
 public:
+	static bool IsPause;
 	// construtor destructor
 	WorldMapLevel();
 	~WorldMapLevel();
@@ -24,8 +25,11 @@ private:
 	std::shared_ptr<class UpgradeMenu> AcUpgradeMenu = nullptr;
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
 	std::shared_ptr<class SelectStageWindow> AcSelectStageWindow = nullptr;
+	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
 
 	void LoadWorldMapTexture(std::string_view _Folder);
 	void LoadWorldMapAnimation();
+
+	void PauseProcess();
 };
 

@@ -284,6 +284,9 @@
     <ClInclude Include="StageStartButton.h">
       <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
     </ClInclude>
+    <ClInclude Include="ExitButton.h">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -588,6 +591,9 @@
       <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
     </ClCompile>
     <ClCompile Include="StageStartButton.cpp">
+      <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitButton.cpp">
       <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
     </ClCompile>
   </ItemGroup>

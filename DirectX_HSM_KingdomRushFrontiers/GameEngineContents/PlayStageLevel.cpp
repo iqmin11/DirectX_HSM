@@ -25,11 +25,13 @@
 #include "DefeatBadge.h"
 #include "_101UIRenderer.h"
 
+PlayStageLevel* PlayStageLevel::MainPalyStage = nullptr;
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
 bool PlayStageLevel::IsPause = false;
 
 PlayStageLevel::PlayStageLevel()
 {
+	MainPalyStage = this;
 }
 
 PlayStageLevel::~PlayStageLevel()

@@ -5,6 +5,8 @@
 #include <GameEnginePlatform\GameEngineInput.h>
 #include "WorldMapFlag.h"
 #include "PathDot.h"
+#include "SelectStageWindow.h"
+#include "WorldMapLevel.h"
 
 WorldMapFlagManager::WorldMapFlagManager()
 {
@@ -20,7 +22,8 @@ void WorldMapFlagManager::OnStage(int _Index)
 {
 	if (_Index < 0 || _Index > 5)
 	{
-		MsgAssert("½ºÅ×ÀÌÁö ÀÎµ¦½º¸¦ ¹þ¾î³µ½À´Ï´Ù.")
+		MsgAssert("½ºÅ×ÀÌÁö ÀÎµ¦½º¸¦ ¹þ¾î³µ½À´Ï´Ù.");
+		return;
 	}
 	//Flags[_Index]->On();
 	if (_Index == 0)
@@ -71,9 +74,15 @@ void WorldMapFlagManager::SetFlag()
 	Flags.reserve(6);
 	for (size_t i = 0; i < Flags.capacity(); i++)
 	{
-		Flags.push_back(WorldMapFlag::CreateFlag(this, []()
+		Flags.push_back(WorldMapFlag::CreateFlag(this, [i]()
 			{
-
+				if (WorldMapLevel::IsPause)
+				{
+					return;
+				}
+				SelectStageWindow::MainSelectWindow->On();
+				SelectStageWindow::MainSelectWindow->SelectStage(static_cast<int>(i));
+				WorldMapLevel::IsPause = true;
 			}));
 		Flags[i]->GetTransform()->SetLocalPosition(FlagPosData[i]);
 	}

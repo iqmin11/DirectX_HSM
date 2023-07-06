@@ -43,6 +43,7 @@ enum class WorldMapUIOrder
 {
 	Null = -1,
 	WorldMapBg,
+	WorldMapEdgeFade,
 	WorldMapPath,
 	WorldMapFlag,
 };

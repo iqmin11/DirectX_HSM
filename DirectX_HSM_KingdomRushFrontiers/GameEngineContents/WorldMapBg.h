@@ -20,6 +20,8 @@ protected:
 
 private:
 	std::shared_ptr<class GameEngineUIRenderer> BgRenderer = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> EdgeFade = nullptr;
 	float4 Scale = {1600,900,1};
+	float4 EdgeFadeScale = {1620,911,1};
 };
 

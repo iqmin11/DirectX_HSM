@@ -19,7 +19,6 @@ public:
 protected:
 	void Start() override;
 private:
-	int SelectStage = -1;
 	float4 ButtonScale = { 96,83,1 };
 };
 
