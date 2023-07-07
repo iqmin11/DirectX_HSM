@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore\GameEngineSprite.h>
+#include <GameEngineCore\GameEngineFont.h>
 
 #include "WorldMapBg.h"
 #include "WorldMapFlagManager.h"
@@ -34,6 +35,7 @@ void WorldMapLevel::Start()
     LoadWorldMapTexture("WorldMapBg");
     LoadWorldMapTexture("SelectStage");
 	LoadWorldMapAnimation();
+	LoadFont();
 
     AcWorldMapBg = CreateActor<WorldMapBg>();
 	AcFlags = CreateActor<WorldMapFlagManager>();
@@ -42,6 +44,8 @@ void WorldMapLevel::Start()
 	PauseFade->SetTexture("PauseBg.png");
 	PauseFade->GetTransform()->SetWorldScale({ 1650,928,1 });
 	PauseFade->Off();
+	
+
 }
 
 void WorldMapLevel::Update(float _DeltaTime)
@@ -96,4 +100,12 @@ void WorldMapLevel::PauseProcess()
 	{
 		PauseFade->Off();
 	}
+}
+
+void WorldMapLevel::LoadFont()
+{
+	GameEngineFont::Load("TOONISH");
+	GameEngineFont::Load("³ª´®¼Õ±Û¾¾ Ææ OTF");
+	GameEngineFont::Load("Á¦ÁÖÇÑ¶ó»ê");
+	GameEngineFont::Load("¹è´ÞÀÇ¹ÎÁ· ¿¬¼º OTF");
 }

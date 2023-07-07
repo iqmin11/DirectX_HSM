@@ -80,8 +80,8 @@ void WorldMapFlagManager::SetFlag()
 				{
 					return;
 				}
-				SelectStageWindow::MainSelectWindow->On();
 				SelectStageWindow::MainSelectWindow->SelectStage(static_cast<int>(i));
+				SelectStageWindow::MainSelectWindow->StageWindowOn();
 				WorldMapLevel::IsPause = true;
 			}));
 		Flags[i]->GetTransform()->SetLocalPosition(FlagPosData[i]);

@@ -127,7 +127,6 @@ private:
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();
-	void LoadFont();
 
 	void Defeat();
 	void Victory();

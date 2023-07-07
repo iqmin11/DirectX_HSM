@@ -29,6 +29,7 @@ private:
 
 	void LoadWorldMapTexture(std::string_view _Folder);
 	void LoadWorldMapAnimation();
+	void LoadFont();
 
 	void PauseProcess();
 };

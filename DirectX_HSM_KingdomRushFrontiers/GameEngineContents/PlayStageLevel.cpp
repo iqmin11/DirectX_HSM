@@ -7,7 +7,6 @@
 #include <GameEngineCore\GameEngineCamera.h>
 #include <GameEngineCore\GameEngineSprite.h>
 #include <GameEngineCore\GameEngineSpriteRenderer.h>
-#include <GameEngineCore\GameEngineFont.h>
 
 #include "MousePointer.h"
 #include "StageBg.h"
@@ -84,7 +83,6 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("MeleeTower");
 	LoadPlayLevelTexture("PopText");
 	LoadPlayLevelAnimation();
-	LoadFont();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
@@ -551,12 +549,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StarAnimation").GetFullPath());
 }
 
-void PlayStageLevel::LoadFont()
-{
-	GameEngineFont::Load("TOONISH");
-	GameEngineFont::Load("³ª´®¼Õ±Û¾¾ Ææ OTF");
-	GameEngineFont::Load("Á¦ÁÖÇÑ¶ó»ê");
-}
+
 
 void PlayStageLevel::Defeat()
 {
