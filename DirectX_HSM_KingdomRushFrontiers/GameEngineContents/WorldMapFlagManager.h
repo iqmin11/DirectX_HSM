@@ -39,5 +39,6 @@ private:
 	void SetPathPosData();
 	void SetPathDot();
 	void SetOnePathDot(int _Index);
+	void SetTrigger();
 };
 

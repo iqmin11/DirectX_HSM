@@ -57,7 +57,7 @@ private:
 	std::shared_ptr<class _101UIFontRenderer> StageExplain = nullptr;
 	std::vector<std::string> StageExplainData = std::vector<std::string>();
 	float4 StageExplainLocPos = { 84,182 };
-	float StageExplainFontScale = 25.f;
+	float StageExplainFontScale = 23.f;
 
 	float4 FontColor = { 0.392156862745098f, 0.3490196078431373f, 0.203921568627451f};
 

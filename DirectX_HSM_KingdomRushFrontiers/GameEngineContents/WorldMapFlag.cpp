@@ -62,6 +62,14 @@ void WorldMapFlag::Start()
 			{
 				StarRenderers[i]->On();
 			}
+		});
+
+	FlagAnimation->SetAnimationStartEvent("Clear_Appear", 35, [this]()
+		{
+			if (NextStageOnTrigger != nullptr)
+			{
+				NextStageOnTrigger->On();
+			}
 			State = FlagState::Update;
 		});
 

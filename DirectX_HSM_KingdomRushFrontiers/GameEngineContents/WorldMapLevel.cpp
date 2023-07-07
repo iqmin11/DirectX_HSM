@@ -45,6 +45,7 @@ void WorldMapLevel::Start()
 	PauseFade->GetTransform()->SetWorldScale({ 1650,928,1 });
 	PauseFade->Off();
 	
+	WorldMapFlagManager::MainFlagManager->OnStage(0);
 
 }
 

@@ -44,15 +44,16 @@ void WorldMapFlagManager::Start()
 	SetFlag();
 	SetPathPosData();
 	SetPathDot();
+	SetTrigger();
 }
 
 void WorldMapFlagManager::Update(float _DeltaTime)
 {
-	if (GameEngineInput::IsDown("Z"))
-	{
-		static int a = 0;
-		OnStage(a++);
-	}
+	//if (GameEngineInput::IsDown("Z"))
+	//{
+	//	static int a = 0;
+	//	OnStage(a++);
+	//}
 }
 
 float4 WorldMapFlagManager::WinToDec(const float4& _Win)
@@ -199,5 +200,13 @@ void WorldMapFlagManager::SetOnePathDot(int _Index)
 		{
 			WorldMapPath[_Index][i]->SetNextActor(WorldMapPath[_Index][i + 1].get());
 		}
+	}
+}
+
+void WorldMapFlagManager::SetTrigger()
+{
+	for (size_t i = 0; i < Flags.size()-1; i++)
+	{
+		Flags[i]->SetNextStageOnTrigger(WorldMapPath[i][0].get());
 	}
 }

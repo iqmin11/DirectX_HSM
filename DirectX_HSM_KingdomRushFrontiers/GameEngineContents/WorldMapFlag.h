@@ -28,6 +28,10 @@ public:
 	WorldMapFlag& operator=(WorldMapFlag&& _Other) noexcept = delete;
 
 	void SetClearData(int _StarCount);
+	void SetNextStageOnTrigger(GameEngineActor* _NextOn)
+	{
+		NextStageOnTrigger = _NextOn;
+	}
 
 	FlagState GetState() const
 	{
@@ -57,5 +61,6 @@ private:
 	std::shared_ptr<class FlagButton> AcButton = nullptr;
 	bool ClearAndFirstUpdate = true;
 
+	GameEngineActor* NextStageOnTrigger = nullptr;
 };
 
