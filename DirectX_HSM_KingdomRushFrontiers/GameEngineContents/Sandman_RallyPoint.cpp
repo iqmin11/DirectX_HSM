@@ -50,8 +50,8 @@ void Sandman_RallyPoint::SetFighter()
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
 		Fighters[i] = GetLevel()->CreateActor<Sandman_Fighter>();
-		Fighters[i]->GetTransform()->SetWorldPosition(ParentHero->GetSandmanPivot()[i]->GetTransform()->GetWorldPosition());
 		Fighters[i]->SetParentRally(this);
+		Fighters[i]->GetTransform()->SetWorldPosition(ParentHero->GetSandmanPivot()[i]->GetTransform()->GetWorldPosition());
 		Fighters[i]->SetPrevPos(ParentHero->GetSandmanPivot()[i]->GetTransform()->GetWorldPosition());
 		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
 		Fighters[i]->Data.SetData(FighterEnum::Creature_Sandman);

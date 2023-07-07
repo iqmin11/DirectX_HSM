@@ -9,6 +9,9 @@
 #include "Effect_SpreadStar.h"
 #include "_101UIRenderer.h"
 #include "_101UIFontRenderer.h"
+#include "PlayManager.h"
+#include "WorldMapFlagManager.h"
+#include "WorldMapFlag.h"
 
 VictoryBadge::VictoryBadge()
 {
@@ -60,7 +63,7 @@ void VictoryBadge::Update(float _DeltaTime)
 		if (!StarAnimation->IsUpdate())
 		{
 			StarAnimation->On();
-			StarAnimation->ChangeAnimation("3Star");
+			EstimateStar();
 		}
 
 		if (StarAnimation->IsAnimationEnd())
@@ -201,6 +204,47 @@ void VictoryBadge::FallButton2(float _DeltaTime)
 		AcRetryButton->GetTransform()->SetLocalPosition(TempActorLocPos);
 		Time = 0.f;
 		State = VicBadgeState::Update;
+	}
+}
+
+void VictoryBadge::EstimateStar()
+{
+	switch (PlayManager::MainPlayer->Life)
+	{
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+		StarAnimation->ChangeAnimation("1Star");
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetClearData(1);
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetState(FlagState::Start);
+		break;
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
+	case 16:
+	case 17:
+		StarAnimation->ChangeAnimation("2Star");
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetClearData(2);
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetState(FlagState::Start);
+		break;
+	case 18:
+	case 19:
+	case 20:
+		StarAnimation->ChangeAnimation("3Star");
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetClearData(3);
+		WorldMapFlagManager::MainFlagManager->GetFlags()[PlayStageLevel::MainPalyStage->GetCurStage()]->SetState(FlagState::Start);
+		break;
+	default:
+		break;
 	}
 }
 

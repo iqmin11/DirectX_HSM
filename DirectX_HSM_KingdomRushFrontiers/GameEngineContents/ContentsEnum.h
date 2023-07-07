@@ -46,6 +46,7 @@ enum class WorldMapUIOrder
 	WorldMapEdgeFade,
 	WorldMapPath,
 	WorldMapFlag,
+	WorldMapFlagStar,
 };
 
 enum class ColOrder

@@ -4,6 +4,8 @@
 class WorldMapFlagManager : public GameEngineActor
 {
 public:
+	static WorldMapFlagManager* MainFlagManager;
+
 	// construtor destructor
 	WorldMapFlagManager();
 	~WorldMapFlagManager();
@@ -15,6 +17,11 @@ public:
 	WorldMapFlagManager& operator=(WorldMapFlagManager&& _Other) noexcept = delete;
 
 	void OnStage(int _Index);
+
+	std::vector<std::shared_ptr<class WorldMapFlag>>& GetFlags()
+	{
+		return Flags;
+	}
 
 protected:
 	void Start() override;

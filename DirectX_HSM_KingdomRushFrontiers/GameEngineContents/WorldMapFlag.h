@@ -7,6 +7,13 @@ enum class FlagState
 	Update
 };
 
+class ClearData
+{
+public:
+	bool Clear = false;
+	int StarCount = 0;
+};
+
 class WorldMapFlag : public GameEngineActor
 {
 public:
@@ -20,9 +27,16 @@ public:
 	WorldMapFlag& operator=(const WorldMapFlag& _Other) = delete;
 	WorldMapFlag& operator=(WorldMapFlag&& _Other) noexcept = delete;
 
+	void SetClearData(int _StarCount);
+
 	FlagState GetState() const
 	{
 		return State;
+	}
+
+	void SetState(FlagState _State)
+	{
+		State = _State;
 	}
 
 	static std::shared_ptr <WorldMapFlag> CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click);
@@ -32,11 +46,16 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	ClearData Data = ClearData();
+
 	FlagState State = FlagState::Start;
 	std::shared_ptr<class GameEngineUIRenderer> FlagAnimation = nullptr;
 	float4 RenderScale = { 213,213,1 };
+
+	std::vector<std::shared_ptr<class GameEngineUIRenderer>> StarRenderers = std::vector<std::shared_ptr<class GameEngineUIRenderer>>();
 	
 	std::shared_ptr<class FlagButton> AcButton = nullptr;
+	bool ClearAndFirstUpdate = true;
 
 };
 

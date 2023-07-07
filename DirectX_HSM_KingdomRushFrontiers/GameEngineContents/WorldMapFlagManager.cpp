@@ -8,9 +8,11 @@
 #include "SelectStageWindow.h"
 #include "WorldMapLevel.h"
 
+WorldMapFlagManager* WorldMapFlagManager::MainFlagManager = nullptr;
+
 WorldMapFlagManager::WorldMapFlagManager()
 {
-
+	MainFlagManager = this;
 }
 
 WorldMapFlagManager::~WorldMapFlagManager()

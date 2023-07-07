@@ -60,5 +60,6 @@ private:
 	void GrowBig(float _DeltaTime);
 	void FallButton1(float _DeltaTime);
 	void FallButton2(float _DeltaTime);
+	void EstimateStar();
 };
 

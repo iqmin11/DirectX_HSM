@@ -19,6 +19,10 @@ void AnimationInfo::Reset()
 	CurTime = FrameTime[0];
 	IsEndValue = false;
 	IsPauseValue = false;
+	for (std::pair<const size_t, AnimationStartEvent>& Pair : StartEventFunction)
+	{
+		Pair.second.IsEvent = false;
+	}
 }
 
 void AnimationInfo::Update(float _DeltaTime)
@@ -350,6 +354,11 @@ void GameEngineSpriteRenderer::Render(float _Delta)
 
 	GameEngineRenderer::Render(_Delta);
 	//AtlasData = float4(0, 0, 1, 1);
+
+	if (nullptr != RenderEndCallBack)
+	{
+		RenderEndCallBack(this);
+	}
 
 }
 

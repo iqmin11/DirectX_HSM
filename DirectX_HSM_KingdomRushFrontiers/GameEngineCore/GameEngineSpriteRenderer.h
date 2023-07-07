@@ -168,12 +168,19 @@ public:
 
 	std::string GetTexName();
 
+	void SetRenderEndCallBack(std::function<void(GameEngineRenderer*)> _CallBack)
+	{
+		RenderEndCallBack = _CallBack;
+	}
+
 
 protected:
 	void SpriteRenderInit();
 	float4 AtlasData;
 	float4 Clip = float4::One;
 	float4 Flip = float4::Zero;
+
+	std::function<void(GameEngineRenderer*)> RenderEndCallBack = nullptr;
 
 private:
 	void Update(float _Delta) override;

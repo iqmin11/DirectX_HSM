@@ -108,11 +108,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 {
 	PauseProcess();
 
-	if (IsVictory())
+	if (IsVictory() || GameEngineInput::IsDown("X"))
 	{
 		Victory();
 	}
-	else if (IsDefeat())
+	else if (IsDefeat() || GameEngineInput::IsDown("C"))
 	{
 		Defeat();
 	}

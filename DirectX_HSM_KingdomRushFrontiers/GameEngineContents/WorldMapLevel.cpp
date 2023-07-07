@@ -57,6 +57,11 @@ void WorldMapLevel::Update(float _DeltaTime)
 	}
 }
 
+void WorldMapLevel::LevelChangeStart()
+{
+	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
+}
+
 void WorldMapLevel::LoadWorldMapTexture(std::string_view _Folder)
 {
  	GameEngineDirectory Dir;
@@ -83,6 +88,11 @@ void WorldMapLevel::LoadWorldMapAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Appear").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Hover").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_BeforClear_Release").GetFullPath());
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_Clear_Appear").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_Clear_Hover").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Flag_Clear_Release").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("FlagStar").GetFullPath());
 
 	Dir.MoveParentToDirectory("PathDot");
 	Dir.Move("PathDot");
