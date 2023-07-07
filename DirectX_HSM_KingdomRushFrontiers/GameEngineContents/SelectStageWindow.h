@@ -31,7 +31,6 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
 
 private:
 	int SelectedStage = 0;

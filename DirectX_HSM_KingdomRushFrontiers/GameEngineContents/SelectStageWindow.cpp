@@ -34,7 +34,6 @@ void SelectStageWindow::Start()
 	WindowBg->GetTransform()->SetWorldScale(BgScale);
 
 	StagePreview = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_1);
-	//StagePreview->SetTexture("Preview_0.png");
 	StagePreview->GetTransform()->SetWorldScale(PreviewScale);
 	StagePreview->GetTransform()->SetLocalPosition(PreviewLocPos);
 
@@ -85,11 +84,6 @@ void SelectStageWindow::Start()
 	TitleDeco_Right->SetTexture("TitleDeco_Right.png");
 
 	Off();
-}
-
-void SelectStageWindow::Update(float _DeltaTime)
-{
-
 }
 
 void SelectStageWindow::SetLeftTitleData()
