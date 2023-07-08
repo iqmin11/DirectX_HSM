@@ -18,9 +18,6 @@
     <ClInclude Include="TitleBackground.h">
       <Filter>1.Title\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>1.Title\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="StageEditLevel.h">
       <Filter>4.StageEdit</Filter>
     </ClInclude>
@@ -287,6 +284,15 @@
     <ClInclude Include="ExitButton.h">
       <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
     </ClInclude>
+    <ClInclude Include="TitleMenuManager.h">
+      <Filter>1.Title\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleButton_Start.h">
+      <Filter>1.Title\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleButton_Exit.h">
+      <Filter>1.Title\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -304,9 +310,6 @@
       <Filter>2.WorldMap</Filter>
     </ClCompile>
     <ClCompile Include="TitleBackground.cpp">
-      <Filter>1.Title\Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
       <Filter>1.Title\Actor</Filter>
     </ClCompile>
     <ClCompile Include="StageEditLevel.cpp">
@@ -595,6 +598,15 @@
     </ClCompile>
     <ClCompile Include="ExitButton.cpp">
       <Filter>2.WorldMap\Actor\SelectStageWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMenuManager.cpp">
+      <Filter>1.Title\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleButton_Start.cpp">
+      <Filter>1.Title\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleButton_Exit.cpp">
+      <Filter>1.Title\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

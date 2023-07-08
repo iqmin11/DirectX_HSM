@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "ContentsEnum.h"
 
 class TitleBackground : public GameEngineActor
 {
@@ -20,7 +21,6 @@ protected:
 
 private:
 	float4 ActorPos = float4::Zero;
-	//float4 RenderScale = { 1280, 720 };
 	float4 RenderScale = { 1600, 900 };
 	std::shared_ptr<class GameEngineSpriteRenderer> BackgroundRenderer = nullptr;
 };

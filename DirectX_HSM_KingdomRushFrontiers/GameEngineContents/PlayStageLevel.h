@@ -71,6 +71,8 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	void LevelChangeEnd() override;
+
 private:
 	std::shared_ptr<class StageBg> AcStageBg = nullptr;
 	std::shared_ptr<class PlayStageUI> AcPlayStageUI = nullptr;

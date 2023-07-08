@@ -1,6 +1,6 @@
 #include "PrecompileHeader.h"
 #include "TitleBackground.h"
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 
 TitleBackground::TitleBackground()
 {
@@ -14,8 +14,8 @@ TitleBackground::~TitleBackground()
 
 void TitleBackground::Start()
 {
-	BackgroundRenderer = CreateComponent<GameEngineSpriteRenderer>();
-	BackgroundRenderer->SetTexture("mainmenu_bg.png");
+	BackgroundRenderer = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::Bg);
+	BackgroundRenderer->SetTexture("TitleBg.png");
 	BackgroundRenderer->GetTransform()->SetWorldScale(RenderScale);
 }
 

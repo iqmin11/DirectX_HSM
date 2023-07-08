@@ -6,8 +6,7 @@
 #include <GameEngineCore/GameEngineTexture.h>
 
 #include "TitleBackground.h"
-#include "TitleLogo.h"
-
+#include "TitleMenuManager.h"
 
 TitleLevel::TitleLevel()
 {
@@ -22,12 +21,14 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Start()
 {
 	LoadTexture();
-
-	AcTitleBackground = CreateActor<TitleBackground>();
-	AcTitleLogo = CreateActor<TitleLogo>();
-
+	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
-	//GetMainCamera()->GetTransform()->SetLocalPosition(CameraPos);
+	GetCamera(100)->SetProjectionType(CameraType::Orthogonal);
+	
+	AcTitleBackground = CreateActor<TitleBackground>();
+	AcTitleMenu = CreateActor<TitleMenuManager>();
+	AcTitleMenu->GetTransform()->SetLocalPosition(TitleMenuLocPos);
+
 	GameEngineInput::CreateKey("TestLevel",VK_ESCAPE);
 }
 

@@ -58,11 +58,6 @@ void WorldMapLevel::Update(float _DeltaTime)
 	}
 }
 
-void WorldMapLevel::LevelChangeStart()
-{
-	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
-}
-
 void WorldMapLevel::LoadWorldMapTexture(std::string_view _Folder)
 {
  	GameEngineDirectory Dir;

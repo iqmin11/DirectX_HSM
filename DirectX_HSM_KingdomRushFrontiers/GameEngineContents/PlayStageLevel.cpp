@@ -153,6 +153,12 @@ void PlayStageLevel::Update(float _DeltaTime)
 	}
 }
 
+void PlayStageLevel::LevelChangeEnd()
+{
+	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
+	IsPause = false;
+}
+
 void PlayStageLevel::LoadAllStageData()
 {
 	LoadPathBinData();

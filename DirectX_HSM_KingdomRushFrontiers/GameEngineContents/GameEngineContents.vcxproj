@@ -518,15 +518,23 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleButton_Exit.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
+    <ClInclude Include="TitleMenuManager.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="TowerButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleButton_Start.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -943,15 +951,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleButton_Exit.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
+    <ClCompile Include="TitleMenuManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="TowerButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleButton_Start.cpp">
       <SubType>
       </SubType>
     </ClCompile>
