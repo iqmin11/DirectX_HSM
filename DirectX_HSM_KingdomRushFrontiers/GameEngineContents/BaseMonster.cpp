@@ -61,6 +61,32 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 }
 
 
+void BaseMonster::TestPath(float _DeltaTime)
+{
+	if (PathInfo == nullptr)
+	{
+		MsgAssert("몬스터의 경로가 지정되지 않아 이동할 수 없습니다.");
+		return;
+	}
+
+	if (Ratio >= 1)
+	{
+		Time = 0;
+		Ratio = 0;
+		CurPoint++;
+		NextPoint++;
+	}
+
+	if (NextPoint == PathInfo->end())
+	{
+		Death();
+		LiveMonsterListRelease();
+		return;
+	}
+
+	WalkToNextPoint(_DeltaTime);
+}
+
 void BaseMonster::Start()
 {
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
@@ -80,6 +106,12 @@ void BaseMonster::Update(float _DeltaTime)
 {
 	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
 	{
+		return;
+	}
+
+	if (IsTestMonster)
+	{
+		TestPath(_DeltaTime);
 		return;
 	}
 

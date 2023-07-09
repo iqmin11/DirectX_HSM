@@ -33,7 +33,7 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         StageExRenderer.reserve(6);
         for (size_t i = 0; i < StageExRenderer.capacity(); i++)
         {
-            StageExRenderer.emplace_back(StageExActor->CreateComponent<GameEngineSpriteRenderer>(static_cast<int>(RenderOrder::Bg)));
+            StageExRenderer.emplace_back(StageExActor->CreateComponent<GameEngineSpriteRenderer>());
             StageExRenderer[i]->SetTexture("Stage" + std::to_string(i) +"ex.png");
             StageExRenderer[i]->GetTransform()->SetWorldScale({1600,900,1});
             StageExRenderer[i]->GetTransform()->SetLocalPosition({-1,0,1000,1});
@@ -50,10 +50,10 @@ void StageEditor::OnGUI(std::shared_ptr<class GameEngineLevel> _Level, float _De
         BuildAreaSelect->GetTransform()->SetWorldScale({ 128,128,1 });
         BuildAreaSelect->Off();
 
-        OutLine = StageExActor->CreateComponent<GameEngineSpriteRenderer>();
-        OutLine->SetTexture("OutLine.png");
-        OutLine->GetTransform()->SetWorldScale({ 1300,950,1 });
-        OutLine->GetTransform()->SetWorldPosition({ 0,0,-1000 });
+        //OutLine = StageExActor->CreateComponent<GameEngineSpriteRenderer>();
+        //OutLine->SetTexture("OutLine.png");
+        //OutLine->GetTransform()->SetWorldScale({ 1300,950,1 });
+        //OutLine->GetTransform()->SetWorldPosition({ 0,0,-1000 });
     }
     
     DrawPointRenderer(_Level);
@@ -249,7 +249,7 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
                 BuildAreaCursor->SetScaleToTexture("PauseFrame.png");
                 break;
             case 6:
-                BuildAreaCursor->SetScaleToTexture("RainOfFireButton.png");
+                BuildAreaCursor->SetScaleToTexture("RainOfFireButton_Release.png");
                 break;
             case 7:
                 BuildAreaCursor->SetScaleToTexture("SpellButtonFrame.png");
@@ -264,7 +264,7 @@ void StageEditor::BuildAreaTap(float _DeltaTime)
                 BuildAreaCursor->SetScaleToTexture("UnderWaveFrame.png");
                 break;
             case 11:
-                BuildAreaCursor->SetScaleToTexture("WaveButton.png");
+                BuildAreaCursor->SetScaleToTexture("WaveButton_Release.png");
                 break;
             case 12:
                 BuildAreaCursor->SetScaleToTexture("WaveStartbuttonFrame.png");
@@ -710,7 +710,7 @@ void StageEditor::WaveEditTap(std::shared_ptr<class GameEngineLevel> _Level, flo
     StageData& Stage = Data[SelectedStage];
     if (Stage.Lines.size() != 0)
     {
-        OutLine->Off();
+        //OutLine->Off();
         if (ImGui::BeginTabItem("WaveEdit"))
         {
             if (ImGui::Button("AddWave"))
@@ -852,7 +852,8 @@ void StageEditor::PathTest(std::shared_ptr<class GameEngineLevel> _Level)
         return;
     }
     
-    BaseMonster::CreateMonster(_Level, MonsterEnum::DuneRaider, Data[SelectedStage].Lines[SelectedLine].Points);
+    std::weak_ptr<BaseMonster>LocMonster(BaseMonster::CreateMonster(_Level, MonsterEnum::DuneRaider, Data[SelectedStage].Lines[SelectedLine].Points));
+    LocMonster.lock()->IsTestMonster = true;
     //_Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
 }
 

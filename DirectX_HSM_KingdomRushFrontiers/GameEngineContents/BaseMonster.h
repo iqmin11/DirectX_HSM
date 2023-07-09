@@ -17,6 +17,7 @@ enum class MonsterState
 class BaseMonster : public GameEngineActor
 {
 public:
+	bool IsTestMonster = false;
 	static std::list<std::weak_ptr<BaseMonster>> LiveMonsterList;
 	static bool IsAllMonsterDead();
 	static void LiveMonsterListForceRelease();
@@ -61,6 +62,7 @@ public:
 	{
 		return MonsterCol;
 	}
+
 	
 	float CurHP = 0;
 	HitState Hit = HitState::Etc;
@@ -73,6 +75,7 @@ protected:
 
 	void WalkToNextPoint(float _DeltaTime);
 	void WalkPath(float _DeltaTime);
+	void TestPath(float _DeltaTime);
 
 	std::shared_ptr<class GameEngineSpriteRenderer> MonsterRenderer = nullptr;
 	std::shared_ptr<class GameEngineCollision> MonsterCol = nullptr;
@@ -111,6 +114,7 @@ private:
 	float Ratio = 0;
 
 	float AttackTime = 0;
+
 
 	void LiveMonsterListRelease();
 	void CalMonsterDir();
