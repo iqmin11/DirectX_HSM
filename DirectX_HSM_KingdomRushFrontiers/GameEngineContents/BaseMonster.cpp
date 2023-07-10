@@ -12,6 +12,7 @@
 #include "PlayStageLevel.h"
 #include "PlayManager.h"
 #include "SandHound.h"
+#include "WarHound.h"
 
 std::list<std::weak_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::weak_ptr<BaseMonster>>();
 
@@ -58,6 +59,9 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 		break;
 	case MonsterEnum::SandHound:
 		Result = _Level->CreateActor<SandHound>();
+		break;
+	case MonsterEnum::WarHound:
+		Result = _Level->CreateActor<WarHound>();
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");
