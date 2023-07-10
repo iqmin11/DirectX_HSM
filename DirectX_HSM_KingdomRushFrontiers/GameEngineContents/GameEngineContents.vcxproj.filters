@@ -78,7 +78,7 @@
       <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
     </ClInclude>
     <ClInclude Include="DesertThug.h">
-      <Filter>3.PlayStage\Actor\Monster\1.DesertThug</Filter>
+      <Filter>3.PlayStage\Actor\Monster\1. DesertThug</Filter>
     </ClInclude>
     <ClInclude Include="DuneRaider.h">
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
@@ -293,6 +293,18 @@
     <ClInclude Include="TitleButton_Exit.h">
       <Filter>1.Title\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Immortal.h">
+      <Filter>3.PlayStage\Actor\Monster\3. Immortal</Filter>
+    </ClInclude>
+    <ClInclude Include="SandHound.h">
+      <Filter>3.PlayStage\Actor\Monster\4. SandHound</Filter>
+    </ClInclude>
+    <ClInclude Include="WarHound.h">
+      <Filter>3.PlayStage\Actor\Monster\5. WarHound</Filter>
+    </ClInclude>
+    <ClInclude Include="DuneTerror.h">
+      <Filter>3.PlayStage\Actor\Monster\6. DuneTerror</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -373,7 +385,7 @@
       <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
     </ClCompile>
     <ClCompile Include="DesertThug.cpp">
-      <Filter>3.PlayStage\Actor\Monster\1.DesertThug</Filter>
+      <Filter>3.PlayStage\Actor\Monster\1. DesertThug</Filter>
     </ClCompile>
     <ClCompile Include="DuneRaider.cpp">
       <Filter>3.PlayStage\Actor\Monster\2. DuneRaider</Filter>
@@ -608,6 +620,18 @@
     <ClCompile Include="TitleButton_Exit.cpp">
       <Filter>1.Title\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Immortal.cpp">
+      <Filter>3.PlayStage\Actor\Monster\3. Immortal</Filter>
+    </ClCompile>
+    <ClCompile Include="SandHound.cpp">
+      <Filter>3.PlayStage\Actor\Monster\4. SandHound</Filter>
+    </ClCompile>
+    <ClCompile Include="WarHound.cpp">
+      <Filter>3.PlayStage\Actor\Monster\5. WarHound</Filter>
+    </ClCompile>
+    <ClCompile Include="DuneTerror.cpp">
+      <Filter>3.PlayStage\Actor\Monster\6. DuneTerror</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -666,9 +690,6 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Tower\4.MeleeTower">
       <UniqueIdentifier>{77b148df-1f9f-42b5-9a74-3cf0a376c77b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3.PlayStage\Actor\Monster\1.DesertThug">
-      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
     </Filter>
     <Filter Include="3.PlayStage\Actor\TowerUI">
       <UniqueIdentifier>{b27fac81-eafa-4253-9da5-69e816d9ec67}</UniqueIdentifier>
@@ -747,6 +768,42 @@
     </Filter>
     <Filter Include="2.WorldMap\Actor\SelectStageWindow">
       <UniqueIdentifier>{8fc0d839-f6d8-4eb2-a685-36648cac5ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\3. Immortal">
+      <UniqueIdentifier>{d7557797-9cb1-4a14-8945-911fb9b997e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\4. SandHound">
+      <UniqueIdentifier>{542bf2f1-5448-4cb1-93b2-8ee7051560d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\5. WarHound">
+      <UniqueIdentifier>{6e9c68bd-2370-48a6-a434-d2ba71419f6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\6. DuneTerror">
+      <UniqueIdentifier>{aad0739e-8f05-4d67-8ab2-09fdec14dd30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\7. GiantWasp">
+      <UniqueIdentifier>{05a05ad5-e819-48fb-ac22-045fef9b7869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\8. GiantWaspQueen">
+      <UniqueIdentifier>{9afaac31-a3fc-4230-a71b-1a60ea957139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\9. GiantScorpion">
+      <UniqueIdentifier>{3b975323-22b0-4e11-9745-949bb2d7b715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\10. DessertArcher">
+      <UniqueIdentifier>{c9b7802e-4305-4d93-a2b3-b57840af3804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\11. Executioner">
+      <UniqueIdentifier>{9e21bb80-f993-405b-9944-db0cad56ed4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\12. SandWraith">
+      <UniqueIdentifier>{93a1afce-cd5c-41d8-906a-2530495743da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\13. Fallen">
+      <UniqueIdentifier>{aa402ea4-c7ae-429d-8e1c-c40283d11fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\Monster\1. DesertThug">
+      <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

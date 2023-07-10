@@ -113,7 +113,7 @@ private:
 	float Time = 0;
 	float Ratio = 0;
 
-	float AttackTime = 0;
+	float AttackTime = 100;
 
 
 	void LiveMonsterListRelease();

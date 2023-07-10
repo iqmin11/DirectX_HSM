@@ -40,6 +40,7 @@ void BaseMonster::IdleStateInit()
 					return;
 				}
 
+				AttackTime += _DeltaTime;
 				if (MonsterCol->GetTransform()->Collision({._OtherTrans = TargetFighter->GetFighterCol()->GetTransform(), .ThisType = ColType::SPHERE2D, .OtherType = ColType::SPHERE2D}))
 				{
 					State = MonsterState::Attack;
@@ -111,7 +112,6 @@ void BaseMonster::AttackStateInit()
 				{
 					MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();
 				}
-				MonsterRenderer->ChangeAnimation("Attack");
 			},
 			.Update = [this](float _DeltaTime)
 			{

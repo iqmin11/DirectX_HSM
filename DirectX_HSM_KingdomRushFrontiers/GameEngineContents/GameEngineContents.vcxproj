@@ -310,6 +310,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="DuneTerror.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Effect_OneStar.h">
       <SubType>
       </SubType>
@@ -340,6 +344,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Hero_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Immortal.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -458,6 +466,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SandHound.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Sandman_Fighter.h">
       <SubType>
       </SubType>
@@ -555,6 +567,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="VictoryBadge.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WarHound.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -731,6 +747,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DuneTerror.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Effect_OneStar.cpp">
       <SubType>
       </SubType>
@@ -765,6 +785,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Hero_RallyPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Immortal.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -890,6 +914,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="SandHound.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Sandman_Fighter.cpp">
       <SubType>
       </SubType>
@@ -988,6 +1016,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="VictoryBadge.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WarHound.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -402,6 +402,23 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArtilleryTower_ExplosionSmoke").GetFullPath());
 
 	Dir.MoveParentToDirectory("ArtilleryTower");
+	Dir.Move("MeleeTowerFighterAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move").GetFullPath());
+
+	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
+	Dir.Move("EnemiesAnimation");
 	Dir.Move("DesertThug");
 	
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Attack").GetFullPath());
@@ -412,22 +429,6 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DesertThug_Move_Profile").GetFullPath());
 
 	Dir.MoveParentToDirectory("DesertThug");
-	Dir.Move("MeleeTowerFighterAnimation");
-
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv1_Fighter_Move"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv2_Fighter_Move"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Attack").GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death" ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle"  ).GetFullPath());
-	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move"  ).GetFullPath());
-
-	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
 	Dir.Move("DuneRaider");
 
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Attack").GetFullPath());
@@ -438,6 +439,108 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneRaider_Move_Profile").GetFullPath());
 
 	Dir.MoveParentToDirectory("DuneRaider");
+	Dir.Move("DessertArcher");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_Move_Profile").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DessertArcher_RangedAttack").GetFullPath());
+
+	Dir.MoveParentToDirectory("DessertArcher");
+	Dir.Move("DuneTerror");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Move_Profile").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Come_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("DuneTerror_Go_Down").GetFullPath());
+
+	Dir.MoveParentToDirectory("DuneTerror");
+	Dir.Move("Executioner");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Executioner_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("Executioner");
+	Dir.Move("GiantScorpion");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Attack_0").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Attack_1").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantScorpion_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("GiantScorpion");
+	Dir.Move("GiantWasp");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWasp_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWasp_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWasp_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWasp_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("GiantWasp");
+	Dir.Move("GiantWaspQueen");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWaspQueen_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWaspQueen_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWaspQueen_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("GiantWaspQueen_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("GiantWaspQueen");
+	Dir.Move("Immortal");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Immortal_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("Immortal");
+	Dir.Move("SandHound");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandHound_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("SandHound");
+	Dir.Move("WarHound");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("WarHound_Move_Profile").GetFullPath());
+
+	Dir.MoveParentToDirectory("WarHound");
+	Dir.Move("SandWraith");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Move_Profile").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Summon").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_RangedAttack").GetFullPath());
+
+	Dir.MoveParentToDirectory("EnemiesAnimation");
 	Dir.Move("EffectAnimation");
 
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());

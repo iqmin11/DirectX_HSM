@@ -8,8 +8,10 @@
 #include "BaseFighter.h"
 #include "DesertThug.h"
 #include "DuneRaider.h"
+#include "Immortal.h"
 #include "PlayStageLevel.h"
 #include "PlayManager.h"
+#include "SandHound.h"
 
 std::list<std::weak_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::weak_ptr<BaseMonster>>();
 
@@ -50,6 +52,12 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 		break;
 	case MonsterEnum::DuneRaider:
 		Result = _Level->CreateActor<DuneRaider>();
+		break;
+	case MonsterEnum::Immortal:
+		Result = _Level->CreateActor<Immortal>();
+		break;
+	case MonsterEnum::SandHound:
+		Result = _Level->CreateActor<SandHound>();
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");
@@ -154,8 +162,8 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	{
 		Death();
 		LiveMonsterListRelease();
-		dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
-		GiveBounty();
+		//dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
+		//GiveBounty();
 		return;
 	}
 

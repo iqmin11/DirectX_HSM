@@ -15,7 +15,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	GameEngineCore::Start(hInstance,
 		ContentsCore::GameStart,
-		ContentsCore::GameEnd, {}, {1700, 950} // 1600, 900
+		ContentsCore::GameEnd, {}, {1700, 1000} // 1600, 900
 	);
 }
 

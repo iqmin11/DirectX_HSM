@@ -110,8 +110,8 @@ void Melee_RallyPoint::SetFighter(int _Count)
 	for (size_t i = 0; i < Fighters.size(); i++)
 	{
 		Fighters[i] = GetLevel()->CreateActor<Melee_Fighter>();
-		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetParentRally(this);
+		Fighters[i]->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetPrevPos(GetTransform()->GetWorldPosition());
 		Fighters[i]->SetRallyTransform(RallyPosCheckComponents[i]->GetTransform());
 		Fighters[i]->Data.SetData(FighterEnum::MeleeLv1);
@@ -123,8 +123,8 @@ void Melee_RallyPoint::SetFighter(int _Count)
 void Melee_RallyPoint::RespawnFighter(int _index)
 {
 	Fighters[_index] = GetLevel()->CreateActor<Melee_Fighter>();
-	Fighters[_index]->GetTransform()->SetWorldPosition(GetTransform()->GetParent()->GetWorldPosition());
 	Fighters[_index]->SetParentRally(this);
+	Fighters[_index]->GetTransform()->SetWorldPosition(GetTransform()->GetParent()->GetWorldPosition());
 	Fighters[_index]->SetPrevPos(GetTransform()->GetParent()->GetWorldPosition());
 	Fighters[_index]->SetRallyTransform(RallyPosCheckComponents[_index]->GetTransform());
 	Fighters[_index]->Data.SetData(DataPtr->Level);
