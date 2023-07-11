@@ -15,7 +15,7 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime);
+	void Update(float _DeltaTime) override;
 
 private:
 	float4 RenderScale = { 128,128,1 };

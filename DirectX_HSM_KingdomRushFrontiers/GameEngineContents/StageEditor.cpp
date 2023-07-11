@@ -884,8 +884,8 @@ std::string StageEditor::MonsterEnumToString(MonsterEnum _Monster)
     case MonsterEnum::DuneRaider:
         return "DuneRaider";
         break;
-    case MonsterEnum::DesertArcher:
-        return "DesertArcher";
+    case MonsterEnum::DessertArcher:
+        return "DessertArcher";
         break;
     case MonsterEnum::SandHound:
         return "SandHound";

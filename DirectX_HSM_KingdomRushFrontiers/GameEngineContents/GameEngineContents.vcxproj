@@ -302,6 +302,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="DessertArcher.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DuneRaider.h">
       <SubType>
       </SubType>
@@ -322,7 +326,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Executioner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ExitButton.h" />
+    <ClInclude Include="Fallen.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FireBallExplosion.h">
       <SubType>
       </SubType>
@@ -332,6 +344,18 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FlagButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GiantScorpion.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GiantWasp.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GiantWaspQueen.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -475,6 +499,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Sandman_RallyPoint.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SandWraith.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -739,6 +767,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DessertArcher.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DuneRaider.cpp">
       <SubType>
       </SubType>
@@ -759,7 +791,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Executioner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ExitButton.cpp" />
+    <ClCompile Include="Fallen.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FireBallExplosion.cpp">
       <SubType>
       </SubType>
@@ -769,6 +809,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FlagButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GiantScorpion.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GiantWasp.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GiantWaspQueen.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -924,6 +976,10 @@
     </ClCompile>
     <ClCompile Include="Sandman_Fighter_State.cpp" />
     <ClCompile Include="Sandman_RallyPoint.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SandWraith.cpp">
       <SubType>
       </SubType>
     </ClCompile>

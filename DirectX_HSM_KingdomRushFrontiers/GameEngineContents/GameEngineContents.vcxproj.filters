@@ -305,6 +305,27 @@
     <ClInclude Include="DuneTerror.h">
       <Filter>3.PlayStage\Actor\Monster\6. DuneTerror</Filter>
     </ClInclude>
+    <ClInclude Include="GiantWasp.h">
+      <Filter>3.PlayStage\Actor\Monster\7. GiantWasp</Filter>
+    </ClInclude>
+    <ClInclude Include="GiantWaspQueen.h">
+      <Filter>3.PlayStage\Actor\Monster\8. GiantWaspQueen</Filter>
+    </ClInclude>
+    <ClInclude Include="GiantScorpion.h">
+      <Filter>3.PlayStage\Actor\Monster\9. GiantScorpion</Filter>
+    </ClInclude>
+    <ClInclude Include="DessertArcher.h">
+      <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Executioner.h">
+      <Filter>3.PlayStage\Actor\Monster\11. Executioner</Filter>
+    </ClInclude>
+    <ClInclude Include="SandWraith.h">
+      <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
+    </ClInclude>
+    <ClInclude Include="Fallen.h">
+      <Filter>3.PlayStage\Actor\Monster\13. Fallen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -631,6 +652,27 @@
     </ClCompile>
     <ClCompile Include="DuneTerror.cpp">
       <Filter>3.PlayStage\Actor\Monster\6. DuneTerror</Filter>
+    </ClCompile>
+    <ClCompile Include="GiantWasp.cpp">
+      <Filter>3.PlayStage\Actor\Monster\7. GiantWasp</Filter>
+    </ClCompile>
+    <ClCompile Include="GiantWaspQueen.cpp">
+      <Filter>3.PlayStage\Actor\Monster\8. GiantWaspQueen</Filter>
+    </ClCompile>
+    <ClCompile Include="GiantScorpion.cpp">
+      <Filter>3.PlayStage\Actor\Monster\9. GiantScorpion</Filter>
+    </ClCompile>
+    <ClCompile Include="DessertArcher.cpp">
+      <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
+    </ClCompile>
+    <ClCompile Include="Executioner.cpp">
+      <Filter>3.PlayStage\Actor\Monster\11. Executioner</Filter>
+    </ClCompile>
+    <ClCompile Include="SandWraith.cpp">
+      <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
+    </ClCompile>
+    <ClCompile Include="Fallen.cpp">
+      <Filter>3.PlayStage\Actor\Monster\13. Fallen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -66,7 +66,7 @@ enum class MonsterEnum
 	Null = -1,
 	DesertThug,
 	DuneRaider,
-	DesertArcher,
+	DessertArcher,
 	SandHound,
 	WarHound,
 	Immortal,

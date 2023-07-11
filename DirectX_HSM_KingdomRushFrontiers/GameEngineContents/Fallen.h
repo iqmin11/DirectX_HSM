@@ -1,18 +1,17 @@
 #pragma once
 #include "BaseMonster.h"
-
-class WarHound : public BaseMonster
+class Fallen : public BaseMonster
 {
 public:
 	// construtor destructor
-	WarHound();
-	~WarHound();
+	Fallen();
+	~Fallen();
 
 	// delete Function
-	WarHound(const WarHound& _Other) = delete;
-	WarHound(WarHound&& _Other) noexcept = delete;
-	WarHound& operator=(const WarHound& _Other) = delete;
-	WarHound& operator=(WarHound&& _Other) noexcept = delete;
+	Fallen(const Fallen& _Other) = delete;
+	Fallen(Fallen&& _Other) noexcept = delete;
+	Fallen& operator=(const Fallen& _Other) = delete;
+	Fallen& operator=(Fallen&& _Other) noexcept = delete;
 
 protected:
 	void Start() override;

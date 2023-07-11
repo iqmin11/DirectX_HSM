@@ -26,7 +26,7 @@ void ContentsCore::GameStart()
 	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<StageEditLevel>();
 
-	GameEngineCore::ChangeLevel("PlayStageLevel");
+	GameEngineCore::ChangeLevel("StageEditLevel");
 }
 
 void ContentsCore::GameEnd()

@@ -327,7 +327,7 @@ public:
 			IsFlying = false;
 			IsRanged = false;
 			break;
-		case MonsterEnum::DesertArcher:
+		case MonsterEnum::DessertArcher:
 			MonsterType = _MonsterType;
 			Hp = 150;
 			AttackRate = 1.0f;

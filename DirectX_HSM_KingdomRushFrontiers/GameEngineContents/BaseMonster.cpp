@@ -13,6 +13,14 @@
 #include "PlayManager.h"
 #include "SandHound.h"
 #include "WarHound.h"
+#include "DuneTerror.h"
+#include "GiantWasp.h"
+#include "GiantWaspQueen.h"
+#include "GiantScorpion.h"
+#include "DessertArcher.h"
+#include "Executioner.h"
+#include "SandWraith.h"
+#include "Fallen.h"
 
 std::list<std::weak_ptr<BaseMonster>> BaseMonster::LiveMonsterList = std::list<std::weak_ptr<BaseMonster>>();
 
@@ -46,6 +54,7 @@ BaseMonster::~BaseMonster()
 std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo)
 {
 	std::shared_ptr<BaseMonster> Result = nullptr;
+	
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
@@ -62,6 +71,30 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 		break;
 	case MonsterEnum::WarHound:
 		Result = _Level->CreateActor<WarHound>();
+		break;
+	case MonsterEnum::DuneTerror:
+		Result = _Level->CreateActor<DuneTerror>();
+		break;
+	case MonsterEnum::GiantWasp:
+		Result = _Level->CreateActor<GiantWasp>();
+		break;
+	case MonsterEnum::GiantWaspQueen:
+		Result = _Level->CreateActor<GiantWaspQueen>();
+		break;
+	case MonsterEnum::GiantScorpion:
+		Result = _Level->CreateActor<GiantScorpion>();
+		break;
+	case MonsterEnum::DessertArcher:
+		Result = _Level->CreateActor<DessertArcher>();
+		break;
+	case MonsterEnum::Executioner:
+		Result = _Level->CreateActor<Executioner>();
+		break;
+	case MonsterEnum::SandWraith:
+		Result = _Level->CreateActor<SandWraith>();
+		break;
+	case MonsterEnum::Fallen:
+		Result = _Level->CreateActor<Fallen>();
 		break;
 	default:
 		MsgAssert("¹Ì±¸Çö");
