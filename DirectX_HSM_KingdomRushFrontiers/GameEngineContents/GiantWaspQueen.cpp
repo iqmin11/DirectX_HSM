@@ -17,11 +17,11 @@ void GiantWaspQueen::Start()
 {
 	BaseMonster::Start();
 	Data.SetData(MonsterEnum::GiantWaspQueen);
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "GiantWaspQueen_Profile", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "GiantWaspQueen_Move_Profile", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "GiantWaspQueen_Move_Back", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "GiantWaspQueen_Move_Front", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "GiantWaspQueen_Move_Profile", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "GiantWaspQueen_Profile", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "GiantWaspQueen_Move_Profile", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "GiantWaspQueen_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);

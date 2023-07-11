@@ -21,7 +21,7 @@ void GiantScorpion::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "GiantScorpion_Move_Back", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "GiantScorpion_Move_Front", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "GiantScorpion_Move_Profile", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "GiantScorpion_Attack0", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "GiantScorpion_Attack_0", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "GiantScorpion_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);

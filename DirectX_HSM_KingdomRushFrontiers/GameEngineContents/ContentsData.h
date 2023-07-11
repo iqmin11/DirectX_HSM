@@ -338,7 +338,7 @@ public:
 			RangedDamage_MAX = 30;
 			Armor = Def_None;
 			MagicResistance = Def_Low;
-			Speed = Speed_Fast;
+			Speed = Speed_Midium;
 			Dodge = 0.0f;
 			LivesTaken = 1;
 			Bounty = 12;
