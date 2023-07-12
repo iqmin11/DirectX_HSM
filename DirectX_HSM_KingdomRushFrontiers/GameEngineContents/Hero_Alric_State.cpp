@@ -155,8 +155,15 @@ void Hero_Alric::AttackStateInit()
 	.Name = "Attack",
 	.Start = [this]()
 		{
-			int RandomInt = GameEngineRandom::MainRandom.RandomInt(0,1);
-			FighterRenderer->ChangeAnimation("Attack" + std::to_string(RandomInt));
+			if (AttackTime >= Data.AttackRate)
+			{
+				int RandomInt = GameEngineRandom::MainRandom.RandomInt(0, 1);
+				FighterRenderer->ChangeAnimation("Attack" + std::to_string(RandomInt));
+			}
+			else
+			{
+				FighterRenderer->ChangeAnimation("Idle");
+			}
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -193,10 +200,11 @@ void Hero_Alric::AttackStateInit()
 			}
 
 			Time += _DeltaTime;
+			AttackTime += _DeltaTime;
 			FlurryCooltime += _DeltaTime;
-			if (Time >= Data.AttackRate)
+			if (AttackTime >= Data.AttackRate)
 			{
-				Time = 0.f;
+				AttackTime = 0.f;
 				if (FlurryCooltime >= 6.f)
 				{
 					FlurryCooltime = 0.f;

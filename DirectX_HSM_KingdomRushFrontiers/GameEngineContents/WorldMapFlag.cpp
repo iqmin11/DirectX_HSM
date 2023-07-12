@@ -5,6 +5,8 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include "FlagButton.h"
 
+FlagState WorldMapFlag::State = FlagState::Start;
+
 WorldMapFlag::WorldMapFlag()
 {
 
@@ -19,6 +21,12 @@ void WorldMapFlag::SetClearData(int _StarCount)
 {
 	Data.Clear = true;
 	Data.StarCount = _StarCount;
+}
+
+void WorldMapFlag::On()
+{
+	GameEngineObject::On();
+	State = FlagState::Start;
 }
 
 std::shared_ptr<WorldMapFlag> WorldMapFlag::CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click)
@@ -70,7 +78,10 @@ void WorldMapFlag::Start()
 			{
 				NextStageOnTrigger->On();
 			}
-			State = FlagState::Update;
+			else
+			{
+				State = FlagState::Update;
+			}
 		});
 
 	FlagAnimation->ChangeAnimation("NonClear_Appear");

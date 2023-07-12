@@ -40,8 +40,6 @@ void Hero_Alric::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "Flurry", .SpriteName = "Hero_Alric_Skill_Flurry", .FrameInter = 0.075f, .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "Hero_Alric_Skill_Summon", .FrameInter = 0.075f, .Loop = false });
 
-
-
 	FighterRenderer->SetAnimationStartEvent("Attack0", 3, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
@@ -83,6 +81,12 @@ void Hero_Alric::Start()
 void Hero_Alric::Update(float _DeltaTime)
 {
 	BaseFighter::Update(_DeltaTime);
+
+	if (TargetMonster != nullptr)
+	{
+		int a = 0;
+	}
+
 	if (IsThereSummonTarget())
 	{
  		SummonTargetMonster = FindTargetMonster();

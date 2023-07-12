@@ -58,3 +58,34 @@ void Hero_RallyPoint::SetHero()
 	Fighters[1] = nullptr;
 	Fighters[2] = nullptr;
 }
+
+void Hero_RallyPoint::FindTarget()
+{
+	SetPrevTarget();
+
+	size_t ColCount = ColMonsters.size();
+
+	RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
+	if (ColMonsters.size() > Fighters.size())
+	{
+		ColMonsters.resize(Fighters.size());
+	}
+
+	if (ColCount != ColMonsters.size())
+	{
+		ColCount = ColMonsters.size();
+		IsChangeColCount = true;
+	}
+	else
+	{
+		IsChangeColCount = false;
+	}
+
+	if (ColCount >= 1)
+	{
+		if (Fighters[0] != nullptr && Fighters[0]->State != FighterState::Death && !Fighters[0]->HaveITarget())
+			Fighters[0]->SetTarget(ColMonsters[0]->GetActor()->DynamicThis<BaseMonster>());
+	}
+
+	SetBoolChangeTarget();
+}

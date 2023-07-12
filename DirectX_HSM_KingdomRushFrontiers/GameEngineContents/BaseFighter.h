@@ -131,6 +131,7 @@ protected:
 
 	float Speed = 100.f;
 	float Time = 0.f;
+	float AttackTime = 100.f;
 	float Ratio = 0.f;
 	bool IsChangeTarget = false;
 

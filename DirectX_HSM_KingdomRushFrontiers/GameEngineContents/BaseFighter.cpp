@@ -70,7 +70,6 @@ void BaseFighter::Update(float _DeltaTime)
 
 void BaseFighter::MoveToRally(float _DeltaTime)
 {
-	float4 test = GetTransform()->GetWorldPosition();
 	float4 RallyPos = RallyTransform->GetWorldPosition();
 	Time += _DeltaTime;
 	Ratio = Time * (Speed / (RallyPos - PrevPos).Size());

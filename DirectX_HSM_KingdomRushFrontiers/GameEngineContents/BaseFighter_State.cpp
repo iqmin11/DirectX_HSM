@@ -150,7 +150,14 @@ void BaseFighter::AttackStateInit()
 		.Name = "Attack",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+			if (AttackTime >= Data.AttackRate)
+			{
+				FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+			}
+			else
+			{
+				FighterRenderer->ChangeAnimation("Idle");
+			}
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -186,10 +193,10 @@ void BaseFighter::AttackStateInit()
 				TargetMonster->TargetFighter = this;
 			}
 
-			Time += _DeltaTime;
-			if (Time >= Data.AttackRate)
+			AttackTime += _DeltaTime;
+			if (AttackTime >= Data.AttackRate)
 			{
-				Time = 0.f;
+				AttackTime = 0.f;
 				FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
 			}
 		},

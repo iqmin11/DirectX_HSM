@@ -34,9 +34,8 @@ protected:
 	float Range = 60.f;
 	
 	bool IsThereTarget();
-	void FindTarget();
+	virtual void FindTarget();
 
-private:
 
 	std::vector<std::shared_ptr<GameEngineCollision>> ColMonsters = std::vector<std::shared_ptr<GameEngineCollision>>();
 
@@ -50,6 +49,7 @@ private:
 
 	void ResetTargetMonster();
 	//void SetFighter(int _Count);
+private:
 
 };
 

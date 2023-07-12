@@ -23,5 +23,6 @@ protected:
 
 private:
 	void SetHero();
+	void FindTarget() override;
 };
 

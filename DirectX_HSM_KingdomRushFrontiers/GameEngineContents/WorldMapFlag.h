@@ -43,6 +43,8 @@ public:
 		State = _State;
 	}
 
+	void On() override;
+
 	static std::shared_ptr <WorldMapFlag> CreateFlag(GameEngineActor* _Parent, std::function<void()> _Click);
 
 protected:
@@ -50,9 +52,10 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
+	static FlagState State;
+
 	ClearData Data = ClearData();
 
-	FlagState State = FlagState::Start;
 	std::shared_ptr<class GameEngineUIRenderer> FlagAnimation = nullptr;
 	float4 RenderScale = { 213,213,1 };
 
