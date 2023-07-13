@@ -11,7 +11,9 @@ enum class MonsterState
 	Idle,
 	Move,
 	Attack,
-	Death
+	Death,
+	Born,
+
 };
 
 class BaseMonster : public GameEngineActor

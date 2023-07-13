@@ -26,6 +26,12 @@ void Fallen::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "Fallen_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "Fallen_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Born", .SpriteName = "Fallen_Born", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->SetAnimationStartEvent("Born", 31, [this]()
+		{
+			State = MonsterState::Idle;
+			MonsterFSM.ChangeState("Idle");
+		});
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
@@ -33,15 +39,18 @@ void Fallen::Start()
 
 	MonsterRenderer->SetAnimationStartEvent("Attack", 3, std::bind(&Fallen::Attack, this));
 
+	BornStateInit();
 	IdleStateInit();
 	MoveStateInit();
 	AttackStateInit();
 	DeathStateInit();
 
-	MonsterFSM.ChangeState("Move");
+	State = MonsterState::Born;
+	MonsterFSM.ChangeState("Born");
 }
 
 void Fallen::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
 }
+

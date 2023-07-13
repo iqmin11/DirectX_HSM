@@ -50,5 +50,6 @@ void Immortal::SummonFallen()
 {
 	std::weak_ptr<Fallen> Result(GetLevel()->CreateActor<Fallen>());
 	Result.lock()->SetWalk(Walk);
+	Result.lock()->GetTransform()->SetWorldPosition(Walk.ActorPos);
 }
 

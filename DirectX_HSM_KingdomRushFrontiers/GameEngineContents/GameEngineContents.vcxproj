@@ -800,6 +800,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Fallen_State.cpp" />
     <ClCompile Include="FireBallExplosion.cpp">
       <SubType>
       </SubType>
