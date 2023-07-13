@@ -680,6 +680,9 @@
     <ClCompile Include="Fallen_State.cpp">
       <Filter>3.PlayStage\Actor\Monster\13. Fallen</Filter>
     </ClCompile>
+    <ClCompile Include="DuneTerror_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\6. DuneTerror</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

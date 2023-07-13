@@ -13,7 +13,8 @@ enum class MonsterState
 	Attack,
 	Death,
 	Born,
-
+	ComeUp,
+	GoDown,
 };
 
 class BaseMonster : public GameEngineActor
@@ -90,6 +91,11 @@ public:
 	const WalkData& GetWalk() const
 	{
 		return Walk;
+	}
+
+	const MonsterData& GetData() const
+	{
+		return Data;
 	}
 	
 	float CurHP = 0;

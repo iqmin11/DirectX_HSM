@@ -783,6 +783,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="DuneTerror_State.cpp" />
     <ClCompile Include="Effect_OneStar.cpp">
       <SubType>
       </SubType>

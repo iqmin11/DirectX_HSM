@@ -111,7 +111,6 @@ void Ranged_Tower::RangerAttack()
 }
 
 
-
 void Ranged_Tower::Start()
 {
 	BaseShootingTower::Start();

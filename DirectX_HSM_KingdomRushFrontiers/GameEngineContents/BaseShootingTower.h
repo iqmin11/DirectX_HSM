@@ -35,7 +35,7 @@ protected:
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
 
-	bool IsThereTarget();
+	virtual bool IsThereTarget();
 private:
 	float Time = 10.f;
 
