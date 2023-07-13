@@ -63,12 +63,27 @@ void MousePointer::Start()
 	InvalidStateInit();
 
 	MouseFSM.ChangeState("Release");
+
+	UICam = GetLevel()->GetCamera(100);
 }
 
 void MousePointer::Update(float _DeltaTime)
 {
-	MousePos = float4{ 1,-1, 1,1 } *(GameEngineWindow::GetMousePosition() - GameEngineWindow::GetScreenSize().half());
+	CalMousePos();
 	GetTransform()->SetWorldPosition(MousePos);
 	MouseFSM.Update(_DeltaTime);
 }
+
+void MousePointer::CalMousePos()
+{
+	UICamViewPort = UICam->GetViewPort();
+	UICamProj = UICam->GetProjection();
+	UICamView = UICam->GetView();
+
+	MousePos = GameEngineInput::GetMousePosition();
+	MousePos *= UICamViewPort.InverseReturn();
+	MousePos *= UICamProj.InverseReturn();
+	MousePos *= UICamView.InverseReturn();
+}
+
 

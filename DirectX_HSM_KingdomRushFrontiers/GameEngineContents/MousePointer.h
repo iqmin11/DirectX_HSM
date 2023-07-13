@@ -29,7 +29,7 @@ public:
 	MousePointer& operator=(const MousePointer& _Other) = delete;
 	MousePointer& operator=(MousePointer&& _Other) noexcept = delete;
 
-	static const float4 GetIngameMousePosRef()
+	static const float4 GetIngameMousePos()
 	{
 		return float4{ MousePos.x, MousePos.y, MousePos.y};
 	}
@@ -54,6 +54,13 @@ private:
 	float4 RendererScale = { 136,136,1 };
 	std::shared_ptr<class GameEngineCollision> MousePointerCol = nullptr;
 	GameEngineFSM MouseFSM = GameEngineFSM();
+
+	std::shared_ptr<GameEngineCamera> UICam = nullptr;
+	float4x4 UICamViewPort = float4x4();
+	float4x4 UICamProj = float4x4();
+	float4x4 UICamView = float4x4();
+
+	void CalMousePos();
 
 	void ReleaseStateInit();
 	void PressStateInit();

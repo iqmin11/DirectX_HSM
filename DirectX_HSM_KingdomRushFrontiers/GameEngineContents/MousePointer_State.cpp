@@ -162,7 +162,7 @@ void MousePointer::RainOfFireStateInit()
 		{
 			if (!IsThereMouseOntheColMap())
 			{
-				RainOfFire::CastingSpell(GetLevel(), GetIngameMousePosRef());
+				RainOfFire::CastingSpell(GetLevel(), GetIngameMousePos());
 				PlayManager::MainPlayer->RainOfFire_StartCoolTime();
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
@@ -221,7 +221,7 @@ void MousePointer::CallReinforcementStateInit()
 		{
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
-				CallReinforcement::CastingSpell(GetLevel(), MousePointer::MainMouse->GetIngameMousePosRef(), static_cast<FighterEnum>(static_cast<int>(FighterEnum::Reinforce) + PlayManager::MainPlayer->GetData().ReinforceLevel + 1));
+				CallReinforcement::CastingSpell(GetLevel(), MousePointer::MainMouse->GetIngameMousePos(), static_cast<FighterEnum>(static_cast<int>(FighterEnum::Reinforce) + PlayManager::MainPlayer->GetData().ReinforceLevel + 1));
 				PlayManager::MainPlayer->CallReinforcement_StartCoolTime();
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
@@ -280,8 +280,8 @@ void MousePointer::HeroStateInit()
 		{
 			if (!MousePointer::MainMouse->IsThereMouseOntheColMap())
 			{
-				PlayManager::MainPlayer->GetHeroRally().lock()->SetRallyPos(MousePointer::GetIngameMousePosRef());
-				DeciedHeroPositionEffect::CreateEffect(GetLevel(), MousePointer::GetIngameMousePosRef());
+				PlayManager::MainPlayer->GetHeroRally().lock()->SetRallyPos(MousePointer::GetIngameMousePos());
+				DeciedHeroPositionEffect::CreateEffect(GetLevel(), MousePointer::GetIngameMousePos());
 			}
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}
