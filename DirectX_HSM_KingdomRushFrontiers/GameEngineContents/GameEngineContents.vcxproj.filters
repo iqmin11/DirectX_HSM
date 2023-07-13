@@ -674,6 +674,9 @@
     <ClCompile Include="Fallen.cpp">
       <Filter>3.PlayStage\Actor\Monster\13. Fallen</Filter>
     </ClCompile>
+    <ClCompile Include="Immortal_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\3. Immortal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

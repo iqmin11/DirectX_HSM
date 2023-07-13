@@ -1,7 +1,9 @@
 #include "PrecompileHeader.h"
 #include "Immortal.h"
+#include <GameEngineCore\GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "Fallen.h"
 
 Immortal::Immortal()
 {
@@ -43,3 +45,10 @@ void Immortal::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
 }
+
+void Immortal::SummonFallen()
+{
+	std::weak_ptr<Fallen> Result(GetLevel()->CreateActor<Fallen>());
+	Result.lock()->SetWalk(Walk);
+}
+

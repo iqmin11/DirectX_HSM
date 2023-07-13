@@ -844,6 +844,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Immortal_State.cpp" />
     <ClCompile Include="Magic_Bullet.cpp">
       <SubType>
       </SubType>

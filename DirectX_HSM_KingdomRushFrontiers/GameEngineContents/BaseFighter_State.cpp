@@ -156,7 +156,7 @@ void BaseFighter::AttackStateInit()
 			}
 			else
 			{
-				FighterRenderer->ChangeAnimation("Idle");
+				FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 			}
 		},
 		.Update = [this](float _DeltaTime)

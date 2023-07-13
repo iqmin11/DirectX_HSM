@@ -16,6 +16,23 @@ enum class MonsterState
 
 class BaseMonster : public GameEngineActor
 {
+protected:
+	class WalkData
+	{
+	public:
+		float4 ActorPos = float4::Zero;
+		float4 PrevActorPos = float4::Zero;
+		float4 ActorDir = float4::Zero;
+		std::string DirString = std::string();
+
+		std::vector<float4>* PathInfo = nullptr;
+		std::vector<float4>::iterator CurPoint = std::vector<float4>::iterator();
+		std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
+		std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
+		float Ratio = 0;
+		float Time = 0;
+	};
+
 public:
 	bool IsTestMonster = false;
 	static std::list<std::weak_ptr<BaseMonster>> LiveMonsterList;
@@ -34,15 +51,20 @@ public:
 
 	void SetPathInfo(std::vector<float4>& _PathInfo)
 	{
-		PathInfo = &_PathInfo;
-		CurPoint = PathInfo->begin();
-		NextPoint = ++(PathInfo->begin());
-		LastPoint = --(PathInfo->end());
+		Walk.PathInfo = &_PathInfo;
+		Walk.CurPoint = Walk.PathInfo->begin();
+		Walk.NextPoint = ++(Walk.PathInfo->begin());
+		Walk.LastPoint = --(Walk.PathInfo->end());
 	}
 
 	const float4& GetLastPoint() const
 	{
-		return *LastPoint;
+		return *Walk.LastPoint;
+	}
+
+	void SetWalk(const WalkData& _Walk)
+	{
+		Walk = _Walk;
 	}
 
 	static std::shared_ptr<BaseMonster> CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo);
@@ -50,7 +72,7 @@ public:
 
 	const float4& GetMonsterDir() const
 	{
-		return ActorDir;
+		return Walk.ActorDir;
 	}
 
 	const float GetMonsterSpeed() const
@@ -63,6 +85,10 @@ public:
 		return MonsterCol;
 	}
 
+	const WalkData& GetWalk() const
+	{
+		return Walk;
+	}
 	
 	float CurHP = 0;
 	HitState Hit = HitState::Etc;
@@ -83,26 +109,17 @@ protected:
 
 	GameEngineFSM MonsterFSM = GameEngineFSM();
 
-	void IdleStateInit();
-	void MoveStateInit();
-	void AttackStateInit();
-	void DeathStateInit();
+	virtual void IdleStateInit();
+	virtual void MoveStateInit();
+	virtual void AttackStateInit();
+	virtual void DeathStateInit();
 
 	float DeathTime = 0.f;
 
 	void Attack();
 	float CalDamage();
 
-private:
-	float4 ActorPos = float4::Zero;
-	float4 PrevActorPos = float4::Zero;
-	float4 ActorDir = float4::Zero;
-	std::string DirString = std::string();
-
-	std::vector<float4>* PathInfo = nullptr;
-	std::vector<float4>::iterator CurPoint = std::vector<float4>::iterator();
-	std::vector<float4>::iterator NextPoint = std::vector<float4>::iterator();
-	std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
+	WalkData Walk = WalkData();
 
 	std::shared_ptr<class GameEngineSpriteRenderer> LifeBarBg = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> LifeBar = nullptr;
@@ -110,16 +127,17 @@ private:
 	float4 LifeBarBgLocalPos = { 0,35,1 };
 	float4 LifeBarLocalPos = { 0,35 };
 
-	float Time = 0;
-	float Ratio = 0;
 
 	float AttackTime = 100;
-
 
 	void LiveMonsterListRelease();
 	void CalMonsterDir();
 
 	void UpdateLifeBar();
 	void GiveBounty();
+
+private:
+	std::weak_ptr<class PlayStageLevel> ParentLevel;
+	bool IsPause();
 };
 

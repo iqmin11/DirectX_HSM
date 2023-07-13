@@ -81,13 +81,13 @@ void BaseMonster::MoveStateInit()
 					return;
 				}
 
-				std::string PrevDirStr = DirString;
+				std::string PrevDirStr = Walk.DirString;
 				WalkPath(_DeltaTime);
 				CalMonsterDir();
-				if (PrevDirStr != DirString)
+				if (PrevDirStr != Walk.DirString)
 				{
-					MonsterRenderer->ChangeAnimation("Move" + DirString);
-					PrevDirStr = DirString;
+					MonsterRenderer->ChangeAnimation("Move" + Walk.DirString);
+					PrevDirStr = Walk.DirString;
 				}
 			},
 			.End = [this]()

@@ -2,6 +2,8 @@
 #include "Fallen.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineCore\GameEngineLevel.h>
+#include "Immortal.h"
 
 Fallen::Fallen()
 {

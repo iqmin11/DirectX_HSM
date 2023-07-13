@@ -108,21 +108,21 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 
 void BaseMonster::TestPath(float _DeltaTime)
 {
-	if (PathInfo == nullptr)
+	if (Walk.PathInfo == nullptr)
 	{
 		MsgAssert("몬스터의 경로가 지정되지 않아 이동할 수 없습니다.");
 		return;
 	}
 
-	if (Ratio >= 1)
+	if (Walk.Ratio >= 1)
 	{
-		Time = 0;
-		Ratio = 0;
-		CurPoint++;
-		NextPoint++;
+		Walk.Time = 0;
+		Walk.Ratio = 0;
+		Walk.CurPoint++;
+		Walk.NextPoint++;
 	}
 
-	if (NextPoint == PathInfo->end())
+	if (Walk.NextPoint == Walk.PathInfo->end())
 	{
 		Death();
 		LiveMonsterListRelease();
@@ -144,12 +144,14 @@ void BaseMonster::Start()
 	LifeBar->SetTexture("lifebar_small.png");
 	LifeBar->GetTransform()->SetWorldScale(LifeBarScale);
 	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+
+	ParentLevel = GetLevel()->DynamicThis<PlayStageLevel>();
 }
 
 // Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
-	if (GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+	if (IsPause())
 	{
 		return;
 	}
@@ -173,29 +175,29 @@ void BaseMonster::WalkToNextPoint(float _DeltaTime)
 	//길이가 50 일때 Time*2 = Time * (V/L)
 	//길이가 25 일때 Time*4 = Time * (V/L)
 
-	Time += _DeltaTime;
-	Ratio = Time * (Data.Speed / (*NextPoint - *CurPoint).Size());
-	ActorPos = float4::LerpClamp(*CurPoint, *NextPoint, Ratio);
-	GetTransform()->SetWorldPosition(ActorPos);
+	Walk.Time += _DeltaTime;
+	Walk.Ratio = Walk.Time * (Data.Speed / (*Walk.NextPoint - *Walk.CurPoint).Size());
+	Walk.ActorPos = float4::LerpClamp(*Walk.CurPoint, *Walk.NextPoint, Walk.Ratio);
+	GetTransform()->SetWorldPosition(Walk.ActorPos);
 }
 
 void BaseMonster::WalkPath(float _DeltaTime)
 {
-	if (PathInfo == nullptr)
+	if (Walk.PathInfo == nullptr)
 	{
 		MsgAssert("몬스터의 경로가 지정되지 않아 이동할 수 없습니다.");
 		return;
 	}
 
-	if (Ratio >= 1)
+	if (Walk.Ratio >= 1)
 	{
-		Time = 0;
-		Ratio = 0;
-		CurPoint++;
-		NextPoint++;
+		Walk.Time = 0;
+		Walk.Ratio = 0;
+		Walk.CurPoint++;
+		Walk.NextPoint++;
 	}
 
-	if (NextPoint == PathInfo->end())
+	if (Walk.NextPoint == Walk.PathInfo->end())
 	{
 		Death();
 		LiveMonsterListRelease();
@@ -227,28 +229,28 @@ void BaseMonster::LiveMonsterListRelease()
 
 void BaseMonster::CalMonsterDir()
 {
-	ActorDir.w = 0.0f;
-	ActorDir = ActorPos - PrevActorPos;
-	ActorDir.Normalize(); // 지름이 1인 원
-	PrevActorPos = ActorPos;
-	float DegZ = ActorDir.GetAnagleDegZ();
+	Walk.ActorDir.w = 0.0f;
+	Walk.ActorDir = Walk.ActorPos - Walk.PrevActorPos;
+	Walk.ActorDir.Normalize(); // 지름이 1인 원
+	Walk.PrevActorPos = Walk.ActorPos;
+	float DegZ = Walk.ActorDir.GetAnagleDegZ();
 
 	if (DegZ > 45.f && DegZ <= 135.f)
 	{
-		DirString = "_Back";
+		Walk.DirString = "_Back";
 	}
 	else if (DegZ > 135.f && DegZ <= 225.f)
 	{
-		DirString = "_Profile";
+		Walk.DirString = "_Profile";
 		MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
 	}
 	else if (DegZ > 225.f && DegZ <= 315.f)
 	{
-		DirString = "_Front";
+		Walk.DirString = "_Front";
 	}
 	else if ((DegZ > 315.f && DegZ <= 360.f) || (DegZ >= 0.f && DegZ <= 45.f))
 	{
-		DirString = "_Profile";
+		Walk.DirString = "_Profile";
 		MonsterRenderer->GetTransform()->SetLocalPositiveScaleX();
 	}
 }
@@ -267,9 +269,14 @@ void BaseMonster::GiveBounty()
 	//이펙트 추가 필요
 }
 
+bool BaseMonster::IsPause()
+{
+	return ParentLevel.lock()->IsPause;
+}
+
 float BaseMonster::CalDistance()
 {
-	return (*LastPoint - ActorPos).Size();
+	return (*Walk.LastPoint - Walk.ActorPos).Size();
 }
 
 void BaseMonster::Attack()

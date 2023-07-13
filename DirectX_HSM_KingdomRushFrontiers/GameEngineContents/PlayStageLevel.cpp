@@ -540,6 +540,17 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Summon").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_RangedAttack").GetFullPath());
 
+	Dir.MoveParentToDirectory("SandWraith");
+	Dir.Move("Fallen");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Move_Back").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Move_Front").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Move_Profile").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Fallen_Born").GetFullPath());
+
 	Dir.MoveParentToDirectory("EnemiesAnimation");
 	Dir.Move("EffectAnimation");
 
