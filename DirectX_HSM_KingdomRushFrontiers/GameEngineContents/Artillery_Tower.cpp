@@ -11,6 +11,7 @@
 #include "Artillery_Bullet.h"
 #include "BuildArea.h"
 #include "UpgradeTowerUI.h"
+#include "BaseMonster.h"
 
 const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; // 0
 const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; // 2
@@ -75,6 +76,8 @@ void Artillery_Tower::Start()
 	NextLvRangeRender->Off();
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
+	IsThereTargetFuncPtr = std::bind(&Artillery_Tower::IsThereTarget, this);
+	FindTargetMonsterFuncPtr = std::bind(&Artillery_Tower::FindTargetMonster, this);
 }
 
 void Artillery_Tower::Update(float _DeltaTime)
@@ -161,4 +164,61 @@ void Artillery_Tower::ArtilleryAttack()
 	FireSmokeRenderer->ChangeAnimation("Fire");
 	FireSmokeRenderer->On();
 	Artillery_Bullet::ShootingBullet(GetLevel(), this);
+}
+
+bool Artillery_Tower::IsThereTarget()
+{
+	if (nullptr == RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D))
+	{
+		return false;
+	}
+	else
+	{
+		std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
+		LocalVec.reserve(30);
+		RangeCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
+
+		for (size_t i = 0; i < LocalVec.size(); i++)
+		{
+			std::weak_ptr<BaseMonster> TempMonster(LocalVec[i]->GetActor()->DynamicThis<BaseMonster>());
+			if (TempMonster.lock()->GetData().IsBurrow == false && TempMonster.lock()->GetData().IsFlying == false)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+std::shared_ptr<class BaseMonster> Artillery_Tower::FindTargetMonster()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec0 = std::vector<std::shared_ptr<GameEngineCollision>>();
+	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec1 = std::vector<std::shared_ptr<GameEngineCollision>>();
+	LocalColVec0.reserve(30);
+	RangeCol->CollisionAll(static_cast<int>(ColOrder::Monster), LocalColVec0, ColType::SPHERE2D, ColType::SPHERE2D);
+	std::shared_ptr<BaseMonster> TargetMonster = std::shared_ptr<BaseMonster>();
+
+	for (size_t i = 0; i < LocalColVec0.size(); i++)
+	{
+		std::weak_ptr<BaseMonster> TempMonster(LocalColVec0[i]->GetActor()->DynamicThis<BaseMonster>());
+		if (TempMonster.lock()->GetData().IsBurrow == false && TempMonster.lock()->GetData().IsFlying == false)
+		{
+			LocalColVec1.push_back(LocalColVec0[i]);
+		}
+	}
+	TargetMonster = LocalColVec1[0]->GetActor()->DynamicThis<BaseMonster>();
+	float Smallest = TargetMonster->CalDistance();
+	for (size_t i = 0; i < LocalColVec1.size(); i++)
+	{
+		std::shared_ptr<BaseMonster> CompairMonster = LocalColVec1[i]->GetActor()->DynamicThis<BaseMonster>();
+		if (Smallest <= std::min<float>(Smallest, CompairMonster->CalDistance()) || CompairMonster->GetData().IsBurrow)
+		{
+			continue;
+		}
+		else
+		{
+			TargetMonster = CompairMonster;
+		}
+	}
+	return TargetMonster;
 }

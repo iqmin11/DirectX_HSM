@@ -22,6 +22,8 @@ void BaseShootingTower::Start()
 	BaseTower::Start();
 	TowerRangeRender->SetTexture("range_circle.png");
 	NextLvRangeRender->SetTexture("range_circle.png");
+	IsThereTargetFuncPtr = std::bind(&BaseShootingTower::IsThereTarget,this);
+	FindTargetMonsterFuncPtr = std::bind(&BaseShootingTower::FindTargetMonster, this);
 }
 
 void BaseShootingTower::Update(float _DeltaTime)
@@ -40,9 +42,9 @@ void BaseShootingTower::Update(float _DeltaTime)
 		}
 	}
 
-	if (IsThereTarget())
+	if (IsThereTargetFuncPtr())
 	{
-		TargetMonster = FindTargetMonster();
+		TargetMonster = FindTargetMonsterFuncPtr();
 		CalTargetPos();
 	}
 	else

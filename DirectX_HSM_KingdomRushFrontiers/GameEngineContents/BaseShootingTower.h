@@ -35,11 +35,14 @@ protected:
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;
 
+	std::function<bool()> IsThereTargetFuncPtr = nullptr;
+	std::function<std::shared_ptr<class BaseMonster>()> FindTargetMonsterFuncPtr = nullptr;
+
 	virtual bool IsThereTarget();
+	virtual std::shared_ptr<class BaseMonster> FindTargetMonster();
 private:
 	float Time = 10.f;
 
-	std::shared_ptr<class BaseMonster> FindTargetMonster();
 	void CalTargetPos();
 };
 

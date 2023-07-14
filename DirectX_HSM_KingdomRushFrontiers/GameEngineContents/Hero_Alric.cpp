@@ -82,11 +82,6 @@ void Hero_Alric::Update(float _DeltaTime)
 {
 	BaseFighter::Update(_DeltaTime);
 
-	if (TargetMonster != nullptr)
-	{
-		int a = 0;
-	}
-
 	if (IsThereSummonTarget())
 	{
  		SummonTargetMonster = FindTargetMonster();

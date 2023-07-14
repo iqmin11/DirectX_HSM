@@ -31,6 +31,8 @@ private:
 
 	void ChangeTowerRender(int _TowerLevel);
 	void ArtilleryAttack();
+	bool IsThereTarget() override;
+	std::shared_ptr<class BaseMonster> FindTargetMonster() override;
 
 	static const float4 Lv1SmokeLocalPos;
 	static const float4 Lv2SmokeLocalPos;
