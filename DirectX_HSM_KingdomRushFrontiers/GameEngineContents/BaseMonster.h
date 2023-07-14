@@ -52,6 +52,8 @@ public:
 	BaseMonster& operator=(const BaseMonster& _Other) = delete;
 	BaseMonster& operator=(BaseMonster&& _Other) noexcept = delete;
 
+	void SetHPBarPos(float _LocalY); // Base == 35
+
 	void SetPathInfo(std::vector<float4>& _PathInfo)
 	{
 		Walk.PathInfo = &_PathInfo;
@@ -134,7 +136,6 @@ protected:
 	float4 LifeBarScale = { 20,2,1 };
 	float4 LifeBarBgLocalPos = { 0,35,1 };
 	float4 LifeBarLocalPos = { 0,35 };
-
 
 	float AttackTime = 100;
 

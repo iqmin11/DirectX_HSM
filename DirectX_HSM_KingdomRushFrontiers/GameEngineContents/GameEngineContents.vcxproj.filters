@@ -686,6 +686,9 @@
     <ClCompile Include="GiantWasp_State.cpp">
       <Filter>3.PlayStage\Actor\Monster\7. GiantWasp</Filter>
     </ClCompile>
+    <ClCompile Include="GiantWaspQueen_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\8. GiantWaspQueen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">

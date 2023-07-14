@@ -135,6 +135,8 @@ void RallyPoint::FindTarget()
 	std::vector<std::shared_ptr<GameEngineCollision>> TempVec = std::vector<std::shared_ptr<GameEngineCollision>>();
 	TempVec.reserve(30);
 	RangeCol->CollisionAll(ColOrder::Monster, TempVec, ColType::SPHERE2D, ColType::SPHERE2D);
+	
+	ColMonsters.clear();
 
 	for (size_t i = 0; i < TempVec.size(); i++)
 	{

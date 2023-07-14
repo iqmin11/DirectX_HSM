@@ -2,6 +2,7 @@
 #include "GiantWasp.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+
 GiantWasp::GiantWasp()
 {
 
@@ -22,6 +23,7 @@ void GiantWasp::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "GiantWasp_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
+	MonsterRenderer->GetTransform()->SetLocalPosition(ColLocalPos);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 	CurHP = Data.Hp;
@@ -30,6 +32,12 @@ void GiantWasp::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	Shadow = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
+	Shadow->GetTransform()->SetWorldScale(ShdowScale);
+	Shadow->SetTexture("FlyingEnemiesShadow.png");
+
+	SetHPBarPos(70);
 }
 
 void GiantWasp::Update(float _DeltaTime)

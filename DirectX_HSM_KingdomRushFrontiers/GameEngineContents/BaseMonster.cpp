@@ -51,10 +51,18 @@ BaseMonster::~BaseMonster()
 
 }
 
+void BaseMonster::SetHPBarPos(float _LocalY)
+{
+	LifeBarBgLocalPos = { 0,_LocalY ,1 };
+	LifeBarLocalPos = { 0,_LocalY };
+	LifeBarBg->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+}
+
 std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<GameEngineLevel> _Level, const MonsterEnum _Monster, std::vector<float4>& _PathInfo)
 {
 	std::shared_ptr<BaseMonster> Result = nullptr;
-	
+
 	switch (_Monster)
 	{
 	case MonsterEnum::DesertThug:
@@ -135,7 +143,7 @@ void BaseMonster::TestPath(float _DeltaTime)
 void BaseMonster::Start()
 {
 	MonsterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
-	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster); 
+	MonsterCol = CreateComponent<GameEngineCollision>(ColOrder::Monster);
 	LifeBarBg = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);
 	LifeBarBg->SetTexture("lifebar_bg_small.png");
 	LifeBarBg->GetTransform()->SetWorldScale(LifeBarScale);
@@ -148,7 +156,6 @@ void BaseMonster::Start()
 	ParentLevel = GetLevel()->DynamicThis<PlayStageLevel>();
 }
 
-// Move, Attack, Death, (Idle?) State
 void BaseMonster::Update(float _DeltaTime)
 {
 	if (IsPause())
