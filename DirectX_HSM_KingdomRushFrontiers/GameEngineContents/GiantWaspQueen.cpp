@@ -2,6 +2,8 @@
 #include "GiantWaspQueen.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "GiantWasp.h"
+#include <GameEngineCore\GameEngineLevel.h>
 
 GiantWaspQueen::GiantWaspQueen()
 {
@@ -43,4 +45,11 @@ void GiantWaspQueen::Start()
 void GiantWaspQueen::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
+}
+
+void GiantWaspQueen::SummonWasp()
+{
+	std::weak_ptr<GiantWasp> Result(GetLevel()->CreateActor<GiantWasp>());
+	Result.lock()->SetWalk(Walk);
+	Result.lock()->GetTransform()->SetWorldPosition(Walk.ActorPos);
 }

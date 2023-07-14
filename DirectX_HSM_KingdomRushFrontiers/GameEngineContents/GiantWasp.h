@@ -26,5 +26,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> Shadow = nullptr;
 
 	void MoveStateInit() override;
+	void DeathStateInit() override;
+	
 };
 
