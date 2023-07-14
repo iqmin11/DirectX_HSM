@@ -4,6 +4,8 @@
 class Reinforcement_RallyPoint : public RallyPoint
 {
 public:
+	static std::list<std::weak_ptr<Reinforcement_RallyPoint>> LiveReinforcementRallyManager;
+
 	// construtor destructor
 	Reinforcement_RallyPoint();
 	~Reinforcement_RallyPoint();

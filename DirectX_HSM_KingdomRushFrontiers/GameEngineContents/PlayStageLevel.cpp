@@ -23,6 +23,7 @@
 #include "VictoryBadge.h"
 #include "DefeatBadge.h"
 #include "_101UIRenderer.h"
+#include "Reinforcement_RallyPoint.h"
 
 PlayStageLevel* PlayStageLevel::MainPalyStage = nullptr;
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
@@ -67,6 +68,7 @@ void PlayStageLevel::ClearStage()
 	ClearHero();
 	ClearLiveWave();
 	ClearLiveMonster();
+	ClearLiveReinforcement();
 }
 
 void PlayStageLevel::Start()
@@ -865,4 +867,16 @@ void PlayStageLevel::ClearLiveWave()
 void PlayStageLevel::ClearLiveMonster()
 {
 	BaseMonster::LiveMonsterListForceRelease();
+}
+
+void PlayStageLevel::ClearLiveReinforcement()
+{
+	auto StartIter = Reinforcement_RallyPoint::LiveReinforcementRallyManager.begin();
+	auto EndIter = Reinforcement_RallyPoint::LiveReinforcementRallyManager.end();
+	for (; StartIter != EndIter; )
+	{
+		StartIter->lock()->Death();
+		StartIter = Reinforcement_RallyPoint::LiveReinforcementRallyManager.erase(StartIter);
+	}
+	Reinforcement_RallyPoint::LiveReinforcementRallyManager.clear();
 }
