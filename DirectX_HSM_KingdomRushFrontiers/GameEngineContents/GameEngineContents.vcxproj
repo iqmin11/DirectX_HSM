@@ -826,6 +826,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GiantWasp_State.cpp" />
     <ClCompile Include="Hero_Alric.cpp">
       <SubType>
       </SubType>

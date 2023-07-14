@@ -170,19 +170,20 @@ void Hero_Alric::CalTargetPos()
 
 bool Hero_Alric::IsThereSummonTarget()
 {
-	std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
-	LocalVec.reserve(30);
-	SummonCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
-
-	if (LocalVec.size() <= 0)
+	if (nullptr == SummonCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D))
 	{
 		return false;
 	}
 	else
 	{
+		std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
+		LocalVec.reserve(30);
+		SummonCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
+
 		for (size_t i = 0; i < LocalVec.size(); i++)
 		{
-			if (LocalVec[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsBurrow == false)
+			std::weak_ptr<BaseMonster> TempMonster(LocalVec[i]->GetActor()->DynamicThis<BaseMonster>());
+			if (TempMonster.lock()->GetData().IsBurrow == false && TempMonster.lock()->GetData().IsFlying == false)
 			{
 				return true;
 			}

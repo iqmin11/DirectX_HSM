@@ -53,24 +53,24 @@ void BaseShootingTower::Update(float _DeltaTime)
 
 std::shared_ptr<class BaseMonster> BaseShootingTower::FindTargetMonster()
 {
-	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec = std::vector<std::shared_ptr<GameEngineCollision>>();
-	LocalColVec.reserve(30);
-	RangeCol->CollisionAll(static_cast<int>(ColOrder::Monster), LocalColVec, ColType::SPHERE2D, ColType::SPHERE2D);
+	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec0 = std::vector<std::shared_ptr<GameEngineCollision>>();
+	std::vector<std::shared_ptr<GameEngineCollision>> LocalColVec1 = std::vector<std::shared_ptr<GameEngineCollision>>();
+	LocalColVec0.reserve(30);
+	RangeCol->CollisionAll(static_cast<int>(ColOrder::Monster), LocalColVec0, ColType::SPHERE2D, ColType::SPHERE2D);
 	std::shared_ptr<BaseMonster> TargetMonster = std::shared_ptr<BaseMonster>();
 	
-	for (size_t i = 0; i < LocalColVec.size(); i++)
+	for (size_t i = 0; i < LocalColVec0.size(); i++)
 	{
-		if (LocalColVec[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsBurrow == false)
+		if (LocalColVec0[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsBurrow == false)
 		{
-			TargetMonster = LocalColVec[i]->GetActor()->DynamicThis<BaseMonster>();
-			break;
+			LocalColVec1.push_back(LocalColVec0[i]);
 		}
 	}
-	
+	TargetMonster = LocalColVec1[0]->GetActor()->DynamicThis<BaseMonster>();
 	float Smallest = TargetMonster->CalDistance();
-	for (size_t i = 0; i < LocalColVec.size(); i++)
+	for (size_t i = 0; i < LocalColVec1.size(); i++)
 	{
-		std::shared_ptr<BaseMonster> CompairMonster = LocalColVec[i]->GetActor()->DynamicThis<BaseMonster>();
+		std::shared_ptr<BaseMonster> CompairMonster = LocalColVec1[i]->GetActor()->DynamicThis<BaseMonster>();
 		if (Smallest <= std::min<float>(Smallest, CompairMonster->CalDistance()) || CompairMonster->GetData().IsBurrow)
 		{
 			continue;
@@ -99,16 +99,16 @@ void BaseShootingTower::CalTargetPos()
 
 bool BaseShootingTower::IsThereTarget()
 {
-	std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
-	LocalVec.reserve(30);
-	RangeCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
-
-	if (LocalVec.size() <= 0)
+	if (nullptr == RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D))
 	{
 		return false;
 	}
 	else
 	{
+		std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
+		LocalVec.reserve(30);
+		RangeCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
+
 		for (size_t i = 0; i < LocalVec.size(); i++)
 		{
 			if (LocalVec[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsBurrow == false)

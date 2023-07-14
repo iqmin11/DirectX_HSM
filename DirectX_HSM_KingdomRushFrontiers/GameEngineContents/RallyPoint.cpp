@@ -69,7 +69,25 @@ void RallyPoint::Update(float _DeltaTime)
 
 bool RallyPoint::IsThereTarget()
 {
-	return nullptr != RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D);
+	if (nullptr == RangeCol->Collision(ColOrder::Monster, ColType::SPHERE2D, ColType::SPHERE2D))
+	{
+		return false;
+	}
+	else
+	{
+		std::vector<std::shared_ptr<GameEngineCollision>> LocalVec;
+		LocalVec.reserve(30);
+		RangeCol->CollisionAll(ColOrder::Monster, LocalVec, ColType::SPHERE2D, ColType::SPHERE2D);
+
+		for (size_t i = 0; i < LocalVec.size(); i++)
+		{
+			if (LocalVec[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsFlying == false)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 void RallyPoint::SetRallyPos(float4 _Pos)
@@ -114,7 +132,18 @@ void RallyPoint::FindTarget()
 
 	size_t ColCount = ColMonsters.size();
 
-	RangeCol->CollisionAll(ColOrder::Monster, ColMonsters, ColType::SPHERE2D, ColType::SPHERE2D);
+	std::vector<std::shared_ptr<GameEngineCollision>> TempVec = std::vector<std::shared_ptr<GameEngineCollision>>();
+	TempVec.reserve(30);
+	RangeCol->CollisionAll(ColOrder::Monster, TempVec, ColType::SPHERE2D, ColType::SPHERE2D);
+
+	for (size_t i = 0; i < TempVec.size(); i++)
+	{
+		if (TempVec[i]->GetActor()->DynamicThis<BaseMonster>()->GetData().IsFlying == false)
+		{
+			ColMonsters.push_back(TempVec[i]);
+		}
+	}
+
 	if (ColMonsters.size() > Fighters.size())
 	{
 		ColMonsters.resize(Fighters.size());
