@@ -21,7 +21,8 @@ void GiantScorpion::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "GiantScorpion_Move_Back", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "GiantScorpion_Move_Front", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "GiantScorpion_Move_Profile", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "GiantScorpion_Attack_0", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack0", .SpriteName = "GiantScorpion_Attack_0", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack1", .SpriteName = "GiantScorpion_Attack_1", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "GiantScorpion_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
@@ -29,7 +30,8 @@ void GiantScorpion::Start()
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 	CurHP = Data.Hp;
 
-	MonsterRenderer->SetAnimationStartEvent("Attack", 3, std::bind(&GiantScorpion::Attack, this));
+	MonsterRenderer->SetAnimationStartEvent("Attack0", 3, std::bind(&GiantScorpion::Attack, this));
+	MonsterRenderer->SetAnimationStartEvent("Attack1", 3, std::bind(&GiantScorpion::Attack, this));
 
 	IdleStateInit();
 	MoveStateInit();
@@ -43,3 +45,4 @@ void GiantScorpion::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
 }
+

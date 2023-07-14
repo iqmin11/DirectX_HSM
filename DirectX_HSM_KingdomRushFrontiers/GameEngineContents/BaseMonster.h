@@ -15,6 +15,7 @@ enum class MonsterState
 	Born,
 	ComeUp,
 	GoDown,
+	RangeAttack,
 };
 
 class BaseMonster : public GameEngineActor

@@ -59,6 +59,8 @@ enum class ColOrder
 	Bullet,
 	Fighter,
 	Button,
+	MonsterRange,
+	RallyPoint
 };
 
 enum class MonsterEnum

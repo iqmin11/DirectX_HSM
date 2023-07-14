@@ -21,8 +21,7 @@ RallyPoint::~RallyPoint()
 
 void RallyPoint::Start()
 {
-
-	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
+	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::RallyPoint);
 	RangeCol->GetTransform()->SetWorldScale({ Range * 2.f,Range * 2.f,0.f });
 	//RangeCol->GetTransform()->SetLocalRotation({ 45.f,0,0 });
 

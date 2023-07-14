@@ -326,6 +326,12 @@
     <ClInclude Include="Fallen.h">
       <Filter>3.PlayStage\Actor\Monster\13. Fallen</Filter>
     </ClInclude>
+    <ClInclude Include="BaseMonsterBullet.h">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DessertArcher_Bullet.h">
+      <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -688,6 +694,18 @@
     </ClCompile>
     <ClCompile Include="GiantWaspQueen_State.cpp">
       <Filter>3.PlayStage\Actor\Monster\8. GiantWaspQueen</Filter>
+    </ClCompile>
+    <ClCompile Include="GiantScorpion_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\9. GiantScorpion</Filter>
+    </ClCompile>
+    <ClCompile Include="DessertArcher_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseMonsterBullet.cpp">
+      <Filter>3.PlayStage\Actor\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DessertArcher_Bullet.cpp">
+      <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@ const std::weak_ptr<Hero_Alric> Hero_RallyPoint::GetHero() const
 
 void Hero_RallyPoint::Start()
 {
-	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::Fighter);
+	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::RallyPoint);
 	RangeCol->GetTransform()->SetWorldScale({ Range * 2.f,Range * 2.f,0.f });
 	RallyPosCheckComponents.push_back(CreateComponent<GameEngineComponent>());
 }

@@ -3,21 +3,20 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsData.h"
 
-class BaseBullet : public GameEngineActor
+class BaseMonsterBullet : public GameEngineActor
 {
 public:
 	// construtor destructor
-	BaseBullet();
-	~BaseBullet();
+	BaseMonsterBullet();
+	~BaseMonsterBullet();
 
 	// delete Function
-	BaseBullet(const BaseBullet& _Other) = delete;
-	BaseBullet(BaseBullet&& _Other) noexcept = delete;
-	BaseBullet& operator=(const BaseBullet& _Other) = delete;
-	BaseBullet& operator=(BaseBullet&& _Other) noexcept = delete;
+	BaseMonsterBullet(const BaseMonsterBullet& _Other) = delete;
+	BaseMonsterBullet(BaseMonsterBullet&& _Other) noexcept = delete;
+	BaseMonsterBullet& operator=(const BaseMonsterBullet& _Other) = delete;
+	BaseMonsterBullet& operator=(BaseMonsterBullet&& _Other) noexcept = delete;
 
-	//static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor);
-	void SetTowerData(TowerData* _Data)
+	void SetMonsterData(MonsterData* _Data)
 	{
 		Data = *_Data;
 	}
@@ -41,17 +40,17 @@ protected:
 	void Update(float _DeltaTime) override;
 	virtual int CalDamage() = 0
 	{
-		return GameEngineRandom::MainRandom.RandomInt(Data.Damage_min, Data.Damage_MAX);
+		return GameEngineRandom::MainRandom.RandomInt(Data.RangedDamage_min, Data.RangedDamage_MAX);
 	}
 
 	bool IsBezier = false;
 	float BulletTime = 1.f;
-	TowerData Data = TowerData();
+	MonsterData Data = MonsterData();
 	std::function<void()> BulletHit = nullptr;
 	std::function<void()> BulletMiss = nullptr;
 	std::function<void()> BulletDeath = nullptr;
 	float IsRot = false;
-	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
+	std::shared_ptr<class BaseFighter> TargetFighter = nullptr;
 	std::shared_ptr<class GameEngineCollision> BulletCol = nullptr;
 	bool AmIMiss = false;
 
@@ -70,9 +69,10 @@ private:
 	void CalRotBulletRot(const float4& _P0, const float4& _P3, float _Ratio);
 	void MissFunc();
 	void HitFunc();
-	
-	bool IsThereTargetMonster();
-	bool IsHitTargetMonster();
-	bool IsMissTargetMonster();
+
+	bool IsThereTargetFighter();
+	bool IsHitTargetFighter();
+	bool IsMissTargetFighter();
+
 };
 
