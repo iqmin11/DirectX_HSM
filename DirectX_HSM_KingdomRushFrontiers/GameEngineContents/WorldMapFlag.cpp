@@ -43,6 +43,7 @@ void WorldMapFlag::Start()
 	for (size_t i = 0; i < StarRenderers.size(); i++)
 	{
 		StarRenderers[i] = CreateComponent<GameEngineUIRenderer>(WorldMapUIOrder::WorldMapFlagStar);
+		StarRenderers[i]->SetTexture("InvisibleTexture.png");
 		StarRenderers[i]->GetTransform()->SetWorldScale({53,53,1});
 		StarRenderers[i]->GetTransform()->SetLocalPosition({ -14.f + static_cast<float>(i)*13,59,0 });
 		StarRenderers[i]->CreateAnimation({.AnimationName = "Star", .SpriteName = "FlagStar", .FrameInter = 0.05f, .Loop = false });
@@ -51,6 +52,7 @@ void WorldMapFlag::Start()
 	}
 	
 	FlagAnimation = CreateComponent<GameEngineUIRenderer>(WorldMapUIOrder::WorldMapFlag);
+	FlagAnimation->SetTexture("InvisibleTexture.png");
 	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Appear", .SpriteName = "Flag_BeforClear_Appear", .FrameInter = 0.05f, .Loop = false});
 	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Hover", .SpriteName = "Flag_BeforClear_Hover", .FrameInter = 0.05f, .Loop = false});
 	FlagAnimation->CreateAnimation({.AnimationName = "NonClear_Release", .SpriteName = "Flag_BeforClear_Release", .FrameInter = 0.05f, .Loop = false});

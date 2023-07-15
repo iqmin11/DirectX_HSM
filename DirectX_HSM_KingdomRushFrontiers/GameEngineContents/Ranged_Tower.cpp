@@ -152,7 +152,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 
 		if (Time >= 1.f)
 		{
-			Time = 0;
+			Time = 100;
 			Construct = ConstructState::Complete;
 			BuildBar->Off();
 			BuildBarBg->Off();

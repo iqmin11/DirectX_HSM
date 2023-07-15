@@ -84,7 +84,7 @@ void Magic_Tower::Update(float _DeltaTime)
 
 		if (Time >= 1.f)
 		{
-			Time = 0;
+			Time = 100;
 			Construct = ConstructState::Complete;
 			BuildBar->Off();
 			BuildBarBg->Off();
@@ -92,6 +92,7 @@ void Magic_Tower::Update(float _DeltaTime)
 			Shooter->On();
 			RangeCol->On();
 			UpgradeButton->On();
+			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 		}
 	}
 	else

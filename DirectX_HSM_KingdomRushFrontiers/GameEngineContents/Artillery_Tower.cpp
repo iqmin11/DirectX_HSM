@@ -90,13 +90,14 @@ void Artillery_Tower::Update(float _DeltaTime)
 
 		if (Time >= 1.f)
 		{
-			Time = 0;
+			Time = 100;
 			Construct = ConstructState::Complete;
 			BuildBar->Off();
 			BuildBarBg->Off();
 
 			RangeCol->On();
 			UpgradeButton->On();
+			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 		}
 	}
 	else
