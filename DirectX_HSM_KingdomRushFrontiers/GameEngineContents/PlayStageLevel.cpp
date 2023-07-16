@@ -541,6 +541,11 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Move_Profile").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Summon").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_RangedAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Bolt_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("SandWraith_Bolt_Shoot").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Coffin_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Coffin_Spawn").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Coffin_Update").GetFullPath());
 
 	Dir.MoveParentToDirectory("SandWraith");
 	Dir.Move("Fallen");

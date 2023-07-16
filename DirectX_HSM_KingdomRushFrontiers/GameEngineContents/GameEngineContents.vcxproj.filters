@@ -332,6 +332,9 @@
     <ClInclude Include="DessertArcher_Bullet.h">
       <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
     </ClInclude>
+    <ClInclude Include="SandWraith_Bullet.h">
+      <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -706,6 +709,12 @@
     </ClCompile>
     <ClCompile Include="DessertArcher_Bullet.cpp">
       <Filter>3.PlayStage\Actor\Monster\10. DessertArcher</Filter>
+    </ClCompile>
+    <ClCompile Include="SandWraith_State.cpp">
+      <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
+    </ClCompile>
+    <ClCompile Include="SandWraith_Bullet.cpp">
+      <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
