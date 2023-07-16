@@ -36,6 +36,8 @@ void Executioner::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	SetHPBarPos(80);
 }
 
 void Executioner::Update(float _DeltaTime)

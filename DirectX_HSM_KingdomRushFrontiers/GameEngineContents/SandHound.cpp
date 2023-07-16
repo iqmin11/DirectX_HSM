@@ -19,7 +19,7 @@ void SandHound::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "SandHound_Idle", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "SandHound_Move_Back", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "SandHound_Move_Front", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "SandHound_Move_Profile", .FrameInter = 0.06f, .Loop = true });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "SandHound_Move_Profile", .FrameInter = 0.03f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "SandHound_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "SandHound_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });

@@ -18,9 +18,9 @@ void DuneTerror::Start()
 	BaseMonster::Start();
 	Data.SetData(MonsterEnum::DuneTerror);
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Idle", .SpriteName = "DuneTerror_Idle", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "DuneTerror_Move_Back", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "DuneTerror_Move_Front", .FrameInter = 0.06f, .Loop = true });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "DuneTerror_Move_Profile", .FrameInter = 0.06f, .Loop = true });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Back", .SpriteName = "DuneTerror_Move_Back", .FrameInter = 0.04f, .Loop = true });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "DuneTerror_Move_Front", .FrameInter = 0.04f, .Loop = true });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "DuneTerror_Move_Profile", .FrameInter = 0.04f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "DuneTerror_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "DuneTerror_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
