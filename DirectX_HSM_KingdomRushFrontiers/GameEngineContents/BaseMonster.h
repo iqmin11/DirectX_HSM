@@ -21,7 +21,7 @@ enum class MonsterState
 
 class BaseMonster : public GameEngineActor
 {
-protected:
+public:
 	class WalkData
 	{
 	public:
@@ -36,6 +36,45 @@ protected:
 		std::vector<float4>::iterator LastPoint = std::vector<float4>::iterator();
 		float Ratio = 0;
 		float Time = 0;
+
+		bool IsNull()
+		{
+			return (ActorPos == float4::Zero
+				&& PrevActorPos == float4::Zero
+				&& ActorDir == float4::Zero
+				&& DirString == std::string());
+		}
+
+		WalkData GetNextPointWalkData()
+		{
+			WalkData Result = WalkData();
+
+			Result.Time = 1;
+			Result.Ratio = 1;
+
+			Result.CurPoint = CurPoint;
+			Result.NextPoint = NextPoint;
+
+			Result.CurPoint++;
+			Result.NextPoint++;
+
+			if (Result.NextPoint == PathInfo->end())
+			{
+				return WalkData();
+			}
+
+			Result.PrevActorPos = *Result.CurPoint;
+			Result.ActorPos = *Result.NextPoint;
+			
+			Result.ActorDir.w = 0.0f;
+			Result.ActorDir = Result.ActorPos - Result.PrevActorPos;
+			Result.ActorDir.Normalize(); // 지름이 1인 원
+
+			Result.PathInfo = PathInfo;
+			Result.LastPoint = LastPoint;
+			
+			return Result;
+		}
 	};
 
 public:

@@ -38,8 +38,12 @@ void SandWraith::MoveStateInit()
 
 				if (SummonCoolTime >= SummonMaxCoolTime)
 				{
-					State = MonsterState::Summon;
-					MonsterFSM.ChangeState("Summon");
+					if (!Walk.GetNextPointWalkData().IsNull())
+					{
+						State = MonsterState::Summon;
+						MonsterFSM.ChangeState("Summon");
+						return;
+					}
 				}
 
 				RangeTargetFighter = FindRangeTargetFighter();

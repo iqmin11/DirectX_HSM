@@ -5,6 +5,7 @@
 
 #include "BaseFighter.h"
 #include "SandWraith_Bullet.h"
+#include "SandWraith_Coffin.h"
 
 SandWraith::SandWraith()
 {
@@ -58,6 +59,10 @@ void SandWraith::Start()
 		{
 			State = MonsterState::Move;
 			MonsterFSM.ChangeState("Move");
+		});
+	MonsterRenderer->SetAnimationStartEvent("Summon", 3, [this]()
+		{
+			SandWraith_Coffin::SummonCoffin(this);
 		});
 
 	IdleStateInit();
