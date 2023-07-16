@@ -49,10 +49,12 @@ private:
 	float BulletTime = 0.5f;
 
 	float Time = 10.f;
+	float SummonCoolTime = 0.0f;
+	float SummonMaxCoolTime = 10.f;
 
 	void CalTargetPos();
 
 	void MoveStateInit() override;
 	void RangeAttackStateInit();
+	void SummonStateInit();
 };
-

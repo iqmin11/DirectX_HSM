@@ -40,6 +40,7 @@ void SandWraith::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "RangedAttack", .SpriteName = "SandWraith_RangedAttack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "SandWraith_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "SandWraith_Summon", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
@@ -53,12 +54,18 @@ void SandWraith::Start()
 		{
 			SandWraith_Bullet::ShootingBullet(GetLevel(), this);
 		});
+	MonsterRenderer->SetAnimationStartEvent("Summon", 21, [this]()
+		{
+			State = MonsterState::Move;
+			MonsterFSM.ChangeState("Move");
+		});
 
 	IdleStateInit();
 	MoveStateInit();
 	AttackStateInit();
 	DeathStateInit();
 	RangeAttackStateInit();
+	SummonStateInit();
 
 	MonsterFSM.ChangeState("Move");
 }

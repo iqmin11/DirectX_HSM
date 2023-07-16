@@ -36,6 +36,12 @@ void SandWraith::MoveStateInit()
 					return;
 				}
 
+				if (SummonCoolTime >= SummonMaxCoolTime)
+				{
+					State = MonsterState::Summon;
+					MonsterFSM.ChangeState("Summon");
+				}
+
 				RangeTargetFighter = FindRangeTargetFighter();
 				std::string PrevDirStr = Walk.DirString;
 				WalkPath(_DeltaTime);
@@ -45,7 +51,8 @@ void SandWraith::MoveStateInit()
 					MonsterRenderer->ChangeAnimation("Move" + Walk.DirString);
 					PrevDirStr = Walk.DirString;
 				}
-			},
+				SummonCoolTime += _DeltaTime;
+		},
 			.End = [this]()
 			{
 
@@ -123,6 +130,38 @@ void SandWraith::RangeAttackStateInit()
 					AttackTime = 0.f;
 					MonsterRenderer->ChangeAnimation("RangedAttack");
 				}
+				SummonCoolTime += _DeltaTime;
+		},
+			.End = [this]()
+			{
+
+			},
+		});
+}
+
+void SandWraith::SummonStateInit()
+{
+	MonsterFSM.CreateState(
+		{
+			.Name = "Summon",
+			.Start = [this]()
+			{
+				MonsterRenderer->ChangeAnimation("Summon");
+				SummonCoolTime = 0.f;
+			},
+			.Update = [this](float _DeltaTime)
+			{
+				if (CurHP <= 0)
+				{
+					State = MonsterState::Death;
+				}
+
+				if (State == MonsterState::Death)
+				{
+					MonsterFSM.ChangeState("Death");
+				}
+
+				SummonCoolTime += _DeltaTime;
 			},
 			.End = [this]()
 			{
