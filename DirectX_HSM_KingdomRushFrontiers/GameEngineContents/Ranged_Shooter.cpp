@@ -22,6 +22,11 @@ void Ranged_Shooter::Start()
 	BaseShooter::Start();
 	BaseShooter::Attack = std::bind(&Ranged_Shooter::Attack, this);
 
+	BaseShooterRenderer->CreateAnimation({ .AnimationName = "0_Attack_Down", .SpriteName = "StageArcher_Attack_Down",.Loop = false });
+	BaseShooterRenderer->CreateAnimation({ .AnimationName = "0_Attack_Up", .SpriteName = "StageArcher_Attack_Up",.Loop = false });
+	BaseShooterRenderer->CreateAnimation({ .AnimationName = "0_Idle_Down", .SpriteName = "StageArcher_Idle_Down",.Loop = false });
+	BaseShooterRenderer->CreateAnimation({ .AnimationName = "0_Idle_Up", .SpriteName = "StageArcher_Idle_Up",.Loop = false });
+
 	BaseShooterRenderer->CreateAnimation({.AnimationName = "1_Attack_Down", .SpriteName = "RangedLv1_Shooter_Attack_Down",.Loop = false});
 	BaseShooterRenderer->CreateAnimation({.AnimationName = "1_Attack_Up", .SpriteName = "RangedLv1_Shooter_Attack_Up",.Loop = false });
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "1_Idle_Down", .SpriteName = "RangedLv1_Shooter_Idle_Down",.Loop = false });
@@ -37,9 +42,11 @@ void Ranged_Shooter::Start()
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "3_Idle_Down", .SpriteName = "RangedLv3_Shooter_Idle_Down",.Loop = false });
 	BaseShooterRenderer->CreateAnimation({ .AnimationName = "3_Idle_Up", .SpriteName = "RangedLv3_Shooter_Idle_Up",.Loop = false });
 
+	BaseShooterRenderer->SetAnimationStartEvent("0_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Down", 1, std::bind(&Ranged_Shooter::Attack, this));
+	BaseShooterRenderer->SetAnimationStartEvent("0_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("1_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("2_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));
 	BaseShooterRenderer->SetAnimationStartEvent("3_Attack_Up", 1, std::bind(&Ranged_Shooter::Attack, this));

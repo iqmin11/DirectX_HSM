@@ -32,13 +32,16 @@ void BaseShootingTower::Update(float _DeltaTime)
 
 	if (Construct == ConstructState::Complete)
 	{
-		if (UpgradeUI->IsUpdate())
+		if (UpgradeUI != nullptr)
 		{
-			TowerRangeRender->On();
-		}
-		else
-		{
-			TowerRangeRender->Off();
+			if (UpgradeUI->IsUpdate())
+			{
+				TowerRangeRender->On();
+			}
+			else
+			{
+				TowerRangeRender->Off();
+			}
 		}
 	}
 

@@ -47,3 +47,8 @@ void BaseShooter::CheckDir()
 		Dir_x = "Left";
 	}
 }
+
+void BaseShooter::ChangeBaseShooterAnimation(const std::string_view& _AnimationName)
+{
+	BaseShooterRenderer->ChangeAnimation(_AnimationName);
+}

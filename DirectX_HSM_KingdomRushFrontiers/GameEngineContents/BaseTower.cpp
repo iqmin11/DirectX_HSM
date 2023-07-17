@@ -60,6 +60,11 @@ void BaseTower::Start()
 
 void BaseTower::Update(float _DeltaTime)
 {
+	if (UpgradeUI == nullptr)
+	{
+		return;
+	}
+
 	if (UpgradeUI->IsUpdate())
 	{
 		if (UpgradeUI->AcUpgradeButton->GetState() != ButtonState::Release)

@@ -338,6 +338,18 @@
     <ClInclude Include="SandWraith_Coffin.h">
       <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
     </ClInclude>
+    <ClInclude Include="BaseStgObj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Stg1_Obj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Stg0_Obj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
+    <ClInclude Include="CityTower.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -725,6 +737,18 @@
     <ClCompile Include="SandWraith_Coffin_State.cpp">
       <Filter>3.PlayStage\Actor\Monster\12. SandWraith</Filter>
     </ClCompile>
+    <ClCompile Include="BaseStgObj.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Stg1_Obj.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Stg0_Obj.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="CityTower.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="TestLevel">
@@ -897,6 +921,9 @@
     </Filter>
     <Filter Include="3.PlayStage\Actor\Monster\1. DesertThug">
       <UniqueIdentifier>{4896dfcc-7d48-4536-b7e7-8eb30c753333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3.PlayStage\Actor\StageBase\StgObj">
+      <UniqueIdentifier>{77d96e81-89eb-4005-a2fb-646922e2626d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@
 #include "DefeatBadge.h"
 #include "_101UIRenderer.h"
 #include "Reinforcement_RallyPoint.h"
+#include "BaseStgObj.h"
 
 PlayStageLevel* PlayStageLevel::MainPalyStage = nullptr;
 std::vector<StageData> PlayStageLevel::AllStageData = std::vector<StageData>();
@@ -51,6 +52,7 @@ void PlayStageLevel::InitStage(int _Stage)
 	SetStageWaveButtons(CurStage);
 	SetStageGold(CurStage);
 	SetHero(CurStage);
+	SetStgObj(CurStage);
 	MainPlayer->InitPlayManager();
 }
 
@@ -69,6 +71,7 @@ void PlayStageLevel::ClearStage()
 	ClearLiveWave();
 	ClearLiveMonster();
 	ClearLiveReinforcement();
+	ClearStgObj();
 }
 
 void PlayStageLevel::Start()
@@ -84,6 +87,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("ArtilleryBomb");
 	LoadPlayLevelTexture("MeleeTower");
 	LoadPlayLevelTexture("PopText");
+	LoadPlayLevelTexture("StageObj");
 	LoadPlayLevelAnimation();
 	
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
@@ -322,6 +326,11 @@ void PlayStageLevel::SetStageGold(int _Stage)
 void PlayStageLevel::SetHero(int _Stage)
 {
 	AcHero = Hero_RallyPoint::CreateRallyPoint(this, AllStageData[_Stage].HeroStartPos);
+}
+
+void PlayStageLevel::SetStgObj(int _Stage)
+{
+	AcStgObj = BaseStgObj::CreateStgObj(this, _Stage);
 }
 
 void PlayStageLevel::ClearStageBg()
@@ -674,6 +683,16 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ReinforcementButton_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PortraitFrame_Revive").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StarAnimation").GetFullPath());
+
+	Dir.MoveParentToDirectory("GUIAnimation");
+	Dir.Move("StageObjAnimation");
+
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Stage0_Flag").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StageArcher_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StageArcher_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StageArcher_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("StageArcher_Idle_Up").GetFullPath());
+
 }
 
 
@@ -884,4 +903,14 @@ void PlayStageLevel::ClearLiveReinforcement()
 		StartIter = Reinforcement_RallyPoint::LiveReinforcementRallyManager.erase(StartIter);
 	}
 	Reinforcement_RallyPoint::LiveReinforcementRallyManager.clear();
+}
+
+void PlayStageLevel::ClearStgObj()
+{
+	if (AcStgObj != nullptr)
+	{
+		AcStgObj->Death();
+		AcStgObj = nullptr;
+	}
+	return;
 }

@@ -8,6 +8,7 @@ enum class ActorOrder
 
 enum class RenderOrder
 {
+	Obj = -1000,
 	Mob = 1,
 	Shooter,
 	//Monster,
@@ -90,6 +91,7 @@ enum class StageEditMode
 enum class TowerEnum
 {
 	Null = -1,
+	RangedTower_CityTower,
 	RangedTower,
 	RangedTower_Level1,
 	RangedTower_Level2,

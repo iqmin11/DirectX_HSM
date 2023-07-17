@@ -88,6 +88,17 @@ public:
 		{
 		case TowerEnum::Null:
 			break;
+		case TowerEnum::RangedTower_CityTower:
+			TowerType = TowerEnum::RangedTower;
+			Level = 0;
+			FireRate = 0.8f;
+			Range = Short;
+			Damage_min = 4;
+			Damage_MAX = 6;
+			BulletTime = 1.0f;
+			BuildCost = 0;
+			SellCost = 0;
+			break;
 		case TowerEnum::RangedTower_Level1:
 			TowerType = TowerEnum::RangedTower;
 			Level = 1;

@@ -84,6 +84,7 @@ private:
 	std::weak_ptr<class VictoryBadge> AcVictoryBadge = std::weak_ptr<class VictoryBadge>();
 	std::weak_ptr<class DefeatBadge> AcDefeatBadge = std::weak_ptr<class DefeatBadge>();
 	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
+	std::shared_ptr<class BaseStgObj> AcStgObj = nullptr;
 
 	int CurStage = -1;
 	int NextWave = -1; // ¿Œµ¶Ω∫ ±‚¡ÿ
@@ -117,6 +118,7 @@ private:
 	void SetStageWaveButtons(int _Stage);
 	void SetStageGold(int _Stage);
 	void SetHero(int _Stage);
+	void SetStgObj(int _Stage);
 
 	void ClearStageBg();
 	void ClearStagePaths();
@@ -127,6 +129,7 @@ private:
 	void ClearLiveWave();
 	void ClearLiveMonster();
 	void ClearLiveReinforcement();
+	void ClearStgObj();
 
 	void LoadPlayLevelTexture(std::string_view _Folder);
 	void LoadPlayLevelAnimation();

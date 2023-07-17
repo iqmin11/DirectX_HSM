@@ -48,6 +48,8 @@ public:
 		ParentTower = _Tower;
 	}
 
+	void ChangeBaseShooterAnimation(const std::string_view& _AnimationName);
+
 	ShooterState StateValue = ShooterState::Idle;
 	
 protected:
