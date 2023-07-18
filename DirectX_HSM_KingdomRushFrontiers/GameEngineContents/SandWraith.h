@@ -22,7 +22,7 @@ public:
 
 	std::shared_ptr<class BaseFighter> GetRangeTargetFighter()
 	{
-		return RangeTargetFighter;
+		return RangeTargetFighter.lock();
 	}
 
 	float4 GetBulletStartPivotPos();
@@ -42,7 +42,7 @@ private:
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
 	float Range = 140;
 
-	std::shared_ptr<class BaseFighter> RangeTargetFighter = nullptr;
+	std::weak_ptr<class BaseFighter> RangeTargetFighter;
 	float4 RangeTargetPos = float4::Zero;
 
 	std::shared_ptr<class BaseFighter> FindRangeTargetFighter();

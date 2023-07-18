@@ -78,7 +78,7 @@ void MonsterWave::Update(float _DeltaTime)
 		{
 			if (StartIter->StartTime <= WaveTime)
 			{
- 				BaseMonster::LiveMonsterList.push_back(BaseMonster::CreateMonster(ParentLevel, StartIter->Monster, (*CurStagePaths)[StartIter->LineIndex].Points));
+				BaseMonster::CreateMonster(ParentLevel, StartIter->Monster, (*CurStagePaths)[StartIter->LineIndex].Points);
 				StartIter = SpawnDatas.erase(StartIter);
 				if (SpawnDatas.size() == 0)
 				{

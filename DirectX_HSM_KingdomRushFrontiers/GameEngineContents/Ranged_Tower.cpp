@@ -167,6 +167,10 @@ void Ranged_Tower::Update(float _DeltaTime)
 	else
 	{
 		BaseShootingTower::Update(_DeltaTime);
+		if (GameEngineInput::IsUp("M"))
+		{
+			ChangeTower(TowerEnum::RangedTower_Level3);
+		}
 		if (IsThereTarget())
 		{
 			Time += _DeltaTime;

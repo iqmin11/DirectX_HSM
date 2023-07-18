@@ -154,6 +154,8 @@ void BaseMonster::Start()
 	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
 
 	ParentLevel = GetLevel()->DynamicThis<PlayStageLevel>();
+
+	LiveMonsterList.push_back(DynamicThis<BaseMonster>());
 }
 
 void BaseMonster::Update(float _DeltaTime)

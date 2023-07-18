@@ -29,14 +29,14 @@ void DessertArcher::MoveStateInit()
 					return;
 				}
 
-				if (RangeTargetFighter != nullptr && TargetFighter == nullptr)
+				if (RangeTargetFighter.lock() != nullptr && TargetFighter == nullptr)
 				{
 					State = MonsterState::RangeAttack;
 					MonsterFSM.ChangeState("RangeAttack");
 					return;
 				}
 
-				RangeTargetFighter = FindRangeTargetFighter();
+				RangeTargetFighter.lock() = FindRangeTargetFighter();
 				std::string PrevDirStr = Walk.DirString;
 				WalkPath(_DeltaTime);
 				CalMonsterDir();
@@ -60,7 +60,7 @@ void DessertArcher::RangeAttackStateInit()
 			.Name = "RangeAttack",
 			.Start = [this]()
 			{
-				if (0.f <= GetTransform()->GetWorldPosition().x - RangeTargetFighter->GetTransform()->GetWorldPosition().x)
+				if (0.f <= GetTransform()->GetWorldPosition().x - RangeTargetFighter.lock()->GetTransform()->GetWorldPosition().x)
 				{
 					MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
 				}
@@ -74,7 +74,7 @@ void DessertArcher::RangeAttackStateInit()
 			{
 				RangeTargetFighter = FindRangeTargetFighter();
 
-				if (RangeTargetFighter != nullptr)
+				if (RangeTargetFighter.lock() != nullptr)
 				{
 					CalTargetPos();
 				}
@@ -84,17 +84,17 @@ void DessertArcher::RangeAttackStateInit()
 					State = MonsterState::Death;
 				}
 
-				if (RangeTargetFighter == nullptr)
+				if (RangeTargetFighter.lock() == nullptr)
 				{
 					State = MonsterState::Move;
 					MonsterFSM.ChangeState("Move");
 					return;
 				}
 
-				if (RangeTargetFighter->State == FighterState::Death)
+				if (RangeTargetFighter.lock()->State == FighterState::Death)
 				{
 					State = MonsterState::Move;
-					RangeTargetFighter = nullptr;
+					RangeTargetFighter.lock() = nullptr;
 					MonsterFSM.ChangeState("Move");
 					return;
 				}
@@ -112,7 +112,7 @@ void DessertArcher::RangeAttackStateInit()
 				AttackTime += _DeltaTime;
 				if (AttackTime >= Data.RangedAttackRate)
 				{
-					if (0.f <= GetTransform()->GetWorldPosition().x - RangeTargetFighter->GetTransform()->GetWorldPosition().x)
+					if (0.f <= GetTransform()->GetWorldPosition().x - RangeTargetFighter.lock()->GetTransform()->GetWorldPosition().x)
 					{
 						MonsterRenderer->GetTransform()->SetLocalNegativeScaleX();
 					}

@@ -160,7 +160,7 @@ void PlayStageLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsPress("A"))
 	{
-		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 18.0f);
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 40.0f);
 	}
 }
 
@@ -841,7 +841,7 @@ void PlayStageLevel::LoadStageStartGold()
 	AllStageData[2].StartGold = 520;
 	AllStageData[3].StartGold = 600;
 	AllStageData[4].StartGold = 800;
-	AllStageData[5].StartGold = 1000;
+	AllStageData[5].StartGold = 10000;
 }
 
 void PlayStageLevel::LoadStageHeroStartPos()

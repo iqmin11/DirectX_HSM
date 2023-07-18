@@ -19,7 +19,7 @@ SandWraith::~SandWraith()
 
 float4 SandWraith::GetRangeTargetPos()
 {
-	return RangeTargetFighter->GetTransform()->GetWorldPosition();
+	return RangeTargetFighter.lock()->GetTransform()->GetWorldPosition();
 }
 
 float4 SandWraith::GetBulletStartPivotPos()
@@ -94,7 +94,7 @@ std::shared_ptr<class BaseFighter> SandWraith::FindRangeTargetFighter()
 
 void SandWraith::CalTargetPos()
 {
-	RangeTargetPos = RangeTargetFighter->GetFighterCol()->GetTransform()->GetWorldPosition();
+	RangeTargetPos = RangeTargetFighter.lock()->GetFighterCol()->GetTransform()->GetWorldPosition();
 }
 
 

@@ -83,6 +83,10 @@ void Melee_Tower::Update(float _DeltaTime)
 	}
 	else
 	{
+		if (GameEngineInput::IsUp("M"))
+		{
+			ChangeTower(TowerEnum::MeleeTower_Level3);
+		}
 		ButtonState RallyButtonState = UpgradeUI->DynamicThis<UpgradeTowerUI_ex>()->AcRallyButton->GetState();
 		if (ButtonState::Release != RallyButtonState || SetRallyMod)
 		{

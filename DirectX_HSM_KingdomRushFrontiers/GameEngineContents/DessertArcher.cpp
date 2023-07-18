@@ -18,7 +18,7 @@ DessertArcher::~DessertArcher()
 
 float4 DessertArcher::GetRangeTargetPos()
 {
-	return RangeTargetFighter->GetTransform()->GetWorldPosition();
+	return RangeTargetFighter.lock()->GetTransform()->GetWorldPosition();
 }
 
 void DessertArcher::Start()
@@ -76,7 +76,7 @@ std::shared_ptr<class BaseFighter> DessertArcher::FindRangeTargetFighter()
 
 void DessertArcher::CalTargetPos()
 {
-	RangeTargetPos = RangeTargetFighter->GetFighterCol()->GetTransform()->GetWorldPosition();
+	RangeTargetPos = RangeTargetFighter.lock()->GetFighterCol()->GetTransform()->GetWorldPosition();
 }
 
 
