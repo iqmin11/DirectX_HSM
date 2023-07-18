@@ -350,6 +350,15 @@
     <ClInclude Include="CityTower.h">
       <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
     </ClInclude>
+    <ClInclude Include="Stg2_Obj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Stg3_Obj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Stg4_Obj.h">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -747,6 +756,15 @@
       <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
     </ClCompile>
     <ClCompile Include="CityTower.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Stg2_Obj.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Stg3_Obj.cpp">
+      <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Stg4_Obj.cpp">
       <Filter>3.PlayStage\Actor\StageBase\StgObj</Filter>
     </ClCompile>
   </ItemGroup>

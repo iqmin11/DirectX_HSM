@@ -570,6 +570,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stg2_Obj.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stg3_Obj.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stg4_Obj.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TestActor.h">
       <SubType>
       </SubType>
@@ -1085,6 +1097,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stg1_Obj.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stg2_Obj.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stg3_Obj.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stg4_Obj.cpp">
       <SubType>
       </SubType>
     </ClCompile>

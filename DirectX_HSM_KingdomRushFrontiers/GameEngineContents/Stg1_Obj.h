@@ -16,9 +16,9 @@ public:
 
 protected:
 	void Start() override;
-	void Update(float _DeltaTime) override;
 
 private:
-
+	std::shared_ptr<class BaseTower> AcCityTower0 = nullptr;
+	std::shared_ptr<class BaseTower> AcCityTower1 = nullptr;
 };
 

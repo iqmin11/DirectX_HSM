@@ -44,6 +44,3 @@ void Stg0_Obj::Start()
 	AcCityTower1 = CityTower::CreateTower(this, {-336, 110, 110});
 }
 
-void Stg0_Obj::Update(float _DeltaTime)
-{
-}

@@ -18,7 +18,6 @@ public:
 	static std::shared_ptr<BaseStgObj> CreateStgObj(class GameEngineLevel* _Level, int _Stage);
 
 protected:
-	//std::vector<std::shared_ptr<class GameEngineObject>> StgObjManager = std::vector<std::shared_ptr<class GameEngineObject>>();
 	int Stage = -1;
 
 private:

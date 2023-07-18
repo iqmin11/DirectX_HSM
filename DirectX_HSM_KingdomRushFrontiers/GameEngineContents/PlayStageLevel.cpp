@@ -157,6 +157,11 @@ void PlayStageLevel::Update(float _DeltaTime)
 	{
 		IsDebugSwitch();
 	}
+
+	if (GameEngineInput::IsPress("A"))
+	{
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 18.0f);
+	}
 }
 
 void PlayStageLevel::LevelChangeEnd()
