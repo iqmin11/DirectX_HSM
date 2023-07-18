@@ -17,8 +17,8 @@ const float4 Ranged_Tower::Lv2Shooter0LocalPos = { 14,49, -49 };;
 const float4 Ranged_Tower::Lv2Shooter1LocalPos = { -10,49, -49 };
 const float4 Ranged_Tower::Lv3Shooter0LocalPos = { 14,54, -54 };
 const float4 Ranged_Tower::Lv3Shooter1LocalPos = { -10,54, -54 };
-const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,54, -54 };
-const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,54, -54 };
+const float4 Ranged_Tower::Lv4Shooter0LocalPos = { 14,56, -56 };
+const float4 Ranged_Tower::Lv4Shooter1LocalPos = { -10,56, -56 };
 
 Ranged_Tower::Ranged_Tower()
 {
@@ -64,7 +64,10 @@ void Ranged_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->SetTexture("archer_tower_000" + std::to_string(_TowerLevel) + ".png");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	if (Data.Level < 4)
+	{
+		NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	}
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
@@ -169,7 +172,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 		BaseShootingTower::Update(_DeltaTime);
 		if (GameEngineInput::IsUp("M"))
 		{
-			ChangeTower(TowerEnum::RangedTower_Level3);
+			ChangeTower(TowerEnum::RangedTower_Level4);
 		}
 		if (IsThereTarget())
 		{

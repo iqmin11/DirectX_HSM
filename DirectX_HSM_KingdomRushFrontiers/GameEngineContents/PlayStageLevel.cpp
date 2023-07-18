@@ -374,15 +374,19 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Attack_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Attack_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv4_Shooter_Attack_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Idle_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Idle_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv4_Shooter_Idle_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Attack_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Attack_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv4_Shooter_Attack_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv1_Shooter_Idle_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv2_Shooter_Idle_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv3_Shooter_Idle_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RangedLv4_Shooter_Idle_Up").GetFullPath());
 
 	Dir.MoveParentToDirectory("RangedTowerShooterAnimation");
 	Dir.Move("MagicTower");

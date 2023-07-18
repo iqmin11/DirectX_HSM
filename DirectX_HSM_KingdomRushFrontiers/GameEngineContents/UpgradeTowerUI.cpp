@@ -52,6 +52,11 @@ void UpgradeTowerUI::Update(float _DeltaTime)
 	}
 
 	BaseTowerUI::Update(_DeltaTime);
+	if (dynamic_cast<BaseTower*>(ParentActor)->GetData().Level == 4 && AcUpgradeButton->IsUpdate())
+	{
+		AcUpgradeButton->Off();
+	}
+
 	if (GameEngineInput::IsUp("EngineMouseRight"))
 	{
 		OffUI();
