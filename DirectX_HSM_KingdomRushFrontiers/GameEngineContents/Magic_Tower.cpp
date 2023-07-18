@@ -14,7 +14,7 @@
 const float4 Magic_Tower::Lv1ShooterLocalPos = { 1,47, -47 };
 const float4 Magic_Tower::Lv2ShooterLocalPos = { 1,49, -49 };
 const float4 Magic_Tower::Lv3ShooterLocalPos = { 1,54, -54 };
-const float4 Magic_Tower::Lv4ShooterLocalPos = { 1,54, -54 };
+const float4 Magic_Tower::Lv4ShooterLocalPos = { 1,44, -34 };
 
 Magic_Tower::Magic_Tower()
 {
@@ -55,6 +55,8 @@ void Magic_Tower::Start()
 	TowerRenderer->CreateAnimation({ .AnimationName = "2_Idle", .SpriteName = "MagicTower_Level2_Idle", .Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Attack", .SpriteName = "MagicTower_Level3_Attack",.FrameInter = 0.15f, .Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Idle", .SpriteName = "MagicTower_Level3_Idle", .Loop = false });
+	TowerRenderer->CreateAnimation({ .AnimationName = "4_Attack", .SpriteName = "MagicTower_Level4_Attack",.FrameInter = 0.15f, .Loop = false });
+	TowerRenderer->CreateAnimation({ .AnimationName = "4_Idle", .SpriteName = "MagicTower_Level4_Idle", .Loop = false });
 
 	TowerRenderer->ChangeAnimation("Construct");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
@@ -62,7 +64,6 @@ void Magic_Tower::Start()
 	Shooter = GetLevel()->CreateActor<Magic_Shooter>();
 	Shooter->GetTransform()->SetParent(GetTransform());
 	Shooter->GetTransform()->SetLocalPosition(Lv1ShooterLocalPos);
-	//Shooter->SetTowerData(&Data);
 	Shooter->SetParentTower(this);
 	Shooter->Off();
 
@@ -134,7 +135,10 @@ void Magic_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->ChangeAnimation(std::to_string(_TowerLevel) + "_Idle");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	if (Data.Level < 4)
+	{
+		NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	}
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 

@@ -21,7 +21,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
-	float4 RenderScale = { 128, 128, 1 };
+	float4 RenderScale = { 256, 256, 1 };
 	std::shared_ptr<class Magic_Shooter> Shooter = nullptr;
 	float Time = 0.0f;
 	void ChangeTowerRender(int _TowerLevel);

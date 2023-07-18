@@ -397,8 +397,12 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level2_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Attack").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level3_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level4_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicTower_Level4_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicBolt_Shoot").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MagicBolt_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMageBolt_Shoot").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMageBolt_Death").GetFullPath());
 
 	Dir.MoveParentToDirectory("MagicTower");
 	Dir.Move("MagicTowerShooterAnimation");
@@ -407,6 +411,10 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Attack_Up").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Down").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Magic_Shooter_Idle_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMage_Shooter_Attack_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMage_Shooter_Attack_Up").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMage_Shooter_Idle_Down").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("ArchMage_Shooter_Idle_Up").GetFullPath());
 
 	Dir.MoveParentToDirectory("MagicTowerShooterAnimation");
 	Dir.Move("ArtilleryTower");

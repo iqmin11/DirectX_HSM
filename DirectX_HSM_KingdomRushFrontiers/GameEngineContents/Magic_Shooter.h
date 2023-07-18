@@ -16,6 +16,7 @@ public:
 
 	void ChangeShooterRenderer(int _TowerLevel);
 	void Attack();
+	void ArchAttack();
 
 protected:
 	void Start() override;
