@@ -31,6 +31,8 @@ private:
 
 	void ChangeTowerRender(int _TowerLevel);
 	void ArtilleryAttack();
+	void DwaarpAttack();
+	void ChangeIdleState();
 	bool IsThereTarget() override;
 	std::shared_ptr<class BaseMonster> FindTargetMonster() override;
 

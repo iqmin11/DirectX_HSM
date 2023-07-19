@@ -362,6 +362,9 @@
     <ClInclude Include="ArchMage_Bullet.h">
       <Filter>3.PlayStage\Actor\Tower\2.MagicTower</Filter>
     </ClInclude>
+    <ClInclude Include="Dwaarp_Effect_HitWave.h">
+      <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -772,6 +775,9 @@
     </ClCompile>
     <ClCompile Include="ArchMage_Bullet.cpp">
       <Filter>3.PlayStage\Actor\Tower\2.MagicTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Dwaarp_Effect_HitWave.cpp">
+      <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

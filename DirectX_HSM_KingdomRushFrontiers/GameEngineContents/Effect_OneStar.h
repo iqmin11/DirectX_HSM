@@ -15,7 +15,7 @@ public:
 	Effect_OneStar& operator=(const Effect_OneStar& _Other) = delete;
 	Effect_OneStar& operator=(Effect_OneStar&& _Other) noexcept = delete;
 	
-	static void CreatStar(class GameEngineLevel* _Level, const float4& _StartPos, const float4 _Dir, float _Gravity, float _Speed);
+	static void CreatStar(class GameEngineLevel* _Level, const float4& _StartPos, const float4& _Dir, float _Gravity, float _Speed);
 
 protected:
 	void Start() override;

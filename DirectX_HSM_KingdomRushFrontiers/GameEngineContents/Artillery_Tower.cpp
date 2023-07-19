@@ -12,6 +12,7 @@
 #include "BuildArea.h"
 #include "UpgradeTowerUI.h"
 #include "BaseMonster.h"
+#include "Dwaarp_Effect_HitWave.h"
 
 const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; // 0
 const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; // 2
@@ -55,10 +56,18 @@ void Artillery_Tower::Start()
 	TowerRenderer->CreateAnimation({ .AnimationName = "2_Idle", .SpriteName = "ArtilleryTower_Level2_Idle",.FrameInter = 0.08f,.Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Attack", .SpriteName = "ArtilleryTower_Level3_Attack",.FrameInter = 0.08f,.Loop = false });
 	TowerRenderer->CreateAnimation({ .AnimationName = "3_Idle", .SpriteName = "ArtilleryTower_Level3_Idle",.FrameInter = 0.08f,.Loop = false });
+	TowerRenderer->CreateAnimation({ .AnimationName = "4_Attack", .SpriteName = "ArtilleryTower_Level4_Attack",.FrameInter = 0.065f,.Loop = false });
+	TowerRenderer->CreateAnimation({ .AnimationName = "4_Idle", .SpriteName = "ArtilleryTower_Level4_Idle",.FrameInter = 0.065f,.Loop = false });
 
 	TowerRenderer->SetAnimationStartEvent("1_Attack",4,std::bind(&Artillery_Tower::ArtilleryAttack,this));
 	TowerRenderer->SetAnimationStartEvent("2_Attack",4,std::bind(&Artillery_Tower::ArtilleryAttack,this));
 	TowerRenderer->SetAnimationStartEvent("3_Attack",4,std::bind(&Artillery_Tower::ArtilleryAttack,this));
+	TowerRenderer->SetAnimationStartEvent("4_Attack",6,std::bind(&Artillery_Tower::DwaarpAttack,this));
+
+	TowerRenderer->SetAnimationStartEvent("1_Attack", 9, std::bind(&Artillery_Tower::ChangeIdleState, this));
+	TowerRenderer->SetAnimationStartEvent("2_Attack", 9, std::bind(&Artillery_Tower::ChangeIdleState, this));
+	TowerRenderer->SetAnimationStartEvent("3_Attack", 9, std::bind(&Artillery_Tower::ChangeIdleState, this));
+	TowerRenderer->SetAnimationStartEvent("4_Attack",31, std::bind(&Artillery_Tower::ChangeIdleState, this));
 
 	TowerRenderer->ChangeAnimation("Construct");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
@@ -105,7 +114,7 @@ void Artillery_Tower::Update(float _DeltaTime)
 		BaseShootingTower::Update(_DeltaTime);
 		if (GameEngineInput::IsUp("M"))
 		{
-			ChangeTower(TowerEnum::ArtilleryTower_Level3);
+			ChangeTower(TowerEnum::ArtilleryTower_Level4);
 		}
 
 		if (IsThereTarget())
@@ -116,10 +125,6 @@ void Artillery_Tower::Update(float _DeltaTime)
 				Time = 0;
 				TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
 			}
-		}
-		else
-		{
-			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 		}
 	}
 }
@@ -138,7 +143,10 @@ void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->ChangeAnimation(std::to_string(_TowerLevel) + "_Idle");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	if (Data.Level < 4)
+	{
+		NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	}
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 
 	switch (_TowerLevel)
@@ -153,7 +161,7 @@ void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv3SmokeLocalPos);
 		break;
 	case 4:
-		FireSmokeRenderer->GetTransform()->SetLocalPosition(Lv4SmokeLocalPos);
+		FireSmokeRenderer->Off();
 		break;
 	default:
 		break;
@@ -165,6 +173,26 @@ void Artillery_Tower::ArtilleryAttack()
 	FireSmokeRenderer->ChangeAnimation("Fire");
 	FireSmokeRenderer->On();
 	Artillery_Bullet::ShootingBullet(GetLevel(), this);
+}
+
+void Artillery_Tower::DwaarpAttack()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> TempVec = std::vector<std::shared_ptr<GameEngineCollision>>();
+	TempVec.reserve(30);
+	RangeCol->CollisionAll(ColOrder::Monster, TempVec, ColType::SPHERE2D, ColType::SPHERE2D);
+	for (size_t i = 0; i < TempVec.size(); i++)
+	{
+		int Damage = GameEngineRandom::MainRandom.RandomInt(Data.Damage_min,Data.Damage_MAX);
+		std::weak_ptr<BaseMonster> Monster(TempVec[i]->GetActor()->DynamicThis<BaseMonster>());
+		Monster.lock()->Hit = HitState::Bomb;
+		Monster.lock()->CurHP -= Damage;
+		Dwaarp_Effect_HitWave::CreateEffect(this);
+	}
+}
+
+void Artillery_Tower::ChangeIdleState()
+{
+	TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 }
 
 bool Artillery_Tower::IsThereTarget()

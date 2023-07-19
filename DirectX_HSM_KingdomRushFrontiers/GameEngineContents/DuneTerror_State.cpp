@@ -37,6 +37,17 @@ void DuneTerror::MoveStateInit()
 			},
 			.Update = [this](float _DeltaTime)
 			{
+
+				if (CurHP <= 0)
+				{
+					State = MonsterState::Death;
+				}
+
+				if (State == MonsterState::Death)
+				{
+					MonsterFSM.ChangeState("Death");
+				}
+
 				if (TargetFighter != nullptr)
 				{
 					State = MonsterState::ComeUp;
