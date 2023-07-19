@@ -162,6 +162,16 @@ void PlayStageLevel::Update(float _DeltaTime)
 	{
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 40.0f);
 	}
+
+	if (GameEngineInput::IsPress("S"))
+	{
+		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 4.0f);
+	}
+
+	if (GameEngineInput::IsDown("Z"))
+	{
+		PlayManager::MainPlayer->Gold += 1000;
+	}
 }
 
 void PlayStageLevel::LevelChangeEnd()

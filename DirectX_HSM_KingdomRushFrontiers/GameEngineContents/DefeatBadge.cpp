@@ -61,11 +61,6 @@ void DefeatBadge::Update(float _DeltaTime)
 	{
 		FallBadge(_DeltaTime);
 	}
-
-	if (GameEngineInput::IsDown("Z"))
-	{
-		State = DefeatBadgeState::Fall;
-	}
 }
 
 void DefeatBadge::FallBadge(float _DeltaTime)

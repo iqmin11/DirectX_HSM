@@ -93,12 +93,6 @@ void Hero_Alric::Update(float _DeltaTime)
 	}
 	SummonCooltime += _DeltaTime;
 	FighterFSM.Update(_DeltaTime);
-
-	//Test
-	if (GameEngineInput::IsDown("Z"))
-	{
-		CurHP = 0;
-	}
 }
 
 void Hero_Alric::AttackTarget()
