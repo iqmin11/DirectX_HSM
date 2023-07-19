@@ -295,6 +295,7 @@ void BaseMonster::Attack()
 		return;
 	}
 	TargetFighter->CurHP -= CalDamage();
+	TargetFighter->IsHit = true;
 }
 
 float BaseMonster::CalDamage()

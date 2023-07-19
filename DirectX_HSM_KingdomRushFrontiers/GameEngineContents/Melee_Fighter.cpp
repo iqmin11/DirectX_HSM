@@ -67,17 +67,19 @@ void Melee_Fighter::Start()
 	FighterRenderer->CreateAnimation({ .AnimationName = "3_Attack", .SpriteName = "MeleeLv3_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
 	FighterRenderer->CreateAnimation({ .AnimationName = "3_Death", .SpriteName = "MeleeLv3_Fighter_Death", .Loop = false });
 
-	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Idle", .SpriteName = "MeleeLv4_Fighter_Idle", .Loop = false });
-	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Move", .SpriteName = "MeleeLv4_Fighter_Move", .Loop = true });
-	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Attack", .SpriteName = "MeleeLv4_Fighter_Attack", .FrameInter = 0.15f, .Loop = false });
-	//FighterRenderer->CreateAnimation({ .AnimationName = "4_Death", .SpriteName = "MeleeLv4_Fighter_Death", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "4_Idle", .SpriteName = "MeleeLv4_Fighter_Idle", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "4_Move", .SpriteName = "MeleeLv4_Fighter_Move", .Loop = true });
+	FighterRenderer->CreateAnimation({ .AnimationName = "4_Attack", .SpriteName = "MeleeLv4_Fighter_Attack", .FrameInter = 0.05f, .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "4_Death", .SpriteName = "MeleeLv4_Fighter_Death", .Loop = false });
+	FighterRenderer->CreateAnimation({ .AnimationName = "4_Skill0", .SpriteName = "MeleeLv4_Fighter_Skill0", .FrameInter = 0.05f, .Loop = false });
 
 	FighterRenderer->SetAnimationStartEvent("1_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));
 	FighterRenderer->SetAnimationStartEvent("2_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));
 	FighterRenderer->SetAnimationStartEvent("3_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));
-	//FighterRenderer->SetAnimationStartEvent("4_Attack", 2, std::bind(&BaseFighter::AttackTarget, this));
+	FighterRenderer->SetAnimationStartEvent("4_Attack", 2, std::bind(&Melee_Fighter::AttackTarget, this));
+	FighterRenderer->SetAnimationStartEvent("4_Skill0", 13, std::bind(&Melee_Fighter::SneakAttack, this));
 
-	FighterRenderer->GetTransform()->SetWorldScale(FighterRendererScale);
+	FighterRenderer->GetTransform()->SetWorldScale({128,128,1});
 
 	IdleStateInit();
 	MoveStateInit();
@@ -99,7 +101,19 @@ void Melee_Fighter::AttackTarget()
 	TargetMonster->Hit = HitState::Melee;
 }
 
+void Melee_Fighter::SneakAttack()
+{
+	TargetMonster->CurHP -= CalSneakAttackDamage();
+	TargetMonster->Hit = HitState::Melee;
+}
+
 int Melee_Fighter::CalDamage()
 {
 	return BaseFighter::CalDamage();
 }
+
+int Melee_Fighter::CalSneakAttackDamage()
+{
+	return GameEngineRandom::MainRandom.RandomInt(SneakAttack_min, SneakAttack_MAX);
+}
+

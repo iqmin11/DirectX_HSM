@@ -23,5 +23,11 @@ protected:
 private:
 	void AttackTarget();
 	int CalDamage() override;
+	void SneakAttack();
+	int CalSneakAttackDamage();
+
+	int SneakAttack_min = 40;
+	int SneakAttack_MAX = 40;
+
 };
 

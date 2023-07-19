@@ -31,9 +31,12 @@ void SandWraith::MoveStateInit()
 
 				if (RangeTargetFighter.lock() != nullptr && TargetFighter == nullptr)
 				{
-					State = MonsterState::RangeAttack;
-					MonsterFSM.ChangeState("RangeAttack");
-					return;
+					if (RangeTargetFighter.lock()->IsInvisible == false)
+					{
+						State = MonsterState::RangeAttack;
+						MonsterFSM.ChangeState("RangeAttack");
+						return;
+					}
 				}
 
 				if (SummonCoolTime >= SummonMaxCoolTime)
@@ -102,7 +105,7 @@ void SandWraith::RangeAttackStateInit()
 					return;
 				}
 
-				if (RangeTargetFighter.lock()->State == FighterState::Death)
+				if (RangeTargetFighter.lock()->State == FighterState::Death || RangeTargetFighter.lock()->IsInvisible == true)
 				{
 					State = MonsterState::Move;
 					RangeTargetFighter.lock() = nullptr;

@@ -446,6 +446,12 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Death").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Idle").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv3_Fighter_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Attack").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Death").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Idle").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Move").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Skill0").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("MeleeLv4_Fighter_Skill1").GetFullPath());
 
 	Dir.MoveParentToDirectory("MeleeTowerFighterAnimation");
 	Dir.Move("EnemiesAnimation");

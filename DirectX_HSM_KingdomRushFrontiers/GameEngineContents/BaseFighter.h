@@ -85,6 +85,9 @@ public:
 		return Data;
 	}
 
+	bool IsHit = false;
+	bool IsInvisible = false;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -138,6 +141,8 @@ protected:
 	float HealTime = 0.f;
 	float DeathTime = 0.f;
 
+	float PrevHP = 0.f;
+
 	virtual void MoveToRally(float _DeltaTime);
 	void ReturnToRally(float _DeltaTime);
 	virtual void MoveToTarget(float _DeltaTime);
@@ -146,6 +151,7 @@ protected:
 	void IdleAutoHeal(float _DeltaTime);
 
 private:
+
 
 	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
 	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;

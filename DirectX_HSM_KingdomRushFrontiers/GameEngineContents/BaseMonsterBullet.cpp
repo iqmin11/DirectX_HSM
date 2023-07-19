@@ -122,6 +122,7 @@ void BaseMonsterBullet::HitFunc()
 	if (BulletHit != nullptr)
 	{
 		BulletHit();
+		TargetFighter->IsHit = true;
 		return;
 	}
 	Death();

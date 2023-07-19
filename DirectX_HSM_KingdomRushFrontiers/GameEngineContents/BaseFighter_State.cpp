@@ -15,6 +15,12 @@ void BaseFighter::IdleStateInit()
 		{
 			FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 			SavePos = float4::Null;
+
+			if (Data.Level == 4 && Data.FighterType == FighterEnum::Melee)
+			{
+				IsInvisible = true;
+				FighterRenderer->ColorOptionValue.MulColor.a = 0.5f;
+			}
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -39,15 +45,27 @@ void BaseFighter::IdleStateInit()
 			}
 
 			Time += _DeltaTime;
+			if (IsHit == true)
+			{
+				Time = 0;
+			}
+
 			if (Time >= 3)
 			{
 				IdleAutoHeal(_DeltaTime);
 			}
+			
+			IsHit = false;
 		},
 		.End = [this]()
 		{
 			Time = 0.f;
 			HealTime = 0.f;
+			if (Data.Level == 4 && Data.FighterType == FighterEnum::Melee)
+			{
+				IsInvisible = false;
+				FighterRenderer->ColorOptionValue.MulColor.a = 1.f;
+			}
 		} 
 		});
 }
@@ -197,7 +215,22 @@ void BaseFighter::AttackStateInit()
 			if (AttackTime >= Data.AttackRate)
 			{
 				AttackTime = 0.f;
-				FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+				if (Data.FighterType == FighterEnum::Melee && Data.Level == 4)
+				{
+					int RandomPercentage = GameEngineRandom::MainRandom.RandomInt(0,9);
+					if (RandomPercentage < 2)
+					{
+						FighterRenderer->ChangeAnimation("4_Skill0");
+					}
+					else
+					{
+						FighterRenderer->ChangeAnimation("4_Attack");
+					}
+				}
+				else
+				{
+					FighterRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Attack");
+				}
 			}
 		},
 		.End = [this]()

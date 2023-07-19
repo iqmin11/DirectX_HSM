@@ -85,7 +85,7 @@ void Melee_Tower::Update(float _DeltaTime)
 	{
 		if (GameEngineInput::IsUp("M"))
 		{
-			ChangeTower(TowerEnum::MeleeTower_Level3);
+			ChangeTower(TowerEnum::MeleeTower_Level4);
 		}
 		ButtonState RallyButtonState = UpgradeUI->DynamicThis<UpgradeTowerUI_ex>()->AcRallyButton->GetState();
 		if (ButtonState::Release != RallyButtonState || SetRallyMod)
@@ -120,7 +120,10 @@ void Melee_Tower::ChangeTowerRender(int _TowerLevel)
 {
 	TowerRenderer->SetTexture("tower_barracks_lvl" + std::to_string(_TowerLevel) + ".png");
 	TowerRangeRender->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
-	NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	if (Data.Level < 4)
+	{
+		NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
+	}
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 }
 
