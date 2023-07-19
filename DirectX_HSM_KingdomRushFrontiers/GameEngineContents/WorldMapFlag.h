@@ -28,6 +28,11 @@ public:
 	WorldMapFlag& operator=(WorldMapFlag&& _Other) noexcept = delete;
 
 	void SetClearData(int _StarCount);
+	int GetStarCount()
+	{
+		return Data.StarCount;
+	}
+
 	void SetNextStageOnTrigger(GameEngineActor* _NextOn)
 	{
 		NextStageOnTrigger = _NextOn;

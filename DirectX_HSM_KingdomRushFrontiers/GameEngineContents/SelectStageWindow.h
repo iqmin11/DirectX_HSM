@@ -19,10 +19,7 @@ public:
 
 	void StageWindowOn();
 
-	void SelectStage(int _Select)
-	{
-		SelectedStage = _Select;
-	}
+	void SelectStage(int _Select);
 
 	int GetSelectedStage() const
 	{
@@ -31,6 +28,7 @@ public:
 
 protected:
 	void Start() override;
+	void Update(float _DeltaTime) override;
 
 private:
 	int SelectedStage = 0;
@@ -42,7 +40,6 @@ private:
 	std::shared_ptr<class _101UIRenderer> WornOutEffect = nullptr;
 	float4 EffectScale = { 308,226,1 };
 	float4 PreviewLocPos = { -180,44 };
-	std::vector<std::shared_ptr<class _101UIRenderer>> ClearStar = std::vector<std::shared_ptr<class _101UIRenderer>>();
 	std::vector<std::shared_ptr<class _101UIRenderer>> ClearInfoBg = std::vector<std::shared_ptr<class _101UIRenderer>>();
 
 	std::shared_ptr<class _101UIFontRenderer> LeftTitle = nullptr;
@@ -70,6 +67,9 @@ private:
 	std::shared_ptr<class _101UIRenderer> TitleDeco_Left = nullptr;
 	std::shared_ptr<class _101UIRenderer> TitleDeco_Right = nullptr;
 
+	std::vector<std::shared_ptr<class _101UIRenderer>> ClearStarBg = std::vector<std::shared_ptr<class _101UIRenderer>>();
+	std::vector<std::shared_ptr<class _101UIRenderer>> ClearStar = std::vector<std::shared_ptr<class _101UIRenderer>>();
+	int ClearStarCount = 0;
 
 	void SetLeftTitleData();
 	void SetStageExplainData();

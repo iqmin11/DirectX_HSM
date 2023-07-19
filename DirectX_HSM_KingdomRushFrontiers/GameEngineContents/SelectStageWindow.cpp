@@ -6,6 +6,8 @@
 #include "ExitButton.h"
 #include "_101UIRenderer.h"
 #include "_101UIFontRenderer.h"
+#include "WorldMapFlagManager.h"
+#include "WorldMapFlag.h"
 
 SelectStageWindow* SelectStageWindow::MainSelectWindow = nullptr;
 
@@ -25,6 +27,12 @@ void SelectStageWindow::StageWindowOn()
 	LeftTitle->SetText(LeftTitleData[SelectedStage]);
 	StageExplain->SetText(StageExplainData[SelectedStage]);
 	On();
+}
+
+void SelectStageWindow::SelectStage(int _Select)
+{
+	SelectedStage = _Select;
+	ClearStarCount = WorldMapFlagManager::MainFlagManager->GetFlags()[_Select]->GetStarCount();
 }
 
 void SelectStageWindow::Start()
@@ -83,7 +91,44 @@ void SelectStageWindow::Start()
 	TitleDeco_Right->GetTransform()->SetLocalPosition({ 226,212 });
 	TitleDeco_Right->SetTexture("TitleDeco_Right.png");
 
+	ClearStarBg.resize(3);
+	ClearStar.resize(3);
+	for (size_t i = 0; i < ClearStarBg.size(); i++)
+	{
+		ClearStarBg[i] = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_1);
+		ClearStarBg[i]->SetTexture("ClearStarBg.png");
+		ClearStarBg[i]->GetTransform()->SetWorldScale({22,20,1});
+		ClearStarBg[i]->GetTransform()->SetLocalPosition({ -230 + (static_cast<float>(i) * 27.f),-115});
+
+		ClearStar[i] = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_1);
+		ClearStar[i]->SetTexture("ClearStar.png");
+		ClearStar[i]->GetTransform()->SetWorldScale({ 22,20,1 });
+		ClearStar[i]->GetTransform()->SetLocalPosition({ -230 + (static_cast<float>(i) * 27.f),-115 });
+		ClearStar[i]->Off();
+	}
+
 	Off();
+}
+
+void SelectStageWindow::Update(float _DeltaTime)
+{
+	for (int i = 0; i < ClearStar.size(); i++)
+	{
+		if (i <= ClearStarCount - 1)
+		{
+			if (!ClearStar[i]->IsUpdate())
+			{
+				ClearStar[i]->On();
+			}
+		}
+		else
+		{
+			if (ClearStar[i]->IsUpdate())
+			{
+				ClearStar[i]->Off();
+			}
+		}
+	}
 }
 
 void SelectStageWindow::SetLeftTitleData()

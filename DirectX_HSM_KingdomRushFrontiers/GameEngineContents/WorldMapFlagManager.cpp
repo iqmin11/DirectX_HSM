@@ -49,11 +49,6 @@ void WorldMapFlagManager::Start()
 
 void WorldMapFlagManager::Update(float _DeltaTime)
 {
-	//if (GameEngineInput::IsDown("Z"))
-	//{
-	//	static int a = 0;
-	//	OnStage(a++);
-	//}
 }
 
 float4 WorldMapFlagManager::WinToDec(const float4& _Win)
@@ -77,7 +72,7 @@ void WorldMapFlagManager::SetFlag()
 	Flags.reserve(6);
 	for (size_t i = 0; i < Flags.capacity(); i++)
 	{
-		Flags.push_back(WorldMapFlag::CreateFlag(this, [i]()
+		Flags.push_back(WorldMapFlag::CreateFlag(this,[i]()
 			{
 				if (WorldMapLevel::IsPause)
 				{
