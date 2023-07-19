@@ -7,6 +7,7 @@
 
 #include "TitleBackground.h"
 #include "TitleMenuManager.h"
+#include "Title_MousePointer.h"
 
 TitleLevel::TitleLevel()
 {
@@ -22,12 +23,16 @@ void TitleLevel::Start()
 {
 	LoadTexture();
 	
+	std::shared_ptr _101Camera = CreateNewCamera(101);
+	_101Camera->SetProjectionType(CameraType::Orthogonal);
+
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetCamera(100)->SetProjectionType(CameraType::Orthogonal);
 	
 	AcTitleBackground = CreateActor<TitleBackground>();
 	AcTitleMenu = CreateActor<TitleMenuManager>();
 	AcTitleMenu->GetTransform()->SetLocalPosition(TitleMenuLocPos);
+	AcMousePointer = CreateActor<Title_MousePointer>();
 
 	GameEngineInput::CreateKey("TestLevel",VK_ESCAPE);
 }

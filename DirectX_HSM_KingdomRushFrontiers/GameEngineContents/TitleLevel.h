@@ -21,6 +21,7 @@ protected:
 private:
 	std::shared_ptr<class TitleBackground> AcTitleBackground = nullptr;
 	std::shared_ptr<class TitleMenuManager> AcTitleMenu = nullptr;
+	std::shared_ptr<class Title_MousePointer> AcMousePointer = nullptr;
 	float4 TitleMenuLocPos = { -450,-250 };
 	//std::shared_ptr<class TitleLogo> AcTitleLogo = nullptr;
 	//float4 CameraPos = { 0,0,-550 };

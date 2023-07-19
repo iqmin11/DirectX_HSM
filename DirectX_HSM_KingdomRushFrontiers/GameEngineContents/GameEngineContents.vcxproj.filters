@@ -365,6 +365,9 @@
     <ClInclude Include="Dwaarp_Effect_HitWave.h">
       <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
     </ClInclude>
+    <ClInclude Include="Title_MousePointer.h">
+      <Filter>1.Title\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -778,6 +781,9 @@
     </ClCompile>
     <ClCompile Include="Dwaarp_Effect_HitWave.cpp">
       <Filter>3.PlayStage\Actor\Tower\3.ArtilleryTower</Filter>
+    </ClCompile>
+    <ClCompile Include="Title_MousePointer.cpp">
+      <Filter>1.Title\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

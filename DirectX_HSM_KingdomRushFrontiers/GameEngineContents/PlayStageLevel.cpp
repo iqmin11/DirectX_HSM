@@ -7,6 +7,7 @@
 #include <GameEngineCore\GameEngineCamera.h>
 #include <GameEngineCore\GameEngineSprite.h>
 #include <GameEngineCore\GameEngineSpriteRenderer.h>
+#include <GameEngineCore\GameEngineFont.h>
 
 #include "MousePointer.h"
 #include "StageBg.h"
@@ -89,7 +90,8 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("PopText");
 	LoadPlayLevelTexture("StageObj");
 	LoadPlayLevelAnimation();
-	
+	LoadFont();
+
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0,0,-1000 });
@@ -880,6 +882,14 @@ void PlayStageLevel::LoadStageHeroStartPos()
 	{
 		AllStageData[i].SetHeroStartPos(i);
 	}
+}
+
+void PlayStageLevel::LoadFont()
+{
+	GameEngineFont::Load("TOONISH");
+	GameEngineFont::Load("³ª´®¼Õ±Û¾¾ Ææ OTF");
+	GameEngineFont::Load("Á¦ÁÖÇÑ¶ó»ê");
+	GameEngineFont::Load("¹è´ÞÀÇ¹ÎÁ· ¿¬¼º OTF");
 }
 
 void PlayStageLevel::ClearStageBuildArea()

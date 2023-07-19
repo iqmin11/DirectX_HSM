@@ -3,17 +3,6 @@
 #include "ContentsEnum.h"
 #include <GameEngineCore\GameEngineFSM.h>
 
-enum class MouseState
-{
-	Release,
-	Press,
-	RainOfFire,
-	CallReinforcement,
-	Hero,
-	UnitPos,
-	Invalid
-};
-
 class MousePointer : public GameEngineActor
 {
 public:

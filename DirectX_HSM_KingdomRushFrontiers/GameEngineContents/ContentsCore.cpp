@@ -21,9 +21,9 @@ void ContentsCore::GameStart()
 	ContentsResourcesCreate();
 
 	GameEngineCore::CreateLevel<TestLevel>();
+	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
-	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<StageEditLevel>();
 
 	GameEngineCore::ChangeLevel("TitleLevel");

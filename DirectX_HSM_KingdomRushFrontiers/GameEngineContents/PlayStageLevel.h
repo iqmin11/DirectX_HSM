@@ -110,6 +110,8 @@ private:
 	void LoadStageStartGold();
 	void LoadStageHeroStartPos();
 
+	void LoadFont();
+
 	void KeySet();
 	
 	void SetStageBg(int _Stage);

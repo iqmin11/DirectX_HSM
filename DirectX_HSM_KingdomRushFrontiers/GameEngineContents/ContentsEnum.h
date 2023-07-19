@@ -150,3 +150,14 @@ enum class HitState
 	Bolt,
 	Bomb,
 };
+
+enum class MouseState
+{
+	Release,
+	Press,
+	RainOfFire,
+	CallReinforcement,
+	Hero,
+	UnitPos,
+	Invalid
+};

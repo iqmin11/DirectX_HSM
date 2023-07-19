@@ -11,6 +11,7 @@
 #include "WorldMapFlagManager.h"
 #include "SelectStageWindow.h"
 #include "_101UIRenderer.h"
+#include "Title_MousePointer.h"
 
 bool WorldMapLevel::IsPause = false;
 
@@ -35,7 +36,6 @@ void WorldMapLevel::Start()
     LoadWorldMapTexture("WorldMapBg");
     LoadWorldMapTexture("SelectStage");
 	LoadWorldMapAnimation();
-	LoadFont();
 
     AcWorldMapBg = CreateActor<WorldMapBg>();
 	AcFlags = CreateActor<WorldMapFlagManager>();
@@ -44,6 +44,7 @@ void WorldMapLevel::Start()
 	PauseFade->SetTexture("PauseBg.png");
 	PauseFade->GetTransform()->SetWorldScale({ 1650,928,1 });
 	PauseFade->Off();
+	AcMousePointer = CreateActor<Title_MousePointer>();
 	
 	WorldMapFlagManager::MainFlagManager->OnStage(0);
 
@@ -106,12 +107,4 @@ void WorldMapLevel::PauseProcess()
 	{
 		PauseFade->Off();
 	}
-}
-
-void WorldMapLevel::LoadFont()
-{
-	GameEngineFont::Load("TOONISH");
-	GameEngineFont::Load("³ª´®¼Õ±Û¾¾ Ææ OTF");
-	GameEngineFont::Load("Á¦ÁÖÇÑ¶ó»ê");
-	GameEngineFont::Load("¹è´ÞÀÇ¹ÎÁ· ¿¬¼º OTF");
 }

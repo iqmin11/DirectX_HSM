@@ -26,11 +26,11 @@ private:
 	std::shared_ptr<class StageSelectMenu> AcStageSelectMenu = nullptr;
 	std::shared_ptr<class SelectStageWindow> AcSelectStageWindow = nullptr;
 	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
+	std::shared_ptr<class Title_MousePointer> AcMousePointer = nullptr;
+
 
 	void LoadWorldMapTexture(std::string_view _Folder);
 	void LoadWorldMapAnimation();
-	void LoadFont();
-
 	void PauseProcess();
 };
 
