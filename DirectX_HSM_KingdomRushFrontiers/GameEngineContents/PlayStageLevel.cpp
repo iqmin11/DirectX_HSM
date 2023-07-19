@@ -861,7 +861,7 @@ void PlayStageLevel::LoadStageStartGold()
 	AllStageData[2].StartGold = 520;
 	AllStageData[3].StartGold = 600;
 	AllStageData[4].StartGold = 800;
-	AllStageData[5].StartGold = 10000;
+	AllStageData[5].StartGold = 1000;
 }
 
 void PlayStageLevel::LoadStageHeroStartPos()

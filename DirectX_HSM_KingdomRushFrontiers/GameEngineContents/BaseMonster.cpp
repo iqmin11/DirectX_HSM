@@ -210,8 +210,8 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	{
 		Death();
 		LiveMonsterListRelease();
-		//dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
-		//GiveBounty();
+		dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
+		GiveBounty();
 		return;
 	}
 

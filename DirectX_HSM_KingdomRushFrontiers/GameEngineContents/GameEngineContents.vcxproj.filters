@@ -805,9 +805,6 @@
     <Filter Include="4.StageEdit">
       <UniqueIdentifier>{f0c52fe6-9f21-4c42-90d1-3a3653e598ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.StageEdit\Actor">
-      <UniqueIdentifier>{c5179c2e-6590-4f90-9b07-3dbb8a6c4330}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.StageEdit\Window">
       <UniqueIdentifier>{5b94c2aa-67a6-4691-b3a6-828f75978ed0}</UniqueIdentifier>
     </Filter>
