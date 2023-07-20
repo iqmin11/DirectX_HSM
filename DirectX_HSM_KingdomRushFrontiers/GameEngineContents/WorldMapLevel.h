@@ -28,9 +28,13 @@ private:
 	std::shared_ptr<class _101UIRenderer> PauseFade = nullptr;
 	std::shared_ptr<class Title_MousePointer> AcMousePointer = nullptr;
 
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
 
 	void LoadWorldMapTexture(std::string_view _Folder);
 	void LoadWorldMapAnimation();
+	void LoadSound();
 	void PauseProcess();
+
 };
 

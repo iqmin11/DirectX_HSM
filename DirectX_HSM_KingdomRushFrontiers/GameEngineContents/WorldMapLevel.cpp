@@ -7,6 +7,7 @@
 #include <GameEngineCore\GameEngineSprite.h>
 #include <GameEngineCore\GameEngineFont.h>
 
+#include "ContentsCore.h"
 #include "WorldMapBg.h"
 #include "WorldMapFlagManager.h"
 #include "SelectStageWindow.h"
@@ -36,6 +37,7 @@ void WorldMapLevel::Start()
     LoadWorldMapTexture("WorldMapBg");
     LoadWorldMapTexture("SelectStage");
 	LoadWorldMapAnimation();
+	LoadSound();
 
     AcWorldMapBg = CreateActor<WorldMapBg>();
 	AcFlags = CreateActor<WorldMapFlagManager>();
@@ -57,6 +59,16 @@ void WorldMapLevel::Update(float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
 	}
+}
+
+void WorldMapLevel::LevelChangeStart()
+{
+	ContentsCore::BGMPlay("Map_Theme_1.ogg");
+}
+
+void WorldMapLevel::LevelChangeEnd()
+{
+	ContentsCore::BGMStop();
 }
 
 void WorldMapLevel::LoadWorldMapTexture(std::string_view _Folder)
@@ -95,6 +107,21 @@ void WorldMapLevel::LoadWorldMapAnimation()
 	Dir.Move("PathDot");
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Blue").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("PathDot_Red").GetFullPath());
+}
+
+void WorldMapLevel::LoadSound()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("sounds");
+	Dir.Move("WorldMap");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".ogg" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineSound::Load(File[i].GetFullPath());
+	}
 }
 
 void WorldMapLevel::PauseProcess()

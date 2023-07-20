@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineCore.h>
-
+#include <GameEnginePlatform\GameEngineSound.h>
 // Ό³Έν :
 class ContentsCore : public GameEngineCore
 {
@@ -19,6 +19,10 @@ public:
 
 	static void GameStart();
 	static void GameEnd();
+	
+	static GameEngineSoundPlayer BGM;
+	static void BGMPlay(const std::string_view& _File);
+	static void BGMStop();
 
 protected:
 

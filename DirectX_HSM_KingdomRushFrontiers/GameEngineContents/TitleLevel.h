@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineLevel.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class TitleLevel : public GameEngineLevel
 {
@@ -23,8 +24,11 @@ private:
 	std::shared_ptr<class TitleMenuManager> AcTitleMenu = nullptr;
 	std::shared_ptr<class Title_MousePointer> AcMousePointer = nullptr;
 	float4 TitleMenuLocPos = { -450,-250 };
-	//std::shared_ptr<class TitleLogo> AcTitleLogo = nullptr;
-	//float4 CameraPos = { 0,0,-550 };
+	
+	void LevelChangeStart() override;
+	void LevelChangeEnd() override;
+
 	void LoadTexture();
+	void LoadSound();
 };
 

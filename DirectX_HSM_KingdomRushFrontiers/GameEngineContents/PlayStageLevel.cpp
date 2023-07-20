@@ -9,6 +9,7 @@
 #include <GameEngineCore\GameEngineSpriteRenderer.h>
 #include <GameEngineCore\GameEngineFont.h>
 
+#include "ContentsCore.h"
 #include "MousePointer.h"
 #include "StageBg.h"
 #include "MonsterWave.h"
@@ -43,6 +44,7 @@ PlayStageLevel::~PlayStageLevel()
 
 void PlayStageLevel::InitStage(int _Stage)
 {
+	PlayStageBGM("savage_music_desert_preparation.ogg");
 	ClearStage();
 	CurStage = _Stage;
 	NextWave = 0;
@@ -59,6 +61,8 @@ void PlayStageLevel::InitStage(int _Stage)
 
 void PlayStageLevel::ClearStage()
 {
+	CurPlayingBGM = std::string();
+	IsStartBattle = false;
 	CurStage = -1;
 	NextWave = -1;
 	MaxWave = -1;
@@ -91,6 +95,7 @@ void PlayStageLevel::Start()
 	LoadPlayLevelTexture("StageObj");
 	LoadPlayLevelAnimation();
 	LoadFont();
+	LoadSound();
 
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
@@ -108,13 +113,18 @@ void PlayStageLevel::Start()
 	PauseFade->Off();
 
 	LoadAllStageData();
-	
-	InitStage(0); // 나중에 레벨체인지 스타트에서 들어갈 함수
 }
 
 void PlayStageLevel::Update(float _DeltaTime)
 {
 	PauseProcess();
+	if (IsStartBattle)
+	{
+		if (CurPlayingBGM != "Desert_Battle.ogg")
+		{
+			PlayStageBGM("Desert_Battle.ogg");
+		}
+	}
 
 	if (IsVictory() || GameEngineInput::IsDown("X"))
 	{
@@ -180,6 +190,8 @@ void PlayStageLevel::LevelChangeEnd()
 {
 	GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 1.0f);
 	IsPause = false;
+	IsStartBattle = false;
+	ContentsCore::BGMStop();
 }
 
 void PlayStageLevel::LoadAllStageData()
@@ -739,6 +751,9 @@ void PlayStageLevel::Defeat()
 	if (AcDefeatBadge.expired())
 	{
 		AcDefeatBadge = std::weak_ptr(CreateActor<DefeatBadge>(ActorOrder::MainUI));
+		PlayStageBGM("Sound_QuestFailed.ogg");
+		ContentsCore::BGM.SetLoop(0);
+		IsStartBattle = false;
 		IsPause = true;
 	}
 }
@@ -748,6 +763,9 @@ void PlayStageLevel::Victory()
 	if (AcVictoryBadge.expired())
 	{
 		AcVictoryBadge = std::weak_ptr(CreateActor<VictoryBadge>(ActorOrder::MainUI));
+		PlayStageBGM("Sound_QuestCompleted.ogg");
+		ContentsCore::BGM.SetLoop(0);
+		IsStartBattle = false;
 		IsPause = true;
 	}
 }
@@ -798,6 +816,16 @@ void PlayStageLevel::PauseProcess()
 	}
 }
 
+void PlayStageLevel::PlayStageBGM(const std::string_view& _BGM)
+{
+	CurPlayingBGM = _BGM;
+	ContentsCore::BGMPlay(CurPlayingBGM);
+}
+
+void PlayStageLevel::LevelChangeStart()
+{
+	PlayStageBGM("savage_music_desert_preparation.ogg");
+}
 
 
 void PlayStageLevel::LoadAreaBinData()
@@ -890,6 +918,21 @@ void PlayStageLevel::LoadFont()
 	GameEngineFont::Load("나눔손글씨 펜 OTF");
 	GameEngineFont::Load("제주한라산");
 	GameEngineFont::Load("배달의민족 연성 OTF");
+}
+
+void PlayStageLevel::LoadSound()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("sounds");
+	Dir.Move("PlayStage");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".ogg" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineSound::Load(File[i].GetFullPath());
+	}
 }
 
 void PlayStageLevel::ClearStageBuildArea()

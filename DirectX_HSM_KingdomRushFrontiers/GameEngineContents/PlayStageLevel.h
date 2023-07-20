@@ -9,6 +9,7 @@ public:
 	static PlayStageLevel* MainPalyStage;
 	static std::vector<StageData> AllStageData;
 	static bool IsPause;
+	bool IsStartBattle = false;
 
 	// construtor destructor
 	PlayStageLevel();
@@ -71,6 +72,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	void LevelChangeStart();
 	void LevelChangeEnd() override;
 
 private:
@@ -89,6 +91,8 @@ private:
 	int CurStage = -1;
 	int NextWave = -1; // ¿Œµ¶Ω∫ ±‚¡ÿ
 	int MaxWave = -1;
+
+	std::string CurPlayingBGM = std::string();
 
 	void LoadAllStageData(); 
 	
@@ -111,6 +115,7 @@ private:
 	void LoadStageHeroStartPos();
 
 	void LoadFont();
+	void LoadSound();
 
 	void KeySet();
 	
@@ -146,5 +151,8 @@ private:
 	void PauseOn();
 	void PauseOff();
 	void PauseProcess();
+
+	void PlayStageBGM(const std::string_view& _BGM);
+
 };
 

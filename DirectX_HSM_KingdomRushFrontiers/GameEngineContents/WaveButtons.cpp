@@ -46,6 +46,7 @@ std::shared_ptr<WaveButtons> WaveButtons::CreateWaveButtons(GameEngineLevel* _Le
 				}
 				ResultButtons.lock()->Buttons.clear();
 				ResultButtons.lock()->Death();
+				ResultButtons.lock()->GetLevel()->DynamicThis<PlayStageLevel>()->IsStartBattle = true;
 			});
 	}
 
