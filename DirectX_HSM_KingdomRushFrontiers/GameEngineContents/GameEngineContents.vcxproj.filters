@@ -958,5 +958,8 @@
     <Filter Include="3.PlayStage\Actor\StageBase\StgObj">
       <UniqueIdentifier>{77d96e81-89eb-4005-a2fb-646922e2626d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="0.Base\Sound">
+      <UniqueIdentifier>{8e78be03-adb6-4c8a-9c45-fd76b01056e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

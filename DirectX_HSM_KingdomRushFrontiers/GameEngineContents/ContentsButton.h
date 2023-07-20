@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "ContentsEnum.h"
 // Ό³Έν :
 
@@ -53,13 +54,20 @@ protected:
 	std::string ReleaseTextureName = "Release.bmp";
 	std::string HoverTextureName = "Hover.bmp";
 	std::string PressTextureName = "Press.bmp";
+
+	//std::string ReleaseSound = "Release.bmp";
+	std::string HoverSound = "";
+	std::string UpSound = "Sound_GUIButtonCommon.ogg";
+
 	std::string CurTextureName = std::string();
 
 	ButtonState State = ButtonState::Release;
 	std::shared_ptr<class  GameEngineSpriteRenderer> Render = nullptr;
+	void PlayButtonSound(const std::string_view& _Sound = "");
 
 private:
 	GameEngineActor* ParentActor = nullptr;
+	GameEngineSoundPlayer ButtonSound = GameEngineSoundPlayer();
 	std::function<void()> Click;
 
 

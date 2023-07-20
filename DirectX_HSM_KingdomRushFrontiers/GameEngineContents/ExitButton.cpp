@@ -24,6 +24,7 @@ std::shared_ptr<ExitButton> ExitButton::CreateButton(GameEngineActor* _Parent)
 		{
 			LocButton.lock()->GetParentActor()->Off();
 			WorldMapLevel::IsPause = false;
+			LocButton.lock()->PlayButtonSound(LocButton.lock()->UpSound);
 		});
 	return LocButton.lock();
 }

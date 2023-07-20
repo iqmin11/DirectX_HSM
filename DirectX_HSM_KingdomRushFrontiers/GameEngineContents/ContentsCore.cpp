@@ -21,6 +21,7 @@ ContentsCore::~ContentsCore()
 void ContentsCore::GameStart()
 {
 	ContentsResourcesCreate();
+	LoadSound();
 
 	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();
@@ -51,6 +52,21 @@ void ContentsCore::BGMPlay(const std::string_view& _File)
 	BGM = GameEngineSound::Play(_File);
 	BGM.SetLoop();
 	BGM.SetVolume(0.2f);
+}
+
+void ContentsCore::LoadSound()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("sounds");
+	Dir.Move("Base");
+
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".ogg" });
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineSound::Load(File[i].GetFullPath());
+	}
 }
 
 void ContentsCore::BGMStop()

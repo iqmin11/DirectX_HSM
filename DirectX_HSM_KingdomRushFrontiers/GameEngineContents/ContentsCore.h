@@ -27,5 +27,6 @@ public:
 protected:
 
 private:
+	static void LoadSound();
 };
 

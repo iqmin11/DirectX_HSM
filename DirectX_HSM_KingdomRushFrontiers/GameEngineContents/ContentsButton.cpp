@@ -89,16 +89,24 @@ void ContentsButton::Update(float _Delta)
 			if (nullptr != Click)
 			{
 				Click();
+				PlayButtonSound(UpSound);
 			}
 		}
 		else if (true == GameEngineInput::IsFree("EngineMouseLeft"))
 		{
-			State = ButtonState::Hover;
+			if (State != ButtonState::Hover)
+			{
+				State = ButtonState::Hover;
+				PlayButtonSound(HoverSound);
+			}
 		}
 	}
 	else
 	{
-		State = ButtonState::Release;
+		if (State != ButtonState::Release)
+		{
+			State = ButtonState::Release;
+		}
 	}
 
 	switch (State)
@@ -116,6 +124,17 @@ void ContentsButton::Update(float _Delta)
 		break;
 	}
 	Render->SetTexture(CurTextureName);
+}
+
+void ContentsButton::PlayButtonSound(const std::string_view& _Sound)
+{
+	if (_Sound == "")
+	{
+		return;
+	}
+
+	ButtonSound = GameEngineSound::Play(_Sound);
+	ButtonSound.SetVolume(0.2f);
 }
 
 

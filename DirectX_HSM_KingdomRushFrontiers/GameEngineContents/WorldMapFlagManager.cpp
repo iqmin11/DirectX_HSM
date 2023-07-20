@@ -74,10 +74,6 @@ void WorldMapFlagManager::SetFlag()
 	{
 		Flags.push_back(WorldMapFlag::CreateFlag(this,[i]()
 			{
-				if (WorldMapLevel::IsPause)
-				{
-					return;
-				}
 				SelectStageWindow::MainSelectWindow->SelectStage(static_cast<int>(i));
 				SelectStageWindow::MainSelectWindow->StageWindowOn();
 				WorldMapLevel::IsPause = true;

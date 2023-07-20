@@ -27,6 +27,7 @@ std::shared_ptr<StageStartButton> StageStartButton::CreateButton(GameEngineActor
 			PlayStageLevel::MainPalyStage->InitStage(SelectStageWindow::MainSelectWindow->GetSelectedStage());
 			GameEngineCore::ChangeLevel("PlayStageLevel");
 			LocButton.lock()->GetParentActor()->Off();
+			LocButton.lock()->PlayButtonSound(LocButton.lock()->UpSound);
 			WorldMapLevel::IsPause = false;
 		});
 	return LocButton.lock();

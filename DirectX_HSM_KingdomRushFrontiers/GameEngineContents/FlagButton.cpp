@@ -2,8 +2,9 @@
 #include "FlagButton.h"
 
 #include <GameEngineCore\GameEngineLevel.h>
-#include "WorldMapFlag.h"
 #include <GameEngineCore\GameEngineUIRenderer.h>
+#include "WorldMapFlag.h"
+#include "WorldMapLevel.h"
 
 FlagButton::FlagButton()
 {
@@ -31,6 +32,7 @@ void FlagButton::Start()
 	Render->SetTexture("InvisibleTexture.png");
 	GetTransform()->SetWorldScale(ButtonScale);
 	SetTextureName("InvisibleTexture.png", "InvisibleTexture.png", "InvisibleTexture.png");
+	HoverSound = "Sound_GUIMouseOverTowerIcon.ogg";
 
 }
 
@@ -38,6 +40,13 @@ void FlagButton::Update(float _DeltaTime)
 {
 	if (GetParentActor()->DynamicThis<WorldMapFlag>()->GetState() == FlagState::Update)
 	{
-		ContentsButton::Update(_DeltaTime);
+		if (!WorldMapLevel::IsPause)
+		{
+			ContentsButton::Update(_DeltaTime);
+		}
+		else
+		{
+			State = ButtonState::Release;
+		}
 	}
 }
