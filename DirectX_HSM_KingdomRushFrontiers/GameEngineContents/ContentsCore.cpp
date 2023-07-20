@@ -7,6 +7,7 @@
 #include "PlayStageLevel.h"
 #include "StageEditLevel.h"
 #include <GameEngineCore/GameEngineCoreWindow.h>
+#include <GameEngineCore/GameEngineFont.h>
 
 GameEngineSoundPlayer ContentsCore::BGM = GameEngineSoundPlayer();
 
@@ -22,19 +23,19 @@ void ContentsCore::GameStart()
 {
 	ContentsResourcesCreate();
 	LoadSound();
+	InstallFont();
 
 	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<WorldMapLevel>();
 	GameEngineCore::CreateLevel<StageEditLevel>();
-
 	GameEngineCore::ChangeLevel("TitleLevel");
 }
 
 void ContentsCore::GameEnd()
 {
-
+	RemoveFont();
 }
 
 void ContentsCore::BGMPlay(const std::string_view& _File)
@@ -54,6 +55,11 @@ void ContentsCore::BGMPlay(const std::string_view& _File)
 	BGM.SetVolume(0.2f);
 }
 
+void ContentsCore::BGMStop()
+{
+	BGM.Stop();
+}
+
 void ContentsCore::LoadSound()
 {
 	GameEngineDirectory Dir;
@@ -69,7 +75,43 @@ void ContentsCore::LoadSound()
 	}
 }
 
-void ContentsCore::BGMStop()
+void ContentsCore::InstallFont()
 {
-	BGM.Stop();
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("fonts");
+	std::vector<GameEngineFile> FontFiles = Dir.GetAllFile({ ".otf", ".ttf" });
+	for (GameEngineFile& File : FontFiles)
+	{
+		if (0 == AddFontResourceA(File.GetFullPath().c_str()))
+		{
+			MsgAssert("폰트 로드에 실패했습니다.");
+			return;
+		}
+
+		SendMessage(GameEngineWindow::GetHWnd(), WM_FONTCHANGE, NULL, NULL);
+	}
 }
+
+void ContentsCore::RemoveFont()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("fonts");
+	std::vector<GameEngineFile> FontFiles = Dir.GetAllFile({ ".otf", ".ttf" });
+	for (GameEngineFile& File : FontFiles)
+	{
+		if (0 == RemoveFontResourceA(File.GetFullPath().data()))
+		{
+			MsgAssert("폰트 삭제에 실패했습니다.");
+			return;
+		}
+
+		SendMessage(GameEngineWindow::GetHWnd(), WM_FONTCHANGE, NULL, NULL);
+	}
+}
+
+
+

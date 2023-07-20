@@ -27,6 +27,8 @@ public:
 protected:
 
 private:
+	static void InstallFont();
+	static void RemoveFont();
 	static void LoadSound();
 };
 
