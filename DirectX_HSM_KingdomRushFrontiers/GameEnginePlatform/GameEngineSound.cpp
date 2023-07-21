@@ -29,7 +29,7 @@ void GameEngineSoundPlayer::SetAllPitch(float _Pitch)
 	int iGroupSize = 0;
 	GameEngineSound::ChannelGroup->getNumChannels(&iGroupSize);
 
-	for (size_t i = 0; i < iGroupSize; i++)
+	for (int i = 0; i < iGroupSize; i++)
 	{
 		GameEngineSound::ChannelGroup->getChannel(i, &pChannel);
 		pChannel->setPitch(_Pitch);
