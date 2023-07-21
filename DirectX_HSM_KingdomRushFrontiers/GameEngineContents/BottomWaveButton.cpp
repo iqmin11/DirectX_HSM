@@ -30,6 +30,8 @@ void BottomWaveButton::Start()
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_3);
 	Render->GetTransform()->SetWorldScale(ButtonRenderScale);
 	SetTextureName("WaveButton_Release.png", "WaveButton_Hover.png", "WaveButton_Hover.png");
+
+	UpSound = "";
 }
 
 void BottomWaveButton::Update(float _DeltaTime)

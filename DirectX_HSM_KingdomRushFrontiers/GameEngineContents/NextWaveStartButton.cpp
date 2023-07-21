@@ -60,6 +60,7 @@ void NextWaveStartButton::Start()
 	}
 	Render->SetTexture(CurTextureName);
 
+	UpSound = "";
 }
 
 void NextWaveStartButton::Update(float _DeltaTime)
