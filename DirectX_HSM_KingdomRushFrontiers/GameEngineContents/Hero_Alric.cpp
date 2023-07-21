@@ -68,6 +68,12 @@ void Hero_Alric::Start()
 	SandmanPivot[1]->GetTransform()->SetLocalPosition({ 0, -25, -25 });
 	SandmanPivot[2]->GetTransform()->SetLocalPosition({ 25, 0, 0 });
 
+	CommandSoundNames.resize(4);
+	CommandSoundNames[0] = "alric_taunt_confirm_1.ogg";
+	CommandSoundNames[1] = "alric_taunt_confirm_2.ogg";
+	CommandSoundNames[2] = "alric_taunt_confirm_3.ogg";
+	CommandSoundNames[3] = "alric_taunt_confirm_4.ogg";
+
 	IdleStateInit();
 	MoveStateInit();
 	TraceMonsterStateInit();
@@ -97,6 +103,8 @@ void Hero_Alric::Update(float _DeltaTime)
 
 void Hero_Alric::AttackTarget()
 {
+	int RandInt = GameEngineRandom::MainRandom.RandomInt(0, 4);
+	PlayAttackSound(AttackSoundNames[RandInt]);
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
 }
@@ -110,6 +118,7 @@ void Hero_Alric::AttackFlurry()
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
+	PlayAttackSound(FlurrySoundName);
 }
 
 int Hero_Alric::CalDamage()
@@ -179,4 +188,10 @@ bool Hero_Alric::IsThereSummonTarget()
 		}
 		return false;
 	}
+}
+
+void Hero_Alric::PlayHeroSound(const std::string_view& _Name)
+{
+	CommandSound = GameEngineSound::Play(_Name);
+	CommandSound.SetVolume(0.5f);
 }

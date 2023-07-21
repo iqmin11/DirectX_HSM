@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "BaseMonster.h"
 #include "ContentsData.h"
 
@@ -143,12 +144,17 @@ protected:
 
 	float PrevHP = 0.f;
 
+	GameEngineSoundPlayer AttackSound = GameEngineSoundPlayer();
+	std::vector<std::string> AttackSoundNames = std::vector<std::string>();
+
 	virtual void MoveToRally(float _DeltaTime);
 	void ReturnToRally(float _DeltaTime);
 	virtual void MoveToTarget(float _DeltaTime);
 
 	void UpdateLifeBar();
 	void IdleAutoHeal(float _DeltaTime);
+
+	void PlayAttackSound(const std::string_view& _Name);
 
 private:
 

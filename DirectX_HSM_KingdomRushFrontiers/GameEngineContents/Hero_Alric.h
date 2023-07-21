@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseFighter.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class Hero_Alric : public BaseFighter
 {
@@ -57,5 +58,14 @@ private:
 	bool IsThereSummonTarget();
 
 	float ReviveTime = 20.f;
+	
+	GameEngineSoundPlayer CommandSound = GameEngineSoundPlayer();
+	std::vector<std::string> CommandSoundNames = std::vector<std::string>();
+	std::string DeathSoundName = "alric_taunt_death.ogg";
+	std::string ReviveSoundName = "Level_up.ogg";
+	std::string FlurrySoundName = "hero_alric_flurry.ogg";
+	std::string SummonSoundName = "hero_alric_sandwarrior.ogg";
+
+	void PlayHeroSound(const std::string_view& _Name);
 };
 

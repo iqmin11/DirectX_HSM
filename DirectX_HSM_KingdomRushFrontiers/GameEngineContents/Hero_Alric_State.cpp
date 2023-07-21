@@ -66,6 +66,8 @@ void Hero_Alric::MoveStateInit()
 			FighterCol->Off();
 			ParentRally->ColOff();
 			FighterRenderer->ChangeAnimation("Move");
+			int RandInt = GameEngineRandom::MainRandom.RandomInt(0,3);
+			PlayHeroSound(CommandSoundNames[RandInt]);
 			if (TargetMonster != nullptr)
 			{
 				if (TargetMonster->TargetFighter != nullptr && TargetMonster->TargetFighter == this)
@@ -288,6 +290,7 @@ void Hero_Alric::DeathStateInit()
 			LifeBarBg->Off();
 			FighterCol->Off();
 			FighterRenderer->ChangeAnimation("Death");
+			PlayHeroSound(DeathSoundName);
 			if (TargetMonster != nullptr)
 			{
 				TargetMonster = nullptr;
@@ -326,6 +329,7 @@ void Hero_Alric::ReviveStateInit()
 			FighterCol->On();
 			CurHP = Data.Hp;
 			FighterRenderer->ChangeAnimation("Revive"); 
+			PlayHeroSound(ReviveSoundName);
 		},
 		.Update = [this](float _DeltaTime)
 		{
@@ -345,6 +349,7 @@ void Hero_Alric::CastingSkill1StateInit()
 	.Start = [this]()
 		{
 			FighterRenderer->ChangeAnimation("Summon");
+			PlayAttackSound(SummonSoundName);
 			Sandman_RallyPoint::CreateRallyPoint(this, SummonTargetPos);
 		},
 		.Update = [this](float _DeltaTime)

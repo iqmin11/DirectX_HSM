@@ -54,6 +54,13 @@ void BaseFighter::Start()
 	LifeBar->SetTexture("lifebar_small.png");
 	LifeBar->GetTransform()->SetWorldScale(LifeBarScale);
 	LifeBar->GetTransform()->SetLocalPosition(LifeBarLocalPos);
+
+	AttackSoundNames.resize(5);
+	AttackSoundNames[0] = "Sound_SoldiersFighting-01.ogg";
+	AttackSoundNames[1] = "Sound_SoldiersFighting-02.ogg";
+	AttackSoundNames[2] = "Sound_SoldiersFighting-03.ogg";
+	AttackSoundNames[3] = "Sound_SoldiersFighting-04.ogg";
+	AttackSoundNames[4] = "Sound_SoldiersFighting-05.ogg";
 }
 
 void BaseFighter::Update(float _DeltaTime)
@@ -175,6 +182,12 @@ void BaseFighter::IdleAutoHeal(float _DeltaTime)
 			HealTime = 0.f;
 		}
 	}
+}
+
+void BaseFighter::PlayAttackSound(const std::string_view& _Name)
+{
+	AttackSound = GameEngineSound::Play(_Name);
+	AttackSound.SetVolume(0.2f);
 }
 
 
