@@ -14,11 +14,7 @@ public:
 
 	}
 
-	GameEngineSoundPlayer(FMOD::Channel* _Channel)
-		: Channel(_Channel)
-	{
-
-	}
+	GameEngineSoundPlayer(FMOD::Channel* _Channel);
 
 	inline bool IsValid() const
 	{
@@ -72,6 +68,7 @@ public:
 		//_StartSecond ~_EndSecond 까지 반복
 		Channel->setLoopPoints(static_cast<UINT>(_StartSecond * 1000.f), _TimeUnit, static_cast<UINT>(_EndSecond * 1000.f), _TimeUnit);
 	}
+	static void SetAllPitch(float _Pitch);
 
 	/// <param name="_Position">사운드 위치 값</param>
 /// <param name="_TimeType">입력 값의 타입을 정합니다</param>
@@ -143,6 +140,7 @@ public:
 	static void Load(const std::string_view& _Name, const std::string_view& _Path);
 
 	static GameEngineSoundPlayer Play(const std::string_view& _Name);
+	static FMOD::ChannelGroup* ChannelGroup;
 
 protected:
 

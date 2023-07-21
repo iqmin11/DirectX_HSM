@@ -86,7 +86,7 @@ void ContentsCore::InstallFont()
 	{
 		if (0 == AddFontResourceA(File.GetFullPath().c_str()))
 		{
-			MsgAssert("폰트 로드에 실패했습니다.");
+			MsgAssert("폰트 설치에 실패했습니다.");
 			return;
 		}
 

@@ -173,11 +173,16 @@ void PlayStageLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsPress("A"))
 	{
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 40.0f);
+		GameEngineSoundPlayer::SetAllPitch(40.f);
 	}
-
-	if (GameEngineInput::IsPress("S"))
+	else if (GameEngineInput::IsPress("S"))
 	{
 		GameEngineTime::GlobalTime.SetUpdateOrderTimeScale(ActorOrder::Base, 4.0f);
+		GameEngineSoundPlayer::SetAllPitch(4.f);
+	}
+	else
+	{
+		GameEngineSoundPlayer::SetAllPitch(1.f);
 	}
 
 	if (GameEngineInput::IsDown("Z"))
