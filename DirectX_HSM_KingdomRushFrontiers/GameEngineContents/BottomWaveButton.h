@@ -24,5 +24,7 @@ protected:
 private:
 	std::string DisableTextureName = "WaveButton_Disable.png";
 	float4 ButtonRenderScale = { 60,60,1 };
+
+	GameEngineSoundPlayer WaveReadySound = GameEngineSoundPlayer();
 };
 

@@ -74,3 +74,4 @@ void BaseTowerUI::UpdateEnd()
 		UpdatedUI = nullptr;
 	}
 }
+

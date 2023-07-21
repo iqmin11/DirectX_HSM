@@ -61,6 +61,8 @@ void Button_Hero::Start()
 		});
 	HeroReviveAni->GetTransform()->SetWorldScale(HeroPortraitFrameScale);
 	HeroReviveAni->ChangeAnimation("Revive");
+
+	UpSound = "";
 }
 
 void Button_Hero::Update(float _DeltaTime)

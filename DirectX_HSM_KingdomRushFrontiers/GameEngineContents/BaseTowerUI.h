@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "ContentsEnum.h"
 
 enum class BaseTowerUIState

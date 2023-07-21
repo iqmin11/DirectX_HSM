@@ -28,6 +28,7 @@ void PathDot::Start()
 	DotRenderer->CreateAnimation({.AnimationName = "Red", .SpriteName = "PathDot_Red", .FrameInter = 0.05f, .Loop = false});
 	DotRenderer->CreateAnimation({.AnimationName = "Blue", .SpriteName = "PathDot_Blue", .FrameInter = 0.05f, .Loop = false });
 	DotRenderer->GetTransform()->SetWorldScale(RenderScale);
+	
 	DotRenderer->SetAnimationStartEvent("Red", 9, [this]()
 		{
 			NextActor->On();

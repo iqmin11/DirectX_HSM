@@ -2,6 +2,7 @@
 #include <GameEngineCore\GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
 #include "ContentsData.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 enum class PlayerState
 {
@@ -106,6 +107,11 @@ private:
 	float CallReinforcement_Cooltime = 10.f;
 	float CallReinforcement_MaxCool = 10.f;
 	bool Available_CallReinforcement = false;
+
+	GameEngineSoundPlayer PlayManagerSound = GameEngineSoundPlayer();
+
+	void PlayerSound(const std::string_view& _FileName);
+	std::string SpellSelectSound = "Sound_SpellSelect.ogg";
 
 	void CalCoolTime_RainOfFire(float _DeltaTime);
 	void CalCoolTime_CallReinforcement(float _DeltaTime);

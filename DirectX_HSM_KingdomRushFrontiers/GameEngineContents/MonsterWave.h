@@ -2,6 +2,8 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsData.h"
 
+#include <GameEnginePlatform\GameEngineSound.h>
+
 class MonsterWave : public GameEngineActor
 {
 public:
@@ -36,6 +38,8 @@ private:
 	static std::vector<LinePath>* CurStagePaths;
 
 	float WaveEndTime = 5.0f; //마지막 몬스터가 소환되고 몇초후에 Wave가 끝나는가를 정해주는 숫자
+
+	GameEngineSoundPlayer WaveStartSound = GameEngineSoundPlayer();
 
 	void SetOneWave(std::vector<MonsterSpawnData>& _OneWave);
 	void DeathWave();

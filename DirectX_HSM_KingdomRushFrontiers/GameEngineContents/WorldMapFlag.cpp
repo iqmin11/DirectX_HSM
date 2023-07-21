@@ -63,11 +63,19 @@ void WorldMapFlag::Start()
 			State = FlagState::Update;
 		});
 
+	FlagAnimation->SetAnimationStartEvent("NonClear_Appear", 0, [this]()
+		{
+			Sound = GameEngineSound::Play("Sound_MapNewFlag.ogg");
+			Sound.SetVolume(0.2f);
+		});
+
 	FlagAnimation->CreateAnimation({ .AnimationName = "Clear_Appear", .SpriteName = "Flag_Clear_Appear", .FrameInter = 0.05f, .Loop = false });
 	FlagAnimation->CreateAnimation({ .AnimationName = "Clear_Hover", .SpriteName = "Flag_Clear_Hover", .FrameInter = 0.05f, .Loop = false });
 	FlagAnimation->CreateAnimation({ .AnimationName = "Clear_Release", .SpriteName = "Flag_Clear_Release", .FrameInter = 0.05f, .Loop = false });
 	FlagAnimation->SetAnimationStartEvent("Clear_Appear", 16, [this]()
 		{
+			Sound = GameEngineSound::Play("Sound_WinStars.ogg");
+			Sound.SetVolume(0.2f);
 			for (size_t i = 0; i < Data.StarCount; i++)
 			{
 				StarRenderers[i]->On();

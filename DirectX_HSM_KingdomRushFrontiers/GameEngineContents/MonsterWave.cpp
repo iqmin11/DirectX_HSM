@@ -33,6 +33,8 @@ void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector
 	LiveWaveManager.push_back(Local);
 	IsLastMonsterSummon = false;
 	BottomWaveButton::IsValid = false;
+	Local.lock()->WaveStartSound = GameEngineSound::Play("Sound_WaveIncoming.ogg");
+	Local.lock()->WaveStartSound.SetVolume(0.2f);
 }
 
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)
@@ -96,8 +98,8 @@ void MonsterWave::Update(float _DeltaTime)
 		if (ParentLevel->GetWaveButtons().size() > ParentLevel->GetNextWave())
 		{
 			ParentLevel->GetWaveButtons()[ParentLevel->GetNextWave()]->OnButtons();
+			BottomWaveButton::IsValid = true;
 		}
-		BottomWaveButton::IsValid = true;
 		DeathWave();
 	}
 }

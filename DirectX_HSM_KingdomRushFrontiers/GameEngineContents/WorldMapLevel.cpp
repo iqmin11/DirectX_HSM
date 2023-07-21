@@ -117,7 +117,7 @@ void WorldMapLevel::LoadSound()
 	Dir.Move("sounds");
 	Dir.Move("WorldMap");
 
-	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".ogg" });
+	std::vector<GameEngineFile> File = Dir.GetAllFile({ ".ogg", ".wav"});
 	for (size_t i = 0; i < File.size(); i++)
 	{
 		GameEngineSound::Load(File[i].GetFullPath());

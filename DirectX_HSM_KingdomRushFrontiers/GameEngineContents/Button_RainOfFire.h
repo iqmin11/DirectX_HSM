@@ -33,5 +33,7 @@ private:
 	float4 NumFrameLocPos = { 0,-31 };
 	std::shared_ptr<class UIFontRenderer> NumFont = nullptr;
 	float FontScale = 10.f;
+
+	GameEngineSoundPlayer SpellRefreshSound = GameEngineSoundPlayer();
 };
 

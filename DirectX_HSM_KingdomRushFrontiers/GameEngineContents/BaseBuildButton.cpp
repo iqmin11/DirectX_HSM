@@ -41,6 +41,8 @@ void BaseBuildButton::Start()
 	AcPriceTag = GetLevel()->CreateActor<PriceTag>();
 	AcPriceTag->GetTransform()->SetWorldPosition((GetTransform()->GetWorldPosition()) + float4{0,-30});
 	AcPriceTag->GetTransform()->SetParent(GetTransform());
+
+	UpSound = "";
 }
 
 void BaseBuildButton::Update(float _DeltaTime)

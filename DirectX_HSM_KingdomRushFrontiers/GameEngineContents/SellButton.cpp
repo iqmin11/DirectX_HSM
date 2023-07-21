@@ -49,6 +49,8 @@ void SellButton::Start()
 	ButtonGlow->SetTexture("ButtonsGlow.png");
 	ButtonGlow->GetTransform()->SetWorldScale(GlowScale);
 	ButtonGlow->Off();
+
+	UpSound = "Sound_TowerSell.ogg";
 }
 
 void SellButton::Update(float _DeltaTime)

@@ -10,7 +10,7 @@ void PlayManager::IdleStateInit()
 	.Name = "Idle",
 	.Start = [this]()
 	{
-
+		
 	},
 	.Update = [this](float _DeltaTime)
 	{
@@ -44,7 +44,7 @@ void PlayManager::RainOfFireStateInit()
 	.Name = "RainOfFire",
 	.Start = [this]()
 	{
-
+		PlayerSound("Sound_SpellSelect.ogg");
 	},
 	.Update = [this](float _DeltaTime)
 	{
@@ -78,7 +78,7 @@ void PlayManager::CallReinforcementStateInit()
 	.Name = "CallReinforcement",
 	.Start = [this]()
 	{
-
+		PlayerSound("Sound_SpellSelect.ogg");
 	},
 	.Update = [this](float _DeltaTime)
 	{

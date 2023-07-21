@@ -41,10 +41,15 @@ void BottomWaveButton::Update(float _DeltaTime)
 
 	if (IsValid)
 	{
+		if (!WaveReadySound.IsValid())
+		{
+			WaveReadySound = GameEngineSound::Play("Sound_NextWaveReady.ogg");
+		}
 		ContentsButton::Update(_DeltaTime);
 	}
 	else
 	{
+		WaveReadySound = GameEngineSoundPlayer();
 		Render->SetTexture(DisableTextureName);
 	}
 }

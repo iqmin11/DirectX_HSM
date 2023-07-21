@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
 #include "ContentsEnum.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 enum class FlagState
 {
 	Start,
@@ -70,5 +71,7 @@ private:
 	bool ClearAndFirstUpdate = true;
 
 	GameEngineActor* NextStageOnTrigger = nullptr;
+
+	GameEngineSoundPlayer Sound = GameEngineSoundPlayer();
 };
 

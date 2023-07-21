@@ -61,6 +61,8 @@ void Button_RainOfFire::Start()
 	NumFont->SetColor(float4::White);
 	NumFont->SetFontFlag(FW1_CENTER);
 	NumFont->SetText("1");
+
+	UpSound = "";
 }
 
 void Button_RainOfFire::Update(float _DeltaTime)
@@ -100,6 +102,8 @@ void Button_RainOfFire::Update(float _DeltaTime)
 			Render->ColorOptionValue.MulColor = { 1.f,1.f,1.f,1.f };
 			ReviveAni->On();
 			ReviveAni->ChangeAnimation("Revive");
+			SpellRefreshSound = GameEngineSound::Play("Sound_SpellRefresh.ogg");
+			SpellRefreshSound.SetVolume(0.2f);
 		}
 		ContentsButton::Update(_DeltaTime);
 		if (GameEngineInput::IsDown("1"))

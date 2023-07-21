@@ -39,6 +39,9 @@ void TowerButton::Start()
 	ReleaseTextureName = "InvisibleTexture.png";
 	HoverTextureName = "InvisibleTexture.png";
 	PressTextureName = "InvisibleTexture.png";
+
+	UpSound = "Sound_GUIOpenTowerMenu.ogg";
+	HoverSound = "Sound_GUIMouseOverTowerIcon.ogg";
 }
 
 void TowerButton::Update(float _DeltaTime)

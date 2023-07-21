@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
 #include "ContentsEnum.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 enum class VicBadgeState
 {
@@ -51,6 +52,8 @@ private:
 
 	VicBadgeState State = VicBadgeState::GrowBig;
 
+	GameEngineSoundPlayer StarSound = GameEngineSoundPlayer();
+
 	bool DidISpreadStar = false;
 	float Time = 0.f;
 	float Ratio = 0.f;
@@ -61,5 +64,7 @@ private:
 	void FallButton1(float _DeltaTime);
 	void FallButton2(float _DeltaTime);
 	void EstimateStar();
+
+	void PlayStarSound();
 };
 

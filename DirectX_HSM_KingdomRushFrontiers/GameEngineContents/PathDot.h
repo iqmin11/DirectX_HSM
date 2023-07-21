@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
 #include "ContentsEnum.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class PathDot : public GameEngineActor
 {

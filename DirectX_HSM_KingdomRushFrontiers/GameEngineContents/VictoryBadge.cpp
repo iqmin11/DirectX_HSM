@@ -137,6 +137,13 @@ void VictoryBadge::SetStarAnimation()
 	StarAnimation->CreateAnimation({ .AnimationName = "1Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = OneStarAnimationIndex });
 	StarAnimation->CreateAnimation({ .AnimationName = "2Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = TwoStarAnimationIndex });
 	StarAnimation->CreateAnimation({ .AnimationName = "3Star", .SpriteName = "StarAnimation", .FrameInter = 0.05f ,.Loop = false, .FrameIndex = ThreeStarAnimationIndex });
+	
+	StarAnimation->SetAnimationStartEvent("1Star", 0, std::bind(&VictoryBadge::PlayStarSound, this));
+	StarAnimation->SetAnimationStartEvent("2Star", 0, std::bind(&VictoryBadge::PlayStarSound, this));
+	StarAnimation->SetAnimationStartEvent("2Star", 15, std::bind(&VictoryBadge::PlayStarSound, this));
+	StarAnimation->SetAnimationStartEvent("3Star", 0, std::bind(&VictoryBadge::PlayStarSound, this));
+	StarAnimation->SetAnimationStartEvent("3Star", 15, std::bind(&VictoryBadge::PlayStarSound, this));
+	StarAnimation->SetAnimationStartEvent("3Star", 31, std::bind(&VictoryBadge::PlayStarSound, this));
 	StarAnimation->Off();
 }
 
@@ -246,5 +253,11 @@ void VictoryBadge::EstimateStar()
 	default:
 		break;
 	}
+}
+
+void VictoryBadge::PlayStarSound()
+{
+	StarSound = GameEngineSound::Play("Sound_WinStars.ogg");
+	StarSound.SetVolume(0.2f);
 }
 
