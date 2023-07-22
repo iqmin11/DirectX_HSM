@@ -53,6 +53,20 @@ void Magic_Shooter::Start()
 	BaseShooter::IdleStateInit();
 	BaseShooter::AttackStateInit();
 	ShooterFSM.ChangeState("Idle");
+
+	ShooterSoundNames.resize(2);
+	ShooterSoundNames[0] = "Sound_Sorcerer.ogg";
+	ShooterSoundNames[1] = "Sound_MageShot.ogg";
+}
+
+void Magic_Shooter::PlayShootBoltSound()
+{
+	PlayShooterSound(ShooterSoundNames[GameEngineRandom::MainRandom.RandomInt(0, 1)]);
+}
+
+void Magic_Shooter::PlayShootArchBoltSound()
+{
+	PlayShooterSound("archmage_attack.ogg");
 }
 
 void Magic_Shooter::ChangeShooterRenderer(int _TowerLevel)
@@ -66,6 +80,7 @@ void Magic_Shooter::Attack()
 	{
 		Magic_Bullet::ShootingBullet(GetLevel(), this);
 		IsShootBullet = true;
+		PlayShootBoltSound();
 	}
 }
 
@@ -75,5 +90,6 @@ void Magic_Shooter::ArchAttack()
 	{
 		ArchMage_Bullet::ShootingBullet(GetLevel(), this);
 		IsShootBullet = true;
+		PlayShootArchBoltSound();
 	}
 }

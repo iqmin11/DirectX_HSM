@@ -70,10 +70,15 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
+	GameEngineSoundPlayer ShooterSound = GameEngineSoundPlayer();
+	std::vector<std::string> ShooterSoundNames = std::vector<std::string>();
+	void PlayShooterSound(const std::string_view& _Name);
+
 private:
 
 	float Time = 0.0f;
 	float4* TargetPos = nullptr;
+
 
 	void CheckDir();
 };

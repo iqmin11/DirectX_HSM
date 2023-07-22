@@ -26,6 +26,12 @@ void BaseShooter::Update(float _DeltaTime)
 	ShooterFSM.Update(_DeltaTime);
 }
 
+void BaseShooter::PlayShooterSound(const std::string_view& _Name)
+{
+	ShooterSound = GameEngineSound::Play(_Name);
+	ShooterSound.SetVolume(0.2f);
+}
+
 void BaseShooter::CheckDir()
 {
 	float4 WorldPos = GetTransform()->GetWorldPosition();

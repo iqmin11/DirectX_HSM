@@ -65,29 +65,14 @@ void Ranged_Shooter::Start()
 	BaseShooter::AttackStateInit();
 	ShooterFSM.ChangeState("Idle");
 
-	ArrowReleaseSoundNames.resize(2);
-	ArrowReleaseSoundNames[0] = "Sound_ArrowRelease2.ogg";
-	ArrowReleaseSoundNames[1] = "Sound_ArrowRelease3.ogg";
-}
-
-void Ranged_Shooter::PlayShooterSound(const std::string_view& _Name)
-{
-	if (ShooterSound.IsValid())
-	{
-		bool BoolValue = false;
-		ShooterSound.isPlaying(&BoolValue);
-		if (BoolValue)
-		{
-			return;
-		}
-	}
-	ShooterSound = GameEngineSound::Play(_Name);
-	ShooterSound.SetVolume(0.2f);
+	ShooterSoundNames.resize(2);
+	ShooterSoundNames[0] = "Sound_ArrowRelease2.ogg";
+	ShooterSoundNames[1] = "Sound_ArrowRelease3.ogg";
 }
 
 void Ranged_Shooter::PlayArrowReleaseSound()
 {
-	PlayShooterSound(ArrowReleaseSoundNames[GameEngineRandom::MainRandom.RandomInt(0,1)]);
+	PlayShooterSound(ShooterSoundNames[GameEngineRandom::MainRandom.RandomInt(0,1)]);
 }
 
 void Ranged_Shooter::ChangeShooterRenderer(int _TowerLevel)
