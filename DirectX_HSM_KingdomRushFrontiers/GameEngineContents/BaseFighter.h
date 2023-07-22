@@ -144,7 +144,7 @@ protected:
 
 	float PrevHP = 0.f;
 
-	GameEngineSoundPlayer AttackSound = GameEngineSoundPlayer();
+	static GameEngineSoundPlayer AttackSound;
 	std::vector<std::string> AttackSoundNames = std::vector<std::string>();
 
 	virtual void MoveToRally(float _DeltaTime);
@@ -155,6 +155,7 @@ protected:
 	void IdleAutoHeal(float _DeltaTime);
 
 	void PlayAttackSound(const std::string_view& _Name);
+	void PlayAttackSound();
 
 private:
 

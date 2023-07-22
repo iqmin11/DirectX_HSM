@@ -43,6 +43,10 @@ void Hero_Alric::Start()
 	FighterRenderer->SetAnimationStartEvent("Attack0", 3, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Attack1", 5, BaseFighter::AttackTarget);
 	FighterRenderer->SetAnimationStartEvent("Flurry", 11, std::bind(&Hero_Alric::AttackFlurry, this));
+	FighterRenderer->SetAnimationStartEvent("Flurry", 3, [this]()
+		{
+			PlayHeroSound(FlurrySoundName);
+		});
 	FighterRenderer->SetAnimationStartEvent("Revive", 15, [this]()
 		{
 			State = FighterState::Idle;
@@ -103,8 +107,7 @@ void Hero_Alric::Update(float _DeltaTime)
 
 void Hero_Alric::AttackTarget()
 {
-	int RandInt = GameEngineRandom::MainRandom.RandomInt(0, 4);
-	PlayAttackSound(AttackSoundNames[RandInt]);
+	PlayAttackSound();
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
 }
@@ -118,7 +121,6 @@ void Hero_Alric::AttackFlurry()
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
-	PlayAttackSound(FlurrySoundName);
 }
 
 int Hero_Alric::CalDamage()

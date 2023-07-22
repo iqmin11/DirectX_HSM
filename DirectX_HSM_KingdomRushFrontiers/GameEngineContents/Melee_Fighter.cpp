@@ -99,12 +99,14 @@ void Melee_Fighter::AttackTarget()
 {
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
+	PlayAttackSound();
 }
 
 void Melee_Fighter::SneakAttack()
 {
 	TargetMonster->CurHP -= CalSneakAttackDamage();
 	TargetMonster->Hit = HitState::Melee;
+	PlayAttackSound("assassin_sneakattack.ogg");
 }
 
 int Melee_Fighter::CalDamage()

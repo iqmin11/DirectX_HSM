@@ -67,6 +67,7 @@ void Sandman_Fighter::AttackTarget()
 {
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
+	PlayAttackSound();
 }
 
 int Sandman_Fighter::CalDamage()

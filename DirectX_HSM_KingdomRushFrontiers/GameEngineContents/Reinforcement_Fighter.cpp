@@ -68,6 +68,7 @@ void Reinforcement_Fighter::AttackTarget()
 {
 	TargetMonster->CurHP -= CalDamage();
 	TargetMonster->Hit = HitState::Melee;
+	PlayAttackSound();
 }
 
 int Reinforcement_Fighter::CalDamage()

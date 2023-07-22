@@ -8,6 +8,8 @@
 #include "RallyPoint.h"
 #include "BaseMonster.h"
 
+GameEngineSoundPlayer BaseFighter::AttackSound = GameEngineSoundPlayer();
+
 BaseFighter::BaseFighter()
 {
 
@@ -186,8 +188,23 @@ void BaseFighter::IdleAutoHeal(float _DeltaTime)
 
 void BaseFighter::PlayAttackSound(const std::string_view& _Name)
 {
+	if (AttackSound.IsValid()) // Fighter의 AttackSound를 static으로 선언해 한번에 하나의 AttackSound만 실행되도록 하기
+	{
+		bool IsPlayingAttackSound = false;
+		AttackSound.isPlaying(&IsPlayingAttackSound);
+		if (IsPlayingAttackSound)
+		{
+			return;
+		}
+	}
 	AttackSound = GameEngineSound::Play(_Name);
 	AttackSound.SetVolume(0.2f);
+}
+
+void BaseFighter::PlayAttackSound()
+{
+	int Randint = GameEngineRandom::MainRandom.RandomInt(0,4);
+	PlayAttackSound(AttackSoundNames[Randint]);
 }
 
 

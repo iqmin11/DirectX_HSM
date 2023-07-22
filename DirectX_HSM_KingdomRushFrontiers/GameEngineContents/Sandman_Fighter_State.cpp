@@ -290,7 +290,14 @@ void Sandman_Fighter::AttackStateInit()
 		.Name = "Attack",
 		.Start = [this]()
 		{
-			FighterRenderer->ChangeAnimation("Attack");
+			if (AttackTime >= Data.AttackRate)
+			{
+				FighterRenderer->ChangeAnimation("Attack");
+			}
+			else
+			{
+				FighterRenderer->ChangeAnimation("Idle");
+			}
 		},
 		.Update = [this](float _DeltaTime)
 		{
