@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "ContentsData.h"
 
 enum class ShooterState

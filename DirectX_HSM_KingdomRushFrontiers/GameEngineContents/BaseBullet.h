@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "ContentsData.h"
 
 class BaseBullet : public GameEngineActor

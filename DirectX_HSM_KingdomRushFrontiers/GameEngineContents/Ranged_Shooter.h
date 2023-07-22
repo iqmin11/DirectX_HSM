@@ -23,5 +23,12 @@ protected:
 private:
 	float4 RenderScalse = { 64, 64, 1 };
 	float Time = 0.0f;
+
+	GameEngineSoundPlayer ShooterSound = GameEngineSoundPlayer();
+
+	std::vector<std::string> ArrowReleaseSoundNames = std::vector<std::string>();
+
+	void PlayShooterSound(const std::string_view& _Name);
+	void PlayArrowReleaseSound();
 };
 

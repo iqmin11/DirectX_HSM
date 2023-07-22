@@ -27,9 +27,14 @@ private:
 	float4 MissArrowRenderScale = { 16,8,1 };
 	float MissTime = 0.0f;
 
+	static GameEngineSoundPlayer ArrowSound;
+	std::vector<std::string> ArrowHitSoundNames = std::vector<std::string>();
+
 	void ArrowHit();
 	void ArrowMiss();
 	int CalDamage() override;
 	void MissUpdate(float _DeltaTime);
+	void PlayArrowSound(const std::string_view& _Name);
+	void PlayArrowHitSound();
 };
 

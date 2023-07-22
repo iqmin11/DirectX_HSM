@@ -6,6 +6,7 @@
 #include "BaseShooter.h"
 #include "Ranged_Bullet.h"
 
+//GameEngineSoundPlayer Ranged_Shooter::ShooterSound = GameEngineSoundPlayer();
 
 Ranged_Shooter::Ranged_Shooter()
 {
@@ -63,6 +64,30 @@ void Ranged_Shooter::Start()
 	BaseShooter::IdleStateInit();
 	BaseShooter::AttackStateInit();
 	ShooterFSM.ChangeState("Idle");
+
+	ArrowReleaseSoundNames.resize(2);
+	ArrowReleaseSoundNames[0] = "Sound_ArrowRelease2.ogg";
+	ArrowReleaseSoundNames[1] = "Sound_ArrowRelease3.ogg";
+}
+
+void Ranged_Shooter::PlayShooterSound(const std::string_view& _Name)
+{
+	if (ShooterSound.IsValid())
+	{
+		bool BoolValue = false;
+		ShooterSound.isPlaying(&BoolValue);
+		if (BoolValue)
+		{
+			return;
+		}
+	}
+	ShooterSound = GameEngineSound::Play(_Name);
+	ShooterSound.SetVolume(0.2f);
+}
+
+void Ranged_Shooter::PlayArrowReleaseSound()
+{
+	PlayShooterSound(ArrowReleaseSoundNames[GameEngineRandom::MainRandom.RandomInt(0,1)]);
 }
 
 void Ranged_Shooter::ChangeShooterRenderer(int _TowerLevel)
@@ -75,6 +100,7 @@ void Ranged_Shooter::Attack()
 	if (!IsShootBullet)
 	{
 		Ranged_Bullet::ShootingBullet(GetLevel(), this);
+		PlayArrowReleaseSound();
 		IsShootBullet = true;
 	}
 }

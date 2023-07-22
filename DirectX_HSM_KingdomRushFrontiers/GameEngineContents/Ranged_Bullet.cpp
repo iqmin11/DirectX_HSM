@@ -8,6 +8,8 @@
 #include "BaseShootingTower.h"
 #include "Ranged_Shooter.h"
 
+GameEngineSoundPlayer Ranged_Bullet::ArrowSound = GameEngineSoundPlayer();
+
 Ranged_Bullet::Ranged_Bullet()
 {
 
@@ -30,6 +32,10 @@ void Ranged_Bullet::Start()
 	MissArrowRenderer->SetTexture("decal_arrow.png");
 	MissArrowRenderer->GetTransform()->SetWorldScale(MissArrowRenderScale);
 	MissArrowRenderer->Off();
+
+	ArrowHitSoundNames.resize(2);
+	ArrowHitSoundNames[0] = "Sound_ArrowHit2.ogg";
+	ArrowHitSoundNames[1] = "Sound_ArrowHit3.ogg";
 }
 
 void Ranged_Bullet::Update(float _DeltaTime)
@@ -43,10 +49,10 @@ void Ranged_Bullet::Update(float _DeltaTime)
 
 void Ranged_Bullet::ArrowHit()
 {
-	//BulletRenderer->ChangeAnimation("BoltDeath");
 	Death();
 	TargetMonster->Hit = HitState::Arrow;
 	TargetMonster->CurHP -= CalDamage();
+	PlayArrowHitSound();
 }
 
 void Ranged_Bullet::ArrowMiss()
@@ -71,6 +77,26 @@ void Ranged_Bullet::MissUpdate(float _DeltaTime)
 	{
 		Death();
 	}
+}
+
+void Ranged_Bullet::PlayArrowSound(const std::string_view& _Name)
+{
+	if (ArrowSound.IsValid())
+	{
+		bool BoolValue = false;
+		ArrowSound.isPlaying(&BoolValue);
+		if (BoolValue)
+		{
+			return;
+		}
+	}
+	ArrowSound = GameEngineSound::Play(_Name);
+	ArrowSound.SetVolume(0.1f);
+}
+
+void Ranged_Bullet::PlayArrowHitSound()
+{
+	PlayArrowSound(ArrowHitSoundNames[GameEngineRandom::MainRandom.RandomInt(0, 1)]);
 }
 
 void Ranged_Bullet::ShootingBullet(GameEngineLevel* _Level, BaseShooter* _ParentShooter)
