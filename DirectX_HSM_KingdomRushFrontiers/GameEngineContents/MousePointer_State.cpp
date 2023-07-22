@@ -339,6 +339,7 @@ void MousePointer::UnitPosStateInit()
 		if (Tower->SetRallyMod && GameEngineInput::IsUp("EngineMouseLeft"))
 		{
 			Tower->SetRally();
+			Tower->PlayTauntSound(PlayManager::SelectedMeleeTower->GetData().Level);
 			PlayManager::SelectedMeleeTower = nullptr;
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}

@@ -38,6 +38,7 @@ private:
 
 	bool IsBoom = false;
 	float BoomTime = 0.0f;
+	GameEngineSoundPlayer BombSound = GameEngineSoundPlayer();
 
 	void BombHit();
 	void BombMiss();

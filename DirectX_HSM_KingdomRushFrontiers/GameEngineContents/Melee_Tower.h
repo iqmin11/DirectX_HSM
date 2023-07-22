@@ -21,6 +21,8 @@ public:
 	void ChangeTower(TowerEnum _Tower) override;
 	void SetRally();
 
+	void PlayTauntSound(int _Level) override;
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

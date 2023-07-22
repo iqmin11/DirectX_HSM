@@ -180,11 +180,13 @@ void Artillery_Tower::ArtilleryAttack()
 {
 	FireSmokeRenderer->ChangeAnimation("Fire");
 	FireSmokeRenderer->On();
+	PlayAttackSound("Sound_EngineerShot.ogg");
 	Artillery_Bullet::ShootingBullet(GetLevel(), this);
 }
 
 void Artillery_Tower::DwaarpAttack()
 {
+	PlayAttackSound("dwaarp_attack.ogg");
 	std::vector<std::shared_ptr<GameEngineCollision>> TempVec = std::vector<std::shared_ptr<GameEngineCollision>>();
 	TempVec.reserve(30);
 	RangeCol->CollisionAll(ColOrder::Monster, TempVec, ColType::SPHERE2D, ColType::SPHERE2D);
@@ -258,4 +260,10 @@ std::shared_ptr<class BaseMonster> Artillery_Tower::FindTargetMonster()
 		}
 	}
 	return TargetMonster;
+}
+
+void Artillery_Tower::PlayAttackSound(const std::string_view _Name)
+{
+	AttackSound = GameEngineSound::Play(_Name);
+	AttackSound.SetVolume(0.2f);
 }

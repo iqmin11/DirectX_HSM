@@ -116,6 +116,9 @@ void Artillery_Bullet::Boom()
 	ExplosionSmokeRender->ChangeAnimation("Boom");
 	BombDecalRender->On();
 	BulletRenderer->Off();
+
+	BombSound = GameEngineSound::Play("Sound_Bomb1.ogg");
+	BombSound.SetVolume(0.2f);
 }
 
 void Artillery_Bullet::BoomUpdate(float _DeltaTime)

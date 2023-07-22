@@ -56,10 +56,15 @@ void Melee_Tower::Start()
 	TowerRenderer->SetTexture("tower_constructing_0002.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
+	TauntSoundName.resize(8);
 	TauntSoundName[0] = "Barrack_Ready.ogg";
 	TauntSoundName[1] = "Barrack_Taunt1.ogg";
 	TauntSoundName[2] = "Barrack_Taunt2.ogg";
-	TauntSoundName[3] = "assassin_taunt_ready.ogg";
+	TauntSoundName[3] = "Barrack_Move.ogg";
+	TauntSoundName[4] = "assassin_taunt_ready.ogg";
+	TauntSoundName[5] = "assassin_taunt_sneak.ogg";
+	TauntSoundName[6] = "assassin_taunt_counter.ogg";
+	TauntSoundName[7] = "assassin_taunt_gold.ogg";
 }
 
 void Melee_Tower::Update(float _DeltaTime)
@@ -86,7 +91,7 @@ void Melee_Tower::Update(float _DeltaTime)
 			AcRallyPoint->GetTransform()->SetWorldPosition(ParentArea->GetRallyPos());
 			AcRallyPoint->SetTowerData(&Data);
 			
-			PlayTowerCommandSound(TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0,2)]);
+			PlayTauntSound(Data.Level);
 		}
 	}
 	else
@@ -143,6 +148,26 @@ void Melee_Tower::ChangeFighter(int _TowerLevel)
 		MsgAssert("랠리포인트가 nullptr입니다")
 	}
 	AcRallyPoint->ChangeFighters(_TowerLevel);
+}
+
+void Melee_Tower::PlayTauntSound(int _Level)
+{
+	std::string_view SoundName = "";
+	switch (_Level)
+	{
+	case 1:
+	case 2:
+	case 3:
+		SoundName = TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0, 3)];
+		break;
+	case 4:
+		SoundName = TauntSoundName[GameEngineRandom::MainRandom.RandomInt(4, 7)];
+		break;
+	default:
+		return;
+		break;
+	}
+	PlayTowerCommandSound(SoundName);
 }
 
 void Melee_Tower::SetRally()

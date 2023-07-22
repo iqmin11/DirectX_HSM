@@ -63,7 +63,7 @@ protected:
 	std::vector<std::string> TauntSoundName = std::vector<std::string>();
 	
 	void PlayTowerCommandSound(const std::string_view& _Name);
-	void PlayTauntSound(int _Level);
+	virtual void PlayTauntSound(int _Level);
 
 private:
 	static GameEngineSoundPlayer TowerCommandSound;

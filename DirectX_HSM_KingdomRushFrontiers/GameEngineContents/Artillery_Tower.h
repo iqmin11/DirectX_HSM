@@ -36,6 +36,9 @@ private:
 	bool IsThereTarget() override;
 	std::shared_ptr<class BaseMonster> FindTargetMonster() override;
 
+	GameEngineSoundPlayer AttackSound = GameEngineSoundPlayer();
+	void PlayAttackSound(const std::string_view _Name);
+
 	static const float4 Lv1SmokeLocalPos;
 	static const float4 Lv2SmokeLocalPos;
 	static const float4 Lv3SmokeLocalPos;
