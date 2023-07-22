@@ -2,6 +2,8 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include "ContentsData.h"
 
+#include <GameEnginePlatform\GameEngineSound.h>
+
 enum class ConstructState
 {
 	Constructing,
@@ -56,7 +58,17 @@ protected:
 	std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
 	std::shared_ptr<class GameEngineSpriteRenderer> NextLvRangeRender = nullptr;
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
+	
+	std::string TowerBuildSoundName = "Sound_TowerBuilding.ogg";
+	std::string Lv1TauntSoundName = "";
+	std::string Lv2TauntSoundName = "";
+	std::string Lv3TauntSoundName = "";
+	std::string Lv4TauntSoundName = "";
+
+	void PlayTowerCommandSound(const std::string_view& _Name);
+	void PlayTauntSound(int _Level);
 
 private:
+	GameEngineSoundPlayer TowerCommandSound = GameEngineSoundPlayer();
 };
 

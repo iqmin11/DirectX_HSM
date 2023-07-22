@@ -58,6 +58,7 @@ void Ranged_Tower::ChangeTower(TowerEnum _Tower)
 	}
 	ChangeTowerRender(Data.Level);
 	ChangeShooter(Data.Level);
+	PlayTauntSound(Data.Level);
 }
 
 void Ranged_Tower::ChangeTowerRender(int _TowerLevel)
@@ -143,6 +144,11 @@ void Ranged_Tower::Start()
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
 	//Attack = std::bind(&Ranged_Tower::RangerAttack, this);
+
+	Lv1TauntSoundName = "Archer_Ready.ogg";
+	Lv2TauntSoundName = "Archer_Taunt1.ogg";
+	Lv3TauntSoundName = "Archer_Taunt2.ogg";
+	Lv4TauntSoundName = "crossbow_taunt_ready.ogg";
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
@@ -165,6 +171,8 @@ void Ranged_Tower::Update(float _DeltaTime)
 			Shooter1->On();
 			RangeCol->On();
 			UpgradeButton->On();
+
+			PlayTowerCommandSound(Lv1TauntSoundName);
 		}
 	}
 	else

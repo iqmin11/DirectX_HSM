@@ -30,7 +30,7 @@ void Dwaarp_Effect_HitWave::Start()
 void Dwaarp_Effect_HitWave::Update(float _DeltaTime)
 {
 	Time += _DeltaTime;
-	Ratio = Time*2;
+	Ratio = Time*3;
 	CurScale = float4::LerpClamp(float4::Zero, EndScale, Ratio);
 	HitWave->ColorOptionValue.MulColor.a = 1-Ratio;
 	GetTransform()->SetWorldScale(CurScale);

@@ -24,6 +24,12 @@ void BaseFighter::IdleStateInit()
 		},
 		.Update = [this](float _DeltaTime)
 		{
+			if (Data.Level == 4 && Data.FighterType == FighterEnum::Melee && !IsInvisible)
+			{
+				IsInvisible = true;
+				FighterRenderer->ColorOptionValue.MulColor.a = 0.5f;
+			}
+
 			float4 RallyPos = RallyTransform->GetWorldPosition();
 			if (CurHP <= 0)
 			{

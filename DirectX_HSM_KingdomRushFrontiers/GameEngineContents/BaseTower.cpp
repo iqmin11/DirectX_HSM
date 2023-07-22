@@ -105,5 +105,35 @@ void BaseTower::Update(float _DeltaTime)
 
 }
 
+void BaseTower::PlayTowerCommandSound(const std::string_view& _Name)
+{
+	TowerCommandSound = GameEngineSound::Play(_Name);
+	TowerCommandSound.SetVolume(0.5f);
+}
+
+void BaseTower::PlayTauntSound(int _Level)
+{
+	std::string_view SoundName = "";
+	switch (_Level)
+	{
+	case 1:
+		SoundName = Lv1TauntSoundName;
+		break;
+	case 2:
+		SoundName = Lv2TauntSoundName;
+		break;
+	case 3:
+		SoundName = Lv3TauntSoundName;
+		break;
+	case 4:
+		SoundName = Lv4TauntSoundName;
+		break;
+	default:
+		return;
+		break;
+	}
+	PlayTowerCommandSound(SoundName);
+}
+
 
 

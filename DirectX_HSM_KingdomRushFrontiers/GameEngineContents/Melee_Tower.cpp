@@ -54,6 +54,11 @@ void Melee_Tower::Start()
 	NextLvRangeRender->Off();
 	TowerRenderer->SetTexture("tower_constructing_0002.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
+
+	Lv1TauntSoundName = "Barrack_Ready.ogg";
+	Lv2TauntSoundName = "Barrack_Taunt1.ogg";
+	Lv3TauntSoundName = "Barrack_Taunt2.ogg";
+	Lv4TauntSoundName = "assassin_taunt_ready.ogg";
 }
 
 void Melee_Tower::Update(float _DeltaTime)
@@ -79,6 +84,8 @@ void Melee_Tower::Update(float _DeltaTime)
 			AcRallyPoint->GetTransform()->SetParent(GetTransform());
 			AcRallyPoint->GetTransform()->SetWorldPosition(ParentArea->GetRallyPos());
 			AcRallyPoint->SetTowerData(&Data);
+
+			PlayTowerCommandSound(Lv1TauntSoundName);
 		}
 	}
 	else
@@ -114,6 +121,7 @@ void Melee_Tower::ChangeTower(TowerEnum _Tower)
 	}
 	ChangeTowerRender(Data.Level);
 	ChangeFighter(Data.Level);
+	PlayTauntSound(Data.Level);
 }
 
 void Melee_Tower::ChangeTowerRender(int _TowerLevel)

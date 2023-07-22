@@ -42,7 +42,7 @@ void BaseBuildButton::Start()
 	AcPriceTag->GetTransform()->SetWorldPosition((GetTransform()->GetWorldPosition()) + float4{0,-30});
 	AcPriceTag->GetTransform()->SetParent(GetTransform());
 
-	UpSound = "";
+	UpSound = "Sound_TowerBuilding.ogg";
 }
 
 void BaseBuildButton::Update(float _DeltaTime)

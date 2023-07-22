@@ -87,6 +87,11 @@ void Artillery_Tower::Start()
 	RangeCol->Off();
 	IsThereTargetFuncPtr = std::bind(&Artillery_Tower::IsThereTarget, this);
 	FindTargetMonsterFuncPtr = std::bind(&Artillery_Tower::FindTargetMonster, this);
+
+	Lv1TauntSoundName = "Artillery_Ready.ogg";
+	Lv2TauntSoundName = "Artillery_Taunt1.ogg";
+	Lv3TauntSoundName = "Artillery_Taunt2.ogg";
+	Lv4TauntSoundName = "earthquake_taunt_ready.ogg";
 }
 
 void Artillery_Tower::Update(float _DeltaTime)
@@ -107,6 +112,7 @@ void Artillery_Tower::Update(float _DeltaTime)
 			RangeCol->On();
 			UpgradeButton->On();
 			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
+			PlayTowerCommandSound(Lv1TauntSoundName);
 		}
 	}
 	else
@@ -148,6 +154,7 @@ void Artillery_Tower::ChangeTowerRender(int _TowerLevel)
 		NextLvRangeRender->GetTransform()->SetWorldScale({ Data.GetNextLvRange() * 2,Data.GetNextLvRange() * 2 });
 	}
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
+	PlayTauntSound(Data.Level);
 
 	switch (_TowerLevel)
 	{
