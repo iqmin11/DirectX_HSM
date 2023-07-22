@@ -186,6 +186,8 @@ protected:
 	void UpdateLifeBar();
 	void GiveBounty();
 
+	std::function<void()> PlayDeathSound = nullptr;
+
 private:
 	std::weak_ptr<class PlayStageLevel> ParentLevel;
 	bool IsPause();

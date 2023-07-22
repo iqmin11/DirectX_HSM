@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseMonster.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class DesertThug : public BaseMonster
 {
@@ -21,5 +22,9 @@ private:
 	float4 RenderScale = { 128,128,1 };
 	float4 ColLocalPos = {0,0,0};
 	float4 ColScale = {18,18,1};
+
+	static GameEngineSoundPlayer DeathSound;
+	std::vector<std::string> DeathSoundNames = std::vector<std::string>();
+	void PlayDeathSound();
 };
 

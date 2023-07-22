@@ -185,11 +185,19 @@ void BaseMonster::DeathStateInit()
 					else
 					{
 						MonsterRenderer->ChangeAnimation("Death");
+						if (PlayDeathSound != nullptr)
+						{
+							PlayDeathSound();
+						}
 					}
 				}
 				else
 				{
 					MonsterRenderer->ChangeAnimation("Death");
+					if (PlayDeathSound != nullptr)
+					{
+						PlayDeathSound();
+					}
 				}
 
 				LifeBar->Off();
