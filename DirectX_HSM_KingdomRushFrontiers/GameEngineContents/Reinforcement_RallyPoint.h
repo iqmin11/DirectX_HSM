@@ -1,5 +1,6 @@
 #pragma once
 #include "RallyPoint.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class Reinforcement_RallyPoint : public RallyPoint
 {
@@ -24,6 +25,7 @@ protected:
 
 private:
 	float DeathTime = 0.f;
+	GameEngineSoundPlayer ReinforcementSound = GameEngineSoundPlayer();
 
 	void SetFighter(FighterEnum _Enum);
 	bool IsAllFightersDeath();

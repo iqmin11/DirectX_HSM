@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore\GameEngineActor.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 #include "ContentsEnum.h"
 
 class FireBall : public GameEngineActor
@@ -38,6 +39,8 @@ private:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> ShadowRenderer = nullptr;
 	float4 ShadowRendererScale = { 48,20,1 };
+
+	GameEngineSoundPlayer FirballSound = GameEngineSoundPlayer();
 
 	void Attack();
 	float4 RandomTargetPos(const float4& _RealTargetPos);

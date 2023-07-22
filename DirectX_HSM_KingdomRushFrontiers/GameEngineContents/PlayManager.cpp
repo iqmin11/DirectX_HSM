@@ -69,10 +69,10 @@ void PlayManager::Update(float _DeltaTime)
 	CalCoolTime_CallReinforcement(_DeltaTime);
 }
 
-void PlayManager::PlayerSound(const std::string_view& _FileName)
+void PlayManager::PlayerSound(const std::string_view& _FileName, float _Volum)
 {
 	PlayManagerSound = GameEngineSound::Play(_FileName);
-	PlayManagerSound.SetVolume(0.2f);
+	PlayManagerSound.SetVolume(_Volum);
 }
 
 void PlayManager::CalCoolTime_RainOfFire(float _DeltaTime)

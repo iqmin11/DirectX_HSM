@@ -330,6 +330,7 @@ void PlayStageLevel::StartNextWave()
 void PlayStageLevel::SubLife(int _LivesTaken)
 {
 	MainPlayer->Life -= _LivesTaken;
+	MainPlayer->PlayerSound("Sound_LooseLife.ogg", 0.5f);
 }
 
 void PlayStageLevel::SetStageBuildArea(int _Stage)

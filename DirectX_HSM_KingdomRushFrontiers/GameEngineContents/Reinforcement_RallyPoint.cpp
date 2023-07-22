@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Reinforcement_RallyPoint.h"
 
+#include "PlayManager.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEnginePlatform\GameEngineInput.h>
 #include "Reinforcement_Fighter.h"
@@ -24,6 +25,8 @@ std::shared_ptr<Reinforcement_RallyPoint> Reinforcement_RallyPoint::CreateRallyP
 	LocalAc->GetTransform()->SetWorldPosition(_Pos);
 	LocalAc->SetFighter(_Fighter);
 	LiveReinforcementRallyManager.push_back(LocalAc);
+	LocalAc->ReinforcementSound = GameEngineSound::Play("Reinforcements_Event" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1, 4)) + ".ogg");
+	LocalAc->ReinforcementSound.SetVolume(0.5f);
 	return LocalAc;
 }
 

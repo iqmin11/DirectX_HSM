@@ -60,7 +60,8 @@ void FireBall::Start()
 		}
 	}
 
-
+	FirballSound = GameEngineSound::Play("Sound_FireballUnleash.ogg");
+	FirballSound.SetVolume(0.2f);
 }
 
 void FireBall::Update(float _DeltaTime)
@@ -80,6 +81,17 @@ void FireBall::Update(float _DeltaTime)
 	if (Ratio >= 1.f)
 	{
 		Attack();
+		if (FirballSound.IsValid()) // 생성 소리를 멈추고 폭발소리를 내기
+		{
+			bool Value = false;
+			FirballSound.isPlaying(&Value);
+			if (&Value)
+			{
+				FirballSound.Stop();
+			}
+		}
+		FirballSound = GameEngineSound::Play("Sound_FireballHit.ogg");
+		FirballSound.SetVolume(0.2f);
 	}
 }
 

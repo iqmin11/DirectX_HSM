@@ -91,7 +91,7 @@ public:
 		return _Price <= Gold;
 	}
 
-	void PlayerSound(const std::string_view& _FileName);
+	void PlayerSound(const std::string_view& _FileName, float _Volum = 0.2f);
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
