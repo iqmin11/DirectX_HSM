@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "BaseTower.h"
 
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
@@ -10,6 +11,8 @@
 #include "BuildArea.h"
 #include "UpgradeTowerButton.h"
 #include "PlayManager.h"
+
+GameEngineSoundPlayer BaseTower::TowerCommandSound = GameEngineSoundPlayer();
 
 BaseTower::BaseTower()
 {
@@ -56,6 +59,8 @@ void BaseTower::Start()
 	TowerRangeRender = CreateComponent<GameEngineSpriteRenderer>(UIRenderOrder::TowerRange);
 	NextLvRangeRender = CreateComponent<GameEngineSpriteRenderer>(UIRenderOrder::TowerRange);
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::TowerRange);
+
+	TauntSoundName.resize(4);
  }
 
 void BaseTower::Update(float _DeltaTime)
@@ -107,6 +112,15 @@ void BaseTower::Update(float _DeltaTime)
 
 void BaseTower::PlayTowerCommandSound(const std::string_view& _Name)
 {
+	if (TowerCommandSound.IsValid())
+	{
+		bool IsTowerCommandSound = false;
+		TowerCommandSound.isPlaying(&IsTowerCommandSound);
+		if (IsTowerCommandSound)
+		{
+			return;
+		}
+	}
 	TowerCommandSound = GameEngineSound::Play(_Name);
 	TowerCommandSound.SetVolume(0.5f);
 }
@@ -117,16 +131,12 @@ void BaseTower::PlayTauntSound(int _Level)
 	switch (_Level)
 	{
 	case 1:
-		SoundName = Lv1TauntSoundName;
-		break;
 	case 2:
-		SoundName = Lv2TauntSoundName;
-		break;
 	case 3:
-		SoundName = Lv3TauntSoundName;
+		SoundName = TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0, 2)];
 		break;
 	case 4:
-		SoundName = Lv4TauntSoundName;
+		SoundName = TauntSoundName[3];
 		break;
 	default:
 		return;

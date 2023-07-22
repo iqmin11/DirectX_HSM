@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Artillery_Tower.h"
 
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -88,10 +89,10 @@ void Artillery_Tower::Start()
 	IsThereTargetFuncPtr = std::bind(&Artillery_Tower::IsThereTarget, this);
 	FindTargetMonsterFuncPtr = std::bind(&Artillery_Tower::FindTargetMonster, this);
 
-	Lv1TauntSoundName = "Artillery_Ready.ogg";
-	Lv2TauntSoundName = "Artillery_Taunt1.ogg";
-	Lv3TauntSoundName = "Artillery_Taunt2.ogg";
-	Lv4TauntSoundName = "earthquake_taunt_ready.ogg";
+	TauntSoundName[0] = "Artillery_Ready.ogg";
+	TauntSoundName[1] = "Artillery_Taunt1.ogg";
+	TauntSoundName[2] = "Artillery_Taunt2.ogg";
+	TauntSoundName[3] = "earthquake_taunt_ready.ogg";
 }
 
 void Artillery_Tower::Update(float _DeltaTime)
@@ -112,7 +113,7 @@ void Artillery_Tower::Update(float _DeltaTime)
 			RangeCol->On();
 			UpgradeButton->On();
 			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
-			PlayTowerCommandSound(Lv1TauntSoundName);
+			PlayTowerCommandSound(TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0, 2)]);
 		}
 	}
 	else

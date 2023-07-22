@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineBase\GameEngineRandom.h>
 #include "Ranged_Shooter.h"
 #include "BuildArea.h"
 #include "TowerButton.h"
@@ -145,10 +146,10 @@ void Ranged_Tower::Start()
 	RangeCol->Off();
 	//Attack = std::bind(&Ranged_Tower::RangerAttack, this);
 
-	Lv1TauntSoundName = "Archer_Ready.ogg";
-	Lv2TauntSoundName = "Archer_Taunt1.ogg";
-	Lv3TauntSoundName = "Archer_Taunt2.ogg";
-	Lv4TauntSoundName = "crossbow_taunt_ready.ogg";
+	TauntSoundName[0] = "Archer_Ready.ogg";
+	TauntSoundName[1] = "Archer_Taunt1.ogg";
+	TauntSoundName[2] = "Archer_Taunt2.ogg";
+	TauntSoundName[3] = "crossbow_taunt_ready.ogg";
 }
 
 void Ranged_Tower::Update(float _DeltaTime)
@@ -172,7 +173,7 @@ void Ranged_Tower::Update(float _DeltaTime)
 			RangeCol->On();
 			UpgradeButton->On();
 
-			PlayTowerCommandSound(Lv1TauntSoundName);
+			PlayTowerCommandSound(TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0, 2)]);
 		}
 	}
 	else

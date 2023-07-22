@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Magic_Tower.h"
 
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -74,10 +75,10 @@ void Magic_Tower::Start()
 	RangeCol->GetTransform()->SetWorldScale({ Data.Range * 2,Data.Range * 2 });
 	RangeCol->Off();
 
-	Lv1TauntSoundName = "Mage_Ready.ogg";
-	Lv2TauntSoundName = "Mage_Taunt1.ogg";
-	Lv3TauntSoundName = "Mage_Taunt2.ogg";
-	Lv4TauntSoundName = "archmage_taunt_ready.ogg";
+	TauntSoundName[0] = "Mage_Ready.ogg";
+	TauntSoundName[1] = "Mage_Taunt1.ogg";
+	TauntSoundName[2] = "Mage_Taunt2.ogg";
+	TauntSoundName[3] = "archmage_taunt_ready.ogg";
 }
 
 void Magic_Tower::Update(float _DeltaTime)
@@ -100,7 +101,7 @@ void Magic_Tower::Update(float _DeltaTime)
 			UpgradeButton->On();
 			TowerRenderer->ChangeAnimation(std::to_string(Data.Level) + "_Idle");
 
-			PlayTowerCommandSound(Lv1TauntSoundName);
+			PlayTowerCommandSound(TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0, 2)]);
 		}
 	}
 	else

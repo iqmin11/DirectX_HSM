@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Melee_Tower.h"
 
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -55,10 +56,10 @@ void Melee_Tower::Start()
 	TowerRenderer->SetTexture("tower_constructing_0002.png");
 	TowerRenderer->GetTransform()->SetWorldScale(RenderScale);
 
-	Lv1TauntSoundName = "Barrack_Ready.ogg";
-	Lv2TauntSoundName = "Barrack_Taunt1.ogg";
-	Lv3TauntSoundName = "Barrack_Taunt2.ogg";
-	Lv4TauntSoundName = "assassin_taunt_ready.ogg";
+	TauntSoundName[0] = "Barrack_Ready.ogg";
+	TauntSoundName[1] = "Barrack_Taunt1.ogg";
+	TauntSoundName[2] = "Barrack_Taunt2.ogg";
+	TauntSoundName[3] = "assassin_taunt_ready.ogg";
 }
 
 void Melee_Tower::Update(float _DeltaTime)
@@ -84,8 +85,8 @@ void Melee_Tower::Update(float _DeltaTime)
 			AcRallyPoint->GetTransform()->SetParent(GetTransform());
 			AcRallyPoint->GetTransform()->SetWorldPosition(ParentArea->GetRallyPos());
 			AcRallyPoint->SetTowerData(&Data);
-
-			PlayTowerCommandSound(Lv1TauntSoundName);
+			
+			PlayTowerCommandSound(TauntSoundName[GameEngineRandom::MainRandom.RandomInt(0,2)]);
 		}
 	}
 	else

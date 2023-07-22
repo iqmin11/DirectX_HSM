@@ -60,15 +60,12 @@ protected:
 	std::shared_ptr<class GameEngineCollision> RangeCol = nullptr;
 	
 	std::string TowerBuildSoundName = "Sound_TowerBuilding.ogg";
-	std::string Lv1TauntSoundName = "";
-	std::string Lv2TauntSoundName = "";
-	std::string Lv3TauntSoundName = "";
-	std::string Lv4TauntSoundName = "";
-
+	std::vector<std::string> TauntSoundName = std::vector<std::string>();
+	
 	void PlayTowerCommandSound(const std::string_view& _Name);
 	void PlayTauntSound(int _Level);
 
 private:
-	GameEngineSoundPlayer TowerCommandSound = GameEngineSoundPlayer();
+	static GameEngineSoundPlayer TowerCommandSound;
 };
 
