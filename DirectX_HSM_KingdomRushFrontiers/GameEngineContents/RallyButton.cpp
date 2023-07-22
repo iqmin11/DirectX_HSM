@@ -54,6 +54,8 @@ void RallyButton::Start()
 	ButtonGlow->SetTexture("CircleButtonsGlow.png");
 	ButtonGlow->GetTransform()->SetWorldScale(GlowScale);
 	ButtonGlow->Off();
+
+	UpSound = "";
 }
 
 void RallyButton::Update(float _DeltaTime)

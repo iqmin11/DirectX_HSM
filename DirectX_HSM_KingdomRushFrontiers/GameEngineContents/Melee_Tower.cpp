@@ -170,7 +170,7 @@ void Melee_Tower::PlayTauntSound(int _Level)
 	PlayTowerCommandSound(SoundName);
 }
 
-void Melee_Tower::SetRally()
+bool Melee_Tower::SetRally()
 {
 	if (!MousePointer::MainMouse->IsThereMouseOntheColMap()
 		&& RangeCol->Collision(ColOrder::MousePointer, ColType::SPHERE2D, ColType::AABBBOX2D))
@@ -180,9 +180,11 @@ void Melee_Tower::SetRally()
 		AcRallyPoint->SetRallyPos(Pos);
 		SetRallyMod = false;
 		DeciedRallyPointEffect::CreateRallyEffect(this, Pos);
+		return true;
 	}
 	else
 	{
 		SetRallyMod = false;
+		return false;
 	}
 }

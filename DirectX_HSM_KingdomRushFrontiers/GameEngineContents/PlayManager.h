@@ -91,6 +91,7 @@ public:
 		return _Price <= Gold;
 	}
 
+	void PlayerSound(const std::string_view& _FileName);
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -110,7 +111,6 @@ private:
 
 	GameEngineSoundPlayer PlayManagerSound = GameEngineSoundPlayer();
 
-	void PlayerSound(const std::string_view& _FileName);
 	std::string SpellSelectSound = "Sound_SpellSelect.ogg";
 
 	void CalCoolTime_RainOfFire(float _DeltaTime);

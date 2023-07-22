@@ -19,7 +19,7 @@ public:
 	bool SetRallyMod = false;
 
 	void ChangeTower(TowerEnum _Tower) override;
-	void SetRally();
+	bool SetRally();
 
 	void PlayTauntSound(int _Level) override;
 

@@ -338,8 +338,11 @@ void MousePointer::UnitPosStateInit()
 		Melee_Tower* Tower = PlayManager::MainPlayer->SelectedMeleeTower;
 		if (Tower->SetRallyMod && GameEngineInput::IsUp("EngineMouseLeft"))
 		{
-			Tower->SetRally();
-			Tower->PlayTauntSound(PlayManager::SelectedMeleeTower->GetData().Level);
+			if (Tower->SetRally()) // SetRally를 한다, 성공하면
+			{
+				Tower->PlayTauntSound(PlayManager::SelectedMeleeTower->GetData().Level);
+				PlayManager::MainPlayer->PlayerSound("Sound_RallyPointPlaced.ogg");
+			}
 			PlayManager::SelectedMeleeTower = nullptr;
 			PlayManager::MainPlayer->SetState(PlayerState::Idle);
 		}
