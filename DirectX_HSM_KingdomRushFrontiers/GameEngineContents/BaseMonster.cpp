@@ -110,6 +110,7 @@ std::shared_ptr<BaseMonster> BaseMonster::CreateMonster(const std::shared_ptr<Ga
 	}
 
 	Result->SetPathInfo(_PathInfo);
+	Result->GetTransform()->SetWorldPosition(_PathInfo[0]);
 	return Result;
 }
 
