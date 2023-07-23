@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseMonsterBullet.h"
+#include <GameEnginePlatform\GameEngineSound.h>
 
 class DessertArcher_Bullet : public BaseMonsterBullet
 {

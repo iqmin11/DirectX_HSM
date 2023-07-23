@@ -66,7 +66,7 @@ void SandWraith_Coffin::Start()
 	CoffinRenderer->SetAnimationStartEvent("Spawn", 0, [this]()
 		{
 			CoffinSound = GameEngineSound::Play("sandwraith_coffin.ogg");
-			CoffinSound.SetVolume(0.2f);
+			CoffinSound.SetVolume(0.5f);
 		});
 }
 

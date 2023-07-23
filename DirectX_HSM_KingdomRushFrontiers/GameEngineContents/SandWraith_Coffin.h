@@ -47,6 +47,6 @@ private:
 	void CoffinUpdateInit();
 	void CoffinDeathInit();
 
-	GameEngineSound CoffinSound = GameEngineSound();
+	GameEngineSoundPlayer CoffinSound = GameEngineSoundPlayer();
 };
 
