@@ -7,6 +7,8 @@
 #include "BaseFighter.h"
 #include "DessertArcher.h"
 
+GameEngineSoundPlayer DessertArcher_Bullet::HitArrowSound;
+
 DessertArcher_Bullet::DessertArcher_Bullet()
 {
 
@@ -57,6 +59,18 @@ void DessertArcher_Bullet::ArrowHit()
 {
 	Death();
 	TargetFighter->CurHP -= CalDamage();
+
+	if (HitArrowSound.IsValid())
+	{
+		bool Value = false;
+		HitArrowSound.isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	HitArrowSound = GameEngineSound::Play("Sound_ArrowHit2" + std::to_string(GameEngineRandom::MainRandom.RandomInt(2, 3)) + ".ogg");
+	HitArrowSound.SetVolume(0.2f);
 }
 
 void DessertArcher_Bullet::ArrowMiss()

@@ -23,5 +23,6 @@ private:
 	float4 ColScale = { 30,30,1 };
 
 	static GameEngineSoundPlayer DeathSound;
+	GameEngineSoundPlayer AttackSound = GameEngineSoundPlayer();
 };
 

@@ -62,6 +62,12 @@ void SandWraith_Coffin::Start()
 	CoffinDeathInit();
 
 	CoffinFSM.ChangeState("Spawn");
+
+	CoffinRenderer->SetAnimationStartEvent("Spawn", 0, [this]()
+		{
+			CoffinSound = GameEngineSound::Play("sandwraith_coffin.ogg");
+			CoffinSound.SetVolume(0.2f);
+		});
 }
 
 void SandWraith_Coffin::Update(float _DeltaTime)

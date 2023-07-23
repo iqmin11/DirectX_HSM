@@ -53,6 +53,7 @@ private:
 	float SummonMaxCoolTime = 10.f;
 
 	static GameEngineSoundPlayer DeathSound;
+	GameEngineSoundPlayer RangedAttackSound = GameEngineSoundPlayer();
 
 	void CalTargetPos();
 

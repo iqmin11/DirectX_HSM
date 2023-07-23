@@ -31,7 +31,12 @@ void Executioner::Start()
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
 	CurHP = Data.Hp;
 
-	MonsterRenderer->SetAnimationStartEvent("Attack", 3, std::bind(&Executioner::Attack, this));
+	MonsterRenderer->SetAnimationStartEvent("Attack", 3, [this]()
+		{
+			Attack();
+			AttackSound = GameEngineSound::Play("Sound_CommonAreaHit.ogg");
+			AttackSound.SetVolume(0.2f);
+		});
 
 	IdleStateInit();
 	MoveStateInit();

@@ -47,6 +47,8 @@ void DessertArcher::Start()
 	MonsterRenderer->SetAnimationStartEvent("RangedAttack", 3, [this]()
 		{
 			DessertArcher_Bullet::ShootingBullet(GetLevel(), this);
+			RangedAttackSound = GameEngineSound::Play("Sound_ArrowRelease" + std::to_string(GameEngineRandom::MainRandom.RandomInt(2,3)) + ".ogg");
+			RangedAttackSound.SetVolume(0.2f);
 		});
 
 	IdleStateInit();

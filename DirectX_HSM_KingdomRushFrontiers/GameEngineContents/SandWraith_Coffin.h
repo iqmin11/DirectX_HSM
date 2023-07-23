@@ -2,6 +2,7 @@
 #include <GameEngineCore\GameEngineActor.h>
 #include "BaseMonster.h"
 #include <GameEngineCore\GameEngineFSM.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 
 enum class CoffinState
 {
@@ -45,5 +46,7 @@ private:
 	void CoffinSpawnInit();
 	void CoffinUpdateInit();
 	void CoffinDeathInit();
+
+	GameEngineSound CoffinSound = GameEngineSound();
 };
 

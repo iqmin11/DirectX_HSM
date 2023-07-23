@@ -56,6 +56,8 @@ void SandWraith::Start()
 	MonsterRenderer->SetAnimationStartEvent("RangedAttack", 3, [this]()
 		{
 			SandWraith_Bullet::ShootingBullet(GetLevel(), this);
+			RangedAttackSound = GameEngineSound::Play("KRF_sfx_vodoo_ataqueV3.ogg");
+			RangedAttackSound.SetVolume(0.2f);
 		});
 	MonsterRenderer->SetAnimationStartEvent("Summon", 21, [this]()
 		{

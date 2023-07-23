@@ -27,6 +27,8 @@ private:
 	float4 MissArrowRenderScale = { 16,8,1 };
 	float MissTime = 0.0f;
 
+	static GameEngineSoundPlayer HitArrowSound;
+
 	void ArrowHit();
 	void ArrowMiss();
 	int CalDamage() override;
