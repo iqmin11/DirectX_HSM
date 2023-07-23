@@ -214,7 +214,11 @@ void PlayStageLevel::LoadPathBinData()
 {
 	GameEngineSerializer LoadSerializer = GameEngineSerializer();
 
-	GameEngineFile File("..//ContentsData//PathData.txt");
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsData");
+	Dir.Move("ContentsData");
+
+	GameEngineFile File(Dir.GetPlusFileName("PathData.txt").GetFullPath());
 	LoadSerializer.BufferResize(8000);
 	File.LoadBin(LoadSerializer);
 
@@ -254,7 +258,11 @@ void PlayStageLevel::LoadWaveBinData()
 {
 	GameEngineSerializer LoadSerializer = GameEngineSerializer();
 
-	GameEngineFile File("..//ContentsData//WaveData.txt");
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsData");
+	Dir.Move("ContentsData");
+
+	GameEngineFile File(Dir.GetPlusFileName("WaveData.txt").GetFullPath());
 	LoadSerializer.BufferResize(8000);
 	File.LoadBin(LoadSerializer);
 
@@ -839,7 +847,11 @@ void PlayStageLevel::LoadAreaBinData()
 {
 	GameEngineSerializer LoadSerializer = GameEngineSerializer();
 
-	GameEngineFile File("..//ContentsData//BuildAreaData.txt");
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsData");
+	Dir.Move("ContentsData");
+
+	GameEngineFile File(Dir.GetPlusFileName("BuildAreaData.txt").GetFullPath());
 	LoadSerializer.BufferResize(8000);
 	File.LoadBin(LoadSerializer);
 
@@ -868,7 +880,11 @@ void PlayStageLevel::LoadRallyBinData()
 {
 	GameEngineSerializer LoadSerializer = GameEngineSerializer();
 
-	GameEngineFile File("..//ContentsData//RallyData.txt");
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsData");
+	Dir.Move("ContentsData");
+
+	GameEngineFile File(Dir.GetPlusFileName("RallyData.txt").GetFullPath());
 	LoadSerializer.BufferResize(8000);
 	File.LoadBin(LoadSerializer);
 
