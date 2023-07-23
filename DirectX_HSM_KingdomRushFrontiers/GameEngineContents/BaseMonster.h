@@ -79,7 +79,6 @@ public:
 	};
 
 public:
-	bool IsTestMonster = false;
 	static std::list<std::weak_ptr<BaseMonster>> LiveMonsterList;
 	static bool IsAllMonsterDead();
 	static void LiveMonsterListForceRelease();

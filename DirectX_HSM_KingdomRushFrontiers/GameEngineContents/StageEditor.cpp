@@ -853,7 +853,6 @@ void StageEditor::PathTest(std::shared_ptr<class GameEngineLevel> _Level)
     }
     
     std::weak_ptr<BaseMonster>LocMonster(BaseMonster::CreateMonster(_Level, MonsterEnum::DuneRaider, Data[SelectedStage].Lines[SelectedLine].Points));
-    LocMonster.lock()->IsTestMonster = true;
     //_Level->CreateActor<DuneRaider>()->SetPathInfo(Data[SelectedStage].Lines[SelectedLine].Points);
 }
 

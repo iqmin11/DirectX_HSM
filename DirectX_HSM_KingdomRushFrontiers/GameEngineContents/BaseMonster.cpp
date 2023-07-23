@@ -165,12 +165,6 @@ void BaseMonster::Update(float _DeltaTime)
 		return;
 	}
 
-	if (IsTestMonster)
-	{
-		TestPath(_DeltaTime);
-		return;
-	}
-
 	MonsterFSM.Update(_DeltaTime);
 	UpdateLifeBar();
 }
@@ -210,7 +204,7 @@ void BaseMonster::WalkPath(float _DeltaTime)
 	{
 		Death();
 		LiveMonsterListRelease();
-		dynamic_cast<PlayStageLevel*>(GetLevel())->SubLife(Data.LivesTaken);
+		PlayStageLevel::MainPalyStage->SubLife(Data.LivesTaken);
 		GiveBounty();
 		return;
 	}
@@ -274,6 +268,10 @@ void BaseMonster::UpdateLifeBar()
 
 void BaseMonster::GiveBounty()
 {
+	if (PlayManager::MainPlayer->Gold == -1)
+	{
+		return;
+	}
 	PlayManager::MainPlayer->Gold += Data.Bounty;
 	//이펙트 추가 필요
 }
