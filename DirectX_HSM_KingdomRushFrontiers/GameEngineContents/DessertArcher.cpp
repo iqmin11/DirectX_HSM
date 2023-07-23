@@ -78,7 +78,6 @@ void DessertArcher::Start()
 void DessertArcher::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
-
 }
 
 std::shared_ptr<class BaseFighter> DessertArcher::FindRangeTargetFighter()

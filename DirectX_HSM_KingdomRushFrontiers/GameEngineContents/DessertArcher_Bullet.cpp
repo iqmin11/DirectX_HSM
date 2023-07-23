@@ -69,8 +69,8 @@ void DessertArcher_Bullet::ArrowHit()
 			return;
 		}
 	}
-	HitArrowSound = GameEngineSound::Play("Sound_ArrowHit2" + std::to_string(GameEngineRandom::MainRandom.RandomInt(2, 3)) + ".ogg");
-	HitArrowSound.SetVolume(0.2f);
+	HitArrowSound = GameEngineSound::Play("Sound_ArrowHit" + std::to_string(GameEngineRandom::MainRandom.RandomInt(2, 3)) + ".ogg");
+	HitArrowSound.SetVolume(0.1f);
 }
 
 void DessertArcher_Bullet::ArrowMiss()

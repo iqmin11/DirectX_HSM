@@ -39,7 +39,7 @@ void DessertArcher::MoveStateInit()
 					}
 				}
 
-				RangeTargetFighter.lock() = FindRangeTargetFighter();
+				RangeTargetFighter = FindRangeTargetFighter();
 				std::string PrevDirStr = Walk.DirString;
 				WalkPath(_DeltaTime);
 				CalMonsterDir();
