@@ -34,7 +34,7 @@ void MonsterWave::StartWave(std::shared_ptr<GameEngineLevel> _Level, std::vector
 	IsLastMonsterSummon = false;
 	BottomWaveButton::IsValid = false;
 	Local.lock()->WaveStartSound = GameEngineSound::Play("Sound_WaveIncoming.ogg");
-	Local.lock()->WaveStartSound.SetVolume(0.2f);
+	Local.lock()->WaveStartSound.SetVolume(0.5f);
 }
 
 void MonsterWave::SetCurStagePaths(std::vector<LinePath>* _Path)

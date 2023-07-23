@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+GameEngineSoundPlayer DuneTerror::DeathSound = GameEngineSoundPlayer();
+
 DuneTerror::DuneTerror()
 {
 
@@ -23,7 +25,7 @@ void DuneTerror::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "DuneTerror_Move_Profile", .FrameInter = 0.04f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "DuneTerror_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "DuneTerror_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "DuneTerror_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "ComeUp", .SpriteName = "DuneTerror_Come_Up", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "GoDown", .SpriteName = "DuneTerror_Go_Down", .FrameInter = 0.06f, .Loop = false });
 	
@@ -46,6 +48,22 @@ void DuneTerror::Start()
 	GoDownStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayExplosionDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void DuneTerror::Update(float _DeltaTime)

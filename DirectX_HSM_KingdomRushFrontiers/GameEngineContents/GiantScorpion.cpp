@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+GameEngineSoundPlayer GiantScorpion::DeathSound = GameEngineSoundPlayer();
+
 GiantScorpion::GiantScorpion()
 {
 
@@ -39,6 +41,21 @@ void GiantScorpion::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayExplosionDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void GiantScorpion::Update(float _DeltaTime)

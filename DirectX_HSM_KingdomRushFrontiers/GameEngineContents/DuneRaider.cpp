@@ -2,6 +2,9 @@
 #include "DuneRaider.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineBase\GameEngineRandom.h>
+
+GameEngineSoundPlayer DuneRaider::DeathSound = GameEngineSoundPlayer();
 
 DuneRaider::DuneRaider()
 {
@@ -37,6 +40,22 @@ void DuneRaider::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayHumanDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayExplosionDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void DuneRaider::Update(float _DeltaTime)

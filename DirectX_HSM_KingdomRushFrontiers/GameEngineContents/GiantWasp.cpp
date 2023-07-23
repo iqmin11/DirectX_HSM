@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+GameEngineSoundPlayer GiantWasp::DeathSound = GameEngineSoundPlayer();
+
 GiantWasp::GiantWasp()
 {
 
@@ -21,7 +23,7 @@ void GiantWasp::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Front", .SpriteName = "GiantWasp_Move_Front", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "GiantWasp_Move_Profile", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "GiantWasp_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "GiantWasp_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterRenderer->GetTransform()->SetLocalPosition(ColLocalPos);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
@@ -38,6 +40,22 @@ void GiantWasp::Start()
 	Shadow->SetTexture("FlyingEnemiesShadow.png");
 
 	SetHPBarPos(70);
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayExplosionDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void GiantWasp::Update(float _DeltaTime)

@@ -42,7 +42,6 @@ void BaseBuildButton::Start()
 	AcPriceTag->GetTransform()->SetWorldPosition((GetTransform()->GetWorldPosition()) + float4{0,-30});
 	AcPriceTag->GetTransform()->SetParent(GetTransform());
 
-	UpSound = "Sound_TowerBuilding.ogg";
 }
 
 void BaseBuildButton::Update(float _DeltaTime)
@@ -56,10 +55,12 @@ void BaseBuildButton::Update(float _DeltaTime)
 	if (!PlayManager::MainPlayer->DoIHaveEnoughGold(Price) && InvalidTextureName != "")
 	{
 		SetInvalid();
+		UpSound = "";
 	}
 	else
 	{
 		AcPriceTag->SetColor(PriceTag::ValidFontColor);
+		UpSound = "Sound_TowerBuilding.ogg";
 	}
 
 	if (State == ButtonState::Release)

@@ -278,6 +278,81 @@ void BaseMonster::GiveBounty()
 	//이펙트 추가 필요
 }
 
+void BaseMonster::PlayHumanDeathSound()
+{
+	if (DeathSoundPtr->IsValid())
+	{
+		bool Value = false;
+		DeathSoundPtr->isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	*DeathSoundPtr = GameEngineSound::Play("Sound_HumanDead" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1, 4)) + ".ogg");
+	DeathSoundPtr->SetVolume(0.2f);
+}
+
+void BaseMonster::PlayPuffDeathSound()
+{
+	if (DeathSoundPtr->IsValid())
+	{
+		bool Value = false;
+		DeathSoundPtr->isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	*DeathSoundPtr = GameEngineSound::Play("Sound_EnemyPuffDead.ogg");
+	DeathSoundPtr->SetVolume(0.2f);
+}
+
+void BaseMonster::PlayExplosionDeathSound()
+{
+	if (DeathSoundPtr->IsValid())
+	{
+		bool Value = false;
+		DeathSoundPtr->isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	*DeathSoundPtr = GameEngineSound::Play("Sound_EnemyExplode1.ogg");
+	DeathSoundPtr->SetVolume(0.1f);
+}
+
+void BaseMonster::PlayExecutionerDeathSound()
+{
+	if (DeathSoundPtr->IsValid())
+	{
+		bool Value = false;
+		DeathSoundPtr->isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	*DeathSoundPtr = GameEngineSound::Play("Sound_EnemyBigDead.ogg");
+	DeathSoundPtr->SetVolume(0.2f);
+}
+
+void BaseMonster::PlayWraithDeathSound()
+{
+	if (DeathSoundPtr->IsValid())
+	{
+		bool Value = false;
+		DeathSoundPtr->isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	*DeathSoundPtr = GameEngineSound::Play("KRF_sfx_vodoo_kamikazelanza.ogg");
+	DeathSoundPtr->SetVolume(0.2f);
+}
+
 bool BaseMonster::IsPause()
 {
 	return ParentLevel.lock()->IsPause;

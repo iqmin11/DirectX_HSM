@@ -2,8 +2,7 @@
 #include "DesertThug.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
-
-#include "BaseFighter.h"
+#include <GameEngineBase\GameEngineRandom.h>
 
 GameEngineSoundPlayer DesertThug::DeathSound = GameEngineSoundPlayer();
 
@@ -41,32 +40,24 @@ void DesertThug::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayHumanDeathSound();
+	};
 
-	DeathSoundNames.resize(4);
-	DeathSoundNames[0] = "Sound_HumanDead1.ogg";
-	DeathSoundNames[1] = "Sound_HumanDead2.ogg";
-	DeathSoundNames[2] = "Sound_HumanDead3.ogg";
-	DeathSoundNames[3] = "Sound_HumanDead4.ogg";
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayExplosionDeathSound();
+		});
 
-	BaseMonster::PlayDeathSound = std::bind(&DesertThug::PlayDeathSound, this);
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void DesertThug::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
-}
-
-void DesertThug::PlayDeathSound()
-{
-	if (DeathSound.IsValid())
-	{
-		bool Value = false;
-		DeathSound.isPlaying(&Value);
-		if (Value)
-		{
-			return;
-		}
-	}
-	DeathSound = GameEngineSound::Play(DeathSoundNames[GameEngineRandom::MainRandom.RandomInt(0,3)]);
-	DeathSound.SetVolume(0.2f);
 }

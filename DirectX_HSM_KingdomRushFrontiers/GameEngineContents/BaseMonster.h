@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineFSM.h>
+#include <GameEnginePlatform\GameEngineSound.h>
 
 #include "ContentsEnum.h"
 #include "ContentsData.h"
@@ -146,6 +147,8 @@ public:
 	MonsterState State = MonsterState::Move;
 	class BaseFighter* TargetFighter = nullptr;
 
+
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -187,6 +190,13 @@ protected:
 	void GiveBounty();
 
 	std::function<void()> PlayDeathSound = nullptr;
+	class GameEngineSoundPlayer* DeathSoundPtr = nullptr;
+
+	void PlayHumanDeathSound();
+	void PlayPuffDeathSound();
+	void PlayExplosionDeathSound();
+	void PlayExecutionerDeathSound();
+	void PlayWraithDeathSound();
 
 private:
 	std::weak_ptr<class PlayStageLevel> ParentLevel;

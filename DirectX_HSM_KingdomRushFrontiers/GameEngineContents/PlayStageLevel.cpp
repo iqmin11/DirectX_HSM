@@ -627,6 +627,7 @@ void PlayStageLevel::LoadPlayLevelAnimation()
 
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Blood").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Explosion").GetFullPath());
+	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Big_Explosion").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("Small_Poison").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("RallyPointEffectAnimation").GetFullPath());
 	GameEngineSprite::LoadFolder(Dir.GetPlusFileName("HeroPositionAnimation").GetFullPath());

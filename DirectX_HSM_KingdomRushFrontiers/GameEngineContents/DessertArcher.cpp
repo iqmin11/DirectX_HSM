@@ -6,6 +6,8 @@
 #include "BaseFighter.h"
 #include "DessertArcher_Bullet.h"
 
+GameEngineSoundPlayer DessertArcher::DeathSound = GameEngineSoundPlayer();
+
 DessertArcher::DessertArcher()
 {
 
@@ -54,6 +56,21 @@ void DessertArcher::Start()
 	RangeAttackStateInit();
 
 	MonsterFSM.ChangeState("Move");
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayHumanDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayExplosionDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void DessertArcher::Update(float _DeltaTime)

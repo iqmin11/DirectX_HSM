@@ -2,6 +2,9 @@
 #include "Executioner.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+
+GameEngineSoundPlayer Executioner::DeathSound = GameEngineSoundPlayer();
+
 Executioner::Executioner()
 {
 
@@ -22,7 +25,7 @@ void Executioner::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "Executioner_Move_Profile", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "Executioner_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "Executioner_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Big_Explosion", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
@@ -38,6 +41,22 @@ void Executioner::Start()
 	MonsterFSM.ChangeState("Move");
 
 	SetHPBarPos(80);
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayExecutionerDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayExplosionDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void Executioner::Update(float _DeltaTime)

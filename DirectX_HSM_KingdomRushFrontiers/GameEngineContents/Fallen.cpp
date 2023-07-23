@@ -5,6 +5,8 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include "Immortal.h"
 
+GameEngineSoundPlayer Fallen::DeathSound = GameEngineSoundPlayer();
+
 Fallen::Fallen()
 {
 
@@ -47,6 +49,21 @@ void Fallen::Start()
 
 	State = MonsterState::Born;
 	MonsterFSM.ChangeState("Born");
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayPuffDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayExplosionDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void Fallen::Update(float _DeltaTime)

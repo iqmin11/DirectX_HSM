@@ -3,6 +3,8 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
+GameEngineSoundPlayer WarHound::DeathSound = GameEngineSoundPlayer();
+
 WarHound::WarHound()
 {
 
@@ -23,7 +25,7 @@ void WarHound::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "WarHound_Move_Profile", .FrameInter = 0.03f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "WarHound_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "WarHound_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "WarHound_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
@@ -37,6 +39,22 @@ void WarHound::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayPuffDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void WarHound::Update(float _DeltaTime)

@@ -46,6 +46,8 @@ private:
 
 	void CalTargetPos();
 
+	static GameEngineSoundPlayer DeathSound;
+
 	void MoveStateInit() override;
 	void RangeAttackStateInit();
 };

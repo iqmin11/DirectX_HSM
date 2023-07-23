@@ -23,6 +23,7 @@ private:
 	float4 ColLocalPos = { 0,0,0 };
 	float4 ColScale = { 30,30,1 };
 
+	static GameEngineSoundPlayer DeathSound;
 	void BornStateInit();
 };
 

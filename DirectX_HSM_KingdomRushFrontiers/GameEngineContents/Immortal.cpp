@@ -4,6 +4,9 @@
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "Fallen.h"
+#include <GameEngineBase\GameEngineRandom.h>
+
+GameEngineSoundPlayer Immortal::DeathSound = GameEngineSoundPlayer();
 
 Immortal::Immortal()
 {
@@ -25,7 +28,7 @@ void Immortal::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Move_Profile", .SpriteName = "Immortal_Move_Profile", .FrameInter = 0.06f, .Loop = true });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "Immortal_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "Immortal_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Immortal_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
 	MonsterCol->GetTransform()->SetLocalPosition(ColLocalPos);
@@ -39,6 +42,21 @@ void Immortal::Start()
 	DeathStateInit();
 
 	MonsterFSM.ChangeState("Move");
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayPuffDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void Immortal::Update(float _DeltaTime)
@@ -52,4 +70,3 @@ void Immortal::SummonFallen()
 	Result.lock()->SetWalk(Walk);
 	Result.lock()->GetTransform()->SetWorldPosition(Walk.ActorPos);
 }
-

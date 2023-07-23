@@ -24,6 +24,7 @@ private:
 	float4 ShdowScale = { 34,12,1 };
 
 	std::shared_ptr<class GameEngineSpriteRenderer> Shadow = nullptr;
+	static GameEngineSoundPlayer DeathSound;
 
 	void MoveStateInit() override;
 	void DeathStateInit() override;

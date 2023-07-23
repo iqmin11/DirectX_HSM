@@ -7,6 +7,8 @@
 #include "SandWraith_Bullet.h"
 #include "SandWraith_Coffin.h"
 
+GameEngineSoundPlayer SandWraith::DeathSound = GameEngineSoundPlayer();
+
 SandWraith::SandWraith()
 {
 
@@ -40,7 +42,7 @@ void SandWraith::Start()
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Attack", .SpriteName = "SandWraith_Attack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "RangedAttack", .SpriteName = "SandWraith_RangedAttack", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Death", .SpriteName = "SandWraith_Death", .FrameInter = 0.06f, .Loop = false });
-	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "Small_Explosion", .FrameInter = 0.06f, .Loop = false });
+	MonsterRenderer->CreateAnimation({ .AnimationName = "Death_Explosion", .SpriteName = "SandWraith_Death", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->CreateAnimation({ .AnimationName = "Summon", .SpriteName = "SandWraith_Summon", .FrameInter = 0.06f, .Loop = false });
 	MonsterRenderer->GetTransform()->SetWorldScale(RenderScale);
 	MonsterCol->GetTransform()->SetWorldScale(ColScale);
@@ -73,6 +75,22 @@ void SandWraith::Start()
 	SummonStateInit();
 
 	MonsterFSM.ChangeState("Move");
+
+	DeathSoundPtr = &DeathSound;
+	BaseMonster::PlayDeathSound = [this]()
+	{
+		BaseMonster::PlayWraithDeathSound();
+	};
+
+	MonsterRenderer->SetAnimationStartEvent("Death_Explosion", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Death", 0, [this]()
+		{
+			BaseMonster::PlayDeathSound();
+		});
 }
 
 void SandWraith::Update(float _DeltaTime)

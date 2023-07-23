@@ -52,6 +52,8 @@ private:
 	float SummonCoolTime = 0.0f;
 	float SummonMaxCoolTime = 10.f;
 
+	static GameEngineSoundPlayer DeathSound;
+
 	void CalTargetPos();
 
 	void MoveStateInit() override;
