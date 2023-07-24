@@ -9,6 +9,7 @@
 #include "BottomWaveButton.h"
 #include "Hero_Portrait.h"
 #include "PlayerStatus.h"
+#include "PauseButton.h"
 
 PlayStageUI* PlayStageUI::MainStageUI = nullptr;
 
@@ -47,10 +48,8 @@ void PlayStageUI::Start()
 	AcHeroPortrait->GetTransform()->SetWorldPosition(HeroPortraitFramePos);
 
 
-	PauseButton = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
-	PauseButton->SetTexture("PauseButton.png");
-	PauseButton->GetTransform()->SetWorldScale(PauseButtonScale);
-	PauseButton->GetTransform()->SetWorldPosition(PauseButtonPos);
+	AcPauseButton = GetLevel()->CreateActor<PauseButton>();
+	AcPauseButton->GetTransform()->SetWorldPosition(PauseButtonPos);
 
 	PauseFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
 	PauseFrame->SetTexture("PauseFrame.png");

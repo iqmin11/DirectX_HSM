@@ -368,6 +368,9 @@
     <ClInclude Include="Title_MousePointer.h">
       <Filter>1.Title\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="PauseButton.h">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -784,6 +787,9 @@
     </ClCompile>
     <ClCompile Include="Title_MousePointer.cpp">
       <Filter>1.Title\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseButton.cpp">
+      <Filter>3.PlayStage\Actor\StageUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

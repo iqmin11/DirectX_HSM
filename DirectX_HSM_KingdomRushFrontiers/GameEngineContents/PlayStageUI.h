@@ -33,8 +33,7 @@ private:
 	std::shared_ptr<class Hero_Portrait> AcHeroPortrait = nullptr;
 	float4 HeroPortraitFramePos = { -722, -393 };
 
-	std::shared_ptr<class GameEngineUIRenderer> PauseButton = nullptr;
-	float4 PauseButtonScale = { 41,38,1 };
+	std::shared_ptr<class PauseButton> AcPauseButton = nullptr;
 	float4 PauseButtonPos = { 696, 428 };
 
 	std::shared_ptr<class GameEngineUIRenderer> PauseFrame = nullptr;
