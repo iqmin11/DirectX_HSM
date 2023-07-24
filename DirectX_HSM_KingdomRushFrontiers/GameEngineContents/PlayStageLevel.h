@@ -68,6 +68,8 @@ public:
 		return &MaxWave;
 	}
 
+	void PauseSwitch();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

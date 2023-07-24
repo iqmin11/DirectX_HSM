@@ -79,6 +79,11 @@ void PlayStageLevel::ClearStage()
 	ClearStgObj();
 }
 
+void PlayStageLevel::PauseSwitch()
+{
+	IsPause = !IsPause;
+}
+
 void PlayStageLevel::Start()
 {
 	std::shared_ptr _101Camera = CreateNewCamera(101);

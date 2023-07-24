@@ -24,7 +24,7 @@ void PauseButton::Start()
 	SetTextureName("PauseButton_Release.png", "PauseButton_Hover.png", "PauseButton_Hover.png");
 	SetEvent([this]()
 		{
-			PlayStageLevel::MainPalyStage->IsPause = !PlayStageLevel::MainPalyStage->IsPause;
+			PlayStageLevel::MainPalyStage->PauseSwitch();
 		});
 }
 
