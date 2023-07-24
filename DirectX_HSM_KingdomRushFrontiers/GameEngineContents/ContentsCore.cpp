@@ -8,6 +8,7 @@
 #include "StageEditLevel.h"
 #include <GameEngineCore/GameEngineCoreWindow.h>
 #include <GameEngineCore/GameEngineFont.h>
+#include <GameEnginePlatform\GameEngineInput.h>
 
 GameEngineSoundPlayer ContentsCore::BGM = GameEngineSoundPlayer();
 
@@ -24,6 +25,7 @@ void ContentsCore::GameStart()
 	ContentsResourcesCreate();
 	LoadSound();
 	InstallFont();
+	GameEngineInput::MouseCursorOff();
 
 	GameEngineCore::CreateLevel<TestLevel>();
 	GameEngineCore::CreateLevel<PlayStageLevel>();
