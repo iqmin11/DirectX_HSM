@@ -1,9 +1,11 @@
 #include "PrecompileHeader.h"
 #include "SandHound.h"
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
 GameEngineSoundPlayer SandHound::DeathSound = GameEngineSoundPlayer();
+GameEngineSoundPlayer SandHound::AttackSound = GameEngineSoundPlayer();
 
 SandHound::SandHound()
 {
@@ -55,9 +57,29 @@ void SandHound::Start()
 		{
 			BaseMonster::PlayDeathSound();
 		});
+
+	MonsterRenderer->SetAnimationStartEvent("Attack", 0, [this]()
+		{
+			PlayAttackSound();
+		});
 }
 
 void SandHound::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
+}
+
+void SandHound::PlayAttackSound()
+{
+	if (AttackSound.IsValid())
+	{
+		bool Value = false;
+		AttackSound.isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	AttackSound = GameEngineSound::Play("Sound_WolfAttack" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1,2)) + ".ogg");
+	AttackSound.SetVolume(0.2f);
 }

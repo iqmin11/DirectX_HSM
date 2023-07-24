@@ -1,9 +1,11 @@
 #include "PrecompileHeader.h"
 #include "GiantWasp.h"
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 
 GameEngineSoundPlayer GiantWasp::DeathSound = GameEngineSoundPlayer();
+GameEngineSoundPlayer GiantWasp::MoveSound = GameEngineSoundPlayer();
 
 GiantWasp::GiantWasp()
 {
@@ -56,6 +58,22 @@ void GiantWasp::Start()
 		{
 			BaseMonster::PlayDeathSound();
 		});
+	
+	MonsterRenderer->SetAnimationStartEvent("Move_Back", 0, [this]()
+		{
+			PlayMoveSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Move_Front", 0, [this]()
+		{
+			PlayMoveSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Move_Profile", 0, [this]()
+		{
+			PlayMoveSound();
+		});
+
 }
 
 void GiantWasp::Update(float _DeltaTime)
@@ -63,4 +81,18 @@ void GiantWasp::Update(float _DeltaTime)
 	BaseMonster::Update(_DeltaTime);
 }
 
+void GiantWasp::PlayMoveSound()
+{
+	if (MoveSound.IsValid())
+	{
+		bool Value = false;
+		MoveSound.isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	MoveSound = GameEngineSound::Play("wasp_" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1, 3)) + ".ogg");
+	MoveSound.SetVolume(0.2f);
+}
 

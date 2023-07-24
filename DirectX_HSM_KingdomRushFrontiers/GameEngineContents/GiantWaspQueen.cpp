@@ -1,11 +1,13 @@
 #include "PrecompileHeader.h"
 #include "GiantWaspQueen.h"
+#include <GameEngineBase\GameEngineRandom.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "GiantWasp.h"
 #include <GameEngineCore\GameEngineLevel.h>
 
 GameEngineSoundPlayer GiantWaspQueen::DeathSound = GameEngineSoundPlayer();
+GameEngineSoundPlayer GiantWaspQueen::MoveSound = GameEngineSoundPlayer();
 
 GiantWaspQueen::GiantWaspQueen()
 {
@@ -58,11 +60,41 @@ void GiantWaspQueen::Start()
 		{
 			BaseMonster::PlayDeathSound();
 		});
+
+	MonsterRenderer->SetAnimationStartEvent("Move_Back", 0, [this]()
+		{
+			PlayMoveSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Move_Front", 0, [this]()
+		{
+			PlayMoveSound();
+		});
+
+	MonsterRenderer->SetAnimationStartEvent("Move_Profile", 0, [this]()
+		{
+			PlayMoveSound();
+		});
 }
 
 void GiantWaspQueen::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
+}
+
+void GiantWaspQueen::PlayMoveSound()
+{
+	if (MoveSound.IsValid())
+	{
+		bool Value = false;
+		MoveSound.isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	MoveSound = GameEngineSound::Play("wasp_" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1, 3)) + ".ogg");
+	MoveSound.SetVolume(0.2f);
 }
 
 void GiantWaspQueen::SummonWasp()

@@ -2,8 +2,10 @@
 #include "WarHound.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEngineBase\GameEngineRandom.h>
 
 GameEngineSoundPlayer WarHound::DeathSound = GameEngineSoundPlayer();
+GameEngineSoundPlayer WarHound::AttackSound = GameEngineSoundPlayer();
 
 WarHound::WarHound()
 {
@@ -55,9 +57,29 @@ void WarHound::Start()
 		{
 			BaseMonster::PlayDeathSound();
 		});
+
+	MonsterRenderer->SetAnimationStartEvent("Attack", 0, [this]()
+		{
+			PlayAttackSound();
+		});
 }
 
 void WarHound::Update(float _DeltaTime)
 {
 	BaseMonster::Update(_DeltaTime);
+}
+
+void WarHound::PlayAttackSound()
+{
+	if (AttackSound.IsValid())
+	{
+		bool Value = false;
+		AttackSound.isPlaying(&Value);
+		if (Value)
+		{
+			return;
+		}
+	}
+	AttackSound = GameEngineSound::Play("Sound_WolfAttack" + std::to_string(GameEngineRandom::MainRandom.RandomInt(1, 2)) + ".ogg");
+	AttackSound.SetVolume(0.2f);
 }

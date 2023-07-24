@@ -24,6 +24,8 @@ private:
 	float4 ShdowScale = { 34,12,1 };
 	std::shared_ptr<class GameEngineSpriteRenderer> Shadow = nullptr;
 	static GameEngineSoundPlayer DeathSound;
+	static GameEngineSoundPlayer MoveSound;
+	void PlayMoveSound();
 
 	void SummonWasp();
 
