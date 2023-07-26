@@ -13,6 +13,8 @@ ContentsButton::~ContentsButton()
 {
 }
 
+std::shared_ptr<ContentsButton> ContentsButton::IsFocusPtr = nullptr;
+
 std::shared_ptr<ContentsButton> ContentsButton::CreateButton(GameEngineActor* _ParentActor, const std::string_view& _Release, const std::string_view& _Hover, const std::string_view& _Press)
 {
 	if (_ParentActor == nullptr)
@@ -52,12 +54,28 @@ void ContentsButton::SetTextureName(const std::string_view& _Release, const std:
 	PressTextureName = _Press;
 }
 
+UIRenderOrder ContentsButton::GetRenderOrder()
+{
+	return static_cast<UIRenderOrder>(Render->GetOrder());
+}
+
+//GameEngineCamera* ContentsButton::GetRenderCam()
+//{
+//	return Render->GetCamera();
+//}
+
 void ContentsButton::Start()
 {
+	ButtonCollision = CreateComponent<GameEngineCollision>(ColOrder::Button);
 }
 
 void ContentsButton::Update(float _Delta)
 {
+	if (ButtonCollision->GetTransform()->GetWorldScale() != Render->GetTransform()->GetWorldScale())
+	{
+		ButtonCollision->GetTransform()->SetWorldScale(Render->GetTransform()->GetWorldScale());
+	}
+
 	float4 Scale = Render->GetTransform()->GetWorldScale();
 	float4 Pos = Render->GetTransform()->GetWorldPosition();
 	
@@ -88,8 +106,8 @@ void ContentsButton::Update(float _Delta)
 		{
 			if (nullptr != Click)
 			{
-				Click();
-				PlayButtonSound(UpSound);
+				//Click();
+				//PlayButtonSound(UpSound);
 			}
 		}
 		else if (true == GameEngineInput::IsFree("EngineMouseLeft"))

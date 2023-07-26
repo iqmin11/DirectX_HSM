@@ -9,6 +9,7 @@
 #include "StageBg.h"
 #include "Melee_Tower.h"
 #include "_101UIRenderer.h"
+#include "ContentsButton.h"
 
 float4 MousePointer::MousePos = float4::Zero;
 MousePointer* MousePointer::MainMouse = nullptr;
@@ -42,6 +43,51 @@ bool MousePointer::IsThereMouseOntheColMap()
 	return GameEnginePixelColor(0, 0, 0, UCHAR_MAX) == Pixel;
 }
 
+void MousePointer::ButtonClick()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> HoverButtonCols;
+	if (MousePointerCol->CollisionAll(ColOrder::Button, HoverButtonCols, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		std::vector<std::shared_ptr<ContentsButton>> HoverButtons;
+		HoverButtons.resize(HoverButtonCols.size());
+
+		for (size_t i = 0; i < HoverButtons.size(); i++)
+		{
+			HoverButtons[i] = HoverButtonCols[i]->GetActor()->DynamicThis<ContentsButton>();
+		}
+
+		std::sort(HoverButtons.begin(), HoverButtons.end(),
+			[](std::shared_ptr<ContentsButton>& _Left, std::shared_ptr<ContentsButton>& _Right)
+			{
+				return _Left->GetRenderOrder() > _Right->GetRenderOrder();
+			});
+
+		HoverButtons[0]->FocusOn();
+
+		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			if (true == GetLevel()->DynamicThis<PlayStageLevel>()->IsPause)
+			{
+				if (HoverButtons[0]->GetOrder() == 1)
+				{
+					HoverButtons[0]->GetEvent()();
+					HoverButtons[0]->PlayButtonSound(HoverButtons[0]->UpSound);
+				}
+				else
+				{
+					return;
+				}
+			}
+			else
+			{
+				HoverButtons[0]->GetEvent()();
+				HoverButtons[0]->PlayButtonSound(HoverButtons[0]->UpSound);
+			}
+			
+		}
+	}
+}
+
 void MousePointer::Start()
 {
 	MousePointerRenderer = CreateComponent<_101UIRenderer>(UIRenderOrder::MousePoint);
@@ -71,6 +117,7 @@ void MousePointer::Update(float _DeltaTime)
 {
 	CalMousePos();
 	GetTransform()->SetWorldPosition(MousePos);
+	ButtonClick();
 	MouseFSM.Update(_DeltaTime);
 }
 

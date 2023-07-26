@@ -34,7 +34,7 @@ std::shared_ptr<TowerButton> TowerButton::CreateButton(BaseTower* _ParentTower)
 void TowerButton::Start()
 {
 	ContentsButton::Start();
-	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerUIButton);
+	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::TowerButton);
 	GetTransform()->SetWorldScale(Scale);
 	ReleaseTextureName = "InvisibleTexture.png";
 	HoverTextureName = "InvisibleTexture.png";

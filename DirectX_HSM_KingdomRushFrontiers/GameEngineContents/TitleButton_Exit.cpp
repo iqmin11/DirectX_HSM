@@ -17,6 +17,7 @@ TitleButton_Exit::~TitleButton_Exit()
 
 void TitleButton_Exit::Start()
 {
+	ContentsButton::Start();
 	Render = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_1);
 	Render->GetTransform()->SetWorldScale({ 74,27,1 });
 	SetTextureName("TitleButton_Exit_Release.png", "TitleButton_Exit_Hover.png", "TitleButton_Exit_Press.png");

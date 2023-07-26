@@ -46,6 +46,17 @@ public:
 		return Click;
 	}
 
+	UIRenderOrder GetRenderOrder();
+
+	void FocusOn()
+	{
+		IsFocusPtr = DynamicThis<ContentsButton>();
+	}
+
+	//int GetRenderCamOrder();
+	void PlayButtonSound(const std::string_view& _Sound = "");
+	std::string HoverSound = "";
+	std::string UpSound = "Sound_GUIButtonCommon.ogg";
 protected:
 	void Start() override;
 	void Update(float _Delta) override;
@@ -56,19 +67,20 @@ protected:
 	std::string PressTextureName = "Press.bmp";
 
 	//std::string ReleaseSound = "Release.bmp";
-	std::string HoverSound = "";
-	std::string UpSound = "Sound_GUIButtonCommon.ogg";
+
 
 	std::string CurTextureName = std::string();
 
 	ButtonState State = ButtonState::Release;
 	std::shared_ptr<class  GameEngineSpriteRenderer> Render = nullptr;
-	void PlayButtonSound(const std::string_view& _Sound = "");
 
 private:
 	GameEngineActor* ParentActor = nullptr;
 	GameEngineSoundPlayer ButtonSound = GameEngineSoundPlayer();
 	std::function<void()> Click;
+	std::shared_ptr<class GameEngineCollision> ButtonCollision = nullptr;
+
+	static std::shared_ptr<ContentsButton> IsFocusPtr;
 
 
 	// std::shared_ptr<GameEngineCollision> Collision;

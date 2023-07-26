@@ -31,6 +31,7 @@ public:
 
 	bool IsThereMouseOntheColMap();
 	
+	void ButtonClick();
 
 protected:
 	void Start() override;

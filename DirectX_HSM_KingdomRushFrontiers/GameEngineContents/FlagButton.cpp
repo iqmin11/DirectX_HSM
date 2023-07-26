@@ -38,6 +38,7 @@ void FlagButton::Start()
 
 void FlagButton::Update(float _DeltaTime)
 {
+	ContentsButton::Start();
 	if (GetParentActor()->DynamicThis<WorldMapFlag>()->GetState() == FlagState::Update)
 	{
 		if (!WorldMapLevel::IsPause)

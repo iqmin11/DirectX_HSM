@@ -5,6 +5,8 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore\GameEngineLevel.h>
 #include <GameEnginePlatform\GameEngineInput.h>
+#include "ContentsButton.h"
+#include "WorldMapLevel.h"
 
 Title_MousePointer::Title_MousePointer()
 {
@@ -14,6 +16,49 @@ Title_MousePointer::Title_MousePointer()
 Title_MousePointer::~Title_MousePointer()
 {
 
+}
+
+void Title_MousePointer::ButtonClick()
+{
+	std::vector<std::shared_ptr<GameEngineCollision>> HoverButtonCols;
+	if (MousePointerCol->CollisionAll(ColOrder::Button, HoverButtonCols, ColType::SPHERE2D, ColType::AABBBOX2D))
+	{
+		std::vector<std::shared_ptr<ContentsButton>> HoverButtons;
+		HoverButtons.resize(HoverButtonCols.size());
+
+		for (size_t i = 0; i < HoverButtons.size(); i++)
+		{
+			HoverButtons[i] = HoverButtonCols[i]->GetActor()->DynamicThis<ContentsButton>();
+		}
+
+		std::sort(HoverButtons.begin(), HoverButtons.end(),
+			[](std::shared_ptr<ContentsButton>& _Left, std::shared_ptr<ContentsButton>& _Right)
+			{
+				return _Left->GetRenderOrder() > _Right->GetRenderOrder();
+			});
+
+		HoverButtons[0]->FocusOn();
+
+		if (GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			if (WorldMapLevel::IsPause)
+			{
+				if (HoverButtons[0]->GetOrder() == 1)
+				{
+					HoverButtons[0]->GetEvent()();
+				}
+				else
+				{
+					return;
+				}
+			}
+			else
+			{
+				HoverButtons[0]->GetEvent()();
+			}
+
+		}
+	}
 }
 
 void Title_MousePointer::Start()
@@ -37,6 +82,7 @@ void Title_MousePointer::Update(float _DeltaTime)
 {
 	CalMousePos();
 	GetTransform()->SetWorldPosition(MousePos);
+	ButtonClick();
 	MouseFSM.Update(_DeltaTime);
 }
 

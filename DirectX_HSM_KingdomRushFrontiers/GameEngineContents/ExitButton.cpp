@@ -17,7 +17,7 @@ ExitButton::~ExitButton()
 
 std::shared_ptr<ExitButton> ExitButton::CreateButton(GameEngineActor* _Parent)
 {
-	std::weak_ptr<ExitButton> LocButton(_Parent->GetLevel()->CreateActor<ExitButton>());
+	std::weak_ptr<ExitButton> LocButton(_Parent->GetLevel()->CreateActor<ExitButton>(ActorOrder::MainUI));
 	LocButton.lock()->GetTransform()->SetParent(_Parent->GetTransform());
 	LocButton.lock()->SetParentActor(_Parent);
 	LocButton.lock()->SetEvent([LocButton]()
@@ -31,6 +31,7 @@ std::shared_ptr<ExitButton> ExitButton::CreateButton(GameEngineActor* _Parent)
 
 void ExitButton::Start()
 {
+	ContentsButton::Start();
 	Render = CreateComponent<_101UIRenderer>(UIRenderOrder::StageUI_2);
 	Render->GetTransform()->SetWorldScale(ButtonScale);
 	SetTextureName("ExitButton_Release.png", "ExitButton_Hover.png", "ExitButton_Hover.png");

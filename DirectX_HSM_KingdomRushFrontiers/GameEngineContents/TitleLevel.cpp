@@ -46,6 +46,11 @@ void TitleLevel::Update(float _DeltaTime)
 	{
 		GameEngineCore::ChangeLevel("TestLevel");
 	}
+
+	if (GameEngineInput::IsUp("V"))
+	{
+		IsDebugSwitch();
+	}
 }
 
 void TitleLevel::LevelChangeStart()

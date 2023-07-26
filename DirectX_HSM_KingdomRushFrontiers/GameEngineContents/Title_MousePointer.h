@@ -16,6 +16,8 @@ public:
 	Title_MousePointer& operator=(const Title_MousePointer& _Other) = delete;
 	Title_MousePointer& operator=(Title_MousePointer&& _Other) noexcept = delete;
 
+	void ButtonClick();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;

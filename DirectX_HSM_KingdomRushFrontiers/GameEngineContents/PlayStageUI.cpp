@@ -48,7 +48,7 @@ void PlayStageUI::Start()
 	AcHeroPortrait->GetTransform()->SetWorldPosition(HeroPortraitFramePos);
 
 
-	AcPauseButton = GetLevel()->CreateActor<PauseButton>();
+	AcPauseButton = GetLevel()->CreateActor<PauseButton>(ActorOrder::MainUI);
 	AcPauseButton->GetTransform()->SetWorldPosition(PauseButtonPos);
 
 	PauseFrame = CreateComponent<GameEngineUIRenderer>(UIRenderOrder::StageUI_0);
