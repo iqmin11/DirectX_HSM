@@ -117,7 +117,6 @@ void MousePointer::Update(float _DeltaTime)
 {
 	CalMousePos();
 	GetTransform()->SetWorldPosition(MousePos);
-	ButtonClick();
 	MouseFSM.Update(_DeltaTime);
 }
 

@@ -108,6 +108,7 @@ void MousePointer::PressStateInit()
 
 		if (GameEngineInput::IsUp("EngineMouseLeft"))
 		{
+			ButtonClick();
 			State = MouseState::Release;
 			MouseFSM.ChangeState("Release");
 			return;
