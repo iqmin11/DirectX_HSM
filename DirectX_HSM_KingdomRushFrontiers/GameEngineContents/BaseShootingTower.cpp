@@ -12,11 +12,6 @@ BaseShootingTower::BaseShootingTower()
 
 }
 
-BaseShootingTower::~BaseShootingTower()
-{
-
-}
-
 void BaseShootingTower::Start()
 {
 	BaseTower::Start();

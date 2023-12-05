@@ -1,7 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineCollision.h>
-#include <GameEnginePlatform\GameEngineSound.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "ContentsEnum.h"
 // Ό³Έν :
 
@@ -48,6 +48,16 @@ public:
 
 	UIRenderOrder GetRenderOrder();
 
+	inline void ButtonColOn()
+	{
+		ButtonCollision->On();
+	}
+
+	inline void ButtonColOff()
+	{
+		ButtonCollision->Off();
+	}
+		
 	void FocusOn()
 	{
 		IsFocusPtr = DynamicThis<ContentsButton>();

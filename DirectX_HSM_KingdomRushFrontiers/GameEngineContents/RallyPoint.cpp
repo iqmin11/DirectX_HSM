@@ -14,11 +14,6 @@ RallyPoint::RallyPoint()
 
 }
 
-RallyPoint::~RallyPoint()
-{
-
-}
-
 void RallyPoint::Start()
 {
 	RangeCol = CreateComponent<GameEngineCollision>(ColOrder::RallyPoint);

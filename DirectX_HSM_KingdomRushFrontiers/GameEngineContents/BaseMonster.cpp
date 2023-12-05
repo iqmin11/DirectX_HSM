@@ -46,11 +46,6 @@ BaseMonster::BaseMonster()
 
 }
 
-BaseMonster::~BaseMonster()
-{
-
-}
-
 void BaseMonster::SetHPBarPos(float _LocalY)
 {
 	LifeBarBgLocalPos = { 0,_LocalY ,1 };

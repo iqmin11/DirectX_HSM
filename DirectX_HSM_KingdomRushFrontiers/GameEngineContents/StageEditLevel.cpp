@@ -25,6 +25,7 @@ void StageEditLevel::Start()
 {
 	SetKey();
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
+	GetMainCamera()->SetSortType(RenderOrder::Mob, SortType::ZSort);
 	AcStageBg = CreateActor<StageBg>();
 	
 	//AcStagePath = CreateActor<StagePath>();
@@ -70,10 +71,12 @@ void StageEditLevel::LevelChangeStart()
 		Editor = std::dynamic_pointer_cast<StageEditor>(NewWindow);
 	}
 
+	ShowCursor(TRUE);
 	Editor->On();
 }
 
 void StageEditLevel::LevelChangeEnd()
 {
+	ShowCursor(FALSE);
 	Editor->Off();
 }

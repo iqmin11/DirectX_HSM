@@ -9,7 +9,7 @@ public:
 
 	// construtor destructor
 	RallyPoint();
-	~RallyPoint();
+	~RallyPoint() = 0 {};
 
 	// delete Function
 	RallyPoint(const RallyPoint& _Other) = delete;

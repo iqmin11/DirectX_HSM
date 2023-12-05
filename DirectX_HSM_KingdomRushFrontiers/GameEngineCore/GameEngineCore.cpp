@@ -117,14 +117,10 @@ void GameEngineCore::EngineUpdate()
 	MainLevel->ActorUpdate(TimeDeltaTime);
 	// CurLoadLevel = nullptr;
 
-	GameEngineVideo::VideoState State = GameEngineVideo::GetCurState();
-	if (State != GameEngineVideo::VideoState::Running)
-	{
-		GameEngineDevice::RenderStart();
-		MainLevel->Render(TimeDeltaTime);
-		MainLevel->ActorRender(TimeDeltaTime);
-		GameEngineDevice::RenderEnd();
-	}
+	GameEngineDevice::RenderStart();
+	MainLevel->Render(TimeDeltaTime);
+	MainLevel->ActorRender(TimeDeltaTime);
+	GameEngineDevice::RenderEnd();
 
 	MainLevel->ActorRelease();
 }

@@ -7,7 +7,7 @@ class BaseShootingTower : public BaseTower
 public:
 	// construtor destructor
 	BaseShootingTower();
-	~BaseShootingTower();
+	~BaseShootingTower() = 0 {};
 
 	// delete Function
 	BaseShootingTower(const BaseShootingTower& _Other) = delete;

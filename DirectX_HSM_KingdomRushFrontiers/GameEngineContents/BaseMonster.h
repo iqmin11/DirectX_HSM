@@ -85,7 +85,7 @@ public:
 
 	// construtor destructor
 	BaseMonster();
-	~BaseMonster();
+	~BaseMonster() = 0 {};
 
 	// delete Function
 	BaseMonster(const BaseMonster& _Other) = delete;

@@ -11,11 +11,6 @@ BaseShooter::BaseShooter()
 
 }
 
-BaseShooter::~BaseShooter()
-{
-
-}
-
 void BaseShooter::Start()
 {
 	BaseShooterRenderer = CreateComponent<GameEngineSpriteRenderer>(RenderOrder::Mob);

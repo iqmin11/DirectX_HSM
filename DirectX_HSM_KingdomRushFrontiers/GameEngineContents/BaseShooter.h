@@ -16,7 +16,7 @@ class BaseShooter : public GameEngineActor
 public:
 	// construtor destructor
 	BaseShooter();
-	~BaseShooter();
+	~BaseShooter() = 0 {};
 
 	// delete Function
 	BaseShooter(const BaseShooter& _Other) = delete;
