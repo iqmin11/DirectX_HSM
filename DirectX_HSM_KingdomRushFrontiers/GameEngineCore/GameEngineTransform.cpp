@@ -62,46 +62,27 @@ void TransformData::WorldCalculation(const TransformData& _Parent, bool Absolute
 	if (true == AbsoluteScale || true == AbsoluteRotation || true == AbsolutePosition)
 	{
 		float4 WScale, WRotation, WPosition;
-		float4 LScale, LRotation, LPosition;
 
 		WorldMatrix.Decompose(WScale, WRotation, WPosition);
-
-		LScale = Scale;
 
 		if (true == AbsoluteScale)
 		{
 			WScale = Scale;
-			LScale *= float4::GetSafeScaleReciprocal(_Parent.WorldScale, 0.00001f);
 		}
-
-		Quaternion = Rotation.EulerDegToQuaternion();
 
 		if (true == AbsoluteRotation)
 		{
 			WRotation = Rotation.EulerDegToQuaternion();
-			Quaternion = DirectX::XMQuaternionMultiply(Quaternion, DirectX::XMQuaternionInverse(_Parent.WorldQuaternion));
 		}
-
-		LPosition = Position;
 
 		if (true == AbsolutePosition)
 		{
 			WPosition = Position;
-
-			float4x4 InverseMat = _Parent.WorldMatrix.InverseReturn();
-			LPosition *= InverseMat;
 		}
 
 		// 부모 재계산
-		float4x4 MatScale, MatRot, MatPos;
 		WorldMatrix.Compose(WScale, WRotation, WPosition);
-		// 자식 재계산				
-		ScaleMatrix.Scale(LScale);
-		RotationMatrix = Quaternion.QuaternionToRotationMatrix();
-		PositionMatrix.Pos(LPosition);
-
-		LocalWorldMatrix.Compose(LScale, Quaternion, LPosition);
-
+		LocalWorldMatrix = WorldMatrix * ParentMatrix.InverseReturn();
 	}
 }
 

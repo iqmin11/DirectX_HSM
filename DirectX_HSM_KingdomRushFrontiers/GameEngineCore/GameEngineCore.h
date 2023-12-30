@@ -62,6 +62,7 @@ public:
 
 		return std::dynamic_pointer_cast<LevelType>(NewLevel);
 	}
+
 	static void ChangeLevel(const std::string_view& _Name);
 
 	static std::shared_ptr<GameEngineLevel> GetCurLevel() 
