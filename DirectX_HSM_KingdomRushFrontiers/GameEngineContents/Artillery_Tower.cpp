@@ -15,10 +15,10 @@
 #include "BaseMonster.h"
 #include "Dwaarp_Effect_HitWave.h"
 
-const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; // 0
-const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; // 2
-const float4 Artillery_Tower::Lv3SmokeLocalPos = { 1,67,-67 }; // 7
-const float4 Artillery_Tower::Lv4SmokeLocalPos = { 1,67,-67 }; // 7
+const float4 Artillery_Tower::Lv1SmokeLocalPos = { 1,60,-60 }; 
+const float4 Artillery_Tower::Lv2SmokeLocalPos = { 1,62,-62 }; 
+const float4 Artillery_Tower::Lv3SmokeLocalPos = { 1,67,-67 }; 
+const float4 Artillery_Tower::Lv4SmokeLocalPos = { 1,67,-67 }; 
 
 Artillery_Tower::Artillery_Tower()
 {

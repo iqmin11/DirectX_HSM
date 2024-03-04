@@ -17,7 +17,6 @@ public:
 	BaseBullet& operator=(const BaseBullet& _Other) = delete;
 	BaseBullet& operator=(BaseBullet&& _Other) noexcept = delete;
 
-	//static void ShootingBullet(GameEngineLevel* _Level, GameEngineActor* _ParentActor);
 	void SetTowerData(TowerData* _Data)
 	{
 		Data = *_Data;

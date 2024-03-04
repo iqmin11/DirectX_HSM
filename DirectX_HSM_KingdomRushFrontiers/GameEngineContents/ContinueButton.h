@@ -4,6 +4,7 @@
 class ContinueButton : public ContentsButton
 {
 public:
+	
 	// construtor destructor
 	ContinueButton();
 	~ContinueButton();

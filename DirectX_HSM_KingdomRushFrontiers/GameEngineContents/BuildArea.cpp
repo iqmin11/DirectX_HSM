@@ -74,7 +74,6 @@ void BuildArea::Start()
 	BuildAreaCol = CreateComponent<GameEngineCollision>(ColOrder::Tower);
 	BuildAreaCol->GetTransform()->SetWorldScale(ColScale);
 
-	//BuildUI->GetTransform()->SetLocalPosition(BuildUILocPos);
 }
 
 void BuildArea::Update(float _DeltaTime)

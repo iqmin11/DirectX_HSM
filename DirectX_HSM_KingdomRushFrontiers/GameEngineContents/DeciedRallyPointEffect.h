@@ -5,6 +5,7 @@
 class DeciedRallyPointEffect : public GameEngineActor
 {
 public:
+	
 	// construtor destructor
 	DeciedRallyPointEffect();
 	~DeciedRallyPointEffect();

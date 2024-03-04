@@ -63,7 +63,6 @@ public:
 		IsFocusPtr = DynamicThis<ContentsButton>();
 	}
 
-	//int GetRenderCamOrder();
 	void PlayButtonSound(const std::string_view& _Sound = "");
 	std::string HoverSound = "";
 	std::string UpSound = "Sound_GUIButtonCommon.ogg";
@@ -75,9 +74,6 @@ protected:
 	std::string ReleaseTextureName = "Release.bmp";
 	std::string HoverTextureName = "Hover.bmp";
 	std::string PressTextureName = "Press.bmp";
-
-	//std::string ReleaseSound = "Release.bmp";
-
 
 	std::string CurTextureName = std::string();
 
@@ -93,6 +89,5 @@ private:
 	static std::shared_ptr<ContentsButton> IsFocusPtr;
 
 
-	// std::shared_ptr<GameEngineCollision> Collision;
 };
 

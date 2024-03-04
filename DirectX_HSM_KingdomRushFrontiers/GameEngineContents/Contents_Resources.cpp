@@ -7,7 +7,6 @@
 
 void ContentsCore::ContentsResourcesCreate()
 {
-	// 텍스처 로드만 각 레벨별로 하고 정리하는 습관을 들이세요.
 
 	{
 		GameEngineDirectory NewDir;
@@ -32,20 +31,4 @@ void ContentsCore::ContentsResourcesCreate()
 		Pipe->SetBlendState("AlphaBlend");
 		Pipe->SetDepthState("EngineDepth");
 	}
-
-
-	//{
-	//	std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("Fade");
-	//
-	//	//Pipe->SetVertexBuffer("FullRect");
-	//	//Pipe->SetIndexBuffer("FullRect");
-	//	Pipe->SetVertexShader("FadeShader.hlsl");
-	//	Pipe->SetRasterizer("Engine2DBase");
-	//	Pipe->SetPixelShader("FadeShader.hlsl");
-	//	Pipe->SetBlendState("AlphaBlend");
-	//	Pipe->SetDepthState("EngineDepth");
-	//}
-
-
-
 }

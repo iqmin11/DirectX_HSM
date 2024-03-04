@@ -3,6 +3,7 @@
 class DessertArcher : public BaseMonster
 {
 public:
+	
 	// construtor destructor
 	DessertArcher();
 	~DessertArcher();

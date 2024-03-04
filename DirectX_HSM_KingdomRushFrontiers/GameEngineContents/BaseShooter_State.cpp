@@ -87,7 +87,6 @@ void BaseShooter::AttackStateInit()
 
 				return;
 			}
-			//Attack();
 		},
 		.End = [this]()
 		{

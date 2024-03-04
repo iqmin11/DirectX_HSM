@@ -5,6 +5,7 @@
 class DeciedHeroPositionEffect : public GameEngineActor
 {
 public:
+	
 	// construtor destructor
 	DeciedHeroPositionEffect();
 	~DeciedHeroPositionEffect();

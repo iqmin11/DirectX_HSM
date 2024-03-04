@@ -75,8 +75,6 @@ void Artillery_Bullet::Update(float _DeltaTime)
 		ExplosionSmokeRender->GetTransform()->SetWorldRotation({0,0,0,1});
 		BoomUpdate(_DeltaTime);
 	}
-	//ExplosionSmokeRender->On();
-	//ExplosionSmokeRender->ChangeAnimation("Boom");
 }
 
 void Artillery_Bullet::BombHit()

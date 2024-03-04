@@ -28,8 +28,6 @@ public:
 class StageData
 {
 public:
-	//int StageLevel = 0;
-	//std::string BackGroundName = "\0";
 	std::vector<LinePath> Lines = std::vector<LinePath>();
 	std::vector<WaveData> Waves = std::vector<WaveData>();
 	std::vector<float4> BuildAreaPos = std::vector<float4>();

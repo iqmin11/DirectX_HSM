@@ -160,8 +160,6 @@ protected:
 private:
 
 
-	//std::shared_ptr<class GameEngineCollision> BodyCollision = nullptr;
-	//std::shared_ptr<class GameEngineCollision> RangeCollision = nullptr;
 
 
 };

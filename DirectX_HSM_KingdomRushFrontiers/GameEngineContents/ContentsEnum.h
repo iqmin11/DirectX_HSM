@@ -11,8 +11,6 @@ enum class RenderOrder
 	Obj = -1000,
 	Mob = 1,
 	Shooter,
-	//Monster,
-	//Bullet,
 	Ground = 999,
 	Bg = 1000,
 };

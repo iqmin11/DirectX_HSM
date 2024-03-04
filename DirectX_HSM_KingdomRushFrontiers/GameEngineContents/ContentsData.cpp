@@ -5,7 +5,6 @@ const float TowerData::Short = 140.f;
 const float TowerData::Average = 160.f;
 const float TowerData::Long = 180.f;
 const float TowerData::Great = 198.f;
-//const float TowerData::Extreme = ;
 
 const float MonsterData::Def_None = 0.0f;
 const float MonsterData::Def_Low = 0.3f;

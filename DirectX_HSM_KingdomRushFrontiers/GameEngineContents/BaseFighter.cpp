@@ -108,10 +108,6 @@ void BaseFighter::ReturnToRally(float _DeltaTime)
 	Ratio = Time * (Speed / (RallyPos - SavePos).Size());
 	ActorPos = float4::LerpClamp(SavePos, RallyPos, Ratio);
 	GetTransform()->SetWorldPosition(ActorPos);
-	//if (Ratio >= 1.f)
-	//{
-	//	State = FighterState::Idle;
-	//}
 
 	if (ActorPos.x - RallyPos.x > 0)
 	{

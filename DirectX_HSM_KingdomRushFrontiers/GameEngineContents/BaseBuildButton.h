@@ -16,7 +16,6 @@ public:
 	BaseBuildButton& operator=(const BaseBuildButton& _Other) = delete;
 	BaseBuildButton& operator=(BaseBuildButton&& _Other) noexcept = delete;
 
-	//static std::shared_ptr<BaseBuildButton> CreateButton(class BuildTowerUI* _UI);
 
 	int GetPrice()
 	{

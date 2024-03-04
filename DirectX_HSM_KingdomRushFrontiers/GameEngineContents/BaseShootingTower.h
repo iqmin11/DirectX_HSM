@@ -30,7 +30,6 @@ protected:
 	void Update(float _DeltaTime) override;
 
 protected:
-	//std::shared_ptr<class GameEngineSpriteRenderer> TowerRangeRender = nullptr;
 
 	std::shared_ptr<class BaseMonster> TargetMonster = nullptr;
 	float4 TargetPos = float4::Zero;

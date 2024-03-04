@@ -59,10 +59,6 @@ UIRenderOrder ContentsButton::GetRenderOrder()
 	return static_cast<UIRenderOrder>(Render->GetOrder());
 }
 
-//GameEngineCamera* ContentsButton::GetRenderCam()
-//{
-//	return Render->GetCamera();
-//}
 
 void ContentsButton::Start()
 {
@@ -106,8 +102,6 @@ void ContentsButton::Update(float _Delta)
 		{
 			if (nullptr != Click)
 			{
-				//Click();
-				//PlayButtonSound(UpSound);
 			}
 		}
 		else if (true == GameEngineInput::IsFree("EngineMouseLeft"))

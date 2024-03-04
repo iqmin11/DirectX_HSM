@@ -1,10 +1,11 @@
 #pragma once
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEnginePlatform\GameEngineSound.h>
-// Ό³Έν :
+
 class ContentsCore : public GameEngineCore
 {
 public:
+	
 	// constrcuter destructer
 	ContentsCore();
 	~ContentsCore();

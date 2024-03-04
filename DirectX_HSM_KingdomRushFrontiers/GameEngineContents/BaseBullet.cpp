@@ -58,8 +58,6 @@ void BaseBullet::Update(float _DeltaTime)
 
 void BaseBullet::CalBezierMid()
 {
-	//Mid = { 0,400 };
-
 	Mid0.x = ParentPos.x + ((TargetPos.x - ParentPos.x) / 4);
 	Mid0.y = max(TargetPos.y, ParentPos.y) + 150.f;
 	Mid0.z = ParentPos.z + ((TargetPos.z - ParentPos.z) / 4);
